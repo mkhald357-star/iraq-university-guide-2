@@ -58,6 +58,21 @@ const MajorSchema = z.object({
   marketMultiplier: z.number(),
 });
 
+const RIASEC_DIMENSIONS = ["R", "I", "A", "S", "E", "C"];
+const DimensionsSchema = z.object(
+  Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().optional()]))
+).strict();
+
+const QuestionSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  dimensions: DimensionsSchema,
+});
+
+const RiasecProfileSchema = z.object(
+  Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().min(0).max(10).optional()]))
+).strict();
+
 let hasErrors = false;
 
 function validate(label, filePath, schema) {
@@ -84,20 +99,52 @@ function validate(label, filePath, schema) {
 
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
 validate("data/majors.json", path.join(ROOT, "data/majors.json"), z.array(MajorSchema));
+validate("data/questions.json", path.join(ROOT, "data/questions.json"), z.array(QuestionSchema));
 
-// Cross-check: every majorId referenced in data/questions.json weights and
-// data/major_department_mapping.json must exist in data/majors.json.
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const majorIds = new Set(majors.map((m) => m.id));
 
+// Must have exactly 40 questions (the algorithm assumes a fixed, curated
+// question bank -- a silent drop/duplication would skew every dimension).
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-const unknownInQuestions = new Set();
-questions.forEach((q) => Object.keys(q.weights || {}).forEach((id) => { if (!majorIds.has(id)) unknownInQuestions.add(id); }));
-if (unknownInQuestions.size) {
-  console.error("[FAIL] data/questions.json references unknown major ids:", [...unknownInQuestions]);
+if (questions.length !== 40) {
+  console.error(`[FAIL] data/questions.json: expected exactly 40 questions, found ${questions.length}`);
   hasErrors = true;
 } else {
-  console.log("[OK] data/questions.json major-id references");
+  console.log("[OK] data/questions.json has exactly 40 questions");
+}
+const questionIds = questions.map((q) => q.id);
+const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);
+if (dupQuestionIds.length) {
+  console.error("[FAIL] data/questions.json has duplicate question ids:", [...new Set(dupQuestionIds)]);
+  hasErrors = true;
+}
+
+// Every major must have a RIASEC profile, and every profile must map to a real major.
+const riasecFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_riasec_profiles.json"), "utf8"));
+const profileResult = z.record(z.string(), RiasecProfileSchema).safeParse(riasecFile.profiles);
+if (!profileResult.success) {
+  console.error("[FAIL] data/major_riasec_profiles.json: schema validation failed");
+  for (const issue of profileResult.error.issues.slice(0, 20)) {
+    console.error(`  - ${issue.path.join(".")}: ${issue.message}`);
+  }
+  hasErrors = true;
+} else {
+  console.log("[OK] data/major_riasec_profiles.json");
+}
+const profileIds = new Set(Object.keys(riasecFile.profiles || {}));
+const majorsMissingProfile = majors.map((m) => m.id).filter((id) => !profileIds.has(id));
+const profilesWithoutMajor = [...profileIds].filter((id) => !majorIds.has(id));
+if (majorsMissingProfile.length) {
+  console.error("[FAIL] majors missing a RIASEC profile:", majorsMissingProfile);
+  hasErrors = true;
+}
+if (profilesWithoutMajor.length) {
+  console.error("[FAIL] RIASEC profiles reference unknown major ids:", profilesWithoutMajor);
+  hasErrors = true;
+}
+if (!majorsMissingProfile.length && !profilesWithoutMajor.length) {
+  console.log("[OK] every major has exactly one RIASEC profile");
 }
 
 const mapping = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_department_mapping.json"), "utf8"));

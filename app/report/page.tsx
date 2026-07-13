@@ -10,8 +10,11 @@ import {
 import majorsData from "../../data/majors.json";
 import universitiesData from "../../data/universities.json";
 import majorMappings from "../../data/major_department_mapping.json";
+import questionsData from "../../data/questions.json";
+import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { findUniversitiesForMajor, rankUniversityOfferings } from "../../lib/majorMatcher";
 import type { University } from "../../lib/majorMatcher";
+import { computeUserRiasecVector, computeMajorFit, RIASEC_LABELS, RIASEC_DIMENSIONS } from "../../lib/riasec";
 import EmptyState from "../components/EmptyState";
 import UniversitiesTable from "../components/UniversitiesTable";
 
@@ -299,12 +302,36 @@ function ReportContent() {
     return <EmptyState message="لم نجد جامعات تطبق هذا التخصص" />;
   }
 
-  // ── تحليل التوافق ──
+  // ── تحليل التوافق القائم على نموذج RIASEC ──
+  const userRiasecVector = computeUserRiasecVector(userAnswers, questionsData);
+  const riasecProfiles = riasecProfilesData.profiles as Record<string, Partial<Record<string, number>>>;
+
   const generateAnalysisForMajor = (majorObj: any): string[] => {
     const points: string[] = [];
-    const baseScore = Math.max(0, (majorObj.rawScore ?? 0) + 20);
-    points.push(`درجتك الأولية في هذا التخصص هي ${baseScore} نقطة، تعكس مدى توافق إجاباتك مع متطلباته.`);
-    points.push(`مضاعف السوق لهذا التخصص هو ${majorObj.marketMultiplier}، مما يعزز فرص التوظيف مقارنةً بالتخصصات الأخرى.`);
+    const profile = riasecProfiles[majorObj.id] ?? {};
+    const fitPercent = majorObj.fitPercent ?? computeMajorFit(userRiasecVector, profile);
+
+    // أقوى الأبعاد المشتركة بين شخصية الطالب ومتطلبات هذا التخصص تحديداً
+    const alignedDimensions = RIASEC_DIMENSIONS
+      .map((d) => ({ d, userScore: userRiasecVector[d] ?? 0, majorScore: (profile[d] ?? 0) * 10 }))
+      .filter((x) => x.userScore >= 55 && x.majorScore >= 55)
+      .sort((a, b) => Math.min(b.userScore, b.majorScore) - Math.min(a.userScore, a.majorScore));
+
+    points.push(`نسبة التوافق الشخصي بينك وبين هذا التخصص هي ${Math.round(fitPercent)}%، بناءً على مقارنة سماتك بمتطلبات التخصص الفعلية.`);
+
+    if (alignedDimensions.length > 0) {
+      const names = alignedDimensions.slice(0, 2).map((x) => RIASEC_LABELS[x.d]).join(" و");
+      points.push(`اخترنا لك هذا التخصص لأن سماتك في البُعد ${names} تتوافق بقوة مع متطلبات العمل فيه.`);
+    }
+
+    // تنبيه عند وجود فجوة واضحة بين سمة يحتاجها التخصص بشدة وسمة الطالب فيها ضعيفة
+    const gapDimension = RIASEC_DIMENSIONS
+      .map((d) => ({ d, userScore: userRiasecVector[d] ?? 0, majorScore: (profile[d] ?? 0) * 10 }))
+      .filter((x) => x.majorScore >= 70 && x.userScore <= 35)
+      .sort((a, b) => b.majorScore - a.majorScore)[0];
+    if (gapDimension) {
+      points.push(`ملاحظة: هذا التخصص يتطلب عادةً سمة ${RIASEC_LABELS[gapDimension.d]} بشكل قوي، بينما إجاباتك أظهرت ميلاً أقل لها — قد تحتاج جهداً إضافياً للتأقلم معها.`);
+    }
 
     if (filterSettings) {
       const branchMatch =
@@ -321,31 +348,9 @@ function ReportContent() {
       }
     }
 
-    const positiveAnswers: Record<string, string> = {
-      q_math_logic: "تحب حل المسائل الرياضية، وهو أساس قوي للتخصصات التقنية والهندسية.",
-      q_memory: "تمتلك قدرة عالية على الحفظ، وهو مهم للعلوم الطبية والبحثية.",
-      q_risk_reward: "مستعد للمخاطرة مقابل مكافآت مادية أعلى، مناسب لمجالات النمو السريع.",
-      q_tech_savvy: "تمتلك مهارات تقنية قوية تجعلك مناسباً للتخصصات الرقمية.",
-      q_continuous_learning: "تحب التعلم المستمر، وهو ضروري في المجالات سريعة التطور.",
-    };
-    Object.entries(positiveAnswers).forEach(([qid, reason]) => {
-      if (userAnswers[qid] === 1) points.push(reason);
-    });
-
-    const warningAnswers: Record<string, string> = {
-      q_stress_tolerance: "إجابتك تشير إلى أن بعض التخصصات الطبية عالية الضغط قد تكون تحدياً.",
-      q_comfort_vs_salary: "تفضّل بيئة عمل مريحة، لذا وازن توقعاتك مع متطلبات السوق.",
-    };
-    Object.entries(warningAnswers).forEach(([qid, warning]) => {
-      if (userAnswers[qid] === -1) points.push(warning);
-    });
-
     points.push(`سوق العمل لهذا التخصص "${demand.text}"، مما يعني فرص توظيف ${demand.text === "مرتفع جداً" ? "قوية جداً" : demand.text === "مرتفع" ? "جيدة" : "متوسطة"}.`);
     points.push(`الراتب المتوقع عند التخرج يتراوح بين ${getSalaryRange(majorObj.marketMultiplier)}.`);
 
-    if (points.length < 6) {
-      points.push("تحليلاتنا تأخذ بالاعتبار جميع إجاباتك وتوازن بين مهاراتك وأهدافك المهنية.");
-    }
     return points;
   };
 

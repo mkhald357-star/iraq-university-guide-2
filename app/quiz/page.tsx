@@ -5,6 +5,15 @@ import Link from "next/link";
 import { ArrowLeft, ChevronRight, AlertTriangle, CheckCircle, Edit3 } from "lucide-react";
 import questionsData from "../../data/questions.json";
 import majorsData from "../../data/majors.json";
+import riasecProfilesData from "../../data/major_riasec_profiles.json";
+import {
+  computeUserRiasecVector,
+  computeMajorFit,
+  computeCombinedRankingScore,
+  topDimensions,
+  RIASEC_LABELS,
+  type RiasecDimension,
+} from "../../lib/riasec";
 
 type AnswerState = Record<string, number>;
 
@@ -122,6 +131,7 @@ export default function Quiz() {
   const [showReview, setShowReview] = useState(false);
   const [topMajors, setTopMajors] = useState<any[]>([]);
   const [warnings, setWarnings] = useState<string[]>([]);
+  const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
 
   const [filterSettings, setFilterSettings] = useState<null | {
     province: string;
@@ -211,7 +221,9 @@ export default function Quiz() {
     );
   }
 
-  // ---- حساب الأسئلة المتاحة ----
+  // ---- الفروع الرسمية الثلاثة للقبول المركزي العراقي (علمي/أدبي/فنون)،
+  // مع إبقاء "إدارة" كفلتر واجهة مختصر يوازي أقسام إدارية مقبولة من
+  // الفرعين العلمي والأدبي معاً (انظر data/admission_rules.md §8) ----
   const branchMap: Record<string, string[]> = {
     "علمي": ["تكنولوجيا", "هندسة", "طبي", "علوم", "زراعة"],
     "أدبي": ["إنسانيات", "لغات", "تربية"],
@@ -219,67 +231,43 @@ export default function Quiz() {
     "إدارة": ["إدارة وتسويق"],
   };
 
-  const allowedCategories = branchMap[filterSettings.branch] || [];
   const gradeIsHigh = filterSettings.grade >= 85;
 
-  const allowedMajors = majorsData.filter((major) => {
-    if (!allowedCategories.includes(major.category)) return false;
-    if (!gradeIsHigh && major.category === "طبي") return false;
-    return true;
-  });
+  // كل الأسئلة الأربعين تُعرض للجميع بصرف النظر عن الفرع، لأنها تقيس
+  // سمات شخصية عامة (نموذج RIASEC) لا تفضيلاً مباشراً لتخصص بعينه.
+  const displayedQuestions = questionsData;
 
-  const displayedQuestions = questionsData.filter((q) => {
-    if (["q_science_branch", "q_high_grades"].includes(q.id)) return false;
-    return Object.keys(q.weights).some((majorId) =>
-      allowedMajors.some((m) => m.id === majorId)
-    );
-  });
-
-  // ---- محرك الحساب ----
-  const execute18StepEngine = (finalAnswers: AnswerState) => {
-    let finalWarnings: string[] = [];
-
-    if (filterSettings) {
-      finalAnswers["q_science_branch"] = filterSettings.branch === "علمي" ? 1 : -1;
-      finalAnswers["q_high_grades"] = Number(filterSettings.grade) >= 85 ? 1 : -1;
-    }
+  // ---- محرك التوصية القائم على RIASEC ----
+  const runRecommendationEngine = (finalAnswers: AnswerState) => {
+    const finalWarnings: string[] = [];
 
     const comfortScore = finalAnswers["q_comfort_vs_salary"] ?? 0;
     const riskScore = finalAnswers["q_risk_reward"] ?? 0;
     if (comfortScore > 0 && riskScore > 0) {
-      finalWarnings.push("لاحظنا تضارباً في إجاباتك: ترغب براتب عالي جداً ولكن تبحث عن الراحة القصوى. تم موازنة النتيجة بناءً على الواقع.");
-      finalAnswers["q_risk_reward"] = 0;
+      finalWarnings.push("لاحظنا تضارباً في إجاباتك: ترغب براتب عالٍ جداً ولكن تبحث عن الراحة القصوى في آنٍ معاً. اعتمدنا إجاباتك الأخرى للترجيح بينهما.");
     }
 
-    const scores: Record<string, number> = {};
-    questionsData.forEach((q) => {
-      const userAns = finalAnswers[q.id] ?? 0;
-      if (q.category === "hard_constraint") return;
-      Object.entries(q.weights).forEach(([majorId, weight]) => {
-        if (!scores[majorId]) scores[majorId] = 0;
-        scores[majorId] += (weight as number) * userAns;
-      });
-    });
-
+    const userVector = computeUserRiasecVector(finalAnswers, questionsData);
     const allowedCats = branchMap[filterSettings.branch] || [];
+
     const processedMajors = majorsData
       .map((major) => {
-        let rawScore = scores[major.id] || 0;
-        let valid = true;
-        if (!allowedCats.includes(major.category)) valid = false;
+        const profile = (riasecProfilesData.profiles as Record<string, any>)[major.id] ?? {};
+        const fitPercent = computeMajorFit(userVector, profile);
+        let valid = allowedCats.includes(major.category);
         if (!gradeIsHigh && major.category === "طبي") valid = false;
-        if (!valid) rawScore = -999;
-        const baseScore = Math.max(0, rawScore + 20);
-        const finalScore = baseScore * major.marketMultiplier;
-        return { ...major, rawScore, finalScore, valid };
+        const combinedScore = computeCombinedRankingScore(fitPercent, major.marketMultiplier);
+        return { ...major, fitPercent, combinedScore, valid };
       })
       .filter((m) => m.valid);
 
-    processedMajors.sort((a, b) => b.finalScore - a.finalScore);
+    processedMajors.sort((a, b) => b.combinedScore - a.combinedScore);
     const top3 = processedMajors.slice(0, 3);
+    const userTopDimensions = topDimensions(userVector, 2);
 
     setWarnings(finalWarnings);
     setTopMajors(top3);
+    setTopUserDimensions(userTopDimensions);
     setIsFinished(true);
     localStorage.setItem("quizResults", JSON.stringify(top3));
     localStorage.setItem("userAnswers", JSON.stringify(finalAnswers));
@@ -306,8 +294,16 @@ export default function Quiz() {
         <div className="text-center space-y-4">
           <h2 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h2>
           <p className="text-lg text-slate-600">
-            بناءً على خوارزمية المطابقة المتقدمة وتحليل 18 خطوة، هذه هي أفضل التخصصات لك:
+            بناءً على تحليل شخصيتك المهنية عبر 40 سؤالاً ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
           </p>
+          {topUserDimensions.length > 0 && (
+            <p className="text-sm text-slate-500">
+              أبرز سماتك:{" "}
+              <span className="font-bold text-primary">
+                {topUserDimensions.map((d) => RIASEC_LABELS[d.dimension]).join(" و")}
+              </span>
+            </p>
+          )}
         </div>
         {warnings.length > 0 && (
           <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-2xl flex items-start gap-3">
@@ -329,14 +325,13 @@ export default function Quiz() {
                   {index + 1}. {major.name}
                 </h3>
                 <p className="text-slate-500">{major.category}</p>
-                <p className="text-sm text-slate-400 mt-1">معامل السوق: {major.marketMultiplier}</p>
-                <p className="text-sm text-slate-400 mt-1">النقاط الأولية: {major.rawScore}</p>
+                <p className="text-sm text-slate-400 mt-1">معامل الطلب في السوق: {major.marketMultiplier}</p>
               </div>
               <div className="text-left">
                 <div className="text-3xl font-black text-primary">
-                  {Math.min(99, Math.round((major.finalScore / 50) * 100))}%
+                  {Math.round(major.fitPercent)}%
                 </div>
-                <div className="text-sm text-slate-400">نسبة التوافق</div>
+                <div className="text-sm text-slate-400">نسبة التوافق الشخصي</div>
               </div>
             </div>
           ))}
@@ -368,7 +363,7 @@ export default function Quiz() {
           setShowReview(false);
           setCurrentQuestionIndex(index);
         }}
-        onSubmit={() => execute18StepEngine({ ...answers })}
+        onSubmit={() => runRecommendationEngine({ ...answers })}
         onBack={() => {
           setShowReview(false);
           setCurrentQuestionIndex(displayedQuestions.length - 1);

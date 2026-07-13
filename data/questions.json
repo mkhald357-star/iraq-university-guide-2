@@ -1,151 +1,47 @@
 [
-  {
-    "id": "q_social",
-    "text": "هل تستمتع بالعمل ضمن فريق وتكوين علاقات اجتماعية جديدة باستمرار بدلاً من العمل الانفرادي؟",
-    "category": "personality",
-    "weights": {
-      "business_admin": 5, "digital_marketing": 5, "project_management": 5, "law": 4, "political_science": 4, "education": 5,
-      "software_engineering": -2, "ai": -2, "cybersecurity": -3, "accounting": -2,
-      "tourism_hospitality": 6, "media_journalism": 5, "psychology_sociology": 5, "kindergarten_education": 5, "physical_education": 3,
-      "forensic_science": -3, "mathematics": -2, "translation": -2, "mechatronics_engineering": -1, "biomedical_engineering": -1
-    }
-  },
-  {
-    "id": "q_detail_oriented",
-    "text": "هل تفضل الأعمال التي تتطلب دقة متناهية وتنظيم عالي والجلوس لفترات طويلة على مكتب؟",
-    "category": "personality",
-    "weights": {
-      "software_engineering": 5, "ai": 5, "cybersecurity": 5, "computer_science": 5, "accounting": 6,
-      "dentistry": 4, "medical_analysis": 5, "graphic_design": 4, "interior_design": 4,
-      "civil_engineering": -2, "petroleum_engineering": -2, "education": -2,
-      "mathematics": 6, "physics": 5, "chemistry": 6, "forensic_science": 6, "translation": 5, "arabic_language": 3,
-      "biomedical_engineering": 5, "mechatronics_engineering": 4, "electrical_engineering": 4, "chemical_engineering": 5, "mechanical_engineering": 3,
-      "physical_education": -4, "tourism_hospitality": -2, "agriculture": -2
-    }
-  },
-  {
-    "id": "q_math_logic",
-    "text": "هل تجد متعة وسهولة في حل المسائل الرياضية المعقدة والمنطقية؟",
-    "category": "cognitive",
-    "weights": {
-      "software_engineering": 7, "ai": 8, "computer_science": 6, "cybersecurity": 6,
-      "civil_engineering": 6, "renewable_energy": 5, "petroleum_engineering": 5, "accounting": 4,
-      "law": -3, "english": -3, "education": -2, "graphic_design": -2,
-      "mathematics": 8, "physics": 7, "mechanical_engineering": 6, "electrical_engineering": 6, "chemical_engineering": 6,
-      "mechatronics_engineering": 7, "biomedical_engineering": 6, "chemistry": 4, "forensic_science": 5, "biology": 3, "veterinary_medicine": 2,
-      "arabic_language": -3, "translation": -2, "history": -2, "geography": -1, "islamic_studies": -2, "psychology_sociology": -1,
-      "tourism_hospitality": -2, "physical_education": -2, "fine_arts": -2, "media_journalism": -2, "kindergarten_education": -3
-    }
-  },
-  {
-    "id": "q_memory",
-    "text": "هل تمتلك قدرة عالية جداً على الحفظ السريع للمصطلحات الطويلة والمعلومات الكثيفة؟",
-    "category": "cognitive",
-    "weights": {
-      "medicine": 8, "pharmacy": 8, "law": 7, "political_science": 5, "english": 6, "medical_analysis": 5,
-      "software_engineering": -2, "graphic_design": -2,
-      "veterinary_medicine": 7, "forensic_science": 5, "islamic_studies": 6, "history": 6, "arabic_language": 5, "biology": 6, "chemistry": 4, "geography": 4,
-      "mechanical_engineering": -2, "electrical_engineering": -2, "mechatronics_engineering": -2, "mathematics": -2, "physical_education": -2
-    }
-  },
-  {
-    "id": "q_risk_reward",
-    "text": "هل أنت مستعد للتضحية بالاستقرار الوظيفي (التعيين المركزي) مقابل دخل مادي عالي جداً في القطاع الخاص أو العمل الحر؟",
-    "category": "ambition",
-    "weights": {
-      "digital_marketing": 8, "software_engineering": 6, "ai": 6, "cybersecurity": 6, "project_management": 6, "business_admin": 5, "graphic_design": 5,
-      "medicine": -5, "nursing": -5, "education": -5, "law": -2,
-      "tourism_hospitality": 5, "mechatronics_engineering": 3, "biomedical_engineering": 2,
-      "veterinary_medicine": -3, "kindergarten_education": -5, "physical_education": -3, "islamic_studies": -3, "arabic_language": -2, "history": -2, "agriculture": -3
-    }
-  },
-  {
-    "id": "q_negotiation",
-    "text": "هل تمتلك مهارة عالية في إقناع الآخرين بأفكارك ولديك قدرة جيدة على التفاوض؟",
-    "category": "personality",
-    "weights": {
-      "law": 7, "political_science": 7, "digital_marketing": 6, "business_admin": 5, "project_management": 5,
-      "computer_science": -2, "medical_analysis": -2,
-      "tourism_hospitality": 6, "media_journalism": 6, "psychology_sociology": 5,
-      "mathematics": -2, "physics": -2, "chemistry": -2, "forensic_science": -2, "biomedical_engineering": -1
-    }
-  },
-  {
-    "id": "q_tech_savvy",
-    "text": "هل تتابع التطورات التكنولوجية الحديثة وتجيد استخدام الحواسيب بمهارة عالية؟",
-    "category": "cognitive",
-    "weights": {
-      "software_engineering": 8, "ai": 8, "cybersecurity": 8, "computer_science": 8, "digital_marketing": 5, "graphic_design": 4,
-      "law": -2, "medicine": 0, "education": -2,
-      "mechatronics_engineering": 7, "biomedical_engineering": 6, "electrical_engineering": 6, "mechanical_engineering": 4, "chemical_engineering": 3, "forensic_science": 5,
-      "arabic_language": -2, "history": -2, "islamic_studies": -2, "physical_education": -2, "kindergarten_education": -2, "geography": 1
-    }
-  },
-  {
-    "id": "q_creative_art",
-    "text": "هل تمتلك حساً فنياً وإبداعياً في تناسق الألوان وتصميم الأشياء وتخيل المساحات؟",
-    "category": "cognitive",
-    "weights": {
-      "architecture": 8, "graphic_design": 8, "interior_design": 8,
-      "accounting": -3, "law": -3, "medicine": -2,
-      "fine_arts": 8, "media_journalism": 4,
-      "mathematics": -2, "physics": -2, "chemistry": -2, "mechanical_engineering": -2, "electrical_engineering": -2, "forensic_science": -2, "veterinary_medicine": -1
-    }
-  },
-  {
-    "id": "q_field_work",
-    "text": "هل تفضل أن تعمل في بيئة ميدانية (مواقع بناء، منشآت نفطية، مستشفيات) بدلاً من العمل المكتبي المغلق؟",
-    "category": "ambition",
-    "weights": {
-      "civil_engineering": 7, "petroleum_engineering": 7, "renewable_energy": 6, "nursing": 6, "medicine": 5,
-      "software_engineering": -5, "accounting": -5, "graphic_design": -5,
-      "agriculture": 7, "veterinary_medicine": 6, "mechanical_engineering": 5, "chemical_engineering": 4, "geography": 4, "physical_education": 5, "forensic_science": 3,
-      "mathematics": -4, "arabic_language": -3, "translation": -3, "fine_arts": -2, "media_journalism": -1, "tourism_hospitality": 2
-    }
-  },
-  {
-    "id": "q_stress_tolerance",
-    "text": "هل تستطيع تحمل ضغط العمل النفسي والتعامل مع حالات طارئة أو أشخاص يمرون بظروف صحية صعبة؟",
-    "category": "personality",
-    "weights": {
-      "medicine": 8, "nursing": 8, "dentistry": 6, "pharmacy": 5, "law": 4,
-      "graphic_design": -3, "accounting": -2, "software_engineering": -2,
-      "veterinary_medicine": 6, "forensic_science": 6, "biomedical_engineering": 3, "physical_education": 3, "kindergarten_education": 2,
-      "fine_arts": -2, "arabic_language": -1, "history": -1, "tourism_hospitality": -1
-    }
-  },
-  {
-    "id": "q_entrepreneurship",
-    "text": "هل تفضل دراسة تخصص يتيح لك فتح مشروعك الخاص (صيدلية، عيادة، شركة برمجيات، مكتب هندسي) بدلاً من الوظيفة الروتينية؟",
-    "category": "ambition",
-    "weights": {
-      "pharmacy": 6, "dentistry": 6, "medicine": 5, "software_engineering": 5, "digital_marketing": 5, "business_admin": 5, "architecture": 5,
-      "nursing": -3, "education": -4, "medical_analysis": -1,
-      "tourism_hospitality": 5, "fine_arts": 3, "agriculture": 4, "mechanical_engineering": 3, "veterinary_medicine": 2,
-      "kindergarten_education": -3, "islamic_studies": -2, "physical_education": -1
-    }
-  },
-  {
-    "id": "q_comfort_vs_salary",
-    "text": "هل ترغب بوظيفة مريحة جداً وبساعات عمل محددة وبلا ضغوطات حتى لو كان راتبها منخفضاً نسبياً؟",
-    "category": "contradiction",
-    "weights": {
-      "education": 6, "accounting": 4, "business_admin": 2,
-      "medicine": -7, "petroleum_engineering": -6, "software_engineering": -5, "ai": -5, "law": -4, "civil_engineering": -4,
-      "kindergarten_education": 5, "islamic_studies": 4, "arabic_language": 3, "history": 3, "geography": 3, "physical_education": 3,
-      "mechanical_engineering": -3, "electrical_engineering": -3, "chemical_engineering": -4, "mechatronics_engineering": -4,
-      "biomedical_engineering": -3, "forensic_science": -4, "veterinary_medicine": -3, "tourism_hospitality": -2
-    }
-  },
-  {
-    "id": "q_continuous_learning",
-    "text": "هل أنت مستعد للدراسة بجدية لعدة سنوات والتعلم المستمر حتى بعد التخرج (لأن مجالك سيتطور باستمرار ولن يتوقف)؟",
-    "category": "ambition",
-    "weights": {
-      "medicine": 8, "ai": 8, "software_engineering": 7, "cybersecurity": 7, "pharmacy": 6, "dentistry": 6,
-      "education": -3, "business_admin": -2, "accounting": -2,
-      "biomedical_engineering": 7, "mechatronics_engineering": 7, "veterinary_medicine": 6, "forensic_science": 6, "chemistry": 5, "physics": 5, "mathematics": 4,
-      "kindergarten_education": -2, "tourism_hospitality": -2, "physical_education": -2, "fine_arts": -1
-    }
-  }
+  { "id": "q_hands_on", "text": "هل تستمتع بالعمل اليدوي وإصلاح الأشياء والتعامل مع الأدوات والآلات؟", "dimensions": { "R": 8 } },
+  { "id": "q_outdoor_fieldwork", "text": "هل تفضل قضاء وقتك في مواقع عمل ميدانية (ورش، حقول، مواقع إنشاء) بدل المكتب المغلق؟", "dimensions": { "R": 8, "C": -2 } },
+  { "id": "q_tinkering", "text": "هل تستمتع بتفكيك الأجهزة الإلكترونية أو الميكانيكية لفهم كيف تعمل من الداخل؟", "dimensions": { "R": 7, "I": 3 } },
+  { "id": "q_physical_activity", "text": "هل تفضل الأنشطة الرياضية والبدنية النشطة على الأنشطة الفكرية الهادئة؟", "dimensions": { "R": 7 } },
+  { "id": "q_tangible_result", "text": "هل تشعر برضا أكبر عند إنجاز عمل ملموس يمكنك رؤية ولمس نتيجته الفعلية (مبنى، جهاز، محصول)؟", "dimensions": { "R": 6, "C": 2 } },
+  { "id": "q_nature_animals", "text": "هل تفضل العمل المباشر مع النباتات أو الحيوانات أو في الطبيعة على العمل الإداري أو المكتبي؟", "dimensions": { "R": 8 } },
+  { "id": "q_field_work", "text": "هل تفضل أن تعمل في بيئة ميدانية (مواقع بناء، منشآت نفطية، حقول زراعية) بدلاً من العمل المكتبي المغلق؟", "dimensions": { "R": 7, "C": -2 } },
+
+  { "id": "q_math_logic", "text": "هل تجد متعة وسهولة في حل المسائل الرياضية المعقدة والمنطقية؟", "dimensions": { "I": 8 } },
+  { "id": "q_scientific_curiosity", "text": "هل تحب طرح الأسئلة العلمية والبحث عن تفسيرات دقيقة للظواهر من حولك؟", "dimensions": { "I": 8 } },
+  { "id": "q_data_patterns", "text": "هل تستمتع بتحليل البيانات واكتشاف الأنماط والعلاقات الخفية فيها؟", "dimensions": { "I": 7, "C": 3 } },
+  { "id": "q_scientific_reading", "text": "هل تفضل القراءة العلمية ومتابعة الاكتشافات والأبحاث الحديثة؟", "dimensions": { "I": 7 } },
+  { "id": "q_why_how", "text": "هل يدفعك الفضول لمعرفة 'لماذا' و'كيف' تحدث الأشياء أكثر من مجرد تنفيذها كما هي؟", "dimensions": { "I": 7 } },
+  { "id": "q_lab_experiments", "text": "هل تستمتع بالتجارب المخبرية والتحقق العملي من صحة الفرضيات والنظريات؟", "dimensions": { "I": 7, "R": 2 } },
+  { "id": "q_tech_savvy", "text": "هل تتابع التطورات التكنولوجية الحديثة وتجيد استخدام الحواسيب والتقنية بمهارة عالية؟", "dimensions": { "I": 7, "E": 2 } },
+
+  { "id": "q_creative_art", "text": "هل تمتلك حساً فنياً وإبداعياً في تناسق الألوان وتصميم الأشياء وتخيل المساحات؟", "dimensions": { "A": 8 } },
+  { "id": "q_self_expression", "text": "هل تحب التعبير عن أفكارك ومشاعرك من خلال الكتابة أو الرسم أو الموسيقى؟", "dimensions": { "A": 8 } },
+  { "id": "q_creative_freedom", "text": "هل تفضل الأعمال التي تمنحك حرية الابتكار على اتباع قواعد وتعليمات صارمة؟", "dimensions": { "A": 7, "E": 2 } },
+  { "id": "q_arts_appreciation", "text": "هل تستمتع بمشاهدة الأفلام أو قراءة الأدب وتحليل جمالياته الفنية بعمق؟", "dimensions": { "A": 6 } },
+  { "id": "q_routine_aversion", "text": "هل تشعر بالضيق من الأعمال الروتينية المتكررة التي لا تتيح مجالاً للتجديد والابتكار؟", "dimensions": { "A": 6, "C": -3 } },
+  { "id": "q_visualize_design", "text": "هل تجيد تخيل تصاميم أو مساحات جديدة غير موجودة بعد قبل تنفيذها فعلياً؟", "dimensions": { "A": 7 } },
+
+  { "id": "q_help_others", "text": "هل تستمتع بمساعدة الآخرين وتقديم النصح لهم في حل مشاكلهم؟", "dimensions": { "S": 8 } },
+  { "id": "q_social", "text": "هل تستمتع بالعمل ضمن فريق وتكوين علاقات اجتماعية جديدة باستمرار بدلاً من العمل الانفرادي؟", "dimensions": { "S": 7, "E": 2 } },
+  { "id": "q_teaching_others", "text": "هل تشعر بالرضا عند تعليم شخص آخر مهارة جديدة أو شرح فكرة معقدة له ببساطة؟", "dimensions": { "S": 7 } },
+  { "id": "q_empathy", "text": "هل تهتم فعلاً بمشاعر الآخرين وتحاول فهم ما يمرّون به من ظروف؟", "dimensions": { "S": 7 } },
+  { "id": "q_people_facing", "text": "هل تفضل بيئة عمل يكون التواصل المباشر مع الناس (طلاب، مرضى، عملاء) جزءاً أساسياً منها؟", "dimensions": { "S": 7 } },
+  { "id": "q_volunteering", "text": "هل تستمتع بالتطوع والعمل الخيري ومساعدة الفئات المحتاجة في المجتمع؟", "dimensions": { "S": 6 } },
+  { "id": "q_stress_tolerance", "text": "هل تستطيع تحمل ضغط العمل النفسي والتعامل مع حالات طارئة أو أشخاص يمرون بظروف صحية صعبة؟", "dimensions": { "S": 6, "R": 2 } },
+
+  { "id": "q_negotiation", "text": "هل تمتلك مهارة عالية في إقناع الآخرين بأفكارك ولديك قدرة جيدة على التفاوض؟", "dimensions": { "E": 8 } },
+  { "id": "q_leadership", "text": "هل تحب قيادة المجموعات واتخاذ القرارات نيابة عنها؟", "dimensions": { "E": 8 } },
+  { "id": "q_deal_making", "text": "هل تستمتع بالتفاوض على الصفقات أو المساومة على الأسعار والشروط؟", "dimensions": { "E": 7, "C": 2 } },
+  { "id": "q_entrepreneurship", "text": "هل تطمح لامتلاك مشروعك التجاري أو المهني الخاص يوماً ما بدلاً من الوظيفة الروتينية؟", "dimensions": { "E": 7 } },
+  { "id": "q_risk_reward", "text": "هل أنت مستعد للتضحية بالاستقرار الوظيفي (التعيين المركزي) مقابل دخل مادي عالٍ جداً في القطاع الخاص أو العمل الحر؟", "dimensions": { "E": 8, "C": -2 } },
+  { "id": "q_competitive_recognition", "text": "هل تحب المنافسة والتميّز الظاهر أمام الآخرين من خلال تقدير أو مناصب أو إنجازات معلنة؟", "dimensions": { "E": 6 } },
+
+  { "id": "q_detail_oriented", "text": "هل تفضل الأعمال التي تتطلب دقة متناهية وتنظيماً عالياً والجلوس لفترات طويلة على مكتب؟", "dimensions": { "C": 8 } },
+  { "id": "q_numbers_finance", "text": "هل تستمتع بالعمل مع الأرقام والجداول والحسابات المالية؟", "dimensions": { "C": 8 } },
+  { "id": "q_follow_procedures", "text": "هل تفضل اتباع تعليمات وإجراءات واضحة بدل الاجتهاد الشخصي في طريقة تنفيذ العمل؟", "dimensions": { "C": 7 } },
+  { "id": "q_organize_systematically", "text": "هل تشعر بالراحة عند تنظيم الملفات والبيانات وترتيبها بشكل منهجي دقيق؟", "dimensions": { "C": 7 } },
+  { "id": "q_comfort_vs_salary", "text": "هل ترغب بوظيفة مريحة جداً وبساعات عمل محددة وبلا ضغوطات حتى لو كان راتبها منخفضاً نسبياً؟", "dimensions": { "C": 6, "E": -3 } },
+  { "id": "q_memory", "text": "هل تمتلك قدرة عالية جداً على الحفظ السريع للمصطلحات الطويلة والمعلومات الكثيفة؟", "dimensions": { "C": 5, "I": 3 } },
+  { "id": "q_continuous_learning", "text": "هل أنت مستعد للدراسة بجدية لعدة سنوات والتعلم المستمر حتى بعد التخرج لأن مجالك سيتطور باستمرار ولن يتوقف؟", "dimensions": { "C": 5, "I": 5 } }
 ]

@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-background text-slate-900 font-cairo antialiased;
+    direction: rtl;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   أضف هذا في نهاية ملف app/globals.css الحالي
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* أنيميشن Shimmer لمكوّنات Skeleton */
+@keyframes shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%);  }
+}
+
+/* تطبيق الأنيميشن */
+.animate-\[shimmer_1\.6s_infinite\] {
+  animation: shimmer 1.6s infinite;
+}
+
+/* طباعة نظيفة عند تصدير PDF */
+@media print {
+  nav, header, footer, .no-print { display: none !important; }
+}

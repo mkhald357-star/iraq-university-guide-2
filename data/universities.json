@@ -1,0 +1,4459 @@
+{
+  "meta": {
+    "lastUpdated": "2026-06-27",
+    "source": "وزارة التعليم العالي",
+    "version": "2.0.0"
+  },
+  "universities": [
+    {
+      "id": "baghdad",
+      "name": "جامعة بغداد",
+      "nameEn": "University of Baghdad",
+      "type": "حكومية",
+      "province": "بغداد",
+      "founded": 1958,
+      "website": "www.uobaghdad.edu.iq",
+      "ranking": 1,
+      "colleges": [
+        {
+          "id": "baghdad_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 146,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_2",
+          "name": "طب الكندي",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "طب الكندي"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 265,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_3",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 137,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_4",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 127,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_5",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الطاقة",
+            "البيئة",
+            "الإلكترونيك والاتصالات",
+            "الحاسوب",
+            "الكيمياوية",
+            "الميكانيك",
+            "النفط",
+            "الموارد المائية",
+            "المساحة",
+            "الطيران"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 260,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_6",
+          "name": "هندسة الخوارزمي",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المعلومات والاتصالات",
+            "الكيميائية الأحيائية",
+            "الطب الحياتي",
+            "الميكاترونكس",
+            "التصنيع المؤتمت"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 239,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_7",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علم الأرض",
+            "علوم الحياة",
+            "علوم الحاسوب",
+            "التقنيات الأحيائية",
+            "الرياضيات",
+            "الفلك والفضاء",
+            "التحسس النائي"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 274,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_8",
+          "name": "العلوم للبنات",
+          "nameEn": "College of Science for Girls",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 304,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_9",
+          "name": "التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 88,
+            "مسائي": null
+          },
+          "capacity": 253,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_10",
+          "name": "الطب البيطري",
+          "nameEn": "College of Veterinary Medicine",
+          "departments": [
+            "الطب البيطري"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 143,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_11",
+          "name": "علوم الهندسة الزراعية",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "وقاية النبات",
+            "المحاصيل الحقلية",
+            "علوم التربة والموارد المائية",
+            "الاقتصاد الزراعي",
+            "الإرشاد الزراعي",
+            "المكائن والآلات الزراعية",
+            "الإنتاج الحيواني",
+            "البستنة وهندسة الحدائق",
+            "علوم الأغذية",
+            "مكافحة التصحر"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 346,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_12",
+          "name": "التربية للعلوم الصرفة / ابن الهيثم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الحاسبات",
+            "الرياضيات"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 294,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_13",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 307,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_14",
+          "name": "العلوم السياسية",
+          "nameEn": "College of Science",
+          "departments": [
+            "الفكر السياسي",
+            "الدراسات الدولية",
+            "النظم السياسية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 280,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_15",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الإدارة العامة",
+            "الاقتصاد",
+            "المحاسبة",
+            "الإدارة الصناعية",
+            "العلوم المالية والمصرفية",
+            "الإحصاء",
+            "بحوث العمليات"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 202,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_16",
+          "name": "اللغات",
+          "nameEn": "College of اللغات",
+          "departments": [
+            "اللغة الألمانية",
+            "اللغة الفارسية",
+            "اللغة الروسية",
+            "اللغة الإسبانية",
+            "اللغة الفرنسية",
+            "اللغة العبرية",
+            "اللغة التركية",
+            "اللغة السريانية",
+            "اللغة الإيطالية",
+            "اللغة الصينية",
+            "اللغة الإنكليزية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 246,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_17",
+          "name": "التربية ابن رشد للعلوم الإنسانية",
+          "nameEn": "College of Science",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "العلوم التربوية والنفسية",
+            "اللغة العربية",
+            "علوم القرآن والتربية الإسلامية",
+            "اللغة الكردية",
+            "اللغة الإنكليزية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 250,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_18",
+          "name": "التربية للبنات",
+          "nameEn": "College of Education",
+          "departments": [
+            "الجغرافية",
+            "التأريخ",
+            "علوم تربوية ونفسية",
+            "اللغة العربية",
+            "علوم القرآن والتربية الإسلامية",
+            "الاقتصاد المنزلي",
+            "الحاسوب",
+            "اللغة الإنكليزية",
+            "رياض الأطفال"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 253,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_19",
+          "name": "الآداب",
+          "nameEn": "College of Arts",
+          "departments": [
+            "اللغة الإنكليزية",
+            "التأريخ",
+            "الجغرافية ونظم المعلومات الجغرافية",
+            "الاجتماع",
+            "اللغة العربية",
+            "الترجمة",
+            "الفلسفة",
+            "الآثار",
+            "علم النفس"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 301,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_20",
+          "name": "الإعلام",
+          "nameEn": "College of Media",
+          "departments": [
+            "الإذاعة والتلفزيون",
+            "العلاقات العامة",
+            "الصحافة الرقمية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 310,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_21",
+          "name": "العلوم الإسلامية",
+          "nameEn": "College of Science",
+          "departments": [
+            "الشريعة",
+            "العقيدة والفكر الإسلامي",
+            "اللغة العربية",
+            "التاريخ والحضارة الإسلامية",
+            "الفلسفة الإسلامية",
+            "الأديان المقارنة",
+            "العلوم المالية والمصرفية الإسلامية",
+            "العلوم التربوية والنفسية الإسلامية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 314,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_22",
+          "name": "التربية البدنية وعلوم الرياضة",
+          "nameEn": "College of Science",
+          "departments": [
+            "التربية البدنية وعلوم الرياضة"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 281,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_23",
+          "name": "الفنون الجميلة",
+          "nameEn": "College of Fine Arts",
+          "departments": [
+            "الفنون السينمائية والتلفزيونية",
+            "الفنون المسرحية",
+            "الفنون التشكيلية",
+            "التصميم",
+            "الفنون الموسيقية",
+            "الخط والزخرفة",
+            "التربية الفنية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 347,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_24",
+          "name": "كلية التميز",
+          "nameEn": "College of Excellence",
+          "departments": [
+            "نظم المعلومات التطبيقية",
+            "علم البيانات",
+            "المحاسبة والمصارف",
+            "الفلسفة وعلم الاجتماع",
+            "إدارة الأعمال والتجارة الإلكترونية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 339,
+          "contactEmail": null
+        },
+        {
+          "id": "baghdad_col_25",
+          "name": "كلية الذكاء الاصطناعي",
+          "nameEn": "College of Artificial Intelligence",
+          "departments": [
+            "التطبيقات الهندسية",
+            "التطبيقات الطبية الحيوية",
+            "البيانات الضخمة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 306,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "mustansiriyah",
+      "name": "الجامعة المستنصرية",
+      "nameEn": "Al-Mustansiriya University",
+      "type": "حكومية",
+      "province": "بغداد",
+      "founded": 1963,
+      "website": "www.uomustansiriyah.edu.iq",
+      "ranking": 2,
+      "colleges": [
+        {
+          "id": "mustansiriyah_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 141,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 125,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 149,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "البيئة",
+            "الطرق",
+            "العمارة",
+            "المواد",
+            "الحاسوب",
+            "الموارد المائية",
+            "الميكانيك"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 273,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_5",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "علوم الجو",
+            "الفيزياء",
+            "علوم الحاسب",
+            "الأمن السيبراني",
+            "تكنولوجيا المعلومات",
+            "علوم الحياة",
+            "التقانة الأحيائية",
+            "الأحياء المجهرية",
+            "الذكاء الاصطناعي",
+            "الرياضيات"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 208,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_6",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 336,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_7",
+          "name": "العلوم السياسية",
+          "nameEn": "College of Science",
+          "departments": [
+            "العلوم السياسية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 200,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_8",
+          "name": "التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 88,
+            "مسائي": null
+          },
+          "capacity": 349,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_9",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية",
+            "الإحصاء"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 341,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_10",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "العلوم التربوية والنفسية",
+            "اللغة العربية",
+            "علوم القرآن والتربية الإسلامية",
+            "الإرشاد النفسي والتوجيه التربوي",
+            "الرياضيات",
+            "الفيزياء",
+            "علوم الحاسوب",
+            "اللغة الإنكليزية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 300,
+          "contactEmail": null
+        },
+        {
+          "id": "mustansiriyah_col_11",
+          "name": "الآداب",
+          "nameEn": "College of Arts",
+          "departments": [
+            "اللغة الإنكليزية",
+            "المعلومات وتقنيات المعرفة",
+            "اللغة العربية",
+            "الأنثروبولوجيا والاجتماع",
+            "التأريخ",
+            "الترجمة",
+            "علم النفس",
+            "الفلسفة",
+            "اللغة الفرنسية",
+            "الإعلام"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 227,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "basrah",
+      "name": "جامعة البصرة",
+      "nameEn": "University of Basrah",
+      "type": "حكومية",
+      "province": "البصرة",
+      "founded": 1967,
+      "website": "www.uobasrah.edu.iq",
+      "ranking": 3,
+      "colleges": [
+        {
+          "id": "basrah_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 167,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 162,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 157,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "العمارة",
+            "المدني",
+            "الكهرباء",
+            "الحاسوب",
+            "الميكانيك",
+            "الكيمياوية",
+            "المواد",
+            "الميكاترونكس",
+            "النفط والغاز"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 229,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_5",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الرياضيات",
+            "الكيمياء",
+            "الفيزياء",
+            "علم الأرض",
+            "علوم الحياة",
+            "البيئة",
+            "التحليلات المرضية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 342,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_6",
+          "name": "علوم الحاسوب وتكنولوجيا المعلومات",
+          "nameEn": "College of Science",
+          "departments": [
+            "علوم الحاسوب",
+            "نظم المعلومات الحاسوبية",
+            "الأنظمة الطبية الذكية",
+            "الأمن السيبراني"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 277,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_7",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 247,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_8",
+          "name": "التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 88,
+            "مسائي": null
+          },
+          "capacity": 272,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_9",
+          "name": "الزراعة",
+          "nameEn": "College of Agriculture",
+          "departments": [
+            "الإنتاج الحيواني",
+            "وقاية النبات",
+            "المحاصيل الحقلية",
+            "التربة والموارد المائية",
+            "الاقتصاد الزراعي"
+          ],
+          "category": "إنسانيات",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 299,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_10",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية",
+            "الإحصاء",
+            "نظم المعلومات الإدارية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 235,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_11",
+          "name": "علوم البحار",
+          "nameEn": "College of Science",
+          "departments": [
+            "علوم البحار الطبيعية",
+            "علوم البحار التطبيقية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 344,
+          "contactEmail": null
+        },
+        {
+          "id": "basrah_col_12",
+          "name": "الفنون الجميلة",
+          "nameEn": "College of Fine Arts",
+          "departments": [
+            "الفنون التشكيلية",
+            "الموسيقى",
+            "التربية الفنية",
+            "الفنون السينمائية والتلفزيونية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 318,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "mosul",
+      "name": "جامعة الموصل",
+      "nameEn": "University of Mosul",
+      "type": "حكومية",
+      "province": "نينوى",
+      "founded": 1967,
+      "website": "www.uomosul.edu.iq",
+      "ranking": 4,
+      "colleges": [
+        {
+          "id": "mosul_col_1",
+          "name": "طب الموصل",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 247,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 162,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 141,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الميكاترونكس",
+            "الميكانيك",
+            "الحاسوب",
+            "البيئة",
+            "السدود والموارد المائية",
+            "الطاقة المستدامة",
+            "هندسة الاتصالات والأنظمة الرقمية الذكية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 204,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_5",
+          "name": "هندسة النفط والتعدين",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المكامن النفطية",
+            "التعدين",
+            "النفط والتكرير"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 339,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_6",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "علم الأرض والنفط",
+            "الفيزياء الطبية",
+            "الطاقات المتجددة",
+            "الأدلة الجنائية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 348,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_7",
+          "name": "علوم الحاسوب والرياضيات",
+          "nameEn": "College of Science",
+          "departments": [
+            "الرياضيات",
+            "الحاسوب",
+            "الإحصاء",
+            "البرمجيات",
+            "بحوث العمليات والتقنيات الذكائية",
+            "الشبكات",
+            "الأمن السيبراني",
+            "الذكاء الاصطناعي"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 214,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_8",
+          "name": "العلوم البيئية",
+          "nameEn": "College of Science",
+          "departments": [
+            "تقانات البيئة",
+            "علوم البيئة",
+            "الصحة البيئية",
+            "التغيرات المناخية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 262,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_9",
+          "name": "التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 88,
+            "مسائي": null
+          },
+          "capacity": 295,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_10",
+          "name": "الطب البيطري",
+          "nameEn": "College of Veterinary Medicine",
+          "departments": [
+            "الطب البيطري"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 147,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_11",
+          "name": "الزراعة والغابات",
+          "nameEn": "College of Agriculture",
+          "departments": [
+            "وقاية النبات",
+            "المحاصيل الحقلية",
+            "التربة والموارد المائية",
+            "الاقتصاد الزراعي",
+            "الإرشاد الزراعي ونقل التقنيات",
+            "المكائن والآلات الزراعية",
+            "الإنتاج الحيواني",
+            "البستنة وهندسة الحدائق",
+            "علوم الأغذية",
+            "الغابات"
+          ],
+          "category": "إنسانيات",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 218,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_12",
+          "name": "التربية للعلوم الصرفة",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "علوم الحياة",
+            "الفيزياء",
+            "الحاسوب",
+            "الرياضيات"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 222,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_13",
+          "name": "الحقوق",
+          "nameEn": "College of الحقوق",
+          "departments": [
+            "الحقوق"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 268,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_14",
+          "name": "العلوم السياسية",
+          "nameEn": "College of Science",
+          "departments": [
+            "العلوم السياسية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 257,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_15",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "الإدارة الصناعية",
+            "العلوم المالية والمصرفية",
+            "نظم المعلومات الإدارية",
+            "إدارة التسويق"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 240,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_16",
+          "name": "التربية للعلوم الإنسانية",
+          "nameEn": "College of Science",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "العلوم التربوية والنفسية",
+            "اللغة العربية",
+            "علوم القرآن والتربية الإسلامية",
+            "اللغة السريانية",
+            "اللغة الإنكليزية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 259,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_17",
+          "name": "التربية للبنات",
+          "nameEn": "College of Education",
+          "departments": [
+            "علوم القرآن والتربية الإسلامية",
+            "اللغة العربية",
+            "الكيمياء",
+            "علوم الحياة",
+            "اللغة الإنكليزية",
+            "التربية البدنية وعلوم الرياضة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 279,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_18",
+          "name": "الآداب",
+          "nameEn": "College of Arts",
+          "departments": [
+            "اللغة الإنكليزية",
+            "التأريخ",
+            "الاجتماع",
+            "اللغة العربية",
+            "الترجمة",
+            "الفلسفة",
+            "الإعلام",
+            "اللغة الفرنسية",
+            "المعلومات وتقنيات المعرفة",
+            "اللغة التركية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 231,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_19",
+          "name": "التربية الأساسية",
+          "nameEn": "College of Education",
+          "departments": [
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "تربية خاصة",
+            "معلم الصفوف الأولى",
+            "رياض الأطفال",
+            "التأريخ",
+            "الجغرافية",
+            "الرياضيات",
+            "العلوم",
+            "التربية البدنية وعلوم الرياضة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 256,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_20",
+          "name": "الآثار",
+          "nameEn": "College of الآثار",
+          "departments": [
+            "الحفاظ على الآثار والمخطوطات",
+            "اللغات العراقية القديمة",
+            "الآثار القديمة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 207,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_21",
+          "name": "العلوم الإسلامية",
+          "nameEn": "College of Science",
+          "departments": [
+            "الشريعة",
+            "العقيدة والفكر الإسلامي",
+            "الحديث وعلومه"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 267,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_22",
+          "name": "الفنون الجميلة",
+          "nameEn": "College of Fine Arts",
+          "departments": [
+            "الفنون المسرحية",
+            "الفنون التشكيلية",
+            "التربية الفنية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": 55.5
+          },
+          "capacity": 217,
+          "contactEmail": null
+        },
+        {
+          "id": "mosul_col_23",
+          "name": "التربية البدنية وعلوم الرياضة",
+          "nameEn": "College of Science",
+          "departments": [
+            "التربية البدنية وعلوم الرياضة"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": null
+          },
+          "capacity": 277,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "الجامعة التكنولوجية",
+      "nameEn": "University of Technology, Iraq",
+      "type": "حكومية",
+      "province": "بغداد",
+      "founded": 1975,
+      "website": "www.uotechnology.edu.iq",
+      "ranking": 5,
+      "colleges": [
+        {
+          "id": "technology_col_1",
+          "name": "الهندسة الكهربائية",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الكهرباء",
+            "الإلكترونيك",
+            "هندسة الاتصالات",
+            "الذكاء الاصطناعي",
+            "السيطرة وأنظمة الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 285,
+          "contactEmail": null
+        },
+        {
+          "id": "technology_col_2",
+          "name": "الهندسة المدنية",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "هندسة البيئة",
+            "هندسة الموارد المائية",
+            "العمارة",
+            "التخطيط العمراني"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 338,
+          "contactEmail": null
+        },
+        {
+          "id": "technology_col_3",
+          "name": "الهندسة الميكانيكية",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الميكانيك",
+            "هندسة الإنتاج والمعادن",
+            "هندسة الطاقة",
+            "الميكاترونكس"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 311,
+          "contactEmail": null
+        },
+        {
+          "id": "technology_col_4",
+          "name": "العلوم التطبيقية",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الرياضيات التطبيقية",
+            "الفيزياء التطبيقية",
+            "الكيمياء التطبيقية",
+            "علوم الحاسوب التطبيقية"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 308,
+          "contactEmail": null
+        },
+        {
+          "id": "technology_col_5",
+          "name": "علوم الحاسوب",
+          "nameEn": "College of Science",
+          "departments": [
+            "علوم الحاسوب",
+            "الأمن السيبراني",
+            "الذكاء الاصطناعي وتعلم الآلة",
+            "نظم المعلومات"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 222,
+          "contactEmail": null
+        },
+        {
+          "id": "technology_col_6",
+          "name": "الهندسة الكيميائية وهندسة البترول",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الهندسة الكيميائية",
+            "هندسة البترول وهندسة الغاز"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 238,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "nahrain",
+      "name": "جامعة النهرين",
+      "nameEn": "Al-Nahrain University",
+      "type": "حكومية",
+      "province": "بغداد",
+      "founded": 1987,
+      "website": "www.nahrainuniv.edu.iq",
+      "ranking": 6,
+      "colleges": [
+        {
+          "id": "nahrain_col_1",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "الحاسوب",
+            "الكيمياوية",
+            "الميكانيك",
+            "الطيران",
+            "البيئة",
+            "هندسة المواد"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 251,
+          "contactEmail": null
+        },
+        {
+          "id": "nahrain_col_2",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "الكيمياء الحياتية",
+            "الفيزياء الطبية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 344,
+          "contactEmail": null
+        },
+        {
+          "id": "nahrain_col_3",
+          "name": "علوم الحاسوب",
+          "nameEn": "College of Science",
+          "departments": [
+            "علوم الحاسوب",
+            "الشبكات المعلوماتية",
+            "الأمن السيبراني",
+            "الذكاء الاصطناعي"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 289,
+          "contactEmail": null
+        },
+        {
+          "id": "nahrain_col_4",
+          "name": "تكنولوجيا المعلومات",
+          "nameEn": "College of Science",
+          "departments": [
+            "تكنولوجيا المعلومات",
+            "نظم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 201,
+          "contactEmail": null
+        },
+        {
+          "id": "nahrain_col_5",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 150,
+          "contactEmail": null
+        },
+        {
+          "id": "nahrain_col_6",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 148,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "kufa",
+      "name": "جامعة الكوفة",
+      "nameEn": "University of Kufa",
+      "type": "حكومية",
+      "province": "النجف",
+      "founded": 1987,
+      "website": "www.uokufa.edu.iq",
+      "ranking": 7,
+      "colleges": [
+        {
+          "id": "kufa_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 125,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 168,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 147,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الحاسوب",
+            "الميكانيك",
+            "الكيمياوية",
+            "البيئة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 266,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_5",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الأرض",
+            "الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 315,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_6",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 339,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_7",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية",
+            "الإدارة الصناعية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 202,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_8",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "العلوم التربوية والنفسية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "الرياضيات",
+            "الفيزياء",
+            "علوم الحياة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 256,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_9",
+          "name": "التربية الأساسية",
+          "nameEn": "College of Education",
+          "departments": [
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "التأريخ",
+            "الجغرافية",
+            "الرياضيات",
+            "العلوم",
+            "معلم الصفوف الأولى",
+            "التربية الإسلامية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 227,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_10",
+          "name": "التربية في اللغة العربية وآدابها (التميز)",
+          "nameEn": "College of Education",
+          "departments": [
+            "اللغة العربية وآدابها"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": null
+          },
+          "capacity": 345,
+          "contactEmail": null
+        },
+        {
+          "id": "kufa_col_11",
+          "name": "العلوم الإسلامية",
+          "nameEn": "College of Science",
+          "departments": [
+            "الشريعة",
+            "العقيدة والفكر الإسلامي",
+            "اللغة العربية",
+            "الأديان المقارنة"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 335,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "tikrit",
+      "name": "جامعة تكريت",
+      "nameEn": "University of Tikrit",
+      "type": "حكومية",
+      "province": "صلاح الدين",
+      "founded": 1987,
+      "website": "www.tu.edu.iq",
+      "ranking": 8,
+      "colleges": [
+        {
+          "id": "tikrit_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 161,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 126,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 128,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الحاسوب",
+            "الميكانيك",
+            "البيئة",
+            "الموارد المائية",
+            "الكيمياوية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 228,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_5",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 271,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_6",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 244,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_7",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية",
+            "الإدارة الصناعية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 310,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_8",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "العلوم التربوية والنفسية",
+            "الرياضيات",
+            "الفيزياء",
+            "علوم الحياة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 303,
+          "contactEmail": null
+        },
+        {
+          "id": "tikrit_col_9",
+          "name": "الزراعة",
+          "nameEn": "College of Agriculture",
+          "departments": [
+            "المحاصيل الحقلية",
+            "وقاية النبات",
+            "التربة والموارد المائية",
+            "الاقتصاد الزراعي",
+            "الإنتاج الحيواني",
+            "البستنة وهندسة الحدائق",
+            "علوم الأغذية"
+          ],
+          "category": "إنسانيات",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 280,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "qadisiyah",
+      "name": "جامعة القادسية",
+      "nameEn": "جامعة القادسية University",
+      "type": "حكومية",
+      "province": "الديوانية",
+      "founded": 1987,
+      "website": "www.qu.edu.iq",
+      "ranking": 9,
+      "colleges": [
+        {
+          "id": "qadisiyah_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 123,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 142,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_3",
+          "name": "الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 96.5,
+            "مسائي": null
+          },
+          "capacity": 145,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_4",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "الحاسوب",
+            "الميكانيك",
+            "البيئة",
+            "العمارة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 348,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_5",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 320,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_6",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 211,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_7",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 211,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_8",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "العلوم التربوية والنفسية",
+            "الرياضيات",
+            "الفيزياء"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 321,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_9",
+          "name": "الزراعة",
+          "nameEn": "College of Agriculture",
+          "departments": [
+            "المحاصيل الحقلية",
+            "وقاية النبات",
+            "التربة والموارد المائية",
+            "الاقتصاد الزراعي",
+            "الإنتاج الحيواني",
+            "البستنة وهندسة الحدائق",
+            "علوم الأغذية"
+          ],
+          "category": "إنسانيات",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 203,
+          "contactEmail": null
+        },
+        {
+          "id": "qadisiyah_col_10",
+          "name": "الطب البيطري",
+          "nameEn": "College of Veterinary Medicine",
+          "departments": [
+            "الطب البيطري"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 158,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "anbar",
+      "name": "جامعة الأنبار",
+      "nameEn": "University of Anbar",
+      "type": "حكومية",
+      "province": "الأنبار",
+      "founded": 1987,
+      "website": "www.uoanbar.edu.iq",
+      "ranking": 10,
+      "colleges": [
+        {
+          "id": "anbar_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "الطب"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 98.5,
+            "مسائي": null
+          },
+          "capacity": 133,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_2",
+          "name": "طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 97.2,
+            "مسائي": null
+          },
+          "capacity": 163,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_3",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الحاسوب",
+            "الميكانيك",
+            "البيئة",
+            "الموارد المائية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": 79
+          },
+          "capacity": 336,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_4",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 69.5
+          },
+          "capacity": 309,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_5",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 215,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_6",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": 65.5
+          },
+          "capacity": 217,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_7",
+          "name": "التربية للعلوم الإنسانية",
+          "nameEn": "College of Science",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "العلوم التربوية والنفسية",
+            "علوم القرآن والتربية الإسلامية"
+          ],
+          "category": "هندسة",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 244,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_8",
+          "name": "التربية للعلوم الصرفة",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": 60
+          },
+          "capacity": 281,
+          "contactEmail": null
+        },
+        {
+          "id": "anbar_col_9",
+          "name": "الزراعة",
+          "nameEn": "College of Agriculture",
+          "departments": [
+            "المحاصيل الحقلية",
+            "وقاية النبات",
+            "التربة والموارد المائية",
+            "الاقتصاد الزراعي",
+            "الإنتاج الحيواني",
+            "البستنة وهندسة الحدائق",
+            "علوم الأغذية",
+            "المكائن والآلات الزراعية"
+          ],
+          "category": "إنسانيات",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 62,
+            "مسائي": null
+          },
+          "capacity": 214,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "ninevah",
+      "name": "جامعة نينوى",
+      "nameEn": "جامعة نينوى University",
+      "type": "حكومية",
+      "province": "نينوى",
+      "founded": 2014,
+      "website": "www.uoninevah.edu.iq",
+      "ranking": 11,
+      "colleges": [
+        {
+          "id": "ninevah_col_1",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "العمارة",
+            "الحاسوب",
+            "الميكانيك",
+            "البيئة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 227,
+          "contactEmail": null
+        },
+        {
+          "id": "ninevah_col_2",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 313,
+          "contactEmail": null
+        },
+        {
+          "id": "ninevah_col_3",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 80,
+            "مسائي": null
+          },
+          "capacity": 265,
+          "contactEmail": null
+        },
+        {
+          "id": "ninevah_col_4",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": null
+          },
+          "capacity": 256,
+          "contactEmail": null
+        },
+        {
+          "id": "ninevah_col_5",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "العلوم التربوية والنفسية",
+            "الرياضيات",
+            "الفيزياء",
+            "علوم الحياة",
+            "علوم القرآن والتربية الإسلامية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": null
+          },
+          "capacity": 333,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "telafer",
+      "name": "جامعة تلعفر",
+      "nameEn": "جامعة تلعفر University",
+      "type": "حكومية",
+      "province": "نينوى",
+      "founded": 2014,
+      "website": "www.uotelafer.edu.iq",
+      "ranking": 12,
+      "colleges": [
+        {
+          "id": "telafer_col_1",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "الحاسوب",
+            "الميكانيك"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 318,
+          "contactEmail": null
+        },
+        {
+          "id": "telafer_col_2",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 222,
+          "contactEmail": null
+        },
+        {
+          "id": "telafer_col_3",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": null
+          },
+          "capacity": 288,
+          "contactEmail": null
+        },
+        {
+          "id": "telafer_col_4",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "الرياضيات",
+            "علوم الحياة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": null
+          },
+          "capacity": 211,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "hamdaniyah",
+      "name": "جامعة الحمدانية",
+      "nameEn": "جامعة الحمدانية University",
+      "type": "حكومية",
+      "province": "نينوى",
+      "founded": 2014,
+      "website": "www.uohamdaniya.edu.iq",
+      "ranking": 13,
+      "colleges": [
+        {
+          "id": "hamdaniyah_col_1",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "المدني",
+            "الكهرباء",
+            "الحاسوب",
+            "الميكانيك",
+            "العمارة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.5,
+            "مسائي": null
+          },
+          "capacity": 211,
+          "contactEmail": null
+        },
+        {
+          "id": "hamdaniyah_col_2",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": [
+            "الكيمياء",
+            "الفيزياء",
+            "علوم الحياة",
+            "الرياضيات",
+            "علوم الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": null
+          },
+          "capacity": 259,
+          "contactEmail": null
+        },
+        {
+          "id": "hamdaniyah_col_3",
+          "name": "الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "الاقتصاد",
+            "المحاسبة",
+            "العلوم المالية والمصرفية"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 72,
+            "مسائي": null
+          },
+          "capacity": 211,
+          "contactEmail": null
+        },
+        {
+          "id": "hamdaniyah_col_4",
+          "name": "التربية",
+          "nameEn": "College of Education",
+          "departments": [
+            "التأريخ",
+            "الجغرافية",
+            "اللغة العربية",
+            "اللغة الإنكليزية",
+            "العلوم التربوية والنفسية",
+            "الرياضيات",
+            "علوم الحياة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي"
+          ],
+          "averageGrades": {
+            "صباحي": 66.5,
+            "مسائي": null
+          },
+          "capacity": 276,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "turath",
+      "name": "جامعة التراث",
+      "nameEn": "Al-Turath University College",
+      "type": "أهلية",
+      "province": "بغداد",
+      "founded": 1988,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "turath_col_1",
+          "name": "كلية طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.2,
+            "مسائي": 75.7
+          },
+          "capacity": 136,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_2",
+          "name": "كلية الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 84.5,
+            "مسائي": 75
+          },
+          "capacity": 156,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_3",
+          "name": "كلية التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 288,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_4",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الهندسة المدنية",
+            "هندسة الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 231,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_5",
+          "name": "كلية القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 68,
+            "مسائي": 58.5
+          },
+          "capacity": 289,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_6",
+          "name": "كلية الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 60,
+            "مسائي": 50.5
+          },
+          "capacity": 319,
+          "contactEmail": null
+        },
+        {
+          "id": "turath_col_7",
+          "name": "كلية التقنيات الطبية والصحية",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "التحليلات المرضية"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 120,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "esraa",
+      "name": "جامعة الإسراء",
+      "nameEn": "Al-Esraa University College",
+      "type": "أهلية",
+      "province": "بغداد",
+      "founded": 1995,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "esraa_col_1",
+          "name": "كلية طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.2,
+            "مسائي": 75.7
+          },
+          "capacity": 156,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_2",
+          "name": "كلية الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 84.5,
+            "مسائي": 75
+          },
+          "capacity": 153,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_3",
+          "name": "كلية التقنيات الطبية والصحية",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "التحليلات المرضية"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 160,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_4",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الهندسة المدنية",
+            "هندسة العمارة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 327,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_5",
+          "name": "كلية القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 68,
+            "مسائي": 58.5
+          },
+          "capacity": 246,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_6",
+          "name": "كلية الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 60,
+            "مسائي": 50.5
+          },
+          "capacity": 236,
+          "contactEmail": null
+        },
+        {
+          "id": "esraa_col_7",
+          "name": "كلية الآداب والعلوم الإنسانية",
+          "nameEn": "College of Science",
+          "departments": [
+            "التصميم الجرافيكي"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 64,
+            "مسائي": 54.5
+          },
+          "capacity": 221,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "farahidi",
+      "name": "جامعة الفراهيدي",
+      "nameEn": "Al-Farahidi University",
+      "type": "أهلية",
+      "province": "بغداد",
+      "founded": 2012,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "farahidi_col_1",
+          "name": "كلية الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 84.5,
+            "مسائي": 75
+          },
+          "capacity": 136,
+          "contactEmail": null
+        },
+        {
+          "id": "farahidi_col_2",
+          "name": "كلية طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.2,
+            "مسائي": 75.7
+          },
+          "capacity": 158,
+          "contactEmail": null
+        },
+        {
+          "id": "farahidi_col_3",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "هندسة البرمجيات",
+            "الأمن السيبراني",
+            "الذكاء الاصطناعي"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 246,
+          "contactEmail": null
+        },
+        {
+          "id": "farahidi_col_4",
+          "name": "كلية التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 218,
+          "contactEmail": null
+        },
+        {
+          "id": "farahidi_col_5",
+          "name": "كلية الآداب والعلوم الإنسانية",
+          "nameEn": "College of Science",
+          "departments": [
+            "التربية (معلم)"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 64,
+            "مسائي": 54.5
+          },
+          "capacity": 282,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "mustaqbal",
+      "name": "جامعة المستقبل",
+      "nameEn": "Al-Mustaqbal University College",
+      "type": "أهلية",
+      "province": "بابل",
+      "founded": 2010,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "mustaqbal_col_1",
+          "name": "كلية طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.2,
+            "مسائي": 75.7
+          },
+          "capacity": 143,
+          "contactEmail": null
+        },
+        {
+          "id": "mustaqbal_col_2",
+          "name": "كلية الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 84.5,
+            "مسائي": 75
+          },
+          "capacity": 138,
+          "contactEmail": null
+        },
+        {
+          "id": "mustaqbal_col_3",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الهندسة المدنية",
+            "هندسة الحاسوب"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 317,
+          "contactEmail": null
+        },
+        {
+          "id": "mustaqbal_col_4",
+          "name": "كلية القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 68,
+            "مسائي": 58.5
+          },
+          "capacity": 236,
+          "contactEmail": null
+        },
+        {
+          "id": "mustaqbal_col_5",
+          "name": "كلية التقنيات الطبية والصحية",
+          "nameEn": "College of Medicine",
+          "departments": [
+            "التحليلات المرضية"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 130,
+          "contactEmail": null
+        },
+        {
+          "id": "mustaqbal_col_6",
+          "name": "كلية التمريض",
+          "nameEn": "College of Nursing",
+          "departments": [
+            "التمريض"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 76,
+            "مسائي": 66.5
+          },
+          "capacity": 335,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "uruk",
+      "name": "جامعة أوروك",
+      "nameEn": "Uruk University",
+      "type": "أهلية",
+      "province": "بغداد",
+      "founded": 1995,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "uruk_col_1",
+          "name": "كلية طب الأسنان",
+          "nameEn": "College of Dentistry",
+          "departments": [
+            "طب الأسنان"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 85.2,
+            "مسائي": 75.7
+          },
+          "capacity": 145,
+          "contactEmail": null
+        },
+        {
+          "id": "uruk_col_2",
+          "name": "كلية الصيدلة",
+          "nameEn": "College of Pharmacy",
+          "departments": [
+            "الصيدلة"
+          ],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 84.5,
+            "مسائي": 75
+          },
+          "capacity": 126,
+          "contactEmail": null
+        },
+        {
+          "id": "uruk_col_3",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "الهندسة المدنية",
+            "هندسة العمارة"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 306,
+          "contactEmail": null
+        },
+        {
+          "id": "uruk_col_4",
+          "name": "كلية القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 68,
+            "مسائي": 58.5
+          },
+          "capacity": 261,
+          "contactEmail": null
+        },
+        {
+          "id": "uruk_col_5",
+          "name": "كلية الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 60,
+            "مسائي": 50.5
+          },
+          "capacity": 312,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "mansour",
+      "name": "كلية المنصور الجامعة",
+      "nameEn": "Al-Mansour University College",
+      "type": "أهلية",
+      "province": "بغداد",
+      "founded": 1995,
+      "website": null,
+      "ranking": null,
+      "colleges": [
+        {
+          "id": "mansour_col_1",
+          "name": "كلية الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": [
+            "هندسة البرمجيات",
+            "علوم الحاسوب",
+            "الهندسة المدنية"
+          ],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 73.5,
+            "مسائي": 64
+          },
+          "capacity": 282,
+          "contactEmail": null
+        },
+        {
+          "id": "mansour_col_2",
+          "name": "كلية الإدارة والاقتصاد",
+          "nameEn": "College of Administration and Economics",
+          "departments": [
+            "إدارة الأعمال",
+            "المحاسبة"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 60,
+            "مسائي": 50.5
+          },
+          "capacity": 342,
+          "contactEmail": null
+        },
+        {
+          "id": "mansour_col_3",
+          "name": "كلية القانون",
+          "nameEn": "College of Law",
+          "departments": [
+            "القانون"
+          ],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": [
+            "صباحي",
+            "مسائي"
+          ],
+          "averageGrades": {
+            "صباحي": 68,
+            "مسائي": 58.5
+          },
+          "capacity": 207,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "karkh",
+      "name": "جامعة الكرخ للعلوم",
+      "nameEn": "Karkh University",
+      "type": "حكومية",
+      "province": "بغداد",
+      "founded": 2022,
+      "website": "www.karkhuniv.edu.iq",
+      "ranking": 15,
+      "colleges": [
+        {
+          "id": "karkh_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب", "الجراحة", "الأطفال", "الأشعة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 88},
+          "capacity": 300,
+          "contactEmail": null
+        },
+        {
+          "id": "karkh_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك","الكمبيوتر"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 85,"مسائي": 78},
+          "capacity": 350,
+          "contactEmail": null
+        },
+        {
+          "id": "karkh_col_3",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": ["الكيمياء","الفيزياء","علوم الحياة","الرياضيات"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 84},
+          "capacity": 260,
+          "contactEmail": null
+        },
+        {
+          "id": "karkh_col_4",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": ["القانون"],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 82},
+          "capacity": 220,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "erbil",
+      "name": "جامعة صلاح الدين",
+      "nameEn": "University of Salahuddin",
+      "type": "حكومية",
+      "province": "أربيل",
+      "founded": 2020,
+      "website": "www.uosalahuddin.edu.iq",
+      "ranking": 16,
+      "colleges": [
+        {
+          "id": "erbil_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الجراحة","الأطفال"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 87},
+          "capacity": 310,
+          "contactEmail": null
+        },
+        {
+          "id": "erbil_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 400,
+          "contactEmail": null
+        },
+        {
+          "id": "erbil_col_3",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": ["الكيمياء","الفيزياء","علوم الحياة"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 83},
+          "capacity": 280,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "kirkuk",
+      "name": "جامعة كركوك",
+      "nameEn": "University of Kirkuk",
+      "type": "حكومية",
+      "province": "كركوك",
+      "founded": 2021,
+      "website": "www.uokirkuk.edu.iq",
+      "ranking": 17,
+      "colleges": [
+        {
+          "id": "kirkuk_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الجراحة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 86},
+          "capacity": 300,
+          "contactEmail": null
+        },
+        {
+          "id": "kirkuk_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك","الكمبيوتر"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 85,"مسائي": 78},
+          "capacity": 380,
+          "contactEmail": null
+        },
+        {
+          "id": "kirkuk_col_3",
+          "name": "العلوم",
+          "nameEn": "College of Science",
+          "departments": ["الكيمياء","الفيزياء","علوم الحياة"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 84},
+          "capacity": 250,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "diyala",
+      "name": "جامعة ديالى",
+      "nameEn": "University of Diyala",
+      "type": "حكومية",
+      "province": "ديالى",
+      "founded": 2021,
+      "website": "www.uodiyala.edu.iq",
+      "ranking": 18,
+      "colleges": [
+        {
+          "id": "diyala_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الأشعة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 85},
+          "capacity": 280,
+          "contactEmail": null
+        },
+        {
+          "id": "diyala_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 340,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "najaf",
+      "name": "جامعة النجف الأشرف",
+      "nameEn": "University of Najaf Al-Ashraf",
+      "type": "حكومية",
+      "province": "النجف",
+      "founded": 2022,
+      "website": "www.unajaf.edu.iq",
+      "ranking": 19,
+      "colleges": [
+        {
+          "id": "najaf_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الجراحة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 87},
+          "capacity": 320,
+          "contactEmail": null
+        },
+        {
+          "id": "najaf_col_2",
+          "name": "القانون",
+          "nameEn": "College of Law",
+          "departments": ["القانون"],
+          "category": "إنسانيات",
+          "branch": "mixed",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 82},
+          "capacity": 230,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "karbala",
+      "name": "جامعة كربلاء",
+      "nameEn": "University of Karbala",
+      "type": "حكومية",
+      "province": "كربلاء",
+      "founded": 2022,
+      "website": "www.ku.edu.iq",
+      "ranking": 20,
+      "colleges": [
+        {
+          "id": "karbala_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 86},
+          "capacity": 300,
+          "contactEmail": null
+        },
+        {
+          "id": "karbala_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 350,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "maysan",
+      "name": "جامعة ميسان",
+      "nameEn": "University of Maysan",
+      "type": "حكومية",
+      "province": "ميسان",
+      "founded": 2022,
+      "website": "www.uomaysan.edu.iq",
+      "ranking": 21,
+      "colleges": [
+        {
+          "id": "maysan_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الأشعة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 85},
+          "capacity": 260,
+          "contactEmail": null
+        },
+        {
+          "id": "maysan_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الكمبيوتر"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 83,"مسائي": 76},
+          "capacity": 340,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "dhikar",
+      "name": "جامعة ذي قار",
+      "nameEn": "University of Dhi Qar",
+      "type": "حكومية",
+      "province": "ذي قار",
+      "founded": 2022,
+      "website": "www.uodhiqar.edu.iq",
+      "ranking": 22,
+      "colleges": [
+        {
+          "id": "dhikar_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 86},
+          "capacity": 300,
+          "contactEmail": null
+        },
+        {
+          "id": "dhikar_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 350,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "babil",
+      "name": "جامعة بابل",
+      "nameEn": "University of Babil",
+      "type": "حكومية",
+      "province": "بابل",
+      "founded": 2022,
+      "website": "www.uobabil.edu.iq",
+      "ranking": 23,
+      "colleges": [
+        {
+          "id": "babil_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 85},
+          "capacity": 280,
+          "contactEmail": null
+        },
+        {
+          "id": "babil_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 320,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "sulaymaniyah",
+      "name": "جامعة السليمانية",
+      "nameEn": "University of Sulaymaniyah",
+      "type": "حكومية",
+      "province": "السليمانية",
+      "founded": 2022,
+      "website": "www.uosulaymaniyah.edu.iq",
+      "ranking": 24,
+      "colleges": [
+        {
+          "id": "sulaymaniyah_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الجراحة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 87},
+          "capacity": 310,
+          "contactEmail": null
+        },
+        {
+          "id": "sulaymaniyah_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 85,"مسائي": 78},
+          "capacity": 380,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "dohuk",
+      "name": "جامعة دهوك",
+      "nameEn": "University of Dohuk",
+      "type": "حكومية",
+      "province": "دهوك",
+      "founded": 2022,
+      "website": "www.uodohuk.edu.iq",
+      "ranking": 25,
+      "colleges": [
+        {
+          "id": "dohuk_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 84},
+          "capacity": 260,
+          "contactEmail": null
+        },
+        {
+          "id": "dohuk_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 83,"مسائي": 76},
+          "capacity": 340,
+          "contactEmail": null
+        }
+      ]
+    },
+    {
+      "id": "wasit",
+      "name": "جامعة واسط",
+      "nameEn": "University of Wasit",
+      "type": "حكومية",
+      "province": "واسط",
+      "founded": 2022,
+      "website": "www.uowasit.edu.iq",
+      "ranking": 26,
+      "colleges": [
+        {
+          "id": "wasit_col_1",
+          "name": "الطب",
+          "nameEn": "College of Medicine",
+          "departments": ["الطب","الأشعة"],
+          "category": "طب",
+          "branch": "علمي",
+          "sessions": ["صباحي"],
+          "averageGrades": {"صباحي": 85},
+          "capacity": 270,
+          "contactEmail": null
+        },
+        {
+          "id": "wasit_col_2",
+          "name": "الهندسة",
+          "nameEn": "College of Engineering",
+          "departments": ["المدني","الكهرباء","الميكانيك"],
+          "category": "هندسة",
+          "branch": "علمي",
+          "sessions": ["صباحي","مسائي"],
+          "averageGrades": {"صباحي": 84,"مسائي": 77},
+          "capacity": 330,
+          "contactEmail": null
+        }
+      ]
+    }
+  ]
+}

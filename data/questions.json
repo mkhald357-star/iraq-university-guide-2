@@ -1,0 +1,121 @@
+[
+  {
+    "id": "q_social",
+    "text": "هل تستمتع بالعمل ضمن فريق وتكوين علاقات اجتماعية جديدة باستمرار بدلاً من العمل الانفرادي؟",
+    "category": "personality",
+    "weights": {
+      "business_admin": 5, "digital_marketing": 5, "project_management": 5, "law": 4, "political_science": 4, "education": 5,
+      "software_engineering": -2, "ai": -2, "cybersecurity": -3, "accounting": -2
+    }
+  },
+  {
+    "id": "q_detail_oriented",
+    "text": "هل تفضل الأعمال التي تتطلب دقة متناهية وتنظيم عالي والجلوس لفترات طويلة على مكتب؟",
+    "category": "personality",
+    "weights": {
+      "software_engineering": 5, "ai": 5, "cybersecurity": 5, "computer_science": 5, "accounting": 6,
+      "dentistry": 4, "medical_analysis": 5, "graphic_design": 4, "interior_design": 4,
+      "civil_engineering": -2, "petroleum_engineering": -2, "education": -2
+    }
+  },
+  {
+    "id": "q_math_logic",
+    "text": "هل تجد متعة وسهولة في حل المسائل الرياضية المعقدة والمنطقية؟",
+    "category": "cognitive",
+    "weights": {
+      "software_engineering": 7, "ai": 8, "computer_science": 6, "cybersecurity": 6,
+      "civil_engineering": 6, "renewable_energy": 5, "petroleum_engineering": 5, "accounting": 4,
+      "law": -3, "english": -3, "education": -2, "graphic_design": -2
+    }
+  },
+  {
+    "id": "q_memory",
+    "text": "هل تمتلك قدرة عالية جداً على الحفظ السريع للمصطلحات الطويلة والمعلومات الكثيفة؟",
+    "category": "cognitive",
+    "weights": {
+      "medicine": 8, "pharmacy": 8, "law": 7, "political_science": 5, "english": 6, "medical_analysis": 5,
+      "software_engineering": -2, "graphic_design": -2
+    }
+  },
+  {
+    "id": "q_risk_reward",
+    "text": "هل أنت مستعد للتضحية بالاستقرار الوظيفي (التعيين المركزي) مقابل دخل مادي عالي جداً في القطاع الخاص أو العمل الحر؟",
+    "category": "ambition",
+    "weights": {
+      "digital_marketing": 8, "software_engineering": 6, "ai": 6, "cybersecurity": 6, "project_management": 6, "business_admin": 5, "graphic_design": 5,
+      "medicine": -5, "nursing": -5, "education": -5, "law": -2
+    }
+  },
+  {
+    "id": "q_negotiation",
+    "text": "هل تمتلك مهارة عالية في إقناع الآخرين بأفكارك ولديك قدرة جيدة على التفاوض؟",
+    "category": "personality",
+    "weights": {
+      "law": 7, "political_science": 7, "digital_marketing": 6, "business_admin": 5, "project_management": 5,
+      "computer_science": -2, "medical_analysis": -2
+    }
+  },
+  {
+    "id": "q_tech_savvy",
+    "text": "هل تتابع التطورات التكنولوجية الحديثة وتجيد استخدام الحواسيب بمهارة عالية؟",
+    "category": "cognitive",
+    "weights": {
+      "software_engineering": 8, "ai": 8, "cybersecurity": 8, "computer_science": 8, "digital_marketing": 5, "graphic_design": 4,
+      "law": -2, "medicine": 0, "education": -2
+    }
+  },
+  {
+    "id": "q_creative_art",
+    "text": "هل تمتلك حساً فنياً وإبداعياً في تناسق الألوان وتصميم الأشياء وتخيل المساحات؟",
+    "category": "cognitive",
+    "weights": {
+      "architecture": 8, "graphic_design": 8, "interior_design": 8,
+      "accounting": -3, "law": -3, "medicine": -2
+    }
+  },
+  {
+    "id": "q_field_work",
+    "text": "هل تفضل أن تعمل في بيئة ميدانية (مواقع بناء، منشآت نفطية، مستشفيات) بدلاً من العمل المكتبي المغلق؟",
+    "category": "ambition",
+    "weights": {
+      "civil_engineering": 7, "petroleum_engineering": 7, "renewable_energy": 6, "nursing": 6, "medicine": 5,
+      "software_engineering": -5, "accounting": -5, "graphic_design": -5
+    }
+  },
+  {
+    "id": "q_stress_tolerance",
+    "text": "هل تستطيع تحمل ضغط العمل النفسي والتعامل مع حالات طارئة أو أشخاص يمرون بظروف صحية صعبة؟",
+    "category": "personality",
+    "weights": {
+      "medicine": 8, "nursing": 8, "dentistry": 6, "pharmacy": 5, "law": 4,
+      "graphic_design": -3, "accounting": -2, "software_engineering": -2
+    }
+  },
+  {
+    "id": "q_entrepreneurship",
+    "text": "هل تفضل دراسة تخصص يتيح لك فتح مشروعك الخاص (صيدلية، عيادة، شركة برمجيات، مكتب هندسي) بدلاً من الوظيفة الروتينية؟",
+    "category": "ambition",
+    "weights": {
+      "pharmacy": 6, "dentistry": 6, "medicine": 5, "software_engineering": 5, "digital_marketing": 5, "business_admin": 5, "architecture": 5,
+      "nursing": -3, "education": -4, "medical_analysis": -1
+    }
+  },
+  {
+    "id": "q_comfort_vs_salary",
+    "text": "هل ترغب بوظيفة مريحة جداً وبساعات عمل محددة وبلا ضغوطات حتى لو كان راتبها منخفضاً نسبياً؟",
+    "category": "contradiction",
+    "weights": {
+      "education": 6, "accounting": 4, "business_admin": 2,
+      "medicine": -7, "petroleum_engineering": -6, "software_engineering": -5, "ai": -5, "law": -4, "civil_engineering": -4
+    }
+  },
+  {
+    "id": "q_continuous_learning",
+    "text": "هل أنت مستعد للدراسة بجدية لعدة سنوات والتعلم المستمر حتى بعد التخرج (لأن مجالك سيتطور باستمرار ولن يتوقف)؟",
+    "category": "ambition",
+    "weights": {
+      "medicine": 8, "ai": 8, "software_engineering": 7, "cybersecurity": 7, "pharmacy": 6, "dentistry": 6,
+      "education": -3, "business_admin": -2, "accounting": -2
+    }
+  }
+]

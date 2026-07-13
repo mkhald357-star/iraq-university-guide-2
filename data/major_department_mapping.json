@@ -1,0 +1,466 @@
+{
+  "mappings": [
+    {
+      "majorId": "software_engineering",
+      "majorName": "هندسة البرمجيات",
+      "aliases": [
+        "تقنية المعلومات",
+        "علوم الحاسوب",
+        "البرمجة",
+        "Computer Science",
+        "Software Engineering",
+        "CS",
+        "IT",
+        "هندسة البرمجيات",
+        "مطور برمجيات"
+      ],
+      "departmentPatterns": [
+        "برمجيات",
+        "حاسوب",
+        "معلوماتية",
+        "تقنية",
+        "software",
+        "برمجة"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "ai",
+      "majorName": "الذكاء الاصطناعي",
+      "aliases": [
+        "الذكاء الصنعي",
+        "تعلم الآلة",
+        "روبوتات",
+        "Artificial Intelligence",
+        "AI",
+        "Machine Learning",
+        "الذكاء الاصطناعي"
+      ],
+      "departmentPatterns": [
+        "ذكاء",
+        "اصطناعي",
+        "artificial",
+        "ai",
+        "روبوتات"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "cybersecurity",
+      "majorName": "الأمن السيبراني",
+      "aliases": [
+        "أمن المعلومات",
+        "أمن الشبكات",
+        "الأمن الرقمي",
+        "Cybersecurity",
+        "Information Security",
+        "Cyber",
+        "Security",
+        "الأمن السيبراني"
+      ],
+      "departmentPatterns": [
+        "سيبراني",
+        "cyber",
+        "أمن المعلومات",
+        "امن المعلومات"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "computer_science",
+      "majorName": "علوم الحاسوب",
+      "aliases": [
+        "علوم حاسبات",
+        "حوسبة",
+        "تقنية حاسوب",
+        "Computer Science",
+        "CS",
+        "Computers",
+        "علوم الحاسوب"
+      ],
+      "departmentPatterns": [
+        "علوم الحاسوب",
+        "علوم حاسبات",
+        "حاسبات",
+        "حاسوب",
+        "computer"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "digital_marketing",
+      "majorName": "التسويق الرقمي",
+      "aliases": [
+        "تسويق الكتروني",
+        "ترويج وتجارة",
+        "إعلان رقمي",
+        "Digital Marketing",
+        "E-Marketing",
+        "Marketing",
+        "التسويق الرقمي"
+      ],
+      "departmentPatterns": [
+        "تسويق",
+        "ترويج",
+        "marketing",
+        "إعلان"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "business_admin",
+      "majorName": "إدارة الأعمال",
+      "aliases": [
+        "إدارة أعمال",
+        "تنظيم وإدارة",
+        "ريادة أعمال",
+        "Business Administration",
+        "Business Management",
+        "BBA",
+        "إدارة الأعمال"
+      ],
+      "departmentPatterns": [
+        "إدارة الأعمال",
+        "ادارة الاعمال",
+        "إدارة أعمال",
+        "business"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "accounting",
+      "majorName": "المحاسبة",
+      "aliases": [
+        "تدقيق حسابات",
+        "حسابات مالية",
+        "رقابة مالية",
+        "Accounting",
+        "Auditing",
+        "Finance",
+        "المحاسبة"
+      ],
+      "departmentPatterns": [
+        "محاسبة",
+        "حسابات",
+        "تدقيق",
+        "accounting"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "medicine",
+      "majorName": "الطب العام",
+      "aliases": [
+        "الطب البشري",
+        "طب وجراحة",
+        "دكتور بشرى",
+        "الطب العام",
+        "Medicine",
+        "General Medicine",
+        "MD",
+        "الطب الكندي"
+      ],
+      "departmentPatterns": [
+        "الطب",
+        "طب الكندي",
+        "طب بشري",
+        "medicine"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "dentistry",
+      "majorName": "طب الأسنان",
+      "aliases": [
+        "جراحة الفم والأسنان",
+        "طبيب أسنان",
+        "تقويم الأسنان",
+        "Dentistry",
+        "Dental",
+        "DDS",
+        "طب الأسنان"
+      ],
+      "departmentPatterns": [
+        "أسنان",
+        "فم",
+        "dentistry",
+        "dental"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "pharmacy",
+      "majorName": "الصيدلة",
+      "aliases": [
+        "علوم صيدلانية",
+        "دكتور صيدلة",
+        "صيدلي",
+        "Pharmacy",
+        "PharmD",
+        "Pharmaceutical",
+        "الصيدلة"
+      ],
+      "departmentPatterns": [
+        "صيدلة",
+        "pharmacy"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "nursing",
+      "majorName": "التمريض",
+      "aliases": [
+        "علوم التمريض",
+        "ممرض قانوني",
+        "رعاية صحية",
+        "Nursing",
+        "Nurse",
+        "التمريض"
+      ],
+      "departmentPatterns": [
+        "تمريض",
+        "nursing"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "medical_analysis",
+      "majorName": "التحليلات المرضية",
+      "aliases": [
+        "تقنيات مختبرية",
+        "تحليلات مختبرية",
+        "علوم مختبرات طبية",
+        "Medical Analysis",
+        "Laboratory Sciences",
+        "Pathology",
+        "التحليلات المرضية"
+      ],
+      "departmentPatterns": [
+        "تحليلات",
+        "مختبرات",
+        "مرضية",
+        "laboratory"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "civil_engineering",
+      "majorName": "الهندسة المدنية",
+      "aliases": [
+        "هندسة بناء",
+        "إنشاءات",
+        "طرق وجسور",
+        "Civil Engineering",
+        "Construction",
+        "Civil",
+        "الهندسة المدنية"
+      ],
+      "departmentPatterns": [
+        "مدني",
+        "بناء",
+        "إنشاءات",
+        "طرق",
+        "civil"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "architecture",
+      "majorName": "هندسة العمارة",
+      "aliases": [
+        "عمارة وتصميم",
+        "مهندس معماري",
+        "تخطيط عمراني",
+        "Architecture",
+        "Architect",
+        "Design",
+        "هندسة العمارة"
+      ],
+      "departmentPatterns": [
+        "عمارة",
+        "معماري",
+        "architect"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "renewable_energy",
+      "majorName": "هندسة الطاقة المتجددة",
+      "aliases": [
+        "طاقة شمسية",
+        "هندسة طاقة",
+        "طاقة نظيفة",
+        "Renewable Energy",
+        "Solar Energy",
+        "Green Energy",
+        "هندسة الطاقة المتجددة"
+      ],
+      "departmentPatterns": [
+        "طاقة",
+        "متجددة",
+        "شمسية",
+        "energy"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "petroleum_engineering",
+      "majorName": "هندسة النفط",
+      "aliases": [
+        "هندسة نفط وغاز",
+        "حفر آبار",
+        "تكرير نفط",
+        "Petroleum Engineering",
+        "Oil and Gas",
+        "Petroleum",
+        "هندسة النفط"
+      ],
+      "departmentPatterns": [
+        "نفط",
+        "تعدين",
+        "مكامن",
+        "petroleum"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "law",
+      "majorName": "القانون",
+      "aliases": [
+        "حقوق",
+        "محاماة",
+        "دراسات قانونية",
+        "Law",
+        "Rights",
+        "Legal",
+        "القانون"
+      ],
+      "departmentPatterns": [
+        "قانون",
+        "حقوق",
+        "law"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "political_science",
+      "majorName": "العلوم السياسية",
+      "aliases": [
+        "علاقات دولية",
+        "دراسات سياسية",
+        "دبلوماسية",
+        "Political Science",
+        "International Relations",
+        "العلوم السياسية"
+      ],
+      "departmentPatterns": [
+        "سياسية",
+        "سیاسی",
+        "دولي",
+        "political"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "english",
+      "majorName": "اللغة الإنجليزية / الترجمة",
+      "aliases": [
+        "ترجمة فورية",
+        "لغة انجليزية",
+        "ادب انجليزي",
+        "English Translation",
+        "English Literature",
+        "Translation",
+        "اللغة الإنجليزية / الترجمة"
+      ],
+      "departmentPatterns": [
+        "إنكليزي",
+        "انجليزي",
+        "ترجمة",
+        "english"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "education",
+      "majorName": "التربية (معلم)",
+      "aliases": [
+        "طرق تدريس",
+        "معلم صف",
+        "تربية أساسية",
+        "Education",
+        "Teaching",
+        "Pedagogy",
+        "التربية (معلم)"
+      ],
+      "departmentPatterns": [
+        "تربية",
+        "معلم",
+        "تدريس",
+        "رياض الأطفال",
+        "education"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "graphic_design",
+      "majorName": "التصميم الجرافيكي",
+      "aliases": [
+        "تصميم مرئي",
+        "فنون بصرية",
+        "ميديا وديزاين",
+        "Graphic Design",
+        "Visual Arts",
+        "Design",
+        "التصميم الجرافيكي"
+      ],
+      "departmentPatterns": [
+        "تصميم جرافيكي",
+        "تصميم مرئي",
+        "فنون جميلة",
+        "تشكيلية",
+        "graphic"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "interior_design",
+      "majorName": "التصميم الداخلي",
+      "aliases": [
+        "ديكور",
+        "هندسة ديكور",
+        "تنسيق داخلي",
+        "Interior Design",
+        "Decoration",
+        "Interior",
+        "التصميم الداخلي"
+      ],
+      "departmentPatterns": [
+        "تصميم داخلي",
+        "ديكور",
+        "interior"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "project_management",
+      "majorName": "إدارة المشاريع",
+      "aliases": [
+        "إدارة برامج",
+        "تخطيط ومتابعة",
+        "تنسيق مشاريع",
+        "Project Management",
+        "PMP",
+        "PM",
+        "إدارة المشاريع"
+      ],
+      "departmentPatterns": [
+        "إدارة المشاريع",
+        "ادارة المشاريع",
+        "إدارة مشاريع",
+        "project"
+      ],
+      "priority": 1
+    }
+  ]
+}

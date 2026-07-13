@@ -1,0 +1,78 @@
+{
+  "academicYear": "2025-2026",
+  "source": "دليل الطالب للسنة الدراسية 2025-2026 ووزارة التعليم العالي والبحث العلمي - العراق",
+  "sourceFiles": [
+    "dalel_2025_22026.pdf",
+    "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf"
+  ],
+  "officialBranches": ["علمي", "أدبي", "فنون"],
+  "choiceRequirements": {
+    "علمي": { "min": 50, "max": 50, "minDistinctInstitutes": 10 },
+    "أدبي": { "min": 25, "max": 50, "minDistinctInstitutes": 10 },
+    "فنون": { "min": 10, "max": null, "minDistinctInstitutes": 2 }
+  },
+  "scoringFormula": {
+    "foreignLanguageBonusPercent": 8,
+    "firstRoundGraduateBonus": true,
+    "note": "المجموع التنافسي = الدرجات + (8% من درجة اللغة الأجنبية) + درجة إضافية لخريجي الدور الأول"
+  },
+  "eveningStudyMinimumGrades": [
+    { "collegeCategory": "التمريض", "minGrade": 70 },
+    { "collegeCategory": "الطب البيطري", "minGrade": 65 },
+    { "collegeCategory": "التقنيات الطبية والصحية", "minGrade": 75 },
+    { "collegeCategory": "الهندسة", "minGrade": 65 },
+    { "collegeCategory": "التقنيات الهندسية", "minGrade": 60 },
+    { "collegeCategory": "العلوم والحاسوب وتكنولوجيا المعلومات", "minGrade": 60 },
+    { "collegeCategory": "القانون", "minGrade": 65 },
+    { "collegeCategory": "العلوم السياسية والإدارة والاقتصاد", "minGrade": 60 },
+    { "collegeCategory": "التربية البدنية وعلوم الرياضة - ذكور", "minGrade": 57 },
+    { "collegeCategory": "التربية البدنية وعلوم الرياضة - إناث", "minGrade": 55 },
+    { "collegeCategory": "باقي التخصصات", "minGrade": 58 }
+  ],
+  "eveningStudyMaxUniversityDiscount": 3,
+  "specialTrackMorning": {
+    "note": "قناة التعليم الحكومي الجامعي الخاص - دراسة صباحية بأجور بحد أدنى أقل من القبول المركزي التنافسي",
+    "reductions": [
+      { "collegeCategory": "الطب / طب الأسنان / الصيدلة", "reductionPoints": 3, "absoluteMinGrade": null },
+      { "collegeCategory": "التمريض / التقنيات الصحية والطبية / المعاهد التقنية الطبية", "reductionPoints": 3, "absoluteMinGrade": null, "scopeNote": "ضمن نفس المحافظة للتخصص المناظر" },
+      { "collegeCategory": "الهندسة", "reductionPoints": 4, "absoluteMinGrade": 60 },
+      { "collegeCategory": "العلوم", "reductionPoints": 5, "absoluteMinGrade": 60 },
+      { "collegeCategory": "باقي التخصصات", "reductionPoints": 6, "absoluteMinGrade": 60 }
+    ]
+  },
+  "quotaChannels": {
+    "martyrsFamilies": {
+      "seatPercentGovernmentUniversities": 10,
+      "seatPercentTechnicalUniversitiesGeneralBranches": 2,
+      "seatPercentTechnicalUniversitiesVocationalBranches": 8,
+      "medicalGroupMaxGapPoints": 5,
+      "medicalGroupAbsoluteMinGrade": 90,
+      "otherSpecialtiesMaxGapPoints": 7
+    },
+    "provinceResidents": {
+      "note": "أبناء المحافظة - حصة جغرافية موجودة فعلياً لبعض كليات الطب/الأسنان/الصيدلة في بيانات الحدود الدنيا، بحد أدنى أقل من الحد العام لنفس الكلية"
+    }
+  },
+  "restrictedApplicationRules": {
+    "law": "التقديم لكلية القانون مقتصر على سكنة نفس المحافظة حصراً",
+    "engineering": "التقديم إلى كليات الهندسة يكون بحسب الأقسام مباشرة عبر الاستمارة الإلكترونية",
+    "englishEducation": "التقديم إلى قسم اللغة الإنكليزية في كليات التربية يكون بحسب القسم مباشرة"
+  },
+  "artsTrackEligibleColleges": [
+    "كلية الفنون التطبيقية (الجامعة التقنية الوسطى) - أقسام التصميم الداخلي، تقنيات الإعلان، التصميم الصناعي",
+    "كليات الفنون الجميلة",
+    "كلية الآداب - أقسام علم النفس، الفلسفة، الآثار، المجتمع المدني، الإعلام، اللغة الفرنسية، اللغة التركية",
+    "كلية الآثار - جميع الأقسام",
+    "كليات التربية الأساسية - قسم التربية الفنية",
+    "كليات التربية البدنية وعلوم الرياضة (قبول مباشر فقط)",
+    "قسم الإرشاد التربوي في كليات التربية",
+    "أقسام المعاهد التقنية المناظرة",
+    "كليات اللغات عدا قسم اللغة الإنكليزية",
+    "كليات الإعلام عدا قسم الصحافة والإعلام الرقمي"
+  ],
+  "registrationDeadlines2025_2026": {
+    "note": "خاصة بسنة 2025-2026 فقط، يجب تحديثها سنوياً من الدليل الرسمي الجديد",
+    "normalRegistrationDeadline": "2026-04-26",
+    "absoluteCancellationDeadline": "2026-05-26"
+  }
+}

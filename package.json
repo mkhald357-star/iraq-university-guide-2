@@ -6,7 +6,13 @@
     "dev": "next dev -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate-data": "node scripts/validate-data.js",
+    "extract-pdf-text": "node scripts/extract-pdf-text.js",
+    "parse-cutoffs": "node scripts/parse-cutoffs.js",
+    "parse-evening-study": "node scripts/parse-evening-study.js",
+    "build-universities-data": "node scripts/build-universities-data.js",
+    "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run validate-data"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",

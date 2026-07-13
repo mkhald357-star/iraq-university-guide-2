@@ -128,17 +128,33 @@ function exportPDF(data: {
   salaryRange: string;
   demandText: string;
   points: string[];
-  universities: Array<{ uniName: string; collegeName: string; session: string; avgGrade: number | null; location: string }>;
+  universities: Array<{
+    uniName: string;
+    uniType: string;
+    collegeName: string;
+    departmentName: string;
+    location: string;
+    morningGrade: number | null;
+    hasMorning: boolean;
+    eveningGrade: number | null;
+    hasEvening: boolean;
+  }>;
 }) {
+  const formatGrade = (grade: number | null, available: boolean) => {
+    if (!available) return "—";
+    return grade !== null ? `${grade}%` : "قبول مباشر";
+  };
   const uniRows = data.universities
     .map(
       (u) => `
       <tr>
         <td>${u.uniName}</td>
-        <td>${u.collegeName}</td>
-        <td>${u.session}</td>
-        <td>${u.avgGrade !== null ? u.avgGrade + "%" : "—"}</td>
+        <td>${u.uniType}</td>
         <td>${u.location}</td>
+        <td>${u.collegeName}</td>
+        <td>${u.departmentName}</td>
+        <td>${formatGrade(u.morningGrade, u.hasMorning)}</td>
+        <td>${formatGrade(u.eveningGrade, u.hasEvening)}</td>
       </tr>`
     )
     .join("");
@@ -191,9 +207,9 @@ function exportPDF(data: {
   <ul>${pointsList}</ul>
 
   ${data.universities.length > 0 ? `
-  <div class="section-title">🏛️ الجامعات الحكومية الموصى بها</div>
+  <div class="section-title">🏛️ الجامعات والكليات الموصى بها</div>
   <table>
-    <thead><tr><th>الجامعة</th><th>الكلية</th><th>الجلسة</th><th>متوسط القبول</th><th>الموقع</th></tr></thead>
+    <thead><tr><th>الجامعة</th><th>النوع</th><th>المحافظة</th><th>الكلية</th><th>القسم</th><th>صباحي</th><th>مسائي</th></tr></thead>
     <tbody>${uniRows}</tbody>
   </table>` : ""}
 
@@ -343,12 +359,16 @@ const analyses = topMajors.map((m) => ({ major: m, points: generateAnalysisForMa
   salaryRange: getSalaryRange(primaryMajor?.marketMultiplier || 0),
   demandText: demand?.text || "",
   points: analyses[0]?.points || [],
-  universities: (offeringPublic || []).map((o) => ({
+  universities: [...offeringPublic, ...offeringPrivate].map((o) => ({
     uniName: o.universityName,
+    uniType: o.universityType,
     collegeName: o.collegeName,
-    session: o.sessions?.[0] ?? "",
-    avgGrade: o.averageGrades?.["صباحي"] ?? null,
+    departmentName: o.departmentName,
     location: o.province,
+    morningGrade: o.averageGrades?.["صباحي"] ?? null,
+    hasMorning: !!o.sessions?.includes("صباحي"),
+    eveningGrade: o.averageGrades?.["مسائي"] ?? null,
+    hasEvening: !!o.sessions?.includes("مسائي"),
   })),
 };
 

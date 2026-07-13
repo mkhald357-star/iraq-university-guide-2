@@ -21,5 +21,33 @@
   { "id": "education", "name": "التربية (معلم)", "category": "تربية", "marketMultiplier": 0.8 },
   { "id": "graphic_design", "name": "التصميم الجرافيكي", "category": "فنون وتصميم", "marketMultiplier": 1.2 },
   { "id": "interior_design", "name": "التصميم الداخلي", "category": "فنون وتصميم", "marketMultiplier": 1.1 },
-  { "id": "project_management", "name": "إدارة المشاريع", "category": "إدارة وتسويق", "marketMultiplier": 1.3 }
+  { "id": "project_management", "name": "إدارة المشاريع", "category": "إدارة وتسويق", "marketMultiplier": 1.3 },
+
+  { "id": "mechanical_engineering", "name": "الهندسة الميكانيكية", "category": "هندسة", "marketMultiplier": 1.0 },
+  { "id": "electrical_engineering", "name": "هندسة الكهرباء", "category": "هندسة", "marketMultiplier": 1.1 },
+  { "id": "chemical_engineering", "name": "الهندسة الكيمياوية", "category": "هندسة", "marketMultiplier": 1.0 },
+  { "id": "mechatronics_engineering", "name": "هندسة الميكاترونكس", "category": "هندسة", "marketMultiplier": 1.2 },
+  { "id": "biomedical_engineering", "name": "هندسة الطب الحياتي", "category": "هندسة", "marketMultiplier": 1.1 },
+
+  { "id": "mathematics", "name": "الرياضيات", "category": "علوم", "marketMultiplier": 0.9 },
+  { "id": "physics", "name": "الفيزياء", "category": "علوم", "marketMultiplier": 0.8 },
+  { "id": "chemistry", "name": "الكيمياء", "category": "علوم", "marketMultiplier": 0.8 },
+  { "id": "biology", "name": "علوم الحياة", "category": "علوم", "marketMultiplier": 0.8 },
+  { "id": "geography", "name": "الجغرافية", "category": "إنسانيات", "marketMultiplier": 0.6 },
+  { "id": "history", "name": "التاريخ", "category": "إنسانيات", "marketMultiplier": 0.5 },
+
+  { "id": "agriculture", "name": "علوم الهندسة الزراعية", "category": "زراعة", "marketMultiplier": 0.9 },
+  { "id": "veterinary_medicine", "name": "الطب البيطري", "category": "طبي", "marketMultiplier": 0.9 },
+
+  { "id": "islamic_studies", "name": "العلوم الإسلامية", "category": "إنسانيات", "marketMultiplier": 0.6 },
+  { "id": "arabic_language", "name": "اللغة العربية وآدابها", "category": "لغات", "marketMultiplier": 0.7 },
+  { "id": "translation", "name": "الترجمة", "category": "لغات", "marketMultiplier": 1.0 },
+  { "id": "media_journalism", "name": "الإعلام", "category": "إنسانيات", "marketMultiplier": 0.9 },
+
+  { "id": "fine_arts", "name": "الفنون الجميلة", "category": "فنون وتصميم", "marketMultiplier": 0.8 },
+  { "id": "kindergarten_education", "name": "رياض الأطفال", "category": "تربية", "marketMultiplier": 0.9 },
+  { "id": "physical_education", "name": "التربية البدنية وعلوم الرياضة", "category": "تربية", "marketMultiplier": 0.8 },
+  { "id": "forensic_science", "name": "الأدلة الجنائية", "category": "طبي", "marketMultiplier": 1.1 },
+  { "id": "tourism_hospitality", "name": "العلوم السياحية والفندقية", "category": "إدارة وتسويق", "marketMultiplier": 0.9 },
+  { "id": "psychology_sociology", "name": "علم النفس والاجتماع", "category": "إنسانيات", "marketMultiplier": 0.7 }
 ]

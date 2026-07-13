@@ -11,22 +11,38 @@ export interface Major {
 }
 
 /**
+ * حد أدنى واحد للقبول (فرع دراسي/جنس/سنة) كما يظهر في بيانات الحدود الدنيا الرسمية.
+ */
+export interface DepartmentCutoff {
+  branch: string;
+  gender: string;
+  averagePercent: number;
+  isQuota: boolean;
+}
+
+/**
+ * تمثيل واجهة القسم داخل الكلية، مع الحدود الدنيا الفعلية لكل فرع/جلسة.
+ */
+export interface Department {
+  name: string;
+  branch: string[];
+  sessions: string[];
+  cutoffs: DepartmentCutoff[];
+  averageGrades: {
+    "صباحي": number | null;
+    "مسائي": number | null;
+  };
+  isDirectAdmission: boolean;
+}
+
+/**
  * تمثيل واجهة الكلية داخل الجامعة
  */
 export interface College {
   id: string;
   name: string;
-  nameEn: string;
-  departments: string[];
-  category: string;
-  branch: "علمي" | "أدبي" | "mixed";
-  sessions: string[];
-  averageGrades: {
-    "صباحي": number | null;
-    "مسائي": number | null;
-  };
-  capacity: number | null;
-  contactEmail: string | null;
+  nameEn: string | null;
+  departments: Department[];
 }
 
 /**
@@ -35,10 +51,10 @@ export interface College {
 export interface University {
   id: string;
   name: string;
-  nameEn: string;
+  nameEn: string | null;
   type: "حكومية" | "أهلية";
   province: string;
-  founded: number;
+  founded: number | null;
   website: string | null;
   ranking: number | null;
   colleges: College[];
@@ -66,21 +82,38 @@ export interface UniversityOffering {
   province: string;
   collegeId: string;
   collegeName: string;
-  collegeCategory: string;
-  collegeBranch: string;
   departmentName: string;
+  departmentBranches: string[];
   sessions: string[];
   averageGrades: {
     "صباحي": number | null;
     "مسائي": number | null;
   };
-  capacity: number | null;
+  cutoffs: DepartmentCutoff[];
+  isDirectAdmission: boolean;
   confidence: number;
 }
 
 /**
+ * تطبيع النص العربي لأغراض المطابقة فقط: يوحّد صيغ الهمزة (أ/إ/آ) ويحذف
+ * حرف الألف المجرد بالكامل. هذا يعالج عيباً معروفاً ومتكرراً في استخراج
+ * النصوص من ملفات PDF الرسمية (دليل الطالب) حيث ينعكس ترتيب حرفي "ل" و"ا"
+ * ضمن رابطة "لا" أحياناً (مثال: "الاتصالات" تُستخرج أحياناً "االتصاالت").
+ * إسقاط الألف من الجهتين قبل المقارنة يجعل المطابقة متينة أمام هذا الخلل
+ * دون الحاجة لتكرار كل صيغة تالفة يدوياً في قاموس المطابقة.
+ */
+function normalizeArabic(text: string): string {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ا/g, "")
+    .replace(/\s+/g, "");
+}
+
+/**
  * دالة لمطابقة اسم التخصص مع اسم القسم في الكلية وحساب درجة الثقة والتقارب.
- * 
+ *
  * @param major التخصص المطلوب مطابقته
  * @param departmentName اسم القسم الجامعي المراد فحصه
  * @param mapping خريطة مطابقة التخصص التي تحتوي على المترادفات والأنماط
@@ -91,28 +124,24 @@ export function matchMajorToDepartment(
   departmentName: string,
   mapping: MajorMapping
 ): { isMatch: boolean; confidence: number } {
-  const depLower = departmentName.toLowerCase().trim();
-  const majorNameLower = major.name.toLowerCase().trim();
-  const mappingNameLower = mapping.majorName.toLowerCase().trim();
+  const depNorm = normalizeArabic(departmentName);
+  const majorNameNorm = normalizeArabic(major.name);
+  const mappingNameNorm = normalizeArabic(mapping.majorName);
 
   let score = 0;
 
   // 1. تحقق من التطابق التام والمباشر
-  if (depLower === majorNameLower || depLower === mappingNameLower) {
+  if (depNorm === majorNameNorm || depNorm === mappingNameNorm) {
     score = 100;
   }
   // 2. تحقق من وجود الاسم في الأسماء البديلة الشائعة (Aliases)
-  else if (
-    mapping.aliases.some(
-      (alias) => alias.toLowerCase().trim() === depLower
-    )
-  ) {
+  else if (mapping.aliases.some((alias) => normalizeArabic(alias) === depNorm)) {
     score = 85;
   }
   // 3. تحقق من وجود أي من الأنماط النصية (Patterns) في اسم القسم
   else {
     const matchingPatterns = mapping.departmentPatterns.filter((pattern) =>
-      depLower.includes(pattern.toLowerCase().trim())
+      depNorm.includes(normalizeArabic(pattern))
     );
 
     if (matchingPatterns.length > 1) {
@@ -130,7 +159,7 @@ export function matchMajorToDepartment(
 
 /**
  * دالة للبحث عن الجامعات والكليات التي توفر تخصصاً معيناً مع إمكانية الفلترة.
- * 
+ *
  * @param major التخصص المراد البحث عنه
  * @param universities قائمة الجامعات المتاحة
  * @param mappings قائمة خرائط المطابقة لجميع التخصصات
@@ -147,7 +176,7 @@ export function findUniversitiesForMajor(
 
   // البحث عن خريطة المطابقة للتخصص الحالي
   let mapping = mappings.find((m) => m.majorId === major.id);
-  
+
   if (!mapping) {
     // خريطة افتراضية احتياطية في حال عدم العثور عليها
     mapping = {
@@ -173,7 +202,7 @@ export function findUniversitiesForMajor(
       for (const dept of college.departments) {
         const { isMatch, confidence } = matchMajorToDepartment(
           major,
-          dept,
+          dept.name,
           mapping
         );
 
@@ -186,12 +215,12 @@ export function findUniversitiesForMajor(
             province: uni.province,
             collegeId: college.id,
             collegeName: college.name,
-            collegeCategory: college.category,
-            collegeBranch: college.branch,
-            departmentName: dept,
-            sessions: college.sessions,
-            averageGrades: college.averageGrades,
-            capacity: college.capacity,
+            departmentName: dept.name,
+            departmentBranches: dept.branch,
+            sessions: dept.sessions,
+            averageGrades: dept.averageGrades,
+            cutoffs: dept.cutoffs,
+            isDirectAdmission: dept.isDirectAdmission,
             confidence,
           });
         }
@@ -208,7 +237,7 @@ export function findUniversitiesForMajor(
  * 1. نسبة الثقة والمطابقة (confidence) من الأعلى للأقل.
  * 2. معدل القبول الصباحي (averageGrades.صباحي) من الأعلى للأقل.
  * 3. ترتيب وتصنيف الجامعة (ranking) من الأعلى للأقل (الأرقام الصغيرة أولاً، والقيم الفارغة في النهاية).
- * 
+ *
  * @param offerings قائمة العروض غير المرتبة
  * @returns قائمة العروض مرتبة تنازلياً وتصاعدياً حسب المعايير
  */

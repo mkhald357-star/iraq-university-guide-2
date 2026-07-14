@@ -73,6 +73,23 @@ const RiasecProfileSchema = z.object(
   Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().min(0).max(10).optional()]))
 ).strict();
 
+const ValidityQuestionSchema = z.object({
+  id: z.string(),
+  text: z.string(),
+  dimensions: z.object({}).strict(),
+  validity: z.object({
+    type: z.enum(["instructed", "reverse_twin", "lie_scale"]),
+    expected: z.number().optional(),
+    pairsWith: z.string().optional(),
+  }),
+});
+
+const ContradictionPairSchema = z.object({
+  a: z.string(),
+  b: z.string(),
+  message: z.string(),
+});
+
 let hasErrors = false;
 
 function validate(label, filePath, schema) {
@@ -100,24 +117,55 @@ function validate(label, filePath, schema) {
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
 validate("data/majors.json", path.join(ROOT, "data/majors.json"), z.array(MajorSchema));
 validate("data/questions.json", path.join(ROOT, "data/questions.json"), z.array(QuestionSchema));
+validate("data/validity_questions.json", path.join(ROOT, "data/validity_questions.json"), z.array(ValidityQuestionSchema));
+validate("data/contradiction_pairs.json", path.join(ROOT, "data/contradiction_pairs.json"), z.array(ContradictionPairSchema));
 
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const majorIds = new Set(majors.map((m) => m.id));
 
-// Must have exactly 40 questions (the algorithm assumes a fixed, curated
+// Must have exactly 42 questions (7 per RIASEC dimension, after the 2026-07
+// psychometric refinement pass -- the algorithm assumes a fixed, curated
 // question bank -- a silent drop/duplication would skew every dimension).
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-if (questions.length !== 40) {
-  console.error(`[FAIL] data/questions.json: expected exactly 40 questions, found ${questions.length}`);
+if (questions.length !== 42) {
+  console.error(`[FAIL] data/questions.json: expected exactly 42 questions, found ${questions.length}`);
   hasErrors = true;
 } else {
-  console.log("[OK] data/questions.json has exactly 40 questions");
+  console.log("[OK] data/questions.json has exactly 42 questions");
 }
 const questionIds = questions.map((q) => q.id);
 const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);
 if (dupQuestionIds.length) {
   console.error("[FAIL] data/questions.json has duplicate question ids:", [...new Set(dupQuestionIds)]);
   hasErrors = true;
+}
+
+// Must have exactly 3 validity-check items (attention check, reverse-scored
+// twin, lie scale), each with fully empty `dimensions` (they must never
+// silently leak into the RIASEC vector) and no id collision with questions.json.
+const validityQuestions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/validity_questions.json"), "utf8"));
+if (validityQuestions.length !== 3) {
+  console.error(`[FAIL] data/validity_questions.json: expected exactly 3 items, found ${validityQuestions.length}`);
+  hasErrors = true;
+} else {
+  console.log("[OK] data/validity_questions.json has exactly 3 items");
+}
+const validityIds = new Set(validityQuestions.map((q) => q.id));
+const idCollisions = [...validityIds].filter((id) => questionIds.includes(id));
+if (idCollisions.length) {
+  console.error("[FAIL] data/validity_questions.json ids collide with data/questions.json:", idCollisions);
+  hasErrors = true;
+}
+
+// Every contradiction pair must reference two distinct, real question ids.
+const contradictionPairs = JSON.parse(fs.readFileSync(path.join(ROOT, "data/contradiction_pairs.json"), "utf8"));
+const allKnownIds = new Set([...questionIds, ...validityIds]);
+const badPairs = contradictionPairs.filter((p) => p.a === p.b || !allKnownIds.has(p.a) || !allKnownIds.has(p.b));
+if (badPairs.length) {
+  console.error("[FAIL] data/contradiction_pairs.json has pairs referencing unknown/identical ids:", badPairs);
+  hasErrors = true;
+} else {
+  console.log("[OK] data/contradiction_pairs.json pair references");
 }
 
 // Every major must have a RIASEC profile, and every profile must map to a real major.

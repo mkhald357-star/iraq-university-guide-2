@@ -4,6 +4,8 @@ import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, AlertTriangle, CheckCircle, Edit3 } from "lucide-react";
 import questionsData from "../../data/questions.json";
+import validityQuestionsData from "../../data/validity_questions.json";
+import contradictionPairsData from "../../data/contradiction_pairs.json";
 import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
@@ -14,15 +16,40 @@ import {
   topDimensions,
   RIASEC_LABELS,
   type RiasecDimension,
+  type RiasecVector,
 } from "../../lib/riasec";
+import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
 
 type AnswerState = Record<string, number>;
+interface QuizItem {
+  id: string;
+  text: string;
+  dimensions: RiasecVector;
+}
 
 // قائمة المحافظات مولَّدة من بيانات الجامعات الفعلية عبر خط أنابيب
 // الاستخراج (data/provinces.json، ملف صغير مشتق حتى لا نستورد كل بيانات
 // الجامعات الضخمة هنا فقط لعرض قائمة منسدلة) — تبقى متزامنة تلقائياً مع
 // أي توسعة مستقبلية للبيانات، بدل قائمة ثابتة قديمة.
 const AVAILABLE_PROVINCES = provincesData as string[];
+
+// أسئلة تحقق/جدّية (VRS) لا تُحسب ضمن أبعاد RIASEC — dimensions فارغة عمداً،
+// ما يجعل computeUserRiasecVector يتجاهلها تلقائياً دون أي تعديل إضافي فيه.
+// نُدرجها بمواضع ثابتة داخل تسلسل الأسئلة: سؤال الانتباه الموجَّه في المنتصف
+// تقريباً، وتوأم "مساعدة الآخرين" المعكوس + مقياس الصدق قرب النهاية (كما
+// أوصى تقرير كشف التحيز — كي لا يُلاحظ الطالب نمطها بسهولة).
+const SCORED_QUESTIONS = questionsData as QuizItem[];
+const VALIDITY_QUESTIONS = validityQuestionsData as QuizItem[];
+const [ATTENTION_CHECK, HELP_OTHERS_REVERSE, LIE_SCALE] = VALIDITY_QUESTIONS;
+const ATTENTION_CHECK_POSITION = 20;
+const ALL_QUIZ_QUESTIONS: QuizItem[] = [
+  ...SCORED_QUESTIONS.slice(0, ATTENTION_CHECK_POSITION),
+  ATTENTION_CHECK,
+  ...SCORED_QUESTIONS.slice(ATTENTION_CHECK_POSITION),
+  HELP_OTHERS_REVERSE,
+  LIE_SCALE,
+];
+const VALIDITY_QUESTION_IDS = new Set(VALIDITY_QUESTIONS.map((q) => q.id));
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // مكوّن شاشة المراجعة قبل الإرسال
@@ -34,16 +61,16 @@ function ReviewScreen({
   onSubmit,
   onBack,
 }: {
-  questions: typeof questionsData;
+  questions: QuizItem[];
   answers: AnswerState;
   onEdit: (index: number) => void;
   onSubmit: () => void;
   onBack: () => void;
 }) {
-  const labelMap: Record<number, string> = { 1: "نعم، بالتأكيد", 0.5: "ربما / أحياناً", [-1]: "لا، إطلاقاً" };
+  const labelMap: Record<number, string> = { 1: "نعم، بالتأكيد", 0: "ربما / أحياناً", [-1]: "لا، إطلاقاً" };
   const colorMap: Record<number, string> = {
     1: "text-primary font-bold",
-    0.5: "text-blue-500 font-bold",
+    0: "text-blue-500 font-bold",
     [-1]: "text-slate-400 font-bold",
   };
 
@@ -139,6 +166,9 @@ export default function Quiz() {
   const [topMajors, setTopMajors] = useState<any[]>([]);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
+  const [vrsResult, setVrsResult] = useState<ValidityCheckResult | null>(null);
+  const [timings, setTimings] = useState<Record<string, number>>({});
+  const [questionShownAt, setQuestionShownAt] = useState<number>(() => Date.now());
 
   const [filterSettings, setFilterSettings] = useState<null | {
     province: string;
@@ -153,6 +183,11 @@ export default function Quiz() {
     localStorage.removeItem("userAnswers");
     localStorage.removeItem("filterSettings");
   }, []);
+
+  // إعادة ضبط "توقيت بداية السؤال" عند كل انتقال — يغذّي مكوّن الزمن في VRS
+  useEffect(() => {
+    setQuestionShownAt(Date.now());
+  }, [currentQuestionIndex]);
 
   // Persist filterSettings
   useEffect(() => {
@@ -242,21 +277,29 @@ export default function Quiz() {
 
   const gradeIsHigh = filterSettings.grade >= 85;
 
-  // كل الأسئلة الأربعين تُعرض للجميع بصرف النظر عن الفرع، لأنها تقيس
-  // سمات شخصية عامة (نموذج RIASEC) لا تفضيلاً مباشراً لتخصص بعينه.
-  const displayedQuestions = questionsData;
+  // كل الأسئلة (المُسجَّلة على أبعاد RIASEC + أسئلة التحقق الثلاثة) تُعرض
+  // للجميع بصرف النظر عن الفرع، لأنها تقيس سمات شخصية عامة لا تفضيلاً
+  // مباشراً لتخصص بعينه.
+  const displayedQuestions = ALL_QUIZ_QUESTIONS;
 
-  // ---- محرك التوصية القائم على RIASEC ----
+  // ---- محرك التوصية القائم على RIASEC + نظام كشف الجدّية (VRS) ----
   const runRecommendationEngine = (finalAnswers: AnswerState) => {
-    const finalWarnings: string[] = [];
+    // فصل إجابات الأسئلة المُسجَّلة فعلياً على RIASEC عن إجابات أسئلة التحقق
+    // الثلاثة (dimensions فارغة، لا تدخل حساب المتجه الشخصي إطلاقاً).
+    const scoredAnswers: AnswerState = {};
+    const validityAnswers: AnswerState = {};
+    Object.entries(finalAnswers).forEach(([id, val]) => {
+      if (VALIDITY_QUESTION_IDS.has(id)) validityAnswers[id] = val;
+      else scoredAnswers[id] = val;
+    });
 
-    const comfortScore = finalAnswers["q_comfort_vs_salary"] ?? 0;
-    const riskScore = finalAnswers["q_risk_reward"] ?? 0;
-    if (comfortScore > 0 && riskScore > 0) {
-      finalWarnings.push("لاحظنا تضارباً في إجاباتك: ترغب براتب عالٍ جداً ولكن تبحث عن الراحة القصوى في آنٍ معاً. اعتمدنا إجاباتك الأخرى للترجيح بينهما.");
-    }
+    // جدول تناقضات منطقية قابل للتوسعة (data/contradiction_pairs.json) بدل
+    // زوج واحد مبرمَج يدوياً — كل زوج "نعم+نعم" منطقياً متعارض يُضاف كتنبيه.
+    const finalWarnings: string[] = contradictionPairsData
+      .filter((pair) => (scoredAnswers[pair.a] ?? 0) > 0 && (scoredAnswers[pair.b] ?? 0) > 0)
+      .map((pair) => pair.message);
 
-    const userVector = computeUserRiasecVector(finalAnswers, questionsData);
+    const userVector = computeUserRiasecVector(scoredAnswers, questionsData);
     const allowedCats = branchMap[filterSettings.branch] || [];
 
     const processedMajors = majorsData
@@ -274,12 +317,16 @@ export default function Quiz() {
     const top3 = processedMajors.slice(0, 3);
     const userTopDimensions = topDimensions(userVector, 2);
 
+    const vrs = computeValidityRiskScore(scoredAnswers, validityAnswers, timings, contradictionPairsData);
+
     setWarnings(finalWarnings);
     setTopMajors(top3);
     setTopUserDimensions(userTopDimensions);
+    setVrsResult(vrs);
     setIsFinished(true);
     localStorage.setItem("quizResults", JSON.stringify(top3));
-    localStorage.setItem("userAnswers", JSON.stringify(finalAnswers));
+    localStorage.setItem("userAnswers", JSON.stringify(scoredAnswers));
+    localStorage.setItem("needsReview", JSON.stringify(vrs.band !== "low"));
   };
 
   // ---- معالجة الإجابة ----
@@ -287,6 +334,7 @@ export default function Quiz() {
     const question = displayedQuestions[currentQuestionIndex];
     const newAnswers = { ...answers, [question.id]: answerWeight };
     setAnswers(newAnswers);
+    setTimings((prev) => ({ ...prev, [question.id]: Date.now() - questionShownAt }));
 
     // آخر سؤال → انتقل لشاشة المراجعة
     if (currentQuestionIndex >= displayedQuestions.length - 1) {
@@ -303,7 +351,7 @@ export default function Quiz() {
         <div className="text-center space-y-4">
           <h2 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h2>
           <p className="text-lg text-slate-600">
-            بناءً على تحليل شخصيتك المهنية عبر 40 سؤالاً ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
+            بناءً على تحليل شخصيتك المهنية عبر أسئلة الاختبار ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
           </p>
           {topUserDimensions.length > 0 && (
             <p className="text-sm text-slate-500">
@@ -319,7 +367,32 @@ export default function Quiz() {
             <AlertTriangle className="w-6 h-6 flex-shrink-0" />
             <div>
               <h4 className="font-bold">ملاحظة الخوارزمية:</h4>
-              <p className="text-sm mt-1">{warnings[0]}</p>
+              <ul className="text-sm mt-1 space-y-1 list-disc list-inside">
+                {warnings.map((w, i) => (
+                  <li key={i}>{w}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        )}
+        {vrsResult && vrsResult.band !== "low" && (
+          <div
+            className={`p-4 rounded-2xl flex items-start gap-3 border ${
+              vrsResult.band === "high"
+                ? "bg-red-50 border-red-200 text-red-800"
+                : "bg-amber-50 border-amber-200 text-amber-800"
+            }`}
+          >
+            <AlertTriangle className="w-6 h-6 flex-shrink-0" />
+            <div>
+              <h4 className="font-bold">
+                {vrsResult.band === "high" ? "ننصح بمراجعة إجاباتك" : "قد تحتاج نتيجتك مراجعة إضافية"}
+              </h4>
+              <p className="text-sm mt-1">
+                لاحظ نظام التحقق نمطاً في إجاباتك قد يقلل من دقة التوصية (مثل إجابات متسرعة جداً أو متناقضة أو
+                غير متمايزة). النتيجة أدناه لا تزال معروضة، لكن ننصحك بإعادة الاختبار بتركيز أكبر إن لم تكن
+                التوصية منطقية بالنسبة لك.
+              </p>
             </div>
           </div>
         )}
@@ -434,7 +507,7 @@ export default function Quiz() {
             نعم، بالتأكيد
           </button>
           <button
-            onClick={() => handleAnswer(0.5)}
+            onClick={() => handleAnswer(0)}
             className="bg-blue-50 text-primary border border-blue-200 p-4 rounded-xl font-bold text-lg hover:bg-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             ربما / أحياناً

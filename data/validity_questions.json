@@ -1,0 +1,20 @@
+[
+  {
+    "id": "q_attention_check",
+    "text": "للتأكد من أنك تقرأ كل سؤال بعناية، الرجاء اختيار 'ربما / أحياناً' لهذا السؤال تحديداً بغض النظر عن رأيك الحقيقي.",
+    "dimensions": {},
+    "validity": { "type": "instructed", "expected": 0 }
+  },
+  {
+    "id": "q_help_others_reverse",
+    "text": "هل تفضل عادةً عدم التدخل في مشاكل الآخرين، وترك كل شخص يتحمل مسؤولية حل مشاكله بنفسه دون تدخل منك؟",
+    "dimensions": {},
+    "validity": { "type": "reverse_twin", "pairsWith": "q_help_others" }
+  },
+  {
+    "id": "q_lie_scale",
+    "text": "هل نجحت دائماً في كل شيء حاولته في حياتك، ولم يسبق أن فشلت أو ترددت في أي قرار على الإطلاق؟",
+    "dimensions": {},
+    "validity": { "type": "lie_scale" }
+  }
+]

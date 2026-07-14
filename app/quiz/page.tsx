@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, ChevronRight, AlertTriangle, CheckCircle, Edit3 } from "lucide-react";
 import questionsData from "../../data/questions.json";
 import majorsData from "../../data/majors.json";
+import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import {
   computeUserRiasecVector,
@@ -16,6 +17,12 @@ import {
 } from "../../lib/riasec";
 
 type AnswerState = Record<string, number>;
+
+// قائمة المحافظات مولَّدة من بيانات الجامعات الفعلية عبر خط أنابيب
+// الاستخراج (data/provinces.json، ملف صغير مشتق حتى لا نستورد كل بيانات
+// الجامعات الضخمة هنا فقط لعرض قائمة منسدلة) — تبقى متزامنة تلقائياً مع
+// أي توسعة مستقبلية للبيانات، بدل قائمة ثابتة قديمة.
+const AVAILABLE_PROVINCES = provincesData as string[];
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // مكوّن شاشة المراجعة قبل الإرسال
@@ -175,11 +182,13 @@ export default function Quiz() {
             <label className="block font-bold mb-2" htmlFor="province">المحافظة</label>
             <select name="province" className="w-full p-2 border rounded" required>
               <option value="">اختر المحافظة</option>
-              <option value="بغداد">بغداد</option>
-              <option value="البصرة">البصرة</option>
-              <option value="نينوى">نينوى</option>
-              <option value="أربيل">أربيل</option>
+              {AVAILABLE_PROVINCES.map((p) => (
+                <option key={p} value={p}>{p}</option>
+              ))}
             </select>
+            <p className="text-xs text-slate-400 mt-1">
+              ملاحظة: محافظات إقليم كردستان (أربيل، دهوك، السليمانية) غير مغطاة بعد — نظام قبول منفصل عن القبول المركزي.
+            </p>
           </div>
           <div>
             <label className="block font-bold mb-2" htmlFor="branch">الفرع الدراسي</label>

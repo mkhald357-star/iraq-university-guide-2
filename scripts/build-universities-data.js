@@ -228,6 +228,12 @@ const out = {
 const OUT = path.join(ROOT, "data/universities.json");
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2), "utf8");
 
+// Small derived file (province names only) so client components that just
+// need a province dropdown (e.g. app/quiz/page.tsx) don't have to import
+// the entire multi-megabyte universities.json into their JS bundle.
+const provinces = Array.from(new Set(out.universities.map((u) => u.province))).sort((a, b) => a.localeCompare(b, "ar"));
+fs.writeFileSync(path.join(ROOT, "data/provinces.json"), JSON.stringify(provinces, null, 2) + "\n", "utf8");
+
 const totalColleges = finalUniversities.reduce((s, u) => s + u.colleges.length, 0);
 const totalDepts = finalUniversities.reduce((s, u) => s + u.colleges.reduce((s2, c) => s2 + c.departments.length, 0), 0);
 console.log("Wrote", OUT);

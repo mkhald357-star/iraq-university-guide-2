@@ -91,8 +91,39 @@ for (const rawLine of lines) {
   // is just a visual joiner between two adjacent columns, not a signal to
   // merge them into one string, so: drop delimiter tokens, keep every
   // other tab-cell as its own segment.
-  const segs = tokens.slice(1).filter((t) => t !== "/" && t !== "-");
+  let segs = tokens.slice(1).filter((t) => t !== "/" && t !== "-");
   if (segs.length === 0) { skipped++; continue; }
+
+  // A long college/department name sometimes wraps across multiple PDF
+  // table cells, which pdf-parse then emits as separate tab-tokens -- even
+  // splitting a bare "ال" (definite article) from the noun that follows
+  // it. A fragment that's just a prefix word ("كلية"/"معهد"/"قسم"/...) or
+  // 2 characters or less can never legitimately be a complete college or
+  // department name on its own, so merge it forward into the next
+  // fragment until nothing short is left dangling.
+  const NEVER_STANDALONE = new Set(["كلية", "كليات", "معهد", "المعهد", "الكلية", "قسم", "اقسام"]);
+  let merged = true;
+  while (merged) {
+    merged = false;
+    for (let i = 0; i < segs.length - 1; i++) {
+      if (NEVER_STANDALONE.has(segs[i]) || segs[i].length <= 2) {
+        segs = [...segs.slice(0, i), `${segs[i]} ${segs[i + 1]}`, ...segs.slice(i + 2)];
+        merged = true;
+        break;
+      }
+    }
+  }
+
+  // Safety net: a genuine single-segment (department-less) row should be a
+  // real college name, which always starts with كلية/معهد/الكلية/المعهد in
+  // this document. A bare orphan fragment (e.g. a province name with
+  // nothing else -- seen in a handful of densely-tabled rows, mostly in
+  // الجامعة التقنية الجنوبية) means the row's real content was lost to a
+  // table-wrapping edge case upstream; skip it rather than store noise.
+  if (segs.length === 1 && !/^(كلية|كليات|معهد|المعهد|الكلية)/.test(segs[0])) {
+    skipped++;
+    continue;
+  }
 
   results.push({
     university: currentUni,

@@ -61,9 +61,9 @@
   },
   {
     "university": "جامعة بغداد",
-    "college": "كلية",
-    "campusOrTrack": "العلوم السياسية / قسم",
-    "department": "الفكر السياسي"
+    "college": "كلية العلوم السياسية",
+    "campusOrTrack": null,
+    "department": "قسم الفكر السياسي"
   },
   {
     "university": "جامعة بغداد",
@@ -74,8 +74,8 @@
   {
     "university": "جامعة بغداد",
     "college": "كلية العلوم السياسية",
-    "campusOrTrack": "قسم",
-    "department": "النظم السياسية"
+    "campusOrTrack": null,
+    "department": "قسم النظم السياسية"
   },
   {
     "university": "جامعة بغداد",
@@ -98,8 +98,8 @@
   {
     "university": "جامعة بغداد",
     "college": "علوم الهندسة الزراعية",
-    "campusOrTrack": "قسم",
-    "department": "علوم التربة والموارد المائية"
+    "campusOrTrack": null,
+    "department": "قسم علوم التربة والموارد المائية"
   },
   {
     "university": "جامعة بغداد",
@@ -194,8 +194,8 @@
   {
     "university": "جامعة بغداد",
     "college": "كلية التربية للعلوم الصرفة",
-    "campusOrTrack": "ابن الهيثم / قسم",
-    "department": "الفيزياء"
+    "campusOrTrack": "ابن الهيثم",
+    "department": "قسم الفيزياء"
   },
   {
     "university": "جامعة بغداد",
@@ -254,8 +254,8 @@
   {
     "university": "جامعة بغداد",
     "college": "كلية التربية للبنات",
-    "campusOrTrack": "قسم",
-    "department": "الجغرافية"
+    "campusOrTrack": null,
+    "department": "قسم الجغرافية"
   },
   {
     "university": "جامعة بغداد",
@@ -290,8 +290,8 @@
   {
     "university": "جامعة بغداد",
     "college": "كلية اآلداب",
-    "campusOrTrack": "قسم",
-    "department": "اللغة االنكليزية"
+    "campusOrTrack": null,
+    "department": "قسم اللغة االنكليزية"
   },
   {
     "university": "جامعة بغداد",
@@ -583,8 +583,8 @@
   },
   {
     "university": "الجامعة المستنصرية",
-    "college": "كلية",
-    "campusOrTrack": "التربية",
+    "college": "كلية التربية",
+    "campusOrTrack": null,
     "department": "قسم علوم القران والتربية االسالمية"
   },
   {
@@ -667,8 +667,8 @@
   },
   {
     "university": "الجامعة المستنصرية",
-    "college": "كلية",
-    "campusOrTrack": "التربية األساسية",
+    "college": "كلية التربية األساسية",
+    "campusOrTrack": null,
     "department": "قسم التربية االسالمية"
   },
   {
@@ -734,8 +734,8 @@
   {
     "university": "الجامعة المستنصرية",
     "college": "كلية العلوم السياحية",
-    "campusOrTrack": "قسم",
-    "department": "الدراسات الفندقية"
+    "campusOrTrack": null,
+    "department": "قسم الدراسات الفندقية"
   },
   {
     "university": "الجامعة المستنصرية",
@@ -776,8 +776,8 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية الهندسة",
-    "campusOrTrack": "قسم",
-    "department": "الكيمياوية"
+    "campusOrTrack": null,
+    "department": "قسم الكيمياوية"
   },
   {
     "university": "جامعة البصرة",
@@ -1003,8 +1003,8 @@
   },
   {
     "university": "جامعة البصرة",
-    "college": "كلية",
-    "campusOrTrack": "التربية للعلوم االنسانية",
+    "college": "كلية التربية للعلوم االنسانية",
+    "campusOrTrack": null,
     "department": "قسم اللغة العربية"
   },
   {
@@ -1028,8 +1028,8 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية التربية للبنات",
-    "campusOrTrack": "قسم",
-    "department": "التاريد"
+    "campusOrTrack": null,
+    "department": "قسم التاريد"
   },
   {
     "university": "جامعة البصرة",
@@ -1069,8 +1069,8 @@
   },
   {
     "university": "جامعة البصرة",
-    "college": "كلية",
-    "campusOrTrack": "اآلداب",
+    "college": "كلية اآلداب",
+    "campusOrTrack": null,
     "department": "قسم اللغة العربية"
   },
   {
@@ -1178,8 +1178,8 @@
   {
     "university": "جامعة الموصل",
     "college": "كلية علوم الحاسوب والرياضيات",
-    "campusOrTrack": "قسم",
-    "department": "االمن السيبراني"
+    "campusOrTrack": null,
+    "department": "قسم االمن السيبراني"
   },
   {
     "university": "جامعة الموصل",
@@ -1351,8 +1351,8 @@
   },
   {
     "university": "جامعة الموصل",
-    "college": "كلية",
-    "campusOrTrack": "التربية للبنات",
+    "college": "كلية التربية للبنات",
+    "campusOrTrack": null,
     "department": "قسم علوم الحياة"
   },
   {
@@ -1495,290 +1495,290 @@
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الكهربائية",
+    "college": "كلية الهندسة الكهربائية",
+    "campusOrTrack": null,
     "department": "قسم الكهرباء"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الكهربائية",
+    "college": "كلية الهندسة الكهربائية",
+    "campusOrTrack": null,
     "department": "قسم االلكترونيك"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الحاسوب / قسم",
-    "department": "الحاسوب"
+    "college": "كلية هندسة الحاسوب",
+    "campusOrTrack": null,
+    "department": "قسم الحاسوب"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الحاسوب / قسم / ال / شبكات",
+    "college": "كلية هندسة الحاسوب",
+    "campusOrTrack": "قسم ال / شبكات",
     "department": "واالمن السيبراني"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الميكانيكية",
+    "college": "كلية الهندسة الميكانيكية",
+    "campusOrTrack": null,
     "department": "قسم الميكانيك العام"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الميكانيكية",
+    "college": "كلية الهندسة الميكانيكية",
+    "campusOrTrack": null,
     "department": "قسم الطائرات"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الميكانيكية",
+    "college": "كلية الهندسة الميكانيكية",
+    "campusOrTrack": null,
     "department": "قسم محطات القدرة"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الميكانيكية",
+    "college": "كلية الهندسة الميكانيكية",
+    "campusOrTrack": null,
     "department": "قسم التكييف والتجميد"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الميكانيكية",
+    "college": "كلية الهندسة الميكانيكية",
+    "campusOrTrack": null,
     "department": "قسم السيارات والتنقل المستدام"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الكيميائية",
+    "college": "كلية الهندسة الكيميائية",
+    "campusOrTrack": null,
     "department": "قسم هندسة العمليات الكيمياوية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الكيميائية",
+    "college": "كلية الهندسة الكيميائية",
+    "campusOrTrack": null,
     "department": "قسم الهندسة الكيمياوية والتلوث النفطي"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة الكيميائية / قسم",
-    "department": "هندسة تكرير النفط وتكنولوجيا الغاز"
+    "college": "كلية الهندسة الكيميائية",
+    "campusOrTrack": null,
+    "department": "قسم هندسة تكرير النفط وتكنولوجيا الغاز"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الليزر وااللكترونيات البصرية",
+    "college": "كلية هندسة الليزر وااللكترونيات البصرية",
+    "campusOrTrack": null,
     "department": "قسم الليزر"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الليزر وااللكترونيات البصرية / قسم",
-    "department": "االلكترونيات البصرية"
+    "college": "كلية هندسة الليزر وااللكترونيات البصرية",
+    "campusOrTrack": null,
+    "department": "قسم االلكترونيات البصرية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة االنتاج والمعادن",
+    "college": "كلية هندسة االنتاج والمعادن",
+    "campusOrTrack": null,
     "department": "قسم المعادن"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة االنتاج والمعادن",
+    "college": "كلية هندسة االنتاج والمعادن",
+    "campusOrTrack": null,
     "department": "قسم التصنيع الذكي"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة االنتاج والمعادن",
+    "college": "كلية هندسة االنتاج والمعادن",
+    "campusOrTrack": null,
     "department": "قسم الصناعية والنظم"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة المواد",
+    "college": "كلية هندسة المواد",
+    "campusOrTrack": null,
     "department": "قسم المواد"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة المواد",
+    "college": "كلية هندسة المواد",
+    "campusOrTrack": null,
     "department": "قسم المواد البوليمرية والبتروكيمياوية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة المواد",
+    "college": "كلية هندسة المواد",
+    "campusOrTrack": null,
     "department": "قسم السيراميك ومواد البناء"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة المواد",
+    "college": "كلية هندسة المواد",
+    "campusOrTrack": null,
     "department": "قسم المواد االحيائية والتعويضات االصطناعية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة / االتصاالت",
+    "college": "كلية هندسة",
+    "campusOrTrack": "االتصاالت",
     "department": "قسم نظم االتصاالت الالسلكية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة االتصاالت",
+    "college": "كلية هندسة االتصاالت",
+    "campusOrTrack": null,
     "department": "قسم نظم االتصاالت الضوئية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة العمارة / قسم",
-    "department": "التصميم المعماري"
+    "college": "كلية هندسة العمارة",
+    "campusOrTrack": null,
+    "department": "قسم التصميم المعماري"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة العمارة / قسم",
-    "department": "التصميم الحضري"
+    "college": "كلية هندسة العمارة",
+    "campusOrTrack": null,
+    "department": "قسم التصميم الحضري"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة النفط والغاز",
+    "college": "كلية هندسة النفط والغاز",
+    "campusOrTrack": null,
     "department": "قسم النفط"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم االنشائية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم البناء وادارة المشاريع االنشائية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم الطرق والجيوتكنك"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم المنشآت الهيدروليكية والموارد المائية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم الهندسة البيئية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة المدنية",
+    "college": "كلية الهندسة المدنية",
+    "campusOrTrack": null,
     "department": "قسم الجيوماتيك"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة / الكهروميكانيك",
+    "college": "كلية هندسة",
+    "campusOrTrack": "الكهروميكانيك",
     "department": "قسم الهندسة الكهروميكانيكية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الكهروميكانيك",
+    "college": "كلية هندسة الكهروميكانيك",
+    "campusOrTrack": null,
     "department": "قسم المالحة والتوجيه"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الكهروميكانيك",
+    "college": "كلية هندسة الكهروميكانيك",
+    "campusOrTrack": null,
     "department": "قسم الطاقة والطاقات المتجددة"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الكهروميكانيك",
+    "college": "كلية هندسة الكهروميكانيك",
+    "campusOrTrack": null,
     "department": "قسم هندسة نظم الطائرات بدون طيار"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الكهروميكانيك",
+    "college": "كلية هندسة الكهروميكانيك",
+    "campusOrTrack": null,
     "department": "قسم معدات النفط والغاز"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الطب الحياتي",
+    "college": "كلية هندسة الطب الحياتي",
+    "campusOrTrack": null,
     "department": "قسم الميكانيك الحيوي"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "هندسة الطب الحياتي",
+    "college": "كلية هندسة الطب الحياتي",
+    "campusOrTrack": null,
     "department": "قسم االجهزة الطبية الحيوية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "العلوم التطبيقية",
+    "college": "كلية العلوم التطبيقية",
+    "campusOrTrack": null,
     "department": "قسم التقنيات االحيائية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "العلوم التطبيقية",
+    "college": "كلية العلوم التطبيقية",
+    "campusOrTrack": null,
     "department": "قسم الكيمياء التطبيقية"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "العلوم التطبيقية",
+    "college": "كلية العلوم التطبيقية",
+    "campusOrTrack": null,
     "department": "قسم علوم وتكنولوجيا الليزر"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم / الحاسوب",
+    "college": "كلية علوم",
+    "campusOrTrack": "الحاسوب",
     "department": "قسم البرمجيات"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب",
+    "college": "كلية علوم الحاسوب",
+    "campusOrTrack": null,
     "department": "قسم نظم المعلومات"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب",
+    "college": "كلية علوم الحاسوب",
+    "campusOrTrack": null,
     "department": "قسم شبكات الحاسوب وتطوير الويب"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب",
+    "college": "كلية علوم الحاسوب",
+    "campusOrTrack": null,
     "department": "قسم امنية الحاسوب واالمن السيبراني"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب",
+    "college": "كلية علوم الحاسوب",
+    "campusOrTrack": null,
     "department": "قسم الذكاء االصطناعي"
   },
   {
     "university": "الجامعة التكنولوجية",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب / قسم الوسائط المتعددة",
+    "college": "كلية علوم الحاسوب",
+    "campusOrTrack": "قسم الوسائط المتعددة",
     "department": "واالعالم الرقمي"
   },
   {
@@ -1825,8 +1825,8 @@
   },
   {
     "university": "جامعة الكوفة",
-    "college": "كلية",
-    "campusOrTrack": "العلوم",
+    "college": "كلية العلوم",
+    "campusOrTrack": null,
     "department": "قسم التحليالت المرضية"
   },
   {
@@ -2024,8 +2024,8 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية الهندسة",
-    "campusOrTrack": "قسم",
-    "department": "الكهرباء"
+    "campusOrTrack": null,
+    "department": "قسم الكهرباء"
   },
   {
     "university": "جامعة تكريت",
@@ -2185,8 +2185,8 @@
   },
   {
     "university": "جامعة تكريت",
-    "college": "كلية",
-    "campusOrTrack": "االدارة واالقتصاد",
+    "college": "كلية االدارة واالقتصاد",
+    "campusOrTrack": null,
     "department": "قسم ادارة التسويق"
   },
   {
@@ -2221,8 +2221,8 @@
   },
   {
     "university": "جامعة تكريت",
-    "college": "كلية",
-    "campusOrTrack": "التربية للعلوم الصرفة",
+    "college": "كلية التربية للعلوم الصرفة",
+    "campusOrTrack": null,
     "department": "قسم الفيزياء"
   },
   {
@@ -2396,8 +2396,8 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية التربية األساسية",
-    "campusOrTrack": "الشرقاط / قسم",
-    "department": "التربية االسالمية"
+    "campusOrTrack": "الشرقاط",
+    "department": "قسم التربية االسالمية"
   },
   {
     "university": "جامعة تكريت",
@@ -2498,8 +2498,8 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية الهندسة",
-    "campusOrTrack": "قسم",
-    "department": "المواد"
+    "campusOrTrack": null,
+    "department": "قسم المواد"
   },
   {
     "university": "جامعة القادسية",
@@ -2570,8 +2570,8 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية التقانات االحيائية",
-    "campusOrTrack": "قسم",
-    "department": "التقانات االحيائية الطبية"
+    "campusOrTrack": null,
+    "department": "قسم التقانات االحيائية الطبية"
   },
   {
     "university": "جامعة القادسية",
@@ -2612,8 +2612,8 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية الزراعة",
-    "campusOrTrack": "قسم",
-    "department": "االنتاج الحيواني"
+    "campusOrTrack": null,
+    "department": "قسم االنتاج الحيواني"
   },
   {
     "university": "جامعة القادسية",
@@ -2630,8 +2630,8 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية االدارة واالقتصاد",
-    "campusOrTrack": "قسم",
-    "department": "االقتصاد"
+    "campusOrTrack": null,
+    "department": "قسم االقتصاد"
   },
   {
     "university": "جامعة القادسية",
@@ -2648,8 +2648,8 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية التربية",
-    "campusOrTrack": "قسم",
-    "department": "الكيمياء"
+    "campusOrTrack": null,
+    "department": "قسم الكيمياء"
   },
   {
     "university": "جامعة القادسية",
@@ -2696,14 +2696,14 @@
   {
     "university": "جامعة القادسية",
     "college": "كلية التربية",
-    "campusOrTrack": "قسم",
-    "department": "علوم القران والتربية االسالمية"
+    "campusOrTrack": null,
+    "department": "قسم علوم القران والتربية االسالمية"
   },
   {
     "university": "جامعة القادسية",
     "college": "كلية التربية للبنات",
-    "campusOrTrack": "قسم",
-    "department": "الرياضيات"
+    "campusOrTrack": null,
+    "department": "قسم الرياضيات"
   },
   {
     "university": "جامعة القادسية",
@@ -2816,8 +2816,8 @@
   {
     "university": "جامعة الأنبار",
     "college": "كلية العلوم",
-    "campusOrTrack": "قسم",
-    "department": "التقنيات االحيائية"
+    "campusOrTrack": null,
+    "department": "قسم التقنيات االحيائية"
   },
   {
     "university": "جامعة الأنبار",
@@ -2918,8 +2918,8 @@
   {
     "university": "جامعة الأنبار",
     "college": "كلية االدارة واالقتصاد",
-    "campusOrTrack": "قسم",
-    "department": "العلوم المالية والمصرفية"
+    "campusOrTrack": null,
+    "department": "قسم العلوم المالية والمصرفية"
   },
   {
     "university": "جامعة الأنبار",
@@ -3104,8 +3104,8 @@
   {
     "university": "الجامعة العراقية",
     "college": "كلية الهندسة",
-    "campusOrTrack": "قسم",
-    "department": "الشبكات واالمن السيبراني"
+    "campusOrTrack": null,
+    "department": "قسم الشبكات واالمن السيبراني"
   },
   {
     "university": "الجامعة العراقية",
@@ -3139,8 +3139,8 @@
   },
   {
     "university": "الجامعة العراقية",
-    "college": "كلية",
-    "campusOrTrack": "االدارة واالقتصاد",
+    "college": "كلية االدارة واالقتصاد",
+    "campusOrTrack": null,
     "department": "قسم العلوم المالية والمصرفية"
   },
   {
@@ -3253,8 +3253,8 @@
   },
   {
     "university": "الجامعة العراقية",
-    "college": "كلية",
-    "campusOrTrack": "العلوم االسالمية",
+    "college": "كلية العلوم االسالمية",
+    "campusOrTrack": null,
     "department": "قسم اللغة العربية"
   },
   {
@@ -3284,8 +3284,8 @@
   {
     "university": "الجامعة العراقية",
     "college": "كلية العلوم االسالمية",
-    "campusOrTrack": "قسم",
-    "department": "التفسير"
+    "campusOrTrack": null,
+    "department": "قسم التفسير"
   },
   {
     "university": "الجامعة العراقية",
@@ -3326,8 +3326,8 @@
   {
     "university": "جامعة بابل",
     "college": "كلية الهندسة",
-    "campusOrTrack": "قسم",
-    "department": "الميكانيك"
+    "campusOrTrack": null,
+    "department": "قسم الميكانيك"
   },
   {
     "university": "جامعة بابل",
@@ -3565,8 +3565,8 @@
   },
   {
     "university": "جامعة بابل",
-    "college": "كلية",
-    "campusOrTrack": "التربية البدنية وعلوم الرياضة",
+    "college": "كلية التربية البدنية وعلوم الرياضة",
+    "campusOrTrack": null,
     "department": "عام"
   },
   {
@@ -3638,8 +3638,8 @@
   {
     "university": "جامعة النهرين",
     "college": "كلية هندسة المعلومات",
-    "campusOrTrack": "قسم",
-    "department": "االمن السيبراني"
+    "campusOrTrack": null,
+    "department": "قسم االمن السيبراني"
   },
   {
     "university": "جامعة النهرين",
@@ -3733,27 +3733,27 @@
   },
   {
     "university": "جامعة ديالى",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة",
+    "college": "كلية الهندسة",
+    "campusOrTrack": null,
     "department": "قسم العمارة"
   },
   {
     "university": "جامعة ديالى",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة / قسم",
-    "department": "المدني"
+    "college": "كلية الهندسة",
+    "campusOrTrack": null,
+    "department": "قسم المدني"
   },
   {
     "university": "جامعة ديالى",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة / قسم",
-    "department": "الحاسوب"
+    "college": "كلية الهندسة",
+    "campusOrTrack": null,
+    "department": "قسم الحاسوب"
   },
   {
     "university": "جامعة ديالى",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة / قسم",
-    "department": "االتصاالت"
+    "college": "كلية الهندسة",
+    "campusOrTrack": null,
+    "department": "قسم االتصاالت"
   },
   {
     "university": "جامعة ديالى",
@@ -3782,8 +3782,8 @@
   {
     "university": "جامعة ديالى",
     "college": "كلية العلوم",
-    "campusOrTrack": "قسم",
-    "department": "االدلة الجنائية"
+    "campusOrTrack": null,
+    "department": "قسم االدلة الجنائية"
   },
   {
     "university": "جامعة ديالى",
@@ -3830,8 +3830,8 @@
   {
     "university": "جامعة ديالى",
     "college": "كلية التربية المقداد/المقدادية",
-    "campusOrTrack": "قسم",
-    "department": "االرشاد النفسي والتوجيه التربوي"
+    "campusOrTrack": null,
+    "department": "قسم االرشاد النفسي والتوجيه التربوي"
   },
   {
     "university": "جامعة ديالى",
@@ -3991,8 +3991,8 @@
   },
   {
     "university": "جامعة كربلاء",
-    "college": "كلية",
-    "campusOrTrack": "الهندسة",
+    "college": "كلية الهندسة",
+    "campusOrTrack": null,
     "department": "قسم الميكانيك"
   },
   {
@@ -4040,8 +4040,8 @@
   {
     "university": "جامعة كربلاء",
     "college": "كلية العلوم الطبية التطبيقية",
-    "campusOrTrack": "قسم",
-    "department": "الفيزياء الطبية"
+    "campusOrTrack": null,
+    "department": "قسم الفيزياء الطبية"
   },
   {
     "university": "جامعة كربلاء",
@@ -4106,8 +4106,8 @@
   {
     "university": "جامعة كربلاء",
     "college": "كلية التربية للعلوم الصرفة",
-    "campusOrTrack": "قسم",
-    "department": "الفيزياء"
+    "campusOrTrack": null,
+    "department": "قسم الفيزياء"
   },
   {
     "university": "جامعة كربلاء",
@@ -4171,8 +4171,8 @@
   },
   {
     "university": "جامعة كربلاء",
-    "college": "كلية",
-    "campusOrTrack": "العلوم االسالمية",
+    "college": "كلية العلوم االسالمية",
+    "campusOrTrack": null,
     "department": "قسم اللغة العربية"
   },
   {
@@ -4340,7 +4340,7 @@
   {
     "university": "جامعة ذي قار",
     "college": "كلية اآلداب",
-    "campusOrTrack": "قسم / علم",
+    "campusOrTrack": "قسم علم",
     "department": "االجتماع"
   },
   {
@@ -4453,8 +4453,8 @@
   },
   {
     "university": "جامعة كركوك",
-    "college": "كلية",
-    "campusOrTrack": "علوم الحاسوب وتكنولوجيا المعلومات",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "campusOrTrack": null,
     "department": "قسم البرمجيات"
   },
   {
@@ -4478,8 +4478,8 @@
   {
     "university": "جامعة كركوك",
     "college": "كلية القانون والعلوم السياسية",
-    "campusOrTrack": "قسم",
-    "department": "العلوم السياسية"
+    "campusOrTrack": null,
+    "department": "قسم العلوم السياسية"
   },
   {
     "university": "جامعة كركوك",
@@ -4520,8 +4520,8 @@
   {
     "university": "جامعة كركوك",
     "college": "النباتات الطبية والصناعية",
-    "campusOrTrack": "قسم",
-    "department": "علوم االغذية"
+    "campusOrTrack": null,
+    "department": "قسم علوم االغذية"
   },
   {
     "university": "جامعة كركوك",
@@ -4693,8 +4693,8 @@
   },
   {
     "university": "جامعة كركوك",
-    "college": "كلية",
-    "campusOrTrack": "التربية األساسية",
+    "college": "كلية التربية األساسية",
+    "campusOrTrack": null,
     "department": "قسم اللغة االنكليزية"
   },
   {
@@ -4729,8 +4729,8 @@
   },
   {
     "university": "جامعة كركوك",
-    "college": "كلية",
-    "campusOrTrack": "االعالم",
+    "college": "كلية االعالم",
+    "campusOrTrack": null,
     "department": "قسم الصحافة"
   },
   {
@@ -4772,8 +4772,8 @@
   {
     "university": "جامعة واسط",
     "college": "كلية العلوم",
-    "campusOrTrack": "قسم",
-    "department": "الكيمياء"
+    "campusOrTrack": null,
+    "department": "قسم الكيمياء"
   },
   {
     "university": "جامعة واسط",
@@ -4813,8 +4813,8 @@
   },
   {
     "university": "جامعة واسط",
-    "college": "كلية",
-    "campusOrTrack": "القانون",
+    "college": "كلية القانون",
+    "campusOrTrack": null,
     "department": "عام"
   },
   {
@@ -4855,8 +4855,8 @@
   },
   {
     "university": "جامعة واسط",
-    "college": "كلية",
-    "campusOrTrack": "االدارة واالقتصاد",
+    "college": "كلية االدارة واالقتصاد",
+    "campusOrTrack": null,
     "department": "قسم العلوم المالية والمصرفية"
   },
   {
@@ -4886,8 +4886,8 @@
   {
     "university": "جامعة واسط",
     "college": "كلية التربية للعلوم االنسانية",
-    "campusOrTrack": "قسم",
-    "department": "التاريد"
+    "campusOrTrack": null,
+    "department": "قسم التاريد"
   },
   {
     "university": "جامعة واسط",
@@ -4916,8 +4916,8 @@
   {
     "university": "جامعة واسط",
     "college": "كلية التربية للعلوم االنسانية",
-    "campusOrTrack": "قسم",
-    "department": "علوم القران والتربية االسالمية"
+    "campusOrTrack": null,
+    "department": "قسم علوم القران والتربية االسالمية"
   },
   {
     "university": "جامعة واسط",
@@ -4994,8 +4994,8 @@
   {
     "university": "جامعة ميسان",
     "college": "كلية العلوم",
-    "campusOrTrack": "قسم",
-    "department": "الفيزياء"
+    "campusOrTrack": null,
+    "department": "قسم الفيزياء"
   },
   {
     "university": "جامعة ميسان",
@@ -5089,8 +5089,8 @@
   },
   {
     "university": "جامعة ميسان",
-    "college": "كلية",
-    "campusOrTrack": "التربية األساسية",
+    "college": "كلية التربية األساسية",
+    "campusOrTrack": null,
     "department": "قسم اللغة االنكليزية"
   },
   {
@@ -5305,8 +5305,8 @@
   },
   {
     "university": "جامعة المثنى",
-    "college": "كلية",
-    "campusOrTrack": "التربية األساسية",
+    "college": "كلية التربية األساسية",
+    "campusOrTrack": null,
     "department": "قسم العلوم"
   },
   {
@@ -5480,8 +5480,8 @@
   {
     "university": "جامعة سامراء",
     "college": "كلية اآلداب",
-    "campusOrTrack": "قسم",
-    "department": "اللغة الروسية"
+    "campusOrTrack": null,
+    "department": "قسم اللغة الروسية"
   },
   {
     "university": "جامعة سامراء",
@@ -5600,8 +5600,8 @@
   {
     "university": "جامعة سومر",
     "college": "كلية التربية األساسية",
-    "campusOrTrack": "قسم",
-    "department": "اللغة العربية"
+    "campusOrTrack": null,
+    "department": "قسم اللغة العربية"
   },
   {
     "university": "جامعة سومر",
@@ -5636,8 +5636,8 @@
   {
     "university": "جامعة القاسم الخضراء",
     "college": "كلية العلوم",
-    "campusOrTrack": "قسم",
-    "department": "التحليالت المرضية"
+    "campusOrTrack": null,
+    "department": "قسم التحليالت المرضية"
   },
   {
     "university": "جامعة القاسم الخضراء",
@@ -5672,8 +5672,8 @@
   {
     "university": "جامعة القاسم الخضراء",
     "college": "كلية الزراعة",
-    "campusOrTrack": "قسم",
-    "department": "التربة والموارد المائية"
+    "campusOrTrack": null,
+    "department": "قسم التربة والموارد المائية"
   },
   {
     "university": "جامعة القاسم الخضراء",
@@ -5743,8 +5743,8 @@
   },
   {
     "university": "جامعة نينوى",
-    "college": "كلية",
-    "campusOrTrack": "تكنولوجيا المعلومات",
+    "college": "كلية تكنولوجيا المعلومات",
+    "campusOrTrack": null,
     "department": "قسم البرمجيات"
   },
   {
@@ -5816,8 +5816,8 @@
   {
     "university": "جامعة الفلوجة",
     "college": "كلية االدارة واالقتصاد",
-    "campusOrTrack": "قسم",
-    "department": "المحاسبة"
+    "campusOrTrack": null,
+    "department": "قسم المحاسبة"
   },
   {
     "university": "جامعة الفلوجة",
@@ -5858,8 +5858,8 @@
   {
     "university": "جامعة الفلوجة",
     "college": "كلية العلوم االسالمية",
-    "campusOrTrack": "قسم",
-    "department": "اللغة العربية"
+    "campusOrTrack": null,
+    "department": "قسم اللغة العربية"
   },
   {
     "university": "جامعة الفلوجة",
@@ -6212,8 +6212,8 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية الهندسية",
-    "campusOrTrack": "الموصل / قسم",
-    "department": "هندسة تقنيات الجيوماتكس"
+    "campusOrTrack": "الموصل",
+    "department": "قسم هندسة تقنيات الجيوماتكس"
   },
   {
     "university": "الجامعة التقنية الشمالية",
@@ -6260,8 +6260,8 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية الهندسية",
-    "campusOrTrack": "كركوك / قسم",
-    "department": "هندسة تقنيات االلكترونيك والسيطرة"
+    "campusOrTrack": "كركوك",
+    "department": "قسم هندسة تقنيات االلكترونيك والسيطرة"
   },
   {
     "university": "الجامعة التقنية الشمالية",
@@ -6290,8 +6290,8 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية الزراعية",
-    "campusOrTrack": "الموصل / قسم",
-    "department": "تقنيات االنتاج النباتي"
+    "campusOrTrack": "الموصل",
+    "department": "قسم تقنيات االنتاج النباتي"
   },
   {
     "university": "الجامعة التقنية الشمالية",
@@ -6416,25 +6416,25 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات الطبية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات الطبية",
     "department": "قسم تقنيات المختبرات الطبية"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني",
-    "campusOrTrack": "الدور / ( / صالح الدين / /) / التخصصات الطبية",
+    "campusOrTrack": "الدور / ( صالح الدين / /) التخصصات الطبية",
     "department": "قسم تقنيات الصيدلة"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات الطبية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات الطبية",
     "department": "قسم االطراف الصناعية"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات الطبية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات الطبية",
     "department": "قسم االسعاف الفوري"
   },
   {
@@ -6566,19 +6566,19 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات الهندسية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات الهندسية",
     "department": "قسم تقنيات الميكانيك"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات الهندسية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات الهندسية",
     "department": "قسم تقنيات االلكترونيك"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات / الهندسية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات / الهندسية",
     "department": "قسم تقنيات االجهزة الطبية"
   },
   {
@@ -6662,13 +6662,13 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني الدور",
-    "campusOrTrack": "( / صالح الدين / /) / التخصصات االدارية",
+    "campusOrTrack": "( صالح الدين / /) التخصصات االدارية",
     "department": "قسم تقنيات المحاسبة"
   },
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "المعهد التقني",
-    "campusOrTrack": "الدور / ( / صالح الدين / /) / التخصصات االدارية",
+    "campusOrTrack": "الدور / ( صالح الدين / /) التخصصات االدارية",
     "department": "قسم تقنيات االدارة القانونية"
   },
   {
@@ -6685,8 +6685,8 @@
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
-    "college": "الكلية",
-    "campusOrTrack": "التقنية الصحية والطبية / الكوفة",
+    "college": "الكلية التقنية الصحية والطبية",
+    "campusOrTrack": "الكوفة",
     "department": "قسم تقنيات التخدير"
   },
   {
@@ -6728,8 +6728,8 @@
   {
     "university": "جامعة الفرات الأوسط التقنية",
     "college": "الكلية التقنية الصحية والطبية/بابل",
-    "campusOrTrack": "قسم",
-    "department": "تقنيات التاهيل الطبي والعالج الطبيعي"
+    "campusOrTrack": null,
+    "department": "قسم تقنيات التاهيل الطبي والعالج الطبيعي"
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
@@ -6746,8 +6746,8 @@
   {
     "university": "جامعة الفرات الأوسط التقنية",
     "college": "كلية تقنيات التاهيل الطبي واالطراف الصناعية/الكوفة",
-    "campusOrTrack": "قسم",
-    "department": "تقنيات االطراف الصناعية واالجهزة المساعدة"
+    "campusOrTrack": null,
+    "department": "قسم تقنيات االطراف الصناعية واالجهزة المساعدة"
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
@@ -6830,8 +6830,8 @@
   {
     "university": "جامعة الفرات الأوسط التقنية",
     "college": "كلية البوليتكنك كربالء/التخصصات الهندسية",
-    "campusOrTrack": "قسم",
-    "department": "تقنيات هندسة الطاقة المتجددة"
+    "campusOrTrack": null,
+    "department": "قسم تقنيات هندسة الطاقة المتجددة"
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
@@ -6902,8 +6902,8 @@
   {
     "university": "جامعة الفرات الأوسط التقنية",
     "college": "المعهد التقني بابل",
-    "campusOrTrack": "التخصصات الطبية / قسم",
-    "department": "تقنيات صحة المجتمع"
+    "campusOrTrack": "التخصصات الطبية",
+    "department": "قسم تقنيات صحة المجتمع"
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
@@ -6997,8 +6997,8 @@
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
-    "college": "المعهد",
-    "campusOrTrack": "التقني القادسية / التخصصات الطبية",
+    "college": "المعهد التقني القادسية",
+    "campusOrTrack": "التخصصات الطبية",
     "department": "قسم تقنيات صناعة االطراف والمساند"
   },
   {
@@ -7069,8 +7069,8 @@
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
-    "college": "المعهد",
-    "campusOrTrack": "التقني النجف / التخصصات الطبية",
+    "college": "المعهد التقني النجف",
+    "campusOrTrack": "التخصصات الطبية",
     "department": "قسم تقنيات وقاية وتقويم االسنان"
   },
   {
@@ -7159,8 +7159,8 @@
   },
   {
     "university": "جامعة الفرات الأوسط التقنية",
-    "college": "المعهد",
-    "campusOrTrack": "التقني السماوة / التخصصات االدارية",
+    "college": "المعهد التقني السماوة",
+    "campusOrTrack": "التخصصات االدارية",
     "department": "قسم تقنيات المحاسبة"
   },
   {
@@ -7202,14 +7202,14 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "كلية التقنيات الصحية والطبية",
-    "campusOrTrack": "بغداد / قسم",
-    "department": "تقنيات صناعة االسنان"
+    "campusOrTrack": "بغداد",
+    "department": "قسم تقنيات صناعة االسنان"
   },
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "الكلية التقنية بعقوبة",
-    "campusOrTrack": "التخصصات الطبية / قسم",
-    "department": "تقنيات المختبرات الطبية"
+    "campusOrTrack": "التخصصات الطبية",
+    "department": "قسم تقنيات المختبرات الطبية"
   },
   {
     "university": "الجامعة التقنية الوسطى",
@@ -7291,8 +7291,8 @@
   },
   {
     "university": "الجامعة التقنية الوسطى",
-    "college": "كلية",
-    "campusOrTrack": "البوليتكنك بغداد/التخصصات الهندسية",
+    "college": "كلية البوليتكنك بغداد/التخصصات الهندسية",
+    "campusOrTrack": null,
     "department": "قسم تقنيات هندسة الصناعات الكيمياوية والنفطية"
   },
   {
@@ -7333,8 +7333,8 @@
   },
   {
     "university": "الجامعة التقنية الوسطى",
-    "college": "الكلية",
-    "campusOrTrack": "التقنية االدارية / بغداد / الرصافة",
+    "college": "الكلية التقنية االدارية",
+    "campusOrTrack": "بغداد / الرصافة",
     "department": "قسم تقنيات االدارة السياحية"
   },
   {
@@ -7532,8 +7532,8 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "المعهد التقني بلد",
-    "campusOrTrack": "التخصصات الطبية / قسم",
-    "department": "تقنيات المختبرات الطبية"
+    "campusOrTrack": "التخصصات الطبية",
+    "department": "قسم تقنيات المختبرات الطبية"
   },
   {
     "university": "الجامعة التقنية الوسطى",
@@ -7682,8 +7682,8 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد االدارة",
-    "campusOrTrack": "الرصافة / قسم",
-    "department": "تقنيات ادارة المكتب"
+    "campusOrTrack": "الرصافة",
+    "department": "قسم تقنيات ادارة المكتب"
   },
   {
     "university": "الجامعة التقنية الوسطى",
@@ -7916,8 +7916,8 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "الكلية التقنية االدارية",
-    "campusOrTrack": "البصرة / قسم",
-    "department": "ادارة تقنيات المعلومات"
+    "campusOrTrack": "البصرة",
+    "department": "قسم ادارة تقنيات المعلومات"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -7970,8 +7970,8 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعهد التقني العمارة",
-    "campusOrTrack": "التخصصات الطبية / قسم",
-    "department": "تقنيات االدارة الصحية"
+    "campusOrTrack": "التخصصات الطبية",
+    "department": "قسم تقنيات االدارة الصحية"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8017,8 +8017,8 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "المعهد",
-    "campusOrTrack": "التقني الشطرة/التخصصات الطبية",
+    "college": "المعهد التقني الشطرة/التخصصات الطبية",
+    "campusOrTrack": null,
     "department": "قسم تقنيات االدارة الصحية"
   },
   {
@@ -8114,8 +8114,8 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعهد التقني العمارة",
-    "campusOrTrack": "التخصصات االدارية / قسم",
-    "department": "تقنيات المحاسبة"
+    "campusOrTrack": "التخصصات االدارية",
+    "department": "قسم تقنيات المحاسبة"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8125,45 +8125,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "بغداد",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "ميسا",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "ديالى",
     "campusOrTrack": "/ العلوم المالية والمصرفية والحديث / القانو علوم القرا / / اللغة",
     "department": "اإلنكليزية / اللغة العربية/ إدارة االعمال"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "واسط",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "النجف االشرف",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "ي قار",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "بابل",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8176,12 +8140,6 @@
     "college": "البصرة",
     "campusOrTrack": "/ الشريعة / علوم قرا القانو",
     "department": "/ اللغة العربية"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "بغداد",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8210,8 +8168,8 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "كركوك",
-    "campusOrTrack": "الدعوة والخطابة / الفقه واصوله / اصول الدي / (",
-    "department": "كوبري) التو"
+    "campusOrTrack": "الدعوة والخطابة / الفقه واصوله / اصول الدي",
+    "department": "( كوبري) التو"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8245,51 +8203,15 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "طب األسنا",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الصيدلة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التمريض",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب البيطري",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "اللندسة",
-    "campusOrTrack": "المدنية / المعماري / الكهربا / ئي",
-    "department": "السدود ومصادر المياه"
+    "campusOrTrack": "المدنية / المعماري / الكهربا",
+    "department": "ئي السدود ومصادر المياه"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "التربية",
     "campusOrTrack": "الفيزيام/ الرياضيات/",
     "department": "الكيميام/ علوم الحياة"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "العلوم االنسانية",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8305,21 +8227,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الزراعة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "العلوم",
     "campusOrTrack": "جيولوجي / الفيزياء / الكيمياء / الحاسوب / الرياضيات",
     "department": "بايولوجي"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "القانو",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8341,27 +8251,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "التجارة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الجميلة الفنو",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "التربية البدنية",
     "campusOrTrack": "وعلوم الرياضة",
     "department": "التربية الرياضية / التربية الرياضية االساسية"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية االساسية",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8371,56 +8263,14 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "اللندسة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية الرياضية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "اآلداب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "اإلدارة واالقتصاد",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "العلوم السياسية",
     "campusOrTrack": "النظم السياسية",
     "department": "والسياسة العامة / العالقات الدولية والدبلوماسية"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الزراعة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "اللغات",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية االساسية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "الجميلة الفنو",
-    "campusOrTrack": "سينما / و / مسرح / الموسيقى",
+    "campusOrTrack": "سينما / و مسرح / الموسيقى",
     "department": "تشكيلي"
   },
   {
@@ -8431,45 +8281,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "القانو",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "الطب البيطري",
-    "campusOrTrack": "( / التوليد والفسلجة والتشريح/امراض واحيام مجلرية/جراحة باطنية",
+    "campusOrTrack": "( التوليد والفسلجة والتشريح/امراض واحيام مجلرية/جراحة باطنية",
     "department": ")"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "طب االسنا",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الصيدلة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التمريض",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "اللندسة",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8503,32 +8317,14 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية األساسية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "اللغات",
     "campusOrTrack": "اللغة الكردية / اللغة اإلنكليزية",
     "department": "الترجمة"
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الزراعة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الدراسات االنسانية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "ال",
-    "campusOrTrack": "تربية / البدنية وعلوم الرياضة / ( / االلعاب الرياضية /العلوم النظرية",
+    "college": "ال تربية",
+    "campusOrTrack": "البدنية وعلوم الرياضة / ( االلعاب الرياضية /العلوم النظرية",
     "department": ")"
   },
   {
@@ -8545,14 +8341,8 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "اللندسة",
-    "campusOrTrack": "المعماري / ة/ / ال فط / الجيو / ت / ق ي / الكيمياوي / المد ي",
+    "campusOrTrack": "المعماري / ة/ ال فط / الجيو / ت ق ي / الكيمياوي / المد ي",
     "department": "البرمجيات /التص يع"
   },
   {
@@ -8563,27 +8353,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية الرياضية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "العلوم",
     "campusOrTrack": "الصحية / علوم الحياة / علوم الحياة / المجلرية الطبية / الكيمياء / الفيزياء",
     "department": "الرياضيات"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8599,33 +8371,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "طب االسنا",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الصيدلة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "العلوم الصحية",
     "campusOrTrack": "االحيام المجلرية / الكيميام الحيوية",
     "department": "التغ ية والحمية"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التمريض",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8644,12 +8392,6 @@
     "college": "التربية االساسية",
     "campusOrTrack": "اللغة / العربية / العلوم االجتماعي",
     "department": "اللغة االنكليزية / اللغة الكردية / العلوم العامة"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "العلوم االنسانية",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8683,18 +8425,6 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "قسم",
-    "campusOrTrack": null,
-    "department": "اللندسة المدنية"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "قسم",
-    "campusOrTrack": null,
-    "department": "التجارة الدولية"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "اللندسة",
     "campusOrTrack": "اللندسة المدنية / ال فطي اله دسي",
     "department": "الكيميائي اله دس"
@@ -8710,18 +8440,6 @@
     "college": "والعلوم السياسية القانو",
     "campusOrTrack": "القانو",
     "department": "والعالقات الدولي السياسي"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "االداب",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "التربية",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8758,12 +8476,6 @@
     "college": "اللندسة الزراعية",
     "campusOrTrack": "دزة قلع / البستنة",
     "department": "اال تاج الحيوا ي"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "الطب العام",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8815,27 +8527,9 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في السليمانية",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في السليمانية (بكرجو)",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "المعلد التقني في السليمانية (حلبجة)",
     "campusOrTrack": "التمريض/التحليالت المرضية/ادارة االعمال/المحاسبة",
     "department": "تكنولوجيا المعلومات"
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في السليمانية (دوكا )",
-    "campusOrTrack": null,
-    "department": null
   },
   {
     "university": "الجامعة التقنية الجنوبية",
@@ -8881,30 +8575,6 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في دهوك",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني االداري في دهوك",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في دهوك (العمادية)",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في دهوك (زاخو)",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "المعلد التقني في",
     "campusOrTrack": "دهوك (شنكال) / االدارة الصحية / المحاسبة",
     "department": "ادارة االعمال"
@@ -8929,30 +8599,6 @@
   },
   {
     "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني الطبي",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني التكنولوجي",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني االداري",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
-    "college": "المعلد التقني في شقالوة",
-    "campusOrTrack": null,
-    "department": null
-  },
-  {
-    "university": "الجامعة التقنية الجنوبية",
     "college": "المعلد التقني في سورا",
     "campusOrTrack": null,
     "department": "المحاسبة /تكنولوجيا المعلومات/ تمريض/ التحليالت المرضية/ القبالة/ ادارة االعمال"
@@ -8972,7 +8618,7 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعلد التقني في كويه",
-    "campusOrTrack": "( / كويس جق",
+    "campusOrTrack": "( كويس جق",
     "department": ")"
   }
 ]

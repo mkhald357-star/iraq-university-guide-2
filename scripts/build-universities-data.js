@@ -11,6 +11,7 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));
 const evening = require(path.join(ROOT, "data/raw/evening_study_2025_2026.json"));
+const chapter3Additions = require(path.join(ROOT, "data/raw/chapter3_additions.json"));
 const privateUnis = require(path.join(ROOT, "data/private_universities.json"));
 
 // Verified by hand against the table of contents (dalel PDF, chapter 3
@@ -141,6 +142,7 @@ function getDept(college, deptName, collegeNameForFallback) {
       sessions: new Set(),
       cutoffs: [],
       eveningMinGrade: null,
+      directBranches: new Set(),
     });
   }
   return college.departmentsMap.get(key);
@@ -167,6 +169,22 @@ for (const row of evening) {
   if (dept.eveningMinGrade === null || grade < dept.eveningMinGrade) dept.eveningMinGrade = grade;
 }
 
+// Chapter 3 (college/department/branch-eligibility table) additions:
+// colleges/departments verified present in the official guide but absent
+// from both the competitive cutoffs and evening-study data (i.e. they
+// never filled via competition and aren't offered evening either --
+// genuinely direct-admission-only programs). See data/admission_rules.md
+// for how these were found and cross-checked against the existing dataset
+// before being added, to avoid duplicating anything already covered.
+for (const row of chapter3Additions) {
+  const uni = byName.get(normKey(row.university));
+  if (!uni) { unmatchedUni.add(row.university); continue; }
+  const college = getCollege(uni, row.college);
+  const dept = getDept(college, row.department, row.college);
+  dept.sessions.add("صباحي");
+  (row.branch || []).forEach((b) => dept.directBranches.add(b));
+}
+
 if (unmatchedUni.size) {
   console.error("Unmatched university names (should be empty):", [...unmatchedUni]);
   process.exit(1);
@@ -177,7 +195,7 @@ const finalUniversities = universities.map((u) => {
     const departments = [...c.departmentsMap.values()].map((d) => {
       const nonQuotaCutoffs = d.cutoffs.filter((x) => !x.isQuota);
       const bestMorning = nonQuotaCutoffs.length ? Math.min(...nonQuotaCutoffs.map((x) => x.averagePercent)) : null;
-      const branches = [...new Set(d.cutoffs.map((x) => x.branch))];
+      const branches = [...new Set([...d.cutoffs.map((x) => x.branch), ...d.directBranches])];
       return {
         name: d.name,
         branch: branches,
@@ -198,9 +216,9 @@ const privateFinal = privateUnis.map((p) => ({
   name: p.name,
   nameEn: null,
   type: "أهلية",
-  province: "بغداد", // best-known default; refine per-university if verified otherwise
-  founded: null,
-  website: null,
+  province: p.province || null,
+  founded: p.founded || null,
+  website: p.website || null,
   ranking: null,
   colleges: [{
     id: `${p.id}_col_1`,
@@ -220,7 +238,7 @@ const out = {
     sourceFiles: ["dalel_2025_22026.pdf", "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf"],
     academicYear: "2025-2026",
     version: "3.0.0",
-    notes: "يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة) + الجامعات الأهلية المعروفة (6 جامعات). لا يشمل جامعات إقليم كردستان (نظام قبول منفصل، بيانات الفصل الخامس من الدليل لم تُستخرج بعد بسبب تلف طبقة النص في ذلك القسم).",
+    notes: "يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + 76 جامعة وكلية أهلية معتمدة رسمياً (قوائم تخصصات مفصّلة متاحة لـ6 منها فقط حتى الآن). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md.",
   },
   universities: [...finalUniversities, ...privateFinal],
 };

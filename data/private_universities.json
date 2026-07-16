@@ -80,5 +80,11 @@
   { "id": "qurtuba", "name": "جامعة قرطبة", "province": "النجف", "founded": 2024, "website": "cur.edu.iq", "majors": [] },
   { "id": "qabas", "name": "كلية القبس", "province": "نينوى", "founded": 2024, "website": "alqabas.edu.iq", "majors": [] },
   { "id": "alnaji", "name": "جامعة الناجي", "province": "بغداد", "founded": 2024, "website": "alnaji-uni.edu.iq", "majors": [] },
-  { "id": "ishtar", "name": "كلية عشتار الجامعة", "province": "بابل", "founded": 2024, "website": "ishtaruc.edu.iq", "majors": [] }
+  { "id": "ishtar", "name": "كلية عشتار الجامعة", "province": "بابل", "founded": 2024, "website": "ishtaruc.edu.iq", "majors": [] },
+  { "id": "hadara", "name": "كلية الحضارة الجامعة", "province": "صلاح الدين", "founded": 2010, "website": null, "majors": [] },
+  { "id": "farqadain", "name": "جامعة الفرقدين", "province": "البصرة", "founded": 2015, "website": null, "majors": [] },
+  { "id": "idrisi", "name": "كلية الإدريسي الجامعة", "province": "الأنبار", "founded": 2018, "website": null, "majors": [] },
+  { "id": "somo", "name": "جامعة سومو", "province": "بابل", "founded": 2024, "website": null, "majors": [] },
+  { "id": "baba_gurgur", "name": "جامعة بابا كركر", "province": "كركوك", "founded": 2024, "website": null, "majors": [] },
+  { "id": "nibras", "name": "جامعة النبراس", "province": "صلاح الدين", "founded": 2024, "website": null, "majors": [] }
 ]

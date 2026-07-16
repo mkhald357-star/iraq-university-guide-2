@@ -1,0 +1,42 @@
+[
+  {
+    "id": "hadara",
+    "name": "كلية الحضارة الجامعة",
+    "province": "صالح الدين / قضاء بلد",
+    "founded": 2010,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "farqadain",
+    "name": "جامعة الفرقدين",
+    "province": "البصرة",
+    "founded": 2015,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "idrisi",
+    "name": "كلية الإدريسي الجامعة",
+    "province": "االنبار",
+    "founded": 2018,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "somo",
+    "name": "جامعة سومو",
+    "province": "بابل",
+    "founded": 2024,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "baba_gurgur",
+    "name": "جامعة بابا كركر",
+    "province": "كركو",
+    "founded": 2024,
+    "website": null,
+    "majors": []
+  }
+]

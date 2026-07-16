@@ -13,6 +13,16 @@ const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));
 const evening = require(path.join(ROOT, "data/raw/evening_study_2025_2026.json"));
 const chapter3Additions = require(path.join(ROOT, "data/raw/chapter3_additions.json"));
 const privateUnis = require(path.join(ROOT, "data/private_universities.json"));
+// خرائط أقسام/أجور دراسية حقيقية مستخرجة من الدليل الرسمي الكامل للجامعات
+// والكليات الأهلية (2411202502.pdf) عبر scripts/parse-private-universities-guide.js
+// + scripts/match-private-universities.js -- تغطي 55+ مؤسسة (من أصل 81) بكليات
+// وأقسام وأجور دراسية حقيقية، بدل قائمة "majors" المسطّحة المحدودة سابقاً لـ6 فقط.
+let privateDepartmentsGuide = {};
+try {
+  privateDepartmentsGuide = require(path.join(ROOT, "data/raw/private_universities_departments.json"));
+} catch (e) {
+  console.warn("[تنبيه] data/raw/private_universities_departments.json غير موجود -- شغّل scripts/match-private-universities.js أولاً. سيُستخدم fallback بقائمة majors المسطّحة.");
+}
 
 // Verified by hand against the table of contents (dalel PDF, chapter 3
 // heading list) -- the authoritative list of universities covered by the
@@ -211,34 +221,103 @@ const finalUniversities = universities.map((u) => {
   return { ...rest, colleges };
 });
 
-const privateFinal = privateUnis.map((p) => ({
-  id: p.id,
-  name: p.name,
-  nameEn: null,
-  type: "أهلية",
-  province: p.province || null,
-  founded: p.founded || null,
-  website: p.website || null,
-  ranking: null,
-  colleges: [{
-    id: `${p.id}_col_1`,
-    name: "برامج القبول المباشر",
+function buildPrivateDepartment(d) {
+  const sessions = [];
+  if (!d.suspended) {
+    sessions.push("صباحي");
+    if (typeof d.eveningFee === "number") sessions.push("مسائي");
+  }
+  return {
+    name: d.name,
+    branch: [],
+    sessions,
+    cutoffs: [],
+    averageGrades: { "صباحي": null, "مسائي": null },
+    isDirectAdmission: true,
+    tuitionFees: {
+      "صباحي": typeof d.morningFee === "number" ? d.morningFee : null,
+      "مسائي": typeof d.eveningFee === "number" ? d.eveningFee : null,
+    },
+    admissionSuspended: !!d.suspended,
+    note: d.gradeNote || d.note || null,
+  };
+}
+
+function makeManualDepartment(m) {
+  return {
+    name: m, branch: [], sessions: ["صباحي"], cutoffs: [],
+    averageGrades: { "صباحي": null, "مسائي": null }, isDirectAdmission: true,
+    tuitionFees: { "صباحي": null, "مسائي": null }, admissionSuspended: false, note: null,
+  };
+}
+
+const privateFinal = privateUnis.map((p) => {
+  const guideColleges = privateDepartmentsGuide[p.id];
+  const colleges = guideColleges && guideColleges.length
+    ? guideColleges.map((c, cIdx) => ({
+        id: `${p.id}_col_${cIdx + 1}`,
+        name: c.collegeName,
+        nameEn: null,
+        departments: c.departments.map(buildPrivateDepartment),
+      }))
+    : [];
+
+  // بعض الأسطر في دليل الأجور تعذّر تحليلها بأمان (أُسقطت عمداً بدل عرضها
+  // مشوَّهة، انظر scripts/match-private-universities.js) -- فقد يكون بعض
+  // الجامعات الموثَّقة يدوياً سابقاً بقائمة "majors" أغنى مما استخرجه
+  // الدليل آلياً لها. ندمج أي تخصص يدوي غير مذكور اسمياً في نتيجة الدليل،
+  // بدل استبدال البيانات الأدق بأخرى أفقر عرضاً عرضياً.
+  const guideDeptNames = new Set(
+    colleges.flatMap((c) => c.departments.map((d) => d.name.replace(/\s+/g, "")))
+  );
+  const extraManualMajors = (p.majors || []).filter(
+    (m) => !guideDeptNames.has(m.replace(/\s+/g, ""))
+  );
+  if (extraManualMajors.length) {
+    colleges.push({
+      id: `${p.id}_col_manual`,
+      name: "برامج القبول المباشر",
+      nameEn: null,
+      departments: extraManualMajors.map(makeManualDepartment),
+    });
+  }
+  if (!colleges.length) {
+    colleges.push({
+      id: `${p.id}_col_1`,
+      name: "برامج القبول المباشر",
+      nameEn: null,
+      departments: [],
+    });
+  }
+  return {
+    id: p.id,
+    name: p.name,
     nameEn: null,
-    departments: (p.majors || []).map((m) => ({
-      name: m, branch: [], sessions: ["صباحي"], cutoffs: [],
-      averageGrades: { "صباحي": null, "مسائي": null }, isDirectAdmission: true,
-    })),
-  }],
-}));
+    type: "أهلية",
+    province: p.province || null,
+    founded: p.founded || null,
+    website: p.website || null,
+    ranking: null,
+    colleges,
+  };
+});
+
+const privateWithDepts = privateFinal.filter((u) =>
+  u.colleges.some((c) => c.name !== "برامج القبول المباشر" || c.departments.length > 0)
+).length;
 
 const out = {
   meta: {
     lastUpdated: new Date().toISOString().slice(0, 10),
-    source: "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) - وزارة التعليم العالي والبحث العلمي العراقية",
-    sourceFiles: ["dalel_2025_22026.pdf", "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf"],
+    source: "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
+    sourceFiles: [
+      "dalel_2025_22026.pdf",
+      "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf",
+      "2411202502.pdf (دليل الجامعات والكليات الأهلية والأجور الدراسية)",
+    ],
     academicYear: "2025-2026",
-    version: "3.0.0",
-    notes: "يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + 76 جامعة وكلية أهلية معتمدة رسمياً (قوائم تخصصات مفصّلة متاحة لـ6 منها فقط حتى الآن). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md.",
+    version: "4.0.0",
+    notes: `يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + ${privateFinal.length} جامعة وكلية أهلية معتمدة رسمياً (كليات/أقسام/أجور دراسية حقيقية متاحة لـ${privateWithDepts} منها، مستخرجة من دليل الوزارة الرسمي لأجور الجامعات الأهلية 2025-2026؛ الباقي بلا تفاصيل أقسام بعد). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md.`,
   },
   universities: [...finalUniversities, ...privateFinal],
 };

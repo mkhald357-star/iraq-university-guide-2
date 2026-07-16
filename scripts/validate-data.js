@@ -25,6 +25,15 @@ const DepartmentSchema = z.object({
     "مسائي": z.number().nullable(),
   }),
   isDirectAdmission: z.boolean(),
+  // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها
+  // الدليل الرسمي لأجور الجامعات والكليات الأهلية 2025-2026. اختيارية لأن
+  // الجامعات الحكومية بلا أجور دراسة مركزية مماثلة (القبول تنافسي بلا رسوم).
+  tuitionFees: z.object({
+    "صباحي": z.number().nullable(),
+    "مسائي": z.number().nullable(),
+  }).optional(),
+  admissionSuspended: z.boolean().optional(),
+  note: z.string().nullable().optional(),
 });
 
 const UniversitySchema = z.object({

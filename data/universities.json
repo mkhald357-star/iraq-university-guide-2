@@ -9,7 +9,7 @@
     ],
     "academicYear": "2025-2026",
     "version": "4.0.0",
-    "notes": "يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + 82 جامعة وكلية أهلية معتمدة رسمياً (كليات/أقسام/أجور دراسية حقيقية متاحة لـ68 منها، مستخرجة من دليل الوزارة الرسمي لأجور الجامعات الأهلية 2025-2026؛ الباقي بلا تفاصيل أقسام بعد). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md."
+    "notes": "يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + 82 جامعة وكلية أهلية معتمدة رسمياً (كليات/أقسام/أجور دراسية حقيقية متاحة لـ71 منها، مستخرجة من دليل الوزارة الرسمي لأجور الجامعات الأهلية 2025-2026؛ الباقي بلا تفاصيل أقسام بعد). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md."
   },
   "universities": [
     {
@@ -48074,9 +48074,533 @@
       "colleges": [
         {
           "id": "baghdad_economics_col_1",
-          "name": "برامج القبول المباشر",
+          "name": "كلية طب االسنان",
           "nameEn": null,
-          "departments": []
+          "departments": [
+            {
+              "name": "طب االسنان",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 4000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_2",
+          "name": "كلية الصيدلة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الصيدلة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 4000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_3",
+          "name": "كلية التقنيات الصحية و الطبية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "تقنيات التخدير",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "تقنيات االشعة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2250000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "تقنيات العقم واالنجاب",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "تقنيات صحة المجتمع",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1750000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_4",
+          "name": "كلية الهندسة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "هندسة الطب الحياتي",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة االمن السيبراني",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2250000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "الهندسة المدنية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "هندسة الليزر وااللكترونيات البصرية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "هندسة تقنيات الحاسوب",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_5",
+          "name": "كلية العلوم",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "علوم االدلة الجنائية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "علوم االمن السيبراني",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "علوم الحياة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1750000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "علوم الفيزياء الطبي ة",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_6",
+          "name": "كلية القانون",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "القانون",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_7",
+          "name": "كلية االدارة و االقتصاد",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "المحاسبة",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "ادارة اعمال",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "العلوم المالية والمصرفية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1250000,
+                "مسائي": 1250000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "اقتصاديات النف ط والغاز",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_8",
+          "name": "كلية التربية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "اللغة االنكليزية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "الرياضيات",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "كلية اآلداب علم النفس السريري",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "baghdad_economics_col_9",
+          "name": "كلية الفنون",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الجميلة التصميم",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1250000,
+                "مسائي": 1000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
         }
       ]
     },
@@ -52870,743 +53394,6 @@
               "isDirectAdmission": true,
               "tuitionFees": {
                 "صباحي": 1750000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            },
-            {
-              "name": "كلية الطب العام الطب العام",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 15000000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_2",
-          "name": "كلية طب االسنان",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "طب االسنان",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 7500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_3",
-          "name": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 7500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_4",
-          "name": "كلية التقنيات الصحية و الطبية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "تقنيات صناعة االسنان",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": 2500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات المختبرات الطبية",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات التخدير",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 4000000,
-                "مسائي": 4000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات اال شعة",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات البصريات",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات التجميل والليزر",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات الكلية الصناعية",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "تقنيات طب الطوارئ",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_5",
-          "name": "كلية الهندسة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "هندسة النفط",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3500000,
-                "مسائي": 3500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة الليزر وااللكترونيات البصرية",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": 2500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندس ة الطب الحياتي",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة الذكاء االصطناعي",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة الطائ رات المسيرة",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_6",
-          "name": "الكلية التقنية الهندسية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "هندسة تقنيات االجهزة الطبية",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 3000000,
-                "مسائي": 3000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة تقنيات الحاسوب",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2000000,
-                "مسائي": 2000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة تقنيات الوقود و الطاقة",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": 2500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "هندسة تقنيات االمن",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2750000,
-                "مسائي": 2750000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "السيبراني هندسة تقنيات ميكانيك القوى",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_7",
-          "name": "كلية العلوم",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "االحياء الطبية المجهري ة",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            },
-            {
-              "name": "علوم الكيمياء الحياتية",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            },
-            {
-              "name": "علوم االدلة الجنائية",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_8",
-          "name": "كلية القانون",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "القانون",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 1500000,
-                "مسائي": 1500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_9",
-          "name": "كلية التربية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "اللغة االنكليزية",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2000000,
-                "مسائي": 2000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "الكيمياء",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2000000,
-                "مسائي": 2000000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "الرياضيات",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 1750000,
-                "مسائي": 1750000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "الفيزياء",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 1750000,
-                "مسائي": 1750000
-              },
-              "admissionSuspended": false,
-              "note": null
-            },
-            {
-              "name": "التربية الفنية",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2000000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            },
-            {
-              "name": "معلم الصفوف االولى",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2000000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_10",
-          "name": "كلية التربية البدنية و علوم الرياضة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "التربية البدنية و علوم الرياضة",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": 2500000
-              },
-              "admissionSuspended": false,
-              "note": null
-            }
-          ]
-        },
-        {
-          "id": "iraq_uc_col_11",
-          "name": "كلية االدارة و االقتصاد",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "المحاسبة",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "لا توجد دراسة مسائية"
-            },
-            {
-              "name": "العلوم ال مالية والمصرفية",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2500000,
                 "مسائي": null
               },
               "admissionSuspended": false,
@@ -59326,9 +59113,21 @@
               "note": null
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "id": "mazaya",
+      "name": "كلية المزايا الجامعة",
+      "nameEn": null,
+      "type": "أهلية",
+      "province": "ذي قار",
+      "founded": 2013,
+      "website": "mpu.edu.iq",
+      "ranking": null,
+      "colleges": [
         {
-          "id": "mustafa_col_6",
+          "id": "mazaya_col_1",
           "name": "برامج القبول المباشر",
           "nameEn": null,
           "departments": [
@@ -59703,24 +59502,6 @@
               "note": null
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "mazaya",
-      "name": "كلية المزايا الجامعة",
-      "nameEn": null,
-      "type": "أهلية",
-      "province": "ذي قار",
-      "founded": 2013,
-      "website": "mpu.edu.iq",
-      "ranking": null,
-      "colleges": [
-        {
-          "id": "mazaya_col_1",
-          "name": "برامج القبول المباشر",
-          "nameEn": null,
-          "departments": []
         }
       ]
     },
@@ -66365,7 +66146,745 @@
           "id": "alayen_col_1",
           "name": "برامج القبول المباشر",
           "nameEn": null,
-          "departments": []
+          "departments": [
+            {
+              "name": "كلية الطب العام الطب العام",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 15000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_2",
+          "name": "كلية طب االسنان",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "طب االسنان",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 7500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_3",
+          "name": "كلية الصيدلة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الصيدلة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 7500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_4",
+          "name": "كلية التقنيات الصحية و الطبية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "تقنيات صناعة االسنان",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": 2500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات المختبرات الطبية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات التخدير",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 4000000,
+                "مسائي": 4000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات اال شعة",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات البصريات",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات التجميل والليزر",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات الكلية الصناعية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "تقنيات طب الطوارئ",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_5",
+          "name": "كلية الهندسة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "هندسة النفط",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3500000,
+                "مسائي": 3500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة الليزر وااللكترونيات البصرية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": 2500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندس ة الطب الحياتي",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة الذكاء االصطناعي",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة الطائ رات المسيرة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_6",
+          "name": "الكلية التقنية الهندسية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "هندسة تقنيات االجهزة الطبية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 3000000,
+                "مسائي": 3000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة تقنيات الحاسوب",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة تقنيات الوقود و الطاقة",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": 2500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "هندسة تقنيات االمن",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2750000,
+                "مسائي": 2750000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "السيبراني هندسة تقنيات ميكانيك القوى",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_7",
+          "name": "كلية العلوم",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "االحياء الطبية المجهري ة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "علوم الكيمياء الحياتية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "علوم االدلة الجنائية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_8",
+          "name": "كلية القانون",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "القانون",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1500000,
+                "مسائي": 1500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_9",
+          "name": "كلية التربية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "اللغة االنكليزية",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "الكيمياء",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": 2000000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "الرياضيات",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1750000,
+                "مسائي": 1750000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "الفيزياء",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 1750000,
+                "مسائي": 1750000
+              },
+              "admissionSuspended": false,
+              "note": null
+            },
+            {
+              "name": "التربية الفنية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "معلم الصفوف االولى",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2000000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_10",
+          "name": "كلية التربية البدنية و علوم الرياضة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "التربية البدنية و علوم الرياضة",
+              "branch": [],
+              "sessions": [
+                "صباحي",
+                "مسائي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": 2500000
+              },
+              "admissionSuspended": false,
+              "note": null
+            }
+          ]
+        },
+        {
+          "id": "alayen_col_11",
+          "name": "كلية االدارة و االقتصاد",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "المحاسبة",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            },
+            {
+              "name": "العلوم ال مالية والمصرفية",
+              "branch": [],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "tuitionFees": {
+                "صباحي": 2500000,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": "لا توجد دراسة مسائية"
+            }
+          ]
         }
       ]
     },

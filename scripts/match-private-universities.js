@@ -40,6 +40,8 @@ const MANUAL_OVERRIDES = {
   67: "sawa",
   68: "amal_medical",
   72: "nibras",
+  46: "amal_college", // اكتُشف بعد إصلاح تخصيص FIFO للجداول (كان يبدو بلا جدول خطأً)
+  57: "middle_east_college", // نفس السبب
 };
 
 // مؤسسات موجودة فعلياً في فهرس الدليل الرسمي (84 مؤسسة) لكنها غائبة عن
@@ -49,6 +51,9 @@ const MISSING_INSTITUTIONS = {
   26: { id: "hadara", name: "كلية الحضارة الجامعة", website: null },
   47: { id: "farqadain", name: "جامعة الفرقدين", website: null },
   59: { id: "idrisi", name: "كلية الإدريسي الجامعة", website: null },
+  76: { id: "furqan", name: "جامعة الفرقان", website: null },
+  80: { id: "multaqa_alnahrain", name: "كلية ملتقى النهرين", website: null },
+  82: { id: "warka", name: "كلية الوركاء", website: null },
   74: { id: "somo", name: "جامعة سومو", website: null },
   75: { id: "baba_gurgur", name: "جامعة بابا كركر", website: null },
 };

@@ -86,5 +86,8 @@
   { "id": "idrisi", "name": "كلية الإدريسي الجامعة", "province": "الأنبار", "founded": 2018, "website": null, "majors": [] },
   { "id": "somo", "name": "جامعة سومو", "province": "بابل", "founded": 2024, "website": null, "majors": [] },
   { "id": "baba_gurgur", "name": "جامعة بابا كركر", "province": "كركوك", "founded": 2024, "website": null, "majors": [] },
-  { "id": "nibras", "name": "جامعة النبراس", "province": "صلاح الدين", "founded": 2024, "website": null, "majors": [] }
+  { "id": "nibras", "name": "جامعة النبراس", "province": "صلاح الدين", "founded": 2024, "website": null, "majors": [] },
+  { "id": "furqan", "name": "جامعة الفرقان", "province": "نينوى", "founded": 2024, "website": null, "majors": [] },
+  { "id": "multaqa_alnahrain", "name": "كلية ملتقى النهرين", "province": "البصرة", "founded": 2024, "website": null, "majors": [] },
+  { "id": "warka", "name": "كلية الوركاء", "province": "البصرة", "founded": 2024, "website": null, "majors": [] }
 ]

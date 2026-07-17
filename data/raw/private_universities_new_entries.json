@@ -38,5 +38,29 @@
     "founded": 2024,
     "website": null,
     "majors": []
+  },
+  {
+    "id": "furqan",
+    "name": "جامعة الفرقان",
+    "province": "نينوى",
+    "founded": 2024,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "multaqa_alnahrain",
+    "name": "كلية ملتقى النهرين",
+    "province": "البصرة",
+    "founded": 2024,
+    "website": null,
+    "majors": []
+  },
+  {
+    "id": "warka",
+    "name": "كلية الوركاء",
+    "province": "البصر ة",
+    "founded": 2024,
+    "website": null,
+    "majors": []
   }
 ]

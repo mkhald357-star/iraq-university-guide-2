@@ -1536,9 +1536,49 @@
         {
           "name": "تقنيات التجميل والليزر",
           "morningFee": 2000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تقنيات الحاسوب",
+          "morningFee": 2000000,
           "eveningFee": 2000000,
           "suspended": false,
           "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تقنيات االجهزة الطبية",
+          "morningFee": 2500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تقنيات الليزر و االلكترونيات البصرية",
+          "morningFee": 2000000,
+          "eveningFee": 2000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تكنولوجيا االمن السيبراني",
+          "morningFee": 2000000,
+          "eveningFee": 2000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة ت ق نيات الذكاء االصطناعي",
+          "morningFee": 1750000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
           "gradeNote": null
         },
         {
@@ -1608,7 +1648,7 @@
       ]
     }
   ],
-  "ahl_albait": [
+  "baghdad_medical": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -1619,6 +1659,74 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 90 %"
+        },
+        {
+          "name": ")%",
+          "morningFee": 5500000,
+          "eveningFee": 1500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 85 % - 89"
+        },
+        {
+          "name": ")%",
+          "morningFee": 1750000,
+          "eveningFee": 1500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 70 % - 75"
+        },
+        {
+          "name": ")%",
+          "morningFee": 1750000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 70 % - 75"
+        }
+      ]
+    }
+  ],
+  "ahl_albait": [
+    {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": "طب االسنان )%",
+          "morningFee": 7500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": "معدل ( 85 % - 88"
+        },
+        {
+          "name": ")%",
+          "morningFee": 6500000,
+          "eveningFee": 5500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 89 % - 92"
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية الصيدلة",
+      "departments": [
+        {
+          "name": "الصيدلة )%",
+          "morningFee": 7500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": "معدل ( 85 % - 88"
+        },
+        {
+          "name": ")%",
+          "morningFee": 6500000,
+          "eveningFee": 5500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 89 % - 92"
         }
       ]
     },
@@ -1837,38 +1945,6 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": null
-        },
-        {
-          "name": "تقنيات المختبرات الطبية",
-          "morningFee": 2500000,
-          "eveningFee": 2500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات االشعة",
-          "morningFee": 3000000,
-          "eveningFee": 3000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات المختبرات الطبية",
-          "morningFee": 2250000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات الكلية الصناعية",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
         }
       ]
     },
@@ -1888,141 +1964,6 @@
           "morningFee": null,
           "eveningFee": null,
           "suspended": true,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االجهزة الطبية",
-          "morningFee": 2500000,
-          "eveningFee": 2500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسوب",
-          "morningFee": 1900000,
-          "eveningFee": 1900000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االمن السيبراني",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االجهزة الطبية",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية القانون",
-      "departments": [
-        {
-          "name": "القانون",
-          "morningFee": 1250000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القانون",
-          "morningFee": 1000000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية العلوم",
-      "departments": [
-        {
-          "name": "عل وم االمن السيبراني",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "علوم الفيزياء الطبية",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "االسالمية الدراسات القرآنية واللغوية",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "العلوم المالية و المصرفية االسالمية",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "علوم الفيزياء الطبية",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "االسالمية الدراسات القرآنية واللغوية",
-          "morningFee": 1250000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "العلوم المالية و المصرفية االسالمية",
-          "morningFee": 1000000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التربية",
-      "departments": [
-        {
-          "name": "اللغة االنكليزية",
-          "morningFee": 1500000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة االنكليزية",
-          "morningFee": 1250000,
-          "eveningFee": 1000000,
-          "suspended": false,
           "note": null,
           "gradeNote": null
         }
@@ -2460,6 +2401,80 @@
       ]
     },
     {
+      "collegeName": "كلية الصيدلة",
+      "departments": [
+        {
+          "name": "الصيدلة",
+          "morningFee": 10000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية التقنيات الصحية و الطبية",
+      "departments": [
+        {
+          "name": "تقنيات المختبرات الطبية",
+          "morningFee": 3000000,
+          "eveningFee": 2500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات التخدير",
+          "morningFee": 4000000,
+          "eveningFee": 4000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات االشعة",
+          "morningFee": 3250000,
+          "eveningFee": 3250000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات فحص البصر",
+          "morningFee": 3900000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات التجميل والليزر",
+          "morningFee": 3900000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات عناية القلب",
+          "morningFee": 3900000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات التأهيل الطبي والعالج الطبيعي",
+          "morningFee": 3900000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
       "collegeName": "كلية القانون",
       "departments": [
         {
@@ -2467,14 +2482,6 @@
           "morningFee": null,
           "eveningFee": null,
           "suspended": true,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القانون",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
           "note": null,
           "gradeNote": null
         }
@@ -2502,161 +2509,6 @@
         {
           "name": "علوم الذكاء االصطناعي",
           "morningFee": 3750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "علوم الحياة",
-          "morningFee": 1900000,
-          "eveningFee": 1900000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "علوم الفيزياء الطبية",
-          "morningFee": 1900000,
-          "eveningFee": 1900000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "علوم االدلة الجنائية",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية طب االسنان",
-      "departments": [
-        {
-          "name": "طب االسنان",
-          "morningFee": 4000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية الصيدلة",
-      "departments": [
-        {
-          "name": "الصيدلة",
-          "morningFee": 4000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التمريض",
-      "departments": [
-        {
-          "name": "التمريض",
-          "morningFee": 2000000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات بناء وانشاءات",
-          "morningFee": null,
-          "eveningFee": null,
-          "suspended": true,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية االدارة و االقتصاد",
-      "departments": [
-        {
-          "name": "المحاسب ة",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة االعمال",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "الرقابة المحاسبية",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "كلية اآلداب االعالم الرقمي",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "علم النفس السريري",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية الفنون",
-      "departments": [
-        {
-          "name": "التطبيقية تقنيات التصميم الداخلي",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التربية البدنية و علوم الرياضة",
-      "departments": [
-        {
-          "name": "التربية البدنية و علوم الرياضة",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التربية",
-      "departments": [
-        {
-          "name": "اللغة االنكل يزية",
-          "morningFee": 1500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
@@ -2791,14 +2643,6 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": null
-        },
-        {
-          "name": "الصيدلة",
-          "morningFee": 4500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
         }
       ]
     },
@@ -2823,110 +2667,6 @@
         },
         {
           "name": "هندسة تقنيات الحاسبات",
-          "morningFee": 2250000,
-          "eveningFee": 2250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسبات",
-          "morningFee": 1800000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات الهندسة الكهربائية",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقني ات االمن السيبراني",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسوب",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االجهزة طبية",
-          "morningFee": 2500000,
-          "eveningFee": 2500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات ميكانيك الق وى",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات الهندسة الكهربائية",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسوب",
-          "morningFee": 1700000,
-          "eveningFee": 1850000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقن يات التبريد والتكييف",
-          "morningFee": 2000000,
-          "eveningFee": 2250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االمن السيبراني",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات ميكانيك القوى",
-          "morningFee": 2250000,
-          "eveningFee": 2250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسوب",
-          "morningFee": 2250000,
-          "eveningFee": 2250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة الحاسوب",
           "morningFee": 2250000,
           "eveningFee": 2250000,
           "suspended": false,
@@ -3006,102 +2746,6 @@
           "suspended": false,
           "note": null,
           "gradeNote": null
-        },
-        {
-          "name": "االدارية و المالية ادارة االعمال",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "المحاسبة",
-          "morningFee": 1500000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة االعمال",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "االدارية و المالية المحاسبة",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اقتصاديات ادارة النفط والغاز",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اقتصاديات ادارة النفط والغاز",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "االدارية و المالية المحاسبة",
-          "morningFee": 2000000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اقتصاديات ادارة النفط والغاز",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة االعمال",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة االعمال",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغ ة االنكليزية",
-          "morningFee": 1000000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التربية الفنية",
-          "morningFee": 1000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
         }
       ]
     },
@@ -3138,165 +2782,6 @@
           "eveningFee": 1400000,
           "suspended": false,
           "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة االنكليزية",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التربية الفنية",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "علوم القرآن والتربية االسالمية",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "علوم القرآن والتربية االسالمية",
-          "morningFee": 1000000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة االنكليزية",
-          "morningFee": 1500000,
-          "eveningFee": 1100000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة العربية",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التربية البدنية و علوم الرياضة",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التربية الفنية",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "برامج القبول المباشر",
-      "departments": [
-        {
-          "name": "تقنيات االشعة",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات التخدير",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات التجميل والليزر",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات التجميل والليزر",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية القانون",
-      "departments": [
-        {
-          "name": "القانون",
-          "morningFee": 1400000,
-          "eveningFee": 1400000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القانون",
-          "morningFee": 1600000,
-          "eveningFee": 1600000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القانون",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القانون",
-          "morningFee": 1500000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "القان ون",
-          "morningFee": 1000000,
-          "eveningFee": 1000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية طب االسنان",
-      "departments": [
-        {
-          "name": "طب االسنان",
-          "morningFee": 5000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
           "gradeNote": null
         }
       ]
@@ -3381,147 +2866,6 @@
           "name": "الجميلة التصميم",
           "morningFee": 2000000,
           "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "برامج القبول المباشر",
-      "departments": [
-        {
-          "name": "طب االسنان",
-          "morningFee": 5000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "الصيدلة",
-          "morningFee": 5000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "التمريض",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات المختبرات الطبية",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات الكلية الصناعية",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات التجميل والليزر",
-          "morningFee": 2000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات االجه زة الطبية",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الحاسوب",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات التبريد و التكييف",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة تقنيات الوقود و الطاقة",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة اعمال",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "العلوم المالية و المصرفية",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "المحاسبة",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "آداب / اللغة االنكليزية",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة العربية",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التاريخ",
-          "morningFee": 1250000,
-          "eveningFee": 1250000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "التربية البدنية و علوم الرياضة",
-          "morningFee": 1500000,
-          "eveningFee": 1500000,
           "suspended": false,
           "note": null,
           "gradeNote": null
@@ -3640,7 +2984,7 @@
       ]
     }
   ],
-  "qalam": [
+  "sadr_aliraq": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -3709,7 +3053,9 @@
           "gradeNote": null
         }
       ]
-    },
+    }
+  ],
+  "qalam": [
     {
       "collegeName": "كلية طب االسنان",
       "departments": [
@@ -5218,6 +4564,27 @@
   ],
   "esraa": [
     {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": "طب االسنان )%",
+          "morningFee": 5500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": "معدل ( 89 % الى 100"
+        },
+        {
+          "name": ")%",
+          "morningFee": 6000000,
+          "eveningFee": 5000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 85 % الى 89"
+        }
+      ]
+    },
+    {
       "collegeName": "كلية التمريض",
       "departments": [
         {
@@ -6392,9 +5759,30 @@
         {
           "name": "الجغرافية ونام المعلومات الجغرافية",
           "morningFee": 1760000,
-          "eveningFee": 2500000,
+          "eveningFee": null,
           "suspended": false,
-          "note": null,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية الفنون",
+      "departments": [
+        {
+          "name": "التطبيقية تقنيات التصميم الداخلي",
+          "morningFee": 2500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "التصميم الصناعي",
+          "morningFee": 2000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
           "gradeNote": null
         }
       ]
@@ -6931,6 +6319,14 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
+          "name": "تقنيات التخدير",
+          "morningFee": 3400000,
+          "eveningFee": 3500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل 85 - 90"
+        },
+        {
           "name": "هندسة تقنيات الحاسوب",
           "morningFee": 2350000,
           "eveningFee": 2400000,
@@ -7334,7 +6730,7 @@
       ]
     }
   ],
-  "fiqh": [
+  "nusoor": [
     {
       "collegeName": "كلية الصيدلة",
       "departments": [
@@ -7500,7 +6896,9 @@
           "gradeNote": null
         }
       ]
-    },
+    }
+  ],
+  "fiqh": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -7982,7 +7380,7 @@
       ]
     }
   ],
-  "farqadain": [
+  "amal_college": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -8035,7 +7433,9 @@
           "gradeNote": null
         }
       ]
-    },
+    }
+  ],
+  "farqadain": [
     {
       "collegeName": "كلية الصيدلة",
       "departments": [
@@ -8082,6 +7482,14 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 90 %"
+        },
+        {
+          "name": ")%",
+          "morningFee": 6000000,
+          "eveningFee": 5000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 90 % - 85"
         },
         {
           "name": "تقنيات صناعة االسنان",
@@ -8896,6 +8304,14 @@
           "gradeNote": "معدل ( 90 %"
         },
         {
+          "name": ")%",
+          "morningFee": 5500000,
+          "eveningFee": 5000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل ( 85 % - 89"
+        },
+        {
           "name": "اللغة العربية",
           "morningFee": null,
           "eveningFee": null,
@@ -9074,6 +8490,19 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": "طب االسنان",
+          "morningFee": 6000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": "معدل من 90 %الى 99 %"
         }
       ]
     },
@@ -9317,6 +8746,14 @@
           "suspended": false,
           "note": null,
           "gradeNote": null
+        },
+        {
+          "name": ")%",
+          "morningFee": 5525000,
+          "eveningFee": 6500000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل من ( 90 % - 94"
         }
       ]
     },
@@ -9729,17 +9166,72 @@
       ]
     }
   ],
-  "amarah_uc": [
+  "middle_east_college": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
           "name": "طب االسن ان",
           "morningFee": 3500000,
-          "eveningFee": 3400000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "الصيدلة",
+          "morningFee": 3400000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات التخدير",
+          "morningFee": 1950000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تقنيات األجهزة الطبية",
+          "morningFee": 1500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "هندسة تقنيات الحاسوب",
+          "morningFee": 1100000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "علوم الحياة",
+          "morningFee": 1400000,
+          "eveningFee": 1250000,
           "suspended": false,
           "note": null,
           "gradeNote": null
+        }
+      ]
+    }
+  ],
+  "amarah_uc": [
+    {
+      "collegeName": "برامج القبول المباشر",
+      "departments": [
+        {
+          "name": "الصيدلة",
+          "morningFee": 5000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": "معدل من 85 الى 89"
         }
       ]
     }
@@ -9908,19 +9400,24 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": null
-        },
-        {
-          "name": "ال ت",
-          "morningFee": null,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
         }
       ]
     }
   ],
   "gilgamesh": [
+    {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": ")%",
+          "morningFee": 4750000,
+          "eveningFee": 5000000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": "معدل من ( 90 - 95"
+        }
+      ]
+    },
     {
       "collegeName": "كلية التقنيات الصحية و الطبية",
       "departments": [
@@ -10282,14 +9779,6 @@
           "suspended": false,
           "note": null,
           "gradeNote": "معدل ( 94 %"
-        },
-        {
-          "name": "الت",
-          "morningFee": null,
-          "eveningFee": 5500000,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
         }
       ]
     }
@@ -10647,7 +10136,7 @@
       ]
     }
   ],
-  "sawa": [
+  "alhuda": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -10660,7 +10149,9 @@
           "gradeNote": "معدل ( 90 %"
         }
       ]
-    },
+    }
+  ],
+  "sawa": [
     {
       "collegeName": "كلية التقنيات الصحية و الطبية",
       "departments": [
@@ -11128,143 +10619,6 @@
           "gradeNote": null
         }
       ]
-    },
-    {
-      "collegeName": "كلية طب االسنان",
-      "departments": [
-        {
-          "name": "طب االسنان",
-          "morningFee": 4500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية الصيدلة",
-      "departments": [
-        {
-          "name": "الصيدلة",
-          "morningFee": 4000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التقنيات الصحية و الطبية",
-      "departments": [
-        {
-          "name": "تقنيات االشعة",
-          "morningFee": 2500000,
-          "eveningFee": 2500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات التخدير",
-          "morningFee": 2500000,
-          "eveningFee": 2500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "تقنيات البصريات",
-          "morningFee": 2500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية الهندسة",
-      "departments": [
-        {
-          "name": "هندسة الحاسبات",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "الهندسة المدنية",
-          "morningFee": 2000000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة النفط",
-          "morningFee": 2500000,
-          "eveningFee": 2000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة الذكاء االصطناعي",
-          "morningFee": 2500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة االمن السيبراني",
-          "morningFee": 2500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية التربية",
-      "departments": [
-        {
-          "name": "التربية البدنية و علوم الرياضة",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "اللغة االنكليزية",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "الكيمياء",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "الحاسبات",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
     }
   ],
   "nibras": [
@@ -11434,7 +10788,7 @@
       ]
     }
   ],
-  "somo": [
+  "qurtuba": [
     {
       "collegeName": "كلية طب االسنان",
       "departments": [
@@ -11487,7 +10841,158 @@
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية الهندسة",
+      "departments": [
+        {
+          "name": "هندسة االمن السيبراني",
+          "morningFee": 1800000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
         },
+        {
+          "name": "هندسة الذكاء االصطناعي",
+          "morningFee": 1800000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "الكلية التقنية الهندسية",
+      "departments": [
+        {
+          "name": "هندسة تقنيات االجهزة الطبية",
+          "morningFee": 1500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية العلوم",
+      "departments": [
+        {
+          "name": "علوم االدلة الجنائية",
+          "morningFee": 1750000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "علوم الفيزياء الطبية",
+          "morningFee": 1600000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "السياسية العلوم السياسية",
+          "morningFee": 750000,
+          "eveningFee": 750000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية االدارة و االقتصاد",
+      "departments": [
+        {
+          "name": "ادارة االعمال",
+          "morningFee": 1000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "المحاسبة",
+          "morningFee": 1000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية التربية",
+      "departments": [
+        {
+          "name": "الرياضيات",
+          "morningFee": 1100000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        },
+        {
+          "name": "اللغة االنكليزية",
+          "morningFee": 900000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية التربية البدنية و علوم الرياضة",
+      "departments": [
+        {
+          "name": "التربية البدنية و علوم الرياضة",
+          "morningFee": 800000,
+          "eveningFee": 800000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        }
+      ]
+    }
+  ],
+  "somo": [
+    {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": "طب االسنان",
+          "morningFee": 5000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية الصيدلة",
+      "departments": [
+        {
+          "name": "الصيدلة",
+          "morningFee": 5000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية التقنيات الصحية و الطبية",
+      "departments": [
         {
           "name": "تقني ات المختبرات الطبية",
           "morningFee": 2250000,
@@ -11510,6 +11015,14 @@
           "eveningFee": 2250000,
           "suspended": false,
           "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "تقنيات التجميل والليزر",
+          "morningFee": 2000000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
           "gradeNote": null
         },
         {
@@ -11566,22 +11079,6 @@
       "collegeName": "كلية الهندسة",
       "departments": [
         {
-          "name": "هندسة االمن السيبراني",
-          "morningFee": 1800000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "هندسة الذكاء االصطناعي",
-          "morningFee": 1800000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
           "name": "هندسة الطائرات المسيرة",
           "morningFee": 1750000,
           "eveningFee": null,
@@ -11635,14 +11132,6 @@
       "collegeName": "الكلية التقنية الهندسية",
       "departments": [
         {
-          "name": "هندسة تقنيات االجهزة الطبية",
-          "morningFee": 1500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
           "name": "هندسة تقنيات ميكانيك القوى",
           "morningFee": 1500000,
           "eveningFee": null,
@@ -11687,30 +11176,6 @@
     {
       "collegeName": "كلية العلوم",
       "departments": [
-        {
-          "name": "علوم االدلة الجنائية",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "علوم الفيزياء الطبية",
-          "morningFee": 1600000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "السياسية العلوم السياسية",
-          "morningFee": 750000,
-          "eveningFee": 750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
         {
           "name": "علوم الفيزياء الطبية",
           "morningFee": 2000000,
@@ -11770,27 +11235,19 @@
         {
           "name": "العلوم السياسية",
           "morningFee": 1000000,
-          "eveningFee": 1250000,
+          "eveningFee": null,
           "suspended": false,
-          "note": null,
+          "note": "لا توجد دراسة مسائية",
           "gradeNote": null
         }
       ]
     },
     {
-      "collegeName": "كلية االدارة و االقتصاد",
+      "collegeName": "كلية االعالم",
       "departments": [
         {
-          "name": "ادارة االعمال",
-          "morningFee": 1000000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "المحاسبة",
-          "morningFee": 1000000,
+          "name": "االعالم الرقمي",
+          "morningFee": 1250000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
@@ -11802,16 +11259,8 @@
       "collegeName": "كلية التربية",
       "departments": [
         {
-          "name": "الرياضيات",
-          "morningFee": 1100000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
           "name": "اللغة االنكليزية",
-          "morningFee": 900000,
+          "morningFee": 1000000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
@@ -11824,8 +11273,8 @@
       "departments": [
         {
           "name": "التربية البدنية و علوم الرياضة",
-          "morningFee": 800000,
-          "eveningFee": 800000,
+          "morningFee": 1000000,
+          "eveningFee": 1000000,
           "suspended": false,
           "note": null,
           "gradeNote": null
@@ -11964,21 +11413,13 @@
       ]
     }
   ],
-  "siraj": [
+  "furqan": [
     {
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
           "name": "طب االسنان",
           "morningFee": 7500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        },
-        {
-          "name": "طب االسنان",
-          "morningFee": 6500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
@@ -12012,7 +11453,77 @@
           "suspended": false,
           "note": null,
           "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية العلوم",
+      "departments": [
+        {
+          "name": "االدارية والمالية العلوم المالية و المصرفية",
+          "morningFee": 900000,
+          "eveningFee": 900000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
         },
+        {
+          "name": "المحاسبة",
+          "morningFee": 1750000,
+          "eveningFee": 1750000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "ادارة االعمال",
+          "morningFee": 1750000,
+          "eveningFee": 1750000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        },
+        {
+          "name": "اقتصاديات نفط وغاز",
+          "morningFee": 2500000,
+          "eveningFee": 1750000,
+          "suspended": false,
+          "note": null,
+          "gradeNote": null
+        }
+      ]
+    }
+  ],
+  "siraj": [
+    {
+      "collegeName": "كلية طب االسنان",
+      "departments": [
+        {
+          "name": "طب االسنان",
+          "morningFee": 6500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية الصيدلة",
+      "departments": [
+        {
+          "name": "الصيدلة",
+          "morningFee": 5500000,
+          "eveningFee": null,
+          "suspended": false,
+          "note": "لا توجد دراسة مسائية",
+          "gradeNote": null
+        }
+      ]
+    },
+    {
+      "collegeName": "كلية التقنيات الصحية و الطبية",
+      "departments": [
         {
           "name": "تقنيات صناعة االسنان",
           "morningFee": 2500000,
@@ -12059,53 +11570,8 @@
       "collegeName": "كلية العلوم",
       "departments": [
         {
-          "name": "االدارية والمالية العلوم المالية و المصرفية",
-          "morningFee": 900000,
-          "eveningFee": 900000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "المحاسبة",
-          "morningFee": 1750000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "ادارة االعمال",
-          "morningFee": 1750000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
-          "name": "اقتصاديات نفط وغاز",
-          "morningFee": 2500000,
-          "eveningFee": 1750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": null
-        },
-        {
           "name": "علوم االدلة الجنائية",
           "morningFee": 2500000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": "لا توجد دراسة مسائية",
-          "gradeNote": null
-        }
-      ]
-    },
-    {
-      "collegeName": "كلية الصيدلة",
-      "departments": [
-        {
-          "name": "الصيدلة",
-          "morningFee": 5500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
@@ -12503,7 +11969,7 @@
       ]
     }
   ],
-  "sahl_ninewa": [
+  "multaqa_alnahrain": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -12572,7 +12038,9 @@
           "gradeNote": null
         }
       ]
-    },
+    }
+  ],
+  "sahl_ninewa": [
     {
       "collegeName": "كلية طب االسنان",
       "departments": [
@@ -12729,7 +12197,7 @@
       ]
     }
   ],
-  "qabas": [
+  "warka": [
     {
       "collegeName": "برامج القبول المباشر",
       "departments": [
@@ -12812,7 +12280,14 @@
           "suspended": false,
           "note": null,
           "gradeNote": null
-        },
+        }
+      ]
+    }
+  ],
+  "qabas": [
+    {
+      "collegeName": "برامج القبول المباشر",
+      "departments": [
         {
           "name": "طب االسنان",
           "morningFee": 7500000,

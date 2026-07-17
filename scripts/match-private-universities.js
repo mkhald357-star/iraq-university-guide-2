@@ -58,6 +58,55 @@ const MISSING_INSTITUTIONS = {
   75: { id: "baba_gurgur", name: "جامعة بابا كركر", website: null },
 };
 
+// جامعة مدينة العلم (#16): ترويستها في المصدر مضغوطة جداً ("مدينه العلم
+// بغداد" بلا "N - .. / تأسست سنة") فلا يلتقطها HEADER_RE إطلاقاً -- نُقلت
+// يدوياً من نص خام أرسله المستخدم مباشرة من نفس الدليل الرسمي (تحقق مقابل
+// النص: صفحة 26، بعد جدول جامعة الشيخ الطوسي مباشرة).
+const MANUAL_DEPARTMENT_SUPPLEMENTS = {
+  madinat_alilm: [
+    {
+      collegeName: "الكلية التقنية الطبية و الصحية",
+      departments: [
+        { name: "تقنيات التجميل والليزر", morningFee: 1400000, eveningFee: 1500000, suspended: false, note: null, gradeNote: null },
+        { name: "تقنيات الأشعة", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        { name: "تقنيات التخدير", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+      ],
+    },
+    {
+      collegeName: "الكلية التقنية الهندسية",
+      departments: [
+        { name: "هندسة تقنيات الحاسبات", morningFee: 1750000, eveningFee: 1800000, suspended: false, note: null, gradeNote: null },
+        { name: "تقنيات الهندسة الكهربائية", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        { name: "هندسة تقنيات الأمن السيبراني", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+      ],
+    },
+    {
+      collegeName: "كلية القانون",
+      departments: [{ name: "القانون", morningFee: 1400000, eveningFee: 1400000, suspended: false, note: null, gradeNote: null }],
+    },
+    {
+      collegeName: "كلية العلوم الإدارية و المالية",
+      departments: [
+        { name: "إدارة الأعمال", morningFee: 1500000, eveningFee: 1500000, suspended: false, note: null, gradeNote: null },
+        { name: "المحاسبة", morningFee: 1500000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+      ],
+    },
+    {
+      collegeName: "كلية التربية",
+      departments: [
+        { name: "التربية البدنية و علوم الرياضة", morningFee: 1250000, eveningFee: 1250000, suspended: false, note: null, gradeNote: null },
+        { name: "اللغة الانكليزية", morningFee: 1600000, eveningFee: 1750000, suspended: false, note: null, gradeNote: null },
+        { name: "علوم القرآن والتربية الاسلامية", morningFee: 1400000, eveningFee: 1400000, suspended: false, note: null, gradeNote: null },
+        { name: "التربية الفنية", morningFee: 1250000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+      ],
+    },
+    {
+      collegeName: "كلية الآداب",
+      departments: [{ name: "علم النفس السريري", morningFee: 1600000, eveningFee: 1750000, suspended: false, note: null, gradeNote: null }],
+    },
+  ],
+};
+
 function main() {
   const privateUnis = require(path.join(ROOT, "data/private_universities.json"));
   const parsed = parseFullGuide();
@@ -157,6 +206,12 @@ function main() {
       collegeName,
       departments,
     }));
+  }
+  // ملحقات يدوية لمؤسسات تعذّر التقاط ترويستها آلياً (صيغة غير معتادة في
+  // المصدر) -- نُقلت يدوياً من نص خام تحقّق منه المستخدم مباشرة مقابل نفس
+  // الدليل الرسمي. تُدمَج هنا كي تبقى بعد أي إعادة تشغيل للمحلّل الآلي.
+  for (const [id, colleges] of Object.entries(MANUAL_DEPARTMENT_SUPPLEMENTS)) {
+    if (!out[id] || !out[id].length) out[id] = colleges;
   }
 
   fs.writeFileSync(

@@ -1,0 +1,223 @@
+{
+  "leavesCount": 100,
+  "importance": [
+    {
+      "id": "q_volunteering",
+      "primaryDim": "S",
+      "importance": 0.07558544529334052
+    },
+    {
+      "id": "q_teaching_others",
+      "primaryDim": "S",
+      "importance": 0.0763086099725789
+    },
+    {
+      "id": "q_empathy",
+      "primaryDim": "S",
+      "importance": 0.0763086099725789
+    },
+    {
+      "id": "q_people_facing",
+      "primaryDim": "S",
+      "importance": 0.0763086099725789
+    },
+    {
+      "id": "q_stress_tolerance",
+      "primaryDim": "S",
+      "importance": 0.0763086099725789
+    },
+    {
+      "id": "q_competitive_recognition",
+      "primaryDim": "E",
+      "importance": 0.08768571937871066
+    },
+    {
+      "id": "q_arts_appreciation",
+      "primaryDim": "A",
+      "importance": 0.09137605897731178
+    },
+    {
+      "id": "q_aesthetic_style",
+      "primaryDim": "A",
+      "importance": 0.09137605897731178
+    },
+    {
+      "id": "q_entrepreneurship",
+      "primaryDim": "E",
+      "importance": 0.09475574845603546
+    },
+    {
+      "id": "q_help_others",
+      "primaryDim": "S",
+      "importance": 0.09766222992648074
+    },
+    {
+      "id": "q_negotiation",
+      "primaryDim": "E",
+      "importance": 0.11025386940847413
+    },
+    {
+      "id": "q_leadership",
+      "primaryDim": "E",
+      "importance": 0.11025386940847413
+    },
+    {
+      "id": "q_manual_precision",
+      "primaryDim": "R",
+      "importance": 0.11532784946269986
+    },
+    {
+      "id": "q_creative_art",
+      "primaryDim": "A",
+      "importance": 0.1235377948919044
+    },
+    {
+      "id": "q_self_expression",
+      "primaryDim": "A",
+      "importance": 0.1235377948919044
+    },
+    {
+      "id": "q_hands_on",
+      "primaryDim": "R",
+      "importance": 0.12900158405340054
+    },
+    {
+      "id": "q_nature_animals",
+      "primaryDim": "R",
+      "importance": 0.12900158405340054
+    },
+    {
+      "id": "q_scientific_reading",
+      "primaryDim": "I",
+      "importance": 0.1517091733771529
+    },
+    {
+      "id": "q_math_logic",
+      "primaryDim": "I",
+      "importance": 0.17052609286850234
+    },
+    {
+      "id": "q_scientific_curiosity",
+      "primaryDim": "I",
+      "importance": 0.17052609286850234
+    },
+    {
+      "id": "q_follow_procedures",
+      "primaryDim": "C",
+      "importance": 0.17409517875786307
+    },
+    {
+      "id": "q_organize_systematically",
+      "primaryDim": "C",
+      "importance": 0.17409517875786307
+    },
+    {
+      "id": "q_creative_freedom",
+      "primaryDim": "A",
+      "importance": 0.20430701895453512
+    },
+    {
+      "id": "q_original_thinking",
+      "primaryDim": "A",
+      "importance": 0.20430701895453512
+    },
+    {
+      "id": "q_detail_oriented",
+      "primaryDim": "C",
+      "importance": 0.20551173644784318
+    },
+    {
+      "id": "q_numbers_finance",
+      "primaryDim": "C",
+      "importance": 0.20551173644784318
+    },
+    {
+      "id": "q_risk_reward",
+      "primaryDim": "E",
+      "importance": 0.22965563669581893
+    },
+    {
+      "id": "q_public_pitching",
+      "primaryDim": "E",
+      "importance": 0.26648632910556835
+    },
+    {
+      "id": "q_tangible_result",
+      "primaryDim": "R",
+      "importance": 0.2679945662709237
+    },
+    {
+      "id": "q_tech_savvy",
+      "primaryDim": "I",
+      "importance": 0.26944332607283383
+    },
+    {
+      "id": "q_outdoor_fieldwork",
+      "primaryDim": "R",
+      "importance": 0.2726654515918964
+    },
+    {
+      "id": "q_social",
+      "primaryDim": "S",
+      "importance": 0.2765745348435194
+    },
+    {
+      "id": "q_lab_experiments",
+      "primaryDim": "I",
+      "importance": 0.28515209840881367
+    },
+    {
+      "id": "q_machine_operation",
+      "primaryDim": "R",
+      "importance": 0.2935797190106223
+    },
+    {
+      "id": "q_routine_aversion",
+      "primaryDim": "A",
+      "importance": 0.29431663622636006
+    },
+    {
+      "id": "q_data_patterns",
+      "primaryDim": "I",
+      "importance": 0.2976138937125048
+    },
+    {
+      "id": "q_memory",
+      "primaryDim": "C",
+      "importance": 0.3101276149136747
+    },
+    {
+      "id": "q_deal_making",
+      "primaryDim": "E",
+      "importance": 0.3167312614968281
+    },
+    {
+      "id": "q_tinkering",
+      "primaryDim": "R",
+      "importance": 0.3192460975582943
+    },
+    {
+      "id": "q_structured_study_preference",
+      "primaryDim": "C",
+      "importance": 0.3279244032528856
+    },
+    {
+      "id": "q_solitary_research",
+      "primaryDim": "I",
+      "importance": 0.34527725801471154
+    },
+    {
+      "id": "q_comfort_vs_salary",
+      "primaryDim": "C",
+      "importance": 0.42765870810349904
+    }
+  ],
+  "proposedRemovals": [
+    "q_volunteering",
+    "q_competitive_recognition",
+    "q_arts_appreciation",
+    "q_manual_precision",
+    "q_scientific_reading",
+    "q_follow_procedures"
+  ]
+}

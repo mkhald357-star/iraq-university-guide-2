@@ -132,15 +132,15 @@ validate("data/contradiction_pairs.json", path.join(ROOT, "data/contradiction_pa
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const majorIds = new Set(majors.map((m) => m.id));
 
-// Must have exactly 42 questions (7 per RIASEC dimension, after the 2026-07
-// psychometric refinement pass -- the algorithm assumes a fixed, curated
+// Must have exactly 36 questions (6 per RIASEC dimension, after the 2026-07
+// decision-tree item-reduction pass -- the algorithm assumes a fixed, curated
 // question bank -- a silent drop/duplication would skew every dimension).
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-if (questions.length !== 42) {
-  console.error(`[FAIL] data/questions.json: expected exactly 42 questions, found ${questions.length}`);
+if (questions.length !== 36) {
+  console.error(`[FAIL] data/questions.json: expected exactly 36 questions, found ${questions.length}`);
   hasErrors = true;
 } else {
-  console.log("[OK] data/questions.json has exactly 42 questions");
+  console.log("[OK] data/questions.json has exactly 36 questions");
 }
 const questionIds = questions.map((q) => q.id);
 const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);

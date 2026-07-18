@@ -136,8 +136,25 @@ const universities = UNIVERSITIES.map((u) => ({
 
 const byName = new Map(universities.map((u) => [normKey(u.name), u]));
 
+// إصلاح فجوة بيانات مرتبطة (2026-07-18): اسم كلية واحد التفّ عبر خليتي جدول
+// PDF متتاليتين بشكل غير متّسق بين صفّين مختلفين من نفس المصدر -- "كلية
+// التحسس النائي والجيوفيزياء" (جامعة الكرخ للعلوم) ظهرت في صفّ الدراسة
+// المسائية الأول مبتورة كـ"كلية التحسس النائي" (مع بقية الاسم "والجيوفيزياء"
+// منزلقة إلى حقل campusOrTrack)، وفي صفّ آخر باسمها الكامل الصحيح -- فأنشأ
+// ذلك كليتين منفصلتين لكيان واحد حقيقي. تحقّقنا يدوياً من هذا عبر مطابقة
+// data/raw/dalel.full.txt (القسم "6 - علوم الطاقة والبيئة... 5 - التحسس
+// النائي والجيوفيزياء: التحسس النائي / الجيوفيزياء") قبل الدمج -- ليست
+// قاعدة عامة (اختبرنا تعميمها على كل الجامعات فوجدناه يُنتج نتائج كاذبة
+// كثيرة، كـ"كلية الطب" و"كلية الطب البيطري" كليتان حقيقيتان مختلفتان لا
+// كلية واحدة مبتورة)، بل تصحيح موضعي واحد مُتحقَّق منه بعينه.
+const COLLEGE_NAME_ALIASES = {
+  "جامعة الكرخ للعلوم": { "كلية التحسس النائي": "كلية التحسس النائي والجيوفيزياء" },
+};
+
 function getCollege(uni, collegeName) {
-  const key = collegeName.trim();
+  const alias = COLLEGE_NAME_ALIASES[uni.name];
+  const resolvedName = (alias && alias[collegeName.trim()]) || collegeName;
+  const key = resolvedName.trim();
   if (!uni._collegesMap.has(key)) uni._collegesMap.set(key, { name: key, departmentsMap: new Map() });
   return uni._collegesMap.get(key);
 }

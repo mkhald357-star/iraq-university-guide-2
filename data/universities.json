@@ -2658,6 +2658,143 @@
               "isDirectAdmission": true
             }
           ]
+        },
+        {
+          "id": "baghdad_col_26",
+          "name": "كلية التميز",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "قسم نظم المعلومات التطبيقية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم علم البيانات",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم المحاسبة والمصارف",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم الفلسفة وعلم الاجتماع",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم إدارة الأعمال والتجارة الإلكترونية",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
+        },
+        {
+          "id": "baghdad_col_27",
+          "name": "كلية الذكاء الاصطناعي",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "قسم التطبيقات الهندسية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم التطبيقات الطبية الحيوية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم البيانات الضخمة",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
         }
       ]
     },
@@ -13205,6 +13342,61 @@
               "name": "قسم الأمن السيبراني",
               "branch": [
                 "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
+        },
+        {
+          "id": "kufa_col_23",
+          "name": "كلية التميز في اللغة العربية وآدابها",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "قسم الدراسات اللغوية",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم الدراسات الأدبية",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم الدراسات البلاغية والنقدية",
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
               "sessions": [
                 "صباحي"
@@ -35935,6 +36127,117 @@
               "isDirectAdmission": false
             }
           ]
+        },
+        {
+          "id": "telafer_col_5",
+          "name": "كلية الطب",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الطب",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
+        },
+        {
+          "id": "telafer_col_6",
+          "name": "كلية الصيدلة",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الصيدلة",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
+        },
+        {
+          "id": "telafer_col_7",
+          "name": "كلية العلوم الطبية",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "قسم الأدلة الجنائية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم التحليلات المرضية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم الفيزياء الطبية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            },
+            {
+              "name": "قسم علوم التجميل",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true
+            }
+          ]
         }
       ]
     },
@@ -37374,6 +37677,28 @@
                 "مسائي": 60
               },
               "isDirectAdmission": false
+            },
+            {
+              "name": "قسم علوم الصحة البيئية",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 63,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 63,
+                "مسائي": null
+              },
+              "isDirectAdmission": false
             }
           ]
         },
@@ -37455,6 +37780,29 @@
           "nameEn": null,
           "departments": [
             {
+              "name": "قسم التحسس النائي",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 65,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 65,
+                "مسائي": 58
+              },
+              "isDirectAdmission": false
+            },
+            {
               "name": "قسم الجيوفيزياء",
               "branch": [
                 "علمي"
@@ -37481,26 +37829,6 @@
         },
         {
           "id": "karkh_col_7",
-          "name": "كلية التحسس النائي",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم التحسس النائي",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "karkh_col_8",
           "name": "كلية المعلوماتية الطبية الحيوية",
           "nameEn": null,
           "departments": [
@@ -37522,7 +37850,7 @@
           ]
         },
         {
-          "id": "karkh_col_9",
+          "id": "karkh_col_8",
           "name": "كلية معلوماتية الأعمال",
           "nameEn": null,
           "departments": [
@@ -37610,147 +37938,6 @@
                 "مسائي": null
               },
               "isDirectAdmission": false
-            }
-          ]
-        },
-        {
-          "id": "ibn_sina_col_3",
-          "name": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "ibn_sina_col_4",
-          "name": "كلية الهندسة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم المدني (أبو غريب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            },
-            {
-              "name": "قسم الأمن السيبراني (أبو غريب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            },
-            {
-              "name": "قسم الذكاء الاصطناعي والإنسان الآلي (أبو غريب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "ibn_sina_col_5",
-          "name": "كلية التحسس النائي والجيوفيزياء",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "التحسس النائي والجيوفيزياء",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "ibn_sina_col_6",
-          "name": "كلية علوم الطاقة والبيئة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "علوم الطاقة المتجددة والبيئة (أبو غريب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "ibn_sina_col_7",
-          "name": "كلية القانون",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "القانون (أبو غريب)",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
             }
           ]
         }

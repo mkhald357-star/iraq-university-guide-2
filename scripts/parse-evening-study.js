@@ -71,6 +71,24 @@ for (const rawLine of lines) {
   const tokens = line.split("\t").map((t) => t.trim()).filter((t) => t.length > 0);
   if (tokens.length === 0) continue;
 
+  // Chapter 5 (Kurdistan-region universities, out of scope -- separate
+  // regional admission system) headers use a single-letter sub-chapter
+  // prefix ("و - 1 - جامعة السليمانية") instead of a bare leading number,
+  // so the numeric-header check below never recognizes them as a new
+  // section boundary. Without this check, every subsequent chapter-5 row
+  // (real Kurdistan colleges/departments) kept silently accumulating
+  // under whatever government university happened to be currentUni last
+  // (الجامعة التقنية الجنوبية, the final ORDERED_UNIVERSITIES entry --
+  // confirmed by cross-referencing dalel.full.txt line 5242 against the
+  // built output, e.g. a bogus "المعهد التقني في كويه" [Koya, Kurdistan]
+  // college showing up under a Basra-based technical university). Any
+  // single-letter-prefixed header ("<one Arabic letter> - ...") marks
+  // this same out-of-scope boundary -- verified against the raw text
+  // that no such header legitimately occurs before it.
+  if (uniIndex >= 0 && tokens.length >= 2 && tokens[1] === "-" && /^[ء-ي]$/.test(tokens[0])) {
+    break;
+  }
+
   // header row: starts with a number, second token is a literal '-'
   if (/^\d+$/.test(tokens[0]) && tokens[1] === "-") {
     if (uniIndex + 1 >= ORDERED_UNIVERSITIES.length) {
@@ -112,6 +130,18 @@ for (const rawLine of lines) {
         break;
       }
     }
+  }
+
+  // The loop above only merges a short segment INTO the one that follows
+  // it, so a single stray letter at the very END of the row (the last
+  // segment is never a merge trigger, only a merge target) slips through
+  // uncaught -- e.g. "المحاسبة" wrapped across cells as "قسم تقنيات
+  // المحاسب" + "ة". A lone trailing 1-character segment is never a real
+  // standalone department/college name in Arabic, so it's always this
+  // same word-split artifact: reattach it (no space -- it's a word
+  // continuation, not a separate word) to the segment before it.
+  if (segs.length > 1 && segs[segs.length - 1].length === 1) {
+    segs = [...segs.slice(0, -2), segs[segs.length - 2] + segs[segs.length - 1]];
   }
 
   // Safety net: a genuine single-segment (department-less) row should be a

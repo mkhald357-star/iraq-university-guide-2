@@ -25,6 +25,12 @@ interface QuizItem {
   id: string;
   text: string;
   dimensions: RiasecVector;
+  // لأسئلة المقارنة الصريحة ("تفضّل A على B؟") فقط -- تستبدل نصوص الأزرار
+  // العامة بنص يوضّح صراحة أي طرف من المقارنة يختاره كل زر، فيزول غموض "لا،
+  // إطلاقاً" (هل يعني رفض A لصالح B، أم رفض الاثنين معاً؟) دون أي تغيير على
+  // dimensions أو آلية التسجيل نفسها. الأسئلة الأخرى بلا هذا الحقل تستخدم
+  // الأزرار العامة كما هي (fallback).
+  answerLabels?: { yes: string; maybe: string; no: string };
 }
 
 // قائمة المحافظات مولَّدة من بيانات الجامعات الفعلية عبر خط أنابيب
@@ -67,7 +73,15 @@ function ReviewScreen({
   onSubmit: () => void;
   onBack: () => void;
 }) {
-  const labelMap: Record<number, string> = { 1: "نعم، بالتأكيد", 0: "ربما / أحياناً", [-1]: "لا، إطلاقاً" };
+  const defaultLabelMap: Record<number, string> = { 1: "نعم، بالتأكيد", 0: "ربما / أحياناً", [-1]: "لا، إطلاقاً" };
+  const answerLabelFor = (q: QuizItem, val: number): string => {
+    if (q.answerLabels) {
+      if (val === 1) return q.answerLabels.yes;
+      if (val === 0) return q.answerLabels.maybe;
+      if (val === -1) return q.answerLabels.no;
+    }
+    return defaultLabelMap[val] ?? String(val);
+  };
   const colorMap: Record<number, string> = {
     1: "text-primary font-bold",
     0: "text-blue-500 font-bold",
@@ -118,7 +132,7 @@ function ReviewScreen({
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-slate-400 truncate">{q.text}</p>
                 <p className={`text-sm mt-0.5 ${answered ? colorMap[val] ?? "text-slate-700" : "text-amber-600 font-bold"}`}>
-                  {answered ? labelMap[val] ?? String(val) : "لم يتم الإجابة"}
+                  {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
                 </p>
               </div>
 
@@ -510,19 +524,19 @@ export default function Quiz() {
             onClick={() => handleAnswer(1)}
             className="bg-primary text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            نعم، بالتأكيد
+            {question.answerLabels?.yes ?? "نعم، بالتأكيد"}
           </button>
           <button
             onClick={() => handleAnswer(0)}
             className="bg-blue-50 text-primary border border-blue-200 p-4 rounded-xl font-bold text-lg hover:bg-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            ربما / أحياناً
+            {question.answerLabels?.maybe ?? "ربما / أحياناً"}
           </button>
           <button
             onClick={() => handleAnswer(-1)}
             className="bg-slate-100 text-slate-600 border border-slate-200 p-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            لا، إطلاقاً
+            {question.answerLabels?.no ?? "لا، إطلاقاً"}
           </button>
         </div>
       </div>

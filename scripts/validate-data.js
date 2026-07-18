@@ -76,6 +76,9 @@ const QuestionSchema = z.object({
   id: z.string(),
   text: z.string(),
   dimensions: DimensionsSchema,
+  // اختياري: أسئلة المقارنة الصريحة ("تفضّل A على B؟") فقط تستخدمه لاستبدال
+  // نصوص الأزرار العامة بنص يوضّح أي طرف من المقارنة يختاره كل زر.
+  answerLabels: z.object({ yes: z.string(), maybe: z.string(), no: z.string() }).strict().optional(),
 });
 
 const RiasecProfileSchema = z.object(

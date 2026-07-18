@@ -226,6 +226,36 @@ for (const u of universities) {
   }
 }
 
+// إصلاح فجوة بيانات مرتبطة (2026-07): 5 صفوف حصص ("ابناء المحافظة") في
+// كليات القبول أحادية القسم (طب/طب أسنان/صيدلة) لا تذكر اسم قسم قبل اسم
+// الحصة في المصدر (مثال: "جامعة المثنى / كلية الطب / ابناء المحافظة")،
+// فيضعها getDept أعلاه خطأً في قسم مستقل باسمه هو اسم الحصة نفسها، فيبقى
+// بلا averageGrades أبداً (bestMorning يستبعد صفوف isQuota عمداً) رغم أن
+// القسم الحقيقي الشقيق (المعدّل من صفّ "القناة العامة" العادي لنفس الكلية)
+// موجود فعلاً. الحل: نُلحق حدود الحصة بالقسم الحقيقي الشقيق كسجلّ حصة إضافي
+// ضمن cutoffs (لا يُحتسب في averageGrades، تماماً كمعاملة أي qualifier حصة
+// أخرى)، ونحذف القسم الاصطناعي. نتجاهل الحالات الغامضة (أكثر من قسم حقيقي
+// شقيق واحد) عمداً لتفادي إسناد حصة لقسم خاطئ بلا يقين.
+const QUOTA_LABEL_RE = /ابناء|شهداء|متميز|اوائل/;
+for (const u of universities) {
+  for (const college of u._collegesMap.values()) {
+    const entries = [...college.departmentsMap.entries()];
+    const quotaOnlyDepts = entries.filter(([key]) => key !== "__COLLEGE_LEVEL__" && QUOTA_LABEL_RE.test(key));
+    if (quotaOnlyDepts.length === 0) continue;
+    // القسم "الحقيقي" الشقيق قد يبقى مفتاحه "__COLLEGE_LEVEL__" هنا (كلية
+    // أحادية القسم بلا اسم قسم صريح في المصدر غير الحصة) -- خطوة التطعيم
+    // أعلاه لا تُفرغه لأن "ابناء المحافظة" كان يملك cutoffs.length > 0 بالفعل
+    // فلم يُعتبر "بلا حد" فيُستثنى من تلك الخطوة. لذا نعامله هنا كقسم حقيقي.
+    const realDepts = entries.filter(([key]) => !QUOTA_LABEL_RE.test(key));
+    if (realDepts.length !== 1) continue;
+    const [, target] = realDepts[0];
+    quotaOnlyDepts.forEach(([key, d]) => {
+      target.cutoffs.push(...d.cutoffs);
+      college.departmentsMap.delete(key);
+    });
+  }
+}
+
 const finalUniversities = universities.map((u) => {
   const colleges = [...u._collegesMap.values()].map((c, cIdx) => {
     const departments = [...c.departmentsMap.values()].map((d) => {

@@ -13249,23 +13249,7 @@
                   "gender": "مختلط",
                   "averagePercent": 99.57,
                   "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 99.57,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "ابناء المحافظة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -13274,7 +13258,7 @@
                 }
               ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 99.57,
                 "مسائي": null
               },
               "isDirectAdmission": false
@@ -29599,23 +29583,7 @@
                   "gender": "مختلط",
                   "averagePercent": 99.71,
                   "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 99.71,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "ابناء المحافظة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -29624,7 +29592,7 @@
                 }
               ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 99.71,
                 "مسائي": null
               },
               "isDirectAdmission": false
@@ -29650,23 +29618,7 @@
                   "gender": "مختلط",
                   "averagePercent": 99,
                   "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 99,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "ابناء المحافظة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -29675,7 +29627,7 @@
                 }
               ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 99,
                 "مسائي": null
               },
               "isDirectAdmission": false
@@ -29701,23 +29653,7 @@
                   "gender": "مختلط",
                   "averagePercent": 98.43,
                   "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 98.43,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "ابناء المحافظة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -29726,7 +29662,7 @@
                 }
               ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 98.43,
                 "مسائي": null
               },
               "isDirectAdmission": false
@@ -30777,28 +30713,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "ابناء المحافظة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 99.86,
-                  "isQuota": true
-                }
-              ],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
               "name": "الطب",
               "branch": [
                 "علمي"
@@ -30812,6 +30726,12 @@
                   "gender": "مختلط",
                   "averagePercent": 99.83,
                   "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 99.86,
+                  "isQuota": true
                 }
               ],
               "averageGrades": {

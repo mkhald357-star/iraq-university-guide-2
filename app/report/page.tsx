@@ -288,18 +288,31 @@ function ReportContent() {
   const demand = getDemandLevel(primaryMajor?.marketMultiplier ?? 0);
 
   // ── الجامعات ومطابقة التخصصات ──
-  const offerings = findUniversitiesForMajor(
+  // إن لم توجد أي عروض ضمن محافظة الطالب تحديداً، نُعيد البحث وطنياً بدل
+  // إظهار صفحة فارغة فوراً — كثير من التخصصات (خصوصاً النادرة جغرافياً)
+  // متاحة فعلاً في محافظات أخرى، والطالب يستفيد من رؤيتها مع توضيح أنها
+  // خارج محافظته، بدل رسالة "لم نجد شيئاً" رغم وجود خيارات حقيقية في العراق.
+  let offerings = findUniversitiesForMajor(
     primaryMajor,
     universitiesData.universities as unknown as University[],
     majorMappings.mappings,
     { province: filterSettings?.province }
   );
+  let isNationalFallback = false;
+  if (offerings.length === 0 && filterSettings?.province) {
+    offerings = findUniversitiesForMajor(
+      primaryMajor,
+      universitiesData.universities as unknown as University[],
+      majorMappings.mappings
+    );
+    isNationalFallback = offerings.length > 0;
+  }
   const ranked = rankUniversityOfferings(offerings);
   const offeringPublic = ranked.filter(o => o.universityType === 'حكومية');
   const offeringPrivate = ranked.filter(o => o.universityType === 'أهلية');
   const hasOfferings = offeringPublic.length > 0 || offeringPrivate.length > 0;
   if (!hasOfferings) {
-    return <EmptyState message="لم نجد جامعات تطبق هذا التخصص" />;
+    return <EmptyState message="لم نجد جامعات تطبق هذا التخصص، لا في محافظتك ولا وطنياً" />;
   }
 
   // ── تحليل التوافق القائم على نموذج RIASEC ──
@@ -310,6 +323,18 @@ function ReportContent() {
     const points: string[] = [];
     const profile = riasecProfiles[majorObj.id] ?? {};
     const fitPercent = majorObj.fitPercent ?? computeMajorFit(userRiasecVector, profile);
+
+    // أفضل قسم حكومي حقيقي لهذا التخصص تحديداً (لا تخصص الصفحة الأساسي
+    // فقط) — نحتاجه لمقارنة معدل الطالب الفعلي بالحد الأدنى الحقيقي، بدل
+    // رسالة عامة "معدلك مناسب" لا تُقارَن بأي رقم فعلي.
+    const majorOfferings = findUniversitiesForMajor(
+      majorObj,
+      universitiesData.universities as unknown as University[],
+      majorMappings.mappings,
+      filterSettings?.province ? { province: filterSettings.province } : undefined
+    );
+    const majorBestPublic = rankUniversityOfferings(majorOfferings).find((o) => o.universityType === "حكومية");
+    const requiredGrade = majorBestPublic?.averageGrades?.["صباحي"] ?? null;
 
     // أقوى الأبعاد المشتركة بين شخصية الطالب ومتطلبات هذا التخصص تحديداً
     const alignedDimensions = RIASEC_DIMENSIONS
@@ -341,10 +366,18 @@ function ReportContent() {
           ? "يتماشى التخصص مع اختيارك للفرع الأدبي أو الفنون."
           : "هناك توافق جزئي بين فرعك وهذا التخصص، لكن إجاباتك الأخرى دعّمت هذه التوصية.";
       points.push(branchMatch);
-      if (filterSettings.grade >= 85) {
+      // مقارنة صريحة برقم حقيقي بدل جملة عامة مطمئنة لا تعني شيئاً: معدل
+      // الطالب مقابل الحد الأدنى الفعلي لأفضل قسم حكومي متاح لهذا التخصص.
+      if (requiredGrade !== null) {
+        if (filterSettings.grade >= requiredGrade) {
+          points.push(`معدلك (${filterSettings.grade}%) يكفي فعلاً لأفضل خيار حكومي متاح لهذا التخصص (الحد الأدنى ${requiredGrade}% في ${majorBestPublic!.universityName}).`);
+        } else {
+          points.push(`تحذير: معدلك (${filterSettings.grade}%) أقل من الحد الأدنى الفعلي لأفضل خيار حكومي لهذا التخصص (${requiredGrade}% في ${majorBestPublic!.universityName}) — راجع بقية الخيارات في الجدول أدناه، فقد تجد قسماً أو جامعة أهلية بحد أدنى أقرب لمعدلك.`);
+        }
+      } else if (filterSettings.grade >= 85) {
         points.push(`معدلك (${filterSettings.grade}%) يُظهر تفوقاً يُفضِّل التخصصات ذات الطلب العالي في السوق.`);
       } else {
-        points.push(`معدلك (${filterSettings.grade}%) يشير إلى خيارات تخصص ذات متطلبات قبول مناسبة.`);
+        points.push(`معدلك (${filterSettings.grade}%) يشير إلى خيارات تخصص ذات متطلبات قبول مناسبة (لا تتوفر بيانات حد أدنى تاريخي منشور لأفضل خيار حكومي لهذا التخصص تحديداً).`);
       }
     }
 
@@ -468,6 +501,16 @@ return (
           </div>
         ))}
       </div>
+
+        {isNationalFallback && (
+          <div className="flex items-start gap-3 bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-2xl mb-8">
+            <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+            <p className="text-sm">
+              لم نجد هذا التخصص في محافظة "{filterSettings?.province}" تحديداً، فوسّعنا البحث لعموم العراق — الجامعات
+              أدناه قد تكون في محافظات أخرى.
+            </p>
+          </div>
+        )}
 
         <section className="mb-12">
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">

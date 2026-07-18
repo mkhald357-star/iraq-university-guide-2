@@ -31,19 +31,61 @@ const HELP_OTHERS_ID = "q_help_others";
 const HELP_OTHERS_REVERSE_ID = "q_help_others_reverse";
 const LIE_SCALE_ID = "q_lie_scale";
 
+export interface ScoredQuestionLike {
+  id: string;
+  dimensions: Partial<Record<string, number>>;
+}
+
 /**
- * @param scoredAnswers إجابات الأسئلة الأربعين والاثنين المُضافين (-1/0/1)، أي كل
+ * اتساق الإجابات داخل كل بُعد: طالب بميل حقيقي في بُعد ما يُجيب أسئلة ذلك
+ * البُعد بنفس الاتجاه غالباً (تصويت متفق)؛ ضجيج عشوائي بحت ينتج تصويتاً
+ * شبه متساوٍ (نصفه موافق ونصفه معارض) داخل نفس البُعد رغم عدم "الخط
+ * المستقيم" (mode_ratio) ولا "الموافقة المفرطة" (p_yes) — هذا هو تحديداً
+ * النمط الذي أفلت من الكشف في نحو نصف محاكاة "الطالب العشوائي البحت"
+ * أثناء اختبار المنصة (يعتمد آنذاك على سؤال تحقق واحد فقط، فرصة كشفه
+ * بالصدفة 1/3). يُرجع رقماً بين 0 (تصويت عشوائي تماماً داخل كل بُعد) و1
+ * (اتساق تام) — متوسط على كل الأبعاد التي تملك 3 أسئلة على الأقل.
+ */
+function computeDimensionConsistency(
+  scoredAnswers: Record<string, number>,
+  questions: ScoredQuestionLike[]
+): number {
+  const votes: Record<string, number[]> = {};
+  questions.forEach((q) => {
+    const ans = scoredAnswers[q.id];
+    if (ans === undefined || ans === 0) return;
+    Object.entries(q.dimensions).forEach(([dim, w]) => {
+      if (!w) return;
+      votes[dim] ??= [];
+      votes[dim].push(ans * Math.sign(w));
+    });
+  });
+  const consistencies: number[] = [];
+  Object.values(votes).forEach((v) => {
+    if (v.length < 3) return;
+    const mean = v.reduce((s, x) => s + x, 0) / v.length;
+    consistencies.push(Math.abs(mean));
+  });
+  if (consistencies.length === 0) return 1;
+  return consistencies.reduce((s, x) => s + x, 0) / consistencies.length;
+}
+
+/**
+ * @param scoredAnswers إجابات كل الأسئلة المُسجَّلة على RIASEC (-1/0/1)، أي كل
  *   ما ليس سؤال تحقق (validity item).
  * @param validityAnswers إجابات أسئلة التحقق الثلاثة فقط (q_attention_check،
  *   q_help_others_reverse، q_lie_scale)، بنفس مقياس -1/0/1.
  * @param timingsMs زمن الإجابة بالمللي ثانية لكل سؤال (سجلّ فارغ إن لم يُقَس).
  * @param contradictionPairs جدول أزواج التناقض المنطقي القابل للتوسعة.
+ * @param questions بيانات أبعاد الأسئلة المُسجَّلة (اختياري) — إن مُرِّرت
+ *   يُفعَّل فحص اتساق الإجابات داخل كل بُعد (انظر computeDimensionConsistency).
  */
 export function computeValidityRiskScore(
   scoredAnswers: Record<string, number>,
   validityAnswers: Record<string, number>,
   timingsMs: Record<string, number>,
-  contradictionPairs: ContradictionPair[]
+  contradictionPairs: ContradictionPair[],
+  questions?: ScoredQuestionLike[]
 ): ValidityCheckResult {
   const reasons: string[] = [];
   let score = 0;
@@ -70,22 +112,27 @@ export function computeValidityRiskScore(
 
   // 2) مؤشر التناقض المنطقي (يشمل مفهوم "الأشكال المتوازية" أيضاً — أزواج
   //    ذات محتوى متعاكس دلالياً، لا مجرد صياغة شبه مكرَّرة)
-  let ci = 0;
-  const triggered: ContradictionPair[] = [];
-  contradictionPairs.forEach((pair) => {
+  //
+  //    الإصدار السابق كان يُسقِّف المساهمة عند +2 بصرف النظر عن عدد الأزواج
+  //    المُفعَّلة فعلياً (حتى 5 من 5!) — رُصد فعلياً أثناء محاكاة طالب
+  //    متناقض عمداً على كل الأزواج الخمسة أن هذا يُصنَّف "low risk" في 40%
+  //    من الحالات رغم تحذير الطالب بكل الرسائل الخمس على الشاشة. الإصلاح:
+  //    التصعيد يتناسب مع عدد الأزواج المُفعَّلة فعلاً، بحيث يكفي تناقضان
+  //    وحدهما لبلوغ "medium"، وأربعة فأكثر وحدها لبلوغ "high".
+  const triggered: ContradictionPair[] = contradictionPairs.filter((pair) => {
     const va = scoredAnswers[pair.a] ?? 0;
     const vb = scoredAnswers[pair.b] ?? 0;
-    if (va > 0 && vb > 0) {
-      ci += va * vb;
-      triggered.push(pair);
-    }
+    return va > 0 && vb > 0;
   });
-  if (ci >= 2.5) {
-    score += 2;
+  if (triggered.length >= 4) {
+    score += 6;
+    reasons.push("تناقضات منطقية متعددة وقوية بين إجاباتك");
+  } else if (triggered.length >= 2) {
+    score += 3;
     reasons.push("تناقضات منطقية متعددة بين إجاباتك");
-  } else if (ci >= 1.5) {
+  } else if (triggered.length === 1) {
     score += 1;
-    reasons.push("تناقض منطقي واحد على الأقل بين إجاباتك");
+    reasons.push("تناقض منطقي واحد بين إجاباتك");
   }
 
   // 3) أسئلة التحقق المباشرة
@@ -130,6 +177,17 @@ export function computeValidityRiskScore(
     if (avgMs < 1500) {
       score += 2;
       reasons.push("إجابات سريعة جداً قد لا تعكس تفكيراً كافياً بكل سؤال");
+    }
+  }
+
+  // 6) اتساق الإجابات داخل كل بُعد — يكشف الضجيج العشوائي البحت الذي لا
+  // يُنتج "خطاً مستقيماً" ولا موافقة/حياداً مفرطاً (المكوّنان 1 و4 أعلاه)
+  // فيفلت منهما، ولا يعتمد على سؤال تحقق واحد فرصة كشفه بالصدفة 1/3 فقط.
+  if (questions && questions.length > 0) {
+    const consistency = computeDimensionConsistency(scoredAnswers, questions);
+    if (consistency < 0.15) {
+      score += 3;
+      reasons.push("إجاباتك داخل نفس البُعد غير متسقة بشكل ملحوظ (نمط قد يوحي بعدم قراءة الأسئلة بعناية)");
     }
   }
 

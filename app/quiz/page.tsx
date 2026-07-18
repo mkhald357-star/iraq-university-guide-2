@@ -319,7 +319,7 @@ export default function Quiz() {
     const top3 = processedMajors.slice(0, 3);
     const userTopDimensions = topDimensions(userVector, 2);
 
-    const vrs = computeValidityRiskScore(scoredAnswers, validityAnswers, timings, contradictionPairsData);
+    const vrs = computeValidityRiskScore(scoredAnswers, validityAnswers, timings, contradictionPairsData, questionsData);
 
     setWarnings(finalWarnings);
     setTopMajors(top3);

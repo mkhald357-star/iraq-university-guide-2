@@ -210,6 +210,10 @@ export default function Quiz() {
             const branch = (form.elements.namedItem("branch") as HTMLSelectElement).value;
             const gradeType = (form.elements.namedItem("gradeType") as HTMLSelectElement).value as "expected" | "actual";
             const grade = Number((form.elements.namedItem("grade") as HTMLInputElement).value);
+            // بلا هذا، يبقى توقيت "بداية السؤال" عند وقت تحميل الصفحة (قبل
+            // ملء نموذج الفلترة أصلاً)، فيُحتسب زمن ملء النموذج بأكمله
+            // خطأً كجزء من "زمن الإجابة على السؤال الأول" في مؤشر الجدّية.
+            setQuestionShownAt(Date.now());
             setFilterSettings({ province, branch, gradeType, grade });
           }}
         >

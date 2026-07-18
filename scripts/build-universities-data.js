@@ -200,6 +200,32 @@ if (unmatchedUni.size) {
   process.exit(1);
 }
 
+// إصلاح فجوة بيانات حقيقية (2026-07): 488 من أصل 1222 صفاً في جدول الحدود
+// الدنيا (~40%) لا تذكر اسم قسم محدد -- الحد الأدنى فيها مُعلَن على مستوى
+// الكلية كاملة (شائع لكليات الإدارة والاقتصاد: معدل تنافسي موحّد واحد لكل
+// أقسامها: المحاسبة، إدارة الأعمال، الاقتصاد...). getDept أعلاه كانت تضع
+// هذا الحد في "قسم" اصطناعي بلا اسم حقيقي (يحمل اسم الكلية نفسها)، بينما
+// الأقسام الحقيقية (المضافة غالباً من الفصل 3) تبقى بلا أي حد أدنى خاص
+// بها فتظهر خطأً كـ"قبول مباشر" -- رغم أن قسم المحاسبة في جامعة بغداد مثلاً
+// تنافسي فعلياً بنفس حد الكلية (~62-68%)، وليس قبولاً مباشراً إطلاقاً.
+// الحل: نُلحق حدود الكلية المشتركة بكل قسم حقيقي فيها بلا حد خاص، ثم نحذف
+// السجل الاصطناعي (بلا فائدة بعد الإلحاق، وكان يظهر باسم غير مفهوم للطالب).
+for (const u of universities) {
+  for (const college of u._collegesMap.values()) {
+    const collegeLevel = college.departmentsMap.get("__COLLEGE_LEVEL__");
+    if (!collegeLevel || collegeLevel.cutoffs.length === 0) continue;
+    const realDeptsWithoutCutoffs = [...college.departmentsMap.entries()].filter(
+      ([key, d]) => key !== "__COLLEGE_LEVEL__" && d.cutoffs.length === 0
+    );
+    if (realDeptsWithoutCutoffs.length === 0) continue; // لا قسم حقيقي آخر يحتاج الحد -- أبقِ الكلية بلا تغيير
+    realDeptsWithoutCutoffs.forEach(([, d]) => {
+      d.cutoffs.push(...collegeLevel.cutoffs);
+      d.sessions.add("صباحي");
+    });
+    college.departmentsMap.delete("__COLLEGE_LEVEL__");
+  }
+}
+
 const finalUniversities = universities.map((u) => {
   const colleges = [...u._collegesMap.values()].map((c, cIdx) => {
     const departments = [...c.departmentsMap.values()].map((d) => {

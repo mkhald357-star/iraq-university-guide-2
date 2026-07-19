@@ -10,7 +10,7 @@ export default function Home() {
           معدلك ما يحدد مستقبلك!
         </h1>
         <p className="text-xl md:text-2xl text-slate-600 font-light">
-          اكتشف التخصص الجامعي الذي يضمن لك وظيفة تناسب شخصيتك في السوق العراقي في أقل من 5 دقائق.
+          اكتشف التخصص الجامعي الذي يضمن لك وظيفة تناسب شخصيتك في السوق العراقي في أقل من 10 دقائق.
         </p>
         
         <div className="pt-8">
@@ -39,7 +39,7 @@ export default function Home() {
             <Briefcase className="w-8 h-8" />
           </div>
           <h3 className="text-xl font-bold">متوافق مع السوق العراقي</h3>
-          <p className="text-slate-600 text-sm">نحن نأخذ بعين الاعتبار "مُعامل السوق العراقي" لتوجيهك نحو التخصصات المطلوبة فعلياً.</p>
+          <p className="text-slate-600 text-sm">نحن نأخذ بعين الاعتبار &quot;مُعامل السوق العراقي&quot; لتوجيهك نحو التخصصات المطلوبة فعلياً.</p>
         </div>
 
         <div className="glass p-8 rounded-3xl text-center space-y-4">

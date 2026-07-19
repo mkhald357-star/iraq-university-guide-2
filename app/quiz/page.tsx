@@ -97,7 +97,7 @@ function ReviewScreen({
         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mx-auto">
           <CheckCircle className="w-8 h-8 text-emerald-600" />
         </div>
-        <h2 className="text-3xl font-black text-slate-800">مراجعة إجاباتك</h2>
+        <h1 className="text-3xl font-black text-slate-800">مراجعة إجاباتك</h1>
         <p className="text-slate-500">راجع إجاباتك قبل إرسال الاختبار — يمكنك تعديل أي إجابة</p>
       </div>
 
@@ -130,7 +130,7 @@ function ReviewScreen({
 
               {/* النص والإجابة */}
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-400 truncate">{q.text}</p>
+                <p className="text-xs text-slate-500 truncate">{q.text}</p>
                 <p className={`text-sm mt-0.5 ${answered ? colorMap[val] ?? "text-slate-700" : "text-amber-600 font-bold"}`}>
                   {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
                 </p>
@@ -159,7 +159,7 @@ function ReviewScreen({
         </button>
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors mx-auto text-sm"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors mx-auto text-sm"
         >
           <ChevronRight className="w-4 h-4" />
           الرجوع للسؤال الأخير
@@ -193,9 +193,16 @@ export default function Quiz() {
 
   // Clear session on mount
   useEffect(() => {
-    localStorage.removeItem("quizResults");
-    localStorage.removeItem("userAnswers");
-    localStorage.removeItem("filterSettings");
+    // في التصفح الخاص القديم أو عند تعطيل التخزين المحلي من إعدادات
+    // الخصوصية، قد يرمي الوصول إلى localStorage نفسه SecurityError — بلا
+    // try/catch هنا تنهار صفحة الاختبار بأكملها فوراً قبل ظهور أي سؤال.
+    try {
+      localStorage.removeItem("quizResults");
+      localStorage.removeItem("userAnswers");
+      localStorage.removeItem("filterSettings");
+    } catch {
+      // تجاهل — الاختبار يعمل بلا حفظ محلي، أفضل من انهيار كامل.
+    }
   }, []);
 
   // إعادة ضبط "توقيت بداية السؤال" عند كل انتقال — يغذّي مكوّن الزمن في VRS
@@ -206,7 +213,11 @@ export default function Quiz() {
   // Persist filterSettings
   useEffect(() => {
     if (filterSettings) {
-      localStorage.setItem("filterSettings", JSON.stringify(filterSettings));
+      try {
+        localStorage.setItem("filterSettings", JSON.stringify(filterSettings));
+      } catch {
+        // تجاهل (حصة تخزين ممتلئة أو وصول مرفوض) — الحالة تبقى في الذاكرة.
+      }
     }
   }, [filterSettings]);
 
@@ -214,7 +225,7 @@ export default function Quiz() {
   if (!filterSettings) {
     return (
       <div className="max-w-xl mx-auto py-12 space-y-8">
-        <h2 className="text-3xl font-bold text-center text-primary">ابدأ الاختبار</h2>
+        <h1 className="text-3xl font-bold text-center text-primary">ابدأ الاختبار</h1>
         <form
           className="glass p-8 rounded-3xl space-y-6"
           onSubmit={(e) => {
@@ -233,31 +244,31 @@ export default function Quiz() {
         >
           <div>
             <label className="block font-bold mb-2" htmlFor="province">المحافظة</label>
-            <select name="province" className="w-full p-2 border rounded" required>
+            <select id="province" name="province" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
               <option value="">اختر المحافظة</option>
               {AVAILABLE_PROVINCES.map((p) => (
                 <option key={p} value={p}>{p}</option>
               ))}
             </select>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               ملاحظة: محافظات إقليم كردستان (أربيل، دهوك، السليمانية) غير مغطاة بعد — نظام قبول منفصل عن القبول المركزي.
             </p>
           </div>
           <div>
             <label className="block font-bold mb-2" htmlFor="branch">الفرع الدراسي</label>
-            <select name="branch" className="w-full p-2 border rounded" required>
+            <select id="branch" name="branch" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
               <option value="">اختر الفرع</option>
               <option value="علمي">علمي (إحيائي / تطبيقي)</option>
               <option value="أدبي">أدبي</option>
               <option value="فنون">فنون / إبداع</option>
             </select>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-500 mt-1">
               الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك.
             </p>
           </div>
           <div>
             <label className="block font-bold mb-2" htmlFor="gradeType">نوع المعدل</label>
-            <select name="gradeType" className="w-full p-2 border rounded" required>
+            <select id="gradeType" name="gradeType" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
               <option value="expected">معدل متوقع</option>
               <option value="actual">معدل حصل (حقيقي)</option>
             </select>
@@ -265,11 +276,12 @@ export default function Quiz() {
           <div>
             <label className="block font-bold mb-2" htmlFor="grade">المعدل (٪)</label>
             <input
+              id="grade"
               type="number"
               name="grade"
               min="0"
               max="100"
-              className="w-full p-2 border rounded"
+              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="مثال: 78"
               required
             />
@@ -344,9 +356,14 @@ export default function Quiz() {
     setTopUserDimensions(userTopDimensions);
     setVrsResult(vrs);
     setIsFinished(true);
-    localStorage.setItem("quizResults", JSON.stringify(top3));
-    localStorage.setItem("userAnswers", JSON.stringify(scoredAnswers));
-    localStorage.setItem("needsReview", JSON.stringify(vrs.band !== "low"));
+    try {
+      localStorage.setItem("quizResults", JSON.stringify(top3));
+      localStorage.setItem("userAnswers", JSON.stringify(scoredAnswers));
+      localStorage.setItem("needsReview", JSON.stringify(vrs.band !== "low"));
+    } catch {
+      // تجاهل — النتيجة تُعرض من الحالة في الذاكرة بغضّ النظر؛ فقط لن
+      // تُستعاد لاحقاً في صفحة /report إذا أُعيد فتحها في تبويب جديد.
+    }
   };
 
   // ---- معالجة الإجابة ----
@@ -369,7 +386,7 @@ export default function Quiz() {
     return (
       <div className="py-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="text-center space-y-4">
-          <h2 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h2>
+          <h1 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h1>
           <p className="text-lg text-slate-600">
             بناءً على تحليل شخصيتك المهنية عبر أسئلة الاختبار ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
           </p>
@@ -420,37 +437,44 @@ export default function Quiz() {
           {topMajors.map((major, index) => (
             <div
               key={major.id}
-              className="glass p-6 rounded-2xl flex items-center justify-between border-l-4 border-l-primary"
+              className="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
             >
-              <div>
-                <h3 className="text-2xl font-bold text-slate-800">
+              <div className="min-w-0">
+                <h2 className="text-2xl font-bold text-slate-800 break-words">
                   {index + 1}. {major.name}
-                </h3>
+                </h2>
                 <p className="text-slate-500">{major.category}</p>
-                <p className="text-sm text-slate-400 mt-1">معامل الطلب في السوق: {major.marketMultiplier}</p>
+                <p className="text-sm text-slate-500 mt-1">معامل الطلب في السوق: {major.marketMultiplier}</p>
               </div>
-              <div className="text-left">
+              <div className="text-left shrink-0">
                 <div className="text-3xl font-black text-primary">
                   {Math.round(major.fitPercent)}%
                 </div>
-                <div className="text-sm text-slate-400">نسبة التوافق الشخصي</div>
+                <div className="text-sm text-slate-500">نسبة التوافق الشخصي</div>
               </div>
             </div>
           ))}
         </div>
-        <div className="glass p-8 rounded-2xl bg-primary/5 border-primary/20 text-center space-y-4 mt-8">
-          <h3 className="text-xl font-bold text-slate-800">احصل على تحليل الفجوة والجامعات الحكومية</h3>
-          <p className="text-slate-600">
-            يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا التخصص لك.
-          </p>
-          <Link
-            href={`/report?major=${topMajors[0]?.id}`}
-            className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-purple-700 transition-all hover:-translate-y-1"
-          >
-            <span>فتح التقرير الشامل والمفصل</span>
-            <ArrowLeft className="w-5 h-5" />
-          </Link>
-        </div>
+        {topMajors.length > 0 ? (
+          <div className="glass p-8 rounded-2xl bg-primary/5 border-primary/20 text-center space-y-4 mt-8">
+            <h2 className="text-xl font-bold text-slate-800">احصل على تحليل الفجوة والجامعات الحكومية</h2>
+            <p className="text-slate-600">
+              يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا التخصص لك.
+            </p>
+            <Link
+              href={`/report?major=${topMajors[0].id}`}
+              className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-purple-700 transition-all hover:-translate-y-1"
+            >
+              <span>فتح التقرير الشامل والمفصل</span>
+              <ArrowLeft className="w-5 h-5" />
+            </Link>
+          </div>
+        ) : (
+          <div className="glass p-8 rounded-2xl text-center space-y-2 mt-8">
+            <p className="text-slate-600 font-bold">لم نجد تخصصات مطابقة لفرعك الدراسي ضمن بيانات المنصة الحالية.</p>
+            <p className="text-slate-500 text-sm">جرّب إعادة الاختبار، أو تواصل معنا إن استمرت المشكلة.</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -483,7 +507,7 @@ export default function Quiz() {
 
       {/* شريط التقدم */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm font-bold text-slate-400">
+        <div className="flex justify-between text-sm font-bold text-slate-600">
           <span>السؤال {currentQuestionIndex + 1} من {displayedQuestions.length}</span>
           <span>{Math.round(progress)}%</span>
         </div>
@@ -495,14 +519,14 @@ export default function Quiz() {
         </div>
 
         {/* نقاط الخطوات — اضغط على نقطة سابقة للرجوع إليها */}
-        <div className="flex gap-1 mt-1">
+        <div className="flex gap-1.5 mt-1">
           {displayedQuestions.map((_, i) => (
             <button
               key={i}
               onClick={() => i < currentQuestionIndex && setCurrentQuestionIndex(i)}
               disabled={i >= currentQuestionIndex}
               aria-label={`الانتقال لسؤال ${i + 1}`}
-              className={`h-1.5 flex-1 rounded-full transition-all duration-300 ${
+              className={`h-2.5 flex-1 rounded-full transition-all duration-300 ${
                 i < currentQuestionIndex
                   ? "bg-primary cursor-pointer hover:bg-blue-700"
                   : i === currentQuestionIndex
@@ -516,9 +540,9 @@ export default function Quiz() {
 
       {/* بطاقة السؤال */}
       <div className="glass p-8 md:p-12 rounded-3xl text-center space-y-12 animate-in fade-in zoom-in-95 duration-300 min-h-[350px] flex flex-col justify-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
           {question.text}
-        </h2>
+        </h1>
         <div className="flex flex-col gap-4 mt-auto">
           <button
             onClick={() => handleAnswer(1)}
@@ -545,7 +569,7 @@ export default function Quiz() {
       {currentQuestionIndex > 0 && (
         <button
           onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}
-          className="flex items-center gap-2 text-slate-400 hover:text-slate-600 transition-colors mx-auto"
+          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors mx-auto"
         >
           <ChevronRight className="w-4 h-4" />
           السؤال السابق

@@ -90,9 +90,10 @@ function DataFreshnessAlert() {
   const [isStale, setIsStale] = useState(false);
 
   useEffect(() => {
-    // تحقق من تاريخ _meta في الملفات — عدّل هذا التاريخ عند تحديث البيانات
-    const DATA_LAST_UPDATED = "2026-06-27"; // ← غيّر هذا التاريخ عند تحديث ملفات JSON
-    const updated = new Date(DATA_LAST_UPDATED);
+    // يُقرأ مباشرة من data/universities.json (meta.lastUpdated) بدل تاريخ
+    // ثابت مكتوب يدوياً هنا -- كان يُنسى تحديثه مع كل تحديث بيانات فعلي
+    // فيُظهر (أو يُخفي) التنبيه بلا علاقة بحداثة البيانات الحقيقية.
+    const updated = new Date(universitiesData.meta.lastUpdated);
     const days = Math.floor((Date.now() - updated.getTime()) / (1000 * 60 * 60 * 24));
     if (days >= 365) { setIsStale(true); setShow(true); }
     else if (days >= 180) { setIsStale(false); setShow(true); }
@@ -243,12 +244,23 @@ function ReportContent() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const savedAnswers = localStorage.getItem("userAnswers");
-    const savedResults = localStorage.getItem("quizResults");
-    const savedFilters = localStorage.getItem("filterSettings");
-    if (savedAnswers) setUserAnswers(JSON.parse(savedAnswers));
-    if (savedResults) setQuizResults(JSON.parse(savedResults));
-    if (savedFilters) setFilterSettings(JSON.parse(savedFilters));
+    // بيانات localStorage قد تكون تالفة (حصة تخزين ممتلئة، تعديل يدوي، أو
+    // تغيّر شكل البيانات بعد تحديث للموقع بينما لا تزال بيانات جلسة قديمة
+    // محفوظة عند المستخدم) — بلا try/catch هنا كان أي خطأ JSON.parse يسقط
+    // حتى ErrorBoundary العام ويستبدل الصفحة بأكملها برسالة خطأ عامة، بدل
+    // معاملة الحالة كما لو لم يُكمل المستخدم الاختبار أصلاً (حالة مُعالَجة
+    // فعلاً أدناه).
+    try {
+      const savedAnswers = localStorage.getItem("userAnswers");
+      const savedResults = localStorage.getItem("quizResults");
+      const savedFilters = localStorage.getItem("filterSettings");
+      if (savedAnswers) setUserAnswers(JSON.parse(savedAnswers));
+      if (savedResults) setQuizResults(JSON.parse(savedResults));
+      if (savedFilters) setFilterSettings(JSON.parse(savedFilters));
+    } catch {
+      // نتجاهل البيانات التالفة بصمت — الحقول تبقى بقيمها الافتراضية
+      // (نتائج فارغة) فتُعرض شاشة "لم تكمل الاختبار" الطبيعية أدناه.
+    }
     // محاكاة تحميل طفيف لإظهار Skeleton بشكل واضح
     setTimeout(() => setIsLoading(false), 600);
   }, []);
@@ -261,7 +273,7 @@ function ReportContent() {
   if (!major) {
     return (
       <div className="text-center py-20">
-        <h2 className="text-2xl font-bold">التخصص غير موجود أو لم تكمل الاختبار</h2>
+        <h1 className="text-2xl font-bold">التخصص غير موجود أو لم تكمل الاختبار</h1>
         <Link href="/quiz" className="text-primary mt-4 inline-block hover:underline font-bold">
           بدء الاختبار الآن
         </Link>
@@ -460,7 +472,7 @@ return (
               <DollarSign className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-bold text-slate-800">الراتب المتوقع للبداية</h3>
+              <h2 className="font-bold text-slate-800">الراتب المتوقع للبداية</h2>
               <p className="text-emerald-700 font-bold mt-1">{getSalaryRange(primaryMajor?.marketMultiplier)}</p>
             </div>
           </div>
@@ -469,7 +481,7 @@ return (
               <Briefcase className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="font-bold text-slate-800">مجالات وأماكن العمل</h3>
+              <h2 className="font-bold text-slate-800">مجالات وأماكن العمل</h2>
               <p className="text-slate-600 mt-1 text-sm leading-relaxed">
                 شركات القطاع الخاص، المؤسسات الحكومية، العمل الحر، أو الشركات الأجنبية العاملة في العراق.
               </p>
@@ -482,10 +494,10 @@ return (
       <div className="glass p-8 rounded-3xl space-y-6">
         {analyses.map(({ major: m, points }, idx) => (
           <div key={idx} className="mb-6">
-            <h3 className="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+            <h2 className="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
               <span className="w-2 h-2 bg-secondary rounded-full inline-block" />
               {m.name} — {m.category}
-            </h3>
+            </h2>
             <div className="space-y-3">
               {points.map((pt, i) => (
                 <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-50">
@@ -506,27 +518,27 @@ return (
           <div className="flex items-start gap-3 bg-blue-50 border border-blue-200 text-blue-800 p-4 rounded-2xl mb-8">
             <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
             <p className="text-sm">
-              لم نجد هذا التخصص في محافظة "{filterSettings?.province}" تحديداً، فوسّعنا البحث لعموم العراق — الجامعات
+              لم نجد هذا التخصص في محافظة &quot;{filterSettings?.province}&quot; تحديداً، فوسّعنا البحث لعموم العراق — الجامعات
               أدناه قد تكون في محافظات أخرى.
             </p>
           </div>
         )}
 
         <section className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             🏛️ الجامعات الحكومية ({offeringPublic.length})
-          </h3>
+          </h2>
           {offeringPublic.length > 0 ? (
             <UniversitiesTable offerings={offeringPublic} />
           ) : (
-            <EmptyState message="لا توجد جامعات حكورية لهذا التخصص" />
+            <EmptyState message="لا توجد جامعات حكومية لهذا التخصص" />
           )}
         </section>
 
         <section className="mb-12">
-          <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+          <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
             🎓 الجامعات والكليات الأهلية ({offeringPrivate.length})
-          </h3>
+          </h2>
           {offeringPrivate.length > 0 ? (
             <UniversitiesTable offerings={offeringPrivate} />
           ) : (

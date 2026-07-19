@@ -7,6 +7,15 @@
     @apply bg-background text-slate-900 font-cairo antialiased;
     direction: rtl;
   }
+
+  /* مؤشر تركيز واضح لمستخدمي لوحة المفاتيح -- بلا هذا كان التطبيق يعتمد
+     كلياً على outline المتصفح الافتراضي، وهو غير مضمون الظهور بوضوح فوق
+     خلفيات .glass الشفافة/الضبابية المستخدمة في كل بطاقات الموقع. */
+  :focus-visible {
+    outline: 2px solid theme("colors.primary");
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
 }
 
 @layer utilities {
@@ -14,10 +23,6 @@
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
   }
 }
-
-/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   أضف هذا في نهاية ملف app/globals.css الحالي
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 /* أنيميشن Shimmer لمكوّنات Skeleton */
 @keyframes shimmer {

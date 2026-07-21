@@ -200,6 +200,21 @@ const COLLEGE_NAME_ALIASES_BY_DEPT = {
 // كليات مختلفة فعلاً مثل "الطب"/"الطب البيطري")، الفاصل "/" هنا إشارة
 // صريحة ومتعمَّدة من المصدر نفسه لعلاقة "نفس الكيان + مؤهِّل فرعي"، لا
 // تشابه بادئة عرضي -- فتعميمها آمن.
+// نفس قائمة أسماء المدن/الأقضية المستخدمة في scripts/parse-cutoffs.js
+// (يجب إبقاؤهما متطابقتين يدوياً -- لا استيراد مشترك بين السكربتين حالياً)
+// + أسماء ظهرت إضافياً في مصدر الدراسة المسائية تحديداً. تُستخدَم هنا
+// لمنع دمج كليتين لهما نفس الاسم لكن في فرعين/مدينتين مختلفتين فعلياً
+// (اكتُشف بتحقق لاحق: "الكلية التقنية الصحية والطبية" اسم مُكرَّر شرعياً
+// لعدة معاهد حقيقية مختلفة في مدن مختلفة -- دمجها كان سيُخفي حداً حقيقياً
+// منفصلاً لكل فرع، عكس حالة "الكلية X/تخصصات فرعية" حيث اللاحقة تصف تخصصاً
+// فرعياً لا موقعاً جغرافياً، فالدمج هناك صحيح).
+const CAMPUS_QUALIFIERS = new Set([
+  "بغداد", "البصرة", "الموصل", "بابل", "الكوفة", "نينوى", "هيت", "حديثة",
+  "بلد", "القرنة", "الرصافة", "المسيب", "العزيزية", "الشرقاط", "الطارمية",
+  "المقدادية", "سوق الشيوخ", "القائم", "طوزخورماتو", "الدواية", "بعقوبة",
+  "جلولاء", "كربالء", "النجف", "كركوك", "الناصرية", "العمارة", "الحلة",
+]);
+
 function getCollege(uni, collegeName, deptNameForDisambiguation) {
   let resolvedName = collegeName;
   const byDeptRules = COLLEGE_NAME_ALIASES_BY_DEPT[uni.name];
@@ -211,13 +226,19 @@ function getCollege(uni, collegeName, deptNameForDisambiguation) {
     const alias = COLLEGE_NAME_ALIASES[uni.name];
     resolvedName = (alias && alias[collegeName.trim()]) || collegeName;
   }
-  const key = resolvedName.trim();
-  if (uni._collegesMap.has(key)) return uni._collegesMap.get(key);
-  if (key.includes("/")) {
-    const prefix = key.split("/")[0].trim();
-    if (uni._collegesMap.has(prefix)) return uni._collegesMap.get(prefix);
+  let key = resolvedName.trim();
+  // إن كانت اللاحقة بعد "/" مؤهِّلاً تخصصياً/فرعياً لا اسم مدينة (مثال:
+  // "كلية البوليتكنك بغداد/التخصصات الهندسية")، الهوية الكنسية للكلية هي
+  // الجزء السابق دائماً -- بصرف النظر عن ترتيب وصول الصفوف. الاعتماد على
+  // وجود مسبَق للاسم المجرَّد في الخريطة (كما في نسخة سابقة من هذا الإصلاح)
+  // فشل عملياً حين لا يظهر الاسم المجرَّد بلا أي لاحقة في المصدر إطلاقاً
+  // (حالات "بوليتكنك بغداد" الأربع تظهر كلها بلاحقة مختلفة، فلا نسخة
+  // مجرَّدة أصلاً لتُنشأ أولاً ويُدمَج البقية فيها) -- فنطبِّع دائماً بدل
+  // الدمج الشرطي.
+  if (key.includes("/") && !CAMPUS_QUALIFIERS.has(key.split("/")[1]?.trim())) {
+    key = key.split("/")[0].trim();
   }
-  uni._collegesMap.set(key, { name: key, departmentsMap: new Map() });
+  if (!uni._collegesMap.has(key)) uni._collegesMap.set(key, { name: key, departmentsMap: new Map() });
   return uni._collegesMap.get(key);
 }
 

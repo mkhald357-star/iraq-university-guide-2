@@ -71,21 +71,27 @@ for (const rawLine of lines) {
   const tokens = line.split("\t").map((t) => t.trim()).filter((t) => t.length > 0);
   if (tokens.length === 0) continue;
 
-  // Chapter 5 (Kurdistan-region universities, out of scope -- separate
-  // regional admission system) headers use a single-letter sub-chapter
-  // prefix ("و - 1 - جامعة السليمانية") instead of a bare leading number,
-  // so the numeric-header check below never recognizes them as a new
-  // section boundary. Without this check, every subsequent chapter-5 row
-  // (real Kurdistan colleges/departments) kept silently accumulating
-  // under whatever government university happened to be currentUni last
-  // (الجامعة التقنية الجنوبية, the final ORDERED_UNIVERSITIES entry --
-  // confirmed by cross-referencing dalel.full.txt line 5242 against the
-  // built output, e.g. a bogus "المعهد التقني في كويه" [Koya, Kurdistan]
-  // college showing up under a Basra-based technical university). Any
-  // single-letter-prefixed header ("<one Arabic letter> - ...") marks
-  // this same out-of-scope boundary -- verified against the raw text
-  // that no such header legitimately occurs before it.
-  if (uniIndex >= 0 && tokens.length >= 2 && tokens[1] === "-" && /^[ء-ي]$/.test(tokens[0])) {
+  // Every out-of-scope chapter that follows the last government university
+  // (Kurdistan-region universities in chapter "و", *and* -- discovered by
+  // a later full re-audit -- the waqf-affiliated colleges in chapter "هـ"
+  // right after it) opens with a single-letter sub-chapter prefix instead
+  // of a bare leading number, so the numeric-header check below never
+  // recognizes them as a new section boundary. Without this check, every
+  // subsequent out-of-scope row keeps silently accumulating under
+  // whatever government university happened to be currentUni last
+  // (الجامعة التقنية الجنوبية, the final ORDERED_UNIVERSITIES entry).
+  // The first fix here only matched "و - 1 - ..." (tokens[1] a literal
+  // "-"), which missed "هـ" because that letter's header tokenizes with
+  // an extra tatweel cell first ("ه", "ـ", "-", "1", "-", ...) -- confirmed
+  // by a full re-audit that found كلية الامام الكاظم/الاعظم (chapter هـ)
+  // and several Kurdistan cities still leaking into
+  // الجامعة التقنية الجنوبية's college list despite the earlier fix. A
+  // bare data row's first cell is always a row *number* (checked below),
+  // so a lone-Arabic-letter first cell this far into the body can only be
+  // one of these chapter boundaries -- *except* "ت", the literal recurring
+  // table-header cell ("ت الكلية القسم") reprinted at the top of every
+  // page throughout the legitimate body, which must stay excluded here.
+  if (uniIndex >= 0 && tokens[0] !== "ت" && /^[ء-ي]$/.test(tokens[0])) {
     break;
   }
 
@@ -142,6 +148,22 @@ for (const rawLine of lines) {
   // continuation, not a separate word) to the segment before it.
   if (segs.length > 1 && segs[segs.length - 1].length === 1) {
     segs = [...segs.slice(0, -2), segs[segs.length - 2] + segs[segs.length - 1]];
+  }
+
+  // A different variant of the same wrapping problem: the cell boundary
+  // falls one word later than usual, leaving "قسم علم" + "النفس" (should
+  // read "قسم علم النفس") instead of the "قسم" + "علم النفس" shape the
+  // main loop above expects -- so segs[i] here is "قسم <word>", not the
+  // bare "قسم" the NEVER_STANDALONE check matches, and it slips through
+  // untouched. No real department name in this document is ever presented
+  // as a lone trailing fragment right after a "قسم ..."/"كلية ..."
+  // segment, so whenever that shape appears immediately before the final
+  // segment, it is always this same split -- merge them.
+  if (segs.length > 2) {
+    const secondLast = segs[segs.length - 2];
+    if (/^(قسم|كلية)\s/.test(secondLast)) {
+      segs = [...segs.slice(0, -2), `${secondLast} ${segs[segs.length - 1]}`];
+    }
   }
 
   // Safety net: a genuine single-segment (department-less) row should be a

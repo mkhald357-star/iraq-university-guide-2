@@ -149,13 +149,75 @@ const byName = new Map(universities.map((u) => [normKey(u.name), u]));
 // كلية واحدة مبتورة)، بل تصحيح موضعي واحد مُتحقَّق منه بعينه.
 const COLLEGE_NAME_ALIASES = {
   "جامعة الكرخ للعلوم": { "كلية التحسس النائي": "كلية التحسس النائي والجيوفيزياء" },
+  // نفس نمط الالتفاف عبر خليتي جدول، لكن الجزء الضائع هنا كلمة كاملة لا
+  // حرفاً واحداً ("الهندسية"/"الطبي")، ولا يحمل فاصل "/" يلتقطه الإصلاح
+  // العام أعلاه لأن الكلمة الضائعة سبقت الفاصل لا تلته. تحقّقنا يدوياً من
+  // كليهما في data/raw/dalel.full.txt (السطر 5139: "الكلية التقنية
+  // االقسام" + "الهندسية" منفصلتين بخلية عن هذا القسم بالضبط؛ السطر 5156:
+  // "المعهد التقني" + "الطبي" لنفس النمط) قبل الإضافة، بنفس منهج الحالة
+  // الموثَّقة أعلاه -- تصحيح موضعي، لا قاعدة عامة.
+  "الجامعة التقنية الجنوبية": {
+    "الكلية التقنية االقسام": "الكلية التقنية االقسام الهندسية",
+    "المعهد التقني": "المعهد التقني الطبي",
+  },
+  // هنا نفس عطل الكلمة الضائعة أنتج مفتاحاً مبتوراً واحداً ("كلية العلوم")
+  // يخصّ فعلياً كليتين حقيقيتين مختلفتين كلياً (التطبيقية والإسلامية) --
+  // القسم المرافق وحده يميّز أيّهما، فلا يكفي هنا استبدال بسيط بنص واحد؛
+  // انظر منطق الحل الخاص بالقسم أسفل getCollege.
+  "جامعة سامراء": {
+    "كلية التربية": "كلية التربية للعلوم الصرفة",
+  },
+  // نفس نمط "كلمة كاملة ضائعة من اسم الكلية بلا فاصل '/'" (السطر 4291:
+  // "كلية اقتصاديات" + "االعمال" في خليتين منفصلتين لصف حصة "اقتصاديات
+  // ادارة االستثمار واالعمال" فقط، بينما صفّا "اقتصاديات ادارة المصارف"
+  // و"الرقابة المحاسبية والمالية" المجاوران يحملان الاسم الكامل الصحيح
+  // "كلية اقتصاديات االعمال" بلا انقسام).
+  "جامعة النهرين": {
+    "كلية اقتصاديات": "كلية اقتصاديات االعمال",
+  },
 };
 
-function getCollege(uni, collegeName) {
-  const alias = COLLEGE_NAME_ALIASES[uni.name];
-  const resolvedName = (alias && alias[collegeName.trim()]) || collegeName;
+// حالات نادرة إضافية حيث المفتاح المبتور نفسه يخصّ أكثر من كلية حقيقية،
+// فيلزم النظر في اسم القسم المرافق لا اسم الكلية وحده للتمييز بينها
+// (تحقّقنا يدوياً من كليهما في data/raw/dalel.full.txt: السطر 4612 "كلية
+// العلوم / التطبيقية / قسم التقانات الاحيائية" والسطر 4637 "كلية العلوم /
+// االسالمية / قسم العقيدة والفكر االسالمي" -- نفس المفتاح المبتور "كلية
+// العلوم" لكليتين مختلفتين فعلاً).
+const COLLEGE_NAME_ALIASES_BY_DEPT = {
+  "جامعة سامراء": [
+    { collegeKey: "كلية العلوم", deptContains: "التقانات االحيائية", target: "كلية العلوم التطبيقية" },
+    { collegeKey: "كلية العلوم", deptContains: "العقيدة", target: "كلية العلوم االسالمية" },
+  ],
+};
+
+// إصلاح فجوة بيانات مرتبطة أوسع (اكتُشفت بتدقيق شامل لاحق، 2026-07-21):
+// نفس الكلية الحقيقية تُكتب أحياناً باسمها المجرَّد في مصدر الحدود الدنيا
+// ("الكلية التقنية الشطرة") وباسم يحمل لاحقة "/فرع-أو-تخصص-فرعي" في مصدر
+// الدراسة المسائية ("الكلية التقنية الشطرة/الاقسام الهندسية") -- فتُنشئ
+// كليتين منفصلتين لكيان واحد، والأخطر أن معدلها المسائي يعلَق في الكلية
+// المكرَّرة بلا أقسام حقيقية بدل أن يصل قسمها الحقيقي. خلافاً لمحاولة
+// تعميم مطابقة البادئات المجرَّدة (رُفضت أعلاه لأنها تُنتج نتائج كاذبة بين
+// كليات مختلفة فعلاً مثل "الطب"/"الطب البيطري")، الفاصل "/" هنا إشارة
+// صريحة ومتعمَّدة من المصدر نفسه لعلاقة "نفس الكيان + مؤهِّل فرعي"، لا
+// تشابه بادئة عرضي -- فتعميمها آمن.
+function getCollege(uni, collegeName, deptNameForDisambiguation) {
+  let resolvedName = collegeName;
+  const byDeptRules = COLLEGE_NAME_ALIASES_BY_DEPT[uni.name];
+  const byDeptRule = byDeptRules && deptNameForDisambiguation &&
+    byDeptRules.find((r) => r.collegeKey === collegeName.trim() && deptNameForDisambiguation.includes(r.deptContains));
+  if (byDeptRule) {
+    resolvedName = byDeptRule.target;
+  } else {
+    const alias = COLLEGE_NAME_ALIASES[uni.name];
+    resolvedName = (alias && alias[collegeName.trim()]) || collegeName;
+  }
   const key = resolvedName.trim();
-  if (!uni._collegesMap.has(key)) uni._collegesMap.set(key, { name: key, departmentsMap: new Map() });
+  if (uni._collegesMap.has(key)) return uni._collegesMap.get(key);
+  if (key.includes("/")) {
+    const prefix = key.split("/")[0].trim();
+    if (uni._collegesMap.has(prefix)) return uni._collegesMap.get(prefix);
+  }
+  uni._collegesMap.set(key, { name: key, departmentsMap: new Map() });
   return uni._collegesMap.get(key);
 }
 
@@ -180,7 +242,7 @@ let unmatchedUni = new Set();
 for (const row of cutoffs) {
   const uni = byName.get(normKey(row.university));
   if (!uni) { unmatchedUni.add(row.university); continue; }
-  const college = getCollege(uni, row.college);
+  const college = getCollege(uni, row.college, row.department);
   const dept = getDept(college, row.department, row.college);
   dept.sessions.add("صباحي");
   dept.cutoffs.push({ branch: row.branch, gender: row.gender, averagePercent: row.averagePercent, isQuota: row.isQuota });
@@ -189,7 +251,7 @@ for (const row of cutoffs) {
 for (const row of evening) {
   const uni = byName.get(normKey(row.university));
   if (!uni) { unmatchedUni.add(row.university); continue; }
-  const college = getCollege(uni, row.college);
+  const college = getCollege(uni, row.college, row.department);
   const dept = getDept(college, row.department, row.college);
   dept.sessions.add("مسائي");
   const grade = eveningMinGradeFor(row.college);

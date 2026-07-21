@@ -1,53 +1,488 @@
 [
-  { "id": "software_engineering", "name": "هندسة البرمجيات", "category": "تكنولوجيا", "marketMultiplier": 1.5 },
-  { "id": "ai", "name": "الذكاء الاصطناعي", "category": "تكنولوجيا", "marketMultiplier": 1.5 },
-  { "id": "cybersecurity", "name": "الأمن السيبراني", "category": "تكنولوجيا", "marketMultiplier": 1.4 },
-  { "id": "computer_science", "name": "علوم الحاسوب", "category": "تكنولوجيا", "marketMultiplier": 1.2 },
-  { "id": "digital_marketing", "name": "التسويق الرقمي", "category": "إدارة وتسويق", "marketMultiplier": 1.4 },
-  { "id": "business_admin", "name": "إدارة الأعمال", "category": "إدارة وتسويق", "marketMultiplier": 1.1 },
-  { "id": "accounting", "name": "المحاسبة", "category": "إدارة وتسويق", "marketMultiplier": 1.0 },
-  { "id": "medicine", "name": "الطب العام", "category": "طبي", "marketMultiplier": 1.2 },
-  { "id": "dentistry", "name": "طب الأسنان", "category": "طبي", "marketMultiplier": 0.8 },
-  { "id": "pharmacy", "name": "الصيدلة", "category": "طبي", "marketMultiplier": 0.7 },
-  { "id": "nursing", "name": "التمريض", "category": "طبي", "marketMultiplier": 1.3 },
-  { "id": "medical_analysis", "name": "التحليلات المرضية", "category": "طبي", "marketMultiplier": 1.1 },
-  { "id": "civil_engineering", "name": "الهندسة المدنية", "category": "هندسة", "marketMultiplier": 0.9 },
-  { "id": "architecture", "name": "هندسة العمارة", "category": "هندسة", "marketMultiplier": 0.8 },
-  { "id": "renewable_energy", "name": "هندسة الطاقة المتجددة", "category": "هندسة", "marketMultiplier": 1.3 },
-  { "id": "petroleum_engineering", "name": "هندسة النفط", "category": "هندسة", "marketMultiplier": 0.9 },
-  { "id": "law", "name": "القانون", "category": "إنسانيات", "marketMultiplier": 0.6 },
-  { "id": "political_science", "name": "العلوم السياسية", "category": "إنسانيات", "marketMultiplier": 0.5 },
-  { "id": "english", "name": "اللغة الإنجليزية / الترجمة", "category": "لغات", "marketMultiplier": 1.1 },
-  { "id": "education", "name": "التربية (معلم)", "category": "تربية", "marketMultiplier": 0.8 },
-  { "id": "graphic_design", "name": "التصميم الجرافيكي", "category": "فنون وتصميم", "marketMultiplier": 1.2 },
-  { "id": "interior_design", "name": "التصميم الداخلي", "category": "فنون وتصميم", "marketMultiplier": 1.1 },
-  { "id": "project_management", "name": "إدارة المشاريع", "category": "إدارة وتسويق", "marketMultiplier": 1.3 },
-
-  { "id": "mechanical_engineering", "name": "الهندسة الميكانيكية", "category": "هندسة", "marketMultiplier": 1.0 },
-  { "id": "electrical_engineering", "name": "هندسة الكهرباء", "category": "هندسة", "marketMultiplier": 1.1 },
-  { "id": "chemical_engineering", "name": "الهندسة الكيمياوية", "category": "هندسة", "marketMultiplier": 1.0 },
-  { "id": "mechatronics_engineering", "name": "هندسة الميكاترونكس", "category": "هندسة", "marketMultiplier": 1.2 },
-  { "id": "biomedical_engineering", "name": "هندسة الطب الحياتي", "category": "هندسة", "marketMultiplier": 1.1 },
-
-  { "id": "mathematics", "name": "الرياضيات", "category": "علوم", "marketMultiplier": 0.9 },
-  { "id": "physics", "name": "الفيزياء", "category": "علوم", "marketMultiplier": 0.8 },
-  { "id": "chemistry", "name": "الكيمياء", "category": "علوم", "marketMultiplier": 0.8 },
-  { "id": "biology", "name": "علوم الحياة", "category": "علوم", "marketMultiplier": 0.8 },
-  { "id": "geography", "name": "الجغرافية", "category": "إنسانيات", "marketMultiplier": 0.6 },
-  { "id": "history", "name": "التاريخ", "category": "إنسانيات", "marketMultiplier": 0.5 },
-
-  { "id": "agriculture", "name": "علوم الهندسة الزراعية", "category": "زراعة", "marketMultiplier": 0.9 },
-  { "id": "veterinary_medicine", "name": "الطب البيطري", "category": "طبي", "marketMultiplier": 0.9 },
-
-  { "id": "islamic_studies", "name": "العلوم الإسلامية", "category": "إنسانيات", "marketMultiplier": 0.6 },
-  { "id": "arabic_language", "name": "اللغة العربية وآدابها", "category": "لغات", "marketMultiplier": 0.7 },
-  { "id": "translation", "name": "الترجمة", "category": "لغات", "marketMultiplier": 1.0 },
-  { "id": "media_journalism", "name": "الإعلام", "category": "إنسانيات", "marketMultiplier": 0.9 },
-
-  { "id": "fine_arts", "name": "الفنون الجميلة", "category": "فنون وتصميم", "marketMultiplier": 0.8 },
-  { "id": "kindergarten_education", "name": "رياض الأطفال", "category": "تربية", "marketMultiplier": 0.9 },
-  { "id": "physical_education", "name": "التربية البدنية وعلوم الرياضة", "category": "تربية", "marketMultiplier": 0.8 },
-  { "id": "forensic_science", "name": "الأدلة الجنائية", "category": "طبي", "marketMultiplier": 1.1 },
-  { "id": "tourism_hospitality", "name": "العلوم السياحية والفندقية", "category": "إدارة وتسويق", "marketMultiplier": 0.9 },
-  { "id": "psychology_sociology", "name": "علم النفس والاجتماع", "category": "إنسانيات", "marketMultiplier": 0.7 }
+  {
+    "id": "software_engineering",
+    "name": "هندسة البرمجيات",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.5
+  },
+  {
+    "id": "ai",
+    "name": "الذكاء الاصطناعي",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.5
+  },
+  {
+    "id": "cybersecurity",
+    "name": "الأمن السيبراني",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.4
+  },
+  {
+    "id": "computer_science",
+    "name": "علوم الحاسوب",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "digital_marketing",
+    "name": "التسويق الرقمي",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1.4
+  },
+  {
+    "id": "business_admin",
+    "name": "إدارة الأعمال",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "accounting",
+    "name": "المحاسبة",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "medicine",
+    "name": "الطب العام",
+    "category": "طبي",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "dentistry",
+    "name": "طب الأسنان",
+    "category": "طبي",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "pharmacy",
+    "name": "الصيدلة",
+    "category": "طبي",
+    "marketMultiplier": 0.7
+  },
+  {
+    "id": "nursing",
+    "name": "التمريض",
+    "category": "طبي",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "medical_analysis",
+    "name": "التحليلات المرضية",
+    "category": "طبي",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "civil_engineering",
+    "name": "الهندسة المدنية",
+    "category": "هندسة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "architecture",
+    "name": "هندسة العمارة",
+    "category": "هندسة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "renewable_energy",
+    "name": "هندسة الطاقة المتجددة",
+    "category": "هندسة",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "petroleum_engineering",
+    "name": "هندسة النفط",
+    "category": "هندسة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "law",
+    "name": "القانون",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.6
+  },
+  {
+    "id": "political_science",
+    "name": "العلوم السياسية",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.5
+  },
+  {
+    "id": "english",
+    "name": "اللغة الإنجليزية / الترجمة",
+    "category": "لغات",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "education",
+    "name": "التربية (معلم)",
+    "category": "تربية",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "graphic_design",
+    "name": "التصميم الجرافيكي",
+    "category": "فنون وتصميم",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "interior_design",
+    "name": "التصميم الداخلي",
+    "category": "فنون وتصميم",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "project_management",
+    "name": "إدارة المشاريع",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "mechanical_engineering",
+    "name": "الهندسة الميكانيكية",
+    "category": "هندسة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "electrical_engineering",
+    "name": "هندسة الكهرباء",
+    "category": "هندسة",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "chemical_engineering",
+    "name": "الهندسة الكيمياوية",
+    "category": "هندسة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "mechatronics_engineering",
+    "name": "هندسة الميكاترونكس",
+    "category": "هندسة",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "biomedical_engineering",
+    "name": "هندسة الطب الحياتي",
+    "category": "هندسة",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "mathematics",
+    "name": "الرياضيات",
+    "category": "علوم",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "physics",
+    "name": "الفيزياء",
+    "category": "علوم",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "chemistry",
+    "name": "الكيمياء",
+    "category": "علوم",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "biology",
+    "name": "علوم الحياة",
+    "category": "علوم",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "geography",
+    "name": "الجغرافية",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.6
+  },
+  {
+    "id": "history",
+    "name": "التاريخ",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.5
+  },
+  {
+    "id": "agriculture",
+    "name": "علوم الهندسة الزراعية",
+    "category": "زراعة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "veterinary_medicine",
+    "name": "الطب البيطري",
+    "category": "طبي",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "islamic_studies",
+    "name": "العلوم الإسلامية",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.6
+  },
+  {
+    "id": "arabic_language",
+    "name": "اللغة العربية وآدابها",
+    "category": "لغات",
+    "marketMultiplier": 0.7
+  },
+  {
+    "id": "translation",
+    "name": "الترجمة",
+    "category": "لغات",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "media_journalism",
+    "name": "الإعلام",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "fine_arts",
+    "name": "الفنون الجميلة",
+    "category": "فنون وتصميم",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "kindergarten_education",
+    "name": "رياض الأطفال",
+    "category": "تربية",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "physical_education",
+    "name": "التربية البدنية وعلوم الرياضة",
+    "category": "تربية",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "forensic_science",
+    "name": "الأدلة الجنائية",
+    "category": "طبي",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "tourism_hospitality",
+    "name": "العلوم السياحية والفندقية",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "psychology_sociology",
+    "name": "علم النفس والاجتماع",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.7
+  },
+  {
+    "id": "radiology_tech",
+    "name": "تقنيات الأشعة والتصوير الطبي",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "anesthesia_critical_care_tech",
+    "name": "تقنيات التخدير والعناية الحرجة",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "rehab_therapy_tech",
+    "name": "تقنيات العلاج الوظيفي وتأهيل التوحد",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "prosthetics_tech",
+    "name": "تقنيات الأطراف الصناعية والتعويضات",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "emergency_medical_tech",
+    "name": "تقنيات الإسعاف الفوري والطوارئ",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "optometry_audiology_tech",
+    "name": "تقنيات البصريات والسمع والنطق",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "reproductive_health_tech",
+    "name": "تقنيات صحة الإنجاب والقبالة",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "community_nutrition_health_tech",
+    "name": "تقنيات التغذية وصحة المجتمع",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "cosmetic_science_tech",
+    "name": "تقنيات علوم التجميل والليزر",
+    "category": "تقنيات طبية مساندة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "aerospace_engineering",
+    "name": "هندسة الطيران والطائرات المسيرة",
+    "category": "هندسة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "laser_optoelectronics_engineering",
+    "name": "هندسة الليزر والإلكترونيات البصرية",
+    "category": "هندسة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "mining_engineering",
+    "name": "هندسة التعدين",
+    "category": "هندسة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "industrial_engineering",
+    "name": "الهندسة الصناعية وتقنيات التصنيع",
+    "category": "هندسة",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "control_automation_engineering",
+    "name": "هندسة النظم والسيطرة والأتمتة",
+    "category": "هندسة",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "communications_engineering",
+    "name": "هندسة الاتصالات",
+    "category": "هندسة",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "automotive_engineering",
+    "name": "هندسة تقنيات السيارات",
+    "category": "هندسة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "geomatics_surveying_engineering",
+    "name": "هندسة المساحة والجيوماتيك",
+    "category": "هندسة",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "urban_regional_planning_engineering",
+    "name": "هندسة التخطيط الحضري والإقليمي",
+    "category": "هندسة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "materials_engineering",
+    "name": "هندسة المواد",
+    "category": "هندسة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "refrigeration_ac_engineering",
+    "name": "هندسة تقنيات التبريد والتكييف",
+    "category": "هندسة",
+    "marketMultiplier": 1.3
+  },
+  {
+    "id": "environmental_engineering",
+    "name": "الهندسة البيئية",
+    "category": "هندسة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "geology_earth_science",
+    "name": "علوم الأرض والجيولوجيا",
+    "category": "علوم",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "astronomy_space_science",
+    "name": "الفلك وعلوم الفضاء",
+    "category": "علوم",
+    "marketMultiplier": 0.6
+  },
+  {
+    "id": "data_science",
+    "name": "علم البيانات",
+    "category": "علوم",
+    "marketMultiplier": 1.4
+  },
+  {
+    "id": "plant_crop_production",
+    "name": "الإنتاج النباتي والمحاصيل",
+    "category": "زراعة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "animal_livestock_science",
+    "name": "الثروة الحيوانية والإنتاج الحيواني",
+    "category": "زراعة",
+    "marketMultiplier": 0.85
+  },
+  {
+    "id": "water_resources_forestry",
+    "name": "الموارد المائية والغابات",
+    "category": "زراعة",
+    "marketMultiplier": 1
+  },
+  {
+    "id": "food_science_nutrition",
+    "name": "علوم الأغذية والتغذية",
+    "category": "زراعة",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "archaeology",
+    "name": "الآثار والحضارة القديمة",
+    "category": "إنسانيات",
+    "marketMultiplier": 0.5
+  },
+  {
+    "id": "foreign_languages_other",
+    "name": "لغات أجنبية أخرى (تركية/روسية/فارسية/فرنسية/كردية)",
+    "category": "لغات",
+    "marketMultiplier": 0.6
+  },
+  {
+    "id": "music_performing_arts",
+    "name": "الموسيقى والفنون الأدائية",
+    "category": "فنون وتصميم",
+    "marketMultiplier": 0.5
+  },
+  {
+    "id": "special_education",
+    "name": "التربية الخاصة",
+    "category": "تربية",
+    "marketMultiplier": 0.7
+  },
+  {
+    "id": "information_systems",
+    "name": "نظم المعلومات الإدارية",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "financial_banking",
+    "name": "العلوم المالية والمصرفية",
+    "category": "إدارة وتسويق",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "industrial_craft_design",
+    "name": "التصميم الصناعي والحرفي",
+    "category": "فنون وتصميم",
+    "marketMultiplier": 0.75
+  }
 ]

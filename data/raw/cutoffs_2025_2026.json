@@ -4078,8 +4078,10 @@
   {
     "university": "جامعة االنبار",
     "college": "كلية العلوم التطبيقية",
-    "department": "هيت",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "هيت"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -5842,8 +5844,10 @@
   {
     "university": "جامعة سامراء",
     "college": "كلية الزراعة",
-    "department": "بلد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بلد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -6070,8 +6074,10 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية االدارة واالقتصاد",
-    "department": "القرنة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القرنة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -6274,8 +6280,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية االدارة واالقتصاد",
-    "department": "الشرقاط",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الشرقاط"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -6478,8 +6486,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية االدارة واالقتصاد",
-    "department": "الشرقاط",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الشرقاط"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -6550,8 +6560,10 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية االدارة واالقتصاد",
-    "department": "القرنة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القرنة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -7190,8 +7202,10 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية التربية",
-    "department": "القرنة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القرنة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -7758,8 +7772,10 @@
   {
     "university": "جامعة االنبار",
     "college": "كلية التربية",
-    "department": "القائم",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القائم"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -7866,8 +7882,10 @@
   {
     "university": "الجامعة العراقية",
     "college": "كلية التربية",
-    "department": "الطارمية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الطارمية"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -8034,8 +8052,10 @@
   {
     "university": "جامعة ديالى",
     "college": "كلية التربية المقداد",
-    "department": "المقدادية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "المقدادية"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -8094,8 +8114,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية التربية",
-    "department": "طوزخورماتو",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "طوزخورماتو"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -8118,8 +8140,10 @@
   {
     "university": "جامعة البصرة",
     "college": "كلية التربية",
-    "department": "القرنة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القرنة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -8178,8 +8202,10 @@
   {
     "university": "جامعة ديالى",
     "college": "كلية التربية المقداد",
-    "department": "المقدادية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "المقدادية"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -8238,8 +8264,10 @@
   {
     "university": "جامعة االنبار",
     "college": "كلية التربية",
-    "department": "القائم",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "القائم"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -8334,8 +8362,10 @@
   {
     "university": "الجامعة العراقية",
     "college": "كلية التربية",
-    "department": "الطارمية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الطارمية"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -8538,8 +8568,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية التربية",
-    "department": "طوزخورماتو",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "طوزخورماتو"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -9580,8 +9612,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية التربية األساسية",
-    "department": "الشرقاط",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الشرقاط"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -9604,8 +9638,10 @@
   {
     "university": "جامعة واسط",
     "college": "كلية التربية األساسية",
-    "department": "العزيزية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "العزيزية"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -9812,8 +9848,10 @@
   {
     "university": "جامعة االنبار",
     "college": "كلية التربية األساسية",
-    "department": "حديثة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "حديثة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -9928,8 +9966,10 @@
   {
     "university": "جامعة االنبار",
     "college": "كلية التربية األساسية",
-    "department": "حديثة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "حديثة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -10048,8 +10088,10 @@
   {
     "university": "جامعة واسط",
     "college": "كلية التربية األساسية",
-    "department": "العزيزية",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "العزيزية"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -10098,8 +10140,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية التربية األساسية",
-    "department": "الشرقاط",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الشرقاط"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -10194,8 +10238,10 @@
   {
     "university": "جامعة ذي قار",
     "college": "كلية االثار",
-    "department": "سوق الشيوخ",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "سوق الشيوخ"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -10242,8 +10288,10 @@
   {
     "university": "جامعة ذي قار",
     "college": "كلية االثار",
-    "department": "سوق الشيوخ",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "سوق الشيوخ"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -10254,8 +10302,10 @@
   {
     "university": "جامعة ذي قار",
     "college": "كلية االثار",
-    "department": "سوق الشيوخ",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "سوق الشيوخ"
+    ],
     "isQuota": false,
     "branch": "فنون",
     "gender": "مختلط",
@@ -10626,8 +10676,10 @@
   {
     "university": "جامعة تكريت",
     "college": "كلية علوم االغذية",
-    "department": "الشرقاط",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الشرقاط"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -11094,8 +11146,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "كلية التقنيات الصحية والطبية",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -11134,8 +11188,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية الصحية والطبية",
-    "department": "الكوفة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الكوفة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -11146,8 +11202,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية الصحية والطبية",
-    "department": "بابل",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بابل"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -11312,8 +11370,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية االقسام الطبية",
-    "department": "المسيب",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "المسيب"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -11352,8 +11412,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "كلية تقنيات التاهيل الطبي واالطراف الصناعية",
-    "department": "الكوفة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الكوفة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12624,8 +12686,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية االقسام الزراعية",
-    "department": "المسيب",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "المسيب"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12636,8 +12700,10 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية الزراعية",
-    "department": "الموصل",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الموصل"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12648,8 +12714,10 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "الكلية التقنية االدارية",
-    "department": "البصرة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "البصرة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12674,9 +12742,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "الكلية التقنية االدارية",
-    "department": "الرصافة",
+    "department": null,
     "qualifiers": [
-      "بغداد"
+      "بغداد",
+      "الرصافة"
     ],
     "isQuota": false,
     "branch": "علمي",
@@ -12702,8 +12771,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية االدارية",
-    "department": "الكوفة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الكوفة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -12742,8 +12813,10 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية االدارية",
-    "department": "الموصل",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الموصل"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -12766,9 +12839,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "الكلية التقنية االدارية",
-    "department": "الرصافة",
+    "department": null,
     "qualifiers": [
-      "بغداد"
+      "بغداد",
+      "الرصافة"
     ],
     "isQuota": false,
     "branch": "أدبي",
@@ -12794,8 +12868,10 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "الكلية التقنية االدارية",
-    "department": "الموصل",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الموصل"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12806,8 +12882,10 @@
   {
     "university": "جامعة الفرات االوسط التقنية",
     "college": "الكلية التقنية االدارية",
-    "department": "الكوفة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الكوفة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -12818,8 +12896,10 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "الكلية التقنية االدارية",
-    "department": "البصرة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "البصرة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -14142,8 +14222,10 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعهد التقني التكنولوجي",
-    "department": "البصرة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "البصرة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -14190,8 +14272,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد التكنلوجيا",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -14448,8 +14532,10 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعهد التقني االداري",
-    "department": "البصرة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "البصرة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -14526,8 +14612,10 @@
   {
     "university": "الجامعة التقنية الجنوبية",
     "college": "المعهد التقني االداري",
-    "department": "البصرة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "البصرة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -14696,8 +14784,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد االدارة",
-    "department": "الرصافة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الرصافة"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -14744,8 +14834,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد االدارة التقني",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -14820,8 +14912,10 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "معهد االدارة التقني",
-    "department": "نينوى",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "نينوى"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -14856,8 +14950,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد االدارة التقني",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -14952,8 +15048,10 @@
   {
     "university": "الجامعة التقنية الشمالية",
     "college": "معهد االدارة التقني",
-    "department": "نينوى",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "نينوى"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -14964,8 +15062,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد االدارة",
-    "department": "الرصافة",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "الرصافة"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -15028,8 +15128,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد الفنون التطبيقية",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",
@@ -15068,8 +15170,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد الفنون التطبيقية",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "أدبي",
     "gender": "مختلط",
@@ -15080,8 +15184,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد الفنون التطبيقية",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "فنون",
     "gender": "مختلط",
@@ -15120,8 +15226,10 @@
   {
     "university": "الجامعة التقنية الوسطى",
     "college": "معهد اعداد المدربين التقنيين",
-    "department": "بغداد",
-    "qualifiers": [],
+    "department": null,
+    "qualifiers": [
+      "بغداد"
+    ],
     "isQuota": false,
     "branch": "علمي",
     "gender": "مختلط",

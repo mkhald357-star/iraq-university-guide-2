@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-18",
+    "lastUpdated": "2026-07-20",
     "source": "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
     "sourceFiles": [
       "dalel_2025_22026.pdf",
@@ -5478,35 +5478,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "القرنة",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 68.29,
-                  "isQuota": false
-                },
-                {
-                  "branch": "أدبي",
-                  "gender": "مختلط",
-                  "averagePercent": 60,
-                  "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 60,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
               "name": "قسم ادارة االعمال",
               "branch": [
                 "علمي",
@@ -5524,14 +5495,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5554,14 +5537,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5584,14 +5579,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5614,14 +5621,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5644,14 +5663,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5674,14 +5705,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -5704,14 +5747,26 @@
                   "isQuota": false
                 },
                 {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 68.29,
+                  "isQuota": false
+                },
+                {
                   "branch": "أدبي",
                   "gender": "مختلط",
                   "averagePercent": 60.71,
                   "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
                 }
               ],
               "averageGrades": {
-                "صباحي": 60.71,
+                "صباحي": 60,
                 "مسائي": 58
               },
               "isDirectAdmission": false
@@ -6013,12 +6068,13 @@
               "isDirectAdmission": false
             },
             {
-              "name": "القرنة",
+              "name": "قسم الكيمياء",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -6037,48 +6093,69 @@
               ],
               "averageGrades": {
                 "صباحي": 61.71,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم الكيمياء",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم علوم الحياة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 71.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 61.71,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 61.71,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم اللغة العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 71.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 61.71,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 61.71,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -14242,12 +14319,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الشرقاط",
+              "name": "قسم ادارة االعمال",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -14262,25 +14340,7 @@
                   "gender": "مختلط",
                   "averagePercent": 60,
                   "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 60,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "قسم ادارة االعمال",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "مسائي",
-                "صباحي"
-              ],
-              "cutoffs": [
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -14314,6 +14374,18 @@
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
+                  "averagePercent": 61.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
                   "averagePercent": 60,
                   "isQuota": false
                 },
@@ -14341,6 +14413,18 @@
                 "صباحي"
               ],
               "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 61.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -14374,6 +14458,18 @@
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
+                  "averagePercent": 61.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
                   "averagePercent": 60,
                   "isQuota": false
                 },
@@ -14404,6 +14500,18 @@
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
+                  "averagePercent": 61.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
                   "averagePercent": 60,
                   "isQuota": false
                 },
@@ -14431,6 +14539,18 @@
                 "صباحي"
               ],
               "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 61.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                },
                 {
                   "branch": "علمي",
                   "gender": "مختلط",
@@ -15051,12 +15171,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طوزخورماتو",
+              "name": "قسم الفيزياء",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -15075,74 +15196,129 @@
               ],
               "averageGrades": {
                 "صباحي": 60,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم الفيزياء",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم علوم الحياة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم الرياضيات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم اللغة العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم الكيمياء",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -15428,12 +15604,13 @@
               "isDirectAdmission": false
             },
             {
-              "name": "الشرقاط",
+              "name": "قسم اللغة العربية",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -15452,61 +15629,99 @@
               ],
               "averageGrades": {
                 "صباحي": 60,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم اللغة العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم التربية االسالمية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم الرياضيات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم العلوم",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -15703,7 +15918,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الشرقاط",
+              "name": "علوم االغذية",
               "branch": [
                 "علمي"
               ],
@@ -18162,11 +18377,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "هيت",
+              "name": "قسم الكيمياء التطبيقية",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -18179,48 +18395,55 @@
               ],
               "averageGrades": {
                 "صباحي": 63,
-                "مسائي": null
+                "مسائي": 60
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم الكيمياء التطبيقية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 60
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم البيئة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 63,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 63,
                 "مسائي": 60
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم الفيزياء الطبية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 63,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 63,
                 "مسائي": 60
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -18890,12 +19113,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "القائم",
+              "name": "العربية",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -18914,48 +19138,69 @@
               ],
               "averageGrades": {
                 "صباحي": 60.14,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم علوم القران والتربية االسالمية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 65.71,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم التاريد",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 65.71,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -19250,12 +19495,13 @@
               "isDirectAdmission": false
             },
             {
-              "name": "حديثة",
+              "name": "قسم اللغة العربية",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -19274,35 +19520,39 @@
               ],
               "averageGrades": {
                 "صباحي": 60.43,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم اللغة العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم العلوم",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -19994,7 +20244,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الطارمية",
+              "name": "التربية",
               "branch": [
                 "علمي",
                 "أدبي"
@@ -23393,7 +23643,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "المقدادية",
+              "name": "التربية المقداد",
               "branch": [
                 "علمي",
                 "أدبي"
@@ -26366,7 +26616,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "سوق الشيوخ",
+              "name": "االثار",
               "branch": [
                 "علمي",
                 "أدبي",
@@ -29547,35 +29797,6 @@
               "isDirectAdmission": false
             },
             {
-              "name": "العزيزية",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 64.14,
-                  "isQuota": false
-                },
-                {
-                  "branch": "أدبي",
-                  "gender": "مختلط",
-                  "averagePercent": 60,
-                  "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 60,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
               "name": "قسم رياض االطفال",
               "branch": [
                 "علمي",
@@ -29606,55 +29827,123 @@
             },
             {
               "name": "قسم اللغة العربية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم التأريد",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم الجغرافية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم العلوم",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 64.14,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -32204,11 +32493,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بلد",
+              "name": "قسم المحاصيل الحقلية",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -32221,48 +32511,55 @@
               ],
               "averageGrades": {
                 "صباحي": 55.14,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم المحاصيل الحقلية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم البستنة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم علوم االغذية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -39427,11 +39724,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الموصل",
+              "name": "قسم تقنيات االنتاج الحيواني",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -39444,74 +39742,101 @@
               ],
               "averageGrades": {
                 "صباحي": 55,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات االنتاج الحيواني",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات االنتاج النباتي",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات مكافة التصحر",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات النباتات الطبية والنواتج الطبيعية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "األغذية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -39521,12 +39846,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الموصل",
+              "name": "قسم تقنيات المحاسبة",
               "branch": [
                 "أدبي",
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -39545,48 +39871,69 @@
               ],
               "averageGrades": {
                 "صباحي": 60,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم ادارة تقنيات المعلومات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.29,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات اقتصاديات النفط والغاز",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.29,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -40648,12 +40995,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "نينوى",
+              "name": "قسم تقنيات المحاسبة",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -40672,87 +41020,159 @@
               ],
               "averageGrades": {
                 "صباحي": 50,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "ادارة المواد",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االقتصاد الرقمي والتكنولوجيا الرقمية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االدارة القانونية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات السياحة والفندقة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "والمصرفية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -40887,50 +41307,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الكوفة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 96.57,
-                  "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 96.57,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "بابل",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 96.14,
-                  "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 96.14,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
               "name": "قسم تقنيات صحة المجتمع",
               "branch": [
                 "علمي"
@@ -40955,81 +41331,177 @@
             },
             {
               "name": "قسم تقنيات المختبرات الطبية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات التخدير",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات صناعة وتقويم االسنان",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات فحص البصر",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "الطبيعي",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات التجميل والليزر",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.57,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 96.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 96.14,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -41039,7 +41511,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "المسيب",
+              "name": "الكلية التقنية االقسام الطبية",
               "branch": [
                 "علمي"
               ],
@@ -41068,7 +41540,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الكوفة",
+              "name": "تقنيات التاهيل الطبي واالطراف الصناعية",
               "branch": [
                 "علمي"
               ],
@@ -41674,11 +42146,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "المسيب",
+              "name": "قسم تقنيات االنتاج الحيواني",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -41691,35 +42164,32 @@
               ],
               "averageGrades": {
                 "صباحي": 55.14,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات االنتاج الحيواني",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات االنتاج النباتي",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 55.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 55.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -41729,7 +42199,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الكوفة",
+              "name": "الكلية التقنية االدارية",
               "branch": [
                 "أدبي",
                 "علمي"
@@ -43884,12 +44354,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "البصرة",
+              "name": "قسم تقنيات ادارة االعمال",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -43908,48 +44379,69 @@
               ],
               "averageGrades": {
                 "صباحي": 60,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات ادارة االعمال",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 69.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم ادارة تقنيات المعلومات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 69.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -44690,11 +45182,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "البصرة",
+              "name": "قسم التقنيات الميكانيكية",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -44707,113 +45200,170 @@
               ],
               "averageGrades": {
                 "صباحي": 66,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم التقنيات الميكانيكية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم التقنيات المدنية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم التقنيات الكهربائية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم التقنيات االلكترونية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات المساحة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ميكانيك القدرة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "والنفطية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات شبكات وبرامجيات الحاسوب",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 66,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -44823,12 +45373,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "البصرة",
+              "name": "قسم تقنيات ادارة المكتب",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -44847,35 +45398,39 @@
               ],
               "averageGrades": {
                 "صباحي": 57.86,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات ادارة المكتب",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 65.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 57.86,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 57.86,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -45263,28 +45818,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بغداد",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [
-                {
-                  "branch": "علمي",
-                  "gender": "مختلط",
-                  "averagePercent": 97.57,
-                  "isQuota": false
-                }
-              ],
-              "averageGrades": {
-                "صباحي": 97.57,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
               "name": "قسم التقنيات البصرية",
               "branch": [
                 "علمي"
@@ -45352,68 +45885,118 @@
             },
             {
               "name": "قسم تقنيات المختبرات الطبية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 97.57,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 97.57,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "العالج الطبيعي",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 97.57,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 97.57,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االشعة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 97.57,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 97.57,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات التخدير",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 97.57,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 97.57,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات صناعة االسنان",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 97.57,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 97.57,
                 "مسائي": 75
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -46096,12 +46679,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الرصافة",
+              "name": "قسم تقنيات ادارة االعمال",
               "branch": [
                 "علمي",
                 "أدبي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -46120,74 +46704,129 @@
               ],
               "averageGrades": {
                 "صباحي": 60.14,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات ادارة االعمال",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم ادارة تقنيات المعلومات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االدارة السياحية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات العلوم المالية والمصرفية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 62,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60.14,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 60.14,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -47618,11 +48257,12 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بغداد",
+              "name": "قسم تقنيات الكهرباء",
               "branch": [
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -47635,48 +48275,55 @@
               ],
               "averageGrades": {
                 "صباحي": 58.29,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات الكهرباء",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات المساحة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 58.29,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 58.29,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ميكانيك القدرة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 58.29,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 58.29,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -47686,12 +48333,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الرصافة",
+              "name": "قسم تقنيات المحاسبة",
               "branch": [
                 "أدبي",
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -47710,87 +48358,159 @@
               ],
               "averageGrades": {
                 "صباحي": 50,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات المحاسبة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات انظمة الحاسوب",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 52.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ادارة المكتب",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 52.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االحصاء",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 52.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم التقنيات المالية والمصرفية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 52.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ادارة وتسويق النفط والغاز",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 52.86,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -47800,12 +48520,13 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بغداد",
+              "name": "قسم تقنيات انظمة الحاسبات",
               "branch": [
                 "أدبي",
                 "علمي"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -47824,100 +48545,189 @@
               ],
               "averageGrades": {
                 "صباحي": 50.43,
-                "مسائي": null
+                "مسائي": 58
               },
               "isDirectAdmission": false
             },
             {
-              "name": "قسم تقنيات انظمة الحاسبات",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": 58
-              },
-              "isDirectAdmission": true
-            },
-            {
               "name": "قسم تقنيات ادارة المواد",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات االقتصاد الرقمي والتكنولوجيا الرقمية",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات السياحة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ادارة التسويق والمبيعات االلكتروني",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات التأمين",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             },
             {
               "name": "قسم تقنيات ادارة االزمات والكوارث",
-              "branch": [],
-              "sessions": [
-                "مسائي"
+              "branch": [
+                "أدبي",
+                "علمي"
               ],
-              "cutoffs": [],
+              "sessions": [
+                "مسائي",
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 51.43,
+                  "isQuota": false
+                },
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 50.43,
+                  "isQuota": false
+                }
+              ],
               "averageGrades": {
-                "صباحي": null,
+                "صباحي": 50.43,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -47927,13 +48737,14 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بغداد",
+              "name": "قسم تقنيات تصميم االقمشة",
               "branch": [
                 "علمي",
                 "أدبي",
                 "فنون"
               ],
               "sessions": [
+                "مسائي",
                 "صباحي"
               ],
               "cutoffs": [
@@ -47958,22 +48769,9 @@
               ],
               "averageGrades": {
                 "صباحي": 52,
-                "مسائي": null
-              },
-              "isDirectAdmission": false
-            },
-            {
-              "name": "قسم تقنيات تصميم االقمشة",
-              "branch": [],
-              "sessions": [
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
                 "مسائي": 58
               },
-              "isDirectAdmission": true
+              "isDirectAdmission": false
             }
           ]
         },
@@ -47983,7 +48781,7 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "بغداد",
+              "name": "اعداد المدربين التقنيين",
               "branch": [
                 "علمي"
               ],

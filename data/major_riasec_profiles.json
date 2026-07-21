@@ -13,51 +13,653 @@
     "note": "مبنية على تحليل مهني قياسي (Holland Code) مطبّق على واقع سوق العمل والدراسة العراقي، وليست مستخرجة آلياً من المصادر الرسمية"
   },
   "profiles": {
-    "software_engineering": { "R": 3, "I": 8, "A": 3, "S": 2, "E": 4, "C": 6 },
-    "ai": { "R": 2, "I": 9, "A": 2, "S": 1, "E": 3, "C": 5 },
-    "cybersecurity": { "R": 3, "I": 8, "A": 1, "S": 2, "E": 3, "C": 7 },
-    "computer_science": { "R": 2, "I": 8, "A": 2, "S": 2, "E": 3, "C": 6 },
-    "digital_marketing": { "R": 1, "I": 3, "A": 6, "S": 5, "E": 8, "C": 4 },
-    "business_admin": { "R": 1, "I": 3, "A": 2, "S": 5, "E": 8, "C": 6 },
-    "accounting": { "R": 1, "I": 4, "A": 1, "S": 2, "E": 3, "C": 9 },
-    "medicine": { "R": 3, "I": 8, "A": 1, "S": 8, "E": 3, "C": 5 },
-    "dentistry": { "R": 5, "I": 7, "A": 3, "S": 5, "E": 3, "C": 6 },
-    "pharmacy": { "R": 2, "I": 7, "A": 1, "S": 5, "E": 3, "C": 7 },
-    "nursing": { "R": 4, "I": 5, "A": 1, "S": 9, "E": 2, "C": 5 },
-    "medical_analysis": { "R": 2, "I": 7, "A": 1, "S": 3, "E": 2, "C": 8 },
-    "civil_engineering": { "R": 7, "I": 7, "A": 2, "S": 2, "E": 4, "C": 5 },
-    "architecture": { "R": 5, "I": 5, "A": 9, "S": 3, "E": 4, "C": 4 },
-    "renewable_energy": { "R": 7, "I": 7, "A": 2, "S": 2, "E": 4, "C": 4 },
-    "petroleum_engineering": { "R": 8, "I": 7, "A": 1, "S": 1, "E": 4, "C": 5 },
-    "law": { "R": 1, "I": 5, "A": 3, "S": 6, "E": 8, "C": 6 },
-    "political_science": { "R": 1, "I": 6, "A": 3, "S": 7, "E": 7, "C": 4 },
-    "english": { "R": 1, "I": 5, "A": 6, "S": 5, "E": 3, "C": 5 },
-    "education": { "R": 2, "I": 4, "A": 4, "S": 9, "E": 3, "C": 5 },
-    "graphic_design": { "R": 2, "I": 2, "A": 10, "S": 3, "E": 4, "C": 2 },
-    "interior_design": { "R": 4, "I": 3, "A": 9, "S": 3, "E": 4, "C": 3 },
-    "project_management": { "R": 2, "I": 4, "A": 2, "S": 5, "E": 8, "C": 7 },
-    "mechanical_engineering": { "R": 8, "I": 7, "A": 2, "S": 1, "E": 3, "C": 5 },
-    "electrical_engineering": { "R": 7, "I": 8, "A": 1, "S": 1, "E": 3, "C": 5 },
-    "chemical_engineering": { "R": 6, "I": 8, "A": 1, "S": 1, "E": 3, "C": 5 },
-    "mechatronics_engineering": { "R": 7, "I": 8, "A": 2, "S": 1, "E": 4, "C": 5 },
-    "biomedical_engineering": { "R": 5, "I": 8, "A": 2, "S": 4, "E": 3, "C": 5 },
-    "mathematics": { "R": 1, "I": 9, "A": 2, "S": 1, "E": 2, "C": 6 },
-    "physics": { "R": 3, "I": 9, "A": 2, "S": 1, "E": 2, "C": 5 },
-    "chemistry": { "R": 4, "I": 9, "A": 1, "S": 1, "E": 2, "C": 6 },
-    "biology": { "R": 4, "I": 9, "A": 1, "S": 2, "E": 2, "C": 5 },
-    "geography": { "R": 4, "I": 6, "A": 3, "S": 4, "E": 3, "C": 5 },
-    "history": { "R": 1, "I": 7, "A": 5, "S": 4, "E": 3, "C": 5 },
-    "agriculture": { "R": 8, "I": 5, "A": 2, "S": 3, "E": 4, "C": 4 },
-    "veterinary_medicine": { "R": 6, "I": 7, "A": 1, "S": 6, "E": 2, "C": 5 },
-    "islamic_studies": { "R": 1, "I": 6, "A": 3, "S": 6, "E": 3, "C": 7 },
-    "arabic_language": { "R": 1, "I": 6, "A": 7, "S": 5, "E": 3, "C": 5 },
-    "translation": { "R": 1, "I": 6, "A": 6, "S": 4, "E": 3, "C": 6 },
-    "media_journalism": { "R": 2, "I": 4, "A": 7, "S": 6, "E": 7, "C": 3 },
-    "fine_arts": { "R": 2, "I": 2, "A": 10, "S": 3, "E": 3, "C": 1 },
-    "kindergarten_education": { "R": 2, "I": 2, "A": 5, "S": 9, "E": 3, "C": 5 },
-    "physical_education": { "R": 7, "I": 2, "A": 2, "S": 8, "E": 4, "C": 3 },
-    "forensic_science": { "R": 4, "I": 8, "A": 1, "S": 3, "E": 2, "C": 7 },
-    "tourism_hospitality": { "R": 2, "I": 2, "A": 5, "S": 7, "E": 7, "C": 4 },
-    "psychology_sociology": { "R": 1, "I": 7, "A": 4, "S": 8, "E": 4, "C": 4 }
+    "software_engineering": {
+      "R": 3,
+      "I": 8,
+      "A": 3,
+      "S": 2,
+      "E": 4,
+      "C": 6
+    },
+    "ai": {
+      "R": 2,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "cybersecurity": {
+      "R": 3,
+      "I": 8,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 7
+    },
+    "computer_science": {
+      "R": 2,
+      "I": 8,
+      "A": 2,
+      "S": 2,
+      "E": 3,
+      "C": 6
+    },
+    "digital_marketing": {
+      "R": 1,
+      "I": 3,
+      "A": 6,
+      "S": 5,
+      "E": 8,
+      "C": 4
+    },
+    "business_admin": {
+      "R": 1,
+      "I": 3,
+      "A": 2,
+      "S": 5,
+      "E": 8,
+      "C": 6
+    },
+    "accounting": {
+      "R": 1,
+      "I": 4,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 9
+    },
+    "medicine": {
+      "R": 3,
+      "I": 8,
+      "A": 1,
+      "S": 8,
+      "E": 3,
+      "C": 5
+    },
+    "dentistry": {
+      "R": 5,
+      "I": 7,
+      "A": 3,
+      "S": 5,
+      "E": 3,
+      "C": 6
+    },
+    "pharmacy": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 5,
+      "E": 3,
+      "C": 7
+    },
+    "nursing": {
+      "R": 4,
+      "I": 5,
+      "A": 1,
+      "S": 9,
+      "E": 2,
+      "C": 5
+    },
+    "medical_analysis": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 3,
+      "E": 2,
+      "C": 8
+    },
+    "civil_engineering": {
+      "R": 7,
+      "I": 7,
+      "A": 2,
+      "S": 2,
+      "E": 4,
+      "C": 5
+    },
+    "architecture": {
+      "R": 5,
+      "I": 5,
+      "A": 9,
+      "S": 3,
+      "E": 4,
+      "C": 4
+    },
+    "renewable_energy": {
+      "R": 7,
+      "I": 7,
+      "A": 2,
+      "S": 2,
+      "E": 4,
+      "C": 4
+    },
+    "petroleum_engineering": {
+      "R": 8,
+      "I": 7,
+      "A": 1,
+      "S": 1,
+      "E": 4,
+      "C": 5
+    },
+    "law": {
+      "R": 1,
+      "I": 5,
+      "A": 3,
+      "S": 6,
+      "E": 8,
+      "C": 6
+    },
+    "political_science": {
+      "R": 1,
+      "I": 6,
+      "A": 3,
+      "S": 7,
+      "E": 7,
+      "C": 4
+    },
+    "english": {
+      "R": 1,
+      "I": 5,
+      "A": 6,
+      "S": 5,
+      "E": 3,
+      "C": 5
+    },
+    "education": {
+      "R": 2,
+      "I": 4,
+      "A": 4,
+      "S": 9,
+      "E": 3,
+      "C": 5
+    },
+    "graphic_design": {
+      "R": 2,
+      "I": 2,
+      "A": 10,
+      "S": 3,
+      "E": 4,
+      "C": 2
+    },
+    "interior_design": {
+      "R": 4,
+      "I": 3,
+      "A": 9,
+      "S": 3,
+      "E": 4,
+      "C": 3
+    },
+    "project_management": {
+      "R": 2,
+      "I": 4,
+      "A": 2,
+      "S": 5,
+      "E": 8,
+      "C": 7
+    },
+    "mechanical_engineering": {
+      "R": 8,
+      "I": 7,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "electrical_engineering": {
+      "R": 7,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "chemical_engineering": {
+      "R": 6,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "mechatronics_engineering": {
+      "R": 7,
+      "I": 8,
+      "A": 2,
+      "S": 1,
+      "E": 4,
+      "C": 5
+    },
+    "biomedical_engineering": {
+      "R": 5,
+      "I": 8,
+      "A": 2,
+      "S": 4,
+      "E": 3,
+      "C": 5
+    },
+    "mathematics": {
+      "R": 1,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "physics": {
+      "R": 3,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 2,
+      "C": 5
+    },
+    "chemistry": {
+      "R": 4,
+      "I": 9,
+      "A": 1,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "biology": {
+      "R": 4,
+      "I": 9,
+      "A": 1,
+      "S": 2,
+      "E": 2,
+      "C": 5
+    },
+    "geography": {
+      "R": 4,
+      "I": 6,
+      "A": 3,
+      "S": 4,
+      "E": 3,
+      "C": 5
+    },
+    "history": {
+      "R": 1,
+      "I": 7,
+      "A": 5,
+      "S": 4,
+      "E": 3,
+      "C": 5
+    },
+    "agriculture": {
+      "R": 8,
+      "I": 5,
+      "A": 2,
+      "S": 3,
+      "E": 4,
+      "C": 4
+    },
+    "veterinary_medicine": {
+      "R": 6,
+      "I": 7,
+      "A": 1,
+      "S": 6,
+      "E": 2,
+      "C": 5
+    },
+    "islamic_studies": {
+      "R": 1,
+      "I": 6,
+      "A": 3,
+      "S": 6,
+      "E": 3,
+      "C": 7
+    },
+    "arabic_language": {
+      "R": 1,
+      "I": 6,
+      "A": 7,
+      "S": 5,
+      "E": 3,
+      "C": 5
+    },
+    "translation": {
+      "R": 1,
+      "I": 6,
+      "A": 6,
+      "S": 4,
+      "E": 3,
+      "C": 6
+    },
+    "media_journalism": {
+      "R": 2,
+      "I": 4,
+      "A": 7,
+      "S": 6,
+      "E": 7,
+      "C": 3
+    },
+    "fine_arts": {
+      "R": 2,
+      "I": 2,
+      "A": 10,
+      "S": 3,
+      "E": 3,
+      "C": 1
+    },
+    "kindergarten_education": {
+      "R": 2,
+      "I": 2,
+      "A": 5,
+      "S": 9,
+      "E": 3,
+      "C": 5
+    },
+    "physical_education": {
+      "R": 7,
+      "I": 2,
+      "A": 2,
+      "S": 8,
+      "E": 4,
+      "C": 3
+    },
+    "forensic_science": {
+      "R": 4,
+      "I": 8,
+      "A": 1,
+      "S": 3,
+      "E": 2,
+      "C": 7
+    },
+    "tourism_hospitality": {
+      "R": 2,
+      "I": 2,
+      "A": 5,
+      "S": 7,
+      "E": 7,
+      "C": 4
+    },
+    "psychology_sociology": {
+      "R": 1,
+      "I": 7,
+      "A": 4,
+      "S": 8,
+      "E": 4,
+      "C": 4
+    },
+    "radiology_tech": {
+      "R": 8,
+      "I": 4,
+      "A": 2,
+      "S": 2,
+      "E": 2,
+      "C": 7
+    },
+    "anesthesia_critical_care_tech": {
+      "R": 5,
+      "I": 8,
+      "A": 1,
+      "S": 8,
+      "E": 3,
+      "C": 10
+    },
+    "rehab_therapy_tech": {
+      "R": 3,
+      "I": 5,
+      "A": 7,
+      "S": 8,
+      "E": 3,
+      "C": 2
+    },
+    "prosthetics_tech": {
+      "R": 8,
+      "I": 5,
+      "A": 6,
+      "S": 5,
+      "E": 2,
+      "C": 5
+    },
+    "emergency_medical_tech": {
+      "R": 7,
+      "I": 5,
+      "A": 1,
+      "S": 7,
+      "E": 6,
+      "C": 4
+    },
+    "optometry_audiology_tech": {
+      "R": 3,
+      "I": 5,
+      "A": 2,
+      "S": 4,
+      "E": 5,
+      "C": 5
+    },
+    "reproductive_health_tech": {
+      "R": 4,
+      "I": 8,
+      "A": 1,
+      "S": 7,
+      "E": 6,
+      "C": 6
+    },
+    "community_nutrition_health_tech": {
+      "R": 2,
+      "I": 2,
+      "A": 2,
+      "S": 7,
+      "E": 7,
+      "C": 3
+    },
+    "cosmetic_science_tech": {
+      "R": 3,
+      "I": 3,
+      "A": 7,
+      "S": 4,
+      "E": 6,
+      "C": 2
+    },
+    "aerospace_engineering": {
+      "R": 6,
+      "I": 8,
+      "A": 3,
+      "S": 1,
+      "E": 1,
+      "C": 9
+    },
+    "laser_optoelectronics_engineering": {
+      "R": 3,
+      "I": 9,
+      "A": 5,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "mining_engineering": {
+      "R": 9,
+      "I": 5,
+      "A": 1,
+      "S": 4,
+      "E": 4,
+      "C": 2
+    },
+    "industrial_engineering": {
+      "R": 4,
+      "I": 7,
+      "A": 3,
+      "S": 2,
+      "E": 7,
+      "C": 8
+    },
+    "control_automation_engineering": {
+      "R": 3,
+      "I": 8,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 9
+    },
+    "communications_engineering": {
+      "R": 4,
+      "I": 8,
+      "A": 2,
+      "S": 3,
+      "E": 6,
+      "C": 6
+    },
+    "automotive_engineering": {
+      "R": 9,
+      "I": 6,
+      "A": 4,
+      "S": 1,
+      "E": 7,
+      "C": 4
+    },
+    "geomatics_surveying_engineering": {
+      "R": 7,
+      "I": 6,
+      "A": 2,
+      "S": 2,
+      "E": 4,
+      "C": 8
+    },
+    "urban_regional_planning_engineering": {
+      "R": 3,
+      "I": 6,
+      "A": 7,
+      "S": 6,
+      "E": 5,
+      "C": 4
+    },
+    "materials_engineering": {
+      "R": 6,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "refrigeration_ac_engineering": {
+      "R": 9,
+      "I": 5,
+      "A": 1,
+      "S": 2,
+      "E": 6,
+      "C": 6
+    },
+    "environmental_engineering": {
+      "R": 5,
+      "I": 7,
+      "A": 2,
+      "S": 7,
+      "E": 3,
+      "C": 5
+    },
+    "geology_earth_science": {
+      "R": 7,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 1,
+      "C": 2
+    },
+    "astronomy_space_science": {
+      "R": 3,
+      "I": 10,
+      "A": 5,
+      "S": 1,
+      "E": 3,
+      "C": 2
+    },
+    "data_science": {
+      "R": 1,
+      "I": 8,
+      "A": 2,
+      "S": 3,
+      "E": 6,
+      "C": 9
+    },
+    "plant_crop_production": {
+      "R": 7,
+      "I": 5,
+      "A": 1,
+      "S": 3,
+      "E": 1,
+      "C": 7
+    },
+    "animal_livestock_science": {
+      "R": 5,
+      "I": 4,
+      "A": 1,
+      "S": 7,
+      "E": 2,
+      "C": 4
+    },
+    "water_resources_forestry": {
+      "R": 6,
+      "I": 8,
+      "A": 4,
+      "S": 1,
+      "E": 5,
+      "C": 9
+    },
+    "food_science_nutrition": {
+      "R": 4,
+      "I": 6,
+      "A": 1,
+      "S": 6,
+      "E": 5,
+      "C": 8
+    },
+    "archaeology": {
+      "R": 5,
+      "I": 9,
+      "A": 3,
+      "S": 2,
+      "E": 1,
+      "C": 8
+    },
+    "foreign_languages_other": {
+      "R": 1,
+      "I": 6,
+      "A": 5,
+      "S": 6,
+      "E": 6,
+      "C": 4
+    },
+    "music_performing_arts": {
+      "R": 3,
+      "I": 5,
+      "A": 9,
+      "S": 6,
+      "E": 3,
+      "C": 4
+    },
+    "special_education": {
+      "R": 2,
+      "I": 7,
+      "A": 2,
+      "S": 9,
+      "E": 2,
+      "C": 8
+    },
+    "information_systems": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 2,
+      "E": 4,
+      "C": 5
+    },
+    "financial_banking": {
+      "R": 1,
+      "I": 7,
+      "A": 1,
+      "S": 1,
+      "E": 6,
+      "C": 9
+    },
+    "industrial_craft_design": {
+      "R": 7,
+      "I": 2,
+      "A": 6,
+      "S": 2,
+      "E": 3,
+      "C": 3
+    }
   }
 }

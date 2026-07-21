@@ -3,324 +3,1388 @@
     {
       "majorId": "software_engineering",
       "majorName": "هندسة البرمجيات",
-      "aliases": ["هندسة البرمجيات", "البرمجيات", "Software Engineering"],
-      "departmentPatterns": ["برمجيات", "هندسة الحاسوب", "هندسة تقنيات الحاسوب", "software"],
+      "aliases": [
+        "هندسة البرمجيات",
+        "البرمجيات",
+        "Software Engineering"
+      ],
+      "departmentPatterns": [
+        "برمجيات",
+        "هندسة الحاسوب",
+        "هندسة تقنيات الحاسوب",
+        "software"
+      ],
       "priority": 2
     },
     {
       "majorId": "ai",
       "majorName": "الذكاء الاصطناعي",
-      "aliases": ["الذكاء الاصطناعي", "الذكاء الصنعي", "Artificial Intelligence", "AI"],
-      "departmentPatterns": ["ذكاء اصطناعي", "الذكاء االصطناعي", "ذكاء االصطناعي", "artificial"],
+      "aliases": [
+        "الذكاء الاصطناعي",
+        "الذكاء الصنعي",
+        "Artificial Intelligence",
+        "AI"
+      ],
+      "departmentPatterns": [
+        "ذكاء اصطناعي",
+        "الذكاء االصطناعي",
+        "ذكاء االصطناعي",
+        "artificial",
+        "تقنيات الذكاء الاضطناعي"
+      ],
       "priority": 2
     },
     {
       "majorId": "cybersecurity",
       "majorName": "الأمن السيبراني",
-      "aliases": ["الأمن السيبراني", "امن المعلومات", "Cybersecurity"],
-      "departmentPatterns": ["سيبراني", "أمن المعلومات", "امن المعلومات", "cyber"],
+      "aliases": [
+        "الأمن السيبراني",
+        "امن المعلومات",
+        "Cybersecurity"
+      ],
+      "departmentPatterns": [
+        "سيبراني",
+        "أمن المعلومات",
+        "امن المعلومات",
+        "cyber",
+        "سبراني"
+      ],
       "priority": 2
     },
     {
       "majorId": "computer_science",
       "majorName": "علوم الحاسوب",
-      "aliases": ["علوم الحاسوب", "علوم حاسبات", "Computer Science"],
-      "departmentPatterns": ["علوم الحاسوب", "علوم حاسبات", "علوم الحاسبات", "قسم الحاسوب", "الحاسوب وتكنلوجيا المعلومات", "computer"],
+      "aliases": [
+        "علوم الحاسوب",
+        "علوم حاسبات",
+        "Computer Science"
+      ],
+      "departmentPatterns": [
+        "علوم الحاسوب",
+        "علوم حاسبات",
+        "علوم الحاسبات",
+        "قسم الحاسوب",
+        "الحاسوب وتكنلوجيا المعلومات",
+        "computer",
+        "شبكات الحاسوب",
+        "انظمة الحاسوب",
+        "علم الحاسوب",
+        "الحاسوب",
+        "تكنولوجيا المعلومات",
+        "الحوسبة السحابية",
+        "انترنيت الاشياء"
+      ],
       "priority": 1
     },
     {
       "majorId": "digital_marketing",
       "majorName": "التسويق الرقمي",
-      "aliases": ["التسويق الرقمي", "تسويق الكتروني", "Digital Marketing"],
-      "departmentPatterns": ["تسويق", "ترويج", "marketing"],
+      "aliases": [
+        "التسويق الرقمي",
+        "تسويق الكتروني",
+        "Digital Marketing"
+      ],
+      "departmentPatterns": [
+        "تسويق",
+        "ترويج",
+        "marketing",
+        "تقنيات الاعالن"
+      ],
       "priority": 1
     },
     {
       "majorId": "business_admin",
       "majorName": "إدارة الأعمال",
-      "aliases": ["إدارة الأعمال", "ادارة االعمال", "Business Administration"],
-      "departmentPatterns": ["ادارة االعمال", "إدارة الأعمال", "ادارة اعمال", "التخصصات االدارية", "الادارة العامة", "ادارة عامة", "تقنيات ادارة", "االقتصاد", "الاقتصاد", "التمويل واالستثمار", "business"],
+      "aliases": [
+        "إدارة الأعمال",
+        "ادارة االعمال",
+        "Business Administration"
+      ],
+      "departmentPatterns": [
+        "ادارة االعمال",
+        "إدارة الأعمال",
+        "ادارة اعمال",
+        "التخصصات االدارية",
+        "الادارة العامة",
+        "ادارة عامة",
+        "تقنيات ادارة",
+        "االقتصاد",
+        "الاقتصاد",
+        "التمويل واالستثمار",
+        "business",
+        "الادارة الصناعية",
+        "اعمال",
+        "ادارة الهندسة",
+        "ادارة المؤسسات الصحية"
+      ],
       "priority": 1
     },
     {
       "majorId": "accounting",
       "majorName": "المحاسبة",
-      "aliases": ["المحاسبة", "تدقيق حسابات", "Accounting"],
-      "departmentPatterns": ["محاسبة", "تقنيات المحاسبة", "حسابات", "االحصاء", "الاحصاء", "العلوم المالية والمصرفية", "accounting"],
+      "aliases": [
+        "المحاسبة",
+        "تدقيق حسابات",
+        "Accounting"
+      ],
+      "departmentPatterns": [
+        "محاسبة",
+        "تقنيات المحاسبة",
+        "حسابات",
+        "االحصاء",
+        "الاحصاء",
+        "العلوم المالية والمصرفية",
+        "accounting"
+      ],
       "priority": 1
     },
     {
       "majorId": "medicine",
       "majorName": "الطب العام",
-      "aliases": ["الطب العام", "الطب البشري", "طب الكندي", "Medicine"],
-      "departmentPatterns": ["الطب", "طب الكندي", "طب بشري", "medicine"],
+      "aliases": [
+        "الطب العام",
+        "الطب البشري",
+        "طب الكندي",
+        "Medicine"
+      ],
+      "departmentPatterns": [
+        "الطب",
+        "طب الكندي",
+        "طب بشري",
+        "medicine"
+      ],
       "priority": 3
     },
     {
       "majorId": "dentistry",
       "majorName": "طب الأسنان",
-      "aliases": ["طب الأسنان", "طب االسنان", "Dentistry"],
-      "departmentPatterns": ["طب االسنان", "طب الأسنان", "الأسنان", "dentistry"],
+      "aliases": [
+        "طب الأسنان",
+        "طب االسنان",
+        "Dentistry"
+      ],
+      "departmentPatterns": [
+        "طب االسنان",
+        "طب الأسنان",
+        "الأسنان",
+        "dentistry"
+      ],
       "priority": 2
     },
     {
       "majorId": "pharmacy",
       "majorName": "الصيدلة",
-      "aliases": ["الصيدلة", "Pharmacy"],
-      "departmentPatterns": ["الصيدلة", "تقنيات الصيدلة", "pharmacy"],
+      "aliases": [
+        "الصيدلة",
+        "Pharmacy"
+      ],
+      "departmentPatterns": [
+        "الصيدلة",
+        "تقنيات الصيدلة",
+        "pharmacy"
+      ],
       "priority": 1
     },
     {
       "majorId": "nursing",
       "majorName": "التمريض",
-      "aliases": ["التمريض", "Nursing"],
-      "departmentPatterns": ["التمريض", "تقنيات التمريض", "nursing"],
+      "aliases": [
+        "التمريض",
+        "Nursing"
+      ],
+      "departmentPatterns": [
+        "التمريض",
+        "تقنيات التمريض",
+        "nursing"
+      ],
       "priority": 1
     },
     {
       "majorId": "medical_analysis",
       "majorName": "التحليلات المرضية",
-      "aliases": ["التحليلات المرضية", "تقنيات المختبرات الطبية", "Medical Analysis"],
-      "departmentPatterns": ["التحليالت المرضية", "التحليلات المرضية", "المختبرات الطبية", "laboratory"],
+      "aliases": [
+        "التحليلات المرضية",
+        "تقنيات المختبرات الطبية",
+        "Medical Analysis"
+      ],
+      "departmentPatterns": [
+        "التحليالت المرضية",
+        "التحليلات المرضية",
+        "المختبرات الطبية",
+        "laboratory",
+        "لمرضية",
+        "تقنيات المختبرات"
+      ],
       "priority": 1
     },
     {
       "majorId": "civil_engineering",
       "majorName": "الهندسة المدنية",
-      "aliases": ["الهندسة المدنية", "قسم المدني", "Civil Engineering"],
-      "departmentPatterns": ["قسم المدني", "الهندسة المدنية", "تقنيات المدنية", "بناء وانشاءات", "طرق وجسور", "الموارد المائية", "السدود", "قسم الطرق", "civil"],
+      "aliases": [
+        "الهندسة المدنية",
+        "قسم المدني",
+        "Civil Engineering"
+      ],
+      "departmentPatterns": [
+        "قسم المدني",
+        "الهندسة المدنية",
+        "تقنيات المدنية",
+        "بناء وانشاءات",
+        "طرق وجسور",
+        "الموارد المائية",
+        "السدود",
+        "قسم الطرق",
+        "civil",
+        "تقنيات البناء",
+        "الانشاءات",
+        "هندسة تقنيات البناء",
+        "البناء"
+      ],
       "priority": 1
     },
     {
       "majorId": "architecture",
       "majorName": "هندسة العمارة",
-      "aliases": ["هندسة العمارة", "قسم العمارة", "Architecture"],
-      "departmentPatterns": ["قسم العمارة", "هندسة العمارة", "تصميم معماري", "architect"],
+      "aliases": [
+        "هندسة العمارة",
+        "قسم العمارة",
+        "Architecture"
+      ],
+      "departmentPatterns": [
+        "قسم العمارة",
+        "هندسة العمارة",
+        "تصميم معماري",
+        "architect",
+        "معماري",
+        "معمارية",
+        "العمارة"
+      ],
       "priority": 1
     },
     {
       "majorId": "renewable_energy",
       "majorName": "هندسة الطاقة المتجددة",
-      "aliases": ["هندسة الطاقة المتجددة", "الطاقة المتجددة", "Renewable Energy"],
-      "departmentPatterns": ["الطاقة المتجددة", "الطاقة المستدامة", "طاقة شمسية", "energy"],
+      "aliases": [
+        "هندسة الطاقة المتجددة",
+        "الطاقة المتجددة",
+        "Renewable Energy"
+      ],
+      "departmentPatterns": [
+        "الطاقة المتجددة",
+        "الطاقة المستدامة",
+        "طاقة شمسية",
+        "energy",
+        "طاقة",
+        "محطات القدرة"
+      ],
       "priority": 1
     },
     {
       "majorId": "petroleum_engineering",
       "majorName": "هندسة النفط",
-      "aliases": ["هندسة النفط", "قسم النفط", "Petroleum Engineering"],
-      "departmentPatterns": ["قسم النفط", "هندسة النفط", "نفط والغاز", "معدات النفط", "تكرير النفط", "petroleum"],
+      "aliases": [
+        "هندسة النفط",
+        "قسم النفط",
+        "Petroleum Engineering"
+      ],
+      "departmentPatterns": [
+        "قسم النفط",
+        "هندسة النفط",
+        "نفط والغاز",
+        "معدات النفط",
+        "تكرير النفط",
+        "petroleum",
+        "بترول",
+        "المكامن النفطية",
+        "حفر الابار",
+        "الاستكشافات النفطية",
+        "حفر",
+        "والنفطية"
+      ],
       "priority": 1
     },
     {
       "majorId": "law",
       "majorName": "القانون",
-      "aliases": ["القانون", "الحقوق", "Law"],
-      "departmentPatterns": ["القانون", "الحقوق", "قسم القانون", "law"],
+      "aliases": [
+        "القانون",
+        "الحقوق",
+        "Law"
+      ],
+      "departmentPatterns": [
+        "القانون",
+        "الحقوق",
+        "قسم القانون",
+        "law"
+      ],
       "priority": 1
     },
     {
       "majorId": "political_science",
       "majorName": "العلوم السياسية",
-      "aliases": ["العلوم السياسية", "Political Science"],
-      "departmentPatterns": ["العلوم السياسية", "علوم سياسية", "political"],
+      "aliases": [
+        "العلوم السياسية",
+        "Political Science",
+        "كلية العالقات الدولية والسياسات العامة"
+      ],
+      "departmentPatterns": [
+        "العلوم السياسية",
+        "علوم سياسية",
+        "political",
+        "الدراسات الدولية",
+        "الفكر السياسي",
+        "النظم السياسية"
+      ],
       "priority": 1
     },
     {
       "majorId": "english",
       "majorName": "اللغة الإنجليزية / الترجمة",
-      "aliases": ["اللغة الإنجليزية", "اللغة االنكليزية", "English"],
-      "departmentPatterns": ["اللغة االنكليزية", "اللغة الإنكليزية", "اللغة االنجليزية", "english"],
+      "aliases": [
+        "اللغة الإنجليزية",
+        "اللغة االنكليزية",
+        "English"
+      ],
+      "departmentPatterns": [
+        "اللغة االنكليزية",
+        "اللغة الإنكليزية",
+        "اللغة االنجليزية",
+        "english"
+      ],
       "priority": 1
     },
     {
       "majorId": "education",
       "majorName": "التربية (معلم)",
-      "aliases": ["التربية", "التربية األساسية", "Education"],
-      "departmentPatterns": ["التربية االساسية", "التربية األساسية", "العلوم التربوية والنفسية", "الارشاد النفسي والتوجيه التربوي", "education"],
+      "aliases": [
+        "التربية",
+        "التربية األساسية",
+        "Education"
+      ],
+      "departmentPatterns": [
+        "التربية االساسية",
+        "التربية األساسية",
+        "العلوم التربوية والنفسية",
+        "الارشاد النفسي والتوجيه التربوي",
+        "education",
+        "معلم الصفوف",
+        "اعداد المدربين"
+      ],
       "priority": 1
     },
     {
       "majorId": "graphic_design",
       "majorName": "التصميم الجرافيكي",
-      "aliases": ["التصميم الجرافيكي", "Graphic Design"],
-      "departmentPatterns": ["تصميم جرافيكي", "تصميم مرئي", "قسم التصميم", "graphic"],
+      "aliases": [
+        "التصميم الجرافيكي",
+        "Graphic Design"
+      ],
+      "departmentPatterns": [
+        "تصميم جرافيكي",
+        "تصميم مرئي",
+        "قسم التصميم",
+        "graphic"
+      ],
       "priority": 1
     },
     {
       "majorId": "interior_design",
       "majorName": "التصميم الداخلي",
-      "aliases": ["التصميم الداخلي", "Interior Design"],
-      "departmentPatterns": ["تصميم داخلي", "ديكور", "interior"],
+      "aliases": [
+        "التصميم الداخلي",
+        "Interior Design"
+      ],
+      "departmentPatterns": [
+        "تصميم داخلي",
+        "ديكور",
+        "interior"
+      ],
       "priority": 1
     },
     {
       "majorId": "project_management",
       "majorName": "إدارة المشاريع",
-      "aliases": ["إدارة المشاريع", "Project Management"],
-      "departmentPatterns": ["ادارة المشاريع", "إدارة المشاريع", "project"],
+      "aliases": [
+        "إدارة المشاريع",
+        "Project Management"
+      ],
+      "departmentPatterns": [
+        "ادارة المشاريع",
+        "إدارة المشاريع",
+        "project"
+      ],
       "priority": 1
     },
     {
       "majorId": "mechanical_engineering",
       "majorName": "الهندسة الميكانيكية",
-      "aliases": ["الهندسة الميكانيكية", "قسم الميكانيك", "Mechanical Engineering"],
-      "departmentPatterns": ["الميكانيك", "الميكانيكية", "تقنيات الميكانيك", "قسم الطيران", "mechanical"],
+      "aliases": [
+        "الهندسة الميكانيكية",
+        "قسم الميكانيك",
+        "Mechanical Engineering"
+      ],
+      "departmentPatterns": [
+        "الميكانيك",
+        "الميكانيكية",
+        "تقنيات الميكانيك",
+        "قسم الطيران",
+        "mechanical",
+        "المكائن والمعدات"
+      ],
       "priority": 1
     },
     {
       "majorId": "electrical_engineering",
       "majorName": "هندسة الكهرباء",
-      "aliases": ["هندسة الكهرباء", "قسم الكهرباء", "Electrical Engineering"],
-      "departmentPatterns": ["الكهرباء", "الكهربائية", "تقنيات الكهرباء", "االلكترونيك واالتصاالت", "الالكترونيك واالتصاالت", "المعلومات واالتصاالت", "electrical"],
+      "aliases": [
+        "هندسة الكهرباء",
+        "قسم الكهرباء",
+        "Electrical Engineering"
+      ],
+      "departmentPatterns": [
+        "الكهرباء",
+        "الكهربائية",
+        "تقنيات الكهرباء",
+        "االلكترونيك واالتصاالت",
+        "الالكترونيك واالتصاالت",
+        "المعلومات واالتصاالت",
+        "electrical"
+      ],
       "priority": 1
     },
     {
       "majorId": "chemical_engineering",
       "majorName": "الهندسة الكيمياوية",
-      "aliases": ["الهندسة الكيمياوية", "Chemical Engineering"],
-      "departmentPatterns": ["الكيمياوية", "الهندسة الكيميائية", "بتروكيمياوية", "chemical engineering"],
+      "aliases": [
+        "الهندسة الكيمياوية",
+        "Chemical Engineering"
+      ],
+      "departmentPatterns": [
+        "الكيمياوية",
+        "الهندسة الكيميائية",
+        "بتروكيمياوية",
+        "chemical engineering",
+        "بتروكيمي",
+        "الكيميائية والبتروكيميائية"
+      ],
       "priority": 1
     },
     {
       "majorId": "mechatronics_engineering",
       "majorName": "هندسة الميكاترونكس",
-      "aliases": ["هندسة الميكاترونكس", "Mechatronics"],
-      "departmentPatterns": ["ميكاترونكس", "mechatronics"],
+      "aliases": [
+        "هندسة الميكاترونكس",
+        "Mechatronics"
+      ],
+      "departmentPatterns": [
+        "ميكاترونكس",
+        "mechatronics"
+      ],
       "priority": 1
     },
     {
       "majorId": "biomedical_engineering",
       "majorName": "هندسة الطب الحياتي",
-      "aliases": ["هندسة الطب الحياتي", "Biomedical Engineering"],
-      "departmentPatterns": ["الطب الحياتي", "االجهزة الطبية الحيوية", "biomedical"],
+      "aliases": [
+        "هندسة الطب الحياتي",
+        "Biomedical Engineering"
+      ],
+      "departmentPatterns": [
+        "الطب الحياتي",
+        "االجهزة الطبية الحيوية",
+        "biomedical"
+      ],
       "priority": 1
     },
     {
       "majorId": "mathematics",
       "majorName": "الرياضيات",
-      "aliases": ["الرياضيات", "Mathematics"],
-      "departmentPatterns": ["الرياضيات", "mathematics"],
+      "aliases": [
+        "الرياضيات",
+        "Mathematics"
+      ],
+      "departmentPatterns": [
+        "الرياضيات",
+        "mathematics"
+      ],
       "priority": 1
     },
     {
       "majorId": "physics",
       "majorName": "الفيزياء",
-      "aliases": ["الفيزياء", "Physics"],
-      "departmentPatterns": ["الفيزياء", "الفيزيام", "physics"],
+      "aliases": [
+        "الفيزياء",
+        "Physics"
+      ],
+      "departmentPatterns": [
+        "الفيزياء",
+        "الفيزيام",
+        "physics"
+      ],
       "priority": 1
     },
     {
       "majorId": "chemistry",
       "majorName": "الكيمياء",
-      "aliases": ["الكيمياء", "Chemistry"],
-      "departmentPatterns": ["قسم الكيمياء", "الكيمياء التطبيقية", "chemistry"],
+      "aliases": [
+        "الكيمياء",
+        "Chemistry"
+      ],
+      "departmentPatterns": [
+        "قسم الكيمياء",
+        "الكيمياء التطبيقية",
+        "chemistry",
+        "الكيمياء",
+        "الكيميائية الاحيائية"
+      ],
       "priority": 1
     },
     {
       "majorId": "biology",
       "majorName": "علوم الحياة",
-      "aliases": ["علوم الحياة", "Biology"],
-      "departmentPatterns": ["علوم الحياة", "التقنيات االحيائية", "biology"],
+      "aliases": [
+        "علوم الحياة",
+        "Biology"
+      ],
+      "departmentPatterns": [
+        "علوم الحياة",
+        "التقنيات االحيائية",
+        "biology",
+        "الاحياء",
+        "علم الاحياء",
+        "الاحياء المجهرية",
+        "التقانات الاحيائية",
+        "التقانة الاحيائية"
+      ],
       "priority": 1
     },
     {
       "majorId": "geography",
       "majorName": "الجغرافية",
-      "aliases": ["الجغرافية", "Geography"],
-      "departmentPatterns": ["الجغرافية", "geography"],
+      "aliases": [
+        "الجغرافية",
+        "Geography"
+      ],
+      "departmentPatterns": [
+        "الجغرافية",
+        "geography"
+      ],
       "priority": 1
     },
     {
       "majorId": "history",
       "majorName": "التاريخ",
-      "aliases": ["التاريخ", "التاريد", "History"],
-      "departmentPatterns": ["التاريخ", "التاريد", "history"],
+      "aliases": [
+        "التاريخ",
+        "التاريد",
+        "History"
+      ],
+      "departmentPatterns": [
+        "التاريخ",
+        "التاريد",
+        "history"
+      ],
       "priority": 1
     },
     {
       "majorId": "agriculture",
       "majorName": "علوم الهندسة الزراعية",
-      "aliases": ["علوم الهندسة الزراعية", "الزراعة", "Agriculture"],
-      "departmentPatterns": ["الزراعية", "الزراعي", "المحاصيل الحقلية", "البستنة", "وقاية النبات", "الثروة الحيوانية", "agriculture"],
+      "aliases": [
+        "علوم الهندسة الزراعية",
+        "الزراعة",
+        "Agriculture"
+      ],
+      "departmentPatterns": [
+        "الزراعية",
+        "الزراعي",
+        "المحاصيل الحقلية",
+        "البستنة",
+        "وقاية النبات",
+        "الثروة الحيوانية",
+        "agriculture"
+      ],
       "priority": 1
     },
     {
       "majorId": "veterinary_medicine",
       "majorName": "الطب البيطري",
-      "aliases": ["الطب البيطري", "Veterinary Medicine"],
-      "departmentPatterns": ["الطب البيطري", "بيطري", "veterinary"],
+      "aliases": [
+        "الطب البيطري",
+        "Veterinary Medicine"
+      ],
+      "departmentPatterns": [
+        "الطب البيطري",
+        "بيطري",
+        "veterinary"
+      ],
       "priority": 1
     },
     {
       "majorId": "islamic_studies",
       "majorName": "العلوم الإسلامية",
-      "aliases": ["العلوم الإسلامية", "علوم القرآن", "Islamic Studies"],
-      "departmentPatterns": ["العلوم االسالمية", "علوم القران", "الشريعة", "الفقه", "العقيدة والفكر االسالمي"],
+      "aliases": [
+        "العلوم الإسلامية",
+        "علوم القرآن",
+        "Islamic Studies"
+      ],
+      "departmentPatterns": [
+        "العلوم االسالمية",
+        "علوم القران",
+        "الشريعة",
+        "الفقه",
+        "العقيدة والفكر االسالمي",
+        "العقيدة",
+        "الحديث وعلومه",
+        "التفسير",
+        "الدراسات القرآنية",
+        "لغة القرآن",
+        "مقارنة الأديان",
+        "حوار الأديان",
+        "الاسالمية",
+        "القران الكريم",
+        "الاديان"
+      ],
       "priority": 1
     },
     {
       "majorId": "arabic_language",
       "majorName": "اللغة العربية وآدابها",
-      "aliases": ["اللغة العربية", "Arabic Language"],
-      "departmentPatterns": ["اللغة العربية", "arabic"],
+      "aliases": [
+        "اللغة العربية",
+        "Arabic Language"
+      ],
+      "departmentPatterns": [
+        "اللغة العربية",
+        "arabic",
+        "الدراسات الادبية",
+        "الدراسات البلاغية",
+        "الدراسات اللغوية"
+      ],
       "priority": 1
     },
     {
       "majorId": "translation",
       "majorName": "الترجمة",
-      "aliases": ["الترجمة", "Translation"],
-      "departmentPatterns": ["الترجمة", "translation"],
+      "aliases": [
+        "الترجمة",
+        "Translation"
+      ],
+      "departmentPatterns": [
+        "الترجمة",
+        "translation"
+      ],
       "priority": 1
     },
     {
       "majorId": "media_journalism",
       "majorName": "الإعلام",
-      "aliases": ["الإعلام", "الصحافة", "Media"],
-      "departmentPatterns": ["االعالم", "الصحافة", "االذاعة والتلفزيون", "العالقات العامة", "media"],
+      "aliases": [
+        "الإعلام",
+        "الصحافة",
+        "Media"
+      ],
+      "departmentPatterns": [
+        "االعالم",
+        "الصحافة",
+        "االذاعة والتلفزيون",
+        "العالقات العامة",
+        "media",
+        "اذاعة"
+      ],
       "priority": 1
     },
     {
       "majorId": "fine_arts",
       "majorName": "الفنون الجميلة",
-      "aliases": ["الفنون الجميلة", "Fine Arts"],
-      "departmentPatterns": ["الفنون الجميلة", "الفنون التشكيلية", "الفنون المسرحية", "الفنون السينمائية", "fine arts"],
+      "aliases": [
+        "الفنون الجميلة",
+        "Fine Arts"
+      ],
+      "departmentPatterns": [
+        "الفنون الجميلة",
+        "الفنون التشكيلية",
+        "الفنون المسرحية",
+        "الفنون السينمائية",
+        "fine arts",
+        "الخط والزخرفة",
+        "التربية الفنية"
+      ],
       "priority": 1
     },
     {
       "majorId": "kindergarten_education",
       "majorName": "رياض الأطفال",
-      "aliases": ["رياض الأطفال", "Kindergarten"],
-      "departmentPatterns": ["رياض االطفال", "رياض الأطفال", "kindergarten"],
+      "aliases": [
+        "رياض الأطفال",
+        "Kindergarten"
+      ],
+      "departmentPatterns": [
+        "رياض االطفال",
+        "رياض الأطفال",
+        "kindergarten"
+      ],
       "priority": 1
     },
     {
       "majorId": "physical_education",
       "majorName": "التربية البدنية وعلوم الرياضة",
-      "aliases": ["التربية البدنية وعلوم الرياضة", "Physical Education"],
-      "departmentPatterns": ["التربية البدنية", "علوم الرياضة", "physical education"],
+      "aliases": [
+        "التربية البدنية وعلوم الرياضة",
+        "Physical Education"
+      ],
+      "departmentPatterns": [
+        "التربية البدنية",
+        "علوم الرياضة",
+        "physical education"
+      ],
       "priority": 1
     },
     {
       "majorId": "forensic_science",
       "majorName": "الأدلة الجنائية",
-      "aliases": ["الأدلة الجنائية", "Forensic Science"],
-      "departmentPatterns": ["االدلة الجنائية", "الأدلة الجنائية", "forensic"],
+      "aliases": [
+        "الأدلة الجنائية",
+        "Forensic Science"
+      ],
+      "departmentPatterns": [
+        "االدلة الجنائية",
+        "الأدلة الجنائية",
+        "forensic"
+      ],
       "priority": 1
     },
     {
       "majorId": "tourism_hospitality",
       "majorName": "العلوم السياحية والفندقية",
-      "aliases": ["العلوم السياحية", "Tourism"],
-      "departmentPatterns": ["السياحية", "السياحي", "الفندقية", "tourism"],
+      "aliases": [
+        "العلوم السياحية",
+        "Tourism"
+      ],
+      "departmentPatterns": [
+        "السياحية",
+        "السياحي",
+        "الفندقية",
+        "tourism",
+        "السياحة",
+        "السفر وخدمة الطيران"
+      ],
       "priority": 1
     },
     {
       "majorId": "psychology_sociology",
       "majorName": "علم النفس والاجتماع",
-      "aliases": ["علم النفس", "الاجتماع", "Psychology"],
-      "departmentPatterns": ["علم النفس", "قسم االجتماع", "االنثروبولوجيا واالجتماع", "الفلسفة", "psychology"],
+      "aliases": [
+        "علم النفس",
+        "الاجتماع",
+        "Psychology"
+      ],
+      "departmentPatterns": [
+        "علم النفس",
+        "قسم االجتماع",
+        "االنثروبولوجيا واالجتماع",
+        "الفلسفة",
+        "psychology",
+        "الاجتماع"
+      ],
       "priority": 1
+    },
+    {
+      "majorId": "radiology_tech",
+      "majorName": "تقنيات الأشعة والتصوير الطبي",
+      "aliases": [
+        "تقنيات الأشعة",
+        "الأشعة",
+        "تقنيات الأشعة والسونار",
+        "الأشعة والسونار"
+      ],
+      "departmentPatterns": [
+        "اشعة",
+        "سونار"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "anesthesia_critical_care_tech",
+      "majorName": "تقنيات التخدير والعناية الحرجة",
+      "aliases": [
+        "تقنيات التخدير",
+        "التخدير",
+        "تقنيات التخدير والعناية المركزة",
+        "تقنيات عناية القلب",
+        "عناية القلب",
+        "تقنيات غسيل الكلى",
+        "غسيل الكلى"
+      ],
+      "departmentPatterns": [
+        "تخدير",
+        "عناية القلب",
+        "غسيل الكلى",
+        "غسل الكلى",
+        "بالقلب",
+        "الكلية الصناعية"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "rehab_therapy_tech",
+      "majorName": "تقنيات العلاج الوظيفي وتأهيل التوحد",
+      "aliases": [
+        "تقنيات العلاج الوظيفي",
+        "العلاج الوظيفي",
+        "تقنيات طيف التوحد",
+        "التأهيل السلوكي للتوحد",
+        "تقنيات العلاج السلوكي والتوحد"
+      ],
+      "departmentPatterns": [
+        "علاج وظيفي",
+        "طيف التوحد",
+        "توحد",
+        "تاهيل سلوكي"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "prosthetics_tech",
+      "majorName": "تقنيات الأطراف الصناعية والتعويضات",
+      "aliases": [
+        "تقنيات الأطراف الصناعية",
+        "الأطراف الصناعية",
+        "تقنيات الأطراف والمساند الصناعية",
+        "قسم الأطراف الصناعية",
+        "قسم المواد الأحيائية والتعويضات الاصطناعية"
+      ],
+      "departmentPatterns": [
+        "اطراف",
+        "تعويضات اصطناعية",
+        "مساند صناعية"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "emergency_medical_tech",
+      "majorName": "تقنيات الإسعاف الفوري والطوارئ",
+      "aliases": [
+        "قسم الإسعاف الفوري",
+        "تقنيات الإسعاف الفوري",
+        "الإسعاف الفوري",
+        "الإسعاف"
+      ],
+      "departmentPatterns": [
+        "اسعاف"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "optometry_audiology_tech",
+      "majorName": "تقنيات البصريات والسمع والنطق",
+      "aliases": [
+        "تقنيات البصريات",
+        "البصريات",
+        "تقنيات فحص البصر",
+        "قسم فحص البصر",
+        "تقنيات السمع والنطق",
+        "السمع والنطق"
+      ],
+      "departmentPatterns": [
+        "بصريات",
+        "فحص البصر",
+        "سمع والنطق"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "reproductive_health_tech",
+      "majorName": "تقنيات صحة الإنجاب والقبالة",
+      "aliases": [
+        "تقنيات العقم والإنجاب",
+        "العقم والإنجاب",
+        "القبالة",
+        "قبالة"
+      ],
+      "departmentPatterns": [
+        "عقم",
+        "انجاب",
+        "قبالة"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "community_nutrition_health_tech",
+      "majorName": "تقنيات التغذية وصحة المجتمع",
+      "aliases": [
+        "تقنيات التغذية العلاجية",
+        "التغذية العلاجية",
+        "تقنيات صحة المجتمع",
+        "صحة المجتمع",
+        "تقنيات الإدارة الصحية",
+        "الإدارة الصحية",
+        "قسم صحة الغذاء والتغذية",
+        "صحة الغذاء والتغذية"
+      ],
+      "departmentPatterns": [
+        "تغذية",
+        "صحة المجتمع",
+        "ادارة صحية",
+        "صحة الغذاء"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "cosmetic_science_tech",
+      "majorName": "تقنيات علوم التجميل والليزر",
+      "aliases": [
+        "قسم علوم التجميل",
+        "علوم التجميل",
+        "تقنيات التجميل والليزر",
+        "التجميل والليزر",
+        "التجميل"
+      ],
+      "departmentPatterns": [
+        "تجميل"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "aerospace_engineering",
+      "majorName": "هندسة الطيران والطائرات المسيرة",
+      "aliases": [
+        "هندسة الطيران",
+        "هندسة الطائرات",
+        "هندسة الطائرات المسيرة",
+        "هندسة نظم الطائرات بدون طيار",
+        "هندسة تقنيات الطيران",
+        "هندسة تقنيات الفضاء والطائرات المسيرة"
+      ],
+      "departmentPatterns": [
+        "طائرات",
+        "هندسة الطيران",
+        "هندسة تقنيات الطيران",
+        "الكترونيات الطيران",
+        "الملاحة والتوجيه",
+        "الرادار"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "laser_optoelectronics_engineering",
+      "majorName": "هندسة الليزر والإلكترونيات البصرية",
+      "aliases": [
+        "هندسة الليزر",
+        "الليزر والإلكترونيات البصرية",
+        "علوم وتكنولوجيا الليزر",
+        "هندسة تقنيات الليزر والإلكترونيات البصرية"
+      ],
+      "departmentPatterns": [
+        "هندسة الليزر",
+        "قسم الليزر",
+        "الإلكترونيات البصرية",
+        "علوم وتكنولوجيا الليزر",
+        "التقنيات البصرية"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "mining_engineering",
+      "majorName": "هندسة التعدين",
+      "aliases": [
+        "هندسة التعدين",
+        "قسم التعدين",
+        "استخلاص المعادن والتعدين",
+        "قسم المعادن"
+      ],
+      "departmentPatterns": [
+        "التعدين",
+        "المعادن"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "industrial_engineering",
+      "majorName": "الهندسة الصناعية وتقنيات التصنيع",
+      "aliases": [
+        "الهندسة الصناعية",
+        "التصنيع المؤتمت",
+        "التصنيع الذكي",
+        "الصناعية والنظم",
+        "هندسة التصنيع المبرمج"
+      ],
+      "departmentPatterns": [
+        "التصنيع المؤتمت",
+        "التصنيع الذكي",
+        "الصناعية والنظم",
+        "التصنيع المبرمج",
+        "السالمة المهنية"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "control_automation_engineering",
+      "majorName": "هندسة النظم والسيطرة والأتمتة",
+      "aliases": [
+        "هندسة النظم والسيطرة",
+        "النظم والسيطرة",
+        "السيطرة الذكية",
+        "هندسة تقنيات السيطرة والأتمتة"
+      ],
+      "departmentPatterns": [
+        "السيطرة",
+        "الأتمتة",
+        "الأنظمة الإدراكية",
+        "الإنسان الآلي",
+        "الآلات الذكية",
+        "الانسان الالي",
+        "الانظمة الادراكية"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "communications_engineering",
+      "majorName": "هندسة الاتصالات",
+      "aliases": [
+        "هندسة الاتصالات",
+        "الاتصالات والإلكترونيك",
+        "هندسة تقنيات الاتصالات",
+        "نظم الاتصالات اللاسلكية",
+        "نظم الاتصالات الضوئية",
+        "هندسة الاتصالات والحوسبة المتنقلة",
+        "هندسة تكنولوجيا الإعلام والاتصالات"
+      ],
+      "departmentPatterns": [
+        "الاتصالات",
+        "الالكترون"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "automotive_engineering",
+      "majorName": "هندسة تقنيات السيارات",
+      "aliases": [
+        "هندسة السيارات",
+        "قسم السيارات",
+        "السيارات والتنقل المستدام",
+        "هندسة تقنيات السيارات"
+      ],
+      "departmentPatterns": [
+        "السيارات",
+        "اوتوترونكس"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "geomatics_surveying_engineering",
+      "majorName": "هندسة المساحة والجيوماتيك",
+      "aliases": [
+        "هندسة المساحة",
+        "المساحة والجيوماتيك",
+        "الجيوماتيك",
+        "تقنيات المساحة",
+        "هندسة تقنيات المساحة"
+      ],
+      "departmentPatterns": [
+        "المساحة",
+        "الجيوماتيك",
+        "التحسس النائي",
+        "جيوماتكس"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "urban_regional_planning_engineering",
+      "majorName": "هندسة التخطيط الحضري والإقليمي",
+      "aliases": [
+        "التخطيط الحضري",
+        "التخطيط الإقليمي",
+        "التخطيط العمراني"
+      ],
+      "departmentPatterns": [
+        "التخطيط الحضري",
+        "التخطيط الإقليمي",
+        "التخطيط العمراني"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "materials_engineering",
+      "majorName": "هندسة المواد",
+      "aliases": [
+        "هندسة المواد",
+        "قسم المواد",
+        "هندسة تقنية المواد",
+        "السيراميك ومواد البناء"
+      ],
+      "departmentPatterns": [
+        "قسم المواد",
+        "هندسة المواد",
+        "تقنية المواد",
+        "السيراميك ومواد البناء",
+        "حراريات"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "refrigeration_ac_engineering",
+      "majorName": "هندسة تقنيات التبريد والتكييف",
+      "aliases": [
+        "هندسة تقنيات التبريد والتكييف",
+        "تقنيات التبريد والتكييف",
+        "تكييف الهواء والتجميد"
+      ],
+      "departmentPatterns": [
+        "تكييف",
+        "تبريد"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "environmental_engineering",
+      "majorName": "الهندسة البيئية",
+      "aliases": [
+        "الهندسة البيئية",
+        "علوم البيئة",
+        "الصحة البيئية",
+        "هندسة تقنيات البيئة والتلوث"
+      ],
+      "departmentPatterns": [
+        "البيئة",
+        "البيئية"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "geology_earth_science",
+      "majorName": "علوم الأرض والجيولوجيا",
+      "aliases": [
+        "علوم الأرض والجيولوجيا",
+        "علم الأرض",
+        "الجيولوجيا",
+        "علم الأرض والنفط"
+      ],
+      "departmentPatterns": [
+        "علم الأرض",
+        "علم الارض",
+        "علم االرض",
+        "جيولوجيا"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "astronomy_space_science",
+      "majorName": "الفلك وعلوم الفضاء",
+      "aliases": [
+        "الفلك وعلوم الفضاء",
+        "الفلك والفضاء",
+        "علم الفلك"
+      ],
+      "departmentPatterns": [
+        "الفلك والفضاء",
+        "الفلك"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "data_science",
+      "majorName": "علم البيانات",
+      "aliases": [
+        "علم البيانات",
+        "البيانات الضخمة",
+        "Data Science"
+      ],
+      "departmentPatterns": [
+        "علم البيانات",
+        "البيانات الضخمة",
+        "data science"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "plant_crop_production",
+      "majorName": "الإنتاج النباتي والمحاصيل",
+      "aliases": [
+        "الإنتاج النباتي والمحاصيل",
+        "الإنتاج النباتي",
+        "تقنيات الإنتاج النباتي"
+      ],
+      "departmentPatterns": [
+        "الإنتاج النباتي",
+        "الانتاج النباتي"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "animal_livestock_science",
+      "majorName": "الثروة الحيوانية والإنتاج الحيواني",
+      "aliases": [
+        "الثروة الحيوانية والإنتاج الحيواني",
+        "الإنتاج الحيواني",
+        "تقنيات الإنتاج الحيواني"
+      ],
+      "departmentPatterns": [
+        "الإنتاج الحيواني",
+        "الانتاج الحيواني",
+        "والحيواني",
+        "حيواني"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "water_resources_forestry",
+      "majorName": "الموارد المائية والغابات",
+      "aliases": [
+        "الموارد المائية والغابات",
+        "التربة والمياه",
+        "الغابات",
+        "مكافحة التصحر"
+      ],
+      "departmentPatterns": [
+        "التربة والمياه",
+        "التربة وتقنيات الري",
+        "التربة والموارد المائية",
+        "الغابات",
+        "التصحر",
+        "استصلاح الأراضي",
+        "استصالح الاراضي",
+        "استصالح االراضي",
+        "الأهوار",
+        "الاهوار",
+        "واالهوار"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "food_science_nutrition",
+      "majorName": "علوم الأغذية والتغذية",
+      "aliases": [
+        "علوم الأغذية والتغذية",
+        "علوم الأغذية",
+        "تكنولوجيا الأغذية",
+        "الغذاء والتغذية"
+      ],
+      "departmentPatterns": [
+        "علوم الأغذية",
+        "علوم الاغذية",
+        "تكنولوجيا الأغذية",
+        "تكنولوجيا الألبان",
+        "تكنولوجيا الالبان",
+        "صحة الغذاء والتغذية",
+        "الصناعات الغذائية",
+        "الغذاء",
+        "غذية"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "archaeology",
+      "majorName": "الآثار والحضارة القديمة",
+      "aliases": [
+        "الآثار",
+        "علم الآثار",
+        "الآثار والحضارة القديمة",
+        "الآثار والحضارة الإسلامية"
+      ],
+      "departmentPatterns": [
+        "الآثار العراقية القديمة",
+        "الآثار الإسلامية",
+        "الدراسات المسمارية",
+        "الآثار والحضارة القديمة",
+        "الآثار والحضارة الإسلامية",
+        "الاثار"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "foreign_languages_other",
+      "majorName": "لغات أجنبية أخرى (تركية/روسية/فارسية/فرنسية/كردية)",
+      "aliases": [
+        "اللغة التركية",
+        "اللغة الروسية",
+        "اللغة الفارسية",
+        "اللغة الفرنسية",
+        "اللغة الكردية"
+      ],
+      "departmentPatterns": [
+        "اللغة التركية",
+        "اللغة الروسية",
+        "اللغة الفارسية",
+        "اللغة الفرنسية",
+        "اللغة الكردية"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "music_performing_arts",
+      "majorName": "الموسيقى والفنون الأدائية",
+      "aliases": [
+        "الفنون الموسيقية",
+        "الموسيقى"
+      ],
+      "departmentPatterns": [
+        "الفنون الموسيقية",
+        "الموسيقى",
+        "مسرح"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "special_education",
+      "majorName": "التربية الخاصة",
+      "aliases": [
+        "التربية الخاصة"
+      ],
+      "departmentPatterns": [
+        "التربية الخاصة"
+      ],
+      "priority": 1
+    },
+    {
+      "majorId": "information_systems",
+      "majorName": "نظم المعلومات الإدارية",
+      "aliases": [
+        "نظم المعلومات الإدارية",
+        "نظم المعلومات",
+        "Management Information Systems",
+        "MIS"
+      ],
+      "departmentPatterns": [
+        "ادارة انظمة المعلوماتية",
+        "ادارة تقنيات المعلومات",
+        "نظم المعلومات",
+        "المعلومات وتقنيات المعرفة",
+        "معلوماتية الاعمال",
+        "تكنولوجيا معلومات الاعمال"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "financial_banking",
+      "majorName": "العلوم المالية والمصرفية",
+      "aliases": [
+        "العلوم المالية والمصرفية",
+        "المالية والمصرفية",
+        "Financial and Banking Sciences"
+      ],
+      "departmentPatterns": [
+        "مصرفية",
+        "الرقابة المحاسبية",
+        "التأمين"
+      ],
+      "priority": 2
+    },
+    {
+      "majorId": "industrial_craft_design",
+      "majorName": "التصميم الصناعي والحرفي",
+      "aliases": [
+        "التصميم الصناعي",
+        "التصميم الصناعي والحرفي",
+        "Industrial Design"
+      ],
+      "departmentPatterns": [
+        "قمشة",
+        "الصياغة والمجوهرات",
+        "تقنيات الخزف",
+        "التصميم الصناعي",
+        "التزيين المعماري"
+      ],
+      "priority": 2
     }
   ]
 }

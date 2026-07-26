@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight, AlertTriangle, CheckCircle, Edit3 } from "lucide-react";
+import { ArrowLeft, ChevronRight, AlertTriangle, AlertCircle, CheckCircle, Edit3 } from "lucide-react";
 import questionsData from "../../data/questions.json";
 import validityQuestionsData from "../../data/validity_questions.json";
 import contradictionPairsData from "../../data/contradiction_pairs.json";
+import tiebreakerQuestionsData from "../../data/tiebreaker_questions.json";
 import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
@@ -15,10 +16,13 @@ import {
   computeCombinedRankingScore,
   topDimensions,
   RIASEC_LABELS,
+  RIASEC_DIMENSIONS,
   type RiasecDimension,
   type RiasecVector,
 } from "../../lib/riasec";
 import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
+import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "../../lib/subjectAffinity";
+import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {
@@ -84,7 +88,7 @@ function ReviewScreen({
   };
   const colorMap: Record<number, string> = {
     1: "text-primary font-bold",
-    0: "text-blue-500 font-bold",
+    0: "text-primary-400 font-bold",
     [-1]: "text-slate-400 font-bold",
   };
 
@@ -106,7 +110,8 @@ function ReviewScreen({
         <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-2xl">
           <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
           <p className="text-sm">
-            لم تُجب على <strong>{unanswered.length} سؤال</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية دقيقة.
+            لم تُجب على <strong>{unanswered.length} سؤال</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
+            دقيقة.
           </p>
         </div>
       )}
@@ -131,7 +136,9 @@ function ReviewScreen({
               {/* النص والإجابة */}
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-slate-500 truncate">{q.text}</p>
-                <p className={`text-sm mt-0.5 ${answered ? colorMap[val] ?? "text-slate-700" : "text-amber-600 font-bold"}`}>
+                <p
+                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-slate-700") : "text-amber-600 font-bold"}`}
+                >
                   {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
                 </p>
               </div>
@@ -139,7 +146,7 @@ function ReviewScreen({
               {/* زر التعديل */}
               <button
                 onClick={() => onEdit(i)}
-                className="shrink-0 flex items-center gap-1 text-xs text-primary hover:text-blue-800 font-bold transition-colors"
+                className="shrink-0 flex items-center gap-1 text-xs text-primary hover:text-primary-800 font-bold transition-colors"
               >
                 <Edit3 className="w-3 h-3" />
                 تعديل
@@ -153,7 +160,7 @@ function ReviewScreen({
       <div className="space-y-3">
         <button
           onClick={onSubmit}
-          className="w-full bg-primary text-white py-4 rounded-2xl font-black text-lg hover:bg-blue-800 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
+          className="w-full bg-primary text-white py-4 rounded-2xl font-black text-lg hover:bg-primary-700 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
         >
           إرسال الاختبار وعرض التوصية ✨
         </button>
@@ -169,6 +176,44 @@ function ReviewScreen({
   );
 }
 
+// حقل درجة مادة واحدة ضمن نموذج القرابة الدراسية الاختياري -- فارغ افتراضياً
+// (undefined لا صفراً)، كي lib/subjectAffinity.ts يتجاهل أي محور لم يُدخِله
+// الطالب بدل معاقبته على غيابه.
+function SubjectGradeInput({
+  label,
+  value,
+  onChange,
+}: {
+  label: string;
+  value: number | undefined;
+  onChange: (value: number | undefined) => void;
+}) {
+  return (
+    <div>
+      <label className="block text-xs font-bold text-slate-600 mb-1">{label}</label>
+      <input
+        type="number"
+        min={0}
+        max={100}
+        value={value ?? ""}
+        onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+        className="w-full p-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
+        placeholder="اختياري"
+      />
+    </div>
+  );
+}
+
+// مؤشر طلب السوق -- معروض دائماً منفصلاً بصرياً عن نسبة التوافق الشخصي (لا
+// مدموجاً فيها كرقم واحد)، لأن السؤالين مختلفان تماماً: "أيّ تخصص يشبهك؟"
+// مقابل "ما فرص هذا التخصص؟" (انظر تحليل_الثغرات_وخطة_التطوير.md §3.2).
+function getDemandLevel(multiplier: number): { text: string; color: string; bg: string } {
+  if (multiplier >= 1.4) return { text: "مرتفع جداً", color: "text-emerald-700", bg: "bg-emerald-100" };
+  if (multiplier >= 1.2) return { text: "مرتفع", color: "text-blue-700", bg: "bg-blue-100" };
+  if (multiplier >= 1.0) return { text: "متوسط", color: "text-amber-700", bg: "bg-amber-100" };
+  return { text: "منخفض/متشبع", color: "text-red-700", bg: "bg-red-100" };
+}
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // المكوّن الرئيسي
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -178,11 +223,33 @@ export default function Quiz() {
   const [isFinished, setIsFinished] = useState(false);
   const [showReview, setShowReview] = useState(false);
   const [topMajors, setTopMajors] = useState<any[]>([]);
+  // كل التخصصات الصالحة لفرع الطالب (لا أفضل 3 فقط) بنسبة توافقها الخام --
+  // تُخزَّن كاملة عند إنهاء الاختبار لتُتيح إعادة الترتيب فوراً وتفاعلياً عند
+  // تحريك منزلق "أهمية السوق" بلا حاجة لإعادة حساب الاختبار من الصفر
+  // (انظر §3.2 من تحليل الثغرات: السوق مفصول عن الترتيب افتراضياً، بيد الطالب فقط).
+  const [allValidMajors, setAllValidMajors] = useState<any[]>([]);
+  const [marketWeight, setMarketWeight] = useState(0);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
   const [vrsResult, setVrsResult] = useState<ValidityCheckResult | null>(null);
   const [timings, setTimings] = useState<Record<string, number>>({});
   const [questionShownAt, setQuestionShownAt] = useState<number>(() => Date.now());
+
+  // ---- خوارزمية تتكيّف متعددة الجولات (تحليل_الثغرات_وخطة_التطوير.md §5.2):
+  // عند تقارب أول تخصصين بعد الأسئلة الأربعين الأساسية، تُضاف أسئلة ترجيح
+  // إضافية مستهدفة (data/tiebreaker_questions.json) بدل حسم التعادل بمعامل
+  // السوق وحده. إن بقي التعادل، تُطرَح جولة تالية (بأسئلة مختلفة عن كل
+  // الجولات السابقة) قبل الحسم النهائي إجبارياً -- حد أقصى 3 جولات (رُفع من
+  // 2 بطلب صريح: "إذا استمر التقارب") لتفادي إرهاق الطالب بلا نهاية، ويتوقف
+  // تلقائياً أبكر من ذلك إن نفدت الأسئلة المميِّزة المتبقية لنفس البُعدين
+  // (بنك 18 سؤالاً، 3 لكل بُعد RIASEC — يكفي بالضبط لثلاث جولات كحد أقصى
+  // لكل بُعد). tieBreakQuestions فارغة افتراضياً فلا يتغيّر سلوك الاختبار
+  // إطلاقاً للحالة الشائعة (نتيجة واضحة من الجولة الأولى).
+  const MAX_TIEBREAK_ROUNDS = 3;
+  const [tieBreakQuestions, setTieBreakQuestions] = useState<QuizItem[]>([]);
+  const [tieBreakPending, setTieBreakPending] = useState(false);
+  const [tieBreakRound, setTieBreakRound] = useState(0);
+  const [tieBreakInfo, setTieBreakInfo] = useState<{ a: string; b: string } | null>(null);
 
   const [filterSettings, setFilterSettings] = useState<null | {
     province: string;
@@ -190,6 +257,23 @@ export default function Quiz() {
     gradeType: "expected" | "actual";
     grade: number;
   }>(null);
+
+  // ---- محور القرابة الدراسية (اختياري) -- درجات مواد فعلية، لا اهتماماً
+  // ذاتياً، انظر تحليل_الثغرات_وخطة_التطوير.md §1.2 ----
+  const [formBranch, setFormBranch] = useState(""); // نسخة متحكَّم بها من حقل الفرع لعرض حقول المواد المناسبة قبل الإرسال
+  const [subjectGrades, setSubjectGrades] = useState<SubjectGrades>({});
+
+  // إعادة ترتيب فورية عند تحريك منزلق "أهمية السوق" -- بلا إعادة حساب
+  // الاختبار كاملاً، فقط إعادة فرز القائمة المخزَّنة أصلاً حسب الوزن الحالي.
+  const rankedMajors = useMemo(() => {
+    return [...allValidMajors]
+      .map((m) => ({
+        ...m,
+        combinedScore: computeCombinedRankingScore(m.fitPercent, m.marketMultiplier, marketWeight),
+      }))
+      .sort((a, b) => b.combinedScore - a.combinedScore)
+      .slice(0, 3);
+  }, [allValidMajors, marketWeight]);
 
   // Clear session on mount
   useEffect(() => {
@@ -233,7 +317,8 @@ export default function Quiz() {
             const form = e.currentTarget as HTMLFormElement;
             const province = (form.elements.namedItem("province") as HTMLSelectElement).value;
             const branch = (form.elements.namedItem("branch") as HTMLSelectElement).value;
-            const gradeType = (form.elements.namedItem("gradeType") as HTMLSelectElement).value as "expected" | "actual";
+            const gradeType = (form.elements.namedItem("gradeType") as HTMLSelectElement).value as
+              "expected" | "actual";
             const grade = Number((form.elements.namedItem("grade") as HTMLInputElement).value);
             // بلا هذا، يبقى توقيت "بداية السؤال" عند وقت تحميل الصفحة (قبل
             // ملء نموذج الفلترة أصلاً)، فيُحتسب زمن ملء النموذج بأكمله
@@ -243,11 +328,20 @@ export default function Quiz() {
           }}
         >
           <div>
-            <label className="block font-bold mb-2" htmlFor="province">المحافظة</label>
-            <select id="province" name="province" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
+            <label className="block font-bold mb-2" htmlFor="province">
+              المحافظة
+            </label>
+            <select
+              id="province"
+              name="province"
+              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              required
+            >
               <option value="">اختر المحافظة</option>
               {AVAILABLE_PROVINCES.map((p) => (
-                <option key={p} value={p}>{p}</option>
+                <option key={p} value={p}>
+                  {p}
+                </option>
               ))}
             </select>
             <p className="text-xs text-slate-500 mt-1">
@@ -255,26 +349,45 @@ export default function Quiz() {
             </p>
           </div>
           <div>
-            <label className="block font-bold mb-2" htmlFor="branch">الفرع الدراسي</label>
-            <select id="branch" name="branch" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
+            <label className="block font-bold mb-2" htmlFor="branch">
+              الفرع الدراسي
+            </label>
+            <select
+              id="branch"
+              name="branch"
+              value={formBranch}
+              onChange={(e) => setFormBranch(e.target.value)}
+              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              required
+            >
               <option value="">اختر الفرع</option>
               <option value="علمي">علمي (إحيائي / تطبيقي)</option>
               <option value="أدبي">أدبي</option>
               <option value="فنون">فنون / إبداع</option>
             </select>
             <p className="text-xs text-slate-500 mt-1">
-              الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك.
+              الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي
+              والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك.
             </p>
           </div>
           <div>
-            <label className="block font-bold mb-2" htmlFor="gradeType">نوع المعدل</label>
-            <select id="gradeType" name="gradeType" className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40" required>
+            <label className="block font-bold mb-2" htmlFor="gradeType">
+              نوع المعدل
+            </label>
+            <select
+              id="gradeType"
+              name="gradeType"
+              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              required
+            >
               <option value="expected">معدل متوقع</option>
               <option value="actual">معدل حصل (حقيقي)</option>
             </select>
           </div>
           <div>
-            <label className="block font-bold mb-2" htmlFor="grade">المعدل (٪)</label>
+            <label className="block font-bold mb-2" htmlFor="grade">
+              المعدل (٪)
+            </label>
             <input
               id="grade"
               type="number"
@@ -286,9 +399,79 @@ export default function Quiz() {
               required
             />
           </div>
+          {formBranch && (
+            <div className="border-t border-slate-200 pt-5 space-y-3">
+              <div>
+                <h3 className="font-bold text-slate-700">درجات موادك (اختياري)</h3>
+                <p className="text-xs text-slate-500 mt-1">
+                  يرفع دقة التوصية عبر ربطها بنقاط قوّتك الدراسية الفعلية (لا رأيك الشخصي فقط) — تخصصان متقاربان شخصياً
+                  قد يفرّقهما تفوّقك النسبي في مادة عن أخرى. اترك أي حقل فارغاً إن لم ترغب.
+                </p>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {formBranch === "علمي" ? (
+                  <>
+                    <SubjectGradeInput
+                      label="الرياضيات"
+                      value={subjectGrades.math}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, math: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="الفيزياء"
+                      value={subjectGrades.physics}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, physics: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="الكيمياء"
+                      value={subjectGrades.chemistry}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, chemistry: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="الأحياء"
+                      value={subjectGrades.biology}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, biology: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="اللغة العربية"
+                      value={subjectGrades.arabic}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="اللغة الإنجليزية"
+                      value={subjectGrades.english}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
+                    />
+                  </>
+                ) : (
+                  <>
+                    <SubjectGradeInput
+                      label="اللغة العربية"
+                      value={subjectGrades.arabic}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="اللغة الإنجليزية"
+                      value={subjectGrades.english}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="التاريخ"
+                      value={subjectGrades.history}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, history: v }))}
+                    />
+                    <SubjectGradeInput
+                      label="الجغرافية"
+                      value={subjectGrades.geography}
+                      onChange={(v) => setSubjectGrades((s) => ({ ...s, geography: v }))}
+                    />
+                  </>
+                )}
+              </div>
+            </div>
+          )}
           <button
             type="submit"
-            className="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-blue-800 transition-colors"
+            className="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-primary-700 transition-colors"
           >
             بدء الاختبار
           </button>
@@ -302,9 +485,9 @@ export default function Quiz() {
   // §8)، فتخصصات الإدارة والتسويق والمحاسبة مُدرَجة ضمن كلا الفرعين العلمي
   // والأدبي، تماماً كما تقبلها الجامعات فعلياً من خريجي الفرعين معاً ----
   const branchMap: Record<string, string[]> = {
-    "علمي": ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"],
-    "أدبي": ["إنسانيات", "لغات", "تربية", "إدارة وتسويق"],
-    "فنون": ["فنون وتصميم"],
+    علمي: ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"],
+    أدبي: ["إنسانيات", "لغات", "تربية", "إدارة وتسويق"],
+    فنون: ["فنون وتصميم"],
   };
 
   const gradeIsHigh = filterSettings.grade >= 85;
@@ -316,11 +499,16 @@ export default function Quiz() {
 
   // كل الأسئلة (المُسجَّلة على أبعاد RIASEC + أسئلة التحقق الثلاثة) تُعرض
   // للجميع بصرف النظر عن الفرع، لأنها تقيس سمات شخصية عامة لا تفضيلاً
-  // مباشراً لتخصص بعينه.
-  const displayedQuestions = ALL_QUIZ_QUESTIONS;
+  // مباشراً لتخصص بعينه. أسئلة الترجيح (tieBreakQuestions) تُلحَق في آخر
+  // القائمة فقط حين تُفعَّل فعلياً (فارغة في الحالة الشائعة، فلا يتغيّر طول
+  // الاختبار أو سلوكه إطلاقاً عندما تكون النتيجة واضحة أصلاً).
+  const displayedQuestions = [...ALL_QUIZ_QUESTIONS, ...tieBreakQuestions];
 
   // ---- محرك التوصية القائم على RIASEC + نظام كشف الجدّية (VRS) ----
-  const runRecommendationEngine = (finalAnswers: AnswerState) => {
+  // roundNumber = عدد جولات الترجيح المُنجَزة فعلياً حتى الآن (0 = الجولة
+  // الأولى بعد الأسئلة الأربعين مباشرة) -- يُحدّ بـMAX_TIEBREAK_ROUNDS لمنع
+  // إرهاق الطالب بأسئلة ترجيح لا نهائية إن ظلّ التعادل قائماً.
+  const runRecommendationEngine = (finalAnswers: AnswerState, opts?: { roundNumber?: number }) => {
     // فصل إجابات الأسئلة المُسجَّلة فعلياً على RIASEC عن إجابات أسئلة التحقق
     // الثلاثة (dimensions فارغة، لا تدخل حساب المتجه الشخصي إطلاقاً).
     const scoredAnswers: AnswerState = {};
@@ -336,28 +524,96 @@ export default function Quiz() {
       .filter((pair) => (scoredAnswers[pair.a] ?? 0) > 0 && (scoredAnswers[pair.b] ?? 0) > 0)
       .map((pair) => pair.message);
 
-    const userVector = computeUserRiasecVector(scoredAnswers, questionsData);
+    // نطاق التطبيع (min/max) يجب أن يشمل أسئلة الترجيح المعروضة فعلياً وإلا
+    // تُحسَب مساهمتها بمقياس خاطئ -- questionsData وحدها تكفي في الجولة
+    // الأولى (tieBreakQuestions فارغة بعد).
+    const questionPoolForVector = [...(questionsData as QuizItem[]), ...tieBreakQuestions];
+    const userVector = computeUserRiasecVector(scoredAnswers, questionPoolForVector);
     const allowedCats = branchMap[filterSettings.branch] || [];
+
+    // محور القرابة الدراسية (اختياري تماماً -- subjectGrades فارغ افتراضياً
+    // فيُرجِع computeSubjectAffinityFit لكل تخصص `null` ولا يتغيّر شيء عن
+    // السلوك السابق). عند وجود درجة مادة واحدة فأكثر: توافق مزيج 70% شخصية
+    // (RIASEC) + 30% قرابة دراسية موضوعية -- لا استبدال، لأن RIASEC يبقى
+    // الأساس، والقرابة الدراسية إشارة تمييزية إضافية (§1.2 من تحليل الثغرات).
+    const subjectVector = computeSubjectAffinityVector(subjectGrades, filterSettings.grade);
+    const SUBJECT_AFFINITY_BLEND_WEIGHT = 0.3;
 
     const processedMajors = majorsData
       .map((major) => {
         const profile = (riasecProfilesData.profiles as Record<string, any>)[major.id] ?? {};
-        const fitPercent = computeMajorFit(userVector, profile);
+        const riasecFitPercent = computeMajorFit(userVector, profile);
+        const majorSubjectWeights = (subjectAffinityWeightsData.weights as Record<string, any>)[major.id] ?? {};
+        const subjectFitPercent = computeSubjectAffinityFit(subjectVector, majorSubjectWeights);
+        const fitPercent =
+          subjectFitPercent === null
+            ? riasecFitPercent
+            : riasecFitPercent * (1 - SUBJECT_AFFINITY_BLEND_WEIGHT) +
+              subjectFitPercent * SUBJECT_AFFINITY_BLEND_WEIGHT;
         let valid = allowedCats.includes(major.category);
         if (!gradeIsHigh && major.category === "طبي") valid = false;
+        // بلا وسيط ثالث → وزن السوق = 0 افتراضياً (انظر توثيق الدالة في
+        // lib/riasec.ts) -- الترتيب الافتراضي والتحقق من التعادل أدناه كلاهما
+        // على التوافق الحقيقي (شخصية + قرابة دراسية) وحده، لا معامل السوق.
         const combinedScore = computeCombinedRankingScore(fitPercent, major.marketMultiplier);
-        return { ...major, fitPercent, combinedScore, valid };
+        return { ...major, fitPercent, riasecFitPercent, subjectFitPercent, combinedScore, valid };
       })
       .filter((m) => m.valid);
 
     processedMajors.sort((a, b) => b.combinedScore - a.combinedScore);
     const top3 = processedMajors.slice(0, 3);
+
+    // ---- نقطة التكيّف متعددة الجولات: نتيجة متقاربة بين أول تخصصين → أسئلة
+    // ترجيح إضافية، بحد أقصى MAX_TIEBREAK_ROUNDS جولات (§5.2) ----
+    const AMBIGUITY_THRESHOLD = 6;
+    const currentRound = opts?.roundNumber ?? 0;
+    if (
+      currentRound < MAX_TIEBREAK_ROUNDS &&
+      top3.length >= 2 &&
+      top3[0].combinedScore - top3[1].combinedScore < AMBIGUITY_THRESHOLD
+    ) {
+      const profileA = (riasecProfilesData.profiles as Record<string, any>)[top3[0].id] ?? {};
+      const profileB = (riasecProfilesData.profiles as Record<string, any>)[top3[1].id] ?? {};
+      const dimsByDivergence = [...RIASEC_DIMENSIONS].sort(
+        (a, b) => Math.abs((profileB[b] ?? 0) - (profileA[b] ?? 0)) - Math.abs((profileB[a] ?? 0) - (profileA[a] ?? 0))
+      );
+      const targetDims = new Set(dimsByDivergence.slice(0, 2));
+      const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
+      const pool = tiebreakerQuestionsData as QuizItem[];
+      const selected = pool.filter((q) => {
+        if (alreadyAskedIds.has(q.id)) return false; // لا نكرّر سؤال ترجيح سُئل في جولة سابقة
+        const entries = Object.entries(q.dimensions);
+        if (entries.length === 0) return false;
+        const primaryDim = entries.reduce((a, b) => (Math.abs(b[1] as number) > Math.abs(a[1] as number) ? b : a))[0];
+        return targetDims.has(primaryDim as RiasecDimension);
+      });
+
+      if (selected.length > 0) {
+        const startIndex = ALL_QUIZ_QUESTIONS.length + tieBreakQuestions.length;
+        setTieBreakQuestions((prev) => [...prev, ...selected]); // تراكمي عبر الجولات، لا استبدال
+        setTieBreakInfo({ a: top3[0].name, b: top3[1].name });
+        setTieBreakPending(true);
+        setTieBreakRound(currentRound + 1);
+        setCurrentQuestionIndex(startIndex);
+        setShowReview(false);
+        return; // لا نُنهي الاختبار بعد -- ننتظر إجابات جولة الترجيح هذه
+      }
+    }
+
+    setTieBreakPending(false);
     const userTopDimensions = topDimensions(userVector, 2);
 
-    const vrs = computeValidityRiskScore(scoredAnswers, validityAnswers, timings, contradictionPairsData, questionsData);
+    const vrs = computeValidityRiskScore(
+      scoredAnswers,
+      validityAnswers,
+      timings,
+      contradictionPairsData,
+      questionsData
+    );
 
     setWarnings(finalWarnings);
     setTopMajors(top3);
+    setAllValidMajors(processedMajors);
     setTopUserDimensions(userTopDimensions);
     setVrsResult(vrs);
     setIsFinished(true);
@@ -378,9 +634,14 @@ export default function Quiz() {
     setAnswers(newAnswers);
     setTimings((prev) => ({ ...prev, [question.id]: Date.now() - questionShownAt }));
 
-    // آخر سؤال → انتقل لشاشة المراجعة
+    // آخر سؤال → انتقل لشاشة المراجعة، أو أنهِ مباشرة إن كان هذا آخر سؤال
+    // ترجيح إضافي (لا داعي لمراجعة ثانية على 3-4 أسئلة فقط أُضيفت لتوّها).
     if (currentQuestionIndex >= displayedQuestions.length - 1) {
-      setTimeout(() => setShowReview(true), 150);
+      if (tieBreakPending) {
+        setTimeout(() => runRecommendationEngine(newAnswers, { roundNumber: tieBreakRound }), 150);
+      } else {
+        setTimeout(() => setShowReview(true), 150);
+      }
     } else {
       setTimeout(() => setCurrentQuestionIndex((prev) => prev + 1), 150);
     }
@@ -403,6 +664,22 @@ export default function Quiz() {
               </span>
             </p>
           )}
+        </div>
+        <div className="bg-slate-50 border border-slate-200 text-slate-600 p-4 rounded-2xl text-sm flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-slate-400" />
+          <p>
+            هذه توصية استرشادية إحصائية مبنية على نموذج شخصية مهنية، وليست قراراً رسمياً للقبول. الجهة الرسمية الوحيدة
+            المعتمدة للتقديم والقبول الجامعي هي{" "}
+            <a
+              href="https://cap.mohesr.gov.iq"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-primary hover:underline"
+            >
+              القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
+            </a>
+            — راجعها دائماً قبل اتخاذ قرارك النهائي.
+          </p>
         </div>
         {warnings.length > 0 && (
           <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-2xl flex items-start gap-3">
@@ -431,44 +708,74 @@ export default function Quiz() {
                 {vrsResult.band === "high" ? "ننصح بمراجعة إجاباتك" : "قد تحتاج نتيجتك مراجعة إضافية"}
               </h4>
               <p className="text-sm mt-1">
-                لاحظ نظام التحقق نمطاً في إجاباتك قد يقلل من دقة التوصية (مثل إجابات متسرعة جداً أو متناقضة أو
-                غير متمايزة). النتيجة أدناه لا تزال معروضة، لكن ننصحك بإعادة الاختبار بتركيز أكبر إن لم تكن
-                التوصية منطقية بالنسبة لك.
+                لاحظ نظام التحقق نمطاً في إجاباتك قد يقلل من دقة التوصية (مثل إجابات متسرعة جداً أو متناقضة أو غير
+                متمايزة). النتيجة أدناه لا تزال معروضة، لكن ننصحك بإعادة الاختبار بتركيز أكبر إن لم تكن التوصية منطقية
+                بالنسبة لك.
               </p>
             </div>
           </div>
         )}
-        <div className="grid gap-6 mt-8">
-          {topMajors.map((major, index) => (
-            <div
-              key={major.id}
-              className="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
-            >
-              <div className="min-w-0">
-                <h2 className="text-2xl font-bold text-slate-800 break-words">
-                  {index + 1}. {major.name}
-                </h2>
-                <p className="text-slate-500">{major.category}</p>
-                <p className="text-sm text-slate-500 mt-1">معامل الطلب في السوق: {major.marketMultiplier}</p>
-              </div>
-              <div className="text-left shrink-0">
-                <div className="text-3xl font-black text-primary">
-                  {Math.round(major.fitPercent)}%
-                </div>
-                <div className="text-sm text-slate-500">نسبة التوافق الشخصي</div>
-              </div>
-            </div>
-          ))}
+        <div className="glass p-5 rounded-2xl space-y-2">
+          <div className="flex items-center justify-between">
+            <label htmlFor="marketWeight" className="font-bold text-slate-700 text-sm">
+              كم يهمّك طلب السوق عند الترتيب؟
+            </label>
+            <span className="text-sm font-bold text-primary">
+              {marketWeight === 0 ? "تجاهله كلياً" : `${Math.round(marketWeight * 100)}٪`}
+            </span>
+          </div>
+          <input
+            id="marketWeight"
+            type="range"
+            min={0}
+            max={100}
+            step={10}
+            value={marketWeight * 100}
+            onChange={(e) => setMarketWeight(Number(e.target.value) / 100)}
+            className="w-full accent-primary"
+          />
+          <p className="text-xs text-slate-500">
+            الترتيب الافتراضي (0٪) يعتمد على توافق شخصيتك فقط. حرّك المنزلق يميناً إن أردت ترجيح التخصصات الأعلى طلباً
+            في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
+          </p>
         </div>
-        {topMajors.length > 0 ? (
+        <div className="grid gap-6 mt-8">
+          {rankedMajors.map((major, index) => {
+            const demand = getDemandLevel(major.marketMultiplier);
+            return (
+              <div
+                key={major.id}
+                className="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
+              >
+                <div className="min-w-0">
+                  <h2 className="text-2xl font-bold text-slate-800 break-words">
+                    {index + 1}. {major.name}
+                  </h2>
+                  <p className="text-slate-500">{major.category}</p>
+                  <span
+                    className={`inline-block mt-1 text-xs font-bold px-2.5 py-1 rounded-full ${demand.bg} ${demand.color}`}
+                  >
+                    طلب السوق: {demand.text}
+                  </span>
+                </div>
+                <div className="text-left shrink-0">
+                  <div className="text-3xl font-black text-primary">{Math.round(major.fitPercent)}%</div>
+                  <div className="text-sm text-slate-500">نسبة التوافق الشخصي</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+        {rankedMajors.length > 0 ? (
           <div className="glass p-8 rounded-2xl bg-primary/5 border-primary/20 text-center space-y-4 mt-8">
             <h2 className="text-xl font-bold text-slate-800">احصل على تحليل الفجوة والجامعات الحكومية</h2>
             <p className="text-slate-600">
-              يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا التخصص لك.
+              يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا
+              التخصص لك.
             </p>
             <Link
-              href={`/report?major=${topMajors[0].id}`}
-              className="inline-flex items-center gap-2 bg-secondary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-purple-700 transition-all hover:-translate-y-1"
+              href={`/report?major=${rankedMajors[0].id}`}
+              className="inline-flex items-center gap-2 bg-primary-700 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-primary-800 transition-all hover:-translate-y-1"
             >
               <span>فتح التقرير الشامل والمفصل</span>
               <ArrowLeft className="w-5 h-5" />
@@ -509,11 +816,12 @@ export default function Quiz() {
 
   return (
     <div className="max-w-2xl mx-auto py-12 space-y-8">
-
       {/* شريط التقدم */}
       <div className="space-y-2">
         <div className="flex justify-between text-sm font-bold text-slate-600">
-          <span>السؤال {currentQuestionIndex + 1} من {displayedQuestions.length}</span>
+          <span>
+            السؤال {currentQuestionIndex + 1} من {displayedQuestions.length}
+          </span>
           <span>{Math.round(progress)}%</span>
         </div>
         <div className="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
@@ -533,31 +841,39 @@ export default function Quiz() {
               aria-label={`الانتقال لسؤال ${i + 1}`}
               className={`h-2.5 flex-1 rounded-full transition-all duration-300 ${
                 i < currentQuestionIndex
-                  ? "bg-primary cursor-pointer hover:bg-blue-700"
+                  ? "bg-primary cursor-pointer hover:bg-primary-700"
                   : i === currentQuestionIndex
-                  ? "bg-primary/60"
-                  : "bg-slate-200 cursor-default"
+                    ? "bg-primary/60"
+                    : "bg-slate-200 cursor-default"
               }`}
             />
           ))}
         </div>
       </div>
 
+      {/* تنبيه أسئلة الترجيح التكيفية */}
+      {currentQuestionIndex >= ALL_QUIZ_QUESTIONS.length && tieBreakInfo && (
+        <div className="bg-primary-50 border border-primary-200 text-primary-800 p-4 rounded-2xl text-sm">
+          <strong>
+            نتيجتك متقاربة جداً بين &quot;{tieBreakInfo.a}&quot; و&quot;{tieBreakInfo.b}&quot;
+          </strong>{" "}
+          — بضعة أسئلة إضافية لحسم الدقة بينهما بدل ترك الفارق لمعامل السوق وحده.
+        </div>
+      )}
+
       {/* بطاقة السؤال */}
       <div className="glass p-8 md:p-12 rounded-3xl text-center space-y-12 animate-in fade-in zoom-in-95 duration-300 min-h-[350px] flex flex-col justify-center">
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">
-          {question.text}
-        </h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">{question.text}</h1>
         <div className="flex flex-col gap-4 mt-auto">
           <button
             onClick={() => handleAnswer(1)}
-            className="bg-primary text-white p-4 rounded-xl font-bold text-lg hover:bg-blue-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-700 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.yes ?? "نعم، بالتأكيد"}
           </button>
           <button
             onClick={() => handleAnswer(0)}
-            className="bg-blue-50 text-primary border border-blue-200 p-4 rounded-xl font-bold text-lg hover:bg-blue-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary-50 text-primary border border-primary-200 p-4 rounded-xl font-bold text-lg hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.maybe ?? "ربما / أحياناً"}
           </button>

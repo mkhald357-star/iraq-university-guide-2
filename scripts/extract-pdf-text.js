@@ -21,7 +21,8 @@ const RAW_DIR = path.join(ROOT, "data", "raw");
 function findPdf(mustInclude) {
   const files = fs.readdirSync(ROOT).filter((f) => f.toLowerCase().endsWith(".pdf"));
   const match = files.find((f) => f.includes(mustInclude));
-  if (!match) throw new Error(`Could not find a PDF containing "${mustInclude}" in ${ROOT}. Files seen: ${files.join(", ")}`);
+  if (!match)
+    throw new Error(`Could not find a PDF containing "${mustInclude}" in ${ROOT}. Files seen: ${files.join(", ")}`);
   return path.join(ROOT, match);
 }
 

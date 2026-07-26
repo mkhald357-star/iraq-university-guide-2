@@ -9,10 +9,53 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#1d4ed8", // blue-700
-        secondary: "#9333ea", // purple-600
-        background: "#f8fafc", // slate-50
-        surface: "#ffffff",
+        primary: {
+          DEFAULT: "var(--c-primary-600)",
+          50: "var(--c-primary-50)",
+          100: "var(--c-primary-100)",
+          200: "var(--c-primary-200)",
+          300: "var(--c-primary-300)",
+          400: "var(--c-primary-400)",
+          500: "var(--c-primary-500)",
+          600: "var(--c-primary-600)",
+          700: "var(--c-primary-700)",
+          800: "var(--c-primary-800)",
+          900: "var(--c-primary-900)",
+        },
+        surface: {
+          DEFAULT: "var(--c-bg)",
+          subtle: "var(--c-bg-subtle)",
+          muted: "var(--c-bg-muted)",
+        },
+        ink: {
+          DEFAULT: "var(--c-text)",
+          soft: "var(--c-text-soft)",
+          muted: "var(--c-text-muted)",
+        },
+        line: {
+          DEFAULT: "var(--c-border)",
+          strong: "var(--c-border-strong)",
+        },
+        band: {
+          safe: "var(--c-safe)",
+          "safe-bg": "var(--c-safe-bg)",
+          close: "var(--c-close)",
+          "close-bg": "var(--c-close-bg)",
+          reach: "var(--c-reach)",
+          "reach-bg": "var(--c-reach-bg)",
+          unknown: "var(--c-unknown)",
+          "unknown-bg": "var(--c-unknown-bg)",
+        },
+      },
+      borderRadius: {
+        sm: "var(--r-sm)",
+        md: "var(--r-md)",
+        lg: "var(--r-lg)",
+      },
+      boxShadow: {
+        sm: "var(--sh-sm)",
+        md: "var(--sh-md)",
+        lg: "var(--sh-lg)",
       },
       fontFamily: {
         cairo: ["var(--font-cairo)"],

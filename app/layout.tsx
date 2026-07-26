@@ -2,6 +2,7 @@ import "./globals.css";
 import { Cairo } from "next/font/google";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { AssistantWidget } from "./components/AssistantWidget";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -23,16 +24,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
-      <body className={`${cairo.variable} font-cairo bg-background text-slate-900 min-h-screen`}>
+      <body className={`${cairo.variable} font-cairo bg-surface-subtle text-slate-900 min-h-screen`}>
         <ErrorBoundary>
           <main className="max-w-4xl mx-auto p-4 md:p-8">{children}</main>
+          <AssistantWidget />
         </ErrorBoundary>
       </body>
     </html>

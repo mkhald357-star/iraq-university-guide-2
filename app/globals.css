@@ -1,18 +1,111 @@
+/* ═══════════════════════════════════════════════
+   نظام التصميم — المصدر الوحيد للحقيقة
+   لا تكتب أي لون خارج هذه المتغيّرات
+   ═══════════════════════════════════════════════ */
+
+:root {
+  /* ── اللون الأساسي: أزرق-أخضر عميق (ثقة + تعليم) ── */
+  --c-primary-50: #f0fdfa;
+  --c-primary-100: #ccfbf1;
+  --c-primary-200: #99f6e4;
+  --c-primary-300: #5eead4;
+  --c-primary-400: #2dd4bf;
+  --c-primary-500: #14b8a6;
+  --c-primary-600: #0d9488; /* ← الأساسي للأزرار */
+  --c-primary-700: #0f766e; /* ← التحويم */
+  --c-primary-800: #115e59;
+  --c-primary-900: #134e4a; /* ← العناوين الداكنة */
+
+  /* ── المحايدات ── */
+  --c-bg: #ffffff;
+  --c-bg-subtle: #f8fafc;
+  --c-bg-muted: #f1f5f9;
+  --c-border: #e2e8f0;
+  --c-border-strong: #cbd5e1;
+  --c-text: #0f172a;
+  --c-text-soft: #475569;
+  --c-text-muted: #94a3b8;
+
+  /* ── ألوان الحالة: للتصنيف فقط، لا للزينة أبداً ── */
+  --c-safe: #059669; /* 🟢 مريح */
+  --c-safe-bg: #ecfdf5;
+  --c-close: #d97706; /* 🟡 متقارب */
+  --c-close-bg: #fffbeb;
+  --c-reach: #dc2626; /* 🔴 طموح */
+  --c-reach-bg: #fef2f2;
+  --c-unknown: #64748b; /* ⚪ غير معروف */
+  --c-unknown-bg: #f8fafc;
+
+  /* ── التدرّجات اللونية ── */
+  --g-primary: linear-gradient(135deg, var(--c-primary-600) 0%, var(--c-primary-800) 100%);
+  --g-primary-hover: linear-gradient(135deg, var(--c-primary-700) 0%, var(--c-primary-900) 100%);
+
+  /* توهّج ناعم للكرات العائمة */
+  --g-orb: radial-gradient(circle at 30% 30%, rgba(45, 212, 191, 0.42) 0%, rgba(13, 148, 136, 0.14) 45%, transparent 70%);
+
+  /* خلفية أقسام هادئة */
+  --g-surface: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-subtle) 100%);
+
+  /* ── الظلال (واحد فقط لكل مستوى — لا تراكم) ── */
+  --sh-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --sh-md: 0 4px 12px rgba(15, 23, 42, 0.07);
+  --sh-lg: 0 12px 32px rgba(15, 23, 42, 0.1);
+
+  /* ── الحواف ── */
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-full: 999px;
+
+  /* ── الحركة ── */
+  --t-fast: 150ms;
+  --t-base: 250ms;
+  --t-slow: 400ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ── الوضع الداكن (المتغيّرات جاهزة؛ لا يوجد زر تبديل فعلي بعد) ── */
+[data-theme="dark"] {
+  --c-bg: #0b1220;
+  --c-bg-subtle: #111b2e;
+  --c-bg-muted: #16233b;
+  --c-border: #1e2d4a;
+  --c-border-strong: #2c3f63;
+  --c-text: #f1f5f9;
+  --c-text-soft: #cbd5e1;
+  --c-text-muted: #7c8ba5;
+
+  --c-safe-bg: #05261c;
+  --c-close-bg: #2a1d05;
+  --c-reach-bg: #2b0b0b;
+  --c-unknown-bg: #16233b;
+
+  --g-surface: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-subtle) 100%);
+  --sh-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --sh-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-background text-slate-900 font-cairo antialiased;
+    @apply bg-surface-subtle text-slate-900 font-cairo antialiased;
     direction: rtl;
+    /* حارس ضد تمرير أفقي عرضي -- الـHero في الصفحة الرئيسية يكسر حدود
+       <main> المحصورة (max-w-4xl) عبر خدعة "100vw" القياسية (انظر
+       app/page.tsx) كي يمتد بعرض الشاشة الكامل، وهذه الخدعة معروفة بتسبيبها
+       شريط تمرير أفقي بمقدار بكسل واحد أحياناً حين يُحتسَب عرض شريط
+       التمرير العمودي ضمن 100vw في بعض المتصفحات. */
+    overflow-x: hidden;
   }
 
   /* مؤشر تركيز واضح لمستخدمي لوحة المفاتيح -- بلا هذا كان التطبيق يعتمد
      كلياً على outline المتصفح الافتراضي، وهو غير مضمون الظهور بوضوح فوق
      خلفيات .glass الشفافة/الضبابية المستخدمة في كل بطاقات الموقع. */
   :focus-visible {
-    outline: 2px solid theme("colors.primary");
+    outline: 2px solid theme("colors.primary.DEFAULT");
     outline-offset: 2px;
     border-radius: 2px;
   }
@@ -26,8 +119,12 @@
 
 /* أنيميشن Shimmer لمكوّنات Skeleton */
 @keyframes shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%);  }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* تطبيق الأنيميشن */
@@ -35,7 +132,135 @@
   animation: shimmer 1.6s infinite;
 }
 
+/* ═══════════════════════════════════
+   المؤثرات — CSS فقط، بلا مكتبات
+   (kenBurns مُستبعَد عمداً -- خاص بصورة بطل لا وجود لها، انظر قرار "بلا صورة")
+   ═══════════════════════════════════ */
+
+@keyframes riseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* كرات ضوئية عائمة */
+@keyframes floatSlow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -22px, 0);
+  }
+}
+
+/* نبضة تنبيه واحدة — للفجوة والتحذيرات */
+@keyframes pulseOnce {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.35);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+/* مؤشر التمرير */
+@keyframes scrollHint {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  50% {
+    transform: translateY(9px);
+    opacity: 1;
+  }
+}
+
+/* امتلاء شريط */
+@keyframes barFill {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--bar-w);
+  }
+}
+
+.a-rise {
+  animation: riseIn var(--t-slow) var(--ease) both;
+}
+.a-fade {
+  animation: fadeIn var(--t-slow) var(--ease) both;
+}
+.a-float {
+  animation: floatSlow 9s ease-in-out infinite;
+}
+.a-pulse {
+  animation: pulseOnce 1.1s var(--ease) 1;
+}
+.a-hint {
+  animation: scrollHint 2s ease-in-out infinite;
+}
+.a-bar {
+  animation: barFill 900ms var(--ease) both;
+}
+
+/* التتابع — الترتيب يوصّل الأولوية */
+.d-1 {
+  animation-delay: 80ms;
+}
+.d-2 {
+  animation-delay: 180ms;
+}
+.d-3 {
+  animation-delay: 280ms;
+}
+.d-4 {
+  animation-delay: 380ms;
+}
+.d-5 {
+  animation-delay: 480ms;
+}
+.d-6 {
+  animation-delay: 600ms;
+}
+
+/* ⚠️ إلزامي — إتاحة، لا رفاهية */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 /* طباعة نظيفة عند تصدير PDF */
 @media print {
-  nav, header, footer, .no-print { display: none !important; }
+  nav,
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
 }

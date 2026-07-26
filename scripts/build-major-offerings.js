@@ -1,0 +1,125 @@
+// يبني ملفاً صغيراً منفصلاً لكل تخصص (public/data/major-offerings/<majorId>.json)
+// يحوي كل عروض الجامعات المطابقة له وطنياً (نفس منطق findUniversitiesForMajor في
+// lib/majorMatcher.ts، مُعاد تطبيقه هنا بجافاسكربت خام لأن هذا سكربت بناء)، بدل
+// أن يستورد app/report/page.tsx ملف data/universities.json الكامل (2+ ميجابايت)
+// مباشرة داخل حزمة العميل. راجع PROJECT.md §7 بند 1 لخلفية المشكلة.
+//
+// الاستخدام: node scripts/build-major-offerings.js
+const fs = require("fs");
+const path = require("path");
+
+const ROOT = path.join(__dirname, "..");
+const OUT_DIR = path.join(ROOT, "public/data/major-offerings");
+
+const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
+const universitiesFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+const universities = universitiesFile.universities;
+const mappingFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_department_mapping.json"), "utf8"));
+const mappings = mappingFile.mappings;
+
+function normalizeArabic(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/(^|\s)ال/g, "$1")
+    .replace(/ا/g, "")
+    .replace(/\s+/g, "");
+}
+
+function startsWithAnyPrefix(departmentName, prefixes) {
+  const stripped = departmentName.trim().replace(/^قسم\s+/, "");
+  return prefixes.some((p) => stripped.startsWith(p));
+}
+
+function matchMajorToDepartment(major, departmentName, mapping) {
+  if (
+    mapping.excludeIfDepartmentStartsWith &&
+    startsWithAnyPrefix(departmentName, mapping.excludeIfDepartmentStartsWith)
+  ) {
+    return { isMatch: false, confidence: 0 };
+  }
+  const depNorm = normalizeArabic(departmentName);
+  const majorNameNorm = normalizeArabic(major.name);
+  const mappingNameNorm = normalizeArabic(mapping.majorName);
+  let score = 0;
+  if (depNorm === majorNameNorm || depNorm === mappingNameNorm) {
+    score = 100;
+  } else if (mapping.aliases.some((alias) => normalizeArabic(alias) === depNorm)) {
+    score = 85;
+  } else {
+    const matchingPatterns = mapping.departmentPatterns.filter((pattern) => depNorm.includes(normalizeArabic(pattern)));
+    if (matchingPatterns.length > 1) score = 75;
+    else if (matchingPatterns.length === 1) score = 60;
+  }
+  return { isMatch: score >= 60, confidence: score };
+}
+
+function findUniversitiesForMajor(major, mapping) {
+  const offerings = [];
+  const m = mapping || {
+    majorId: major.id,
+    majorName: major.name,
+    aliases: [major.name],
+    departmentPatterns: [major.name],
+    priority: 1,
+  };
+  for (const uni of universities) {
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        const { isMatch, confidence } = matchMajorToDepartment(major, dept.name, m);
+        if (isMatch) {
+          offerings.push({
+            universityId: uni.id,
+            universityName: uni.name,
+            universityType: uni.type,
+            universityRanking: uni.ranking,
+            province: uni.province,
+            collegeId: college.id,
+            collegeName: college.name,
+            departmentName: dept.name,
+            departmentBranches: dept.branch,
+            sessions: dept.sessions,
+            averageGrades: dept.averageGrades,
+            cutoffs: dept.cutoffs,
+            isDirectAdmission: dept.isDirectAdmission,
+            confidence,
+          });
+        }
+      }
+    }
+  }
+  return offerings;
+}
+
+fs.mkdirSync(OUT_DIR, { recursive: true });
+// نظّف مخرجات جولة سابقة أولاً كي لا يبقى ملف تخصص محذوف من majors.json يتيماً.
+for (const f of fs.readdirSync(OUT_DIR)) {
+  if (f.endsWith(".json")) fs.unlinkSync(path.join(OUT_DIR, f));
+}
+
+let totalBytes = 0;
+let maxFile = { id: null, bytes: 0 };
+for (const major of majors) {
+  const mapping = mappings.find((m) => m.majorId === major.id) || null;
+  const offerings = findUniversitiesForMajor(major, mapping);
+  const json = JSON.stringify(offerings);
+  fs.writeFileSync(path.join(OUT_DIR, `${major.id}.json`), json, "utf8");
+  totalBytes += json.length;
+  if (json.length > maxFile.bytes) maxFile = { id: major.id, bytes: json.length };
+}
+
+// نسخة صغيرة من meta فقط (تنبيه حداثة البيانات في الواجهة لا يحتاج البيانات
+// الكاملة، فقط تاريخ التحديث وحقول meta الوصفية الأخرى).
+fs.writeFileSync(
+  path.join(ROOT, "data/universities_meta.json"),
+  JSON.stringify(universitiesFile.meta, null, 2) + "\n",
+  "utf8"
+);
+
+console.log(`Wrote ${majors.length} per-major offering files to ${OUT_DIR}`);
+console.log(
+  `Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / majors.length / 1024).toFixed(1)} KB/file)`
+);
+console.log(`Largest: ${maxFile.id} at ${(maxFile.bytes / 1024).toFixed(1)} KB`);
+console.log(`Wrote data/universities_meta.json`);

@@ -29,10 +29,31 @@
         "ذكاء اصطناعي",
         "الذكاء االصطناعي",
         "ذكاء االصطناعي",
-        "artificial",
+        "artificial"
+      ],
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "ai_tech",
+      "majorName": "تقنيات الذكاء الاصطناعي",
+      "aliases": [
+        "تقنيات الذكاء الاصطناعي",
         "تقنيات الذكاء الاضطناعي"
       ],
-      "priority": 2
+      "departmentPatterns": [
+        "ذكاء اصطناعي",
+        "الذكاء االصطناعي",
+        "ذكاء االصطناعي"
+      ],
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "cybersecurity",
@@ -49,7 +70,29 @@
         "cyber",
         "سبراني"
       ],
-      "priority": 2
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "cybersecurity_tech",
+      "majorName": "تقنيات الأمن السيبراني",
+      "aliases": [
+        "تقنيات الأمن السيبراني"
+      ],
+      "departmentPatterns": [
+        "سيبراني",
+        "أمن المعلومات",
+        "امن المعلومات",
+        "سبراني"
+      ],
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "computer_science",
@@ -117,6 +160,12 @@
         "ادارة الهندسة",
         "ادارة المؤسسات الصحية"
       ],
+      "excludeIfDepartmentStartsWith": [
+        "هندسة العمليات",
+        "قسم هندسة العمليات",
+        "هندسة عمليات",
+        "قسم هندسة عمليات"
+      ],
       "priority": 1
     },
     {
@@ -145,12 +194,14 @@
         "الطب العام",
         "الطب البشري",
         "طب الكندي",
+        "الطب",
         "Medicine"
       ],
       "departmentPatterns": [
-        "الطب",
         "طب الكندي",
         "طب بشري",
+        "الطب العام",
+        "الطب البشري",
         "medicine"
       ],
       "priority": 3
@@ -277,7 +328,30 @@
         "طاقة",
         "محطات القدرة"
       ],
-      "priority": 1
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "renewable_energy_tech",
+      "majorName": "تقنيات الطاقة المتجددة",
+      "aliases": [
+        "تقنيات الطاقة المتجددة"
+      ],
+      "departmentPatterns": [
+        "الطاقة المتجددة",
+        "الطاقة المستدامة",
+        "طاقة شمسية",
+        "طاقة",
+        "محطات القدرة"
+      ],
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "petroleum_engineering",
@@ -301,7 +375,28 @@
         "حفر",
         "والنفطية"
       ],
-      "priority": 1
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "petroleum_refining_tech",
+      "majorName": "تقنيات تكرير النفط والغاز",
+      "aliases": [
+        "تقنيات تكرير النفط والغاز"
+      ],
+      "departmentPatterns": [
+        "تكرير النفط",
+        "نفط والغاز",
+        "معدات النفط"
+      ],
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "law",
@@ -444,13 +539,32 @@
       "departmentPatterns": [
         "الكهرباء",
         "الكهربائية",
-        "تقنيات الكهرباء",
         "االلكترونيك واالتصاالت",
         "الالكترونيك واالتصاالت",
         "المعلومات واالتصاالت",
         "electrical"
       ],
-      "priority": 1
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "electrical_tech",
+      "majorName": "تقنيات الكهرباء",
+      "aliases": [
+        "تقنيات الكهرباء"
+      ],
+      "departmentPatterns": [
+        "الكهرباء",
+        "الكهربائية"
+      ],
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "chemical_engineering",
@@ -640,9 +754,9 @@
         "لغة القرآن",
         "مقارنة الأديان",
         "حوار الأديان",
+        "الأديان المقارنة",
         "الاسالمية",
-        "القران الكريم",
-        "الاديان"
+        "القران الكريم"
       ],
       "priority": 1
     },
@@ -858,7 +972,29 @@
         "تعويضات اصطناعية",
         "مساند صناعية"
       ],
-      "priority": 2
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
+    },
+    {
+      "majorId": "prosthetics_engineering",
+      "majorName": "هندسة الأطراف والمساند الصناعية",
+      "aliases": [
+        "هندسة الأطراف والمساند الصناعية",
+        "هندسة الأطراف الصناعية"
+      ],
+      "departmentPatterns": [
+        "اطراف",
+        "تعويضات اصطناعية",
+        "مساند صناعية"
+      ],
+      "priority": 2,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
     },
     {
       "majorId": "emergency_medical_tech",
@@ -1053,7 +1189,28 @@
         "الاتصالات",
         "الالكترون"
       ],
-      "priority": 1
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "تقنيات",
+        "قسم تقنيات"
+      ]
+    },
+    {
+      "majorId": "electronics_comm_tech",
+      "majorName": "تقنيات الإلكترونيك والاتصالات",
+      "aliases": [
+        "تقنيات الإلكترونيك والاتصالات",
+        "تقنيات الالكترونيك والاتصالات"
+      ],
+      "departmentPatterns": [
+        "الاتصالات",
+        "الالكترون"
+      ],
+      "priority": 1,
+      "excludeIfDepartmentStartsWith": [
+        "هندسة",
+        "قسم هندسة"
+      ]
     },
     {
       "majorId": "automotive_engineering",
@@ -1288,6 +1445,12 @@
         "الآثار والحضارة القديمة",
         "الآثار والحضارة الإسلامية",
         "الاثار"
+      ],
+      "excludeIfDepartmentStartsWith": [
+        "االنثروبولوجيا",
+        "قسم االنثروبولوجيا",
+        "الانثروبولوجيا",
+        "قسم الانثروبولوجيا"
       ],
       "priority": 1
     },

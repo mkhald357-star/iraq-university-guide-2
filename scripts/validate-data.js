@@ -21,17 +21,19 @@ const DepartmentSchema = z.object({
   sessions: z.array(z.string()),
   cutoffs: z.array(DepartmentCutoffSchema),
   averageGrades: z.object({
-    "صباحي": z.number().nullable(),
-    "مسائي": z.number().nullable(),
+    صباحي: z.number().nullable(),
+    مسائي: z.number().nullable(),
   }),
   isDirectAdmission: z.boolean(),
   // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها
   // الدليل الرسمي لأجور الجامعات والكليات الأهلية 2025-2026. اختيارية لأن
   // الجامعات الحكومية بلا أجور دراسة مركزية مماثلة (القبول تنافسي بلا رسوم).
-  tuitionFees: z.object({
-    "صباحي": z.number().nullable(),
-    "مسائي": z.number().nullable(),
-  }).optional(),
+  tuitionFees: z
+    .object({
+      صباحي: z.number().nullable(),
+      مسائي: z.number().nullable(),
+    })
+    .optional(),
   admissionSuspended: z.boolean().optional(),
   note: z.string().nullable().optional(),
 });
@@ -68,9 +70,9 @@ const MajorSchema = z.object({
 });
 
 const RIASEC_DIMENSIONS = ["R", "I", "A", "S", "E", "C"];
-const DimensionsSchema = z.object(
-  Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().optional()]))
-).strict();
+const DimensionsSchema = z
+  .object(Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().optional()])))
+  .strict();
 
 const QuestionSchema = z.object({
   id: z.string(),
@@ -81,9 +83,9 @@ const QuestionSchema = z.object({
   answerLabels: z.object({ yes: z.string(), maybe: z.string(), no: z.string() }).strict().optional(),
 });
 
-const RiasecProfileSchema = z.object(
-  Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().min(0).max(10).optional()]))
-).strict();
+const RiasecProfileSchema = z
+  .object(Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().min(0).max(10).optional()])))
+  .strict();
 
 const ValidityQuestionSchema = z.object({
   id: z.string(),
@@ -100,6 +102,13 @@ const ContradictionPairSchema = z.object({
   a: z.string(),
   b: z.string(),
   message: z.string(),
+});
+
+const AssistantEntrySchema = z.object({
+  id: z.string(),
+  question: z.string(),
+  keywords: z.array(z.string()).min(1),
+  answer: z.string(),
 });
 
 let hasErrors = false;
@@ -129,21 +138,59 @@ function validate(label, filePath, schema) {
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
 validate("data/majors.json", path.join(ROOT, "data/majors.json"), z.array(MajorSchema));
 validate("data/questions.json", path.join(ROOT, "data/questions.json"), z.array(QuestionSchema));
-validate("data/validity_questions.json", path.join(ROOT, "data/validity_questions.json"), z.array(ValidityQuestionSchema));
-validate("data/contradiction_pairs.json", path.join(ROOT, "data/contradiction_pairs.json"), z.array(ContradictionPairSchema));
+validate(
+  "data/validity_questions.json",
+  path.join(ROOT, "data/validity_questions.json"),
+  z.array(ValidityQuestionSchema)
+);
+validate(
+  "data/contradiction_pairs.json",
+  path.join(ROOT, "data/contradiction_pairs.json"),
+  z.array(ContradictionPairSchema)
+);
+validate("data/tiebreaker_questions.json", path.join(ROOT, "data/tiebreaker_questions.json"), z.array(QuestionSchema));
+validate(
+  "data/assistant_knowledge.json",
+  path.join(ROOT, "data/assistant_knowledge.json"),
+  z.array(AssistantEntrySchema)
+);
+
+// المساعد الذكي (lib/assistant.ts + data/assistant_knowledge.json): معرّف
+// مكرَّر يعني أن أحد المُدخَلين صامت تماماً (لن يظهر أبداً في نتائج البحث
+// عن معرّفه، مثال: SUGGESTED_QUESTION_IDS)، وكلمة مفتاحية فارغة بعد التطبيع
+// (سطر فراغ فقط) تُحتسَب بلا فائدة صامتة أيضاً في lib/assistant.ts.
+const assistantKnowledge = JSON.parse(fs.readFileSync(path.join(ROOT, "data/assistant_knowledge.json"), "utf8"));
+const assistantIds = assistantKnowledge.map((e) => e.id);
+const dupAssistantIds = assistantIds.filter((id, i) => assistantIds.indexOf(id) !== i);
+if (dupAssistantIds.length) {
+  console.error("[FAIL] data/assistant_knowledge.json has duplicate ids:", [...new Set(dupAssistantIds)]);
+  hasErrors = true;
+} else {
+  console.log(`[OK] data/assistant_knowledge.json has ${assistantKnowledge.length} unique entries`);
+}
+const blankKeywordEntries = assistantKnowledge.filter((e) => e.keywords.some((k) => !k.trim()));
+if (blankKeywordEntries.length) {
+  console.error(
+    "[FAIL] data/assistant_knowledge.json has entries with a blank keyword:",
+    blankKeywordEntries.map((e) => e.id)
+  );
+  hasErrors = true;
+}
 
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const majorIds = new Set(majors.map((m) => m.id));
 
-// Must have exactly 36 questions (6 per RIASEC dimension, after the 2026-07
-// decision-tree item-reduction pass -- the algorithm assumes a fixed, curated
-// question bank -- a silent drop/duplication would skew every dimension).
+// Must have exactly 40 questions (36 single/dual-dimension items + 4 dual-
+// dimension "إما/أو" comparison items added 2026-07-22 specifically to sharpen
+// discrimination between near-duplicate RIASEC profile pairs -- the algorithm
+// assumes a fixed, curated question bank -- a silent drop/duplication would
+// skew every dimension).
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-if (questions.length !== 36) {
-  console.error(`[FAIL] data/questions.json: expected exactly 36 questions, found ${questions.length}`);
+if (questions.length !== 40) {
+  console.error(`[FAIL] data/questions.json: expected exactly 40 questions, found ${questions.length}`);
   hasErrors = true;
 } else {
-  console.log("[OK] data/questions.json has exactly 36 questions");
+  console.log("[OK] data/questions.json has exactly 40 questions");
 }
 const questionIds = questions.map((q) => q.id);
 const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);
@@ -166,6 +213,29 @@ const validityIds = new Set(validityQuestions.map((q) => q.id));
 const idCollisions = [...validityIds].filter((id) => questionIds.includes(id));
 if (idCollisions.length) {
   console.error("[FAIL] data/validity_questions.json ids collide with data/questions.json:", idCollisions);
+  hasErrors = true;
+}
+
+// أسئلة الترجيح الإضافية (data/tiebreaker_questions.json) -- تُعرض فقط حين
+// تتقارب نتيجة أول تخصصين بعد الأسئلة الأربعين الأساسية، لحسم الدقة عبر
+// أبعاد إضافية محدَّدة بدل ترك التعادل يُحسم بمعامل السوق وحده. يجب ألا
+// تتقاطع معرّفاتها مع أسئلة الاختبار الأساسي أو أسئلة التحقق.
+const tiebreakerQuestions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/tiebreaker_questions.json"), "utf8"));
+if (tiebreakerQuestions.length !== 18) {
+  console.error(
+    `[FAIL] data/tiebreaker_questions.json: expected exactly 18 questions, found ${tiebreakerQuestions.length}`
+  );
+  hasErrors = true;
+} else {
+  console.log("[OK] data/tiebreaker_questions.json has exactly 18 questions");
+}
+const tiebreakerIds = tiebreakerQuestions.map((q) => q.id);
+const tiebreakerCollisions = tiebreakerIds.filter((id) => questionIds.includes(id) || validityIds.has(id));
+if (tiebreakerCollisions.length) {
+  console.error(
+    "[FAIL] data/tiebreaker_questions.json ids collide with questions.json/validity_questions.json:",
+    tiebreakerCollisions
+  );
   hasErrors = true;
 }
 
@@ -205,6 +275,123 @@ if (profilesWithoutMajor.length) {
 }
 if (!majorsMissingProfile.length && !profilesWithoutMajor.length) {
   console.log("[OK] every major has exactly one RIASEC profile");
+}
+
+// محور القرابة الدراسية (data/subject_affinity_weights.json، §1.2 من تحليل
+// الثغرات) -- نفس منطق تحقق بروفايلات RIASEC أعلاه بالضبط: كل تخصص يجب أن
+// يملك وزناً واحداً بالضبط ولا وزن يتيماً بلا تخصص مطابق.
+const subjectAffinityFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/subject_affinity_weights.json"), "utf8"));
+const subjectWeightIds = new Set(Object.keys(subjectAffinityFile.weights || {}));
+const majorsMissingSubjectWeight = majors.map((m) => m.id).filter((id) => !subjectWeightIds.has(id));
+const subjectWeightsWithoutMajor = [...subjectWeightIds].filter((id) => !majorIds.has(id));
+if (majorsMissingSubjectWeight.length) {
+  console.error("[FAIL] majors missing subject-affinity weights:", majorsMissingSubjectWeight);
+  hasErrors = true;
+}
+if (subjectWeightsWithoutMajor.length) {
+  console.error("[FAIL] subject-affinity weights reference unknown major ids:", subjectWeightsWithoutMajor);
+  hasErrors = true;
+}
+if (!majorsMissingSubjectWeight.length && !subjectWeightsWithoutMajor.length) {
+  console.log("[OK] every major has exactly one subject-affinity weight entry");
+}
+
+// التقرير المفصَّل لكل تخصص (data/major_profiles_detailed.json، §4.2 من تحليل
+// الثغرات) -- نسخة أولية جزئية عمداً (14 من 88 تخصصاً، بحث حقيقي موثَّق
+// المصادر لا يُستنسَخ بسرعة لبقية التخصصات) -- فلا نطلب اكتمال 88/88 هنا
+// كما في RIASEC/القرابة الدراسية. المخطّط (TASKS.md المهمة ٦):
+// study/career/market/personality_translation/eligibility/nearest_competitors.
+// القاعدة القاطعة: أي حقل واقعي في market بقيمة غير فارغة (لا "غير متوفر"
+// ولا null) يجب أن يملك source وlastVerified معاً -- وإلا فشل البناء. هذا
+// يمنع مستقبلاً إضافة رقم سوق بلا توثيق مثل ما حدث في المهمة ١.
+const DetailedMarketSchema = z
+  .object({
+    demandLevel: z.string().nullable(),
+    saturationNote: z.string().nullable(),
+    source: z.string().nullable(),
+    lastVerified: z.string().nullable(),
+  })
+  .strict()
+  .refine(
+    (m) => {
+      // "غير متوفر" *بادئة* (لا تطابقاً حرفياً كاملاً) -- حقول كثيرة تبدأ
+      // بـ"غير متوفر" ثم تشرح السبب بصدق (مثال: "غير متوفر — لم يُعثر على
+      // مصدر عراقي رسمي")، وهذا شرح غياب لا ادّعاء واقعياً يحتاج توثيقاً.
+      const isUnavailable = (v) => !v || v.trim().startsWith("غير متوفر");
+      const hasRealClaim = !isUnavailable(m.demandLevel) || !isUnavailable(m.saturationNote);
+      if (!hasRealClaim) return true; // لا ادّعاء واقعياً هنا أصلاً، لا حاجة لمصدر
+      return Boolean(m.source) && Boolean(m.lastVerified);
+    },
+    { message: "حقل سوق بقيمة واقعية بلا source أو lastVerified" }
+  );
+// الراتب الحكومي الأساسي عند التعيين الأول (career.governmentBaseSalary) --
+// يخضع لنفس قاعدة "بلا توثيق = ممنوع" أعلاه بالضبط: قيمة amount غير فارغة
+// بلا source وlastVerified تعني رقماً مختلَقاً، والقانون العراقي يربط هذا
+// الرقم بالشهادة لا بالتخصص فهو موحّد عبر كل الملفات (انظر §9 من PROJECT.md).
+const GovernmentBaseSalarySchema = z
+  .object({
+    amount: z.number().nullable(),
+    currency: z.literal("IQD"),
+    basis: z.string().nullable(),
+    scope: z.string().nullable(),
+    source: z.string().nullable(),
+    lastVerified: z.string().nullable(),
+  })
+  .strict()
+  .refine((s) => s.amount === null || (Boolean(s.source) && Boolean(s.lastVerified)), {
+    message: "governmentBaseSalary.amount بلا source أو lastVerified",
+  });
+
+const DetailedProfileSchema = z.object({
+  id: z.string(),
+  study: z.record(z.string(), z.any()),
+  career: z.object({ governmentBaseSalary: GovernmentBaseSalarySchema.optional() }).catchall(z.any()),
+  market: DetailedMarketSchema,
+  personality_translation: z.record(z.string(), z.any()),
+  eligibility: z.record(z.string(), z.any()),
+  nearest_competitors: z.array(z.record(z.string(), z.any())),
+});
+
+const detailedProfilesPath = path.join(ROOT, "data/major_profiles_detailed.json");
+if (fs.existsSync(detailedProfilesPath)) {
+  const detailedProfiles = JSON.parse(fs.readFileSync(detailedProfilesPath, "utf8"));
+  let detailedHasErrors = false;
+  for (const entry of detailedProfiles) {
+    const result = DetailedProfileSchema.safeParse(entry);
+    if (!result.success) {
+      console.error(
+        `[FAIL] data/major_profiles_detailed.json (${entry.id}):`,
+        result.error.issues.map((i) => i.message).join("; ")
+      );
+      detailedHasErrors = true;
+    } else if (!majorIds.has(entry.id)) {
+      console.error(`[FAIL] data/major_profiles_detailed.json: unknown major id ${entry.id}`);
+      detailedHasErrors = true;
+    }
+  }
+  if (detailedHasErrors) {
+    hasErrors = true;
+  } else {
+    console.log(
+      `[OK] data/major_profiles_detailed.json matches strict schema (${detailedProfiles.length}/${majors.length} majors covered so far)`
+    );
+  }
+}
+
+// ترجمة الأبعاد الشخصية لنشاط يومي واقعي حسب فئة التخصص (§4 من تحليل
+// الثغرات) -- كل فئة تخصص فعلية يجب أن تملك ترجمة، وإلا يظهر جدول الفجوة
+// بحقل فارغ صامت لتخصصات تلك الفئة كاملة.
+const personalityTranslations = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "data/personality_translations.json"), "utf8")
+);
+const translatedCategories = new Set(Object.keys(personalityTranslations.translations || {}));
+const majorCategories = new Set(majors.map((m) => m.category));
+const categoriesMissingTranslation = [...majorCategories].filter((c) => !translatedCategories.has(c));
+if (categoriesMissingTranslation.length) {
+  console.error("[FAIL] data/personality_translations.json missing categories:", categoriesMissingTranslation);
+  hasErrors = true;
+} else {
+  console.log("[OK] every major category has a personality-translation entry");
 }
 
 const mapping = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_department_mapping.json"), "utf8"));

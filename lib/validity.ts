@@ -46,10 +46,7 @@ export interface ScoredQuestionLike {
  * بالصدفة 1/3). يُرجع رقماً بين 0 (تصويت عشوائي تماماً داخل كل بُعد) و1
  * (اتساق تام) — متوسط على كل الأبعاد التي تملك 3 أسئلة على الأقل.
  */
-function computeDimensionConsistency(
-  scoredAnswers: Record<string, number>,
-  questions: ScoredQuestionLike[]
-): number {
+function computeDimensionConsistency(scoredAnswers: Record<string, number>, questions: ScoredQuestionLike[]): number {
   const votes: Record<string, number[]> = {};
   questions.forEach((q) => {
     const ans = scoredAnswers[q.id];
@@ -163,7 +160,7 @@ export function computeValidityRiskScore(
   }
   if (pNeutral > 0.7) {
     score += 1.5;
-    reasons.push("ميل مفرط لإجابة \"ربما\" الحيادية");
+    reasons.push('ميل مفرط لإجابة "ربما" الحيادية');
   }
   if (sdScore >= 1 && pYes > 0.6) {
     score += 2;

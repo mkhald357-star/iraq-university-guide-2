@@ -484,5 +484,47 @@
     "name": "التصميم الصناعي والحرفي",
     "category": "فنون وتصميم",
     "marketMultiplier": 0.75
+  },
+  {
+    "id": "cybersecurity_tech",
+    "name": "تقنيات الأمن السيبراني",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.1
+  },
+  {
+    "id": "ai_tech",
+    "name": "تقنيات الذكاء الاصطناعي",
+    "category": "تكنولوجيا",
+    "marketMultiplier": 1.2
+  },
+  {
+    "id": "electrical_tech",
+    "name": "تقنيات الكهرباء",
+    "category": "هندسة",
+    "marketMultiplier": 0.9
+  },
+  {
+    "id": "renewable_energy_tech",
+    "name": "تقنيات الطاقة المتجددة",
+    "category": "هندسة",
+    "marketMultiplier": 1.0
+  },
+  {
+    "id": "petroleum_refining_tech",
+    "name": "تقنيات تكرير النفط والغاز",
+    "category": "هندسة",
+    "marketMultiplier": 0.8
+  },
+  {
+    "id": "electronics_comm_tech",
+    "name": "تقنيات الإلكترونيك والاتصالات",
+    "category": "هندسة",
+    "marketMultiplier": 1.0
+  },
+  {
+    "id": "prosthetics_engineering",
+    "name": "هندسة الأطراف والمساند الصناعية",
+    "category": "هندسة",
+    "marketMultiplier": 1.2
   }
 ]

@@ -67,42 +67,137 @@ const MANUAL_DEPARTMENT_SUPPLEMENTS = {
     {
       collegeName: "الكلية التقنية الطبية و الصحية",
       departments: [
-        { name: "تقنيات التجميل والليزر", morningFee: 1400000, eveningFee: 1500000, suspended: false, note: null, gradeNote: null },
-        { name: "تقنيات الأشعة", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
-        { name: "تقنيات التخدير", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        {
+          name: "تقنيات التجميل والليزر",
+          morningFee: 1400000,
+          eveningFee: 1500000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "تقنيات الأشعة",
+          morningFee: 1750000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
+        {
+          name: "تقنيات التخدير",
+          morningFee: 1750000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
       ],
     },
     {
       collegeName: "الكلية التقنية الهندسية",
       departments: [
-        { name: "هندسة تقنيات الحاسبات", morningFee: 1750000, eveningFee: 1800000, suspended: false, note: null, gradeNote: null },
-        { name: "تقنيات الهندسة الكهربائية", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
-        { name: "هندسة تقنيات الأمن السيبراني", morningFee: 1750000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        {
+          name: "هندسة تقنيات الحاسبات",
+          morningFee: 1750000,
+          eveningFee: 1800000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "تقنيات الهندسة الكهربائية",
+          morningFee: 1750000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
+        {
+          name: "هندسة تقنيات الأمن السيبراني",
+          morningFee: 1750000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
       ],
     },
     {
       collegeName: "كلية القانون",
-      departments: [{ name: "القانون", morningFee: 1400000, eveningFee: 1400000, suspended: false, note: null, gradeNote: null }],
+      departments: [
+        { name: "القانون", morningFee: 1400000, eveningFee: 1400000, suspended: false, note: null, gradeNote: null },
+      ],
     },
     {
       collegeName: "كلية العلوم الإدارية و المالية",
       departments: [
-        { name: "إدارة الأعمال", morningFee: 1500000, eveningFee: 1500000, suspended: false, note: null, gradeNote: null },
-        { name: "المحاسبة", morningFee: 1500000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        {
+          name: "إدارة الأعمال",
+          morningFee: 1500000,
+          eveningFee: 1500000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "المحاسبة",
+          morningFee: 1500000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
       ],
     },
     {
       collegeName: "كلية التربية",
       departments: [
-        { name: "التربية البدنية و علوم الرياضة", morningFee: 1250000, eveningFee: 1250000, suspended: false, note: null, gradeNote: null },
-        { name: "اللغة الانكليزية", morningFee: 1600000, eveningFee: 1750000, suspended: false, note: null, gradeNote: null },
-        { name: "علوم القرآن والتربية الاسلامية", morningFee: 1400000, eveningFee: 1400000, suspended: false, note: null, gradeNote: null },
-        { name: "التربية الفنية", morningFee: 1250000, eveningFee: null, suspended: false, note: "لا توجد دراسة مسائية", gradeNote: null },
+        {
+          name: "التربية البدنية و علوم الرياضة",
+          morningFee: 1250000,
+          eveningFee: 1250000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "اللغة الانكليزية",
+          morningFee: 1600000,
+          eveningFee: 1750000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "علوم القرآن والتربية الاسلامية",
+          morningFee: 1400000,
+          eveningFee: 1400000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+        {
+          name: "التربية الفنية",
+          morningFee: 1250000,
+          eveningFee: null,
+          suspended: false,
+          note: "لا توجد دراسة مسائية",
+          gradeNote: null,
+        },
       ],
     },
     {
       collegeName: "كلية الآداب",
-      departments: [{ name: "علم النفس السريري", morningFee: 1600000, eveningFee: 1750000, suspended: false, note: null, gradeNote: null }],
+      departments: [
+        {
+          name: "علم النفس السريري",
+          morningFee: 1600000,
+          eveningFee: 1750000,
+          suspended: false,
+          note: null,
+          gradeNote: null,
+        },
+      ],
     },
   ],
 };
@@ -220,8 +315,13 @@ function main() {
     "utf8"
   );
 
-  const totalDepts = Object.values(out).reduce((s, cols) => s + cols.reduce((s2, c) => s2 + c.departments.length, 0), 0);
-  console.log(`تمت مطابقة ${Object.keys(out).length} جامعة من أصل ${privateUnis.length} (${totalDepts} صف قسم إجمالاً).`);
+  const totalDepts = Object.values(out).reduce(
+    (s, cols) => s + cols.reduce((s2, c) => s2 + c.departments.length, 0),
+    0
+  );
+  console.log(
+    `تمت مطابقة ${Object.keys(out).length} جامعة من أصل ${privateUnis.length} (${totalDepts} صف قسم إجمالاً).`
+  );
   console.log(`غير مُطابق (${unmatched.length}):`);
   unmatched.forEach((u) => console.log(`  #${u.sourceNum} ${u.name} (${u.province})`));
 }

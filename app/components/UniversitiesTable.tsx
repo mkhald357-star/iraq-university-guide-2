@@ -17,12 +17,18 @@ interface UniversitiesTableProps {
 }
 
 function formatGrade(value: number | null | undefined, sessionAvailable: boolean) {
-  if (!sessionAvailable) return "—";
-  if (value == null) return "قبول مباشر";
-  return `${value}%`;
+  if (!sessionAvailable) return { text: "—", isDirect: false };
+  if (value == null) return { text: "قبول مباشر", isDirect: true };
+  return { text: `${value}%`, isDirect: false };
 }
 
 export default function UniversitiesTable({ offerings }: UniversitiesTableProps) {
+  const hasAnyDirectAdmission = offerings.some(
+    (o) =>
+      (o.sessions?.includes("صباحي") && o.averageGrades?.["صباحي"] == null) ||
+      (o.sessions?.includes("مسائي") && o.averageGrades?.["مسائي"] == null)
+  );
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full border border-slate-200 text-sm">
@@ -41,15 +47,15 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
           {offerings.map((o, idx) => {
             const hasMorning = !!o.sessions?.includes("صباحي");
             const hasEvening = !!o.sessions?.includes("مسائي");
+            const morning = formatGrade(o.averageGrades?.["صباحي"], hasMorning);
+            const evening = formatGrade(o.averageGrades?.["مسائي"], hasEvening);
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                 <td className="border px-3 py-2 font-bold text-slate-800">{o.universityName}</td>
                 <td className="border px-3 py-2">
                   <span
                     className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                      o.universityType === "أهلية"
-                        ? "bg-secondary/10 text-secondary"
-                        : "bg-primary/10 text-primary"
+                      o.universityType === "أهلية" ? "bg-primary-800/10 text-primary-800" : "bg-primary/10 text-primary"
                     }`}
                   >
                     {o.universityType === "أهلية" ? "أهلية" : "حكومية"}
@@ -58,13 +64,39 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 <td className="border px-3 py-2">{o.province ?? "—"}</td>
                 <td className="border px-3 py-2">{o.collegeName}</td>
                 <td className="border px-3 py-2">{o.departmentName ?? "—"}</td>
-                <td className="border px-3 py-2">{formatGrade(o.averageGrades?.["صباحي"], hasMorning)}</td>
-                <td className="border px-3 py-2">{formatGrade(o.averageGrades?.["مسائي"], hasEvening)}</td>
+                <td className={`border px-3 py-2 ${morning.isDirect ? "text-emerald-700 font-bold" : ""}`}>
+                  <span
+                    title={
+                      morning.isDirect
+                        ? "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة."
+                        : undefined
+                    }
+                  >
+                    {morning.text}
+                  </span>
+                </td>
+                <td className={`border px-3 py-2 ${evening.isDirect ? "text-emerald-700 font-bold" : ""}`}>
+                  <span
+                    title={
+                      evening.isDirect
+                        ? "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة."
+                        : undefined
+                    }
+                  >
+                    {evening.text}
+                  </span>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      {hasAnyDirectAdmission && (
+        <p className="text-xs text-slate-500 mt-2">
+          <span className="text-emerald-700 font-bold">قبول مباشر</span>: لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم ضمن
+          الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.
+        </p>
+      )}
     </div>
   );
 }

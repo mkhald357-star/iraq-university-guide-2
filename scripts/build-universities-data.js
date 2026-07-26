@@ -21,7 +21,9 @@ let privateDepartmentsGuide = {};
 try {
   privateDepartmentsGuide = require(path.join(ROOT, "data/raw/private_universities_departments.json"));
 } catch (e) {
-  console.warn("[تنبيه] data/raw/private_universities_departments.json غير موجود -- شغّل scripts/match-private-universities.js أولاً. سيُستخدم fallback بقائمة majors المسطّحة.");
+  console.warn(
+    "[تنبيه] data/raw/private_universities_departments.json غير موجود -- شغّل scripts/match-private-universities.js أولاً. سيُستخدم fallback بقائمة majors المسطّحة."
+  );
 }
 
 // Verified by hand against the table of contents (dalel PDF, chapter 3
@@ -71,27 +73,50 @@ const UNIVERSITIES = [
 ];
 
 const ID_OVERRIDES = {
-  "جامعة بغداد": "baghdad", "الجامعة المستنصرية": "mustansiriyah", "جامعة البصرة": "basrah",
-  "جامعة الموصل": "mosul", "الجامعة التكنولوجية": "technology", "جامعة النهرين": "nahrain",
-  "جامعة الكوفة": "kufa", "جامعة تكريت": "tikrit", "جامعة القادسية": "qadisiyah",
-  "جامعة الأنبار": "anbar", "الجامعة العراقية": "iraqia", "جامعة بابل": "babil",
-  "جامعة ديالى": "diyala", "جامعة كربلاء": "karbala", "جامعة ذي قار": "dhiqar",
-  "جامعة كركوك": "kirkuk", "جامعة واسط": "wasit", "جامعة ميسان": "maysan",
-  "جامعة المثنى": "muthanna", "جامعة سامراء": "samarra", "جامعة سومر": "sumer",
-  "جامعة القاسم الخضراء": "alqasim_alkhadraa", "جامعة نينوى": "ninevah",
-  "جامعة الفلوجة": "fallujah", "جامعة جابر بن حيان للعلوم الطبية والصيدلانية": "jaber_ibn_hayyan",
-  "جامعة تلعفر": "telafer", "جامعة البصرة للنفط والغاز": "basrah_oil_gas",
-  "جامعة الحمدانية": "hamdaniya", "جامعة تكنولوجيا المعلومات والاتصالات": "uoitc",
-  "جامعة الكرخ للعلوم": "karkh", "جامعة ابن سينا للعلوم الطبية والصيدلانية": "ibn_sina",
-  "جامعة الشطرة": "shatrah", "الجامعة التقنية الشمالية": "northern_technical",
-  "جامعة الفرات الأوسط التقنية": "middle_euphrates_technical", "الجامعة التقنية الجنوبية": "southern_technical",
+  "جامعة بغداد": "baghdad",
+  "الجامعة المستنصرية": "mustansiriyah",
+  "جامعة البصرة": "basrah",
+  "جامعة الموصل": "mosul",
+  "الجامعة التكنولوجية": "technology",
+  "جامعة النهرين": "nahrain",
+  "جامعة الكوفة": "kufa",
+  "جامعة تكريت": "tikrit",
+  "جامعة القادسية": "qadisiyah",
+  "جامعة الأنبار": "anbar",
+  "الجامعة العراقية": "iraqia",
+  "جامعة بابل": "babil",
+  "جامعة ديالى": "diyala",
+  "جامعة كربلاء": "karbala",
+  "جامعة ذي قار": "dhiqar",
+  "جامعة كركوك": "kirkuk",
+  "جامعة واسط": "wasit",
+  "جامعة ميسان": "maysan",
+  "جامعة المثنى": "muthanna",
+  "جامعة سامراء": "samarra",
+  "جامعة سومر": "sumer",
+  "جامعة القاسم الخضراء": "alqasim_alkhadraa",
+  "جامعة نينوى": "ninevah",
+  "جامعة الفلوجة": "fallujah",
+  "جامعة جابر بن حيان للعلوم الطبية والصيدلانية": "jaber_ibn_hayyan",
+  "جامعة تلعفر": "telafer",
+  "جامعة البصرة للنفط والغاز": "basrah_oil_gas",
+  "جامعة الحمدانية": "hamdaniya",
+  "جامعة تكنولوجيا المعلومات والاتصالات": "uoitc",
+  "جامعة الكرخ للعلوم": "karkh",
+  "جامعة ابن سينا للعلوم الطبية والصيدلانية": "ibn_sina",
+  "جامعة الشطرة": "shatrah",
+  "الجامعة التقنية الشمالية": "northern_technical",
+  "جامعة الفرات الأوسط التقنية": "middle_euphrates_technical",
+  "الجامعة التقنية الجنوبية": "southern_technical",
   "الجامعة التقنية الوسطى": "middle_technical",
 };
 
 function slugify(name) {
   return name
     .replace(/^(جامعة|الجامعة)\s+/, "")
-    .replace(/[إأآا]/g, "a").replace(/ة/g, "h").replace(/ى/g, "a")
+    .replace(/[إأآا]/g, "a")
+    .replace(/ة/g, "h")
+    .replace(/ى/g, "a")
     .replace(/[^a-zA-Z0-9؀-ۿ]+/g, "_")
     .replace(/^_+|_+$/g, "");
 }
@@ -209,16 +234,42 @@ const COLLEGE_NAME_ALIASES_BY_DEPT = {
 // منفصلاً لكل فرع، عكس حالة "الكلية X/تخصصات فرعية" حيث اللاحقة تصف تخصصاً
 // فرعياً لا موقعاً جغرافياً، فالدمج هناك صحيح).
 const CAMPUS_QUALIFIERS = new Set([
-  "بغداد", "البصرة", "الموصل", "بابل", "الكوفة", "نينوى", "هيت", "حديثة",
-  "بلد", "القرنة", "الرصافة", "المسيب", "العزيزية", "الشرقاط", "الطارمية",
-  "المقدادية", "سوق الشيوخ", "القائم", "طوزخورماتو", "الدواية", "بعقوبة",
-  "جلولاء", "كربالء", "النجف", "كركوك", "الناصرية", "العمارة", "الحلة",
+  "بغداد",
+  "البصرة",
+  "الموصل",
+  "بابل",
+  "الكوفة",
+  "نينوى",
+  "هيت",
+  "حديثة",
+  "بلد",
+  "القرنة",
+  "الرصافة",
+  "المسيب",
+  "العزيزية",
+  "الشرقاط",
+  "الطارمية",
+  "المقدادية",
+  "سوق الشيوخ",
+  "القائم",
+  "طوزخورماتو",
+  "الدواية",
+  "بعقوبة",
+  "جلولاء",
+  "كربالء",
+  "النجف",
+  "كركوك",
+  "الناصرية",
+  "العمارة",
+  "الحلة",
 ]);
 
 function getCollege(uni, collegeName, deptNameForDisambiguation) {
   let resolvedName = collegeName;
   const byDeptRules = COLLEGE_NAME_ALIASES_BY_DEPT[uni.name];
-  const byDeptRule = byDeptRules && deptNameForDisambiguation &&
+  const byDeptRule =
+    byDeptRules &&
+    deptNameForDisambiguation &&
     byDeptRules.find((r) => r.collegeKey === collegeName.trim() && deptNameForDisambiguation.includes(r.deptContains));
   if (byDeptRule) {
     resolvedName = byDeptRule.target;
@@ -262,16 +313,27 @@ let unmatchedUni = new Set();
 
 for (const row of cutoffs) {
   const uni = byName.get(normKey(row.university));
-  if (!uni) { unmatchedUni.add(row.university); continue; }
+  if (!uni) {
+    unmatchedUni.add(row.university);
+    continue;
+  }
   const college = getCollege(uni, row.college, row.department);
   const dept = getDept(college, row.department, row.college);
   dept.sessions.add("صباحي");
-  dept.cutoffs.push({ branch: row.branch, gender: row.gender, averagePercent: row.averagePercent, isQuota: row.isQuota });
+  dept.cutoffs.push({
+    branch: row.branch,
+    gender: row.gender,
+    averagePercent: row.averagePercent,
+    isQuota: row.isQuota,
+  });
 }
 
 for (const row of evening) {
   const uni = byName.get(normKey(row.university));
-  if (!uni) { unmatchedUni.add(row.university); continue; }
+  if (!uni) {
+    unmatchedUni.add(row.university);
+    continue;
+  }
   const college = getCollege(uni, row.college, row.department);
   const dept = getDept(college, row.department, row.college);
   dept.sessions.add("مسائي");
@@ -288,7 +350,10 @@ for (const row of evening) {
 // before being added, to avoid duplicating anything already covered.
 for (const row of chapter3Additions) {
   const uni = byName.get(normKey(row.university));
-  if (!uni) { unmatchedUni.add(row.university); continue; }
+  if (!uni) {
+    unmatchedUni.add(row.university);
+    continue;
+  }
   const college = getCollege(uni, row.college);
   const dept = getDept(college, row.department, row.college);
   dept.sessions.add("صباحي");
@@ -356,6 +421,63 @@ for (const u of universities) {
   }
 }
 
+// إصلاح فجوة بيانات حقيقية (اكتُشفت بتدقيق اكتمال شامل، 2026-07-22): 202 قسم
+// (من أصل 1838) لا يُسند لها أي فرع (branch: []) لأنها تُقرأ حصراً من جدول
+// الدراسة المسائية (الفصل الرابع، قائمة أهلية بلا عمود فرع إطلاقاً) بلا أي
+// صف حدود دنيا صباحي أو إضافة فصل 3 يرافقها لتزويدها بفرع. القاعدة الرسمية
+// (انظر §5 أدناه في admission_rules.md): "تسري عليها نفس التخصصات المعتمدة
+// مركزياً في نفس الكلية" -- فنستدل الفرع بأولوية:
+// (أ) اتفاق تام بين كل الأقسام الشقيقة الحقيقية (بيانات صباحي فعلية) في نفس
+//     الكلية -- استدلال مباشر من بيانات رسمية حقيقية لنفس المؤسسة، لا تخمين.
+// (ب) تصنيف عام حسب نوع القسم/الكلية عند غياب/تعارض بيانات الأشقاء، مبني على
+//     نمط الأقسام الشقيقة المُتحقَّق منه فعلياً عبر عشرات الكليات المشابهة
+//     (المعاهد/الكليات التقنية تقبل علمي حصراً إلا مسارات الإدارة/المحاسبة/
+//     القانون/التسويق/التأمين التقنية التي تقبل أدبي أيضاً؛ التربية البدنية
+//     تقبل الفروع الثلاثة؛ الفنون/التصميم تقبل فنون+أدبي+علمي؛ العلوم
+//     التربوية/الإنسانية في كليات التربية تقبل أدبي+علمي).
+// هذه قاعدة استدلالية موثَّقة صراحة (كجدول حدود المسائي نفسه)، وليست بيانات
+// مستخرجة حرفياً -- إن ظهر لاحقاً نص رسمي يخصّ فرعاً بعينه لقسم معيّن هنا
+// فهو الأولوية ويجب أن يُصحِّح هذا التخمين.
+function classifyFallbackBranch(collegeName, deptName) {
+  const s = `${collegeName} ${deptName}`;
+  if (/فنون|تصميم|خزف|صياغة والمجوهرات/.test(s)) return ["فنون", "أدبي", "علمي"];
+  if (/تربية البدنية|علوم الرياضة/.test(collegeName)) return ["علمي", "أدبي", "فنون"];
+  if (
+    /ادارة|محاسبة|قانونية|مالية والمصرفية|تسويق|تأمين|ادارة المكتب|ادارة المواد|ادارة الاعمال|ادارة المستشفيات|الادارة الصحية/.test(
+      deptName
+    )
+  )
+    return ["علمي", "أدبي"];
+  if (
+    /تاريخ|تاريد|علوم القران|التربية االسالمية|ارشاد نفسي|تربوية والنفسية|تربوية ونفسية|اللغة التركية|اللغة االنكليزية|اللغة الانكليزية/.test(
+      deptName
+    )
+  )
+    return ["أدبي", "علمي"];
+  return ["علمي"];
+}
+for (const u of universities) {
+  for (const college of u._collegesMap.values()) {
+    const entries = [...college.departmentsMap.entries()];
+    const gapDepts = entries.filter(
+      ([key, d]) => key !== "__COLLEGE_LEVEL__" && d.cutoffs.length === 0 && d.directBranches.size === 0
+    );
+    if (gapDepts.length === 0) continue;
+    const siblingBranchSets = new Set(
+      entries
+        .filter(([key, d]) => key !== "__COLLEGE_LEVEL__" && (d.cutoffs.length > 0 || d.directBranches.size > 0))
+        .map(([, d]) => [...new Set([...d.cutoffs.map((c) => c.branch), ...d.directBranches])].sort().join(","))
+    );
+    gapDepts.forEach(([, d]) => {
+      const inferred =
+        siblingBranchSets.size === 1
+          ? [...siblingBranchSets][0].split(",")
+          : classifyFallbackBranch(college.name, d.name);
+      inferred.forEach((b) => d.directBranches.add(b));
+    });
+  }
+}
+
 const finalUniversities = universities.map((u) => {
   const colleges = [...u._collegesMap.values()].map((c, cIdx) => {
     const departments = [...c.departmentsMap.values()].map((d) => {
@@ -367,7 +489,7 @@ const finalUniversities = universities.map((u) => {
         branch: branches,
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
-        averageGrades: { "صباحي": bestMorning, "مسائي": d.eveningMinGrade },
+        averageGrades: { صباحي: bestMorning, مسائي: d.eveningMinGrade },
         isDirectAdmission: d.cutoffs.length === 0,
       };
     });
@@ -388,11 +510,11 @@ function buildPrivateDepartment(d) {
     branch: [],
     sessions,
     cutoffs: [],
-    averageGrades: { "صباحي": null, "مسائي": null },
+    averageGrades: { صباحي: null, مسائي: null },
     isDirectAdmission: true,
     tuitionFees: {
-      "صباحي": typeof d.morningFee === "number" ? d.morningFee : null,
-      "مسائي": typeof d.eveningFee === "number" ? d.eveningFee : null,
+      صباحي: typeof d.morningFee === "number" ? d.morningFee : null,
+      مسائي: typeof d.eveningFee === "number" ? d.eveningFee : null,
     },
     admissionSuspended: !!d.suspended,
     note: d.gradeNote || d.note || null,
@@ -401,34 +523,37 @@ function buildPrivateDepartment(d) {
 
 function makeManualDepartment(m) {
   return {
-    name: m, branch: [], sessions: ["صباحي"], cutoffs: [],
-    averageGrades: { "صباحي": null, "مسائي": null }, isDirectAdmission: true,
-    tuitionFees: { "صباحي": null, "مسائي": null }, admissionSuspended: false, note: null,
+    name: m,
+    branch: [],
+    sessions: ["صباحي"],
+    cutoffs: [],
+    averageGrades: { صباحي: null, مسائي: null },
+    isDirectAdmission: true,
+    tuitionFees: { صباحي: null, مسائي: null },
+    admissionSuspended: false,
+    note: null,
   };
 }
 
 const privateFinal = privateUnis.map((p) => {
   const guideColleges = privateDepartmentsGuide[p.id];
-  const colleges = guideColleges && guideColleges.length
-    ? guideColleges.map((c, cIdx) => ({
-        id: `${p.id}_col_${cIdx + 1}`,
-        name: c.collegeName,
-        nameEn: null,
-        departments: c.departments.map(buildPrivateDepartment),
-      }))
-    : [];
+  const colleges =
+    guideColleges && guideColleges.length
+      ? guideColleges.map((c, cIdx) => ({
+          id: `${p.id}_col_${cIdx + 1}`,
+          name: c.collegeName,
+          nameEn: null,
+          departments: c.departments.map(buildPrivateDepartment),
+        }))
+      : [];
 
   // بعض الأسطر في دليل الأجور تعذّر تحليلها بأمان (أُسقطت عمداً بدل عرضها
   // مشوَّهة، انظر scripts/match-private-universities.js) -- فقد يكون بعض
   // الجامعات الموثَّقة يدوياً سابقاً بقائمة "majors" أغنى مما استخرجه
   // الدليل آلياً لها. ندمج أي تخصص يدوي غير مذكور اسمياً في نتيجة الدليل،
   // بدل استبدال البيانات الأدق بأخرى أفقر عرضاً عرضياً.
-  const guideDeptNames = new Set(
-    colleges.flatMap((c) => c.departments.map((d) => d.name.replace(/\s+/g, "")))
-  );
-  const extraManualMajors = (p.majors || []).filter(
-    (m) => !guideDeptNames.has(m.replace(/\s+/g, ""))
-  );
+  const guideDeptNames = new Set(colleges.flatMap((c) => c.departments.map((d) => d.name.replace(/\s+/g, ""))));
+  const extraManualMajors = (p.majors || []).filter((m) => !guideDeptNames.has(m.replace(/\s+/g, "")));
   if (extraManualMajors.length) {
     colleges.push({
       id: `${p.id}_col_manual`,
@@ -465,7 +590,8 @@ const privateWithDepts = privateFinal.filter((u) =>
 const out = {
   meta: {
     lastUpdated: new Date().toISOString().slice(0, 10),
-    source: "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
+    source:
+      "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
     sourceFiles: [
       "dalel_2025_22026.pdf",
       "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf",
@@ -488,7 +614,17 @@ const provinces = Array.from(new Set(out.universities.map((u) => u.province))).s
 fs.writeFileSync(path.join(ROOT, "data/provinces.json"), JSON.stringify(provinces, null, 2) + "\n", "utf8");
 
 const totalColleges = finalUniversities.reduce((s, u) => s + u.colleges.length, 0);
-const totalDepts = finalUniversities.reduce((s, u) => s + u.colleges.reduce((s2, c) => s2 + c.departments.length, 0), 0);
+const totalDepts = finalUniversities.reduce(
+  (s, u) => s + u.colleges.reduce((s2, c) => s2 + c.departments.length, 0),
+  0
+);
 console.log("Wrote", OUT);
-console.log("Government/technical universities:", finalUniversities.length, "| colleges:", totalColleges, "| departments:", totalDepts);
+console.log(
+  "Government/technical universities:",
+  finalUniversities.length,
+  "| colleges:",
+  totalColleges,
+  "| departments:",
+  totalDepts
+);
 console.log("Private universities:", privateFinal.length);

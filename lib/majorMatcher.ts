@@ -29,8 +29,8 @@ export interface Department {
   sessions: string[];
   cutoffs: DepartmentCutoff[];
   averageGrades: {
-    "صباحي": number | null;
-    "مسائي": number | null;
+    صباحي: number | null;
+    مسائي: number | null;
   };
   isDirectAdmission: boolean;
 }
@@ -69,6 +69,23 @@ export interface MajorMapping {
   aliases: string[];
   departmentPatterns: string[];
   priority: number;
+  // حارس بادئة اختياري (TASKS.md المهمة ٢): يمنع هذا التخصص من مطابقة أي
+  // قسم يبدأ اسمه فعلياً بإحدى هذه البادئات، حتى لو تطابق أحد أنماطه
+  // العامة معه جذرياً. ضروري لفصل "هندسة X" (بكالوريوس هندسة، 4-5 سنوات،
+  // كلية الهندسة) عن "تقنيات X" (دبلوم/بكالوريوس تقني، الجامعات التقنية)
+  // حين يتشارك الاسمان جذراً مشتركاً (مثال: "هندسة الأمن السيبراني" مقابل
+  // "تقنيات الأمن السيبراني" — شهادتان وجهتان ونقابتان مختلفتان تماماً).
+  // يُفحَص على الاسم الخام (بعد حذف "قسم " فقط)، لا بعد التطبيع الكامل،
+  // لأن التطبيع يحذف المسافات فيصعب فحص "يبدأ بـ" على النتيجة المدمجة.
+  // ملاحظة: "هندسة تقنيات X" (شهادة هندسة من كلية تقنية هندسية) يبدأ بـ
+  // "هندسة" فتُحسَب هندسية-المستوى هنا عمداً، لا تقنية — قرار موضعي مبرَّر
+  // بأنها شهادة "هندسة" رسمياً بصرف النظر عن الكلمة الثانية في اسمها.
+  excludeIfDepartmentStartsWith?: string[];
+}
+
+function startsWithAnyPrefix(departmentName: string, prefixes: string[]): boolean {
+  const stripped = departmentName.trim().replace(/^قسم\s+/, "");
+  return prefixes.some((p) => stripped.startsWith(p));
 }
 
 /**
@@ -86,8 +103,8 @@ export interface UniversityOffering {
   departmentBranches: string[];
   sessions: string[];
   averageGrades: {
-    "صباحي": number | null;
-    "مسائي": number | null;
+    صباحي: number | null;
+    مسائي: number | null;
   };
   cutoffs: DepartmentCutoff[];
   isDirectAdmission: boolean;
@@ -103,18 +120,20 @@ export interface UniversityOffering {
  * دون الحاجة لتكرار كل صيغة تالفة يدوياً في قاموس المطابقة.
  */
 function normalizeArabic(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[أإآ]/g, "ا")
-    // احذف "أل" التعريف من بداية كل كلمة *قبل* حذف الألف عموماً أدناه —
-    // وإلا يبقى "ل" متيتّم من "ال" في نسخة القسم المُعرَّفة ("التصميم
-    // الداخلي") لا نظير له في نسخة التخصص غير المُعرَّفة ("تصميم داخلي")،
-    // فتفشل المطابقة رغم تطابق المعنى تماماً (رُصد فعلياً: "الداخلي" تصبح
-    // "لدخلي" بعد حذف الألف فقط، بينما "داخلي" تصبح "دخلي" — لا تطابق).
-    .replace(/(^|\s)ال/g, "$1")
-    .replace(/ا/g, "")
-    .replace(/\s+/g, "");
+  return (
+    text
+      .toLowerCase()
+      .trim()
+      .replace(/[أإآ]/g, "ا")
+      // احذف "أل" التعريف من بداية كل كلمة *قبل* حذف الألف عموماً أدناه —
+      // وإلا يبقى "ل" متيتّم من "ال" في نسخة القسم المُعرَّفة ("التصميم
+      // الداخلي") لا نظير له في نسخة التخصص غير المُعرَّفة ("تصميم داخلي")،
+      // فتفشل المطابقة رغم تطابق المعنى تماماً (رُصد فعلياً: "الداخلي" تصبح
+      // "لدخلي" بعد حذف الألف فقط، بينما "داخلي" تصبح "دخلي" — لا تطابق).
+      .replace(/(^|\s)ال/g, "$1")
+      .replace(/ا/g, "")
+      .replace(/\s+/g, "")
+  );
 }
 
 /**
@@ -130,6 +149,16 @@ export function matchMajorToDepartment(
   departmentName: string,
   mapping: MajorMapping
 ): { isMatch: boolean; confidence: number } {
+  // فحص البادئة المانعة *قبل* أي مطابقة جذر (TASKS.md المهمة ٢) — إن بدأ
+  // اسم القسم الفعلي بإحدى البادئات المستبعَدة لهذا التخصص، لا يُطابَق
+  // إطلاقاً بصرف النظر عن قوة تطابق النمط/الاسم البديل/التطابق التام.
+  if (
+    mapping.excludeIfDepartmentStartsWith &&
+    startsWithAnyPrefix(departmentName, mapping.excludeIfDepartmentStartsWith)
+  ) {
+    return { isMatch: false, confidence: 0 };
+  }
+
   const depNorm = normalizeArabic(departmentName);
   const majorNameNorm = normalizeArabic(major.name);
   const mappingNameNorm = normalizeArabic(mapping.majorName);
@@ -146,9 +175,7 @@ export function matchMajorToDepartment(
   }
   // 3. تحقق من وجود أي من الأنماط النصية (Patterns) في اسم القسم
   else {
-    const matchingPatterns = mapping.departmentPatterns.filter((pattern) =>
-      depNorm.includes(normalizeArabic(pattern))
-    );
+    const matchingPatterns = mapping.departmentPatterns.filter((pattern) => depNorm.includes(normalizeArabic(pattern)));
 
     if (matchingPatterns.length > 1) {
       score = 75; // مطابقة عدة أنماط فرعية
@@ -206,11 +233,7 @@ export function findUniversitiesForMajor(
 
     for (const college of uni.colleges) {
       for (const dept of college.departments) {
-        const { isMatch, confidence } = matchMajorToDepartment(
-          major,
-          dept.name,
-          mapping
-        );
+        const { isMatch, confidence } = matchMajorToDepartment(major, dept.name, mapping);
 
         if (isMatch) {
           offerings.push({
@@ -247,9 +270,7 @@ export function findUniversitiesForMajor(
  * @param offerings قائمة العروض غير المرتبة
  * @returns قائمة العروض مرتبة تنازلياً وتصاعدياً حسب المعايير
  */
-export function rankUniversityOfferings(
-  offerings: UniversityOffering[]
-): UniversityOffering[] {
+export function rankUniversityOfferings(offerings: UniversityOffering[]): UniversityOffering[] {
   return [...offerings].sort((a, b) => {
     // 1. المقارنة بنسبة الثقة
     if (b.confidence !== a.confidence) {

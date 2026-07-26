@@ -10,7 +10,9 @@
       "C": "التقليدي/المنظّم (Conventional) — الدقة، الأرقام، الإجراءات، التنظيم"
     },
     "scale": "كل بُعد من 0 إلى 10، يمثل مدى ارتباط التخصص بهذا البُعد",
-    "note": "مبنية على تحليل مهني قياسي (Holland Code) مطبّق على واقع سوق العمل والدراسة العراقي، وليست مستخرجة آلياً من المصادر الرسمية"
+    "note": "مبنية على تحليل مهني قياسي (Holland Code) مطبّق على واقع سوق العمل والدراسة العراقي، وليست مستخرجة آلياً من المصادر الرسمية",
+    "engineering_vs_technical_split_2026_07_23": "TASKS.md المهمة ٢: مسح شامل لكل أسماء الأقسام في data/universities.json كشف 7 حالات كانت فيها بادئتا «هندسة X» (بكالوريوس هندسة، كلية الهندسة، 4-5 سنوات) و«تقنيات X» (دبلوم/بكالوريوس تقني، جامعة تقنية أو معهد تقني) لنفس المجال تتشاركان نمط مطابقة واحداً في major_department_mapping.json فيبتلع أحدهما الآخر صامتاً (تحقّق فعلي من 150 اسم قسم هندسي و174 اسم قسم تقني عبر كل الجامعات، لا افتراضاً). فُصلت كل حالة لتخصصين مستقلين: cybersecurity/cybersecurity_tech، ai/ai_tech، electrical_engineering/electrical_tech، renewable_energy/renewable_energy_tech، petroleum_engineering/petroleum_refining_tech، communications_engineering/electronics_comm_tech، وprosthetics_tech/prosthetics_engineering (الاتجاه معكوس هنا: الهندسي كان الغائب لا التقني). بروفايلات النسخ التقنية اشتُقّت من الهندسية بزيادة البُعد الواقعي (R) ونقصان الاستقصائي (I) نقطة واحدة (والعكس لـprosthetics_engineering)، اتساقاً مع الفرق الواقعي بين مسار تطبيقي-تقني ومسار نظري-هندسي أعمق لنفس المجال. الفصل الفعلي بين الأقسام في الكود يعتمد على حارس بادئة صريح (excludeIfDepartmentStartsWith في lib/majorMatcher.ts) لا فرقاً في البروفايل، فالبروفايل هنا وصفي فقط.",
+    "decoupling_2026_07_22": "جولة سابقة (2026-07-22 الأولى) عدّلت 17 بروفايلاً (ai/computer_science/civil_engineering/renewable_energy/law/english/graphic_design/project_management/mathematics/physics/chemistry/biology/history/arabic_language/translation/fine_arts/astronomy_space_science) لمعالجة تحيّز كان يمنع أحد كل زوج من الوصول للمرتبة #1 بسبب معامل السوق وحده لا فرق شخصي حقيقي. بعد تحليل ثغرات لاحق (تحليل_الثغرات_وخطة_التطوير.md §3.2) تبيّن أن العلاج الأصح جذرياً هو فصل معامل السوق عن الترتيب كلياً (انظر computeCombinedRankingScore في lib/riasec.ts -- السوق الآن بوزن 0 افتراضياً، بيد الطالب حصراً عبر منزلق اختياري)، لا ترقيع البروفايلات. لذا أُعيدت كل الـ17 قيمة لأصلها النفسي القديم (قبل هذا التعديل) -- تحقَّق آلياً عبر محاكاة أن فصل السوق عن الترتيب يحلّ مشكلة الاستبعاد البنيوي تلقائياً وبلا استثناء، دون الحاجة لأي تعديل يدوي على البروفايلات إطلاقاً."
   },
   "profiles": {
     "software_engineering": {
@@ -660,6 +662,62 @@
       "S": 2,
       "E": 3,
       "C": 3
+    },
+    "cybersecurity_tech": {
+      "R": 4,
+      "I": 7,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 7
+    },
+    "ai_tech": {
+      "R": 2,
+      "I": 8,
+      "A": 3,
+      "S": 1,
+      "E": 4,
+      "C": 4
+    },
+    "electrical_tech": {
+      "R": 8,
+      "I": 7,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "renewable_energy_tech": {
+      "R": 7,
+      "I": 7,
+      "A": 3,
+      "S": 3,
+      "E": 5,
+      "C": 4
+    },
+    "petroleum_refining_tech": {
+      "R": 9,
+      "I": 6,
+      "A": 1,
+      "S": 1,
+      "E": 4,
+      "C": 5
+    },
+    "electronics_comm_tech": {
+      "R": 5,
+      "I": 7,
+      "A": 2,
+      "S": 3,
+      "E": 6,
+      "C": 6
+    },
+    "prosthetics_engineering": {
+      "R": 7,
+      "I": 6,
+      "A": 6,
+      "S": 5,
+      "E": 2,
+      "C": 5
     }
   }
 }

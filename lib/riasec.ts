@@ -77,10 +77,7 @@ export function computeUserRiasecVector(
  * تام، 0 = تعاكس تام). مقياس بسيط وواضح للتفسير، ويتفادى مشكلة "المتجه
  * الصفري" التي تظهر مع مقاييس التشابه الجيبي (cosine) عند إجابات متطرفة.
  */
-export function computeMajorFit(
-  userVector: Record<RiasecDimension, number>,
-  majorProfile: RiasecVector
-): number {
+export function computeMajorFit(userVector: Record<RiasecDimension, number>, majorProfile: RiasecVector): number {
   let sumSquares = 0;
   RIASEC_DIMENSIONS.forEach((d) => {
     const u = userVector[d] ?? 0;
@@ -92,18 +89,29 @@ export function computeMajorFit(
 }
 
 /**
- * يدمج نسبة التوافق الشخصي مع معامل طلب السوق لأغراض الترتيب فقط (لا
- * يُعرض هذا الرقم مباشرة للمستخدم — نسبة التوافق الحقيقية تُعرض منفصلة).
- * السوق يُستخدم كمرجّح إضافي بسيط (±7.5 نقطة كحد أقصى ضمن مدى المضاعفات
- * الفعلي 0.5-1.5) وليس كضرب مباشر بالنسبة، تحديداً لمنع تخصص "رائج" لكنه
- * ضعيف التوافق (مثال: هندسة برمجيات لطالب واقعي/يدوي بامتياز) من التفوق
- * على تخصص أعلى توافقاً فعلياً بفارق كبير لمجرد ارتفاع الطلب عليه في
- * السوق. القيمة 15 معايرة يدوياً بحيث لا يقلب ترتيب فارق توافق حقيقي
- * يتجاوز ~15 نقطة مئوية، لكنها تبقى مؤثرة كفاصل عند تقارب درجات التوافق.
+ * إعادة تصميم (2026-07-22، بناءً على تحليل الثغرات §3.2): الترتيب والتوافق
+ * سؤالان مختلفان تماماً — "أي تخصص يشبهك؟" (نسبة التوافق) مقابل "ما فرص
+ * هذا التخصص؟" (السوق). النسخة السابقة كانت تدمجهما في رقم واحد (السوق
+ * يُرجّح الترتيب تلقائياً بحد أقصى ±7.5 نقطة)، ما دفع النظام نحو التخصصات
+ * الرائجة سوقياً حتى عند تفوّق تخصص آخر في التوافق الفعلي، واضطرّ لاحقاً
+ * لتعديل 17 بروفايل RIASEC يدوياً فقط لمعالجة تحيّز ترتيبي ناتج عن هذا
+ * الدمج (انظر التاريخ في data/major_riasec_profiles.json — أُعيدت تلك
+ * البروفايلات لقيمها النفسية الأصلية بعد هذا التغيير، لأن الحاجة لتعديلها
+ * زالت جذرياً بمجرد أن توقّف السوق عن التأثير في الترتيب أصلاً).
+ *
+ * الآن: السوق لا يدخل الترتيب إطلاقاً افتراضياً (studentMarketWeight=0).
+ * الطالب نفسه -- لا النظام -- من يقرّر عبر منزلق في الواجهة إن أراد ترجيح
+ * السوق (0 = تجاهل كامل، 1 = نفس التأثير الأقصى القديم ±7.5 نقطة). هذا
+ * يحوّل الانحياز من قرار خفي مُبرمَج إلى خيار واعٍ بيد الطالب.
  */
-export function computeCombinedRankingScore(fitPercent: number, marketMultiplier: number): number {
-  const MARKET_INFLUENCE = 15;
-  return fitPercent + (marketMultiplier - 1) * MARKET_INFLUENCE;
+export function computeCombinedRankingScore(
+  fitPercent: number,
+  marketMultiplier: number,
+  studentMarketWeight: number = 0
+): number {
+  const MAX_MARKET_INFLUENCE = 15;
+  const weight = clamp(studentMarketWeight, 0, 1);
+  return fitPercent + (marketMultiplier - 1) * MAX_MARKET_INFLUENCE * weight;
 }
 
 /** يُرجع أعلى n أبعاد لدى المستخدم مرتّبة تنازلياً، لعرضها كتفسير للنتيجة. */
@@ -114,4 +122,29 @@ export function topDimensions(
   return RIASEC_DIMENSIONS.map((d) => ({ dimension: d, score: userVector[d] ?? 0 }))
     .sort((a, b) => b.score - a.score)
     .slice(0, n);
+}
+
+export interface DimensionGap {
+  dimension: RiasecDimension;
+  userScore: number;
+  majorScore: number;
+  /** موجب = المستخدم أعلى من التخصص، سالب = التخصص يتطلب أكثر مما يميل له المستخدم. */
+  gap: number;
+}
+
+/**
+ * يُرجع الأبعاد الستة كاملة (TASKS.md المهمة ٤) — لا أعلى بُعدين فقط كما
+ * كان سابقاً — مرتّبة تنازلياً بالقيمة المطلقة للفارق، كي تظهر أبرز نقاط
+ * الفجوة (سلباً أو إيجاباً) أولاً. الطالب يستحق معرفة أين *لا* يناسبه
+ * التخصص أيضاً، لا فقط أين يتوافق معه.
+ */
+export function computeDimensionGaps(
+  userVector: Record<RiasecDimension, number>,
+  majorProfile: RiasecVector
+): DimensionGap[] {
+  return RIASEC_DIMENSIONS.map((d) => {
+    const userScore = userVector[d] ?? 0;
+    const majorScore = (majorProfile[d] ?? 0) * 10;
+    return { dimension: d, userScore, majorScore, gap: userScore - majorScore };
+  }).sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
 }

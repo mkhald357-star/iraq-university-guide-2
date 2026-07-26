@@ -5,6 +5,9 @@
 /.next/
 /out/
 
+# test coverage reports (regenerable via npm run test:coverage)
+/coverage/
+
 # production
 /build
 

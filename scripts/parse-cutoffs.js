@@ -23,16 +23,35 @@ const GENDERS = new Set(["مختلط", "ذكر", "انثى", "أنثى"]);
 // القائمة يدوية (لا نمط لغوي عام يميّز اسم مدينة عن اسم قسم) بعد فحص كل
 // حالات هذا العطل فعلياً في data/raw/hodod.full.txt.
 const CAMPUS_QUALIFIERS = new Set([
-  "بغداد", "البصرة", "الموصل", "بابل", "الكوفة", "نينوى", "هيت", "حديثة",
-  "بلد", "القرنة", "الرصافة", "المسيب", "العزيزية", "الشرقاط", "الطارمية",
-  "المقدادية", "سوق الشيوخ", "القائم", "طوزخورماتو",
+  "بغداد",
+  "البصرة",
+  "الموصل",
+  "بابل",
+  "الكوفة",
+  "نينوى",
+  "هيت",
+  "حديثة",
+  "بلد",
+  "القرنة",
+  "الرصافة",
+  "المسيب",
+  "العزيزية",
+  "الشرقاط",
+  "الطارمية",
+  "المقدادية",
+  "سوق الشيوخ",
+  "القائم",
+  "طوزخورماتو",
 ]);
 
 const rows = [];
 
 for (const line of lines) {
   if (!line.includes("\t")) continue;
-  const tokens = line.split("\t").map((t) => t.trim()).filter((t) => t.length > 0);
+  const tokens = line
+    .split("\t")
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0);
   if (tokens.length < 6) continue;
 
   const last = tokens[tokens.length - 1];
@@ -104,4 +123,9 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(rows, null, 2), "utf8");
 console.log("Parsed rows:", rows.length);
 console.log("Unique universities:", new Set(rows.map((r) => r.university)).size);
-console.log("Quota rows:", rows.filter((r) => r.isQuota).length, "| Non-quota rows:", rows.filter((r) => !r.isQuota).length);
+console.log(
+  "Quota rows:",
+  rows.filter((r) => r.isQuota).length,
+  "| Non-quota rows:",
+  rows.filter((r) => !r.isQuota).length
+);

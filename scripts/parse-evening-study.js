@@ -17,17 +17,41 @@ const SRC = path.join(ROOT, "data", "raw", "dalel.full.txt");
 const OUT = path.join(ROOT, "data", "raw", "evening_study_2025_2026.json");
 
 const ORDERED_UNIVERSITIES = [
-  "جامعة بغداد", "الجامعة المستنصرية", "جامعة البصرة", "جامعة الموصل",
-  "الجامعة التكنولوجية", "جامعة الكوفة", "جامعة تكريت", "جامعة القادسية",
-  "جامعة الأنبار", "الجامعة العراقية", "جامعة بابل", "جامعة النهرين",
-  "جامعة ديالى", "جامعة كربلاء", "جامعة ذي قار", "جامعة كركوك",
-  "جامعة واسط", "جامعة ميسان", "جامعة المثنى", "جامعة سامراء",
-  "جامعة سومر", "جامعة القاسم الخضراء", "جامعة نينوى", "جامعة الفلوجة",
-  "جامعة جابر بن حيان للعلوم الطبية والصيدلانية", "جامعة تلعفر",
-  "جامعة البصرة للنفط والغاز", "جامعة الحمدانية", "جامعة الكرخ للعلوم",
-  "جامعة تكنولوجيا المعلومات والاتصالات", "جامعة الشطرة",
-  "الجامعة التقنية الشمالية", "جامعة الفرات الأوسط التقنية",
-  "الجامعة التقنية الوسطى", "الجامعة التقنية الجنوبية",
+  "جامعة بغداد",
+  "الجامعة المستنصرية",
+  "جامعة البصرة",
+  "جامعة الموصل",
+  "الجامعة التكنولوجية",
+  "جامعة الكوفة",
+  "جامعة تكريت",
+  "جامعة القادسية",
+  "جامعة الأنبار",
+  "الجامعة العراقية",
+  "جامعة بابل",
+  "جامعة النهرين",
+  "جامعة ديالى",
+  "جامعة كربلاء",
+  "جامعة ذي قار",
+  "جامعة كركوك",
+  "جامعة واسط",
+  "جامعة ميسان",
+  "جامعة المثنى",
+  "جامعة سامراء",
+  "جامعة سومر",
+  "جامعة القاسم الخضراء",
+  "جامعة نينوى",
+  "جامعة الفلوجة",
+  "جامعة جابر بن حيان للعلوم الطبية والصيدلانية",
+  "جامعة تلعفر",
+  "جامعة البصرة للنفط والغاز",
+  "جامعة الحمدانية",
+  "جامعة الكرخ للعلوم",
+  "جامعة تكنولوجيا المعلومات والاتصالات",
+  "جامعة الشطرة",
+  "الجامعة التقنية الشمالية",
+  "جامعة الفرات الأوسط التقنية",
+  "الجامعة التقنية الوسطى",
+  "الجامعة التقنية الجنوبية",
 ];
 
 const allLines = fs.readFileSync(SRC, "utf8").split("\n");
@@ -68,7 +92,10 @@ for (const rawLine of lines) {
   if (pageMarkerRe.test(line.trim())) continue;
   if (/^\d+$/.test(line.trim())) continue; // bare page-number line
 
-  const tokens = line.split("\t").map((t) => t.trim()).filter((t) => t.length > 0);
+  const tokens = line
+    .split("\t")
+    .map((t) => t.trim())
+    .filter((t) => t.length > 0);
   if (tokens.length === 0) continue;
 
   // Every out-of-scope chapter that follows the last government university
@@ -109,14 +136,20 @@ for (const rawLine of lines) {
 
   if (tokens[0] === "ت") continue; // table header row "ت الكلية القسم"
   if (!/^\d+$/.test(tokens[0])) continue; // must start with a row number
-  if (!currentUni) { skipped++; continue; }
+  if (!currentUni) {
+    skipped++;
+    continue;
+  }
 
   // Tabs already delimit columns/hierarchy levels; a lone "/" or "-" token
   // is just a visual joiner between two adjacent columns, not a signal to
   // merge them into one string, so: drop delimiter tokens, keep every
   // other tab-cell as its own segment.
   let segs = tokens.slice(1).filter((t) => t !== "/" && t !== "-");
-  if (segs.length === 0) { skipped++; continue; }
+  if (segs.length === 0) {
+    skipped++;
+    continue;
+  }
 
   // A long college/department name sometimes wraps across multiple PDF
   // table cells, which pdf-parse then emits as separate tab-tokens -- even
@@ -189,5 +222,7 @@ fs.mkdirSync(path.dirname(OUT), { recursive: true });
 fs.writeFileSync(OUT, JSON.stringify(results, null, 2), "utf8");
 console.log("Parsed evening-study rows:", results.length, "| skipped:", skipped, "| universities seen:", uniIndex + 1);
 if (uniIndex + 1 !== ORDERED_UNIVERSITIES.length) {
-  console.warn(`WARNING: expected ${ORDERED_UNIVERSITIES.length} universities, found ${uniIndex + 1} -- review ORDERED_UNIVERSITIES against this year's guide.`);
+  console.warn(
+    `WARNING: expected ${ORDERED_UNIVERSITIES.length} universities, found ${uniIndex + 1} -- review ORDERED_UNIVERSITIES against this year's guide.`
+  );
 }

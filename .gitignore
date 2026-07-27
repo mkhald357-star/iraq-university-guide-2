@@ -8,6 +8,9 @@
 # test coverage reports (regenerable via npm run test:coverage)
 /coverage/
 
+# personal Claude Code settings (e.g. auto-commit hook) -- not shared with the team
+/.claude/settings.local.json
+
 # production
 /build
 

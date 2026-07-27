@@ -264,3 +264,98 @@
     display: none !important;
   }
 }
+
+/* ═══ معرض الرحلة ═══ */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity var(--t-slow) var(--ease),
+    transform var(--t-slow) var(--ease);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* شريط أفقي بانزلاق مغناطيسي */
+.rail {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1.25rem;
+  padding-block: 0.5rem 1.25rem;
+  padding-inline: 1.25rem;
+  scrollbar-width: none;
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.rail > * {
+  scroll-snap-align: start;
+  flex: 0 0 clamp(15rem, 78vw, 20rem);
+}
+
+/* دخول لوح المرحلة — ينزلق باتجاه تقدّم الزمن (RTL: من اليسار) */
+@keyframes stageIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.stage-panel {
+  animation: stageIn var(--t-base) var(--ease) both;
+}
+
+/* مؤشر التبويب — يتمدّد من المنتصف */
+.tab-underline {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform var(--t-base) var(--ease);
+}
+.tab-active .tab-underline {
+  transform: scaleX(1);
+}
+
+/* نافذة قريباً */
+dialog.soon::backdrop {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(3px);
+  animation: fadeIn var(--t-fast) var(--ease) both;
+}
+@keyframes soonIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes soonOut {
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+dialog.soon[open] {
+  animation: soonIn var(--t-base) var(--ease) both;
+}
+dialog.soon.is-closing {
+  animation: soonOut var(--t-fast) var(--ease) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage-panel,
+  dialog.soon[open],
+  dialog.soon.is-closing {
+    animation: none;
+  }
+}

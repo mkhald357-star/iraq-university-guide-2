@@ -1,5 +1,5 @@
-import { BookOpen, Target, Briefcase } from "lucide-react";
 import Hero from "./components/Hero";
+import JourneyShowcase from "./components/JourneyShowcase";
 
 export default function Home() {
   return (
@@ -12,38 +12,7 @@ export default function Home() {
         <Hero />
       </div>
 
-      {/* Features Section */}
-      <div className="grid md:grid-cols-3 gap-8 w-full py-16 max-w-6xl mx-auto px-5">
-        <div className="glass p-8 rounded-3xl text-center space-y-4">
-          <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-primary-700">
-            <Target className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-bold">تحليل دقيق لشخصيتك</h3>
-          <p className="text-slate-600 text-sm">
-            أسئلة مبنية على نماذج علمية لتحليل الميول السلوكية والمهنية لتحديد التخصص الأنسب لك.
-          </p>
-        </div>
-
-        <div className="glass p-8 rounded-3xl text-center space-y-4">
-          <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-primary-700">
-            <Briefcase className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-bold">متوافق مع السوق العراقي</h3>
-          <p className="text-slate-600 text-sm">
-            نحن نأخذ بعين الاعتبار &quot;مُعامل السوق العراقي&quot; لتوجيهك نحو التخصصات المطلوبة فعلياً.
-          </p>
-        </div>
-
-        <div className="glass p-8 rounded-3xl text-center space-y-4">
-          <div className="bg-primary-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto text-primary-700">
-            <BookOpen className="w-8 h-8" />
-          </div>
-          <h3 className="text-xl font-bold">دليل الجامعات الحكومية والأهلية</h3>
-          <p className="text-slate-600 text-sm">
-            نرشدك لأفضل الكليات الحكومية والأهلية المعترف بها التي توفر التخصص الأنسب لك.
-          </p>
-        </div>
-      </div>
+      <JourneyShowcase />
     </div>
   );
 }

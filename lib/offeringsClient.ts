@@ -27,3 +27,52 @@ export async function fetchOfferingsForMajor(majorId: string): Promise<Universit
     return [];
   }
 }
+
+export type Branch = "علمي" | "أدبي" | "فنون";
+
+// شكل مُخفَّف من UniversityOffering لأداتي "فاحص المعدل"/"مستكشف الجامعات"
+// (public/data/by-branch/<فرع>.json) -- بلا cutoffs[]/confidence/
+// universityRanking/collegeId (غير مُستخدَمة في أي منطق تصنيف/عرض لهاتين
+// الأداتين)، مع إضافة majorId/majorName (قد تكون null لقسم غير مطابَق لأي
+// من التخصصات الـ88 المنسَّقة -- يظهر القسم رغم ذلك، وفاءً بوعد "كل قسم").
+export interface ExplorerOffering {
+  majorId: string | null;
+  majorName: string | null;
+  universityId: string;
+  universityName: string;
+  universityType: "حكومية" | "أهلية";
+  province: string;
+  collegeName: string;
+  departmentName: string;
+  departmentBranches: string[];
+  sessions: string[];
+  averageGrades: { صباحي: number | null; مسائي: number | null };
+  isDirectAdmission: boolean;
+}
+
+// كل عروض فرع دراسي معيّن (عبر كل الجامعات وكل التخصصات، مطابَقة أو غير
+// مطابَقة لأي منها) -- نفس نمط fetchOfferingsForMajor أعلاه بالضبط.
+export async function fetchOfferingsForBranch(branch: Branch): Promise<ExplorerOffering[]> {
+  try {
+    const res = await fetch(`/data/by-branch/${branch}.json`);
+    if (!res.ok) return [];
+    return (await res.json()) as ExplorerOffering[];
+  } catch {
+    return [];
+  }
+}
+
+// يكيّف ExplorerOffering المُخفَّف إلى UniversityOffering كامل بقيم افتراضية
+// آمنة للحقول المحذوفة -- لازم فقط لاستدعاء classifyOffering من
+// lib/wishlistPlanner.ts (يتطلّب الشكل الكامل بنيوياً، لكنه لا يقرأ فعلياً
+// إلا isDirectAdmission وaverageGrades[session]). لا تُعدَّل wishlistPlanner.ts
+// نفسها (مُختبَرة بـ21 اختباراً) لتفادي مخاطرة غير ضرورية.
+export function toUniversityOffering(e: ExplorerOffering): UniversityOffering {
+  return {
+    ...e,
+    collegeId: "",
+    cutoffs: [],
+    universityRanking: null,
+    confidence: 100,
+  };
+}

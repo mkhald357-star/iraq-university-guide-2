@@ -24,7 +24,7 @@ interface UniversitiesTableProps {
 // فراغ القيمة. فراغ القيمة بدون isDirectAdmission يعني بيانات مفقودة فعلياً
 // (فجوة استخراج)، لا قبولاً مباشراً، وهذان معنيان متناقضان تماماً لا يجوز
 // دمجهما (انظر data/admission_rules.md §17).
-function formatGrade(value: number | null | undefined, sessionAvailable: boolean, isDirectAdmission: boolean) {
+export function formatGrade(value: number | null | undefined, sessionAvailable: boolean, isDirectAdmission: boolean) {
   if (!sessionAvailable) return { text: "—", isDirect: false };
   if (isDirectAdmission) return { text: "قبول مباشر", isDirect: true };
   if (value == null) return { text: "غير متوفر", isDirect: false };

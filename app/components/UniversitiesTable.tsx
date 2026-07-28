@@ -1,6 +1,8 @@
 // app/components/UniversitiesTable.tsx
 "use client";
 
+import { formatGrade } from "../../lib/admissionLabel";
+
 interface UniversityOffering {
   universityName: string;
   universityType?: "حكومية" | "أهلية" | string;

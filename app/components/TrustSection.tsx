@@ -1,0 +1,59 @@
+import meta from "../../data/universities_meta.json";
+
+export default function TrustSection() {
+  return (
+    <section dir="rtl" className="py-24" style={{ background: "var(--g-surface)" }}>
+      <div className="mx-auto grid max-w-6xl items-start gap-12 px-5 md:grid-cols-2">
+        <div>
+          <p className="text-sm font-bold text-primary-700">من وين هذي الأرقام؟</p>
+          <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">
+            بيانات رسمية، لا تخمين
+          </h2>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
+            كل حدّ قبول وكل قسم على المنصة مأخوذ حرفياً من دليل وزارة التعليم العالي والبحث العلمي
+            العراقية للعام الدراسي {meta.academicYear}. ما نقدّر رقماً، وما ننشره إلا بعد التأكد
+            من مصدره.
+          </p>
+
+          <a
+            href="https://cap.mohesr.gov.iq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 font-bold text-primary-700 hover:underline"
+          >
+            القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M7 17L17 7M7 7h10v10" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
+          <dl className="grid gap-5">
+            <div>
+              <dt className="text-xs font-bold text-ink-muted">المصدر</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-ink">{meta.source}</dd>
+            </div>
+            <div className="grid grid-cols-2 gap-5">
+              <div>
+                <dt className="text-xs font-bold text-ink-muted">العام الدراسي</dt>
+                <dd className="mt-1 text-sm font-bold text-ink">{meta.academicYear}</dd>
+              </div>
+              <div>
+                <dt className="text-xs font-bold text-ink-muted">آخر تحديث للبيانات</dt>
+                <dd className="mt-1 text-sm font-bold text-ink">{meta.lastUpdated}</dd>
+              </div>
+            </div>
+            <div>
+              <dt className="text-xs font-bold text-ink-muted">ما لا تشمله المنصة حالياً</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-ink-soft">
+                جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً عن القبول المركزي العام)،
+                ومعاهد خريجي الفروع المهنية. نفضّل عدم عرض بيانات غير مؤكدة بدل تخمينها.
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+  );
+}

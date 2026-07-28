@@ -43,7 +43,7 @@ export default function StatsSection() {
 
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
           {/* الإحصائية الأكثر إفادة: أكثر من نصف الأقسام بلا منافسة معدل */}
-          <div className="rounded-md border border-band-safe/30 bg-band-safe-bg p-6">
+          <div className="rounded-md border border-line bg-band-safe-bg p-6">
             <div className="text-4xl font-extrabold text-band-safe">
               <CountUp to={1742} />
             </div>

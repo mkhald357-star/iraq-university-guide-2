@@ -37,14 +37,16 @@ export const SERVICES: Service[] = [
     stageId: "decide",
     title: "فاحص المعدل السريع",
     summary: "أدخل معدّلك وفرعك، وشوف أي قسم يصلك — بلا اختبار وبلا حساب.",
-    status: "soon",
+    status: "live",
+    href: "/gpa-check",
   },
   {
     id: "explorer",
     stageId: "decide",
     title: "مستكشف الجامعات",
     summary: "تصفّح كل قسم جامعي في العراق، وفلتِره بالمحافظة والفرع والحد الأدنى.",
-    status: "soon",
+    status: "live",
+    href: "/explorer",
   },
 
   /* ── ② وأنت تقدّم ── */

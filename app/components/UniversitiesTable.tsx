@@ -10,6 +10,9 @@ interface UniversityOffering {
   sessions?: string[];
   averageGrades?: Record<string, number | null>;
   isDirectAdmission?: boolean;
+  /** اسم التخصص المطابَق (فاحص المعدل/مستكشف الجامعات فقط) -- عمود اختياري،
+      يظهر فقط إن وُجد في عرض واحد على الأقل ضمن القائمة الممرَّرة. */
+  majorName?: string | null;
 }
 
 interface UniversitiesTableProps {

@@ -202,7 +202,7 @@ export default function GpaCheckPage() {
           </div>
         )}
 
-        <div className={province ? "" : "sm:col-span-1"}>
+        <div>
           <label className="mb-2 block font-bold">
             الجلسة الدراسية <span className="font-normal text-ink-muted">(اختياري)</span>
           </label>

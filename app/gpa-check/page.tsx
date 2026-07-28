@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AlertCircle, Search } from "lucide-react";
+import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, toUniversityOffering, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
 import { classifyOffering } from "../../lib/wishlistPlanner";
 import type { Band, StudySession } from "../../lib/wishlistPlanner";
@@ -13,13 +14,16 @@ const BAND_UI: Record<"safe" | "close" | "reach", { label: string; bg: string; t
   reach: { label: "طموح", bg: "bg-band-reach-bg", text: "text-band-reach" },
 };
 
-/** أفضل تصنيف بين كل جلسات العرض (المباشر مريح دائماً بصرف النظر عن الجلسات). */
-function bestBand(offering: ExplorerOffering, grade: number): Band {
+type SessionFilter = "both" | StudySession;
+
+/** أفضل تصنيف بين الجلسات المطلوب اعتبارها فقط (لا كل جلسات العرض بالضرورة
+    -- إن اختار الطالب "صباحي فقط" مثلاً، حدّ المسائي الأفضل لا يُحتسَب). */
+function bestBand(offering: ExplorerOffering, grade: number, sessionsToConsider: StudySession[]): Band {
   if (offering.isDirectAdmission) return "safe";
   const full = toUniversityOffering(offering);
   const order: Band[] = ["safe", "close", "reach", "unknown"];
   let best: Band = "unknown";
-  for (const session of offering.sessions as StudySession[]) {
+  for (const session of sessionsToConsider) {
     const { band } = classifyOffering({ majorId: "", majorName: "", session, offering: full }, grade);
     if (order.indexOf(band) < order.indexOf(best)) best = band;
   }
@@ -28,8 +32,14 @@ function bestBand(offering: ExplorerOffering, grade: number): Band {
 
 export default function GpaCheckPage() {
   const [branch, setBranch] = useState<Branch | "">("");
+  const [offerings, setOfferings] = useState<ExplorerOffering[]>([]);
+  const [loadingOfferings, setLoadingOfferings] = useState(false);
+
   const [grade, setGrade] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [province, setProvince] = useState("");
+  const [university, setUniversity] = useState("");
+  const [session, setSession] = useState<SessionFilter>("both");
+
   const [searched, setSearched] = useState(false);
   const [groups, setGroups] = useState<Record<"safe" | "close" | "reach", ExplorerOffering[]>>({
     safe: [],
@@ -45,26 +55,64 @@ export default function GpaCheckPage() {
         const fs = JSON.parse(saved);
         if (fs.branch) setBranch(fs.branch);
         if (fs.grade) setGrade(String(fs.grade));
+        if (fs.province) setProvince(fs.province);
       }
     } catch {
       // بيانات تالفة -- تُترَك الحقول فارغة.
     }
   }, []);
 
-  async function handleSubmit(e: React.FormEvent) {
+  // جلب عروض الفرع فور اختياره -- لازم مبكراً (لا عند "افحص" فقط) كي تُعبَّأ
+  // قائمتا المحافظة/الجامعة الاختياريتان أدناه من بيانات حقيقية محمَّلة سلفاً.
+  useEffect(() => {
+    if (!branch) {
+      setOfferings([]);
+      return;
+    }
+    let cancelled = false;
+    setLoadingOfferings(true);
+    fetchOfferingsForBranch(branch).then((data) => {
+      if (!cancelled) {
+        setOfferings(data);
+        setLoadingOfferings(false);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [branch]);
+
+  // جامعات هذه المحافظة تحديداً ضمن عروض الفرع المختار فقط (لا كل جامعات
+  // العراق) -- حتى لا تظهر جامعة بلا أي قسم فعلي مطابق لفرع الطالب.
+  const universitiesInProvince = useMemo(() => {
+    if (!province) return [];
+    const names = new Set(offerings.filter((o) => o.province === province).map((o) => o.universityName));
+    return [...names].sort((a, b) => a.localeCompare(b, "ar"));
+  }, [offerings, province]);
+
+  function handleProvinceChange(value: string) {
+    setProvince(value);
+    setUniversity(""); // الجامعة المختارة سابقاً قد لا تنتمي للمحافظة الجديدة
+  }
+
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!branch || !grade) return;
-    setLoading(true);
     setSearched(true);
-    const offerings = await fetchOfferingsForBranch(branch);
+
     const gradeNum = Number(grade);
+    const sessionsToConsider: StudySession[] = session === "both" ? ["صباحي", "مسائي"] : [session];
+
     const next: Record<"safe" | "close" | "reach", ExplorerOffering[]> = { safe: [], close: [], reach: [] };
     for (const o of offerings) {
-      const band = bestBand(o, gradeNum);
+      if (province && o.province !== province) continue;
+      if (university && o.universityName !== university) continue;
+      const relevantSessions = sessionsToConsider.filter((s) => o.sessions.includes(s));
+      if (relevantSessions.length === 0) continue; // لا يُدرَّس أصلاً بالجلسة المطلوبة
+      const band = bestBand(o, gradeNum, relevantSessions);
       if (band === "safe" || band === "close" || band === "reach") next[band].push(o);
     }
     setGroups(next);
-    setLoading(false);
   }
 
   const totalResults = groups.safe.length + groups.close.length + groups.reach.length;
@@ -76,7 +124,7 @@ export default function GpaCheckPage() {
         <p className="mt-1 text-ink-soft">أدخل معدّلك وفرعك، وشوف أي قسم يصلك — بلا اختبار وبلا حساب.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="glass grid gap-4 rounded-3xl p-6 sm:grid-cols-[1fr_1fr_auto]">
+      <form onSubmit={handleSubmit} className="glass grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
         <div>
           <label className="mb-2 block font-bold" htmlFor="branch">
             الفرع الدراسي
@@ -113,24 +161,91 @@ export default function GpaCheckPage() {
           />
         </div>
 
-        <div className="flex items-end">
+        <div>
+          <label className="mb-2 block font-bold" htmlFor="province">
+            المحافظة <span className="font-normal text-ink-muted">(اختياري)</span>
+          </label>
+          <select
+            id="province"
+            value={province}
+            onChange={(e) => handleProvinceChange(e.target.value)}
+            disabled={!branch}
+            className="w-full rounded-xl border border-line p-3 focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-50"
+          >
+            <option value="">كل المحافظات</option>
+            {provincesData.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {province && (
+          <div>
+            <label className="mb-2 block font-bold" htmlFor="university">
+              الجامعة <span className="font-normal text-ink-muted">(اختياري)</span>
+            </label>
+            <select
+              id="university"
+              value={university}
+              onChange={(e) => setUniversity(e.target.value)}
+              className="w-full rounded-xl border border-line p-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
+            >
+              <option value="">كل جامعات {province}</option>
+              {universitiesInProvince.map((u) => (
+                <option key={u} value={u}>
+                  {u}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        <div className={province ? "" : "sm:col-span-1"}>
+          <label className="mb-2 block font-bold">
+            الجلسة الدراسية <span className="font-normal text-ink-muted">(اختياري)</span>
+          </label>
+          <div className="flex gap-2">
+            {([
+              { value: "both", label: "كلاهما" },
+              { value: "صباحي", label: "صباحي" },
+              { value: "مسائي", label: "مسائي" },
+            ] as const).map((opt) => (
+              <button
+                key={opt.value}
+                type="button"
+                onClick={() => setSession(opt.value)}
+                className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold transition-colors ${
+                  session === opt.value
+                    ? "bg-primary text-white"
+                    : "border border-line text-ink-soft hover:bg-surface-muted"
+                }`}
+              >
+                {opt.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex items-end sm:col-span-2">
           <button
             type="submit"
-            disabled={loading}
+            disabled={loadingOfferings || !branch}
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 font-bold
                        text-white transition-colors hover:bg-primary-700 disabled:opacity-50 sm:w-auto"
           >
             <Search className="h-4 w-4" />
-            {loading ? "جارٍ الفحص..." : "افحص"}
+            {loadingOfferings ? "جارٍ التحميل..." : "افحص"}
           </button>
         </div>
       </form>
 
-      {searched && !loading && (
+      {searched && (
         <>
           {totalResults === 0 ? (
             <p className="text-center text-ink-muted">
-              لا توجد أقسام يبلغها هذا المعدل ضمن فرع {branch} حالياً. جرّب معدلاً آخر أو راجع النتيجة.
+              لا توجد أقسام يبلغها هذا المعدل ضمن هذه الفلاتر حالياً. جرّب توسيع الفلاتر أو معدلاً آخر.
             </p>
           ) : (
             <div className="space-y-4">

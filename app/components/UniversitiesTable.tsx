@@ -31,12 +31,14 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
       (o.sessions?.includes("صباحي") && o.averageGrades?.["صباحي"] == null) ||
       (o.sessions?.includes("مسائي") && o.averageGrades?.["مسائي"] == null)
   );
+  const hasMajorColumn = offerings.some((o) => !!o.majorName);
 
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full border border-slate-200 text-sm">
         <thead>
           <tr className="bg-slate-100">
+            {hasMajorColumn && <th className="border px-3 py-2 text-right">التخصص</th>}
             <th className="border px-3 py-2 text-right">الجامعة</th>
             <th className="border px-3 py-2 text-right">النوع</th>
             <th className="border px-3 py-2 text-right">المحافظة</th>

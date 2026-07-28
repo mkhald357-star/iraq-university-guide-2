@@ -336,17 +336,6 @@ dialog.soon.is-closing {
   background: var(--c-bg-subtle);
 }
 
-/* شريط علوي رفيع يميّز كل قسم */
-.panel::before {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  height: 3px;
-  background: var(--g-primary);
-  opacity: 0.55;
-}
-
 /* معاينة مصغّرة داخل إطار */
 .mock {
   border: 1px solid var(--c-border);

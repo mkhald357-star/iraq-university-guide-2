@@ -136,6 +136,41 @@ function validate(label, filePath, schema) {
 }
 
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
+
+// حارس انحدار (data/admission_rules.md §17): isDirectAdmission مستقل تماماً
+// عن averageGrades (محسوب من طول مصفوفة cutoffs الفعلية في
+// scripts/build-universities-data.js، لا من فراغ الرقم) -- لكن الواجهة
+// (app/components/UniversitiesTable.tsx سابقاً) كانت تشتقّ "قبول مباشر" من
+// فراغ الرقم مباشرة، فأي فجوة استخراج مستقبلية (قسم تنافسي حقيقي فقد رقمه)
+// كانت ستُعرَض بصمت كقبول مباشر بدل بيانات مفقودة. هذا الفحص يمنع الانحدار
+// عند مصدر البيانات نفسه: قسم غير مباشر (تنافسي) يجب أن يحمل رقماً حقيقياً
+// لكل جلسة مذكورة في sessions -- لا فراغاً.
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const missingCompetitiveGrades = [];
+  for (const uni of universities) {
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        if (dept.isDirectAdmission) continue;
+        for (const session of dept.sessions) {
+          if (dept.averageGrades[session] == null) {
+            missingCompetitiveGrades.push(`${uni.name} / ${college.name} / ${dept.name} / ${session}`);
+          }
+        }
+      }
+    }
+  }
+  if (missingCompetitiveGrades.length) {
+    console.error(
+      "[FAIL] أقسام تنافسية (isDirectAdmission=false) بجلسة مذكورة بلا رقم حقيقي -- ستُعرَض خطأً كـ'قبول مباشر':",
+      missingCompetitiveGrades
+    );
+    hasErrors = true;
+  } else {
+    console.log("[OK] كل الأقسام التنافسية تحمل رقماً حقيقياً لكل جلسة مذكورة");
+  }
+}
+
 validate("data/majors.json", path.join(ROOT, "data/majors.json"), z.array(MajorSchema));
 validate("data/questions.json", path.join(ROOT, "data/questions.json"), z.array(QuestionSchema));
 validate(

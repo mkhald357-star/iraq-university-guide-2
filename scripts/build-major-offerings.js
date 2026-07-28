@@ -102,6 +102,14 @@ for (const f of fs.readdirSync(OUT_DIR)) {
 
 let totalBytes = 0;
 let maxFile = { id: null, bytes: 0 };
+// فهرس "قسم -> أفضل تخصص مطابق" (أعلى confidence)، يُبنى أثناء نفس الحلقة
+// أدناه بلا أي مطابقة إضافية -- يُستخدَم لاحقاً في تمريرة ملفات by-branch
+// لإرفاق majorId/majorName بأفضل جهد بلا تكرار منطق matchMajorToDepartment.
+const deptMajorIndex = new Map();
+function deptKey(o) {
+  return `${o.universityId}|${o.collegeId}|${o.departmentName}`;
+}
+
 for (const major of majors) {
   const mapping = mappings.find((m) => m.majorId === major.id) || null;
   const offerings = findUniversitiesForMajor(major, mapping);
@@ -109,6 +117,61 @@ for (const major of majors) {
   fs.writeFileSync(path.join(OUT_DIR, `${major.id}.json`), json, "utf8");
   totalBytes += json.length;
   if (json.length > maxFile.bytes) maxFile = { id: major.id, bytes: json.length };
+
+  for (const o of offerings) {
+    const key = deptKey(o);
+    const existing = deptMajorIndex.get(key);
+    if (!existing || o.confidence > existing.confidence) {
+      deptMajorIndex.set(key, { majorId: major.id, majorName: major.name, confidence: o.confidence });
+    }
+  }
+}
+
+// ── ملفات by-branch: كل قسم جامعي حقيقي مصنَّفاً حسب فرعه (علمي/أدبي/فنون)،
+// مبنية مباشرة من universities.json (مصدر الحقيقة الخام) لا من ملفات
+// major-offerings -- يضمن تغطية كل الأقسام الـ3,206 فعلياً حتى غير المطابَق
+// منها لأي من التخصصات الـ88 المنسَّقة (خدمتا "فاحص المعدل"/"مستكشف
+// الجامعات" وعدتا بتصفّح كل قسم، لا فقط الأقسام المطابقة لتخصص معروف).
+// شكل مُخفَّف عمداً (بلا cutoffs[]/confidence/universityRanking/collegeId)
+// لأن classifyOffering (lib/wishlistPlanner.ts) لا يقرأ فعلياً إلا
+// isDirectAdmission وaverageGrades[session] -- توفير ٣٥٪ من الحجم مقيس فعلياً.
+fs.mkdirSync(BRANCH_OUT_DIR, { recursive: true });
+for (const f of fs.readdirSync(BRANCH_OUT_DIR)) {
+  if (f.endsWith(".json")) fs.unlinkSync(path.join(BRANCH_OUT_DIR, f));
+}
+
+const branchRecords = Object.fromEntries(BRANCHES.map((b) => [b, []]));
+for (const uni of universities) {
+  for (const college of uni.colleges) {
+    for (const dept of college.departments) {
+      const match = deptMajorIndex.get(`${uni.id}|${college.id}|${dept.name}`) || null;
+      const record = {
+        majorId: match ? match.majorId : null,
+        majorName: match ? match.majorName : null,
+        universityId: uni.id,
+        universityName: uni.name,
+        universityType: uni.type,
+        province: uni.province,
+        collegeName: college.name,
+        departmentName: dept.name,
+        departmentBranches: dept.branch,
+        sessions: dept.sessions,
+        averageGrades: dept.averageGrades,
+        isDirectAdmission: dept.isDirectAdmission,
+      };
+      for (const b of dept.branch) {
+        if (branchRecords[b]) branchRecords[b].push(record);
+      }
+    }
+  }
+}
+
+let branchTotalBytes = 0;
+for (const b of BRANCHES) {
+  const json = JSON.stringify(branchRecords[b]);
+  fs.writeFileSync(path.join(BRANCH_OUT_DIR, `${b}.json`), json, "utf8");
+  branchTotalBytes += json.length;
+  console.log(`  by-branch/${b}.json: ${branchRecords[b].length} records, ${(json.length / 1024).toFixed(0)} KB`);
 }
 
 // نسخة صغيرة من meta فقط (تنبيه حداثة البيانات في الواجهة لا يحتاج البيانات

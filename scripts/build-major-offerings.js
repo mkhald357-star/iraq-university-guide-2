@@ -10,6 +10,8 @@ const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "public/data/major-offerings");
+const BRANCH_OUT_DIR = path.join(ROOT, "public/data/by-branch");
+const BRANCHES = ["علمي", "أدبي", "فنون"];
 
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const universitiesFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));

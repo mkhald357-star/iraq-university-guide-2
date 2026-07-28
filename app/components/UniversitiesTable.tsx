@@ -56,6 +56,9 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
             const evening = formatGrade(o.averageGrades?.["مسائي"], hasEvening);
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+                {hasMajorColumn && (
+                  <td className="border px-3 py-2 text-slate-600">{o.majorName ?? "—"}</td>
+                )}
                 <td className="border px-3 py-2 font-bold text-slate-800">{o.universityName}</td>
                 <td className="border px-3 py-2">
                   <span

@@ -187,4 +187,5 @@ console.log(
   `Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / majors.length / 1024).toFixed(1)} KB/file)`
 );
 console.log(`Largest: ${maxFile.id} at ${(maxFile.bytes / 1024).toFixed(1)} KB`);
+console.log(`Wrote ${BRANCHES.length} by-branch offering files to ${BRANCH_OUT_DIR}, total ${(branchTotalBytes / 1024).toFixed(0)} KB`);
 console.log(`Wrote data/universities_meta.json`);

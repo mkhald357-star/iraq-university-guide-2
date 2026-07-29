@@ -48,11 +48,12 @@ export default function StatsSection() {
           {/* الإحصائية الأكثر إفادة: أكثر من نصف الأقسام بلا منافسة معدل */}
           <div className="rounded-md border border-line bg-band-safe-bg p-6">
             <div className="text-4xl font-extrabold text-band-safe">
-              <CountUp to={1742} />
+              <CountUp to={homepageStats.directAdmissionDepartments} />
             </div>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              قسم بقبول مباشر — أكثر من نصف الأقسام الجامعية في العراق (من أصل 3,206) بلا حدّ قبول
-              تنافسي مُعلَن. أي طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل.
+              قسم بقبول مباشر — أكثر من نصف الأقسام الجامعية في العراق (من أصل{" "}
+              {homepageStats.totalDepartments.toLocaleString("ar-IQ")}) بلا حدّ قبول تنافسي مُعلَن. أي
+              طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل.
             </p>
           </div>
 

@@ -1,26 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Briefcase, ShieldCheck, GraduationCap, AlertCircle } from "lucide-react";
 import majorsData from "../../data/majors.json";
-import detailedProfilesData from "../../data/major_profiles_detailed.json";
-
-interface DetailedProfile {
-  id: string;
-  career?: {
-    realJobTitles?: string[];
-    employerSectors?: string[];
-    licensingRequirement?: { required: boolean; body: string; note: string };
-    postgradNeededForPractice?: boolean;
-  };
-}
-
-const PROFILES = detailedProfilesData as DetailedProfile[];
+import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
 
 export default function DestinationsPage() {
   const [majorId, setMajorId] = useState("");
+  const [profile, setProfile] = useState<DetailedMajorProfile | null>(null);
   const major = majorsData.find((m) => m.id === majorId);
-  const profile = PROFILES.find((p) => p.id === majorId);
+
+  useEffect(() => {
+    if (!majorId) {
+      setProfile(null);
+      return;
+    }
+    let cancelled = false;
+    fetchMajorProfile(majorId).then((p) => {
+      if (!cancelled) setProfile(p);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [majorId]);
+
   const career = profile?.career;
 
   return (

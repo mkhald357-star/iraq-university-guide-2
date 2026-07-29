@@ -1,36 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Wallet, TrendingUp, AlertCircle } from "lucide-react";
 import majorsData from "../../data/majors.json";
-import detailedProfilesData from "../../data/major_profiles_detailed.json";
-
-interface DetailedProfile {
-  id: string;
-  career?: {
-    governmentBaseSalary?: {
-      amount: number;
-      currency: string;
-      basis: string;
-      scope: string;
-      source: string;
-      lastVerified: string;
-    } | null;
-  };
-  market?: {
-    demandLevel?: string;
-    saturationNote?: string;
-    source?: string | null;
-    lastVerified?: string | null;
-  };
-}
-
-const PROFILES = detailedProfilesData as DetailedProfile[];
+import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
 
 export default function IncomePage() {
   const [majorId, setMajorId] = useState("");
+  const [profile, setProfile] = useState<DetailedMajorProfile | null>(null);
   const major = majorsData.find((m) => m.id === majorId);
-  const profile = PROFILES.find((p) => p.id === majorId);
+
+  useEffect(() => {
+    if (!majorId) {
+      setProfile(null);
+      return;
+    }
+    let cancelled = false;
+    fetchMajorProfile(majorId).then((p) => {
+      if (!cancelled) setProfile(p);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [majorId]);
+
   const salary = profile?.career?.governmentBaseSalary;
   const market = profile?.market;
 

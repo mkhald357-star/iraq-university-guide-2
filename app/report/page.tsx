@@ -19,7 +19,7 @@ import {
 } from "../../lib/riasec";
 import { computeEligibility } from "../../lib/eligibility";
 import personalityTranslationsData from "../../data/personality_translations.json";
-import detailedProfilesData from "../../data/major_profiles_detailed.json";
+import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
 import EmptyState from "../components/EmptyState";
 import UniversitiesTable from "../components/UniversitiesTable";
 import { RadarChart } from "../components/RadarChart";

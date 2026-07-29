@@ -1,20 +1,22 @@
 import CountUp from "./CountUp";
+import homepageStats from "../../data/homepage_stats.json";
 
-/* الأرقام محسوبة من data/universities.json وقت الكتابة (36 حكومية + 85 أهلية،
-   961 كلية، 3206 قسم، 1742 منها بقبول مباشر، 15 محافظة) -- نفس أسلوب
-   الثوابت الحقيقية المستخدَمة في Hero.tsx، لا استيراد حيّ للملف كاملاً
-   (كبير الحجم) داخل حزمة العميل. */
+// الأرقام محسوبة حياً وقت البناء (scripts/compute-homepage-stats.js من
+// data/universities.json مباشرة) -- لا ثوابت مكتوبة يدوياً. كانت هذه القيم
+// ثوابت جامدة سابقاً فانحرفت عن البيانات الحقيقية بعد جولات إصلاح تلوّث
+// chapter3_additions.json (راجع تشخيص_المشاكل_وخطة_الإصلاح_الشاملة.md،
+// المشكلة ١) -- هذا الملف يمنع تكرار الانحراف.
 const OVERVIEW = [
-  { value: 36, label: "جامعة حكومية" },
-  { value: 85, label: "جامعة وكلية أهلية" },
-  { value: 961, label: "كلية" },
-  { value: 15, label: "محافظة، بغداد وحدها 42 مؤسسة" },
+  { value: homepageStats.governmentUniversities, label: "جامعة حكومية" },
+  { value: homepageStats.privateUniversities, label: "جامعة وكلية أهلية" },
+  { value: homepageStats.totalColleges, label: "كلية" },
+  { value: homepageStats.provinces, label: "محافظة" },
 ];
 
 const BRANCHES = [
-  { label: "علمي", value: 1827, tone: "var(--c-primary-600)" },
-  { label: "أدبي", value: 735, tone: "var(--c-primary-400)" },
-  { label: "فنون", value: 119, tone: "var(--c-primary-200)" },
+  { label: "علمي", value: homepageStats.branchCounts.علمي, tone: "var(--c-primary-600)" },
+  { label: "أدبي", value: homepageStats.branchCounts.أدبي, tone: "var(--c-primary-400)" },
+  { label: "فنون", value: homepageStats.branchCounts.فنون, tone: "var(--c-primary-200)" },
 ];
 const BRANCH_TOTAL = BRANCHES.reduce((s, b) => s + b.value, 0);
 
@@ -24,7 +26,8 @@ export default function StatsSection() {
       <div className="mx-auto max-w-6xl px-5">
         <p className="text-sm font-bold text-primary-700">بالأرقام</p>
         <h2 className="mt-2 max-w-2xl text-3xl font-extrabold leading-tight text-ink md:text-4xl">
-          3,206 قسماً جامعياً، من 121 جامعة وكلية معتمدة
+          {homepageStats.totalDepartments.toLocaleString("ar-IQ")} قسماً جامعياً، من{" "}
+          {homepageStats.totalUniversities} جامعة وكلية معتمدة
         </h2>
         <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
           كل رقم هنا محسوب من الدليل الرسمي، لا تقديراً. هذا ما تختار من بينه فعلياً.

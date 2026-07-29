@@ -267,6 +267,7 @@ function ReportContent() {
   const [quizResults, setQuizResults] = useState<any[]>([]);
   const [filterSettings, setFilterSettings] = useState<any>(null);
   const [offeringsByMajor, setOfferingsByMajor] = useState<Record<string, UniversityOffering[]>>({});
+  const [detailedProfileState, setDetailedProfileState] = useState<DetailedMajorProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {

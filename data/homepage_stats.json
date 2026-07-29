@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-07-29T00:50:01.546Z",
+  "totalMajors": 88,
+  "totalUniversities": 121,
+  "governmentUniversities": 36,
+  "privateUniversities": 85,
+  "provinces": 15,
+  "totalColleges": 944,
+  "totalDepartments": 3167,
+  "directAdmissionDepartments": 1703,
+  "branchCounts": {
+    "علمي": 1791,
+    "أدبي": 715,
+    "فنون": 112
+  }
+}

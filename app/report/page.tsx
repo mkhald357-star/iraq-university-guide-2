@@ -380,7 +380,7 @@ function ReportContent() {
   // لتخصصات لا وجود واقعي لهذا القطاع فيها، مثل طب الأسنان). يُستخدَم القطاع
   // الحقيقي الموثَّق من major_profiles_detailed.json إن وُجد لهذا التخصص،
   // وإلا عبارة محايدة لا تدّعي قطاعاً بعينه بلا مصدر.
-  const detailedProfile = (detailedProfilesData as any[]).find((p) => p.id === primaryMajor?.id);
+  const detailedProfile = detailedProfileState;
   const employerSectorsText = detailedProfile?.career?.employerSectors?.length
     ? detailedProfile.career.employerSectors.join("، ")
     : "القطاعين الحكومي والخاص، حسب طبيعة التخصص ومتطلبات ممارسته المهنية.";

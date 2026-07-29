@@ -2,12 +2,17 @@
 
 import Link from "next/link";
 import CountUp from "./CountUp";
+import homepageStats from "../../data/homepage_stats.json";
 
+// الأرقام محسوبة حياً وقت البناء (scripts/compute-homepage-stats.js) -- لا
+// ثوابت مكتوبة يدوياً، تفادياً للتضارب المكتشَف بين هذه البطاقات والبيانات
+// الحقيقية بعد جولات إصلاح تلوّث chapter3_additions.json (راجع
+// تشخيص_المشاكل_وخطة_الإصلاح_الشاملة.md، المشكلة ١).
 const STATS = [
-  { value: 88, suffix: "", label: "تخصصاً موثّقاً" },
-  { value: 3206, suffix: "", label: "قسماً جامعياً" },
-  { value: 121, suffix: "", label: "جامعة وكلية" },
-  { value: 15, suffix: "", label: "محافظة" },
+  { value: homepageStats.totalMajors, suffix: "", label: "تخصصاً موثّقاً" },
+  { value: homepageStats.totalDepartments, suffix: "", label: "قسماً جامعياً" },
+  { value: homepageStats.totalUniversities, suffix: "", label: "جامعة وكلية" },
+  { value: homepageStats.provinces, suffix: "", label: "محافظة" },
 ];
 
 export default function Hero() {

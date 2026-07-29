@@ -304,6 +304,10 @@ function ReportContent() {
       // دفعة واحدة. هذا هو صلب حل مشكلة حجم الحزمة (PROJECT.md §7 بند 1).
       const resolvedMajor = majorsData.find((m) => m.id === majorId) || qr[0];
       if (resolvedMajor) {
+        fetchMajorProfile(resolvedMajor.id).then((profile) => {
+          if (!cancelled) setDetailedProfileState(profile);
+        });
+
         const topIds = (qr?.length > 0 ? qr.slice(0, 3) : [resolvedMajor]).map((m: any) => m.id);
         const neededIds = Array.from(new Set<string>([resolvedMajor.id, ...topIds]));
         const fetched = await Promise.all(neededIds.map((id) => fetchOfferingsForMajor(id)));

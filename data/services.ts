@@ -102,14 +102,16 @@ export const SERVICES: Service[] = [
     stageId: "beyond",
     title: "وجهات العمل بعد التخرّج",
     summary: "أين يشتغل خرّيجو تخصصك فعلاً في العراق، وما الترخيص المطلوب.",
-    status: "soon",
+    status: "live",
+    href: "/destinations",
   },
   {
     id: "income",
     stageId: "beyond",
     title: "دخل التخصص الموثّق",
     summary: "أرقام دخل من مصادر رسمية فقط — وإن لم تتوفّر، نقولها بصراحة.",
-    status: "soon",
+    status: "live",
+    href: "/income",
   },
   {
     id: "projects",

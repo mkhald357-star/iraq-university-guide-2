@@ -54,6 +54,7 @@ const UniversitySchema = z.object({
     z.object({
       id: z.string(),
       name: z.string(),
+      displayName: z.string().optional(),
       nameEn: z.string().nullable().optional(),
       departments: z.array(DepartmentSchema),
     })

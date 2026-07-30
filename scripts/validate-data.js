@@ -435,6 +435,8 @@ if (fs.existsSync(detailedProfilesPath)) {
   }
 }
 
+validate("data/salary-allowances.json", path.join(ROOT, "data/salary-allowances.json"), SalaryAllowancesSchema);
+
 // ترجمة الأبعاد الشخصية لنشاط يومي واقعي حسب فئة التخصص (§4 من تحليل
 // الثغرات) -- كل فئة تخصص فعلية يجب أن تملك ترجمة، وإلا يظهر جدول الفجوة
 // بحقل فارغ صامت لتخصصات تلك الفئة كاملة.

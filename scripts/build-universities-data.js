@@ -487,6 +487,7 @@ const finalUniversities = universities.map((u) => {
       const branches = [...new Set([...d.cutoffs.map((x) => x.branch), ...d.directBranches])];
       return {
         name: d.name,
+        displayName: toDisplayName(d.name),
         branch: branches,
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
@@ -494,7 +495,7 @@ const finalUniversities = universities.map((u) => {
         isDirectAdmission: d.cutoffs.length === 0,
       };
     });
-    return { id: `${u.id}_col_${cIdx + 1}`, name: c.name, nameEn: null, departments };
+    return { id: `${u.id}_col_${cIdx + 1}`, name: c.name, displayName: toDisplayName(c.name), nameEn: null, departments };
   });
   const { _collegesMap, ...rest } = u;
   return { ...rest, colleges };

@@ -546,6 +546,7 @@ const privateFinal = privateUnis.map((p) => {
       ? guideColleges.map((c, cIdx) => ({
           id: `${p.id}_col_${cIdx + 1}`,
           name: c.collegeName,
+          displayName: toDisplayName(c.collegeName),
           nameEn: null,
           departments: c.departments.map(buildPrivateDepartment),
         }))

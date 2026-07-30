@@ -1,7 +1,10 @@
-const { describe, it, expect } = require("vitest");
-const { fixLamAlef, applyCorrections, toDisplayName } = require("./displayName");
-const fs = require("fs");
-const path = require("path");
+import { describe, it, expect } from "vitest";
+import { fixLamAlef, applyCorrections, toDisplayName } from "./displayName.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // نسخة مطابقة لـnormalizeArabic في lib/majorMatcher.ts -- تُستخدَم هنا فقط
 // لاختبار الحماية: toDisplayName يجب ألا يغيّر نتيجة التطبيع إطلاقاً (أي لا

@@ -84,6 +84,71 @@ export default function IncomePage() {
             )}
           </div>
 
+          {/* المخصصات القانونية -- محتوى ثابت لا يتغيّر بالتخصص المختار عمداً
+              (مبدأ الخطة: لا تُخزَّن/تُعرَض مخصصة على مستوى التخصص إلا إن كانت
+              تتغيّر فعلاً بتغيّره). راجع data/salary-allowances.json ومصادره. */}
+          <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
+            <div className="flex items-center gap-3">
+              <span className="rounded-xl bg-primary-100 p-2.5 text-primary-700">
+                <Users className="h-5 w-5" />
+              </span>
+              <h2 className="font-bold text-ink">المخصصات القانونية</h2>
+            </div>
+
+            <p className="mt-4 text-xs font-bold uppercase tracking-wide text-ink-muted">
+              عامّة لكل موظفي الدولة -- لا علاقة لها بالتخصص
+            </p>
+            <ul className="mt-2 grid gap-2 text-sm leading-relaxed text-ink-soft">
+              <li>
+                <span className="font-bold text-ink">
+                  {salaryAllowances.universal.dependency.amountIQD.toLocaleString("ar-IQ")} د.ع شهرياً
+                </span>{" "}
+                مخصصة إعالة (م. {salaryAllowances.universal.dependency.article}) -- {salaryAllowances.universal.dependency.conditions}
+              </li>
+              <li>
+                <span className="font-bold text-ink">
+                  {salaryAllowances.universal.perChild.amountIQD.toLocaleString("ar-IQ")} د.ع شهرياً
+                </span>{" "}
+                عن كل طفل، ولغاية الطفل الرابع (م. {salaryAllowances.universal.perChild.article}) -- تستمر للابن حتى{" "}
+                {salaryAllowances.universal.perChild.sonContinuesToAge} سنة إن كان{" "}
+                {salaryAllowances.universal.perChild.sonContinuationCondition}، وللبنت ما لم يتحقق{" "}
+                {salaryAllowances.universal.perChild.daughterContinuesUnless}.
+              </li>
+            </ul>
+
+            <p className="mt-5 text-xs font-bold uppercase tracking-wide text-ink-muted">
+              قد تنطبق حسب طبيعة المهنة -- لم نتحقّق من الأهلية لكل تخصص بعينه بعد
+            </p>
+            <ul className="mt-2 grid gap-2 text-sm leading-relaxed text-ink-soft">
+              <li className="flex items-start gap-2">
+                <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-band-close" />
+                <span>
+                  مخصصة خطورة مهنية: <span className="font-bold text-ink">{salaryAllowances.hazardAllowance.rangePercent[0]}٪–{salaryAllowances.hazardAllowance.rangePercent[1]}٪</span> من
+                  الراتب (م. {salaryAllowances.hazardAllowance.article}) -- {salaryAllowances.hazardAllowance.grantedBy}.{" "}
+                  {salaryAllowances.hazardAllowance.eligibilityNote}.
+                </span>
+              </li>
+              <li className="flex items-start gap-2">
+                <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-band-close" />
+                <span>
+                  مخصصة منع مزاولة المهنة: <span className="font-bold text-ink">{salaryAllowances.practiceProhibitionAllowance.minPercent}٪ فأكثر</span> من
+                  الراتب ({salaryAllowances.practiceProhibitionAllowance.legalBasis}) -- {salaryAllowances.practiceProhibitionAllowance.appliesTo}.{" "}
+                  {salaryAllowances.practiceProhibitionAllowance.eligibilityNote}.
+                </span>
+              </li>
+            </ul>
+
+            <p className="mt-4 rounded-lg border-s-4 border-primary-600 bg-surface-subtle p-3 text-xs leading-relaxed text-ink-muted">
+              سقف مجموع المخصصات: لا يزيد المجموع على {salaryAllowances.totalCap.percentOfSalary}٪ من الراتب، باستثناء{" "}
+              {salaryAllowances.totalCap.excludes} (م. {salaryAllowances.totalCap.article}).
+            </p>
+
+            <p className="mt-3 text-xs text-ink-muted">
+              المصدر: {salaryAllowances.legalBasis.primary} · {salaryAllowances.legalBasis.amendment} · آخر تحقّق:{" "}
+              {salaryAllowances.lastVerified}
+            </p>
+          </div>
+
           {market && (market.demandLevel || market.saturationNote) && (
             <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
               <div className="flex items-center gap-3">

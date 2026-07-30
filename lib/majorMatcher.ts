@@ -25,6 +25,11 @@ export interface DepartmentCutoff {
  */
 export interface Department {
   name: string;
+  // اسم عرض مُصحَّح (أثر انعكاس رابطة "لا" من استخراج PDF، انظر
+  // scripts/displayName.js) -- اختياري، يُستخدَم للعرض فقط ولا يمسّ name
+  // (مفتاح المطابقة أعلاه). قد يغيب (undefined) لأي كائن Department مبني
+  // يدوياً خارج خط أنابيب البناء.
+  displayName?: string;
   branch: string[];
   sessions: string[];
   cutoffs: DepartmentCutoff[];
@@ -41,6 +46,7 @@ export interface Department {
 export interface College {
   id: string;
   name: string;
+  displayName?: string;
   nameEn: string | null;
   departments: Department[];
 }

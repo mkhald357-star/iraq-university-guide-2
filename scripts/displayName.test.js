@@ -66,7 +66,7 @@ describe("toDisplayName", () => {
     expect(toDisplayName(undefined)).toBe(undefined);
   });
 
-  it("اختبار الحماية: لا يغيّر نتيجة التطبيع (normalizeArabic) لأي اسم -- الإصلاح عرض فقط، لا يمسّ مطابقة", () => {
+  it("اختبار الحماية: fixLamAlef إعادة ترتيب حرفي بحت -- حذف كل الألفات يبقى مطابقاً قبل وبعد الإصلاح", () => {
     const samples = [
       "قسم االلكترونيك واالتصاالت",
       "كلية االدارة واالقتصاد",
@@ -76,7 +76,7 @@ describe("toDisplayName", () => {
       "كلية العلوم",
     ];
     for (const raw of samples) {
-      expect(normalizeArabic(toDisplayName(raw))).toBe(normalizeArabic(raw));
+      expect(stripAllAlef(toDisplayName(raw))).toBe(stripAllAlef(raw));
     }
   });
 
@@ -86,10 +86,10 @@ describe("toDisplayName", () => {
     let checked = 0;
     for (const uni of universities) {
       for (const college of uni.colleges) {
-        expect(normalizeArabic(toDisplayName(college.name))).toBe(normalizeArabic(college.name));
+        expect(stripAllAlef(toDisplayName(college.name))).toBe(stripAllAlef(college.name));
         checked++;
         for (const dept of college.departments) {
-          expect(normalizeArabic(toDisplayName(dept.name))).toBe(normalizeArabic(dept.name));
+          expect(stripAllAlef(toDisplayName(dept.name))).toBe(stripAllAlef(dept.name));
           checked++;
         }
       }

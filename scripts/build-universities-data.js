@@ -7,6 +7,7 @@
 // scripts/parse-evening-study.js (or all at once via `npm run rebuild-data`).
 const fs = require("fs");
 const path = require("path");
+const { toDisplayName } = require("./displayName");
 
 const ROOT = path.join(__dirname, "..");
 const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));

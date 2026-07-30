@@ -381,6 +381,24 @@ const GovernmentBaseSalarySchema = z
     message: "governmentBaseSalary.amount بلا source أو lastVerified",
   });
 
+// المخصصات القانونية (data/salary-allowances.json) -- نفس قاعدة "بلا توثيق =
+// ممنوع" أعلاه بالضبط، مطبَّقة على ملف مشترك واحد (لا يتكرّر لكل تخصص، انظر
+// data/admission_rules.md §20): أي كائن يحمل رقماً فعلياً (amountIQD/
+// rangePercent/minPercent/percentOfSalary) يجب أن يحمل source وlastVerified
+// غير فارغين معاً.
+const SourcedFieldsSchema = z.object({ source: z.string().min(1), lastVerified: z.string().min(1) }).catchall(z.any());
+const SalaryAllowancesSchema = z.object({
+  lastVerified: z.string(),
+  legalBasis: z.object({ primary: z.string(), amendment: z.string() }).strict(),
+  universal: z.object({
+    dependency: SourcedFieldsSchema.extend({ amountIQD: z.number() }),
+    perChild: SourcedFieldsSchema.extend({ amountIQD: z.number() }),
+  }),
+  hazardAllowance: SourcedFieldsSchema.extend({ rangePercent: z.tuple([z.number(), z.number()]) }),
+  practiceProhibitionAllowance: SourcedFieldsSchema.extend({ minPercent: z.number() }),
+  totalCap: SourcedFieldsSchema.extend({ percentOfSalary: z.number() }),
+});
+
 const DetailedProfileSchema = z.object({
   id: z.string(),
   study: z.record(z.string(), z.any()),

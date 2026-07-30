@@ -144,7 +144,11 @@ const branchRecords = Object.fromEntries(BRANCHES.map((b) => [b, []]));
 for (const uni of universities) {
   for (const college of uni.colleges) {
     for (const dept of college.departments) {
-      const match = deptMajorIndex.get(`${uni.id}|${college.id}|${dept.name}`) || null;
+      // مفتاح البحث في الفهرس يجب أن يستخدم displayName (لا name الخام) --
+      // نفس الأساس المستخدَم عند بناء الفهرس أعلاه من departmentName المُسطَّح
+      // في offerings (الذي أصبح أيضاً dept.displayName ?? dept.name)، وإلا
+      // يفشل البحث صامتاً لكل قسم مشوَّه الاسم.
+      const match = deptMajorIndex.get(`${uni.id}|${college.id}|${dept.displayName ?? dept.name}`) || null;
       const record = {
         majorId: match ? match.majorId : null,
         majorName: match ? match.majorName : null,
@@ -152,8 +156,8 @@ for (const uni of universities) {
         universityName: uni.name,
         universityType: uni.type,
         province: uni.province,
-        collegeName: college.name,
-        departmentName: dept.name,
+        collegeName: college.displayName ?? college.name,
+        departmentName: dept.displayName ?? dept.name,
         departmentBranches: dept.branch,
         sessions: dept.sessions,
         averageGrades: dept.averageGrades,

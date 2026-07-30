@@ -17,6 +17,9 @@ const DepartmentCutoffSchema = z.object({
 
 const DepartmentSchema = z.object({
   name: z.string(),
+  // اسم عرض مُصحَّح (أثر انعكاس رابطة "لا" من استخراج PDF) -- عرض فقط، لا
+  // يمسّ name (مفتاح المطابقة). انظر scripts/displayName.js.
+  displayName: z.string().optional(),
   branch: z.array(z.string()),
   sessions: z.array(z.string()),
   cutoffs: z.array(DepartmentCutoffSchema),

@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Wallet, TrendingUp, AlertCircle } from "lucide-react";
+import { Wallet, TrendingUp, AlertCircle, Users, ShieldAlert } from "lucide-react";
 import majorsData from "../../data/majors.json";
+import salaryAllowances from "../../data/salary-allowances.json";
 import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
 
 export default function IncomePage() {

@@ -509,6 +509,7 @@ function buildPrivateDepartment(d) {
   }
   return {
     name: d.name,
+    displayName: toDisplayName(d.name),
     branch: [],
     sessions,
     cutoffs: [],
@@ -526,6 +527,7 @@ function buildPrivateDepartment(d) {
 function makeManualDepartment(m) {
   return {
     name: m,
+    displayName: toDisplayName(m),
     branch: [],
     sessions: ["صباحي"],
     cutoffs: [],

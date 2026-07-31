@@ -419,3 +419,20 @@
 
 ### التحقّق
 `npx tsc --noEmit` ✓، `npm run lint` ✓، `npm test` (149) ✓، `npm run validate-data` ✓ (يشمل فحصاً سلبياً حقيقياً لا صامتاً)، فحص حي عبر Playwright على `/income` يؤكّد ظهور البطاقة بمحتوى مطابق حرفياً عبر تخصصين مختلفين وصفر أخطاء console ✓، `npm run build` نظيف — `/income` من 108KB إلى 109KB (دون سقف 198 كيلوبايت) ✓.
+
+## 21) حقل ثلاثي الحالات يُعرَض كثنائي — `licensingRequirement.required`/`postgradNeededForPractice` (2026-07-31)
+
+المستخدم استخرج من `PROJECT-SNAPSHOT.md` (المولَّد §١٩) عيّنتين حقيقيتين تُظهران أن `career.licensingRequirement.required` نوعه فعلياً `boolean | "جزئياً"` لا `boolean` بحت (تخصص `accounting`)، ونفس النمط في `postgradNeededForPractice`. **قِس النطاق أولاً قبل الإصلاح** (كما طلبت المواصفة): تأكَّد آلياً أن **تخصصاً واحداً فقط من 88 (`accounting`)** يحمل القيمة `"جزئياً"` في كلا الحقلين — لا حالات أخرى.
+
+**العطل حقيقي وحيّ فعلاً**: `app/destinations/page.tsx` (منشورة `live`) كانت تفحص `career.licensingRequirement?.required` بفحص truthy مباشر (`? ... : ...`) — أي سلسلة غير فارغة (بما فيها `"جزئياً"`) صادقة، فيُعرَض للمحاسبة "يتطلّب ترخيصاً" بجهة (الجمعية العراقية للمحاسبين القانونيين) **بلا** التمييز بأن هذا يخصّ مسار التدقيق القانوني فقط، لا المحاسبة العادية — ادّعاء زائد يُخيف الطالب من حاجز غير عام. نفس الفحص الحرفي على `postgradNeededForPractice`.
+
+**تدقيق معمَّم** (`scripts/audit-profile-field-types.js`، تشخيصي جديد يمسح كل مسار حقل عبر الـ88 تخصصاً ويبلّغ عن أي مسار تختلف أنواع قيمه): أكَّد أن هذين المسارين هما **الوحيدان** مختلطا النوع عبر كامل `major_profiles_detailed.json` (47 مساراً فُحص) — لا نظائر أخرى مخفية لهذا الصنف من العطل.
+
+**الإصلاح**: `lib/triState.ts` (`normalizeTriState`) يُطبِّع `boolean | "جزئياً" | null | undefined` إلى أربع حالات صريحة (`yes`/`no`/`partial`/`unknown`) — أي قيمة رابعة غير متوقَّعة تسقط إلى `unknown` ("لم نتحقّق") بدل الانحياز الصامت لـ"نعم" أو "لا". `app/destinations/page.tsx`: `LicensingCard`/`PostgradNote` يعرضان أربع حالات مختلفة فعلياً (لا لونين فقط) — الطب ما زال يعرض "يتطلّب ترخيصاً" (لم ينكسر، مؤكَّد Playwright)، المحاسبة تعرض الآن "يتطلّب ترخيصاً في بعض المسارات فقط" + توضيح أن المحاسب العادي لا يحتاجه.
+
+`scripts/validate-data.js`: `LicensingRequirementSchema` (Zod، مدمَجة داخل `career` مباشرة كما `GovernmentBaseSalarySchema`) ترفض أي قيمة رابعة لـ`required`/`postgradNeededForPractice`، وتفرض `body` عند `true`/`"جزئياً"` و`note` عند `"جزئياً"` تحديداً. **اكتُشفت أثناء التنفيذ**: الحقلان `body`/`note` يحملان `null` صريحاً في 39/88 تخصصاً (لا `undefined` فقط) — `.optional()` وحدها كانت تفشل 39 تخصصاً فعلياً؛ صُحِّحت إلى `.nullable().optional()`، ونفس التصحيح طُبِّق على نوع `DetailedMajorProfile` في `lib/majorProfileClient.ts`.
+
+**أضعف حلقة أُصلحت أيضاً**: `validate-data` لم يكن جزءاً من `prebuild` (فقط CI) — أي أن `npm run build` كان يُنتج نسخة إنتاج بلا تحقّق بيانات محلياً. أُضيف الآن كخطوة أخيرة في `prebuild` (لا `predev`، عمداً — التطوير يبقى سريعاً بلا بوّابة).
+
+### التحقّق
+`lib/triState.test.ts` (5 اختبارات، منها حارس يمرّ فعلياً على الـ88 تخصصاً الحقيقية) ✓، `npx tsc --noEmit` ✓، `npm run lint` ✓، `npm test` (154) ✓، `npm run validate-data` ✓ (فحص سلبي حقيقي: حقن قيمة رابعة `"غير محدد"` في `accounting` ⇒ فشل فعلي، ثم استُرجع) ✓، فحص حي عبر Playwright يقارن `medicine` (لم ينكسر) مقابل `accounting` (يعرض النص الثالث الصحيح، لا أياً من الطرفين الخاطئين) بصفر أخطاء console ✓، `npm run build` نظيف — `prebuild` يطبع "All data files valid." قبل `next build`، `/destinations` من 108KB إلى 108KB (دون سقف 198 كيلوبايت) ✓.

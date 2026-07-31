@@ -4,6 +4,78 @@ import { useEffect, useState } from "react";
 import { Briefcase, ShieldCheck, GraduationCap, AlertCircle } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
+import { normalizeTriState, type TriState } from "../../lib/triState";
+
+type LicensingRequirement = NonNullable<NonNullable<DetailedMajorProfile["career"]>["licensingRequirement"]>;
+
+function LicensingCard({ req }: { req?: LicensingRequirement }) {
+  const state: TriState = normalizeTriState(req?.required);
+
+  const toneClass: Record<TriState, string> = {
+    yes: "border-band-close/30 bg-band-close-bg",
+    partial: "border-band-close/30 bg-band-close-bg",
+    no: "border-line bg-band-safe-bg",
+    unknown: "border-line bg-surface-muted",
+  };
+  const iconToneClass: Record<TriState, string> = {
+    yes: "bg-white/60 text-band-close",
+    partial: "bg-white/60 text-band-close",
+    no: "bg-white/60 text-band-safe",
+    unknown: "bg-white/60 text-ink-muted",
+  };
+
+  return (
+    <div className={`rounded-md border p-6 ${toneClass[state]}`}>
+      <div className="flex items-center gap-3">
+        <span className={`rounded-xl p-2.5 ${iconToneClass[state]}`}>
+          <ShieldCheck className="h-5 w-5" />
+        </span>
+        <h2 className="font-bold text-ink">الترخيص المطلوب</h2>
+      </div>
+
+      {state === "yes" && (
+        <>
+          <p className="mt-3 text-sm font-bold text-ink">يتطلّب ترخيصاً مهنياً{req?.body ? `: ${req.body}` : ""}</p>
+          {req?.note && <p className="mt-1 text-sm leading-relaxed text-ink-soft">{req.note}</p>}
+        </>
+      )}
+
+      {state === "partial" && (
+        <>
+          <p className="mt-3 text-sm font-bold text-ink">يتطلّب ترخيصاً في بعض المسارات فقط</p>
+          <p className="mt-1 text-sm leading-relaxed text-ink-soft">
+            ليس شرطاً لكل من يعمل في هذا التخصص — يخصّ مسارات محدَّدة.
+          </p>
+          {req?.body && <p className="mt-1 text-sm text-ink">الجهة: {req.body}</p>}
+          {req?.note && <p className="mt-2 text-sm leading-relaxed text-ink-soft">{req.note}</p>}
+        </>
+      )}
+
+      {state === "no" && (
+        <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+          لا يتطلّب ترخيصاً نقابياً خاصاً لمزاولة هذا التخصص.
+          {req?.note ? ` ${req.note}` : ""}
+        </p>
+      )}
+
+      {state === "unknown" && (
+        <p className="mt-3 text-sm leading-relaxed text-ink-muted">لم نتحقّق من متطلّبات الترخيص لهذا التخصص.</p>
+      )}
+    </div>
+  );
+}
+
+function PostgradNote({ value }: { value?: boolean | "جزئياً" }) {
+  const state: TriState = normalizeTriState(value);
+  if (state === "no" || state === "unknown") return null;
+  return (
+    <p className="mt-3 text-sm font-bold text-band-close">
+      {state === "yes"
+        ? "يحتاج دراسات عليا لممارسة فعلية كاملة في هذا المجال."
+        : "بعض مسارات هذا التخصص تحتاج دراسات عليا للممارسة الكاملة، لا كلّها."}
+    </p>
+  );
+}
 
 export default function DestinationsPage() {
   const [majorId, setMajorId] = useState("");

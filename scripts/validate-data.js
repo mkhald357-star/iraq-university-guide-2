@@ -399,10 +399,36 @@ const SalaryAllowancesSchema = z.object({
   totalCap: SourcedFieldsSchema.extend({ percentOfSalary: z.number() }),
 });
 
+// حقل ثلاثي الحالات (data/admission_rules.md §21): true/false/"جزئياً" -- ليس
+// boolean بحت. اكتُشف عملياً حين حمل تخصص "accounting" القيمة "جزئياً" في
+// كلا الحقلين، فعُرِض خطأً كـ"يتطلّب ترخيصاً" (فحص truthy في الواجهة كان
+// يعامل أي سلسلة غير فارغة كـ"نعم"). أي قيمة رابعة غير هذه الثلاث تُرفَض هنا
+// بدل السماح لها بالمرور صامتة إلى الواجهة (التي بدورها تسقطها إلى "unknown"
+// عبر lib/triState.ts -- لكن يجب رصدها هنا أيضاً لأنها تعني بياناً مشبوهاً).
+const TRI_STATE = z.union([z.boolean(), z.literal("جزئياً")]);
+const LicensingRequirementSchema = z
+  .object({
+    required: TRI_STATE,
+    body: z.string().optional(),
+    note: z.string().optional(),
+  })
+  .refine((l) => (l.required === true || l.required === "جزئياً" ? Boolean(l.body?.trim()) : true), {
+    message: "licensingRequirement.required=true/جزئياً بلا body (جهة الترخيص)",
+  })
+  .refine((l) => l.required !== "جزئياً" || Boolean(l.note?.trim()), {
+    message: "licensingRequirement.required=جزئياً بلا note يوضّح المسار المشمول",
+  });
+
 const DetailedProfileSchema = z.object({
   id: z.string(),
   study: z.record(z.string(), z.any()),
-  career: z.object({ governmentBaseSalary: GovernmentBaseSalarySchema.optional() }).catchall(z.any()),
+  career: z
+    .object({
+      governmentBaseSalary: GovernmentBaseSalarySchema.optional(),
+      licensingRequirement: LicensingRequirementSchema.optional(),
+      postgradNeededForPractice: TRI_STATE.optional(),
+    })
+    .catchall(z.any()),
   market: DetailedMarketSchema,
   personality_translation: z.record(z.string(), z.any()),
   eligibility: z.record(z.string(), z.any()),

@@ -288,5 +288,14 @@ h(2, '١٢) حالة الخدمات المعروضة');
 const svc = safe(() => fs.readFileSync(path.join(ROOT, 'data', 'services.ts'), 'utf8'));
 if (svc) code('ts', svc.slice(0, 6000));
 
-fs.writeFileSync(OUT, L.join('\n'), 'utf8');
-console.log(`✅ ${path.relative(ROOT, OUT)} — ${L.length} سطراً، ${(fs.statSync(OUT).size / 1024).toFixed(0)} KB`);
+const out = L.join('\n');
+fs.writeFileSync(OUT, out, 'utf8');
+// ملاحظة: L.length ليس عدد الأسطر الفعلي -- كتل code() تدفع سطراً واحداً في
+// المصفوفة يحوي فواصل أسطر داخلية متعددة (مثال: شجرة الملفات كاملة أو عيّنة
+// JSON متعددة الأسطر)، فيُقلَّل العدد الحقيقي كثيراً لو اعتُمد L.length وحده
+// لفرض سقف الـ5000 سطر. العدّ الصحيح دائماً على النص النهائي بعد الدمج.
+const lineCount = out.split('\n').length;
+console.log(`✅ ${path.relative(ROOT, OUT)} — ${lineCount} سطراً فعلياً، ${(fs.statSync(OUT).size / 1024).toFixed(0)} KB`);
+if (lineCount > 5000) {
+  console.warn(`⚠️ تجاوز سقف 5000 سطر (${lineCount}) -- قلّل العيّنات في الأقسام الكبيرة (٤/٦) لا الأقسام نفسها.`);
+}

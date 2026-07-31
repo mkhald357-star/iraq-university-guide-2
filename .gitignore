@@ -38,3 +38,6 @@ next-env.d.ts
 # OCR / pdf extraction scratch output
 scripts/tmp/
 scripts/poppler/
+
+# مولَّد آلياً عبر npm run snapshot -- لا يُلتزَم (يتقادم فوراً، أعد توليده بدل مزامنته)
+/PROJECT-SNAPSHOT.md

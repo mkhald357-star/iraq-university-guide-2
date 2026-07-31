@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Briefcase, ShieldCheck, GraduationCap, AlertCircle } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";

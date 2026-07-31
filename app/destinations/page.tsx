@@ -61,6 +61,7 @@ function LicensingCard({ req, children }: { req?: LicensingRequirement; children
       {state === "unknown" && (
         <p className="mt-3 text-sm leading-relaxed text-ink-muted">لم نتحقّق من متطلّبات الترخيص لهذا التخصص.</p>
       )}
+      {children}
     </div>
   );
 }

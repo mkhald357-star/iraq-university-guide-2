@@ -5,7 +5,7 @@
   "scripts": {
     "predev": "npm run build-major-offerings && npm run build-major-profiles && npm run compute-homepage-stats",
     "dev": "next dev -p 3000",
-    "prebuild": "npm run build-major-offerings && npm run build-major-profiles && npm run compute-homepage-stats",
+    "prebuild": "npm run build-major-offerings && npm run build-major-profiles && npm run compute-homepage-stats && npm run validate-data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

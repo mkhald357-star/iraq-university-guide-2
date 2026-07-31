@@ -22,6 +22,7 @@
     "build-major-offerings": "node scripts/build-major-offerings.js",
     "build-major-profiles": "node scripts/build-major-profiles.js",
     "compute-homepage-stats": "node scripts/compute-homepage-stats.js",
+    "snapshot": "node scripts/generate-project-snapshot.js",
     "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-profiles && npm run compute-homepage-stats && npm run validate-data"
   },
   "dependencies": {

@@ -8,7 +8,7 @@ import { normalizeTriState, type TriState } from "../../lib/triState";
 
 type LicensingRequirement = NonNullable<NonNullable<DetailedMajorProfile["career"]>["licensingRequirement"]>;
 
-function LicensingCard({ req, children }: { req?: LicensingRequirement; children?: React.ReactNode }) {
+function LicensingCard({ req, children }: { req?: LicensingRequirement; children?: ReactNode }) {
   const state: TriState = normalizeTriState(req?.required);
 
   const toneClass: Record<TriState, string> = {

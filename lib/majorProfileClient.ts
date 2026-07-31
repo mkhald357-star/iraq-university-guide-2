@@ -16,8 +16,11 @@ export interface DetailedMajorProfile {
   career?: {
     realJobTitles?: string[];
     employerSectors?: string[];
-    licensingRequirement?: { required: boolean; body: string; note: string };
-    postgradNeededForPractice?: boolean;
+    // required قد تكون "جزئياً" (١/٨٨ تخصصاً حالياً، مثال: accounting) --
+    // ليست boolean بحت. استخدم lib/triState.ts's normalizeTriState عند
+    // العرض بدل فحص truthy مباشر (انظر data/admission_rules.md §21).
+    licensingRequirement?: { required: boolean | "جزئياً"; body?: string; note?: string };
+    postgradNeededForPractice?: boolean | "جزئياً";
     governmentBaseSalary?: {
       amount: number;
       currency: string;

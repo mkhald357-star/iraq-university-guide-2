@@ -19,7 +19,7 @@ export interface DetailedMajorProfile {
     // required قد تكون "جزئياً" (١/٨٨ تخصصاً حالياً، مثال: accounting) --
     // ليست boolean بحت. استخدم lib/triState.ts's normalizeTriState عند
     // العرض بدل فحص truthy مباشر (انظر data/admission_rules.md §21).
-    licensingRequirement?: { required: boolean | "جزئياً"; body?: string; note?: string };
+    licensingRequirement?: { required: boolean | "جزئياً"; body?: string | null; note?: string | null };
     postgradNeededForPractice?: boolean | "جزئياً";
     governmentBaseSalary?: {
       amount: number;

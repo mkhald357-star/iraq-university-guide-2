@@ -409,8 +409,8 @@ const TRI_STATE = z.union([z.boolean(), z.literal("جزئياً")]);
 const LicensingRequirementSchema = z
   .object({
     required: TRI_STATE,
-    body: z.string().optional(),
-    note: z.string().optional(),
+    body: z.string().nullable().optional(),
+    note: z.string().nullable().optional(),
   })
   .refine((l) => (l.required === true || l.required === "جزئياً" ? Boolean(l.body?.trim()) : true), {
     message: "licensingRequirement.required=true/جزئياً بلا body (جهة الترخيص)",

@@ -155,42 +155,9 @@ export default function DestinationsPage() {
             </p>
           </div>
 
-          <div
-            className={`rounded-md border p-6 ${
-              career.licensingRequirement?.required
-                ? "border-band-close/30 bg-band-close-bg"
-                : "border-line bg-band-safe-bg"
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span
-                className={`rounded-xl p-2.5 ${
-                  career.licensingRequirement?.required
-                    ? "bg-white/60 text-band-close"
-                    : "bg-white/60 text-band-safe"
-                }`}
-              >
-                <ShieldCheck className="h-5 w-5" />
-              </span>
-              <h2 className="font-bold text-ink">الترخيص المطلوب</h2>
-            </div>
-            {career.licensingRequirement?.required ? (
-              <>
-                <p className="mt-3 text-sm font-bold text-ink">{career.licensingRequirement.body}</p>
-                <p className="mt-1 text-sm leading-relaxed text-ink-soft">{career.licensingRequirement.note}</p>
-              </>
-            ) : (
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                لا يتطلّب ترخيصاً نقابياً خاصاً لمزاولة هذا التخصص.
-                {career.licensingRequirement?.note ? ` ${career.licensingRequirement.note}` : ""}
-              </p>
-            )}
-            {career.postgradNeededForPractice && (
-              <p className="mt-3 text-sm font-bold text-band-close">
-                يحتاج دراسات عليا لممارسة فعلية كاملة في هذا المجال.
-              </p>
-            )}
-          </div>
+          <LicensingCard req={career.licensingRequirement}>
+            <PostgradNote value={career.postgradNeededForPractice} />
+          </LicensingCard>
         </div>
       )}
 

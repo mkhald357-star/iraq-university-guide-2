@@ -542,7 +542,7 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان فأك ثر",
+          "name": "طب االسنان",
           "morningFee": 7500000,
           "eveningFee": null,
           "suspended": false,
@@ -1653,36 +1653,12 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "الصيدلة ) فم ا فوق",
+          "name": "الصيدلة",
           "morningFee": 5000000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 90 %"
-        },
-        {
-          "name": ")%",
-          "morningFee": 5500000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 85 % - 89"
-        },
-        {
-          "name": ")%",
-          "morningFee": 1750000,
-          "eveningFee": 1500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 70 % - 75"
-        },
-        {
-          "name": ")%",
-          "morningFee": 1750000,
-          "eveningFee": null,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 70 % - 75"
         }
       ]
     }
@@ -1692,20 +1668,12 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان )%",
+          "name": "طب االسنان",
           "morningFee": 7500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 85 % - 88"
-        },
-        {
-          "name": ")%",
-          "morningFee": 6500000,
-          "eveningFee": 5500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 89 % - 92"
         }
       ]
     },
@@ -1713,20 +1681,12 @@
       "collegeName": "كلية الصيدلة",
       "departments": [
         {
-          "name": "الصيدلة )%",
+          "name": "الصيدلة",
           "morningFee": 7500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 85 % - 88"
-        },
-        {
-          "name": ")%",
-          "morningFee": 6500000,
-          "eveningFee": 5500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 89 % - 92"
         }
       ]
     },
@@ -3315,7 +3275,7 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "طب االسنان ) فما فوق",
+          "name": "طب االسنان",
           "morningFee": 5000000,
           "eveningFee": null,
           "suspended": false,
@@ -3323,15 +3283,7 @@
           "gradeNote": "معدل ( 90 %"
         },
         {
-          "name": ") فما فوق",
-          "morningFee": 2750000,
-          "eveningFee": 2750000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 75 %"
-        },
-        {
-          "name": "علوم الطاقة المتجددة ) فما فوق",
+          "name": "علوم الطاقة المتجددة",
           "morningFee": 2000000,
           "eveningFee": null,
           "suspended": false,
@@ -3339,7 +3291,7 @@
           "gradeNote": "معدل ( 65 %"
         },
         {
-          "name": "علوم الذكاء االصطناعي ) فما فوق",
+          "name": "علوم الذكاء االصطناعي",
           "morningFee": 1500000,
           "eveningFee": null,
           "suspended": false,
@@ -3354,7 +3306,7 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "طب االسنان ) فما فوق",
+          "name": "طب االسنان",
           "morningFee": 5000000,
           "eveningFee": null,
           "suspended": false,
@@ -4416,7 +4368,7 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "طب االسن ان ) صعودا",
+          "name": "طب االسنان",
           "morningFee": 4000000,
           "eveningFee": null,
           "suspended": false,
@@ -4567,20 +4519,12 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان )%",
+          "name": "طب االسنان",
           "morningFee": 5500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 89 % الى 100"
-        },
-        {
-          "name": ")%",
-          "morningFee": 6000000,
-          "eveningFee": 5000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 85 % الى 89"
         }
       ]
     },
@@ -5945,7 +5889,7 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسن ان",
+          "name": "طب االسنان",
           "morningFee": 5000000,
           "eveningFee": null,
           "suspended": false,
@@ -7218,7 +7162,7 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسن ان",
+          "name": "طب االسنان",
           "morningFee": 6500000,
           "eveningFee": null,
           "suspended": false,
@@ -7476,20 +7420,12 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان ) فما فوق",
+          "name": "طب االسنان",
           "morningFee": 5500000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 90 %"
-        },
-        {
-          "name": ")%",
-          "morningFee": 6000000,
-          "eveningFee": 5000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 90 % - 85"
         },
         {
           "name": "تقنيات صناعة االسنان",
@@ -8296,20 +8232,12 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان ) فما فوق",
+          "name": "طب االسنان",
           "morningFee": 5000000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 90 %"
-        },
-        {
-          "name": ")%",
-          "morningFee": 5500000,
-          "eveningFee": 5000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 85 % - 89"
         },
         {
           "name": "اللغة العربية",
@@ -8746,14 +8674,6 @@
           "suspended": false,
           "note": null,
           "gradeNote": null
-        },
-        {
-          "name": ")%",
-          "morningFee": 5525000,
-          "eveningFee": 6500000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل من ( 90 % - 94"
         }
       ]
     },
@@ -9171,7 +9091,7 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "طب االسن ان",
+          "name": "طب االسنان",
           "morningFee": 3500000,
           "eveningFee": null,
           "suspended": false,
@@ -9333,7 +9253,7 @@
       "collegeName": "كلية التقنيات الصحية و الطبية",
       "departments": [
         {
-          "name": "تقنيات العالج الطبيعي ) فما فوق",
+          "name": "تقنيات العالج الطبيعي",
           "morningFee": 2000000,
           "eveningFee": null,
           "suspended": false,
@@ -9341,7 +9261,7 @@
           "gradeNote": "معدل ( 90 %"
         },
         {
-          "name": "تقنيات االشعة ) فما فوق",
+          "name": "تقنيات االشعة",
           "morningFee": 3000000,
           "eveningFee": null,
           "suspended": false,
@@ -9349,7 +9269,7 @@
           "gradeNote": "معدل ( 90 %"
         },
         {
-          "name": "تقنيات التجميل والليزر ( فما )% فوق",
+          "name": "تقنيات التجميل والليزر",
           "morningFee": 2500000,
           "eveningFee": null,
           "suspended": false,
@@ -9357,7 +9277,7 @@
           "gradeNote": "معدل 90"
         },
         {
-          "name": "هندسة الذكاء االصطناعي ) فما فوق",
+          "name": "هندسة الذكاء االصطناعي",
           "morningFee": 2000000,
           "eveningFee": null,
           "suspended": false,
@@ -9365,7 +9285,7 @@
           "gradeNote": "معدل ( 85 %"
         },
         {
-          "name": "هندسة العمارة ) فما فوق",
+          "name": "هندسة العمارة",
           "morningFee": 3000000,
           "eveningFee": null,
           "suspended": false,
@@ -9407,16 +9327,7 @@
   "gilgamesh": [
     {
       "collegeName": "كلية طب االسنان",
-      "departments": [
-        {
-          "name": ")%",
-          "morningFee": 4750000,
-          "eveningFee": 5000000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل من ( 90 - 95"
-        }
-      ]
+      "departments": []
     },
     {
       "collegeName": "كلية التقنيات الصحية و الطبية",
@@ -9765,20 +9676,12 @@
       "collegeName": "كلية طب االسنان",
       "departments": [
         {
-          "name": "طب االسنان ) فما فوق",
+          "name": "طب االسنان",
           "morningFee": 6900000,
           "eveningFee": null,
           "suspended": false,
           "note": "لا توجد دراسة مسائية",
           "gradeNote": "معدل ( 95 %"
-        },
-        {
-          "name": ") فما دون",
-          "morningFee": 7750000,
-          "eveningFee": 4900000,
-          "suspended": false,
-          "note": null,
-          "gradeNote": "معدل ( 94 %"
         }
       ]
     }
@@ -10141,7 +10044,7 @@
       "collegeName": "برامج القبول المباشر",
       "departments": [
         {
-          "name": "الصيدلة ) فما فوق",
+          "name": "الصيدلة",
           "morningFee": 4500000,
           "eveningFee": null,
           "suspended": false,

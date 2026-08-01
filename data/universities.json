@@ -51223,8 +51223,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان فأك ثر",
-              "displayName": "طب الاسنان فأك ثر",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -53925,8 +53925,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الصيدلة ) فم ا فوق",
-              "displayName": "الصيدلة ) فم ا فوق",
+              "name": "الصيدلة",
+              "displayName": "الصيدلة",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -53943,68 +53943,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 90 %"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 5500000,
-                "مسائي": 1500000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 85 % - 89"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 1750000,
-                "مسائي": 1500000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 70 % - 75"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 1750000,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 70 % - 75"
             }
           ]
         }
@@ -54027,8 +53965,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان )%",
-              "displayName": "طب الاسنان )%",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -54045,27 +53983,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 85 % - 88"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 6500000,
-                "مسائي": 5500000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 89 % - 92"
             }
           ]
         },
@@ -54076,8 +53993,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الصيدلة )%",
-              "displayName": "الصيدلة )%",
+              "name": "الصيدلة",
+              "displayName": "الصيدلة",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -54094,27 +54011,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 85 % - 88"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 6500000,
-                "مسائي": 5500000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 89 % - 92"
             }
           ]
         },
@@ -58372,8 +58268,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان ) فما فوق",
-              "displayName": "طب الاسنان ) فما فوق",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -58392,29 +58288,8 @@
               "note": "معدل ( 90 %"
             },
             {
-              "name": ") فما فوق",
-              "displayName": ") فما فوق",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 2750000,
-                "مسائي": 2750000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 75 %"
-            },
-            {
-              "name": "علوم الطاقة المتجددة ) فما فوق",
-              "displayName": "علوم الطاقة المتجددة ) فما فوق",
+              "name": "علوم الطاقة المتجددة",
+              "displayName": "علوم الطاقة المتجددة",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -58433,8 +58308,8 @@
               "note": "معدل ( 65 %"
             },
             {
-              "name": "علوم الذكاء االصطناعي ) فما فوق",
-              "displayName": "علوم الذكاء الاصطناعي ) فما فوق",
+              "name": "علوم الذكاء االصطناعي",
+              "displayName": "علوم الذكاء الاصطناعي",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -58473,8 +58348,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان ) فما فوق",
-              "displayName": "طب الاسنان ) فما فوق",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -61034,8 +60909,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسن ان ) صعودا",
-              "displayName": "طب الاسن ان ) صعودا",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -62504,8 +62379,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان )%",
-              "displayName": "طب الاسنان )%",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -62522,27 +62397,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 89 % الى 100"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 6000000,
-                "مسائي": 5000000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 85 % الى 89"
             }
           ]
         },
@@ -65228,8 +65082,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسن ان",
-              "displayName": "طب الاسن ان",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -68359,8 +68213,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان ) فما فوق",
-              "displayName": "طب الاسنان ) فما فوق",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -68377,27 +68231,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 90 %"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 6000000,
-                "مسائي": 5000000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 90 % - 85"
             },
             {
               "name": "تقنيات صناعة االسنان",
@@ -69508,8 +69341,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسن ان",
-              "displayName": "طب الاسن ان",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -72242,8 +72075,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان ) فما فوق",
-              "displayName": "طب الاسنان ) فما فوق",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -72260,27 +72093,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 90 %"
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 5500000,
-                "مسائي": 5000000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 85 % - 89"
             },
             {
               "name": "اللغة العربية",
@@ -73121,27 +72933,6 @@
               },
               "admissionSuspended": false,
               "note": null
-            },
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 5525000,
-                "مسائي": 6500000
-              },
-              "admissionSuspended": false,
-              "note": "معدل من ( 90 % - 94"
             }
           ]
         },
@@ -73353,8 +73144,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسن ان",
-              "displayName": "طب الاسن ان",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73580,8 +73371,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "تقنيات العالج الطبيعي ) فما فوق",
-              "displayName": "تقنيات العالج الطبيعي ) فما فوق",
+              "name": "تقنيات العالج الطبيعي",
+              "displayName": "تقنيات العالج الطبيعي",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73600,8 +73391,8 @@
               "note": "معدل ( 90 %"
             },
             {
-              "name": "تقنيات االشعة ) فما فوق",
-              "displayName": "تقنيات الاشعة ) فما فوق",
+              "name": "تقنيات االشعة",
+              "displayName": "تقنيات الاشعة",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73620,8 +73411,8 @@
               "note": "معدل ( 90 %"
             },
             {
-              "name": "تقنيات التجميل والليزر ( فما )% فوق",
-              "displayName": "تقنيات التجميل والليزر ( فما )% فوق",
+              "name": "تقنيات التجميل والليزر",
+              "displayName": "تقنيات التجميل والليزر",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73640,8 +73431,8 @@
               "note": "معدل 90"
             },
             {
-              "name": "هندسة الذكاء االصطناعي ) فما فوق",
-              "displayName": "هندسة الذكاء الاصطناعي ) فما فوق",
+              "name": "هندسة الذكاء االصطناعي",
+              "displayName": "هندسة الذكاء الاصطناعي",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73660,8 +73451,8 @@
               "note": "معدل ( 85 %"
             },
             {
-              "name": "هندسة العمارة ) فما فوق",
-              "displayName": "هندسة العمارة ) فما فوق",
+              "name": "هندسة العمارة",
+              "displayName": "هندسة العمارة",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -73769,29 +73560,7 @@
           "name": "كلية طب االسنان",
           "displayName": "كلية طب الاسنان",
           "nameEn": null,
-          "departments": [
-            {
-              "name": ")%",
-              "displayName": ")%",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 4750000,
-                "مسائي": 5000000
-              },
-              "admissionSuspended": false,
-              "note": "معدل من ( 90 - 95"
-            }
-          ]
+          "departments": []
         },
         {
           "id": "gilgamesh_col_2",
@@ -74616,8 +74385,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب االسنان ) فما فوق",
-              "displayName": "طب الاسنان ) فما فوق",
+              "name": "طب االسنان",
+              "displayName": "طب الاسنان",
               "branch": [],
               "sessions": [
                 "صباحي"
@@ -74634,27 +74403,6 @@
               },
               "admissionSuspended": false,
               "note": "معدل ( 95 %"
-            },
-            {
-              "name": ") فما دون",
-              "displayName": ") فما دون",
-              "branch": [],
-              "sessions": [
-                "صباحي",
-                "مسائي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "tuitionFees": {
-                "صباحي": 7750000,
-                "مسائي": 4900000
-              },
-              "admissionSuspended": false,
-              "note": "معدل ( 94 %"
             }
           ]
         }
@@ -75587,8 +75335,8 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "الصيدلة ) فما فوق",
-              "displayName": "الصيدلة ) فما فوق",
+              "name": "الصيدلة",
+              "displayName": "الصيدلة",
               "branch": [],
               "sessions": [
                 "صباحي"

@@ -8,6 +8,7 @@
 const fs = require('fs');
 const path = require('path');
 const ROOT = path.join(__dirname, '..');
+const { fixLamAlef } = require('./displayName');
 
 const RAW_TXT = path.join(ROOT, 'data/raw/dalel.full.txt');
 const records = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/raw/chapter3_additions.json'), 'utf8'));
@@ -17,7 +18,15 @@ const norm = (s = '') => String(s)
   .replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه')
   .replace(/\s+/g, ' ').trim();
 
-const lines = fs.readFileSync(RAW_TXT, 'utf8').split('\n').map(norm);
+// ⚠️ اكتُشف أثناء التنفيذ: النصّ الخام (dalel.full.txt) يحمل أثر انعكاس رابطة
+// "لا" الموثَّق فعلاً (data/admission_rules.md §19) -- مثال حقيقي: "جامعة
+// االنبار" في النصّ الخام مقابل "جامعة الأنبار" الصحيحة في
+// chapter3_additions.json (السجلات هناك نظيفة يدوياً، 0/98 تحمل نمط اا).
+// بلا هذا الإصلاح، norm() وحدها كانت تُخفق في مطابقة عنوان جامعة الأنبار
+// بالكامل (0 مواضع)، فتُصنَّف زوراً "عنوان الجامعة غير موجود" -- سلبية كاذبة
+// من منهجية البحث نفسها، لا غياباً حقيقياً. يُطبَّق الإصلاح على النصّ الخام
+// فقط (المصدر الفعلي للفساد)؛ لا حاجة له على السجلات النظيفة أصلاً.
+const lines = fs.readFileSync(RAW_TXT, 'utf8').split('\n').map((l) => norm(fixLamAlef(l)));
 
 const UNI = (r) => r.university;
 const DEPT = (r) => r.department;

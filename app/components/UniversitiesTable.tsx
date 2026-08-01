@@ -24,8 +24,24 @@ interface UniversitiesTableProps {
   offerings: UniversityOffering[];
 }
 
+function cellClass(tone: string) {
+  if (tone === "direct") return "text-emerald-700 font-bold";
+  if (tone === "stated") return "text-primary-800 font-bold";
+  if (tone === "unstated") return "text-slate-500 italic";
+  return "";
+}
+
+function cellTitle(tone: string) {
+  if (tone === "direct")
+    return "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة.";
+  if (tone === "stated") return PRIVATE_MIN_HINT;
+  if (tone === "unstated") return PRIVATE_NO_MIN_HINT;
+  return undefined;
+}
+
 export default function UniversitiesTable({ offerings }: UniversitiesTableProps) {
-  const hasAnyDirectAdmission = offerings.some((o) => o.isDirectAdmission);
+  const hasAnyDirectAdmission = offerings.some((o) => o.universityType !== "أهلية" && o.isDirectAdmission);
+  const hasAnyPrivate = offerings.some((o) => o.universityType === "أهلية");
   const hasMajorColumn = offerings.some((o) => !!o.majorName);
 
   return (

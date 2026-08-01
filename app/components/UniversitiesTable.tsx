@@ -28,6 +28,9 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
 
   return (
     <div className="overflow-x-auto">
+      <div className="mb-2 flex justify-end">
+        <ChannelBadge />
+      </div>
       <table className="min-w-full border border-slate-200 text-sm">
         <thead>
           <tr className="bg-slate-100">

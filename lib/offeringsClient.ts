@@ -4,7 +4,7 @@
  * (كانت معرَّفة فقط في report/page.tsx أصلاً).
  */
 
-import type { UniversityOffering } from "./majorMatcher";
+import type { UniversityOffering, StatedMinimumGrade } from "./majorMatcher";
 
 // فئات التخصصات المسموحة لكل فرع دراسي -- تُستخدَم لحساب "أقرب البدائل"/
 // "بدائل مريحة" عند عدم أهلية أو عدم كفاية التخصص الأساسي (TASKS.md المهمة ٣).

@@ -11,6 +11,7 @@ import type { AlternativeCandidate, ClassifiedWish, StudySession, WishOffering }
 import type { UniversityOffering } from "../../lib/majorMatcher";
 import WishRow from "../components/WishRow";
 import { ChannelNotice } from "../components/ChannelNotice";
+import { CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
 
 const WISHLIST_STORAGE_KEY = "wishlistPlan";
 

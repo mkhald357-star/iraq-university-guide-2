@@ -7,6 +7,7 @@ import { fetchOfferingsForBranch, toUniversityOffering, type Branch, type Explor
 import { classifyOffering } from "../../lib/wishlistPlanner";
 import type { Band, StudySession } from "../../lib/wishlistPlanner";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
+import { ChannelNotice } from "../components/ChannelNotice";
 
 const BAND_UI: Record<"safe" | "close" | "reach", { label: string; bg: string; text: string }> = {
   safe: { label: "مريح", bg: "bg-band-safe-bg", text: "text-band-safe" },

@@ -10,6 +10,7 @@ import tiebreakerQuestionsData from "../../data/tiebreaker_questions.json";
 import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
+import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
 import {
   computeUserRiasecVector,
   computeMajorFit,

@@ -41,3 +41,4 @@ scripts/poppler/
 
 # مولَّد آلياً عبر npm run snapshot -- لا يُلتزَم (يتقادم فوراً، أعد توليده بدل مزامنته)
 /PROJECT-SNAPSHOT.md
+data.backup-*

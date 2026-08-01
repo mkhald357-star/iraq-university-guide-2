@@ -6,6 +6,7 @@ import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
 import { ChannelNotice } from "../components/ChannelNotice";
+import { CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
 
 const BRANCHES: { value: Branch; label: string }[] = [
   { value: "علمي", label: "علمي" },

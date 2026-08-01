@@ -258,6 +258,44 @@ if (blankKeywordEntries.length) {
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const majorIds = new Set(majors.map((m) => m.id));
 
+// حارس تقادم صامت (data/admission_rules.md §26): إجابات ودجت المساعد نصوص
+// ثابتة مكتوبة يدوياً -- عُرضة للتقادم تماماً كأي رقم مُصلَّب آخر في المشروع.
+// اكتُشف فعلياً أثناء مسح آخر: مدخل majors_count كان يذكر "81 تخصصاً" بينما
+// data/majors.json يحمل 88 اليوم (تطوّر العدد 46→81→88 عبر جولات سابقة، بلا
+// تحديث نصّ المساعد معه في آخر جولة). لا يمنع كل تقادم ممكن، لكنه يمسك أكثر
+// حالتين قابلتين للقياس آلياً بدقة: عدد التخصصات وعدد الجامعات.
+{
+  const majorsCountEntry = assistantKnowledge.find((e) => e.id === "majors_count");
+  if (majorsCountEntry) {
+    const mentioned = Number((majorsCountEntry.answer.match(/^(\d+)/) || [])[1]);
+    if (mentioned !== majors.length) {
+      console.error(
+        `[FAIL] assistant_knowledge.majors_count: يذكر ${mentioned} تخصصاً لكن data/majors.json يحمل ${majors.length} فعلياً`
+      );
+      hasErrors = true;
+    } else {
+      console.log(`[OK] assistant_knowledge.majors_count يطابق عدد التخصصات الحقيقي (${majors.length})`);
+    }
+  }
+
+  const uniCountEntry = assistantKnowledge.find((e) => e.id === "universities_count");
+  if (uniCountEntry) {
+    const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+    const gov = universities.filter((u) => u.type === "حكومية").length;
+    const priv = universities.filter((u) => u.type === "أهلية").length;
+    const total = universities.length;
+    const nums = [...uniCountEntry.answer.matchAll(/\d+/g)].map((m) => Number(m[0]));
+    if (nums[0] !== gov || nums[1] !== priv || nums[2] !== total) {
+      console.error(
+        `[FAIL] assistant_knowledge.universities_count: يذكر ${nums.join("/")} لكن الأعداد الحقيقية ${gov}/${priv}/${total}`
+      );
+      hasErrors = true;
+    } else {
+      console.log(`[OK] assistant_knowledge.universities_count يطابق الأعداد الحقيقية (${gov}/${priv}/${total})`);
+    }
+  }
+}
+
 // Must have exactly 40 questions (36 single/dual-dimension items + 4 dual-
 // dimension "إما/أو" comparison items added 2026-07-22 specifically to sharpen
 // discrimination between near-duplicate RIASEC profile pairs -- the algorithm

@@ -163,6 +163,7 @@ for (const uni of universities) {
         sessions: dept.sessions,
         averageGrades: dept.averageGrades,
         isDirectAdmission: dept.isDirectAdmission,
+        statedMinimumGrade: dept.statedMinimumGrade ?? null,
       };
       for (const b of dept.branch) {
         if (branchRecords[b]) branchRecords[b].push(record);

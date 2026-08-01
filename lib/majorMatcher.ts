@@ -128,6 +128,7 @@ export interface UniversityOffering {
   };
   cutoffs: DepartmentCutoff[];
   isDirectAdmission: boolean;
+  statedMinimumGrade?: StatedMinimumGrade | null;
   confidence: number;
 }
 

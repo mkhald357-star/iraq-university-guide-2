@@ -45,15 +45,18 @@ export default function StatsSection() {
         </div>
 
         <div className="mt-6 grid gap-4 lg:grid-cols-2">
-          {/* الإحصائية الأكثر إفادة: أكثر من نصف الأقسام بلا منافسة معدل */}
+          {/* حصراً الحكومي -- isDirectAdmission هناك مؤكَّد (غياب منافسة حقيقي)،
+              بخلاف الأهلي حيث القيمة true دائماً بصرف النظر عن نشر حدّ من عدمه
+              (data/admission_rules.md §28). ضمّ الأهلي هنا كان يجعل الادّعاء
+              مضلِّلاً ("أكثر من نصف") لرقم لا يعكس غياب حدّ فعلياً لمعظمه. */}
           <div className="rounded-md border border-line bg-band-safe-bg p-6">
             <div className="text-4xl font-extrabold text-band-safe">
-              <CountUp to={homepageStats.directAdmissionDepartments} />
+              <CountUp to={homepageStats.directAdmissionDepartmentsGov} />
             </div>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              قسم بقبول مباشر — أكثر من نصف الأقسام الجامعية في العراق (من أصل{" "}
-              {homepageStats.totalDepartments.toLocaleString("ar-IQ")}) بلا حدّ قبول تنافسي مُعلَن. أي
-              طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل.
+              قسم حكومي بقبول مباشر (من أصل {homepageStats.governmentDepartments.toLocaleString("ar-IQ")} قسماً
+              حكومياً) بلا حدّ قبول تنافسي مُعلَن — أي طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل. الأقسام
+              الأهلية لها شروط قبول منشورة جزئياً في دليل منفصل، ولا تُحتسَب هنا.
             </p>
           </div>
 

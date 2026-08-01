@@ -248,7 +248,7 @@ export default function GpaCheckPage() {
 
           {totalResults === 0 ? (
             <p className="text-center text-ink-muted">
-              لا توجد أقسام يبلغها هذا المعدل ضمن هذه الفلاتر حالياً. جرّب توسيع الفلاتر أو معدلاً آخر.
+              لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات القناة العامة. جرّب توسيع الفلاتر أو معدلاً آخر.
             </p>
           ) : (
             <div className="space-y-4">

@@ -115,6 +115,14 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
           الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.
         </p>
       )}
+      {hasAnyPrivate && (
+        <p className="text-xs text-slate-500 mt-1">
+          <span className="text-primary-800 font-bold">يشترط معدل X%</span>: شرط معدّل معلَن مسبقاً في دليل الجامعات
+          الأهلية — لا نتيجة قبول بأثر رجعي كحدود الجامعات الحكومية.{" "}
+          <span className="text-slate-500 italic">الحدّ الأدنى غير متوفّر</span>: الدليل لا يذكر حدّاً لهذا القسم تحديداً —
+          هذا لا يعني بالضرورة عدم وجود شرط فعلي غير منشور في مصدرنا.
+        </p>
+      )}
     </div>
   );
 }

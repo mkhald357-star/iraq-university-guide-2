@@ -44,8 +44,7 @@ export function AssistantWidget() {
     const query = rawQuery.trim();
     if (!query) return;
     const match = findBestAnswer(query, KNOWLEDGE);
-    const reply =
-      match?.entry.answer ?? "لم أفهم سؤالك تحديداً بعد — جرّب صياغة أبسط، أو اختر أحد الأسئلة المقترحة أدناه.";
+    const reply = match?.entry.answer ?? FALLBACK_REPLY;
     setMessages((prev) => [...prev, { role: "user", text: query }, { role: "assistant", text: reply }]);
     setInput("");
   };

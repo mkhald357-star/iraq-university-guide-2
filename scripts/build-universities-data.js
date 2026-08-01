@@ -547,6 +547,7 @@ function makeManualDepartment(m) {
     cutoffs: [],
     averageGrades: { صباحي: null, مسائي: null },
     isDirectAdmission: true,
+    statedMinimumGrade: null,
     tuitionFees: { صباحي: null, مسائي: null },
     admissionSuspended: false,
     note: null,

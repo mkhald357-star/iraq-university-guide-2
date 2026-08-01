@@ -889,6 +889,8 @@ function ReportContent() {
         </div>
       )}
 
+      <ChannelNotice />
+
       <section className="mb-12">
         <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
           🏛️ الجامعات الحكومية ({offeringPublic.length})

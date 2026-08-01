@@ -21,6 +21,18 @@ export interface DepartmentCutoff {
 }
 
 /**
+ * شرط معدّل مُعلَن مسبقاً في دليل الجامعات الأهلية (لا نتيجة قبول بأثر
+ * رجعي كـ averageGrades الحكومي) -- للأقسام الأهلية فقط. راجع
+ * data/admission_rules.md §28 لتمييزه عن averageGrades/cutoffs الحكومية.
+ */
+export interface StatedMinimumGrade {
+  value: number;
+  raw: string;
+  source: string;
+  sourceYear: string;
+}
+
+/**
  * تمثيل واجهة القسم داخل الكلية، مع الحدود الدنيا الفعلية لكل فرع/جلسة.
  */
 export interface Department {

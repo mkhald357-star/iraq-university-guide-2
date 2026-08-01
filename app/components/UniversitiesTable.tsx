@@ -1,9 +1,9 @@
 // app/components/UniversitiesTable.tsx
 "use client";
 
-import { formatGrade } from "../../lib/admissionLabel";
+import { admissionCell } from "../../lib/admissionLabel";
 import { ChannelBadge } from "./ChannelNotice";
-import { CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
+import { CUTOFFS_YEAR, PRIVATE_MIN_HINT, PRIVATE_NO_MIN_HINT } from "../../lib/admissionDisclosure";
 
 interface UniversityOffering {
   universityName: string;
@@ -14,6 +14,7 @@ interface UniversityOffering {
   sessions?: string[];
   averageGrades?: Record<string, number | null>;
   isDirectAdmission?: boolean;
+  statedMinimumGrade?: { value: number } | null;
   /** اسم التخصص المطابَق (فاحص المعدل/مستكشف الجامعات فقط) -- عمود اختياري،
       يظهر فقط إن وُجد في عرض واحد على الأقل ضمن القائمة الممرَّرة. */
   majorName?: string | null;

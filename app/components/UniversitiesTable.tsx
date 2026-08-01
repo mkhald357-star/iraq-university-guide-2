@@ -3,6 +3,7 @@
 
 import { formatGrade } from "../../lib/admissionLabel";
 import { ChannelBadge } from "./ChannelNotice";
+import { CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
 
 interface UniversityOffering {
   universityName: string;

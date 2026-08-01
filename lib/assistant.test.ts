@@ -150,3 +150,51 @@ describe("findBestAnswer -- حارس بنيوي: صنف عطل اختطاف ال
     expect(findBestAnswer("شكد راتب مهندس البرمجيات؟", realKnowledge)?.entry.id).not.toBe("ai_vs_swe");
   });
 });
+
+describe("findBestAnswer -- الحدّ الأدنى المقبول لأسئلة صعبة (بيانات حقيقية، data/admission_rules.md §27)", () => {
+  // مصدر الأسئلة: تحقّق فعلي عبر محاكاة 23 سؤالاً صعباً ضد findBestAnswer
+  // الحقيقية (لا افتراضاً). النتيجة: صفر اختلاق رقم، صفر نصيحة شخصية قاطعة،
+  // في كل الحالات الـ23 -- المداخل الخمس أدناه الأصرح دلالة على ذلك، تبقى
+  // كحارس دائم يمنع الانحدار. حالات تطابق ضعيف/غير دقيق أخرى (مثال: "قناة
+  // الشهداء" تُطابِق weekly registration_platform بدل quota_channels الأدقّ
+  // موضوعياً) وُثِّقت في admission_rules.md كفجوة دقّة معروفة غير خطيرة (لا
+  // اختلاق ولا نصيحة خاطئة)، لا كحالة اختبار هنا -- الإصلاح الآمن لها غير
+  // واضح بعد بلا مخاطرة بانحدار مطابقات أخرى.
+
+  it("لا يقدّم نصيحة شخصية توجيهية قاطعة لسؤال مفتوح عن ماذا يدرس الطالب", () => {
+    expect(findBestAnswer("شنو ادرس؟", realKnowledge)).toBeNull();
+  });
+
+  it("يُرجع null لتخصص أو جامعة غير موجودَين بدل اختلاق إجابة", () => {
+    expect(findBestAnswer("شنو حدود هندسة الفضاء الكمي؟", realKnowledge)).toBeNull();
+    expect(findBestAnswer("وين جامعة النجاح الدولية؟", realKnowledge)).toBeNull();
+  });
+
+  it("يُرجع null لسؤال خارج نطاق المنصة كلياً", () => {
+    expect(findBestAnswer("شنو أحسن جامعة بالعالم؟", realKnowledge)).toBeNull();
+  });
+
+  it("يُرجع null لإدخال فارغ أو رموز فقط", () => {
+    expect(findBestAnswer("", realKnowledge)).toBeNull();
+    expect(findBestAnswer("!!!؟؟؟...***", realKnowledge)).toBeNull();
+  });
+
+  it("لا يذكر رقماً محدَّداً لا يملكه لسؤال يطلب حدّ قسم بعينه بلحظته -- يشرح المفهوم العام الموثَّق فقط إن طابق شيئاً", () => {
+    const result = findBestAnswer("شكد بالضبط معدل قبول طب الاسنان بجامعة بغداد هذا الاسبوع؟", realKnowledge);
+    if (result) expect(result.entry.id).toBe("cutoffs_meaning");
+  });
+
+  it("لا يختلق حدوداً لسنة قبول قادمة لا بيانات لها -- إن طابق شيئاً فإجابته لا تذكر السنة المطلوبة", () => {
+    const result = findBestAnswer("شنو حدود القبول لعام 2027-2028؟", realKnowledge);
+    if (result) {
+      expect(result.entry.answer).not.toContain("2027");
+      expect(result.entry.answer).not.toContain("2028");
+    }
+  });
+
+  it("يعترف صراحة بعدم توحيد رقم أجور الأهلية بدل اختلاق متوسط", () => {
+    const result = findBestAnswer("شكد اجور الجامعات الاهلية؟", realKnowledge);
+    expect(result?.entry.id).toBe("private_tuition_range");
+    expect(result?.entry.answer).toContain("لا يوجد رقم موحّد");
+  });
+});

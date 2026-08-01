@@ -1,3 +1,5 @@
+import { PRIVATE_NO_PUBLISHED_MIN, privateStatedMin } from "./admissionDisclosure";
+
 /**
  * "قبول مباشر" يُشتَقّ حصراً من isDirectAdmission (الحقل الحقيقي المحسوب في
  * scripts/build-universities-data.js من طول مصفوفة cutoffs الفعلية) -- لا من
@@ -12,8 +14,6 @@ export function formatGrade(value: number | null | undefined, sessionAvailable: 
   if (value == null) return { text: "غير متوفر", isDirect: false };
   return { text: `${value}%`, isDirect: false };
 }
-
-import { PRIVATE_NO_PUBLISHED_MIN, privateStatedMin } from "./admissionDisclosure";
 
 export type AdmissionCellTone = "direct" | "stated" | "unstated" | "competitive" | "none";
 

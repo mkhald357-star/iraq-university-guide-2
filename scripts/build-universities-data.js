@@ -605,7 +605,7 @@ const out = {
     ],
     // يمثّل دليل الطالب صراحةً (أقرب معانيه الأصلية) -- مُشتقّ من SOURCES لا
     // مُصلَّب هنا، كي لا يتباعد عن سنة الوثيقة الفعلية المُتحقَّق منها في
-        // scripts/admissionSources.js (انظر data/admission_rules.md §24).
+    // scripts/admissionSources.js (انظر data/admission_rules.md §24).
     academicYear: SOURCES.studentGuide.year,
     // سنة/وثيقة الحدود الدنيا تحديداً -- هذا وحده ما يجب أن يستنِد إليه أي
     // عرض لرقم averagePercent/averageGrades (lib/admissionDisclosure.ts)،

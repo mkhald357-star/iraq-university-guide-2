@@ -98,27 +98,11 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 <td className="border px-3 py-2">{o.province ?? "—"}</td>
                 <td className="border px-3 py-2">{o.collegeName}</td>
                 <td className="border px-3 py-2">{o.departmentName ?? "—"}</td>
-                <td className={`border px-3 py-2 ${morning.isDirect ? "text-emerald-700 font-bold" : ""}`}>
-                  <span
-                    title={
-                      morning.isDirect
-                        ? "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة."
-                        : undefined
-                    }
-                  >
-                    {morning.text}
-                  </span>
+                <td className={`border px-3 py-2 ${cellClass(morning.tone)}`}>
+                  <span title={cellTitle(morning.tone)}>{morning.text}</span>
                 </td>
-                <td className={`border px-3 py-2 ${evening.isDirect ? "text-emerald-700 font-bold" : ""}`}>
-                  <span
-                    title={
-                      evening.isDirect
-                        ? "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة."
-                        : undefined
-                    }
-                  >
-                    {evening.text}
-                  </span>
+                <td className={`border px-3 py-2 ${cellClass(evening.tone)}`}>
+                  <span title={cellTitle(evening.tone)}>{evening.text}</span>
                 </td>
               </tr>
             );

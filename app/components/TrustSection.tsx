@@ -1,4 +1,8 @@
 import meta from "../../data/universities_meta.json";
+import provincesData from "../../data/provinces.json";
+import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
+
+const TOTAL_PROVINCES = provincesData.length + UNCOVERED_PROVINCES.length;
 
 export default function TrustSection() {
   return (

@@ -8,6 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 const { toDisplayName } = require("./displayName");
+const { parseStatedMinimum } = require("./departmentNameHealth");
 const SOURCES = require("./admissionSources");
 
 const ROOT = path.join(__dirname, "..");

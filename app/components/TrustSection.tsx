@@ -49,10 +49,17 @@ export default function TrustSection() {
               </div>
             </div>
             <div>
+              <dt className="text-xs font-bold text-ink-muted">التغطية الجغرافية</dt>
+              <dd className="mt-1 text-sm leading-relaxed text-ink-soft">
+                {provincesData.length} من {TOTAL_PROVINCES} محافظة عراقية. لا تشمل بعد محافظات إقليم كردستان الثلاث (
+                {UNCOVERED_PROVINCES.join("، ")}) — {UNCOVERED_PROVINCES_REASON}
+              </dd>
+            </div>
+            <div>
               <dt className="text-xs font-bold text-ink-muted">ما لا تشمله المنصة حالياً</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink-soft">
-                جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً عن القبول المركزي العام)،
-                ومعاهد خريجي الفروع المهنية. نفضّل عدم عرض بيانات غير مؤكدة بدل تخمينها.
+                محافظات إقليم كردستان الثلاث أعلاه، ومعاهد خريجي الفروع المهنية. نفضّل عدم عرض بيانات غير مؤكدة بدل
+                تخمينها.
               </dd>
             </div>
           </dl>

@@ -48,6 +48,7 @@ export interface ExplorerOffering {
   sessions: string[];
   averageGrades: { صباحي: number | null; مسائي: number | null };
   isDirectAdmission: boolean;
+  statedMinimumGrade?: StatedMinimumGrade | null;
 }
 
 // كل عروض فرع دراسي معيّن (عبر كل الجامعات وكل التخصصات، مطابَقة أو غير

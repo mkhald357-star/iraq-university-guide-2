@@ -244,6 +244,8 @@ export default function GpaCheckPage() {
 
       {searched && (
         <>
+          <ChannelNotice />
+
           {totalResults === 0 ? (
             <p className="text-center text-ink-muted">
               لا توجد أقسام يبلغها هذا المعدل ضمن هذه الفلاتر حالياً. جرّب توسيع الفلاتر أو معدلاً آخر.

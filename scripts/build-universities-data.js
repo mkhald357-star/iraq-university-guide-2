@@ -8,6 +8,7 @@
 const fs = require("fs");
 const path = require("path");
 const { toDisplayName } = require("./displayName");
+const SOURCES = require("./admissionSources");
 
 const ROOT = path.join(__dirname, "..");
 const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));

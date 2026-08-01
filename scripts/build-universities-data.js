@@ -509,6 +509,17 @@ function buildPrivateDepartment(d) {
     sessions.push("صباحي");
     if (typeof d.eveningFee === "number") sessions.push("مسائي");
   }
+  // شرط معلن مسبقاً (لا نتيجة قبول بأثر رجعي) -- عمداً منفصل عن cutoffs/
+  // averageGrades، ولا يُغيّر isDirectAdmission. راجع data/admission_rules.md §28.
+  const parsedMinimum = parseStatedMinimum(d.gradeNote);
+  const statedMinimumGrade = parsedMinimum
+    ? {
+        value: parsedMinimum.value,
+        raw: parsedMinimum.raw,
+        source: SOURCES.privateGuide.document,
+        sourceYear: SOURCES.privateGuide.year,
+      }
+    : null;
   return {
     name: d.name,
     displayName: toDisplayName(d.name),
@@ -517,6 +528,7 @@ function buildPrivateDepartment(d) {
     cutoffs: [],
     averageGrades: { صباحي: null, مسائي: null },
     isDirectAdmission: true,
+    statedMinimumGrade,
     tuitionFees: {
       صباحي: typeof d.morningFee === "number" ? d.morningFee : null,
       مسائي: typeof d.eveningFee === "number" ? d.eveningFee : null,

@@ -19,6 +19,19 @@ export const CUTOFFS_DOCUMENT = (universitiesMeta as { cutoffsSourceDocument: st
 
 export const ADMISSION_CHANNEL = "القناة العامة";
 
+/**
+ * محافظات إقليم كردستان -- غير مغطّاة إطلاقاً في أي مصدر بيانات على المنصة
+ * اليوم (تحقَّق مباشرةً عبر فحص كل من data/universities.json المدموج،
+ * data/private_universities.json، وdata/raw/chapter3_additions.json تحديداً
+ * -- صفر مطابقة في الثلاثة). الغياب مقصود (نظام قبول إقليمي منفصل)، لا نسياناً
+ * -- انظر data/admission_rules.md §25. تُعرَض معطَّلة ومُعلَّمة في كل قائمة
+ * محافظات بدل إخفائها كلياً، كي لا يقرأ طالب من الإقليم الغياب عطلاً.
+ */
+export const UNCOVERED_PROVINCES = ["أربيل", "دهوك", "السليمانية"] as const;
+
+export const UNCOVERED_PROVINCES_REASON =
+  "إقليم كردستان له نظام قبول منفصل عن القبول المركزي، ولم ندخل بياناته بعد.";
+
 export const SPECIAL_CHANNELS = [
   "ذوي الشهداء",
   "أوائل المحافظات",

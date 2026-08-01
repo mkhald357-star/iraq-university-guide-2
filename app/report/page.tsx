@@ -595,6 +595,8 @@ function ReportContent() {
       hasMorning: !!o.sessions?.includes("صباحي"),
       eveningGrade: o.averageGrades?.["مسائي"] ?? null,
       hasEvening: !!o.sessions?.includes("مسائي"),
+      isDirectAdmission: !!o.isDirectAdmission,
+      statedMinimumGrade: o.statedMinimumGrade ?? null,
     })),
   };
 

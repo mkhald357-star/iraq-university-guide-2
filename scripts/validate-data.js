@@ -214,6 +214,41 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
   }
 }
 
+// statedMinimumGrade (data/admission_rules.md §28): شرط معدّل مُعلَن مسبقاً
+// في دليل الجامعات الأهلية -- حصراً للأقسام الأهلية (لا حكومية، تلك أرقام
+// نتائج بأثر رجعي في averageGrades لا شروطاً معلَنة)، وبقيمة منطقية (٤٠-١٠٠،
+// نطاق شرط معلَن لا نتيجة قبول)، وبأثر مصدر كامل (raw/source/sourceYear) --
+// وإلا فالحقل ادّعاء بلا دليل، يخالف مبدأ المنصة الحاكم "لا رقم بلا مصدر".
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const badStatedMinimum = [];
+  for (const uni of universities) {
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        const s = dept.statedMinimumGrade;
+        if (!s) continue;
+
+        if (uni.type === "حكومية") {
+          badStatedMinimum.push(`${uni.name}/${college.name}/${dept.name}: statedMinimumGrade على قسم حكومي`);
+          continue;
+        }
+        if (typeof s.value !== "number" || s.value < 40 || s.value > 100) {
+          badStatedMinimum.push(`${uni.name}/${college.name}/${dept.name}: قيمة غير منطقية (${s.value})`);
+        }
+        if (!s.raw || !s.source || !s.sourceYear) {
+          badStatedMinimum.push(`${uni.name}/${college.name}/${dept.name}: بلا أثر مصدر كامل`);
+        }
+      }
+    }
+  }
+  if (badStatedMinimum.length) {
+    console.error("[FAIL] statedMinimumGrade غير صالح:", badStatedMinimum);
+    hasErrors = true;
+  } else {
+    console.log("[OK] statedMinimumGrade صالح لكل الأقسام التي تحمله (أهلية فقط، قيمة منطقية، أثر مصدر كامل)");
+  }
+}
+
 validate("data/majors.json", path.join(ROOT, "data/majors.json"), z.array(MajorSchema));
 validate("data/questions.json", path.join(ROOT, "data/questions.json"), z.array(QuestionSchema));
 validate(

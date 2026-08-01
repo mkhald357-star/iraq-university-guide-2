@@ -28,14 +28,14 @@ export const SPECIAL_CHANNELS = [
 ] as const;
 
 /** شارة مختصرة بجوار الجداول والبطاقات */
-export const CHANNEL_BADGE = `${ADMISSION_CHANNEL} · ${ADMISSION_YEAR}`;
+export const CHANNEL_BADGE = `${ADMISSION_CHANNEL} · ${CUTOFFS_YEAR}`;
 
 export const CHANNEL_NOTICE_TITLE = `الأرقام المعروضة تخصّ ${ADMISSION_CHANNEL} فقط`;
 
 // ملاحظة صياغة مقصودة: "تكون عادةً أدنى" لا "أدنى دائماً" -- الثانية ادّعاء
 // كمّي لا نملك دليلاً عليه لكل قناة خاصة وكل قسم على حدة.
 export const CHANNEL_NOTICE_BODY =
-  `هذه هي الحدود الدنيا لـ${ADMISSION_CHANNEL} وفق نتائج القبول المركزي ${ADMISSION_YEAR}. ` +
+  `هذه هي الحدود الدنيا لـ${ADMISSION_CHANNEL} وفق نتائج القبول المركزي ${CUTOFFS_YEAR}. ` +
   `إذا كنت تتقدّم ضمن قناة خاصة (${SPECIAL_CHANNELS.join("، ")}) ` +
   `فالحدود التي تنطبق عليك تختلف، وتكون عادةً أدنى من المعروض هنا.`;
 

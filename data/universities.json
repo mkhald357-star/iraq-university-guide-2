@@ -73381,7 +73381,12 @@
                 "مسائي": null
               },
               "isDirectAdmission": true,
-              "statedMinimumGrade": null,
+              "statedMinimumGrade": {
+                "value": 90,
+                "raw": "معدل من 90 %الى 99 %",
+                "source": "دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026",
+                "sourceYear": "2025-2026"
+              },
               "tuitionFees": {
                 "صباحي": 6000000,
                 "مسائي": null
@@ -74405,7 +74410,12 @@
                 "مسائي": null
               },
               "isDirectAdmission": true,
-              "statedMinimumGrade": null,
+              "statedMinimumGrade": {
+                "value": 85,
+                "raw": "معدل من 85 الى 89",
+                "source": "دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026",
+                "sourceYear": "2025-2026"
+              },
               "tuitionFees": {
                 "صباحي": 5000000,
                 "مسائي": null

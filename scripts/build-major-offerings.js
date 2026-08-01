@@ -85,6 +85,7 @@ function findUniversitiesForMajor(major, mapping) {
             averageGrades: dept.averageGrades,
             cutoffs: dept.cutoffs,
             isDirectAdmission: dept.isDirectAdmission,
+            statedMinimumGrade: dept.statedMinimumGrade ?? null,
             confidence,
           });
         }

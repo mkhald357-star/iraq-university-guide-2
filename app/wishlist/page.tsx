@@ -177,6 +177,7 @@ export default function WishlistPage() {
       {/* ── إضافة رغبة جديدة ── */}
       <div className="glass p-6 rounded-3xl space-y-4">
         <h2 className="text-xl font-bold text-ink">أضف رغبة</h2>
+        <p className="text-xs text-ink-muted">الحدود المعروضة أدناه وفق {CUTOFFS_YEAR}.</p>
         <select
           value={selectedMajorId}
           onChange={(e) => setSelectedMajorId(e.target.value)}

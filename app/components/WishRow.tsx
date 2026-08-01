@@ -1,5 +1,6 @@
 "use client";
 import type { ClassifiedWish, Band } from "../../lib/wishlistPlanner";
+import { privateStatedMin, PRIVATE_NO_PUBLISHED_MIN } from "../../lib/admissionDisclosure";
 
 const BAND_UI: Record<Band, { label: string; dot: string; bg: string; fg: string }> = {
   safe: { label: "مريح", dot: "bg-band-safe", bg: "bg-band-safe-bg", fg: "text-band-safe" },

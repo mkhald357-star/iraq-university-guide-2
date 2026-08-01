@@ -75,62 +75,6 @@
     ]
   },
   {
-    "university": "جامعة سامراء",
-    "college": "كلية الطب",
-    "department": "الطب",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة سامراء",
-    "college": "كلية طب الأسنان",
-    "department": "طب الأسنان",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة سامراء",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "الجامعة العراقية",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "الجامعة العراقية",
-    "college": "كلية الهندسة",
-    "department": "قسم الهندسة الكيميائية والبتروكيميائية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "الجامعة العراقية",
-    "college": "كلية الهندسة",
-    "department": "قسم الميكانيك",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة واسط",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
     "university": "جامعة واسط",
     "college": "كلية الهندسة",
     "department": "قسم النفط",
@@ -142,14 +86,6 @@
     "university": "جامعة واسط",
     "college": "كلية الهندسة",
     "department": "قسم الهندسة الكيمياوية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
     "branch": [
       "علمي"
     ]
@@ -776,14 +712,6 @@
     "university": "جامعة تلعفر",
     "college": "كلية الطب",
     "department": "الطب",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
     "branch": [
       "علمي"
     ]

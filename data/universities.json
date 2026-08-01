@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-07-30",
+    "lastUpdated": "2026-08-01",
     "source": "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
     "sourceFiles": [
       "dalel_2025_22026.pdf",
@@ -20251,38 +20251,6 @@
                 "مسائي": 65
               },
               "isDirectAdmission": false
-            },
-            {
-              "name": "قسم الهندسة الكيميائية والبتروكيميائية",
-              "displayName": "قسم الهندسة الكيميائية والبتروكيميائية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            },
-            {
-              "name": "قسم الميكانيك",
-              "displayName": "قسم الميكانيك",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
             }
           ]
         },
@@ -21310,30 +21278,6 @@
               "averageGrades": {
                 "صباحي": null,
                 "مسائي": 58
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "iraqia_col_12",
-          "name": "كلية الصيدلة",
-          "displayName": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "displayName": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
               },
               "isDirectAdmission": true
             }
@@ -24826,30 +24770,6 @@
         },
         {
           "id": "diyala_col_18",
-          "name": "كلية الصيدلة",
-          "displayName": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "displayName": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "diyala_col_19",
           "name": "كلية تكنولوجيا المعلومات",
           "displayName": "كلية تكنولوجيا المعلومات",
           "nameEn": null,
@@ -30769,30 +30689,6 @@
               "isDirectAdmission": true
             }
           ]
-        },
-        {
-          "id": "wasit_col_16",
-          "name": "كلية الصيدلة",
-          "displayName": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "displayName": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
         }
       ]
     },
@@ -34151,78 +34047,6 @@
               "isDirectAdmission": true
             }
           ]
-        },
-        {
-          "id": "samarra_col_11",
-          "name": "كلية الطب",
-          "displayName": "كلية الطب",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الطب",
-              "displayName": "الطب",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "samarra_col_12",
-          "name": "كلية طب الأسنان",
-          "displayName": "كلية طب الأسنان",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "samarra_col_13",
-          "name": "كلية الصيدلة",
-          "displayName": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "displayName": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
         }
       ]
     },
@@ -37157,30 +36981,6 @@
         },
         {
           "id": "telafer_col_6",
-          "name": "كلية الصيدلة",
-          "displayName": "كلية الصيدلة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الصيدلة",
-              "displayName": "الصيدلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true
-            }
-          ]
-        },
-        {
-          "id": "telafer_col_7",
           "name": "كلية العلوم الطبية",
           "displayName": "كلية العلوم الطبية",
           "nameEn": null,

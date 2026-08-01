@@ -463,6 +463,28 @@ if (fs.existsSync(detailedProfilesPath)) {
 
 validate("data/salary-allowances.json", path.join(ROOT, "data/salary-allowances.json"), SalaryAllowancesSchema);
 
+// حارس بنيوي لـchapter3_additions.json (data/admission_rules.md §22): المصدر
+// الوحيد غير المتحقَّق منه بنيوياً في المشروع -- كل عطل مؤكَّد هذه الجلسة
+// (UOITC، البصرة للنفط والغاز، تكريت/القادسية، الفلوجة/جابر بن حيان،
+// العراقية، سامراء، واسط، ديالى، تلعفر) خرج منه. مرحلة تحذير فقط الآن
+// (مراجعة الـ89 سجلاً المتبقية لم تكتمل بعد -- 0/89 يحمل sourceLine/
+// verifiedAt، فتفعيله [FAIL] فوراً يكسر البناء اليوم بلا فائدة). يُحوَّل إلى
+// [FAIL] فور اكتمال المراجعة اليدوية لكل السجلات المتبقية.
+{
+  const chapter3Path = path.join(ROOT, "data/raw/chapter3_additions.json");
+  if (fs.existsSync(chapter3Path)) {
+    const chapter3Records = JSON.parse(fs.readFileSync(chapter3Path, "utf8"));
+    const unverified = chapter3Records.filter((r) => !r.sourceLine || !r.verifiedAt);
+    if (unverified.length) {
+      console.warn(
+        `[WARN] data/raw/chapter3_additions.json: ${unverified.length}/${chapter3Records.length} سجلاً بلا sourceLine أو verifiedAt -- راجع reports/chapter3-presence.csv (لا يُفشل البناء بعد، انظر §22)`
+      );
+    } else {
+      console.log("[OK] كل سجلات chapter3_additions.json تحمل sourceLine وverifiedAt");
+    }
+  }
+}
+
 // ترجمة الأبعاد الشخصية لنشاط يومي واقعي حسب فئة التخصص (§4 من تحليل
 // الثغرات) -- كل فئة تخصص فعلية يجب أن تملك ترجمة، وإلا يظهر جدول الفجوة
 // بحقل فارغ صامت لتخصصات تلك الفئة كاملة.

@@ -1,5 +1,8 @@
 import { describe, it, expect } from "vitest";
 import { findBestAnswer, type AssistantEntry } from "./assistant";
+import realKnowledgeData from "../data/assistant_knowledge.json";
+
+const realKnowledge = realKnowledgeData as AssistantEntry[];
 
 const knowledge: AssistantEntry[] = [
   {

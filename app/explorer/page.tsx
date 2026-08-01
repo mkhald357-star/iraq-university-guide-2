@@ -131,7 +131,7 @@ export default function ExplorerPage() {
             </div>
             <div>
               <label className="mb-2 block font-bold" htmlFor="maxCutoff">
-                الحد الأدنى (أظهر الأقسام بحدّ لا يتجاوز)
+                الحد الأدنى وفق حدود {CUTOFFS_YEAR} (أظهر الأقسام بحدّ لا يتجاوز)
               </label>
               <input
                 id="maxCutoff"

@@ -55,3 +55,19 @@ export const CHANNEL_NOTICE_BODY =
 /** نصّ عادي للتصدير والقوالب غير التفاعلية (قالب PDF في app/report/page.tsx
     مثلاً -- HTML/CSS مستقل لا يلتقط مكوّنات React، انظر data/admission_rules.md §23). */
 export const CHANNEL_NOTICE_PLAIN = `${CHANNEL_NOTICE_TITLE}. ${CHANNEL_NOTICE_BODY} المرجع الرسمي الوحيد هو دائرة القبول المركزي.`;
+
+/**
+ * الأهلي بلا حدّ منشور -- "قبول مباشر" غير دقيق بنيوياً هنا (الدليل ينشر
+ * شرط معدّل انتقائياً لبعض الأقسام فقط، فغياب الرقم لا يعني غياب الشرط،
+ * بخلاف الحكومي حيث cutoffs.length===0 دليل موثوق على غياب المنافسة فعلاً).
+ * راجع data/admission_rules.md §28.
+ */
+export const PRIVATE_NO_PUBLISHED_MIN = "الحدّ الأدنى غير متوفّر";
+
+export const privateStatedMin = (v: number) => `يشترط معدل ${v}% فأكثر`;
+
+export const PRIVATE_MIN_HINT =
+  "شرط معلن مسبقاً في دليل الجامعات الأهلية — لا يمثّل نتيجة قبول سنة سابقة كحدود الجامعات الحكومية.";
+
+export const PRIVATE_NO_MIN_HINT =
+  "الدليل الرسمي لا يذكر حدّاً أدنى لهذا القسم تحديداً — هذا لا يعني بالضرورة عدم وجود شرط، بل أنه غير منشور في مصدرنا.";

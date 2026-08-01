@@ -50,6 +50,8 @@ export interface Department {
     مسائي: number | null;
   };
   isDirectAdmission: boolean;
+  // شرط معدّل مُعلَن -- للأقسام الأهلية فقط، null دائماً للحكومية. راجع §28.
+  statedMinimumGrade?: StatedMinimumGrade | null;
 }
 
 /**

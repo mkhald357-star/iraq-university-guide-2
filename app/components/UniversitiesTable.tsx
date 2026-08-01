@@ -41,8 +41,8 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
             <th className="border px-3 py-2 text-right">المحافظة</th>
             <th className="border px-3 py-2 text-right">الكلية</th>
             <th className="border px-3 py-2 text-right">القسم</th>
-            <th className="border px-3 py-2 text-right">صباحي</th>
-            <th className="border px-3 py-2 text-right">مسائي</th>
+            <th className="border px-3 py-2 text-right">صباحي ({CUTOFFS_YEAR})</th>
+            <th className="border px-3 py-2 text-right">مسائي ({CUTOFFS_YEAR})</th>
           </tr>
         </thead>
         <tbody>

@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
-import { formatGrade } from "./admissionLabel";
+import { formatGrade, admissionCell } from "./admissionLabel";
+import universities from "../data/universities.json";
 
 describe("formatGrade -- لا تخلط بين 'قبول مباشر' و'بيانات مفقودة'", () => {
   it("قسم بقبول مباشر حقيقي يعرض 'قبول مباشر' حتى لو كانت القيمة null", () => {

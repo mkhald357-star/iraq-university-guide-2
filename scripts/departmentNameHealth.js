@@ -41,7 +41,7 @@ function parseStatedMinimum(raw) {
     .replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
     .replace(/\s+/g, ' ');
 
-  const m = s.match(/معدل\s*\(?\s*(\d{2,3}(?:[.,]\d+)?)\s*\)?\s*%?/);
+  const m = s.match(/معدل\s*(?:من)?\s*\(?\s*(\d{2,3}(?:[.,]\d+)?)\s*\)?\s*%?/);
   if (!m) return null;
 
   const value = parseFloat(String(m[1]).replace(',', '.'));

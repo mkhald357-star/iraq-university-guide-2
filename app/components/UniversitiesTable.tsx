@@ -2,6 +2,7 @@
 "use client";
 
 import { formatGrade } from "../../lib/admissionLabel";
+import { ChannelBadge } from "./ChannelNotice";
 
 interface UniversityOffering {
   universityName: string;

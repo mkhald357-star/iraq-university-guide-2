@@ -532,13 +532,13 @@ function ReportContent() {
           points.push(
             `معدلك (${filterSettings.grade}%) يبلغ فعلاً ${majorEligibility.reachableOffers.length} عرضاً حقيقياً لهذا التخصص${
               requiredGrade !== null && filterSettings.grade >= requiredGrade
-                ? ` (منها أفضل خيار حكومي بحد أدنى ${requiredGrade}% في ${majorBestPublic!.universityName})`
+                ? ` (منها أفضل خيار حكومي بحد أدنى ${requiredGrade}% وفق حدود ${CUTOFFS_YEAR} في ${majorBestPublic!.universityName})`
                 : ""
             }.`
           );
         } else if (majorEligibility.lowestCutoff !== null) {
           points.push(
-            `تحذير: معدلك (${filterSettings.grade}%) دون أدنى حدّ تنافسي حقيقي لهذا التخصص (${majorEligibility.lowestCutoff}%) بفارق ${Math.abs(
+            `تحذير: معدلك (${filterSettings.grade}%) دون أدنى حدّ تنافسي حقيقي لهذا التخصص (${majorEligibility.lowestCutoff}% وفق حدود ${CUTOFFS_YEAR}) بفارق ${Math.abs(
               majorEligibility.gapToLowest ?? 0
             ).toFixed(1)} نقطة.`
           );

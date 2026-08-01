@@ -171,11 +171,7 @@ export default function WishlistPage() {
         </p>
       </div>
 
-      {/* تنويه دائم: بيانات العام الدراسي الحالي فقط */}
-      <div className="flex items-start gap-3 bg-primary-50 border border-primary-200 text-primary-800 p-4 rounded-2xl text-sm">
-        <Info className="w-5 h-5 flex-shrink-0 mt-0.5" />
-        <p>الحدود المعروضة أدناه من العام الدراسي 2025-2026 فقط، وقد تتغيّر (ترتفع أو تنخفض) في العام القادم.</p>
-      </div>
+      <ChannelNotice />
 
       {/* ── إضافة رغبة جديدة ── */}
       <div className="glass p-6 rounded-3xl space-y-4">

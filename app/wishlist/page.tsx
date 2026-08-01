@@ -10,6 +10,7 @@ import { analyzeWishlist } from "../../lib/wishlistPlanner";
 import type { AlternativeCandidate, ClassifiedWish, StudySession, WishOffering } from "../../lib/wishlistPlanner";
 import type { UniversityOffering } from "../../lib/majorMatcher";
 import WishRow from "../components/WishRow";
+import { ChannelNotice } from "../components/ChannelNotice";
 
 const WISHLIST_STORAGE_KEY = "wishlistPlan";
 

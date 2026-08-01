@@ -344,10 +344,13 @@ export default function Quiz() {
                   {p}
                 </option>
               ))}
+              {UNCOVERED_PROVINCES.map((p) => (
+                <option key={p} value={p} disabled>
+                  {p} (غير مغطّاة)
+                </option>
+              ))}
             </select>
-            <p className="text-xs text-slate-500 mt-1">
-              ملاحظة: محافظات إقليم كردستان (أربيل، دهوك، السليمانية) غير مغطاة بعد — نظام قبول منفصل عن القبول المركزي.
-            </p>
+            <p className="text-xs text-slate-500 mt-1">ملاحظة: {UNCOVERED_PROVINCES_REASON}</p>
           </div>
           <div>
             <label className="block font-bold mb-2" htmlFor="branch">

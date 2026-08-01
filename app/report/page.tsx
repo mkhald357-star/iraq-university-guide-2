@@ -26,6 +26,7 @@ import { RadarChart } from "../components/RadarChart";
 import { BRANCH_CATEGORY_MAP, fetchOfferingsForMajor } from "../../lib/offeringsClient";
 import { ChannelNotice } from "../components/ChannelNotice";
 import { CHANNEL_NOTICE_PLAIN, CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
+import { admissionCell } from "../../lib/admissionLabel";
 
 // محاور مخطط الرادار -- ثابتة، مُشتقّة من نفس تسميات RIASEC المستخدَمة في
 // بقية الصفحة، كي يبقى المخطط والجدول النصي متّسقين دائماً بلا تكرار يدوي.

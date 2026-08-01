@@ -231,6 +231,7 @@ function exportPDF(data: {
     data.universities.length > 0
       ? `
   <div class="section-title">🏛️ الجامعات والكليات الموصى بها</div>
+  <p style="font-size:9pt;color:#64748b;margin-bottom:8px;line-height:1.5">${CHANNEL_NOTICE_PLAIN}</p>
   <table>
     <thead><tr><th>الجامعة</th><th>النوع</th><th>المحافظة</th><th>الكلية</th><th>القسم</th><th>صباحي</th><th>مسائي</th></tr></thead>
     <tbody>${uniRows}</tbody>

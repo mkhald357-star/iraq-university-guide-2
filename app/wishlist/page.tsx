@@ -227,7 +227,16 @@ export default function WishlistPage() {
                                    hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
-                        {session} {o.isDirectAdmission ? "(مباشر)" : grade !== null ? `${grade}%` : ""}
+                        {session}{" "}
+                        {o.universityType === "أهلية"
+                          ? o.statedMinimumGrade?.value != null
+                            ? privateStatedMin(o.statedMinimumGrade.value)
+                            : PRIVATE_NO_PUBLISHED_MIN
+                          : o.isDirectAdmission
+                            ? "(مباشر)"
+                            : grade !== null
+                              ? `${grade}%`
+                              : ""}
                       </button>
                     );
                   })}

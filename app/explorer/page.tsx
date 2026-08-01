@@ -5,6 +5,7 @@ import { Compass } from "lucide-react";
 import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
+import { ChannelNotice } from "../components/ChannelNotice";
 
 const BRANCHES: { value: Branch; label: string }[] = [
   { value: "علمي", label: "علمي" },

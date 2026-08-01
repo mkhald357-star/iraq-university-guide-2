@@ -249,7 +249,7 @@ export default function GpaCheckPage() {
 
           {totalResults === 0 ? (
             <p className="text-center text-ink-muted">
-              لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات القناة العامة. جرّب توسيع الفلاتر أو معدلاً آخر.
+              لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات {ADMISSION_CHANNEL}. جرّب توسيع الفلاتر أو معدلاً آخر.
             </p>
           ) : (
             <div className="space-y-4">

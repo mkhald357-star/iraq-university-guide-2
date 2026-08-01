@@ -140,6 +140,44 @@ function validate(label, filePath, schema) {
   console.log(`[OK] ${label}`);
 }
 
+// حارس بنيوي على سنوات مصادر البيانات الخام (data/admission_rules.md §24):
+// يمنع آلياً الخطر الذي وُصف صراحةً -- تحديث ملف مصدر واحد (وثيقة الحدود
+// الدنيا مثلاً) بلا تحديث السنة المُعلَنة معه في scripts/admissionSources.js.
+// فحصان لكل مصدر معروف:
+//   (١) وجود الملف المُعلَن فعلياً على القرص -- تبديله بملف جديد (مثال:
+//       cutoffs_2026_2027.json) بلا تحديث admissionSources.js يكسر البناء
+//       فوراً، لأن المسار القديم لم يعد موجوداً.
+//   (٢) إن حمل اسم الملف نمط سنة قابلاً للاستخراج (YYYY[-_]YYYY)، يجب أن
+//       يطابق حرفياً السنة المُعلَنة -- يمسك حالة أخطر: تبديل الملف *مع*
+//       نسيان تحديث السنة (لا حذف الملف القديم فقط). بعض الملفات (دليل
+//       الطالب المُستخرَج نصاً كاملاً، دليل الأهلية المُطابَق) لا تحمل سنة في
+//       اسمها إطلاقاً -- الفحص (٢) لا ينطبق عليها عندئذٍ، والفحص (١) وحده
+//       ضمانتها الآلية اليوم.
+{
+  let sourcesOk = true;
+  for (const [key, src] of Object.entries(SOURCES)) {
+    const filePath = path.join(ROOT, src.file);
+    if (!fs.existsSync(filePath)) {
+      console.error(`[FAIL] admissionSources.${key}: الملف المُعلَن غير موجود على القرص: ${src.file}`);
+      hasErrors = true;
+      sourcesOk = false;
+      continue;
+    }
+    const yearMatch = src.file.match(/(\d{4})[-_](\d{4})/);
+    if (yearMatch) {
+      const fileYear = `${yearMatch[1]}-${yearMatch[2]}`;
+      if (fileYear !== src.year) {
+        console.error(
+          `[FAIL] admissionSources.${key}: سنة اسم الملف (${fileYear}) لا تطابق السنة المُعلَنة (${src.year}) -- الملف ${src.file}`
+        );
+        hasErrors = true;
+        sourcesOk = false;
+      }
+    }
+  }
+  if (sourcesOk) console.log("[OK] كل مصادر admissionSources.js موجودة، وسنوات أسماء الملفات (حيث تُستخرَج) تطابق المُعلَنة");
+}
+
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
 
 // حارس انحدار (data/admission_rules.md §17): isDirectAdmission مستقل تماماً

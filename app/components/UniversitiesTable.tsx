@@ -66,8 +66,20 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
           {offerings.map((o, idx) => {
             const hasMorning = !!o.sessions?.includes("صباحي");
             const hasEvening = !!o.sessions?.includes("مسائي");
-            const morning = formatGrade(o.averageGrades?.["صباحي"], hasMorning, !!o.isDirectAdmission);
-            const evening = formatGrade(o.averageGrades?.["مسائي"], hasEvening, !!o.isDirectAdmission);
+            const morning = admissionCell(
+              o.universityType,
+              hasMorning,
+              !!o.isDirectAdmission,
+              o.averageGrades?.["صباحي"],
+              o.statedMinimumGrade
+            );
+            const evening = admissionCell(
+              o.universityType,
+              hasEvening,
+              !!o.isDirectAdmission,
+              o.averageGrades?.["مسائي"],
+              o.statedMinimumGrade
+            );
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                 {hasMajorColumn && (

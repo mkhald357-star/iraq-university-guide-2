@@ -127,7 +127,13 @@ export default function ExplorerPage() {
                     {p}
                   </option>
                 ))}
+                {UNCOVERED_PROVINCES.map((p) => (
+                  <option key={p} value={p} disabled>
+                    {p} (غير مغطّاة)
+                  </option>
+                ))}
               </select>
+              <p className="mt-1 text-xs text-ink-muted">{UNCOVERED_PROVINCES_REASON}</p>
             </div>
             <div>
               <label className="mb-2 block font-bold" htmlFor="maxCutoff">

@@ -163,25 +163,25 @@ function exportPDF(data: {
     hasMorning: boolean;
     eveningGrade: number | null;
     hasEvening: boolean;
+    isDirectAdmission: boolean;
+    statedMinimumGrade: { value: number } | null;
   }>;
 }) {
-  const formatGrade = (grade: number | null, available: boolean) => {
-    if (!available) return "—";
-    return grade !== null ? `${grade}%` : "قبول مباشر";
-  };
   const uniRows = data.universities
-    .map(
-      (u) => `
+    .map((u) => {
+      const morning = admissionCell(u.uniType, u.hasMorning, u.isDirectAdmission, u.morningGrade, u.statedMinimumGrade);
+      const evening = admissionCell(u.uniType, u.hasEvening, u.isDirectAdmission, u.eveningGrade, u.statedMinimumGrade);
+      return `
       <tr>
         <td>${u.uniName}</td>
         <td>${u.uniType}</td>
         <td>${u.location}</td>
         <td>${u.collegeName}</td>
         <td>${u.departmentName}</td>
-        <td>${formatGrade(u.morningGrade, u.hasMorning)}</td>
-        <td>${formatGrade(u.eveningGrade, u.hasEvening)}</td>
-      </tr>`
-    )
+        <td>${morning.text}</td>
+        <td>${evening.text}</td>
+      </tr>`;
+    })
     .join("");
 
   const pointsList = data.points.map((p) => `<li style="margin-bottom:8px;line-height:1.6">${p}</li>`).join("");

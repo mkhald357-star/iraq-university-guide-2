@@ -101,3 +101,44 @@ describe("findBestAnswer -- data/assistant_knowledge.json الحقيقية: kurd
     }
   });
 });
+
+describe("findBestAnswer -- حارس بنيوي: صنف عطل اختطاف الكلمة المشتركة (data/admission_rules.md §26)", () => {
+  // عطل kurdistan_gap لم يكن حالة معزولة -- أي مدخل تتكرّر فيه كلمة شائعة عبر
+  // النطاق كله (جامعة/كلية/قسم/معدل/تخصص/دراسة/قبول/فرع) ≥2 مرة ضمن كلماته
+  // المفتاحية عرضة لنفس الآلية: تراكم نقاط زائفة لأي سؤال عادي يذكر تلك
+  // الكلمة مرة واحدة فقط. مسح آلي على كامل data/assistant_knowledge.json
+  // (لا فحص يدوي لكل مدخل) وجد 5 مداخل إضافية (cutoffs_meaning،
+  // admin_branch_myth، grade_type، majors_count، universities_count) —
+  // أُصلحت جميعاً، وهذا الاختبار يمنع تكرار الصنف كله مستقبلاً لا الحالات
+  // الست المكتشَفة فقط.
+  const COMMON_WORDS = ["جامعة", "كلية", "قسم", "معدل", "تخصص", "دراسة", "قبول", "فرع"];
+
+  it("لا مدخل يكرّر كلمة شائعة ≥2 مرة ضمن كلماته المفتاحية", () => {
+    const offenders: string[] = [];
+    for (const entry of realKnowledge) {
+      const counts: Record<string, number> = {};
+      for (const kw of entry.keywords) {
+        for (const w of kw.split(/\s+/)) counts[w] = (counts[w] ?? 0) + 1;
+      }
+      const bad = COMMON_WORDS.filter((w) => (counts[w] ?? 0) >= 2);
+      if (bad.length) offenders.push(`${entry.id}: ${bad.join(", ")}`);
+    }
+    expect(offenders).toEqual([]);
+  });
+
+  // فحص انحدار: التخفيف من التكرار لا يجب أن يُفقِد المداخل الخمسة قدرتها
+  // على مطابقة أسئلتها الحقيقية الأصلية (لا مجرد اجتياز الفحص البنيوي أعلاه
+  // بإفراغ الكلمات المفتاحية من المعنى).
+  it("المداخل الخمسة المُصلَحة ما زالت تطابق أسئلتها الأصلية", () => {
+    const cases: Array<[string, string]> = [
+      ["ما معنى الحد الأدنى للقبول؟", "cutoffs_meaning"],
+      ["هل الإدارة فرع دراسي مستقل؟", "admin_branch_myth"],
+      ["ما الفرق بين المعدل المتوقع والمعدل الحقيقي؟", "grade_type"],
+      ["كم عدد التخصصات المتوفرة؟", "majors_count"],
+      ["كم جامعة موجودة في المنصة؟", "universities_count"],
+    ];
+    for (const [q, expectedId] of cases) {
+      expect(findBestAnswer(q, realKnowledge)?.entry.id).toBe(expectedId);
+    }
+  });
+});

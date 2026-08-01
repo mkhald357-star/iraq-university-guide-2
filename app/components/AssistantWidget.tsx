@@ -86,7 +86,7 @@ export function AssistantWidget() {
                 </div>
               </div>
             ))}
-            {messages.length <= 1 && (
+            {(messages.length <= 1 || messages[messages.length - 1]?.text === FALLBACK_REPLY) && (
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {SUGGESTED.map((e) => (
                   <button

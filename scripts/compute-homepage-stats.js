@@ -24,6 +24,13 @@ let privateUniversities = 0;
 let totalColleges = 0;
 let totalDepartments = 0;
 let directAdmissionDepartments = 0;
+// حصراً الحكومي -- isDirectAdmission هناك مؤكَّد ثلاثياً (cutoffs.length===0
+// فعلياً، لا فراغ رقم، انظر §12) فهو "بلا منافسة" حقيقي. الأهلي isDirectAdmission
+// دائماً true بصرف النظر عن نشر حدّ من عدمه (§28) -- ضمّه لنفس الرقم يجعل
+// الادّعاء "بلا حدّ قبول تنافسي" مضلِّلاً لمعظم الأهلي (الحدّ قد يكون منشوراً
+// وغير مُستخرَج بعد، أو غير منشور أصلاً -- لا "لا حدّ" كالحكومي).
+let directAdmissionDepartmentsGov = 0;
+let governmentDepartments = 0;
 const branchCounts = { علمي: 0, أدبي: 0, فنون: 0 };
 
 for (const uni of universities) {
@@ -34,6 +41,10 @@ for (const uni of universities) {
     for (const dept of college.departments) {
       totalDepartments++;
       if (dept.isDirectAdmission) directAdmissionDepartments++;
+      if (uni.type === "حكومية") {
+        governmentDepartments++;
+        if (dept.isDirectAdmission) directAdmissionDepartmentsGov++;
+      }
       for (const b of dept.branch) {
         if (branchCounts[b] !== undefined) branchCounts[b]++;
       }

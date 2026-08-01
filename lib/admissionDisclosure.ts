@@ -4,10 +4,18 @@
  */
 import universitiesMeta from "../data/universities_meta.json";
 
-/** يُقرأ من data/universities_meta.json (academicYear موجود فعلاً هناك،
-    ويُستخدَم أصلاً في app/components/TrustSection.tsx) -- لا يُكتب رقم يدوياً
-    هنا كي لا يتضارب مصدرا حقيقة عند تحديث بيانات عام دراسي جديد. */
-export const ADMISSION_YEAR = (universitiesMeta as { academicYear: string }).academicYear;
+/**
+ * سنة/وثيقة الحدود الدنيا تحديداً -- لا academicYear العام (يمثّل دليل
+ * الطالب، وثيقة مختلفة). يُقرأ من data/universities_meta.json (مُشتقّ هناك
+ * من scripts/admissionSources.js، مصدر الحقيقة الوحيد المُتحقَّق منه بنيوياً
+ * في scripts/validate-data.js). كل عرض لرقم averagePercent/averageGrades
+ * يجب أن يستورد هذا الثابت -- لا يكتب السنة يدوياً (data/admission_rules.md §24).
+ */
+export const CUTOFFS_YEAR = (universitiesMeta as { cutoffsSourceYear: string }).cutoffsSourceYear;
+
+/** اسم وثيقة الحدود الدنيا الكامل -- لعرضه لاحقاً في أي صفحة "عن البيانات"،
+    ولجعل مصدر الرقم مقروءاً لأي مطوّر بلا رجوع لسجلّ القرارات. */
+export const CUTOFFS_DOCUMENT = (universitiesMeta as { cutoffsSourceDocument: string }).cutoffsSourceDocument;
 
 export const ADMISSION_CHANNEL = "القناة العامة";
 

@@ -62,6 +62,8 @@ const stats = {
   totalColleges,
   totalDepartments,
   directAdmissionDepartments,
+  governmentDepartments,
+  directAdmissionDepartmentsGov,
   branchCounts,
 };
 

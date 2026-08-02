@@ -97,6 +97,29 @@ export default function ExplorerPage() {
 
   const hasUnknownBranch = filtered.some((o) => !o.branchKnown);
 
+  // تشخيص الفراغ بالتخفيف التدريجي (data/admission_rules.md §31) -- الفرع
+  // لا يحمل مفهوم "معدّل"/"جلسة" كـ/gpa-check، فالتشخيص مبنيّ محلياً على
+  // فلترتَي المحافظة والحدّ الأقصى فقط، بنفس منطق `filtered` أعلاه تماماً.
+  const emptyDiagnosis: EmptyDiagnosis | null = useMemo(() => {
+    if (filtered.length > 0) return null;
+    if (!offerings.length) return { code: "NO_DATA", relaxable: null, wouldYield: 0, nearest: [] };
+
+    const max = maxCutoff === "" ? null : Number(maxCutoff);
+    if (province) {
+      const n = offerings.filter((o) => max === null || effectiveMinCutoff(o) <= max).length;
+      if (n > 0) return { code: "PROVINCE_TOO_NARROW", relaxable: "province", wouldYield: n, nearest: [] };
+    }
+    if (max !== null) {
+      const n = offerings.filter((o) => !province || o.province === province).length;
+      if (n > 0) return { code: "FILTERS_TOO_NARROW", relaxable: null, wouldYield: n, nearest: [] };
+    }
+    return { code: "NO_DATA", relaxable: null, wouldYield: 0, nearest: [] };
+  }, [filtered, offerings, province, maxCutoff]);
+
+  function relaxFilter(what: "province" | "session") {
+    if (what === "province") setProvince("");
+  }
+
   return (
     <div dir="rtl" className="mx-auto max-w-5xl py-8 space-y-8">
       <div>

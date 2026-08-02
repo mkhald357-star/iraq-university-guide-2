@@ -129,40 +129,48 @@ describe("classifyOffering على بيانات حقيقية (لا وهمية، d
 });
 
 describe("NO_REACHABLE على بيانات حقيقية (فرع علمي، data/admission_rules.md §32)", () => {
-  function classifyAll(grade: number) {
-    const dir = path.join(__dirname, "../public/data/by-branch");
-    const offerings = JSON.parse(
-      fs.readFileSync(path.join(dir, "علمي.json"), "utf8")
-    ) as UniversityOffering[];
+  const dir = path.join(__dirname, "../public/data/by-branch");
+  const allOfferings = JSON.parse(
+    fs.readFileSync(path.join(dir, "علمي.json"), "utf8")
+  ) as UniversityOffering[];
+
+  function classifyAll(grade: number, offerings: UniversityOffering[] = allOfferings) {
     const counts = { safe: 0, close: 0, unknown: 0, reach: 0 };
+    const safeOfferings: UniversityOffering[] = [];
     for (const o of offerings) {
       if (!o.sessions.includes("صباحي")) continue;
       const { band } = classifyOffering({ majorId: "", majorName: "", session: "صباحي", offering: o }, grade);
       counts[band]++;
+      if (band === "safe") safeOfferings.push(o);
     }
-    return counts;
+    return { counts, safeOfferings };
   }
 
-  it("معدّل 45 لا يُنتج مجموعة 'مريح' مليئة بالأهلي -- الحارس ضد العطل الأصلي", () => {
-    const counts = classifyAll(45);
-    // العطل الأصلي: كل الأهلي (98% منه بلا حدّ منشور) كان يُصنَّف safe لأي معدّل.
-    // بعد الإصلاح، safe يجب أن يقتصر على حكومي بقبول مباشر حقيقي + أهلي
-    // بحدّ منشور فعلاً يبلغه معدّل 45 (نادر جداً لمعدّل منخفض كهذا).
-    expect(counts.safe).toBeLessThan(300); // 285 حكومي مباشر + هامش ضئيل جداً
+  it("معدّل 45 لا يُنتج 'مريح' لأي أهلي بلا حدّ منشور -- الحارس ضد العطل الأصلي", () => {
+    // العطل الأصلي: كل الأهلي (98% منه بلا حدّ منشور) كان يُصنَّف safe لأي
+    // معدّل. الـ82 "مريح" الباقية بمعدل 45 حقيقية (حكومي بقبول مباشر مؤكَّد
+    // ثلاثياً، أو أهلي ببلوغ حدّ معلَن فعلاً) -- الفحص: صفر منها أهلي بلا حدّ.
+    const { safeOfferings } = classifyAll(45);
+    const wronglySafe = safeOfferings.filter(
+      (o) => o.universityType === "أهلية" && o.statedMinimumGrade?.value == null
+    );
+    expect(safeOfferings.length).toBeGreaterThan(0); // حكومي مباشر حقيقي موجود
+    expect(wronglySafe).toEqual([]);
   });
 
-  it("معدّل 45 يُفعّل شرط NO_REACHABLE (safe+close === 0 مع وجود نتائج أخرى)", () => {
-    const counts = classifyAll(45);
+  it("NO_REACHABLE تُفعَّل فعلاً حين تُستبعَد كل خيارات القبول المباشر الحكومي (محاكاة فلترة جامعة واحدة)", () => {
+    // فرع علمي كاملاً به دائماً بعض الحكومي المباشر (82 عند معدل 45) -- لإثبات
+    // أن NO_REACHABLE قابلة للتفعيل فعلياً، نحاكي نطاقاً أضيق يخلو منها.
+    const withoutGovDirect = allOfferings.filter((o) => !(o.universityType === "حكومية" && o.isDirectAdmission));
+    const { counts } = classifyAll(45, withoutGovDirect);
     const reachable = counts.safe + counts.close;
     const hasOther = counts.reach > 0 || counts.unknown > 0;
-    // بمعدل منخفض جداً كهذا، الأغلب الساحق تنافسي بحدود أعلى (reach) --
-    // فعلاً نتوقّع reachable=0 أو قريباً منه، مع نتائج أخرى موجودة.
+    expect(reachable).toBe(0);
     expect(hasOther).toBe(true);
-    expect(reachable).toBeLessThanOrEqual(counts.safe); // لا نستنتج close زائفاً
   });
 
   it("معدّل 90 لا يُفعّل NO_REACHABLE -- خيارات مريحة/متقاربة حقيقية موجودة", () => {
-    const counts = classifyAll(90);
+    const { counts } = classifyAll(90);
     expect(counts.safe + counts.close).toBeGreaterThan(0);
   });
 });

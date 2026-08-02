@@ -155,19 +155,19 @@ export default function GpaCheckPage() {
     const gradeNum = Number(grade);
     const currentFilters: GpaCheckFilters = { grade: gradeNum, session, province };
 
-    const next: Record<"safe" | "close" | "reach", ExplorerOffering[]> = { safe: [], close: [], reach: [] };
+    const next: Record<DisplayBand, ExplorerOffering[]> = { safe: [], close: [], unknown: [], reach: [] };
     for (const o of offerings) {
       if (!matchesFilter(o, currentFilters)) continue;
       const sessionsToConsider: StudySession[] = session === "both" ? ["صباحي", "مسائي"] : [session];
       const relevantSessions = sessionsToConsider.filter((s) => o.sessions.includes(s));
       const band = bestBand(o, gradeNum, relevantSessions);
-      if (band === "safe" || band === "close" || band === "reach") next[band].push(o);
+      next[band].push(o);
     }
     // معروف الفرع أولاً داخل كل مجموعة، ثم اسم الجامعة أبجدياً -- لا ترتيب
     // المصدر الخام (كل الحكومي قبل كل الأهلي بنيوياً، يدفن مئات الأقسام
     // الأهلية المعروفة الفرع فعلياً خلف كل الحكومي؛ الأبجدي يوزّعها فعلياً
     // بدل دفنها -- انظر data/admission_rules.md §29).
-    for (const band of ["safe", "close", "reach"] as const) {
+    for (const band of BAND_ORDER) {
       next[band].sort((a, b) => {
         const knownDiff = Number(b.branchKnown) - Number(a.branchKnown);
         if (knownDiff !== 0) return knownDiff;
@@ -176,7 +176,7 @@ export default function GpaCheckPage() {
     }
     setGroups(next);
 
-    const total = next.safe.length + next.close.length + next.reach.length;
+    const total = next.safe.length + next.close.length + next.unknown.length + next.reach.length;
     setEmptyDiagnosis(total === 0 ? diagnoseEmpty(offerings, currentFilters, matchesFilter, reachableOffering) : null);
   }
 

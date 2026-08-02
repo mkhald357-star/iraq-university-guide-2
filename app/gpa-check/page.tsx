@@ -63,9 +63,10 @@ export default function GpaCheckPage() {
   const [session, setSession] = useState<SessionFilter>("both");
 
   const [searched, setSearched] = useState(false);
-  const [groups, setGroups] = useState<Record<"safe" | "close" | "reach", ExplorerOffering[]>>({
+  const [groups, setGroups] = useState<Record<DisplayBand, ExplorerOffering[]>>({
     safe: [],
     close: [],
+    unknown: [],
     reach: [],
   });
   const [emptyDiagnosis, setEmptyDiagnosis] = useState<EmptyDiagnosis | null>(null);

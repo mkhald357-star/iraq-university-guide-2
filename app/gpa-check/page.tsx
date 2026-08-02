@@ -45,8 +45,8 @@ function bestBand(offering: ExplorerOffering, grade: number, sessionsToConsider:
 
 export default function GpaCheckPage() {
   const [branch, setBranch] = useState<Branch | "">("");
-  const [offerings, setOfferings] = useState<ExplorerOffering[]>([]);
-  const [loadingOfferings, setLoadingOfferings] = useState(false);
+  const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
+  const offerings = branchState.status === "ready" ? branchState.data : [];
 
   const [grade, setGrade] = useState("");
   const [province, setProvince] = useState("");
@@ -59,6 +59,7 @@ export default function GpaCheckPage() {
     close: [],
     reach: [],
   });
+  const [emptyDiagnosis, setEmptyDiagnosis] = useState<EmptyDiagnosis | null>(null);
 
   // تعبئة تلقائية من نتيجة اختبار سابقة إن وُجدت -- قابلة للتعديل، وليست إلزامية.
   useEffect(() => {

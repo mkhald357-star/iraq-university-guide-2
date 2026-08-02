@@ -101,6 +101,8 @@ export function EmptyState({
   onRelax: (what: "province" | "session") => void;
   children?: React.ReactNode; // بدائل محسوبة تمرّرها الصفحة
 }) {
+  const pathname = usePathname();
+  const reportIssue = useReportIssue();
   const { code, wouldYield, nearest } = diagnosis;
 
   return (

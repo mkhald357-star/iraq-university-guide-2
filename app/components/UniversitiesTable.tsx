@@ -1,8 +1,11 @@
 // app/components/UniversitiesTable.tsx
 "use client";
 
+import { usePathname } from "next/navigation";
+import { Flag } from "lucide-react";
 import { admissionCell } from "../../lib/admissionLabel";
 import { ChannelBadge } from "./ChannelNotice";
+import { useReportIssue } from "../context/ReportIssueContext";
 import {
   CUTOFFS_YEAR,
   PRIVATE_MIN_HINT,

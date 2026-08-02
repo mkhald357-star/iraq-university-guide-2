@@ -33,6 +33,11 @@ let directAdmissionDepartmentsGov = 0;
 let governmentDepartments = 0;
 const branchCounts = { علمي: 0, أدبي: 0, فنون: 0 };
 
+// حقيقة المسائي (data/admission_rules.md §31): يُحسَب من البيانات دائماً --
+// رقم مصلَّب يتقادم صامتاً (نفس درس "81 تخصصاً" في §26).
+const morningValues = [];
+const eveningValues = [];
+
 for (const uni of universities) {
   if (uni.type === "حكومية") governmentUniversities++;
   else privateUniversities++;
@@ -48,9 +53,16 @@ for (const uni of universities) {
       for (const b of dept.branch) {
         if (branchCounts[b] !== undefined) branchCounts[b]++;
       }
+      if (typeof dept.averageGrades?.["صباحي"] === "number") morningValues.push(dept.averageGrades["صباحي"]);
+      if (typeof dept.averageGrades?.["مسائي"] === "number") eveningValues.push(dept.averageGrades["مسائي"]);
     }
   }
 }
+
+const morningMin = morningValues.length ? Math.min(...morningValues) : null;
+const morningMax = morningValues.length ? Math.max(...morningValues) : null;
+const eveningMin = eveningValues.length ? Math.min(...eveningValues) : null;
+const eveningMax = eveningValues.length ? Math.max(...eveningValues) : null;
 
 const stats = {
   generatedAt: new Date().toISOString(),

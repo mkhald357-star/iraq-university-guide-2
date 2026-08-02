@@ -46,7 +46,10 @@ function bestBand(offering: ExplorerOffering, grade: number, sessionsToConsider:
 export default function GpaCheckPage() {
   const [branch, setBranch] = useState<Branch | "">("");
   const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
-  const offerings = branchState.status === "ready" ? branchState.data : [];
+  const offerings = useMemo(
+    () => (branchState.status === "ready" ? branchState.data : []),
+    [branchState]
+  );
 
   const [grade, setGrade] = useState("");
   const [province, setProvince] = useState("");

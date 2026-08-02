@@ -21,7 +21,14 @@ const BRANCHES: { value: Branch; label: string }[] = [
   { value: "فنون", label: "فنون" },
 ];
 
+// نفس منطق classifyOffering (lib/wishlistPlanner.ts) بالضبط: isDirectAdmission
+// للأهلي لا يعني "بلا حدّ" -- يعني "لا رقم في مصدرنا" (data/admission_rules.md
+// §32). قسم أهلي بشرط معلَن يُقارَن به؛ بلا شرط منشور لا يُفترَض "أقل حدّ ممكن"
+// (Infinity، لا -Infinity -- لا يمرّ فلتر "الحدّ الأقصى" بلا دليل يبرّر ذلك).
 function effectiveMinCutoff(o: ExplorerOffering): number {
+  if (o.universityType === "أهلية") {
+    return o.statedMinimumGrade?.value ?? Infinity;
+  }
   if (o.isDirectAdmission) return -Infinity;
   const values = [o.averageGrades["صباحي"], o.averageGrades["مسائي"]].filter(
     (v): v is number => v !== null

@@ -12,14 +12,9 @@
     color:#fff; display:flex; flex-direction:column;
     justify-content:center; padding:80px; position:relative; overflow:hidden;
   }
-  /* transform لا top/left سالبة عمداً -- القيم السالبة تُوسِّع scrollWidth
-     فعلياً حتى مع overflow:hidden، فتُزيح منطقة التقاط الصورة (اكتُشف فعلياً
-     أثناء بناء هذا القالب -- راجع data/admission_rules.md §33). transform
-     بصري بحت، لا يؤثر على تخطيط الصفحة أو نطاق اللقطة. خصائص فيزيائية
-     (left/top/right/bottom) لا منطقية عمداً -- عنصر زخرفي لا يحتاج مرآة RTL. */
   .orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.35; }
-  .o1 { width:420px; height:420px; background:#2DD4BF; left:0; top:0; transform:translate(-80px,-120px); }
-  .o2 { width:520px; height:520px; background:#0F766E; right:0; bottom:0; transform:translate(120px,180px); }
+  .o1 { width:420px; height:420px; background:#2DD4BF; top:-120px; inset-inline-start:-80px; }
+  .o2 { width:520px; height:520px; background:#0F766E; bottom:-180px; inset-inline-end:-120px; }
   .badge { display:inline-flex; align-items:center; gap:12px; align-self:flex-start;
            border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.10);
            border-radius:999px; padding:10px 22px; font-size:24px; font-weight:700; }

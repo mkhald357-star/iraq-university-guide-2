@@ -84,3 +84,14 @@ export const BRANCH_UNKNOWN_BADGE = "الفرع غير محدَّد";
 export const BRANCH_UNKNOWN_NOTE =
   "دليل الجامعات الأهلية لا يحدّد الفروع المقبولة لهذه الأقسام. " +
   "نعرضها لك في كل الفروع بدل إخفائها — راجع الجامعة للتأكّد من قبول فرعك.";
+
+/**
+ * حقيقة المسائي (data/admission_rules.md §31): المسائي في البيانات محصور
+ * غالباً بنطاق أعلى من الصباحي (اليوم: 56-75% مقابل صباحي 50-101.4%) --
+ * محسوب من data/homepage_stats.json (scripts/compute-homepage-stats.js)،
+ * لا مصلَّباً هنا (رقم مصلَّب يتقادم صامتاً، نفس درس "81 تخصصاً" في §26).
+ */
+export const EVENING_MIN = (homepageStats as { eveningMin: number | null }).eveningMin;
+
+export const eveningFloorNote = (min: number) =>
+  `أدنى حدّ للدراسة المسائية في بياناتنا هو ${min}% — المسائي ليس دائماً أسهل من الصباحي.`;

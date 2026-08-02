@@ -244,6 +244,45 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
   }
 }
 
+// مهن مقنَّنة لا تُقبل بقبول مباشر في الجامعات الحكومية العراقية (الطب/طب
+// الأسنان/الصيدلة تنافسية حصراً بلا استثناء موثَّق -- data/admission_rules.md
+// §30). المطابقة على *اسم القسم* (بعد fixLamAlef) لا اسم الكلية -- مطابقة
+// اسم الكلية بالاحتواء ("طب"/"صيدل") تجرف معها برامج دبلوم تقنية مساندة
+// ("تقنيات الصيدلة"، "المعلوماتية الطبية الحيوية") ليست نفس المهنة المقنَّنة
+// إطلاقاً (اكتُشف فعلياً أثناء بناء هذا الفحص -- راجع §30).
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const REGULATED_DEPARTMENTS = new Set(["الطب", "طب الاسنان", "الصيدلة"]);
+  const exceptions = JSON.parse(
+    fs.readFileSync(path.join(ROOT, "data/direct-admission-exceptions.json"), "utf8")
+  );
+  const exceptionKey = (u, c, d) => `${u}|${c}|${d}`;
+  const allowedExceptions = new Set(
+    exceptions
+      .filter((e) => e.sourceLine && e.verifiedAt) // بلا دليل = غير مسموح كاستثناء
+      .map((e) => exceptionKey(e.university, e.college, e.department))
+  );
+
+  const violations = [];
+  for (const uni of universities) {
+    if (uni.type !== "حكومية") continue;
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        if (!REGULATED_DEPARTMENTS.has(fixLamAlef((dept.name || "").trim()))) continue;
+        if (!dept.isDirectAdmission) continue;
+        if (allowedExceptions.has(exceptionKey(uni.name, college.name, dept.name))) continue;
+        violations.push(`${uni.name} / ${college.name} / ${dept.name}`);
+      }
+    }
+  }
+  if (violations.length) {
+    console.error("[FAIL] قبول مباشر في مهنة مقنَّنة بجامعة حكومية بلا استثناء موثَّق:", violations);
+    hasErrors = true;
+  } else {
+    console.log("[OK] لا قبول مباشر في مهنة مقنَّنة (طب/طب الأسنان/صيدلة) بجامعة حكومية بلا استثناء موثَّق");
+  }
+}
+
 // statedMinimumGrade (data/admission_rules.md §28): شرط معدّل مُعلَن مسبقاً
 // في دليل الجامعات الأهلية -- حصراً للأقسام الأهلية (لا حكومية، تلك أرقام
 // نتائج بأثر رجعي في averageGrades لا شروطاً معلَنة)، وبقيمة منطقية (٤٠-١٠٠،

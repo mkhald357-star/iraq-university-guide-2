@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: 'Cairo';
+    src: local('Cairo');
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1200px; height:630px;
+    font-family:'Cairo','Segoe UI',Tahoma,sans-serif;
+    background:linear-gradient(135deg,#0D9488 0%,#134E4A 100%);
+    color:#fff; display:flex; flex-direction:column;
+    justify-content:center; padding:80px; position:relative; overflow:hidden;
+  }
+  .orb { position:absolute; border-radius:50%; filter:blur(60px); opacity:.35; }
+  .o1 { width:420px; height:420px; background:#2DD4BF; top:-120px; inset-inline-start:-80px; }
+  .o2 { width:520px; height:520px; background:#0F766E; bottom:-180px; inset-inline-end:-120px; }
+  .badge { display:inline-flex; align-items:center; gap:12px; align-self:flex-start;
+           border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.10);
+           border-radius:999px; padding:10px 22px; font-size:24px; font-weight:700; }
+  .dot { width:12px; height:12px; border-radius:50%; background:#5EEAD4; }
+  h1 { font-size:76px; font-weight:900; line-height:1.25; margin-top:34px; max-width:900px; }
+  p  { font-size:32px; font-weight:400; opacity:.88; margin-top:24px; max-width:820px; line-height:1.6; }
+  .stats { display:flex; gap:56px; margin-top:52px; }
+  .n { font-size:52px; font-weight:900; }
+  .l { font-size:22px; opacity:.75; margin-top:6px; }
+</style>
+</head>
+<body>
+  <span class="orb o1"></span><span class="orb o2"></span>
+  <span class="badge"><span class="dot"></span>بيانات رسمية من وزارة التعليم العالي</span>
+  <h1 id="title"></h1>
+  <p id="desc"></p>
+  <div class="stats" id="stats"></div>
+</body>
+</html>

@@ -296,6 +296,9 @@ export default function GpaCheckPage() {
               </button>
             ))}
           </div>
+          {EVENING_MIN != null && Number(grade) > 0 && Number(grade) < EVENING_MIN && (
+            <p className="mt-2 text-xs text-ink-muted">{eveningFloorNote(EVENING_MIN)}</p>
+          )}
         </div>
 
         <div className="flex items-end sm:col-span-2">

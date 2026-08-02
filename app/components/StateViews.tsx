@@ -1,5 +1,7 @@
 "use client";
+import { usePathname } from "next/navigation";
 import type { DataFetchError, EmptyDiagnosis } from "../../lib/viewState";
+import { useReportIssue } from "../context/ReportIssueContext";
 
 /* ═══ التحميل: هيكل يطابق شكل المحتوى، لا دوّار (نفس نمط Shimmer في
    app/report/page.tsx) ═══ */

@@ -1,5 +1,9 @@
 import { describe, it, expect } from "vitest";
 import { diagnoseEmpty, type GpaCheckFilters } from "./emptyDiagnosis";
+import { classifyOffering } from "./wishlistPlanner";
+import { toUniversityOffering, type ExplorerOffering } from "./offeringsClient";
+import scientificOfferings from "../public/data/by-branch/علمي.json";
+import unknownOfferings from "../public/data/by-branch/unknown.json";
 
 interface Offering {
   province: string;

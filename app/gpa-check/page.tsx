@@ -272,6 +272,11 @@ export default function GpaCheckPage() {
             </p>
           ) : (
             <div className="space-y-4">
+              {hasUnknownBranch && (
+                <p className="rounded-xl border border-line bg-surface-muted p-3 text-xs text-ink-muted">
+                  {BRANCH_UNKNOWN_NOTE}
+                </p>
+              )}
               {(["safe", "close", "reach"] as const).map((band) => {
                 const list = groups[band];
                 if (list.length === 0) return null;

@@ -18,7 +18,7 @@
     "extract-pdf-text": "node scripts/extract-pdf-text.js",
     "parse-cutoffs": "node scripts/parse-cutoffs.js",
     "parse-evening-study": "node scripts/parse-evening-study.js",
-    "build-universities-data": "node scripts/build-universities-data.js",
+    "build-universities-data": "node scripts/build-universities-data.js && node scripts/derive-private-branches.js",
     "build-major-offerings": "node scripts/build-major-offerings.js",
     "build-major-profiles": "node scripts/build-major-profiles.js",
     "compute-homepage-stats": "node scripts/compute-homepage-stats.js",

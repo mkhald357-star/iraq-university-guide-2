@@ -73,8 +73,15 @@ export default function ExplorerPage() {
         if (max !== null && effectiveMinCutoff(o) > max) return false;
         return true;
       })
-      // معروف الفرع أولاً -- غير المعروف (كل الأهلي اليوم، §29) متاح بعده لا مخفياً.
-      .sort((a, b) => Number(b.branchKnown) - Number(a.branchKnown));
+      .sort((a, b) => {
+        // معروف الفرع أولاً -- غير المعروف متاح بعده لا مخفياً (§29). ثانياً
+        // اسم الجامعة أبجدياً -- لا ترتيب المصدر الخام (كل الحكومي مذكور قبل
+        // كل الأهلي فيه بنيوياً، فيدفن آلاف الأقسام الأهلية المعروفة الفرع
+        // فعلياً خلف كل الحكومي أولاً؛ الأبجدي يوزّعها فعلياً بدل دفنها).
+        const knownDiff = Number(b.branchKnown) - Number(a.branchKnown);
+        if (knownDiff !== 0) return knownDiff;
+        return a.universityName.localeCompare(b.universityName, "ar");
+      });
   }, [offerings, province, maxCutoff]);
 
   const hasUnknownBranch = filtered.some((o) => !o.branchKnown);

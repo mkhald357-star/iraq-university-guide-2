@@ -75,6 +75,59 @@ describe("classifyOffering", () => {
   });
 });
 
+describe("classifyOffering -- الأهلي (data/admission_rules.md §32)", () => {
+  it("أهلي بلا حدّ منشور ⇒ unknown لا safe -- رغم isDirectAdmission=true دائماً", () => {
+    const w = makeWish({ universityType: "أهلية", isDirectAdmission: true, statedMinimumGrade: null });
+    const result = classifyOffering(w, 45);
+    expect(result.band).toBe("unknown");
+    expect(result.cutoff).toBeNull();
+  });
+
+  it("أهلي بحدّ منشور يُقارَن بالمعدل كالحكومي تماماً", () => {
+    const w = makeWish({
+      universityType: "أهلية",
+      isDirectAdmission: true,
+      statedMinimumGrade: { value: 90, raw: "معدل (90)%", source: "s", sourceYear: "2025-2026" },
+    });
+    expect(classifyOffering(w, 95).band).toBe("safe");
+    expect(classifyOffering(w, 85).band).toBe("reach");
+  });
+
+  it("حكومي بقبول مباشر يبقى safe -- لا انحدار عن السلوك القديم", () => {
+    const w = makeWish({ universityType: "حكومية", isDirectAdmission: true });
+    expect(classifyOffering(w, 50).band).toBe("safe");
+  });
+
+  it("unknown لا تُحتسَب رغبة آمنة في NO_SAFETY_NET", () => {
+    const wishes = [
+      makeWish({ universityType: "أهلية", isDirectAdmission: true, statedMinimumGrade: null }),
+      makeWish({ universityType: "أهلية", isDirectAdmission: true, statedMinimumGrade: null }),
+    ];
+    const result = analyzeWishlist(wishes, 70);
+    expect(result.counts.safe).toBe(0);
+    expect(result.diagnostics.some((d) => d.code === "NO_SAFETY_NET")).toBe(true);
+  });
+});
+
+describe("classifyOffering على بيانات حقيقية (لا وهمية، data/admission_rules.md §32)", () => {
+  it("عروض أهلية حقيقية بلا حدّ منشور تُصنَّف unknown -- لا safe", () => {
+    const dir = path.join(__dirname, "../public/data/by-branch");
+    let checked = 0;
+    let wronglySafe = 0;
+    for (const f of fs.readdirSync(dir)) {
+      const offerings = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as UniversityOffering[];
+      for (const o of offerings) {
+        if (o.universityType !== "أهلية" || o.statedMinimumGrade?.value != null) continue;
+        checked++;
+        const result = classifyOffering({ majorId: "", majorName: "", session: "صباحي", offering: o }, 99);
+        if (result.band === "safe") wronglySafe++;
+      }
+    }
+    expect(checked).toBeGreaterThan(0);
+    expect(wronglySafe).toBe(0);
+  });
+});
+
 describe("analyzeWishlist -- التشخيصات", () => {
   it("يرفع تحذير 'غياب شبكة الأمان' عندما تقل الرغبات المريحة عن الحد الأدنى", () => {
     const wishes = [

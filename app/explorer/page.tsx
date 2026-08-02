@@ -167,6 +167,12 @@ export default function ExplorerPage() {
             {filtered.length.toLocaleString("ar-IQ")} قسماً من أصل {offerings.length.toLocaleString("ar-IQ")}
           </p>
 
+          {hasUnknownBranch && (
+            <p className="rounded-xl border border-line bg-surface-muted p-3 text-xs text-ink-muted">
+              {BRANCH_UNKNOWN_NOTE}
+            </p>
+          )}
+
           {filtered.length === 0 ? (
             <p className="text-center text-ink-muted">لا توجد أقسام مطابقة لهذه الفلاتر.</p>
           ) : (

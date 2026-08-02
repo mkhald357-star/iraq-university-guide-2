@@ -240,7 +240,7 @@ export default function GpaCheckPage() {
         }
       }
       setNoReachable({
-        code: "NO_REACHABLE" as EmptyDiagnosis["code"],
+        code: "NO_REACHABLE",
         relaxable,
         wouldYield,
         nearest: nearestByGap(next.reach, gradeNum, 5),

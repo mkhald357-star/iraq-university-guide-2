@@ -5,6 +5,37 @@
  */
 
 import type { UniversityOffering, StatedMinimumGrade } from "./majorMatcher";
+import { DataFetchError } from "./viewState";
+
+const DEFAULT_TIMEOUT_MS = 12_000;
+
+/**
+ * جلب مُصلَّب بمهلة إلزامية -- بلا AbortController، شبكة متقطّعة تُبقي
+ * الطالب أمام دوّار تحميل إلى الأبد (data/admission_rules.md §31).
+ */
+export async function fetchJSON<T>(url: string, timeoutMs = DEFAULT_TIMEOUT_MS): Promise<T> {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  try {
+    const res = await fetch(url, { signal: controller.signal });
+
+    if (res.status === 404) throw new DataFetchError("notFound", url);
+    if (!res.ok) throw new DataFetchError("network", url, `HTTP ${res.status}`);
+
+    try {
+      return (await res.json()) as T;
+    } catch {
+      throw new DataFetchError("parse", url);
+    }
+  } catch (e) {
+    if (e instanceof DataFetchError) throw e;
+    if ((e as Error)?.name === "AbortError") throw new DataFetchError("timeout", url);
+    throw new DataFetchError("network", url, (e as Error)?.message);
+  } finally {
+    clearTimeout(timer);
+  }
+}
 
 // فئات التخصصات المسموحة لكل فرع دراسي -- تُستخدَم لحساب "أقرب البدائل"/
 // "بدائل مريحة" عند عدم أهلية أو عدم كفاية التخصص الأساسي (TASKS.md المهمة ٣).

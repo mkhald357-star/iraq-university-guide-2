@@ -51,6 +51,8 @@ function cellTitle(tone: string) {
 }
 
 export default function UniversitiesTable({ offerings }: UniversitiesTableProps) {
+  const pathname = usePathname();
+  const reportIssue = useReportIssue();
   const hasAnyDirectAdmission = offerings.some((o) => o.universityType !== "أهلية" && o.isDirectAdmission);
   const hasAnyPrivate = offerings.some((o) => o.universityType === "أهلية");
   const hasMajorColumn = offerings.some((o) => !!o.majorName);

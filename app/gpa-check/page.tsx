@@ -119,9 +119,16 @@ export default function GpaCheckPage() {
       const band = bestBand(o, gradeNum, relevantSessions);
       if (band === "safe" || band === "close" || band === "reach") next[band].push(o);
     }
-    // معروف الفرع أولاً داخل كل مجموعة -- غير المعروف (كل الأهلي اليوم، §29) متاح بعده لا مخفياً.
+    // معروف الفرع أولاً داخل كل مجموعة، ثم اسم الجامعة أبجدياً -- لا ترتيب
+    // المصدر الخام (كل الحكومي قبل كل الأهلي بنيوياً، يدفن مئات الأقسام
+    // الأهلية المعروفة الفرع فعلياً خلف كل الحكومي؛ الأبجدي يوزّعها فعلياً
+    // بدل دفنها -- انظر data/admission_rules.md §29).
     for (const band of ["safe", "close", "reach"] as const) {
-      next[band].sort((a, b) => Number(b.branchKnown) - Number(a.branchKnown));
+      next[band].sort((a, b) => {
+        const knownDiff = Number(b.branchKnown) - Number(a.branchKnown);
+        if (knownDiff !== 0) return knownDiff;
+        return a.universityName.localeCompare(b.universityName, "ar");
+      });
     }
     setGroups(next);
   }

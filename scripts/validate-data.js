@@ -214,6 +214,35 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
   }
 }
 
+// تغطية الفرع (data/admission_rules.md §29): قسم بمصفوفة branch فارغة يختفي
+// بنيوياً من by-branch/{علمي,أدبي,فنون}.json (المستكشف/فاحص المعدل) ما لم
+// يُوسَم صراحة "unknown" ليُلتقَط عبر by-branch/unknown.json بدلاً منها --
+// وإلا فهو قسم مفقود صامتاً لا مجهول الفرع مُعلَناً.
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const badBranchSource = [];
+  for (const uni of universities) {
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        if (!dept.branchSource) {
+          badBranchSource.push(`${uni.name}/${college.name}/${dept.name}: بلا branchSource`);
+          continue;
+        }
+        const hasBranch = (dept.branch || []).length > 0;
+        if (!hasBranch && dept.branchSource !== "unknown") {
+          badBranchSource.push(`${uni.name}/${college.name}/${dept.name}: بلا فرع وبلا وسم unknown (branchSource=${dept.branchSource})`);
+        }
+      }
+    }
+  }
+  if (badBranchSource.length) {
+    console.error("[FAIL] تغطية فرع غير صالحة:", badBranchSource);
+    hasErrors = true;
+  } else {
+    console.log("[OK] كل قسم يحمل branchSource صريحاً، ولا قسم بلا فرع بلا وسم unknown");
+  }
+}
+
 // statedMinimumGrade (data/admission_rules.md §28): شرط معدّل مُعلَن مسبقاً
 // في دليل الجامعات الأهلية -- حصراً للأقسام الأهلية (لا حكومية، تلك أرقام
 // نتائج بأثر رجعي في averageGrades لا شروطاً معلَنة)، وبقيمة منطقية (٤٠-١٠٠،

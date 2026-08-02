@@ -56,22 +56,34 @@ const FAILURE_TEXT: Record<string, { title: string; body: string }> = {
 };
 
 export function ErrorState({ error, onRetry }: { error: DataFetchError; onRetry: () => void }) {
+  const pathname = usePathname();
+  const reportIssue = useReportIssue();
   const t = FAILURE_TEXT[error.kind] ?? FAILURE_TEXT.unknown;
   return (
     <div dir="rtl" role="alert" className="mt-6 rounded-md border border-line bg-surface-subtle p-6 text-center">
       <p className="text-lg font-extrabold text-ink">{t.title}</p>
       <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-ink-soft">{t.body}</p>
-      <button
-        type="button"
-        onClick={onRetry}
-        className="mt-5 rounded-md px-6 py-2.5 text-sm font-bold text-white
-                   transition-transform duration-200 hover:-translate-y-0.5
-                   focus-visible:outline focus-visible:outline-2
-                   focus-visible:outline-offset-2 focus-visible:outline-primary-600"
-        style={{ background: "var(--g-primary)" }}
-      >
-        حاول مرة ثانية
-      </button>
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-3">
+        <button
+          type="button"
+          onClick={onRetry}
+          className="rounded-md px-6 py-2.5 text-sm font-bold text-white
+                     transition-transform duration-200 hover:-translate-y-0.5
+                     focus-visible:outline focus-visible:outline-2
+                     focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+          style={{ background: "var(--g-primary)" }}
+        >
+          حاول مرة ثانية
+        </button>
+        <button
+          type="button"
+          onClick={() => reportIssue({ page: pathname, shownValue: `فشل جلب: ${error.kind}` })}
+          className="rounded-md border border-line px-5 py-2.5 text-sm font-bold text-ink-soft
+                     transition-colors duration-200 hover:bg-surface-muted"
+        >
+          بلّغ عن المشكلة
+        </button>
+      </div>
     </div>
   );
 }

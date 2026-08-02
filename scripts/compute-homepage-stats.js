@@ -77,6 +77,10 @@ const stats = {
   governmentDepartments,
   directAdmissionDepartmentsGov,
   branchCounts,
+  morningMin,
+  morningMax,
+  eveningMin,
+  eveningMax,
 };
 
 fs.writeFileSync(path.join(ROOT, "data/homepage_stats.json"), JSON.stringify(stats, null, 2) + "\n", "utf8");

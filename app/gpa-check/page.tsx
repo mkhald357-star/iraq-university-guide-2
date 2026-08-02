@@ -219,6 +219,35 @@ export default function GpaCheckPage() {
 
     const total = next.safe.length + next.close.length + next.unknown.length + next.reach.length;
     setEmptyDiagnosis(total === 0 ? diagnoseEmpty(offerings, currentFilters, matchesFilter, reachableOffering) : null);
+
+    // NO_REACHABLE: نتائج موجودة (طموح/بلا حدّ منشور) لكن صفر مريح ومتقارب.
+    const reachableCount = next.safe.length + next.close.length;
+    if (total > 0 && reachableCount === 0) {
+      let relaxable: "province" | "session" | null = null;
+      let wouldYield = 0;
+      if (province) {
+        const n = countReachable({ ...currentFilters, province: "" });
+        if (n > 0) {
+          relaxable = "province";
+          wouldYield = n;
+        }
+      }
+      if (!relaxable && session !== "both") {
+        const n = countReachable({ ...currentFilters, session: "both" });
+        if (n > 0) {
+          relaxable = "session";
+          wouldYield = n;
+        }
+      }
+      setNoReachable({
+        code: "NO_REACHABLE" as EmptyDiagnosis["code"],
+        relaxable,
+        wouldYield,
+        nearest: nearestByGap(next.reach, gradeNum, 5),
+      });
+    } else {
+      setNoReachable(null);
+    }
   }
 
   function relaxFilter(what: "province" | "session") {

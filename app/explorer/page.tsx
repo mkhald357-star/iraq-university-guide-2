@@ -32,7 +32,10 @@ function effectiveMinCutoff(o: ExplorerOffering): number {
 export default function ExplorerPage() {
   const [branch, setBranch] = useState<Branch | "">("");
   const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
-  const offerings = branchState.status === "ready" ? branchState.data : [];
+  const offerings = useMemo(
+    () => (branchState.status === "ready" ? branchState.data : []),
+    [branchState]
+  );
 
   const [province, setProvince] = useState("");
   const [maxCutoff, setMaxCutoff] = useState("");

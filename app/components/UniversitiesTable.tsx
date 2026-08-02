@@ -105,7 +105,14 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 </td>
                 <td className="border px-3 py-2">{o.province ?? "—"}</td>
                 <td className="border px-3 py-2">{o.collegeName}</td>
-                <td className="border px-3 py-2">{o.departmentName ?? "—"}</td>
+                <td className="border px-3 py-2">
+                  {o.departmentName ?? "—"}
+                  {o.branchKnown === false && (
+                    <span className="ms-2 rounded-full bg-surface-muted px-2 py-0.5 text-xs font-bold text-ink-muted">
+                      {BRANCH_UNKNOWN_BADGE}
+                    </span>
+                  )}
+                </td>
                 <td className={`border px-3 py-2 ${cellClass(morning.tone)}`}>
                   <span title={cellTitle(morning.tone)}>{morning.text}</span>
                 </td>

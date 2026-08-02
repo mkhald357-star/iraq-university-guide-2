@@ -3,6 +3,8 @@ import { Cairo } from "next/font/google";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AssistantWidget } from "./components/AssistantWidget";
+import SiteFooter from "./components/SiteFooter";
+import { ReportIssueProvider } from "./context/ReportIssueContext";
 import {
   SITE_URL,
   SITE_NAME,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-01T23:58:16.464Z",
+  "generatedAt": "2026-08-02T00:18:39.569Z",
   "totalMajors": 88,
   "totalUniversities": 121,
   "governmentUniversities": 36,
@@ -11,8 +11,8 @@
   "governmentDepartments": 1749,
   "directAdmissionDepartmentsGov": 285,
   "branchCounts": {
-    "علمي": 1747,
-    "أدبي": 701,
-    "فنون": 112
+    "علمي": 2659,
+    "أدبي": 1048,
+    "فنون": 265
   }
 }

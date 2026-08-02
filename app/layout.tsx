@@ -3,6 +3,14 @@ import { Cairo } from "next/font/google";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AssistantWidget } from "./components/AssistantWidget";
+import {
+  SITE_URL,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_DESCRIPTION,
+  OG_IMAGE_PATH,
+  OG_IMAGE_ALT,
+} from "../lib/siteMeta";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -11,17 +19,35 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "منصة التوجيه الجامعي العراقي",
-  description: "اكتشف التخصص الجامعي الذي يناسب قدراتك ويضمن لك وظيفة في السوق العراقي.",
+  // 🔴 إلزامي: بدونه تصبح روابط og:image نسبية فلا تُقرأ عند المشاركة
+  // (data/admission_rules.md §33). SITE_URL نائبة حتى يُحسَم النطاق الفعلي.
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    template: `%s · ${SITE_NAME}`,
+  },
+  description: SITE_DESCRIPTION,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
   // بلا هذا، مشاركة رابط المنصة عبر واتساب/تيليجرام/فيسبوك (أكثر قنوات
   // المشاركة شيوعاً لهذا النوع من المحتوى محلياً) تعرض معاينة فارغة بلا
-  // عنوان أو وصف. لا يوجد og:image بعد لغياب أي أصل صورة جاهز في المشروع.
+  // عنوان أو وصف أو صورة.
   openGraph: {
-    title: "منصة التوجيه الجامعي العراقي",
-    description: "اكتشف التخصص الجامعي الذي يناسب قدراتك ويضمن لك وظيفة في السوق العراقي.",
-    locale: "ar_IQ",
     type: "website",
+    locale: "ar_IQ",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    url: SITE_URL,
+    images: [{ url: OG_IMAGE_PATH, width: 1200, height: 630, alt: OG_IMAGE_ALT }],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE_PATH],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

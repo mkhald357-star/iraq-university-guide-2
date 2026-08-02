@@ -216,7 +216,7 @@ export default function ExplorerPage() {
           )}
 
           {filtered.length === 0 ? (
-            <p className="text-center text-ink-muted">لا توجد أقسام مطابقة لهذه الفلاتر.</p>
+            emptyDiagnosis && <EmptyState diagnosis={emptyDiagnosis} grade={0} onRelax={relaxFilter} />
           ) : (
             <PaginatedOfferingsTable offerings={filtered} />
           )}

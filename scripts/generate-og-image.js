@@ -10,6 +10,7 @@
 const fs = require("fs");
 const path = require("path");
 const { chromium } = require("playwright");
+const sharp = require("sharp");
 
 const ROOT = path.join(__dirname, "..");
 const OUT_DIR = path.join(ROOT, "public", "og");

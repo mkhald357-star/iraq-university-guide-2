@@ -127,6 +127,27 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 <td className={`border px-3 py-2 ${cellClass(evening.tone)}`}>
                   <span title={cellTitle(evening.tone)}>{evening.text}</span>
                 </td>
+                <td className="border px-2 py-2 text-center">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      reportIssue({
+                        page: pathname,
+                        university: o.universityName,
+                        college: o.collegeName,
+                        department: o.departmentName,
+                        shownValue: `صباحي: ${morning.text} · مسائي: ${evening.text}`,
+                      })
+                    }
+                    aria-label={`بلّغ عن خطأ في ${o.departmentName ?? o.collegeName}`}
+                    title="بلّغ عن خطأ"
+                    className="rounded-sm p-1.5 text-ink-muted opacity-60
+                               transition-opacity duration-200 hover:text-band-reach hover:opacity-100
+                               focus-visible:opacity-100"
+                  >
+                    <Flag className="h-3.5 w-3.5" />
+                  </button>
+                </td>
               </tr>
             );
           })}

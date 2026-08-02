@@ -221,9 +221,15 @@ export function EmptyState({
       {code === "NO_DATA" && (
         <>
           <p className="font-extrabold text-ink">ما وصلتنا بيانات</p>
-          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-            هذا خلل عندنا لا عندك. حاول تحديث الصفحة، وإذا تكرّر بلّغنا عنه.
-          </p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">هذا خلل عندنا لا عندك. حاول تحديث الصفحة.</p>
+          <button
+            type="button"
+            onClick={() => reportIssue({ page: pathname, shownValue: "NO_DATA" })}
+            className="mt-4 rounded-md border border-line px-5 py-2.5 text-sm font-bold text-ink-soft
+                       transition-colors duration-200 hover:bg-surface-muted"
+          >
+            بلّغ عن المشكلة
+          </button>
         </>
       )}
     </div>

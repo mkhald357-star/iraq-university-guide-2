@@ -52,7 +52,11 @@ const DESC =
   await page.waitForTimeout(400); // ضمان رسم الخط بعد جهوزية document.fonts
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  await page.screenshot({ path: OUT, type: "png" });
+  // clip صريح إلزامي -- عناصر الزخرفة (.orb) ذات الإزاحة السالبة تُوسِّع نطاق
+  // اللقطة التلقائي رغم overflow:hidden (اكتُشف فعلياً أثناء بناء هذا
+  // السكربت: بلا clip، اللقطة تُزاح ١٢٠ بكسل والنصّ يخرج عن الإطار -- راجع
+  // data/admission_rules.md §33). تحديد المنطقة صراحة يتجاوز هذا العطل كلياً.
+  await page.screenshot({ path: OUT, type: "png", clip: { x: 0, y: 0, width: 1200, height: 630 } });
   await browser.close();
 
   const kb = fs.statSync(OUT).size / 1024;

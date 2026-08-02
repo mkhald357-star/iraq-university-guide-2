@@ -3,6 +3,7 @@
  * أي مكوّن -- استوردها من هنا.
  */
 import universitiesMeta from "../data/universities_meta.json";
+import homepageStats from "../data/homepage_stats.json";
 
 /**
  * سنة/وثيقة الحدود الدنيا تحديداً -- لا academicYear العام (يمثّل دليل

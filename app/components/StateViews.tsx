@@ -134,6 +134,47 @@ export function EmptyState({
         </>
       )}
 
+      {code === "NO_REACHABLE" && (
+        <>
+          <p className="font-extrabold text-ink">بمعدّل {grade}% ما في خيار ضمن متناولك بالفلاتر الحالية</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            النتائج تحت هذي البطاقة كلها حدودها أعلى من معدّلك — نعرضها لك للاطّلاع.
+          </p>
+
+          {(diagnosis.relaxable === "province" || diagnosis.relaxable === "session") && wouldYield > 0 && (
+            <button
+              type="button"
+              onClick={() => onRelax(diagnosis.relaxable as "province" | "session")}
+              className="mt-4 rounded-md px-5 py-2.5 text-sm font-bold text-white"
+              style={{ background: "var(--g-primary)" }}
+            >
+              {diagnosis.relaxable === "province" ? "شوف كل المحافظات" : "شوف الصباحي والمسائي"} ({wouldYield})
+            </button>
+          )}
+
+          {nearest.length > 0 && (
+            <div className="mt-4">
+              <p className="text-sm font-bold text-ink-soft">أقرب الخيارات الطموحة وفارقها عن معدّلك:</p>
+              <ul className="mt-2 grid gap-1.5">
+                {nearest.map((n, i) => (
+                  <li
+                    key={i}
+                    className="flex items-center justify-between gap-3 rounded-sm bg-surface px-3 py-2 text-sm"
+                  >
+                    <span className="truncate text-ink">
+                      {(n.offering as any).departmentName} — {(n.offering as any).universityName}
+                    </span>
+                    <span className="shrink-0 font-bold text-band-close">فارق {n.gap.toFixed(1)}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {children}
+        </>
+      )}
+
       {code === "GRADE_BELOW_ALL" && (
         <>
           <p className="font-extrabold text-ink">بمعدّل {grade}% ما وصلنا لخيار ضمن الفلاتر الحالية</p>

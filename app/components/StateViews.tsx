@@ -75,7 +75,7 @@ export function ErrorState({ error, onRetry }: { error: DataFetchError; onRetry:
 }
 
 /* ═══ الفراغ: أهم مكوّن في الحزمة -- راجع data/admission_rules.md §31 لقواعد
-   النبرة (لا "لا يوجد شيء يناسبك"، لا اعتذار، لا نصيحة بلا فائدة) ═══ */
+   النبرة (لا حكم على الطالب، لا اعتذار، لا نصيحة بلا فائدة) ═══ */
 export function EmptyState({
   diagnosis,
   grade,

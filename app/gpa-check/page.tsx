@@ -143,11 +143,49 @@ export default function GpaCheckPage() {
     return relevantSessions.length > 0;
   }
 
+  // فارق موحَّد (حكومي بحدّ حقيقي، أو أهلي بشرط معلَن) -- cutoff - grade
+  // (موجب = غير مبلوغ بعد). قسم أهلي بلا شرط منشور يُستبعَد من الحساب (Infinity)
+  // لأن لا رقم نقارن به أصلاً -- لا نخترعه.
   function reachableOffering(o: ExplorerOffering, grade: number, sess: "صباحي" | "مسائي") {
+    if (o.universityType === "أهلية") {
+      const min = o.statedMinimumGrade?.value;
+      if (min == null) return { ok: false, gap: Infinity };
+      return { ok: grade >= min, gap: min - grade };
+    }
     if (o.isDirectAdmission) return { ok: true, gap: -Infinity };
     const cutoff = o.averageGrades[sess];
     if (cutoff == null) return { ok: false, gap: Infinity };
     return { ok: grade >= cutoff, gap: cutoff - grade };
+  }
+
+  // أقرب الخيارات "الطموحة" بفارقها -- تُستعمَل في بطاقة NO_REACHABLE.
+  function nearestByGap(list: ExplorerOffering[], grade: number, limit: number) {
+    const sessions: Array<"صباحي" | "مسائي"> = session === "both" ? ["صباحي", "مسائي"] : [session as "صباحي" | "مسائي"];
+    return list
+      .map((o) => {
+        const best = sessions
+          .map((s) => reachableOffering(o, grade, s))
+          .filter((r) => Number.isFinite(r.gap))
+          .sort((a, b) => a.gap - b.gap)[0];
+        return best ? { offering: o, gap: best.gap } : null;
+      })
+      .filter((x): x is { offering: ExplorerOffering; gap: number } => x !== null)
+      .sort((a, b) => a.gap - b.gap)
+      .slice(0, limit);
+  }
+
+  // هل رفع فلتر (محافظة ثم جلسة) يُنتج خياراً مريحاً/متقارباً فعلياً؟ --
+  // لا نقترح رفع فلتر بلا wouldYield > 0 (نفس قاعدة diagnoseEmpty في §31).
+  function countReachable(f: GpaCheckFilters): number {
+    let n = 0;
+    for (const o of offerings) {
+      if (!matchesFilter(o, f)) continue;
+      const sessionsToConsider: StudySession[] = f.session === "both" ? ["صباحي", "مسائي"] : [f.session];
+      const relevant = sessionsToConsider.filter((s) => o.sessions.includes(s));
+      const band = bestBand(o, f.grade, relevant);
+      if (band === "safe" || band === "close") n++;
+    }
+    return n;
   }
 
   function handleSubmit(e: React.FormEvent) {

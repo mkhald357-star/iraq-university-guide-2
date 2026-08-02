@@ -141,7 +141,13 @@ for (const f of fs.readdirSync(BRANCH_OUT_DIR)) {
   if (f.endsWith(".json")) fs.unlinkSync(path.join(BRANCH_OUT_DIR, f));
 }
 
-const branchRecords = Object.fromEntries(BRANCHES.map((b) => [b, []]));
+// قسم بمصفوفة branch فارغة (كل الأقسام الأهلية اليوم -- الدليل الرسمي لا
+// يذكر الفرع إطلاقاً، تحقَّق مباشرةً في data/admission_rules.md §29) لا
+// يُكتَب في أي من ملفات الثلاثة أعلاه فيختفي بنيوياً من /explorer وgpa-check.
+// ملف رابع منفصل (لا تكرار في الثلاثة -- يضخّم كل ملف بلا داعٍ) يجمعها
+// موسومةً branchKnown:false، يُجلَب مرة ويُدمَج مع أي فرع (lib/offeringsClient.ts).
+const UNKNOWN_BRANCH_KEY = "unknown";
+const branchRecords = Object.fromEntries([...BRANCHES, UNKNOWN_BRANCH_KEY].map((b) => [b, []]));
 for (const uni of universities) {
   for (const college of uni.colleges) {
     for (const dept of college.departments) {
@@ -164,7 +170,12 @@ for (const uni of universities) {
         averageGrades: dept.averageGrades,
         isDirectAdmission: dept.isDirectAdmission,
         statedMinimumGrade: dept.statedMinimumGrade ?? null,
+        branchKnown: dept.branch.length > 0,
       };
+      if (dept.branch.length === 0) {
+        branchRecords[UNKNOWN_BRANCH_KEY].push(record);
+        continue;
+      }
       for (const b of dept.branch) {
         if (branchRecords[b]) branchRecords[b].push(record);
       }
@@ -173,7 +184,7 @@ for (const uni of universities) {
 }
 
 let branchTotalBytes = 0;
-for (const b of BRANCHES) {
+for (const b of [...BRANCHES, UNKNOWN_BRANCH_KEY]) {
   const json = JSON.stringify(branchRecords[b]);
   fs.writeFileSync(path.join(BRANCH_OUT_DIR, `${b}.json`), json, "utf8");
   branchTotalBytes += json.length;

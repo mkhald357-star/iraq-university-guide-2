@@ -6,6 +6,8 @@ import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
 import { ChannelNotice } from "../components/ChannelNotice";
+import { ResultsSkeleton, ErrorState, EmptyState } from "../components/StateViews";
+import type { ViewState, DataFetchError, EmptyDiagnosis } from "../../lib/viewState";
 import {
   CUTOFFS_YEAR,
   UNCOVERED_PROVINCES,

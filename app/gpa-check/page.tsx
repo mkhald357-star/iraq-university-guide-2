@@ -314,14 +314,21 @@ export default function GpaCheckPage() {
         </div>
       </form>
 
-      {searched && (
+      {branchState.status === "loading" && <ResultsSkeleton rows={3} />}
+      {branchState.status === "error" && <ErrorState error={branchState.error} onRetry={retryFetch} />}
+
+      {searched && branchState.status === "ready" && (
         <>
           <ChannelNotice />
 
           {totalResults === 0 ? (
-            <p className="text-center text-ink-muted">
-              لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات {ADMISSION_CHANNEL}. جرّب توسيع الفلاتر أو معدلاً آخر.
-            </p>
+            emptyDiagnosis ? (
+              <EmptyState diagnosis={emptyDiagnosis} grade={Number(grade)} onRelax={relaxFilter} />
+            ) : (
+              <p className="text-center text-ink-muted">
+                لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات {ADMISSION_CHANNEL}. جرّب توسيع الفلاتر أو معدلاً آخر.
+              </p>
+            )
           ) : (
             <div className="space-y-4">
               {hasUnknownBranch && (

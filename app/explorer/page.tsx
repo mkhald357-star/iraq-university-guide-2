@@ -155,9 +155,10 @@ export default function ExplorerPage() {
         </p>
       )}
 
-      {branch && loading && <p className="text-center text-ink-muted">جارٍ جلب بيانات فرع {branch}...</p>}
+      {branch && branchState.status === "loading" && <ResultsSkeleton />}
+      {branch && branchState.status === "error" && <ErrorState error={branchState.error} onRetry={retryFetch} />}
 
-      {branch && !loading && (
+      {branch && branchState.status === "ready" && (
         <>
           <ChannelNotice />
 

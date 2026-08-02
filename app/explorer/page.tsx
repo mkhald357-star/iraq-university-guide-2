@@ -31,8 +31,8 @@ function effectiveMinCutoff(o: ExplorerOffering): number {
 
 export default function ExplorerPage() {
   const [branch, setBranch] = useState<Branch | "">("");
-  const [loading, setLoading] = useState(false);
-  const [offerings, setOfferings] = useState<ExplorerOffering[]>([]);
+  const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
+  const offerings = branchState.status === "ready" ? branchState.data : [];
 
   const [province, setProvince] = useState("");
   const [maxCutoff, setMaxCutoff] = useState("");
@@ -49,19 +49,27 @@ export default function ExplorerPage() {
     }
   }, []);
 
+  function loadBranch(b: Branch) {
+    setBranchState({ status: "loading" });
+    fetchOfferingsForBranch(b)
+      .then((data) => setBranchState({ status: "ready", data }))
+      .catch((e: DataFetchError) => setBranchState({ status: "error", error: e }));
+  }
+
   useEffect(() => {
     if (!branch) {
-      setOfferings([]);
+      setBranchState({ status: "idle" });
       return;
     }
     let cancelled = false;
-    setLoading(true);
-    fetchOfferingsForBranch(branch).then((data) => {
-      if (!cancelled) {
-        setOfferings(data);
-        setLoading(false);
-      }
-    });
+    setBranchState({ status: "loading" });
+    fetchOfferingsForBranch(branch)
+      .then((data) => {
+        if (!cancelled) setBranchState({ status: "ready", data });
+      })
+      .catch((e: DataFetchError) => {
+        if (!cancelled) setBranchState({ status: "error", error: e });
+      });
     return () => {
       cancelled = true;
     };

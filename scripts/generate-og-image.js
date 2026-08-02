@@ -53,17 +53,28 @@ const DESC =
   await page.waitForTimeout(400); // ضمان رسم الخط بعد جهوزية document.fonts
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  // clip صريح إلزامي -- عناصر الزخرفة (.orb) ذات الإزاحة السالبة تُوسِّع نطاق
-  // اللقطة التلقائي رغم overflow:hidden (اكتُشف فعلياً أثناء بناء هذا
-  // السكربت: بلا clip، اللقطة تُزاح ١٢٠ بكسل والنصّ يخرج عن الإطار -- راجع
-  // data/admission_rules.md §33). تحديد المنطقة صراحة يتجاوز هذا العطل كلياً.
+  // clip صريح دفاعي -- عناصر الزخرفة (.orb) ذات الإزاحة السالبة كانت تُوسِّع
+  // نطاق اللقطة التلقائي فعلياً (اكتُشف أثناء بناء هذا السكربت: النصّ خرج عن
+  // الإطار). السبب الجذري الفعلي: overflow:hidden على body وحده لا يكفي --
+  // <html> هو الصندوق القابل للتمرير الفعلي في هذا السياق (أُصلح في
+  // og-template.html: html{overflow:hidden}). clip هنا حماية إضافية، لا الإصلاح
+  // الوحيد. راجع data/admission_rules.md §33.
   await page.screenshot({ path: OUT, type: "png", clip: { x: 0, y: 0, width: 1200, height: 630 } });
   await browser.close();
 
-  const kb = fs.statSync(OUT).size / 1024;
+  // ضغط تلقائي إن تجاوزت السقف (واتساب يتجاهل صوراً > 300KB) -- بلا هذا،
+  // كل تغيير لاحق في الأرقام (وبالتالي عرض النصّ) قد يُعيد إنتاج المشكلة
+  // بصمت ما لم يتذكّر أحد الضغط يدوياً.
+  let kb = fs.statSync(OUT).size / 1024;
+  if (kb > 300) {
+    const buf = await sharp(OUT).png({ quality: 82, compressionLevel: 9 }).toBuffer();
+    fs.writeFileSync(OUT, buf);
+    kb = fs.statSync(OUT).size / 1024;
+  }
+
   console.log(`✅ ${OUT} — ${kb.toFixed(0)} KB`);
   if (kb > 300) {
-    console.error("❌ الصورة > 300KB — واتساب قد يتجاهلها. اضغطها: npx sharp-cli -i public/og/cover.png -o public/og/cover.png --quality 82");
+    console.error("❌ الصورة > 300KB حتى بعد الضغط التلقائي — راجع القالب (نصّ أطول من المتوقَّع؟).");
     process.exit(1);
   }
 })();

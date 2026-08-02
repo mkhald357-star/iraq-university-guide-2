@@ -6,7 +6,12 @@ import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
 import { ChannelNotice } from "../components/ChannelNotice";
-import { CUTOFFS_YEAR, UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
+import {
+  CUTOFFS_YEAR,
+  UNCOVERED_PROVINCES,
+  UNCOVERED_PROVINCES_REASON,
+  BRANCH_UNKNOWN_NOTE,
+} from "../../lib/admissionDisclosure";
 
 const BRANCHES: { value: Branch; label: string }[] = [
   { value: "علمي", label: "علمي" },

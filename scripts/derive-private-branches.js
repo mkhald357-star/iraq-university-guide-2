@@ -14,17 +14,22 @@ const filePath = path.join(ROOT, "data/universities.json");
 const d = JSON.parse(fs.readFileSync(filePath, "utf8"));
 const list = Array.isArray(d) ? d : d.universities || [];
 
-/** نفس التطبيع المستخدم في scripts/displayName.js -- لا نسخة جديدة */
+/** يصلح أثر انعكاس رابطة "لا" أولاً (scripts/displayName.js)، ثم يطبّق
+ *  *نفس* خوارزمية normalizeArabic المُختبَرة أصلاً في lib/majorMatcher.ts
+ *  (مكرَّرة هنا بجافاسكربت خام بنفس نمط ازدواجية scripts/build-major-offerings.js
+ *  القائم فعلاً -- لا استيراد .ts من سكربت CommonJS). حذف "ال" التعريف عند
+ *  حدود الكلمات ثم كل ألف مجرد يحلّ فروقاً حقيقية بين تسمية الأهلي والحكومي
+ *  لنفس القسم (مثال مؤكَّد: "ادارة اعمال" أهلي مقابل "إدارة الأعمال" حكومي). */
 const { fixLamAlef } = require("./displayName");
 const norm = (s = "") =>
   fixLamAlef(String(s))
-    .replace(/[ً-ْـ]/g, "")
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ى/g, "ي")
-    .replace(/ة/g, "ه")
     .replace(/^\s*(قسم|كلية)\s+/, "")
-    .replace(/\s+/g, " ")
-    .trim();
+    .toLowerCase()
+    .trim()
+    .replace(/[أإآ]/g, "ا")
+    .replace(/(^|\s)ال/g, "$1")
+    .replace(/ا/g, "")
+    .replace(/\s+/g, "");
 
 /* ١) فهرس حكومي: اسم القسم -> مجموعة الفروع. الحكومي دائماً مستخرَج فعلياً
    (0/1749 بلا فرع، مؤكَّد) -- يُوسَم extracted بلا حاجة لأي اشتقاق. */

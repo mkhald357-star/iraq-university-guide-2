@@ -49,18 +49,27 @@ export interface ExplorerOffering {
   averageGrades: { صباحي: number | null; مسائي: number | null };
   isDirectAdmission: boolean;
   statedMinimumGrade?: StatedMinimumGrade | null;
+  /** false لقسم بلا فرع معروف (كل الأهلي اليوم، الدليل لا يذكر الفرع --
+      data/admission_rules.md §29) -- يُعرَض دائماً موسوماً، لا يُخفى. */
+  branchKnown: boolean;
 }
 
 // كل عروض فرع دراسي معيّن (عبر كل الجامعات وكل التخصصات، مطابَقة أو غير
-// مطابَقة لأي منها) -- نفس نمط fetchOfferingsForMajor أعلاه بالضبط.
+// مطابَقة لأي منها) -- نفس نمط fetchOfferingsForMajor أعلاه بالضبط. يُدمَج
+// معها ملف by-branch/unknown.json (أقسام بلا فرع معروف تُعرَض في كل الفروع
+// بدل إخفائها -- §29) -- فشل جلب unknown وحده لا يُفقد النتائج المعروفة.
 export async function fetchOfferingsForBranch(branch: Branch): Promise<ExplorerOffering[]> {
-  try {
-    const res = await fetch(`/data/by-branch/${branch}.json`);
-    if (!res.ok) return [];
-    return (await res.json()) as ExplorerOffering[];
-  } catch {
-    return [];
-  }
+  const fetchJson = async (name: string): Promise<ExplorerOffering[]> => {
+    try {
+      const res = await fetch(`/data/by-branch/${name}.json`);
+      if (!res.ok) return [];
+      return (await res.json()) as ExplorerOffering[];
+    } catch {
+      return [];
+    }
+  };
+  const [known, unknown] = await Promise.all([fetchJson(branch), fetchJson("unknown")]);
+  return [...known, ...unknown];
 }
 
 // يكيّف ExplorerOffering المُخفَّف إلى UniversityOffering كامل بقيم افتراضية

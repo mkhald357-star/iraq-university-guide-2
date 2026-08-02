@@ -255,11 +255,9 @@ export default function GpaCheckPage() {
     if (what === "session") setSession("both");
   }
 
-  const totalResults = groups.safe.length + groups.close.length + groups.reach.length;
-  const hasUnknownBranch =
-    groups.safe.some((o) => !o.branchKnown) ||
-    groups.close.some((o) => !o.branchKnown) ||
-    groups.reach.some((o) => !o.branchKnown);
+  // إجمالي الأربع مجموعات (بما فيها "بلا حدّ منشور" -- مجموعة مرئية لا مخفية، §32).
+  const totalResults = groups.safe.length + groups.close.length + groups.unknown.length + groups.reach.length;
+  const hasUnknownBranch = BAND_ORDER.some((band) => groups[band].some((o) => !o.branchKnown));
 
   return (
     <div dir="rtl" className="mx-auto max-w-4xl py-8 space-y-8">

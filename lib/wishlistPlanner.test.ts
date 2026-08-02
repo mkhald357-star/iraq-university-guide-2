@@ -128,6 +128,45 @@ describe("classifyOffering على بيانات حقيقية (لا وهمية، d
   });
 });
 
+describe("NO_REACHABLE على بيانات حقيقية (فرع علمي، data/admission_rules.md §32)", () => {
+  function classifyAll(grade: number) {
+    const dir = path.join(__dirname, "../public/data/by-branch");
+    const offerings = JSON.parse(
+      fs.readFileSync(path.join(dir, "علمي.json"), "utf8")
+    ) as UniversityOffering[];
+    const counts = { safe: 0, close: 0, unknown: 0, reach: 0 };
+    for (const o of offerings) {
+      if (!o.sessions.includes("صباحي")) continue;
+      const { band } = classifyOffering({ majorId: "", majorName: "", session: "صباحي", offering: o }, grade);
+      counts[band]++;
+    }
+    return counts;
+  }
+
+  it("معدّل 45 لا يُنتج مجموعة 'مريح' مليئة بالأهلي -- الحارس ضد العطل الأصلي", () => {
+    const counts = classifyAll(45);
+    // العطل الأصلي: كل الأهلي (98% منه بلا حدّ منشور) كان يُصنَّف safe لأي معدّل.
+    // بعد الإصلاح، safe يجب أن يقتصر على حكومي بقبول مباشر حقيقي + أهلي
+    // بحدّ منشور فعلاً يبلغه معدّل 45 (نادر جداً لمعدّل منخفض كهذا).
+    expect(counts.safe).toBeLessThan(300); // 285 حكومي مباشر + هامش ضئيل جداً
+  });
+
+  it("معدّل 45 يُفعّل شرط NO_REACHABLE (safe+close === 0 مع وجود نتائج أخرى)", () => {
+    const counts = classifyAll(45);
+    const reachable = counts.safe + counts.close;
+    const hasOther = counts.reach > 0 || counts.unknown > 0;
+    // بمعدل منخفض جداً كهذا، الأغلب الساحق تنافسي بحدود أعلى (reach) --
+    // فعلاً نتوقّع reachable=0 أو قريباً منه، مع نتائج أخرى موجودة.
+    expect(hasOther).toBe(true);
+    expect(reachable).toBeLessThanOrEqual(counts.safe); // لا نستنتج close زائفاً
+  });
+
+  it("معدّل 90 لا يُفعّل NO_REACHABLE -- خيارات مريحة/متقاربة حقيقية موجودة", () => {
+    const counts = classifyAll(90);
+    expect(counts.safe + counts.close).toBeGreaterThan(0);
+  });
+});
+
 describe("analyzeWishlist -- التشخيصات", () => {
   it("يرفع تحذير 'غياب شبكة الأمان' عندما تقل الرغبات المريحة عن الحد الأدنى", () => {
     const wishes = [

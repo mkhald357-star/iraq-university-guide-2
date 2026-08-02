@@ -21,18 +21,24 @@ import {
 } from "../../lib/admissionDisclosure";
 import type { EmptyDiagnosis } from "../../lib/viewState";
 
-const BAND_UI: Record<"safe" | "close" | "reach", { label: string; bg: string; text: string }> = {
+// ترتيب مقصود: بلا حدّ منشور أقرب للاحتمال من "طموح" -- data/admission_rules.md §32.
+const BAND_ORDER = ["safe", "close", "unknown", "reach"] as const;
+type DisplayBand = (typeof BAND_ORDER)[number];
+
+const BAND_UI: Record<DisplayBand, { label: string; bg: string; text: string }> = {
   safe: { label: "مريح", bg: "bg-band-safe-bg", text: "text-band-safe" },
   close: { label: "متقارب", bg: "bg-band-close-bg", text: "text-band-close" },
+  unknown: { label: "بلا حدّ منشور", bg: "bg-band-unknown-bg", text: "text-band-unknown" },
   reach: { label: "طموح", bg: "bg-band-reach-bg", text: "text-band-reach" },
 };
 
 type SessionFilter = "both" | StudySession;
 
 /** أفضل تصنيف بين الجلسات المطلوب اعتبارها فقط (لا كل جلسات العرض بالضرورة
-    -- إن اختار الطالب "صباحي فقط" مثلاً، حدّ المسائي الأفضل لا يُحتسَب). */
+    -- إن اختار الطالب "صباحي فقط" مثلاً، حدّ المسائي الأفضل لا يُحتسَب).
+    لا اختصار مسبق على isDirectAdmission -- classifyOffering وحدها تقرّر
+    (الأهلي isDirectAdmission=true دائماً لا يعني "مريح"، انظر §32). */
 function bestBand(offering: ExplorerOffering, grade: number, sessionsToConsider: StudySession[]): Band {
-  if (offering.isDirectAdmission) return "safe";
   const full = toUniversityOffering(offering);
   const order: Band[] = ["safe", "close", "reach", "unknown"];
   let best: Band = "unknown";

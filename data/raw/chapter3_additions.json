@@ -231,14 +231,6 @@
   },
   {
     "university": "جامعة نينوى",
-    "college": "كلية طب الأسنان",
-    "department": "طب الأسنان",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
     "college": "كلية الآثار",
     "department": "الآثار",
     "branch": [
@@ -714,7 +706,10 @@
     "department": "الطب",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 2252,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تلعفر",
@@ -722,7 +717,10 @@
     "department": "قسم الأدلة الجنائية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 2254,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تلعفر",
@@ -730,7 +728,10 @@
     "department": "قسم التحليلات المرضية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 2254,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تلعفر",
@@ -738,7 +739,10 @@
     "department": "قسم الفيزياء الطبية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 2254,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تلعفر",
@@ -746,6 +750,21 @@
     "department": "قسم علوم التجميل",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 2254,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية الصيدلة",
+    "department": "الصيدلة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2253,
+    "verifiedAt": "2026-08-02",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "استُرجع بعد حذف خاطئ في §22 (نطاق بحث سابق كان مبتوراً من السطر 3550+، لا يغطي الموقع الحقيقي 2237-2254) -- راجع §30"
   }
 ]

@@ -1,0 +1,56 @@
+[
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية الطب",
+    "department": "الطب",
+    "reason": "جامعة تلعفر حديثة التأسيس (٢٠١٤)؛ كلية الطب مذكورة في الفصل الثالث من دليل الطالب بلا حدّ تنافسي منشور -- قبول مباشر حقيقي موثَّق في المصدر، لا بيانات ناقصة.",
+    "sourceLine": 2252,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية الصيدلة",
+    "department": "الصيدلة",
+    "reason": "نفس سياق كلية الطب أعلاه -- قبول مباشر حقيقي موثَّق في المصدر (السطر 2253، مباشرة بعد سطر الطب).",
+    "sourceLine": 2253,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية العلوم الطبية",
+    "department": "قسم الأدلة الجنائية",
+    "reason": "كلية العلوم الطبية (لا كلية الطب) -- تخصصات علوم طبية مساندة، مذكورة صراحة كقبول مباشر في نفس السطر (2254) ضمن قائمة الكلية الرباعية.",
+    "sourceLine": 2254,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية العلوم الطبية",
+    "department": "قسم التحليلات المرضية",
+    "reason": "نفس سياق قسم الأدلة الجنائية أعلاه -- ضمن نفس السطر (2254).",
+    "sourceLine": 2254,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية العلوم الطبية",
+    "department": "قسم الفيزياء الطبية",
+    "reason": "نفس سياق قسم الأدلة الجنائية أعلاه -- ضمن نفس السطر (2254).",
+    "sourceLine": 2254,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية العلوم الطبية",
+    "department": "قسم علوم التجميل",
+    "reason": "نفس سياق قسم الأدلة الجنائية أعلاه -- ضمن نفس السطر (2254).",
+    "sourceLine": 2254,
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "verifiedAt": "2026-08-02"
+  }
+]

@@ -8,12 +8,18 @@ import { classifyOffering } from "../../lib/wishlistPlanner";
 import type { Band, StudySession } from "../../lib/wishlistPlanner";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
 import { ChannelNotice } from "../components/ChannelNotice";
+import { ResultsSkeleton, ErrorState, EmptyState } from "../components/StateViews";
+import type { ViewState, DataFetchError } from "../../lib/viewState";
+import { diagnoseEmpty, type GpaCheckFilters } from "../../lib/emptyDiagnosis";
 import {
   ADMISSION_CHANNEL,
   UNCOVERED_PROVINCES,
   UNCOVERED_PROVINCES_REASON,
   BRANCH_UNKNOWN_NOTE,
+  EVENING_MIN,
+  eveningFloorNote,
 } from "../../lib/admissionDisclosure";
+import type { EmptyDiagnosis } from "../../lib/viewState";
 
 const BAND_UI: Record<"safe" | "close" | "reach", { label: string; bg: string; text: string }> = {
   safe: { label: "مريح", bg: "bg-band-safe-bg", text: "text-band-safe" },

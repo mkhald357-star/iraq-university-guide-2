@@ -125,6 +125,15 @@ export function EmptyState({
         </>
       )}
 
+      {code === "FILTERS_TOO_NARROW" && (
+        <>
+          <p className="font-extrabold text-ink">ما في نتائج ضمن الفلاتر الحالية</p>
+          <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            في <strong>{wouldYield}</strong> خيار لو خفّفت الحدّ الأدنى المُدخَل.
+          </p>
+        </>
+      )}
+
       {code === "GRADE_BELOW_ALL" && (
         <>
           <p className="font-extrabold text-ink">بمعدّل {grade}% ما وصلنا لخيار ضمن الفلاتر الحالية</p>

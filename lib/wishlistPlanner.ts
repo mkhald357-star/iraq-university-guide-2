@@ -43,9 +43,31 @@ export const MIN_SAFE_WISHES = 3;
 /** عدد التكرارات (نفس التخصص + نفس المحافظة) الذي يُعتبَر إهداراً للقائمة. */
 export const REDUNDANT_CLUSTER_THRESHOLD = 4;
 
+/**
+ * الأهلي: isDirectAdmission دائماً true بصرف النظر عن نشر حدّ من عدمه --
+ * لا تعني "مفتوح"، بل "لا رقم في مصدرنا" (data/admission_rules.md §28).
+ * قسم أهلي بلا statedMinimumGrade منشور لا يُصنَّف "مريح" ولا "طموح" --
+ * يُصنَّف "مجهول" (§32)، بشرط معلَن يُقارَن بمعدل الطالب إن وُجد.
+ */
+function classifyPrivate(wish: WishOffering, gpa: number): ClassifiedWish {
+  const min = wish.offering.statedMinimumGrade?.value;
+  if (min == null) {
+    return { ...wish, band: "unknown", cutoff: null, margin: null };
+  }
+  const margin = +(gpa - min).toFixed(2);
+  const band: Band = margin >= SAFE_MARGIN ? "safe" : margin >= 0 ? "close" : "reach";
+  return { ...wish, band, cutoff: min, margin };
+}
+
 export function classifyOffering(wish: WishOffering, gpa: number): ClassifiedWish {
   const { offering, session } = wish;
 
+  if (offering.universityType === "أهلية") {
+    return classifyPrivate(wish, gpa);
+  }
+
+  // الحكومي: كما هو -- isDirectAdmission هناك مؤكَّد ثلاثياً (cutoffs.length===0
+  // فعلياً، لا فراغ رقم) فهو "بلا منافسة" حقيقي. لا تغيير في هذا الفرع.
   if (offering.isDirectAdmission) {
     return { ...wish, band: "safe", cutoff: null, margin: null };
   }

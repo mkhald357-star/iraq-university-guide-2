@@ -67,12 +67,17 @@ export default function ExplorerPage() {
 
   const filtered = useMemo(() => {
     const max = maxCutoff === "" ? null : Number(maxCutoff);
-    return offerings.filter((o) => {
-      if (province && o.province !== province) return false;
-      if (max !== null && effectiveMinCutoff(o) > max) return false;
-      return true;
-    });
+    return offerings
+      .filter((o) => {
+        if (province && o.province !== province) return false;
+        if (max !== null && effectiveMinCutoff(o) > max) return false;
+        return true;
+      })
+      // معروف الفرع أولاً -- غير المعروف (كل الأهلي اليوم، §29) متاح بعده لا مخفياً.
+      .sort((a, b) => Number(b.branchKnown) - Number(a.branchKnown));
   }, [offerings, province, maxCutoff]);
+
+  const hasUnknownBranch = filtered.some((o) => !o.branchKnown);
 
   return (
     <div dir="rtl" className="mx-auto max-w-5xl py-8 space-y-8">

@@ -80,21 +80,30 @@ export default function GpaCheckPage() {
   // قائمتا المحافظة/الجامعة الاختياريتان أدناه من بيانات حقيقية محمَّلة سلفاً.
   useEffect(() => {
     if (!branch) {
-      setOfferings([]);
+      setBranchState({ status: "idle" });
       return;
     }
     let cancelled = false;
-    setLoadingOfferings(true);
-    fetchOfferingsForBranch(branch).then((data) => {
-      if (!cancelled) {
-        setOfferings(data);
-        setLoadingOfferings(false);
-      }
-    });
+    setBranchState({ status: "loading" });
+    fetchOfferingsForBranch(branch)
+      .then((data) => {
+        if (!cancelled) setBranchState({ status: "ready", data });
+      })
+      .catch((e: DataFetchError) => {
+        if (!cancelled) setBranchState({ status: "error", error: e });
+      });
     return () => {
       cancelled = true;
     };
   }, [branch]);
+
+  function retryFetch() {
+    if (!branch) return;
+    setBranchState({ status: "loading" });
+    fetchOfferingsForBranch(branch)
+      .then((data) => setBranchState({ status: "ready", data }))
+      .catch((e: DataFetchError) => setBranchState({ status: "error", error: e }));
+  }
 
   // جامعات هذه المحافظة تحديداً ضمن عروض الفرع المختار فقط (لا كل جامعات
   // العراق) -- حتى لا تظهر جامعة بلا أي قسم فعلي مطابق لفرع الطالب.

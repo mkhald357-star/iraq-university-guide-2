@@ -118,20 +118,38 @@ export default function GpaCheckPage() {
     setUniversity(""); // الجامعة المختارة سابقاً قد لا تنتمي للمحافظة الجديدة
   }
 
+  // منطق الفلترة الحقيقي -- يُستعمَل في handleSubmit مباشرة، ويُمرَّر أيضاً
+  // لـdiagnoseEmpty كي لا ينحرف التشخيص عن النتيجة الفعلية (data/admission_rules.md §31).
+  function matchesFilter(o: ExplorerOffering, f: GpaCheckFilters): boolean {
+    if (f.province && o.province !== f.province) return false;
+    if (university && o.universityName !== university) return false;
+    const sessionsToConsider: StudySession[] = f.session === "both" ? ["صباحي", "مسائي"] : [f.session];
+    const relevantSessions = sessionsToConsider.filter((s) => o.sessions.includes(s));
+    if (relevantSessions.length === 0) return false;
+    const band = bestBand(o, f.grade, relevantSessions);
+    return band === "safe" || band === "close" || band === "reach";
+  }
+
+  function reachableOffering(o: ExplorerOffering, grade: number, sess: "صباحي" | "مسائي") {
+    if (o.isDirectAdmission) return { ok: true, gap: -Infinity };
+    const cutoff = o.averageGrades[sess];
+    if (cutoff == null) return { ok: false, gap: Infinity };
+    return { ok: grade >= cutoff, gap: cutoff - grade };
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!branch || !grade) return;
     setSearched(true);
 
     const gradeNum = Number(grade);
-    const sessionsToConsider: StudySession[] = session === "both" ? ["صباحي", "مسائي"] : [session];
+    const currentFilters: GpaCheckFilters = { grade: gradeNum, session, province };
 
     const next: Record<"safe" | "close" | "reach", ExplorerOffering[]> = { safe: [], close: [], reach: [] };
     for (const o of offerings) {
-      if (province && o.province !== province) continue;
-      if (university && o.universityName !== university) continue;
+      if (!matchesFilter(o, currentFilters)) continue;
+      const sessionsToConsider: StudySession[] = session === "both" ? ["صباحي", "مسائي"] : [session];
       const relevantSessions = sessionsToConsider.filter((s) => o.sessions.includes(s));
-      if (relevantSessions.length === 0) continue; // لا يُدرَّس أصلاً بالجلسة المطلوبة
       const band = bestBand(o, gradeNum, relevantSessions);
       if (band === "safe" || band === "close" || band === "reach") next[band].push(o);
     }
@@ -147,6 +165,14 @@ export default function GpaCheckPage() {
       });
     }
     setGroups(next);
+
+    const total = next.safe.length + next.close.length + next.reach.length;
+    setEmptyDiagnosis(total === 0 ? diagnoseEmpty(offerings, currentFilters, matchesFilter, reachableOffering) : null);
+  }
+
+  function relaxFilter(what: "province" | "session") {
+    if (what === "province") setProvince("");
+    if (what === "session") setSession("both");
   }
 
   const totalResults = groups.safe.length + groups.close.length + groups.reach.length;

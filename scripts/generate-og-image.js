@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+/**
+ * يولّد public/og/cover.png (1200×630) بأرقام حقيقية من data/homepage_stats.json
+ * -- لا تُكتب يدوياً (نفس درس "81 تخصصاً" في §26). يستعمل Playwright (يرسم
+ * العربية بشكل صحيح، بخلاف next/og غير المتوافق مع output:'export').
+ *
+ * لا يُربَط بـprebuild عمداً -- البناء لا يجب أن يعتمد على متصفح (data/admission_rules.md §33).
+ * الاستخدام: node scripts/generate-og-image.js (أو npm run og)
+ */
+const fs = require("fs");
+const path = require("path");
+const { chromium } = require("playwright");
+
+const ROOT = path.join(__dirname, "..");
+const OUT_DIR = path.join(ROOT, "public", "og");
+const OUT = path.join(OUT_DIR, "cover.png");
+const TEMPLATE = path.join(__dirname, "og-template.html");
+
+// نفس نصوص lib/siteMeta.ts (SITE_TAGLINE/SITE_DESCRIPTION) -- مكرَّرة هنا
+// عمداً لأن هذا سكربت CommonJS لا يستورد وحدات .ts مباشرة (نفس نمط ازدواجية
+// normalizeArabic القائم فعلاً بين lib/majorMatcher.ts وscripts/build-major-offerings.js).
+// حدِّثها يدوياً إن تغيّر النصّ في lib/siteMeta.ts.
+const TITLE = "اختر تخصصك الجامعي بالأرقام الحقيقية";
+const DESC =
+  "منصّة عراقية مجانية: اختبار ميول علمي، ومطابقة بحدود القبول الرسمية لكل قسم في العراق. مجاناً وبلا حساب.";
+
+(async () => {
+  const stats = JSON.parse(fs.readFileSync(path.join(ROOT, "data/homepage_stats.json"), "utf8"));
+
+  const CARDS = [
+    { n: stats.totalMajors, l: "تخصصاً" },
+    { n: stats.totalDepartments, l: "قسماً جامعياً" },
+    { n: stats.totalUniversities, l: "جامعة" },
+  ];
+
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
+
+  await page.goto("file://" + TEMPLATE);
+  await page.evaluate(
+    ({ title, desc, cards }) => {
+      document.getElementById("title").textContent = title;
+      document.getElementById("desc").textContent = desc;
+      document.getElementById("stats").innerHTML = cards
+        .map((c) => `<div><div class="n">${c.n.toLocaleString("ar-IQ")}</div><div class="l">${c.l}</div></div>`)
+        .join("");
+    },
+    { title: TITLE, desc: DESC, cards: CARDS }
+  );
+
+  await page.evaluate(() => document.fonts.ready);
+  await page.waitForTimeout(400); // ضمان رسم الخط بعد جهوزية document.fonts
+
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+  await page.screenshot({ path: OUT, type: "png" });
+  await browser.close();
+
+  const kb = fs.statSync(OUT).size / 1024;
+  console.log(`✅ ${OUT} — ${kb.toFixed(0)} KB`);
+  if (kb > 300) {
+    console.error("❌ الصورة > 300KB — واتساب قد يتجاهلها. اضغطها: npx sharp-cli -i public/og/cover.png -o public/og/cover.png --quality 82");
+    process.exit(1);
+  }
+})();

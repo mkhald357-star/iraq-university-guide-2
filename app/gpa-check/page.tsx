@@ -8,7 +8,12 @@ import { classifyOffering } from "../../lib/wishlistPlanner";
 import type { Band, StudySession } from "../../lib/wishlistPlanner";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
 import { ChannelNotice } from "../components/ChannelNotice";
-import { ADMISSION_CHANNEL, UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
+import {
+  ADMISSION_CHANNEL,
+  UNCOVERED_PROVINCES,
+  UNCOVERED_PROVINCES_REASON,
+  BRANCH_UNKNOWN_NOTE,
+} from "../../lib/admissionDisclosure";
 
 const BAND_UI: Record<"safe" | "close" | "reach", { label: string; bg: string; text: string }> = {
   safe: { label: "مريح", bg: "bg-band-safe-bg", text: "text-band-safe" },

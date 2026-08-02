@@ -31,6 +31,7 @@ export type EmptyReasonCode =
   | "SESSION_UNAVAILABLE" // الجلسة المختارة لا تحوي خياراً ضمن المعدّل
   | "PROVINCE_TOO_NARROW" // المحافظة وحدها هي القيد
   | "FILTERS_TOO_NARROW" // تركيبة فلاتر
+  | "NO_REACHABLE" // نتائج موجودة (طموح/بلا حدّ منشور) لكن لا شيء مريح أو متقارب -- §32
   | "NO_DATA"; // لا بيانات أصلاً (يشير لعطل)
 
 export interface EmptyDiagnosis {

@@ -86,20 +86,16 @@ export interface ExplorerOffering {
 }
 
 // كل عروض فرع دراسي معيّن (عبر كل الجامعات وكل التخصصات، مطابَقة أو غير
-// مطابَقة لأي منها) -- نفس نمط fetchOfferingsForMajor أعلاه بالضبط. يُدمَج
-// معها ملف by-branch/unknown.json (أقسام بلا فرع معروف تُعرَض في كل الفروع
-// بدل إخفائها -- §29) -- فشل جلب unknown وحده لا يُفقد النتائج المعروفة.
+// مطابَقة لأي منها). يُدمَج معها ملف by-branch/unknown.json (أقسام بلا فرع
+// معروف تُعرَض في كل الفروع بدل إخفائها -- §29). ملف الفرع نفسه يستعمل
+// fetchJSON المصلَّب (يرمي DataFetchError -- الصفحة المستدعية تلتقطه لعرض
+// حالة فشل صريحة، §31)؛ ملف unknown وحده يبقى بفشل معزول (catch(() => []))
+// لأن فشله لا يجب أن يُفقد النتائج المعروفة الأهمّ.
 export async function fetchOfferingsForBranch(branch: Branch): Promise<ExplorerOffering[]> {
-  const fetchJson = async (name: string): Promise<ExplorerOffering[]> => {
-    try {
-      const res = await fetch(`/data/by-branch/${name}.json`);
-      if (!res.ok) return [];
-      return (await res.json()) as ExplorerOffering[];
-    } catch {
-      return [];
-    }
-  };
-  const [known, unknown] = await Promise.all([fetchJson(branch), fetchJson("unknown")]);
+  const [known, unknown] = await Promise.all([
+    fetchJSON<ExplorerOffering[]>(`/data/by-branch/${branch}.json`),
+    fetchJSON<ExplorerOffering[]>(`/data/by-branch/unknown.json`).catch(() => []),
+  ]);
   return [...known, ...unknown];
 }
 

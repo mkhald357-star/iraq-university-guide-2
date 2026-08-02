@@ -280,7 +280,7 @@ export default function GpaCheckPage() {
                        text-white transition-colors hover:bg-primary-700 disabled:opacity-50 sm:w-auto"
           >
             <Search className="h-4 w-4" />
-            {loadingOfferings ? "جارٍ التحميل..." : "افحص"}
+            {branchState.status === "loading" ? "جارٍ التحميل..." : "افحص"}
           </button>
         </div>
       </form>

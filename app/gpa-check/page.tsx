@@ -70,6 +70,9 @@ export default function GpaCheckPage() {
     reach: [],
   });
   const [emptyDiagnosis, setEmptyDiagnosis] = useState<EmptyDiagnosis | null>(null);
+  // نتائج موجودة (طموح و/أو بلا حدّ منشور) لكن صفر مريح/متقارب -- بطاقة
+  // توجيه فوق النتائج، لا بدلاً منها (data/admission_rules.md §32).
+  const [noReachable, setNoReachable] = useState<EmptyDiagnosis | null>(null);
 
   // تعبئة تلقائية من نتيجة اختبار سابقة إن وُجدت -- قابلة للتعديل، وليست إلزامية.
   useEffect(() => {

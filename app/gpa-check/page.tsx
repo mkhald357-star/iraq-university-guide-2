@@ -410,12 +410,16 @@ export default function GpaCheckPage() {
             )
           ) : (
             <div className="space-y-4">
+              {noReachable && (
+                <EmptyState diagnosis={noReachable} grade={Number(grade)} onRelax={relaxFilter} />
+              )}
+
               {hasUnknownBranch && (
                 <p className="rounded-xl border border-line bg-surface-muted p-3 text-xs text-ink-muted">
                   {BRANCH_UNKNOWN_NOTE}
                 </p>
               )}
-              {(["safe", "close", "reach"] as const).map((band) => {
+              {BAND_ORDER.map((band) => {
                 const list = groups[band];
                 if (list.length === 0) return null;
                 const ui = BAND_UI[band];
@@ -428,6 +432,11 @@ export default function GpaCheckPage() {
                       {list.length.toLocaleString("ar-IQ")} قسماً
                     </summary>
                     <div className="mt-4">
+                      {band === "unknown" && (
+                        <p className="mb-3 text-sm leading-relaxed text-ink-soft">
+                          {PRIVATE_NO_PUBLISHED_MIN_GROUP_NOTE}
+                        </p>
+                      )}
                       <PaginatedOfferingsTable offerings={list} />
                     </div>
                   </details>

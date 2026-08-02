@@ -119,10 +119,18 @@ export default function GpaCheckPage() {
       const band = bestBand(o, gradeNum, relevantSessions);
       if (band === "safe" || band === "close" || band === "reach") next[band].push(o);
     }
+    // معروف الفرع أولاً داخل كل مجموعة -- غير المعروف (كل الأهلي اليوم، §29) متاح بعده لا مخفياً.
+    for (const band of ["safe", "close", "reach"] as const) {
+      next[band].sort((a, b) => Number(b.branchKnown) - Number(a.branchKnown));
+    }
     setGroups(next);
   }
 
   const totalResults = groups.safe.length + groups.close.length + groups.reach.length;
+  const hasUnknownBranch =
+    groups.safe.some((o) => !o.branchKnown) ||
+    groups.close.some((o) => !o.branchKnown) ||
+    groups.reach.some((o) => !o.branchKnown);
 
   return (
     <div dir="rtl" className="mx-auto max-w-4xl py-8 space-y-8">

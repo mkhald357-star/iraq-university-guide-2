@@ -49,13 +49,6 @@ export default function ExplorerPage() {
     }
   }, []);
 
-  function loadBranch(b: Branch) {
-    setBranchState({ status: "loading" });
-    fetchOfferingsForBranch(b)
-      .then((data) => setBranchState({ status: "ready", data }))
-      .catch((e: DataFetchError) => setBranchState({ status: "error", error: e }));
-  }
-
   useEffect(() => {
     if (!branch) {
       setBranchState({ status: "idle" });
@@ -74,6 +67,14 @@ export default function ExplorerPage() {
       cancelled = true;
     };
   }, [branch]);
+
+  function retryFetch() {
+    if (!branch) return;
+    setBranchState({ status: "loading" });
+    fetchOfferingsForBranch(branch)
+      .then((data) => setBranchState({ status: "ready", data }))
+      .catch((e: DataFetchError) => setBranchState({ status: "error", error: e }));
+  }
 
   const filtered = useMemo(() => {
     const max = maxCutoff === "" ? null : Number(maxCutoff);

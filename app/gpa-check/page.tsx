@@ -130,14 +130,14 @@ export default function GpaCheckPage() {
 
   // منطق الفلترة الحقيقي -- يُستعمَل في handleSubmit مباشرة، ويُمرَّر أيضاً
   // لـdiagnoseEmpty كي لا ينحرف التشخيص عن النتيجة الفعلية (data/admission_rules.md §31).
+  // "unknown" (بلا حدّ منشور) مجموعة مرئية رابعة الآن لا نتيجة مخفية (§32) --
+  // فهي "تطابق" هنا أيضاً؛ التشخيص الحقيقي للفراغ التام هو غياب الأربعة معاً.
   function matchesFilter(o: ExplorerOffering, f: GpaCheckFilters): boolean {
     if (f.province && o.province !== f.province) return false;
     if (university && o.universityName !== university) return false;
     const sessionsToConsider: StudySession[] = f.session === "both" ? ["صباحي", "مسائي"] : [f.session];
     const relevantSessions = sessionsToConsider.filter((s) => o.sessions.includes(s));
-    if (relevantSessions.length === 0) return false;
-    const band = bestBand(o, f.grade, relevantSessions);
-    return band === "safe" || band === "close" || band === "reach";
+    return relevantSessions.length > 0;
   }
 
   function reachableOffering(o: ExplorerOffering, grade: number, sess: "صباحي" | "مسائي") {

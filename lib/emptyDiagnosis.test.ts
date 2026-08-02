@@ -91,3 +91,28 @@ describe("تشخيص الفراغ", () => {
     expect(d.code).not.toBe("PROVINCE_TOO_NARROW");
   });
 });
+
+describe("طالب بمعدّل معقول وفلاتر واسعة يجد خيارات (بيانات حقيقية، لا وهمية)", () => {
+  it("معدّل 60 بفرع علمي، بلا فلاتر إضافية -- بعد §29 هذا يجب ألا يُرجع GRADE_BELOW_ALL", () => {
+    const all = [...(scientificOfferings as ExplorerOffering[]), ...(unknownOfferings as ExplorerOffering[])];
+    const grade = 60;
+    const sessions: Array<"صباحي" | "مسائي"> = ["صباحي", "مسائي"];
+
+    let safeOrCloseOrReach = 0;
+    for (const o of all) {
+      const full = toUniversityOffering(o);
+      for (const session of sessions) {
+        if (!o.sessions.includes(session)) continue;
+        const { band } = classifyOffering({ majorId: "", majorName: "", session, offering: full }, grade);
+        if (band === "safe" || band === "close" || band === "reach") {
+          safeOrCloseOrReach++;
+          break;
+        }
+      }
+    }
+
+    // إن كان صفراً هنا فهذا انحدار حقيقي لا حالة طبيعية -- تماماً كما حذّرت
+    // المواصفة ("سجّله وافحصه").
+    expect(safeOrCloseOrReach).toBeGreaterThan(0);
+  });
+});

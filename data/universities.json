@@ -10026,6 +10026,69 @@
               "branchSource": "extracted"
             }
           ]
+        },
+        {
+          "id": "mosul_col_27",
+          "name": "كلية الآثار",
+          "displayName": "كلية الآثار",
+          "nameEn": null,
+          "departments": [
+            {
+              "name": "الحفاظ على الآثار والمخطوطات",
+              "displayName": "الحفاظ على الآثار والمخطوطات",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "branchSource": "extracted"
+            },
+            {
+              "name": "اللغات العراقية القديمة",
+              "displayName": "اللغات العراقية القديمة",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "branchSource": "extracted"
+            },
+            {
+              "name": "آثار قديمة",
+              "displayName": "آثار قديمة",
+              "branch": [
+                "علمي",
+                "أدبي",
+                "فنون"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "branchSource": "extracted"
+            }
+          ]
         }
       ]
     },

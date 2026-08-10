@@ -1,19 +1,19 @@
 {
-  "generatedAt": "2026-08-10T14:56:24.673Z",
+  "generatedAt": "2026-08-10T15:03:02.475Z",
   "totalMajors": 88,
   "totalUniversities": 121,
   "governmentUniversities": 36,
   "privateUniversities": 85,
   "provinces": 15,
   "totalColleges": 915,
-  "totalDepartments": 3055,
-  "directAdmissionDepartments": 1591,
-  "governmentDepartments": 1699,
-  "directAdmissionDepartmentsGov": 235,
+  "totalDepartments": 3062,
+  "directAdmissionDepartments": 1593,
+  "governmentDepartments": 1706,
+  "directAdmissionDepartmentsGov": 237,
   "branchCounts": {
-    "علمي": 2609,
-    "أدبي": 1037,
-    "فنون": 259
+    "علمي": 2616,
+    "أدبي": 1039,
+    "فنون": 260
   },
   "morningMin": 50,
   "morningMax": 101.41,

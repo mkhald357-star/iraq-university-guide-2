@@ -22765,6 +22765,54 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
+            },
+            {
+              "name": "قسم شبكات المعلومات",
+              "displayName": "قسم شبكات المعلومات",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 74.71,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 74.71,
+                "مسائي": null
+              },
+              "isDirectAdmission": false,
+              "branchSource": "extracted"
+            },
+            {
+              "name": "قسم البرمجيات",
+              "displayName": "قسم البرمجيات",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 74.71,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 74.71,
+                "مسائي": null
+              },
+              "isDirectAdmission": false,
+              "branchSource": "extracted"
             }
           ]
         },
@@ -23637,7 +23685,8 @@
                 "علمي"
               ],
               "sessions": [
-                "مسائي"
+                "مسائي",
+                "صباحي"
               ],
               "cutoffs": [],
               "averageGrades": {
@@ -23654,12 +23703,30 @@
                 "علمي"
               ],
               "sessions": [
-                "مسائي"
+                "مسائي",
+                "صباحي"
               ],
               "cutoffs": [],
               "averageGrades": {
                 "صباحي": null,
                 "مسائي": 65
+              },
+              "isDirectAdmission": true,
+              "branchSource": "extracted"
+            },
+            {
+              "name": "قسم تكييف الهواء والتجميد",
+              "displayName": "قسم تكييف الهواء والتجميد",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
               },
               "isDirectAdmission": true,
               "branchSource": "extracted"
@@ -35566,6 +35633,30 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
+            },
+            {
+              "name": "قسم التلوث البيئي",
+              "displayName": "قسم التلوث البيئي",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 60,
+                "مسائي": null
+              },
+              "isDirectAdmission": false,
+              "branchSource": "extracted"
             }
           ]
         },
@@ -35836,6 +35927,37 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
+            },
+            {
+              "name": "قسم التربية الفنية",
+              "displayName": "قسم التربية الفنية",
+              "branch": [
+                "علمي",
+                "أدبي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 66.71,
+                  "isQuota": false
+                },
+                {
+                  "branch": "أدبي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 60,
+                "مسائي": null
+              },
+              "isDirectAdmission": false,
+              "branchSource": "extracted"
             }
           ]
         },
@@ -35869,6 +35991,30 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
+            },
+            {
+              "name": "قسم علوم وتكنولوجيا الألبان",
+              "displayName": "قسم علوم وتكنولوجيا الألبان",
+              "branch": [
+                "علمي"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [
+                {
+                  "branch": "علمي",
+                  "gender": "مختلط",
+                  "averagePercent": 60,
+                  "isQuota": false
+                }
+              ],
+              "averageGrades": {
+                "صباحي": 60,
+                "مسائي": null
+              },
+              "isDirectAdmission": false,
+              "branchSource": "extracted"
             }
           ]
         },
@@ -35882,8 +36028,8 @@
               "name": "عام",
               "displayName": "عام",
               "branch": [
-                "علمي",
                 "أدبي",
+                "علمي",
                 "فنون"
               ],
               "sessions": [
@@ -35893,6 +36039,25 @@
               "averageGrades": {
                 "صباحي": null,
                 "مسائي": 60
+              },
+              "isDirectAdmission": true,
+              "branchSource": "extracted"
+            },
+            {
+              "name": "التربية البدنية وعلوم الرياضة",
+              "displayName": "التربية البدنية وعلوم الرياضة",
+              "branch": [
+                "علمي",
+                "أدبي",
+                "فنون"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
               },
               "isDirectAdmission": true,
               "branchSource": "extracted"

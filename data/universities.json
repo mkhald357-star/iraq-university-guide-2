@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-02",
+    "lastUpdated": "2026-08-10",
     "source": "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
     "sourceFiles": [
       "dalel_2025_22026.pdf",
@@ -17332,57 +17332,6 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
-            },
-            {
-              "name": "قسم السدود والموارد المائية",
-              "displayName": "قسم السدود والموارد المائية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الطاقة المستدامة",
-              "displayName": "قسم الطاقة المستدامة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الكهرباء (الشرقاط)",
-              "displayName": "قسم الكهرباء (الشرقاط)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
             }
           ]
         },
@@ -19168,40 +19117,6 @@
             {
               "name": "قسم الهندسة الكيمياوية",
               "displayName": "قسم الهندسة الكيمياوية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم المواد",
-              "displayName": "قسم المواد",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الإلكترونيك والاتصالات",
-              "displayName": "قسم الإلكترونيك والاتصالات",
               "branch": [
                 "علمي"
               ],
@@ -22391,57 +22306,6 @@
               "branchSource": "extracted"
             },
             {
-              "name": "قسم الحاسوب",
-              "displayName": "قسم الحاسوب",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الذكاء الاصطناعي والإنسان الآلي",
-              "displayName": "قسم الذكاء الاصطناعي والإنسان الآلي",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الشبكات والأمن السيبراني",
-              "displayName": "قسم الشبكات والأمن السيبراني",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
               "name": "قسم الكهربائية",
               "displayName": "قسم الكهربائية",
               "branch": [
@@ -23791,97 +23655,6 @@
               "branchSource": "extracted"
             }
           ]
-        },
-        {
-          "id": "babil_col_22",
-          "name": "كلية التربية للبنات",
-          "displayName": "كلية التربية للبنات",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم رياض الأطفال والتربية الخاصة (للإناث فقط)",
-              "displayName": "قسم رياض الأطفال والتربية الخاصة (للإناث فقط)",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "babil_col_23",
-          "name": "كلية الإعلام",
-          "displayName": "كلية الإعلام",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم الصحافة",
-              "displayName": "قسم الصحافة",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الإذاعة والتلفزيون",
-              "displayName": "قسم الإذاعة والتلفزيون",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم العلاقات العامة",
-              "displayName": "قسم العلاقات العامة",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
         }
       ]
     },
@@ -24207,91 +23980,6 @@
                 "مسائي": null
               },
               "isDirectAdmission": false,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الكهرباء (الأتمتة والذكاء الاصطناعي / أنظمة الطائرات المسيرة)",
-              "displayName": "قسم الكهرباء (الأتمتة والذكاء الاصطناعي / أنظمة الطائرات المسيرة)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم البيئة",
-              "displayName": "قسم البيئة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم السيارات (المسيب)",
-              "displayName": "قسم السيارات (المسيب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الطاقة والطاقات المتجددة (المسيب)",
-              "displayName": "قسم الطاقة والطاقات المتجددة (المسيب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم تكييف الهواء والتجميد (المسيب)",
-              "displayName": "قسم تكييف الهواء والتجميد (المسيب)",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
               "branchSource": "extracted"
             }
           ]
@@ -25599,31 +25287,6 @@
               "averageGrades": {
                 "صباحي": null,
                 "مسائي": 60
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "diyala_col_18",
-          "name": "كلية تكنولوجيا المعلومات",
-          "displayName": "كلية تكنولوجيا المعلومات",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم شبكات المعلومات والبرمجيات والأمن السيبراني",
-              "displayName": "قسم شبكات المعلومات والبرمجيات والأمن السيبراني",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
               },
               "isDirectAdmission": true,
               "branchSource": "extracted"
@@ -27208,57 +26871,6 @@
             {
               "name": "قسم الكهرباء والإلكترونيك",
               "displayName": "قسم الكهرباء والإلكترونيك",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم العمارة",
-              "displayName": "قسم العمارة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الأطراف والمساند الصناعية",
-              "displayName": "قسم الأطراف والمساند الصناعية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم النفط",
-              "displayName": "قسم النفط",
               "branch": [
                 "علمي"
               ],
@@ -30523,40 +30135,6 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
-            },
-            {
-              "name": "قسم النفط",
-              "displayName": "قسم النفط",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الهندسة الكيمياوية",
-              "displayName": "قسم الهندسة الكيمياوية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
             }
           ]
         },
@@ -32020,23 +31598,6 @@
               },
               "isDirectAdmission": true,
               "branchSource": "extracted"
-            },
-            {
-              "name": "قسم العمارة",
-              "displayName": "قسم العمارة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
             }
           ]
         },
@@ -33181,57 +32742,6 @@
                 "مسائي": 65
               },
               "isDirectAdmission": false,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الكهرباء",
-              "displayName": "قسم الكهرباء",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم النفط",
-              "displayName": "قسم النفط",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الهندسة الميكانيكية",
-              "displayName": "قسم الهندسة الميكانيكية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
               "branchSource": "extracted"
             }
           ]
@@ -35295,57 +34805,6 @@
               },
               "isDirectAdmission": false,
               "branchSource": "extracted"
-            },
-            {
-              "name": "قسم العمارة",
-              "displayName": "قسم العمارة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم المدنية",
-              "displayName": "قسم المدنية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الهندسة الكهروميكانيكية",
-              "displayName": "قسم الهندسة الكهروميكانيكية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
             }
           ]
         },
@@ -36719,281 +36178,6 @@
                 "مسائي": 70
               },
               "isDirectAdmission": false,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_7",
-          "name": "كلية الآثار",
-          "displayName": "كلية الآثار",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "الآثار",
-              "displayName": "الآثار",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_8",
-          "name": "كلية علوم البيئة",
-          "displayName": "كلية علوم البيئة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم البيئة والتلوث البيئي",
-              "displayName": "قسم البيئة والتلوث البيئي",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الصحة البيئية",
-              "displayName": "قسم الصحة البيئية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_9",
-          "name": "كلية الزراعة",
-          "displayName": "كلية الزراعة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم الإنتاج الحيواني",
-              "displayName": "قسم الإنتاج الحيواني",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم التربة والموارد المائية",
-              "displayName": "قسم التربة والموارد المائية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم البستنة وهندسة الحدائق",
-              "displayName": "قسم البستنة وهندسة الحدائق",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم المحاصيل الحقلية",
-              "displayName": "قسم المحاصيل الحقلية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_10",
-          "name": "كلية علوم الأغذية",
-          "displayName": "كلية علوم الأغذية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم علوم وتكنولوجيا الألبان",
-              "displayName": "قسم علوم وتكنولوجيا الألبان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم صحة الغذاء والتغذية",
-              "displayName": "قسم صحة الغذاء والتغذية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_11",
-          "name": "كلية التربية",
-          "displayName": "كلية التربية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم الرياضيات",
-              "displayName": "قسم الرياضيات",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم اللغة العربية",
-              "displayName": "قسم اللغة العربية",
-              "branch": [
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم التربية الفنية",
-              "displayName": "قسم التربية الفنية",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "ninevah_col_12",
-          "name": "كلية التربية البدنية وعلوم الرياضة",
-          "displayName": "كلية التربية البدنية وعلوم الرياضة",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "التربية البدنية وعلوم الرياضة",
-              "displayName": "التربية البدنية وعلوم الرياضة",
-              "branch": [
-                "علمي",
-                "أدبي",
-                "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
               "branchSource": "extracted"
             }
           ]
@@ -38875,127 +38059,6 @@
               "branchSource": "extracted"
             }
           ]
-        },
-        {
-          "id": "hamdaniya_col_7",
-          "name": "كلية هندسة النفط والغاز",
-          "displayName": "كلية هندسة النفط والغاز",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم هندسة النفط والغاز",
-              "displayName": "قسم هندسة النفط والغاز",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم الهندسة الكيميائية وتكرير النفط",
-              "displayName": "قسم الهندسة الكيميائية وتكرير النفط",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم هندسة عمليات الغاز والبتروكيمياويات",
-              "displayName": "قسم هندسة عمليات الغاز والبتروكيمياويات",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "hamdaniya_col_8",
-          "name": "كلية الإدارة الصناعية للنفط والغاز",
-          "displayName": "كلية الإدارة الصناعية للنفط والغاز",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم اقتصاديات النفط والغاز",
-              "displayName": "قسم اقتصاديات النفط والغاز",
-              "branch": [
-                "أدبي",
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم إدارة المشاريع النفطية",
-              "displayName": "قسم إدارة المشاريع النفطية",
-              "branch": [
-                "أدبي",
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم إدارة وتسويق النفط والغاز",
-              "displayName": "قسم إدارة وتسويق النفط والغاز",
-              "branch": [
-                "أدبي",
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
         }
       ]
     },
@@ -39243,40 +38306,6 @@
                 "مسائي": null
               },
               "isDirectAdmission": false,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم هندسة تكنولوجيا الإعلام والاتصالات",
-              "displayName": "قسم هندسة تكنولوجيا الإعلام والاتصالات",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            },
-            {
-              "name": "قسم هندسة الاتصالات والحوسبة المتنقلة",
-              "displayName": "قسم هندسة الاتصالات والحوسبة المتنقلة",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
               "branchSource": "extracted"
             }
           ]
@@ -39578,56 +38607,6 @@
                 "مسائي": 58
               },
               "isDirectAdmission": false,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "karkh_col_7",
-          "name": "كلية المعلوماتية الطبية الحيوية",
-          "displayName": "كلية المعلوماتية الطبية الحيوية",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم المعلوماتية الطبية الحيوية",
-              "displayName": "قسم المعلوماتية الطبية الحيوية",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "branchSource": "extracted"
-            }
-          ]
-        },
-        {
-          "id": "karkh_col_8",
-          "name": "كلية معلوماتية الأعمال",
-          "displayName": "كلية معلوماتية الأعمال",
-          "nameEn": null,
-          "departments": [
-            {
-              "name": "قسم معلوماتية الأعمال",
-              "displayName": "قسم معلوماتية الأعمال",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
               "branchSource": "extracted"
             }
           ]
@@ -51949,8 +50928,7 @@
               "name": "اقتصاديات النفط والغاز",
               "displayName": "اقتصاديات النفط والغاز",
               "branch": [
-                "علمي",
-                "أدبي"
+                "علمي"
               ],
               "sessions": [
                 "صباحي"
@@ -56263,8 +55241,7 @@
               "name": "اقتصاديات النف ط والغاز",
               "displayName": "اقتصاديات النف ط والغاز",
               "branch": [
-                "علمي",
-                "أدبي"
+                "علمي"
               ],
               "sessions": [
                 "صباحي",
@@ -69319,8 +68296,7 @@
               "name": "ادارة المشاريع النفطية",
               "displayName": "ادارة المشاريع النفطية",
               "branch": [
-                "علمي",
-                "أدبي"
+                "علمي"
               ],
               "sessions": [
                 "صباحي",
@@ -86351,9 +85327,7 @@
             {
               "name": "الهندسة الميكانيكية",
               "displayName": "الهندسة الميكانيكية",
-              "branch": [
-                "علمي"
-              ],
+              "branch": [],
               "sessions": [
                 "صباحي"
               ],
@@ -86370,7 +85344,7 @@
               },
               "admissionSuspended": false,
               "note": "لا توجد دراسة مسائية",
-              "branchSource": "derived-from-government-equivalent"
+              "branchSource": "unknown"
             },
             {
               "name": "الهندسة المدنية",
@@ -87581,8 +86555,7 @@
               "displayName": "الصحافة",
               "branch": [
                 "علمي",
-                "أدبي",
-                "فنون"
+                "أدبي"
               ],
               "sessions": [
                 "صباحي"

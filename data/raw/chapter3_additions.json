@@ -5,7 +5,10 @@
     "department": "قسم الطيران",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 938,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -13,7 +16,10 @@
     "department": "قسم نظم المعلومات التطبيقية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1016,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -21,7 +27,10 @@
     "department": "قسم علم البيانات",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1016,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -30,7 +39,10 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1017,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -39,7 +51,10 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1017,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -48,7 +63,11 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1017,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "يمتد على السطرين 1017-1018 في المصدر"
   },
   {
     "university": "جامعة بغداد",
@@ -56,7 +75,10 @@
     "department": "قسم التطبيقات الهندسية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1021,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -64,7 +86,10 @@
     "department": "قسم التطبيقات الطبية الحيوية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1021,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة بغداد",
@@ -72,154 +97,11 @@
     "department": "قسم البيانات الضخمة",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة واسط",
-    "college": "كلية الهندسة",
-    "department": "قسم النفط",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة واسط",
-    "college": "كلية الهندسة",
-    "department": "قسم الهندسة الكيمياوية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الهندسة",
-    "department": "قسم الكهرباء (الأتمتة والذكاء الاصطناعي / أنظمة الطائرات المسيرة)",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الهندسة",
-    "department": "قسم البيئة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الهندسة",
-    "department": "قسم السيارات (المسيب)",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الهندسة",
-    "department": "قسم الطاقة والطاقات المتجددة (المسيب)",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية الهندسة",
-    "department": "قسم تكييف الهواء والتجميد (المسيب)",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ديالى",
-    "college": "كلية تكنولوجيا المعلومات",
-    "department": "قسم شبكات المعلومات والبرمجيات والأمن السيبراني",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية هندسة النفط والغاز",
-    "department": "قسم هندسة النفط والغاز",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية هندسة النفط والغاز",
-    "department": "قسم الهندسة الكيميائية وتكرير النفط",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية هندسة النفط والغاز",
-    "department": "قسم هندسة عمليات الغاز والبتروكيمياويات",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية الإدارة الصناعية للنفط والغاز",
-    "department": "قسم اقتصاديات النفط والغاز",
-    "branch": [
-      "أدبي",
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية الإدارة الصناعية للنفط والغاز",
-    "department": "قسم إدارة المشاريع النفطية",
-    "branch": [
-      "أدبي",
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الحمدانية",
-    "college": "كلية الإدارة الصناعية للنفط والغاز",
-    "department": "قسم إدارة وتسويق النفط والغاز",
-    "branch": [
-      "أدبي",
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الكرخ للعلوم",
-    "college": "كلية المعلوماتية الطبية الحيوية",
-    "department": "قسم المعلوماتية الطبية الحيوية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الكرخ للعلوم",
-    "college": "كلية معلوماتية الأعمال",
-    "department": "قسم معلوماتية الأعمال",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الكرخ للعلوم",
-    "college": "كلية الهندسة",
-    "department": "قسم هندسة تكنولوجيا الإعلام والاتصالات",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الكرخ للعلوم",
-    "college": "كلية الهندسة",
-    "department": "قسم هندسة الاتصالات والحوسبة المتنقلة",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 1021,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "يمتد على السطرين 1021-1022 في المصدر"
   },
   {
     "university": "جامعة الكرخ للعلوم",
@@ -227,117 +109,10 @@
     "department": "قسم علوم الصحة البيئية",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية الآثار",
-    "department": "الآثار",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية علوم البيئة",
-    "department": "قسم البيئة والتلوث البيئي",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية علوم البيئة",
-    "department": "قسم الصحة البيئية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية الزراعة",
-    "department": "قسم الإنتاج الحيواني",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية الزراعة",
-    "department": "قسم التربة والموارد المائية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية الزراعة",
-    "department": "قسم البستنة وهندسة الحدائق",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية الزراعة",
-    "department": "قسم المحاصيل الحقلية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية علوم الأغذية",
-    "department": "قسم علوم وتكنولوجيا الألبان",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية علوم الأغذية",
-    "department": "قسم صحة الغذاء والتغذية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية التربية",
-    "department": "قسم الرياضيات",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية التربية",
-    "department": "قسم اللغة العربية",
-    "branch": [
-      "أدبي"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية التربية",
-    "department": "قسم التربية الفنية",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
-  },
-  {
-    "university": "جامعة نينوى",
-    "college": "كلية التربية البدنية وعلوم الرياضة",
-    "department": "التربية البدنية وعلوم الرياضة",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
+    ],
+    "sourceLine": 2300,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -345,7 +120,11 @@
     "department": "قسم هندسة الاتصالات والأنظمة الرقمية الذكية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1179,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "المصدر يذكر الكلية باسم عام \"الهندسة\" لا \"هندسة الإلكترونيات\" تحديداً -- القسم ذاته مؤكد ضمن قسم جامعة الموصل الحقيقي"
   },
   {
     "university": "جامعة الموصل",
@@ -353,7 +132,10 @@
     "department": "قسم هندسة المكامن النفطية",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1180,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -361,7 +143,10 @@
     "department": "قسم هندسة التعدين",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1181,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -371,7 +156,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
+    ],
+    "sourceLine": 1242,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -381,7 +169,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
+    ],
+    "sourceLine": 1242,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -391,7 +182,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
+    ],
+    "sourceLine": 1242,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الموصل",
@@ -401,7 +195,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
+    ],
+    "sourceLine": 1243,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تكريت",
@@ -411,31 +208,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
-  },
-  {
-    "university": "جامعة القادسية",
-    "college": "كلية الهندسة",
-    "department": "قسم السدود والموارد المائية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة القادسية",
-    "college": "كلية الهندسة",
-    "department": "قسم الطاقة المستدامة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة القادسية",
-    "college": "كلية الهندسة",
-    "department": "قسم الكهرباء (الشرقاط)",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 1516,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة كركوك",
@@ -445,7 +221,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
+    ],
+    "sourceLine": 1977,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة ذي قار",
@@ -453,31 +232,10 @@
     "department": "قسم الكهرباء والإلكترونيك",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ذي قار",
-    "college": "كلية الهندسة",
-    "department": "قسم العمارة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ذي قار",
-    "college": "كلية الهندسة",
-    "department": "قسم الأطراف والمساند الصناعية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ذي قار",
-    "college": "كلية الهندسة",
-    "department": "قسم النفط",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 1871,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة ميسان",
@@ -485,39 +243,11 @@
     "department": "قسم الميكانيك (ميكانيك عام والتصميم والتصنيع)",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة ميسان",
-    "college": "كلية الهندسة",
-    "department": "قسم العمارة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة المثنى",
-    "college": "كلية الهندسة",
-    "department": "قسم الكهرباء",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة المثنى",
-    "college": "كلية الهندسة",
-    "department": "قسم النفط",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة المثنى",
-    "college": "كلية الهندسة",
-    "department": "قسم الهندسة الميكانيكية",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 2046,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "المصدر يذكر القسم باسم \"الميكانيكية\" فقط بلا الشرح التوضيحي بين قوسين (الذي يطابق حرفياً صيغة جامعة واسط) -- القسم نفسه مؤكد ضمن هندسة ميسان"
   },
   {
     "university": "جامعة المثنى",
@@ -526,7 +256,11 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 2110,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "المصدر يسمي الكلية \"التربية للعلوم الإنسانية\" لا \"التربية\" فقط"
   },
   {
     "university": "جامعة المثنى",
@@ -536,31 +270,10 @@
       "علمي",
       "أدبي",
       "فنون"
-    ]
-  },
-  {
-    "university": "جامعة سومر",
-    "college": "كلية الهندسة",
-    "department": "قسم العمارة",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة سومر",
-    "college": "كلية الهندسة",
-    "department": "قسم المدنية",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة سومر",
-    "college": "كلية الهندسة",
-    "department": "قسم الهندسة الكهروميكانيكية",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 2115,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الأنبار",
@@ -568,47 +281,11 @@
     "department": "قسم الهندسة الكيمياوية",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الأنبار",
-    "college": "كلية الهندسة",
-    "department": "قسم المواد",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة الأنبار",
-    "college": "كلية الهندسة",
-    "department": "قسم الإلكترونيك والاتصالات",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الهندسة",
-    "department": "قسم الحاسوب",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الهندسة",
-    "department": "قسم الذكاء الاصطناعي والإنسان الآلي",
-    "branch": [
-      "علمي"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الهندسة",
-    "department": "قسم الشبكات والأمن السيبراني",
-    "branch": [
-      "علمي"
-    ]
+    ],
+    "sourceLine": 1582,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "المصدر يسمي القسم \"الكيميائية والبتروكيميائية\""
   },
   {
     "university": "جامعة بابل",
@@ -616,46 +293,10 @@
     "department": "قسم الكهربائية",
     "branch": [
       "علمي"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية التربية للبنات",
-    "department": "قسم رياض الأطفال والتربية الخاصة (للإناث فقط)",
-    "branch": [
-      "علمي",
-      "أدبي"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الإعلام",
-    "department": "قسم الصحافة",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الإعلام",
-    "department": "قسم الإذاعة والتلفزيون",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
-  },
-  {
-    "university": "جامعة بابل",
-    "college": "كلية الإعلام",
-    "department": "قسم العلاقات العامة",
-    "branch": [
-      "علمي",
-      "أدبي",
-      "فنون"
-    ]
+    ],
+    "sourceLine": 1688,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "الجامعة التكنولوجية",
@@ -663,7 +304,10 @@
     "department": "قسم الميكانيك العام",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1254,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "الجامعة التكنولوجية",
@@ -671,7 +315,10 @@
     "department": "قسم المعادن",
     "branch": [
       "علمي"
-    ]
+    ],
+    "sourceLine": 1260,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الكوفة",
@@ -680,7 +327,10 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1439,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الكوفة",
@@ -689,7 +339,10 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1439,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة الكوفة",
@@ -698,7 +351,10 @@
     "branch": [
       "علمي",
       "أدبي"
-    ]
+    ],
+    "sourceLine": 1439,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
     "university": "جامعة تلعفر",
@@ -766,5 +422,45 @@
     "verifiedAt": "2026-08-02",
     "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
     "note": "استُرجع بعد حذف خاطئ في §22 (نطاق بحث سابق كان مبتوراً من السطر 3550+، لا يغطي الموقع الحقيقي 2237-2254) -- راجع §30"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية الآثار",
+    "department": "الحفاظ على الآثار والمخطوطات",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1239,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "كانت منسوبة خطأً لـجامعة نينوى في نسخة سابقة من هذا الملف (كلية/قسم عام باسم \"الآثار\" بلا أقسام فرعية حقيقية) -- جدول نينوى الفعلي (السطور 2194-2210) لا يحوي كلية آثار إطلاقاً؛ كلية الآثار الحقيقية بأقسامها الثلاثة تعود لجامعة الموصل -- راجع §32"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية الآثار",
+    "department": "اللغات العراقية القديمة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1239,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "راجع §32 -- نفس تصحيح إسناد كلية الآثار من نينوى إلى الموصل"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية الآثار",
+    "department": "آثار قديمة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1240,
+    "verifiedAt": "2026-08-10",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "note": "راجع §32 -- نفس تصحيح إسناد كلية الآثار من نينوى إلى الموصل"
   }
 ]

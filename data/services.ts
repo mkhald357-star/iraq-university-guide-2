@@ -63,7 +63,8 @@ export const SERVICES: Service[] = [
     stageId: "apply",
     title: "الموازنة بين التخصصات",
     summary: "ضع تخصصين أو ثلاثة جنباً لجنب: الدراسة، والعمل، والقبول.",
-    status: "soon",
+    status: "live",
+    href: "/compare",
   },
   {
     id: "decider",

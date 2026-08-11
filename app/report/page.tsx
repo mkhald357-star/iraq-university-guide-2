@@ -20,6 +20,7 @@ import {
 import { computeEligibility } from "../../lib/eligibility";
 import personalityTranslationsData from "../../data/personality_translations.json";
 import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
+import { SITE_NAME } from "../../lib/siteMeta";
 import EmptyState from "../components/EmptyState";
 import UniversitiesTable from "../components/UniversitiesTable";
 import { RadarChart } from "../components/RadarChart";

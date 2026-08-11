@@ -32,3 +32,14 @@ jobs:
 
       - name: Lint
         run: npm run lint
+
+      - name: Install Playwright browser (for a11y-check)
+        run: npx playwright install --with-deps chromium
+
+      # تقرير فقط، لا حاجب -- لا خط أساس تاريخي لعدد المخالفات بعد (§39). يمكن
+      # تشديده لاحقاً إلى حاجب صارم فور معرفة الخط الأساسي الفعلي من التشغيلات
+      # الأولى على CI (البيئة المحلية نظيفة تماماً حالياً: 0 critical/serious
+      # عبر كل الصفحات العشر، لكن CI بيئة مختلفة قد تُظهر نتائج مختلفة).
+      - name: Accessibility check (report only, non-blocking)
+        run: npm run a11y-check
+        continue-on-error: true

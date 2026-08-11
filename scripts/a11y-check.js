@@ -132,7 +132,7 @@ function waitForServer(url, timeoutMs = 60_000) {
 
     console.log("\n" + (hadFailure ? "❌ توجد مخالفات critical/serious يجب إصلاحها." : "✅ لا مخالفات critical/serious."));
   } finally {
-    server.kill();
+    killServerTree(server);
   }
 
   process.exit(hadFailure ? 1 : 0);

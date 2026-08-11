@@ -22,7 +22,7 @@ function GlossarySection() {
             <span className="inline-flex rounded-xl bg-primary-100 p-2.5 text-primary-700">
               <Icon className="h-5 w-5" />
             </span>
-            <h3 className="mt-3 font-bold text-ink">{cat.label}</h3>
+            <h2 className="mt-3 font-bold text-ink">{cat.label}</h2>
             <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">{cat.glossary}</p>
           </div>
         );

@@ -250,3 +250,12 @@ function CompareContent() {
     </div>
   );
 }
+
+// export افتراضي مع Suspense (useSearchParams يتطلّبه -- نفس نمط app/report/page.tsx)
+export default function ComparePage() {
+  return (
+    <Suspense fallback={null}>
+      <CompareContent />
+    </Suspense>
+  );
+}

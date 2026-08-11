@@ -275,6 +275,14 @@ function ReportContent() {
   const [detailedProfileState, setDetailedProfileState] = useState<DetailedMajorProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // عنوان التبويب لا يعكس التخصص المعروض افتراضياً -- app/report/layout.tsx
+  // ثابت (تصدير Static Export لا يقرأ ?major= من الخادم إطلاقاً)، فالتحديث
+  // الوحيد الممكن هو من جهة العميل هنا بعد معرفة التخصص فعلياً (data/admission_rules.md §39).
+  useEffect(() => {
+    const resolved = majorsData.find((m) => m.id === majorId) || quizResults[0];
+    if (resolved?.name) document.title = `${resolved.name} — نتيجتك · ${SITE_NAME}`;
+  }, [majorId, quizResults]);
+
   useEffect(() => {
     let cancelled = false;
 

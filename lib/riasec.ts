@@ -148,3 +148,43 @@ export function computeDimensionGaps(
     return { dimension: d, userScore, majorScore, gap: userScore - majorScore };
   }).sort((a, b) => Math.abs(b.gap) - Math.abs(a.gap));
 }
+
+/**
+ * يُرجع أبرز n بُعداً يُفرّقان بين ملفَّي تخصصين (الأكبر فارقاً فالأصغر) --
+ * مُستخرَجة من منطق التكيّف متعددة الجولات في app/quiz/page.tsx (كان
+ * مكرَّراً ضمنياً بين محرّك الاختبار الرئيسي وميزة "حسم الحيرة"، الآن مصدر
+ * واحد يستخدمه كلاهما). المقياس نسبي بحت (فرق القيم كما هي، 0-10) --
+ * التحجيم لا يؤثر على ترتيب التباين.
+ */
+export function findDivergentDimensions(profileA: RiasecVector, profileB: RiasecVector, n = 2): RiasecDimension[] {
+  return [...RIASEC_DIMENSIONS]
+    .sort(
+      (a, b) => Math.abs((profileB[b] ?? 0) - (profileA[b] ?? 0)) - Math.abs((profileB[a] ?? 0) - (profileA[a] ?? 0))
+    )
+    .slice(0, n);
+}
+
+/** البُعد الأساسي لسؤال ترجيح (أعلى وزن مطلق ضمن dimensions) -- null لسؤال بلا أبعاد. */
+export function primaryDimension(question: RiasecQuestion): RiasecDimension | null {
+  const entries = Object.entries(question.dimensions) as [RiasecDimension, number][];
+  if (entries.length === 0) return null;
+  return entries.reduce((a, b) => (Math.abs(b[1]) > Math.abs(a[1]) ? b : a))[0];
+}
+
+/**
+ * يختار من بنك أسئلة الترجيح ما يستهدف أبعاداً محدَّدة فقط (حسب البُعد
+ * الأساسي لكل سؤال لا أي بُعد ثانوي يظهر فيه)، مع استبعاد معرّفات سبق
+ * طرحها (لمنع التكرار عبر جولات/تدفقات متعددة تستخدم نفس البنك).
+ */
+export function selectQuestionsForDimensions(
+  pool: RiasecQuestion[],
+  targetDims: RiasecDimension[] | Set<RiasecDimension>,
+  excludeIds?: Set<string>
+): RiasecQuestion[] {
+  const dims = targetDims instanceof Set ? targetDims : new Set(targetDims);
+  return pool.filter((q) => {
+    if (excludeIds?.has(q.id)) return false;
+    const primary = primaryDimension(q);
+    return primary !== null && dims.has(primary);
+  });
+}

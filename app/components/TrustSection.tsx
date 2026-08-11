@@ -32,8 +32,8 @@ export default function TrustSection() {
           </a>
         </div>
 
-        <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
-          <dl className="grid gap-5">
+        <div className="rounded-md border border-line bg-surface p-6 shadow-sm space-y-5">
+          <dl>
             <div>
               <dt className="text-xs font-bold text-ink-muted">المصدر</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink">{meta.source}</dd>

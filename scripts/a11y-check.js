@@ -47,6 +47,7 @@ const ROUTES = [
   "/compare",
   "/report",
   "/decider",
+  "/skills",
 ];
 
 const FAIL_ON_IMPACT = new Set(["critical", "serious"]);

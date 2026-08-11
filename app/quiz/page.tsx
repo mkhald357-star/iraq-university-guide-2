@@ -578,21 +578,12 @@ export default function Quiz() {
       top3.length >= 2 &&
       top3[0].combinedScore - top3[1].combinedScore < AMBIGUITY_THRESHOLD
     ) {
-      const profileA = (riasecProfilesData.profiles as Record<string, any>)[top3[0].id] ?? {};
-      const profileB = (riasecProfilesData.profiles as Record<string, any>)[top3[1].id] ?? {};
-      const dimsByDivergence = [...RIASEC_DIMENSIONS].sort(
-        (a, b) => Math.abs((profileB[b] ?? 0) - (profileA[b] ?? 0)) - Math.abs((profileB[a] ?? 0) - (profileA[a] ?? 0))
-      );
-      const targetDims = new Set(dimsByDivergence.slice(0, 2));
+      const profileA = (riasecProfilesData.profiles as Record<string, RiasecVector>)[top3[0].id] ?? {};
+      const profileB = (riasecProfilesData.profiles as Record<string, RiasecVector>)[top3[1].id] ?? {};
+      const targetDims = findDivergentDimensions(profileA, profileB, 2);
       const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
       const pool = tiebreakerQuestionsData as QuizItem[];
-      const selected = pool.filter((q) => {
-        if (alreadyAskedIds.has(q.id)) return false; // لا نكرّر سؤال ترجيح سُئل في جولة سابقة
-        const entries = Object.entries(q.dimensions);
-        if (entries.length === 0) return false;
-        const primaryDim = entries.reduce((a, b) => (Math.abs(b[1] as number) > Math.abs(a[1] as number) ? b : a))[0];
-        return targetDims.has(primaryDim as RiasecDimension);
-      });
+      const selected = selectQuestionsForDimensions(pool, targetDims, alreadyAskedIds);
 
       if (selected.length > 0) {
         const startIndex = ALL_QUIZ_QUESTIONS.length + tieBreakQuestions.length;

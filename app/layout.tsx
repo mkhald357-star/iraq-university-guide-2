@@ -24,7 +24,7 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   // 🔴 إلزامي: بدونه تصبح روابط og:image نسبية فلا تُقرأ عند المشاركة
-  // (data/admission_rules.md §33). SITE_URL نائبة حتى يُحسَم النطاق الفعلي.
+  // (data/admission_rules.md §33). SITE_URL محسومة فعلياً منذ §37 (iraqmajors.com).
   metadataBase: new URL(SITE_URL),
   title: {
     default: `${SITE_NAME} — ${SITE_TAGLINE}`,

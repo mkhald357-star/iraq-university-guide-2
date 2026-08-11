@@ -16,6 +16,8 @@ import {
   computeMajorFit,
   computeCombinedRankingScore,
   topDimensions,
+  findDivergentDimensions,
+  selectQuestionsForDimensions,
   RIASEC_LABELS,
   RIASEC_DIMENSIONS,
   type RiasecDimension,

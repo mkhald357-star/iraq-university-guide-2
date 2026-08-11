@@ -95,7 +95,8 @@ export const SERVICES: Service[] = [
     stageId: "started",
     title: "مهارات تسبق التخرّج",
     summary: "المهارات التي يطلبها سوق تخصصك، وتستطيع بناءها وأنت طالب.",
-    status: "soon",
+    status: "live",
+    href: "/skills",
   },
 
   /* ── ④ أبعد من التخرّج ── */

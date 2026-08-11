@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 // /report خارج الخريطة عمداً -- نتيجة شخصية بمعامل ?major=، لا صفحة عامة
 // قابلة للفهرسة (data/admission_rules.md §33).
-const ROUTES = ["", "/quiz", "/explorer", "/gpa-check", "/wishlist", "/destinations", "/income"];
+const ROUTES = ["", "/quiz", "/explorer", "/gpa-check", "/wishlist", "/destinations", "/income", "/compare", "/decider"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

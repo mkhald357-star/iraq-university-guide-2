@@ -1,16 +1,16 @@
 /**
  * المصدر الوحيد لكل بيانات الهوية والمشاركة. لا تكرّر أياً منها.
  *
- * ⚠️ SITE_URL/REPORT_TELEGRAM/REPORT_EMAIL قيَم نائبة مؤقَّتة صراحة -- النطاق
- * الفعلي لم يُحسَم بعد وقنوات الإبلاغ لم تُحدَّد بعد (بطلب المستخدم المباشر،
- * data/admission_rules.md §33). استُعمل ".invalid" (نطاق محجوز رسمياً من
- * IANA لا يمكن أن يُسجَّل أو يُحَلّ فعلياً -- RFC 2606) بدل "example.com"
- * كي لا يُخلَط بقيمة قد تعمل صدفة. **يجب استبدال الثلاثة قبل الإطلاق
- * الفعلي** -- ابحث عن "REPLACE_BEFORE_LAUNCH" في الشيفرة كلها.
+ * ⚠️ REPORT_TELEGRAM/REPORT_EMAIL لا تزالان قيمتين نائبتين صراحة -- قنوات
+ * الإبلاغ الفعلية لم تُحدَّد بعد (بطلب المستخدم المباشر، data/admission_rules.md
+ * §33). SITE_URL حُسم في §37 (2026-08-10) بعد تحقّق مباشر (curl + Playwright)
+ * أن iraqmajors.com حيّ فعلاً وينشر آخر بناء للمنصة. استُعمل ".invalid" (نطاق
+ * محجوز رسمياً من IANA لا يمكن أن يُسجَّل أو يُحَلّ فعلياً -- RFC 2606) بدل
+ * "example.com" للحقلين المتبقيين كي لا يُخلَطا بقيمة قد تعمل صدفة. **يجب
+ * استبدالهما قبل الإطلاق الفعلي** -- ابحث عن "REPLACE_BEFORE_LAUNCH".
  */
 
-/** ⚠️ REPLACE_BEFORE_LAUNCH -- ضع النطاق الفعلي هنا، بلا شرطة مائلة في النهاية */
-export const SITE_URL = "https://REPLACE_WITH_REAL_DOMAIN.invalid";
+export const SITE_URL = "https://iraqmajors.com";
 
 export const SITE_NAME = "منصة التوجيه الجامعي العراقي";
 

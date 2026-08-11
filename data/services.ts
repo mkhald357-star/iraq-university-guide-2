@@ -71,7 +71,8 @@ export const SERVICES: Service[] = [
     stageId: "apply",
     title: "حسم الحيرة",
     summary: "محتار بين تخصصات متقاربة؟ أسئلة ترجيح قصيرة تفصل بينها.",
-    status: "soon",
+    status: "live",
+    href: "/decider",
   },
   {
     id: "cost",

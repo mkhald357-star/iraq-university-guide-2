@@ -9,12 +9,15 @@ describe("بيانات الموقع", () => {
     expect(SITE_URL).not.toMatch(/\/$/);
   });
 
-  // 🔴 معلَّق عمداً -- النطاق الفعلي لم يُحسَم بعد (بطلب المستخدم المباشر،
-  // data/admission_rules.md §33). SITE_URL نائبة صراحة (نطاق .invalid محجوز
-  // من IANA، RFC 2606 -- لا يمكن أن يعمل صدفة). أزِل .skip وفعِّل هذا الفحص
-  // فور ضبط النطاق الفعلي في lib/siteMeta.ts -- ابحث عن REPLACE_BEFORE_LAUNCH.
-  it.skip("النطاق ليس قيمة نائبة (مُعلَّق حتى يُحسَم النطاق الفعلي -- §33)", () => {
+  // النطاق حُسم في §37 (2026-08-10) -- iraqmajors.com متحقَّق منه حيّاً
+  // (curl 200 + Playwright يؤكّد محتوى /compare مطابقاً لآخر بناء).
+  it("SITE_URL ليس قيمة نائبة (حُسم -- §37)", () => {
     expect(SITE_URL).not.toMatch(/REPLACE_BEFORE_LAUNCH|\.invalid$/);
+  });
+
+  // 🔴 معلَّق عمداً -- قنوات الإبلاغ لم تُحدَّد بعد (بطلب المستخدم المباشر،
+  // §33). أزِل .skip فور توفّر تلغرام/بريد حقيقيَّين في lib/siteMeta.ts.
+  it.skip("قنوات الإبلاغ ليست قيماً نائبة (مُعلَّق حتى تُحدَّد القنوات الفعلية -- §33)", () => {
     expect(REPORT_TELEGRAM).not.toMatch(/REPLACE_BEFORE_LAUNCH/);
     expect(REPORT_EMAIL).not.toMatch(/REPLACE_BEFORE_LAUNCH/);
   });

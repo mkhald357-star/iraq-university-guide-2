@@ -53,10 +53,10 @@ function waitForServer(url, timeoutMs = 60_000) {
 
 (async () => {
   console.log("⏳ تشغيل next dev...");
-  const server = spawn("npx", ["next", "dev", "-p", String(PORT)], {
+  const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
+  const server = spawn(npxCmd, ["next", "dev", "-p", String(PORT)], {
     cwd: ROOT,
     stdio: "ignore",
-    shell: true,
   });
 
   let hadFailure = false;

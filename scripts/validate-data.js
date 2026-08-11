@@ -691,6 +691,117 @@ if (unknownInMapping.length) {
   console.log("[OK] data/major_department_mapping.json major-id references");
 }
 
+// مهارات تسبق التخرّج (data/major_skills.json، data/admission_rules.md §39):
+// محتوى استشاري لا واقعي (نفس اتفاقية study.coreSubjects/career.realJobTitles
+// بلا source -- القرار موثَّق في §39)، لكن يبقى عرضة لخطرين آليَّين حقيقيين لا
+// يحتاجان قراءة بشرية لاكتشافهما: (أ) رقم/نسبة مختلَقة تسرّبت رغم تعليمات
+// التوليد الصريحة، (ب) قالب واحد مُكرَّر بلا تمايز حقيقي بين التخصصات (نقيض
+// الشرط الصريح من المستخدم: "مرنة ومتغيرة حسب التخصص وليست نص ثابت للجميع").
+const SkillEntrySchema = z.object({
+  name: z.string().min(2),
+  why: z.string().min(15),
+  how: z.string().min(15),
+});
+const MajorSkillsSchema = z.object({
+  id: z.string(),
+  soft: z.array(SkillEntrySchema).length(3),
+  practical: z.array(SkillEntrySchema).length(3),
+  digital: z.array(SkillEntrySchema).length(3),
+});
+
+const skillsPath = path.join(ROOT, "data/major_skills.json");
+if (fs.existsSync(skillsPath)) {
+  const majorSkills = JSON.parse(fs.readFileSync(skillsPath, "utf8"));
+  let skillsHasErrors = false;
+
+  for (const entry of majorSkills) {
+    const result = MajorSkillsSchema.safeParse(entry);
+    if (!result.success) {
+      console.error(`[FAIL] data/major_skills.json (${entry.id}):`, result.error.issues.map((i) => i.message).join("; "));
+      skillsHasErrors = true;
+    } else if (!majorIds.has(entry.id)) {
+      console.error(`[FAIL] data/major_skills.json: unknown major id ${entry.id}`);
+      skillsHasErrors = true;
+    }
+  }
+  const skillsCoveredIds = new Set(majorSkills.map((e) => e.id));
+  const missingSkillsIds = [...majorIds].filter((id) => !skillsCoveredIds.has(id));
+  if (missingSkillsIds.length) {
+    console.error(`[FAIL] data/major_skills.json missing ${missingSkillsIds.length} majors:`, missingSkillsIds);
+    skillsHasErrors = true;
+  }
+
+  // حاجز افتعال صارم: لا استخدام مشروع لأي رمز نسبة داخل محتوى مهارات --
+  // كل نسبة سوق عمل حقيقية موجودة بمكانها الصحيح المُستشهَد به في market/
+  // governmentBaseSalary فقط، لا هنا.
+  const percentOffenders = [];
+  for (const entry of majorSkills) {
+    for (const cat of ["soft", "practical", "digital"]) {
+      for (const skill of entry[cat] || []) {
+        for (const field of ["name", "why", "how"]) {
+          const v = skill[field] || "";
+          if (v.includes("%") || v.includes("٪")) percentOffenders.push(`${entry.id}.${cat}.${field}: "${v}"`);
+        }
+      }
+    }
+  }
+  if (percentOffenders.length) {
+    console.error("[FAIL] data/major_skills.json يحوي رمز نسبة داخل محتوى استشاري (افتعال محتمل):", percentOffenders);
+    skillsHasErrors = true;
+  }
+
+  // كاشف قوالب/تكرار: تطبيع اسم كل مهارة (بلا تشكيل/همزات موحَّدة) وعدّ
+  // تكراره عبر الـ88 لكل فئة على حدة -- تكرار مرتفع يعني نصّاً ثابتاً مُعاد
+  // استخدامه بدل محتوى مصمَّم لكل تخصص فعلياً.
+  const normalizeSkill = (s) =>
+    s
+      .replace(/[ً-ْـ]/g, "")
+      .replace(/[أإآ]/g, "ا")
+      .replace(/ى/g, "ي")
+      .replace(/ة/g, "ه")
+      .replace(/\s+/g, " ")
+      .trim();
+  const totalMajors = majorSkills.length;
+  for (const cat of ["soft", "practical", "digital"]) {
+    const nameCounts = new Map();
+    const whyHowCounts = new Map();
+    for (const entry of majorSkills) {
+      for (const skill of entry[cat] || []) {
+        const nameKey = normalizeSkill(skill.name || "");
+        const whyHowKey = normalizeSkill((skill.why || "") + (skill.how || ""));
+        if (!nameCounts.has(nameKey)) nameCounts.set(nameKey, new Set());
+        nameCounts.get(nameKey).add(entry.id);
+        if (!whyHowCounts.has(whyHowKey)) whyHowCounts.set(whyHowKey, new Set());
+        whyHowCounts.get(whyHowKey).add(entry.id);
+      }
+    }
+    for (const [label, counts] of [
+      ["اسم المهارة", nameCounts],
+      ["نص why+how", whyHowCounts],
+    ]) {
+      for (const [key, ids] of counts) {
+        const ratio = ids.size / totalMajors;
+        if (ratio >= 0.3) {
+          console.error(
+            `[FAIL] data/major_skills.json (${cat}): ${label} مكرَّر حرفياً في ${ids.size}/${totalMajors} تخصصاً (≥30%، قالب لا تمايز) -- "${key.slice(0, 60)}"`
+          );
+          skillsHasErrors = true;
+        } else if (ratio >= 0.15) {
+          console.warn(
+            `[WARN] data/major_skills.json (${cat}): ${label} مكرَّر في ${ids.size}/${totalMajors} تخصصاً (≥15%) -- راجع يدوياً: "${key.slice(0, 60)}"`
+          );
+        }
+      }
+    }
+  }
+
+  if (skillsHasErrors) {
+    hasErrors = true;
+  } else {
+    console.log(`[OK] data/major_skills.json matches strict schema (${majorSkills.length}/${majors.length} majors, 3+3+3 لكل تخصص، صفر افتعال نسب، صفر تكرار قوالب ≥30%)`);
+  }
+}
+
 if (hasErrors) {
   console.error("\nData validation FAILED.");
   process.exit(1);

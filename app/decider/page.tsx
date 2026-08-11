@@ -38,8 +38,16 @@ export default function DeciderPage() {
   const majorB = majorsData.find((m) => m.id === majorBId);
   const ready = !!majorAId && !!majorBId && majorAId !== majorBId;
 
-  const profileA = ready ? ((riasecProfilesData.profiles as Record<string, RiasecVector>)[majorAId] ?? {}) : {};
-  const profileB = ready ? ((riasecProfilesData.profiles as Record<string, RiasecVector>)[majorBId] ?? {}) : {};
+  // useMemo مباشرة على majorAId/majorBId -- كائن {} احتياطي جديد في كل تصيير
+  // كان يكسر ثبات المرجع فيُبطل تذكّر useMemo التالية عبثاً (تحذير eslint حقيقي).
+  const profileA = useMemo(
+    () => (riasecProfilesData.profiles as Record<string, RiasecVector>)[majorAId] ?? {},
+    [majorAId]
+  );
+  const profileB = useMemo(
+    () => (riasecProfilesData.profiles as Record<string, RiasecVector>)[majorBId] ?? {},
+    [majorBId]
+  );
 
   const targetDims = useMemo(() => (ready ? findDivergentDimensions(profileA, profileB, 2) : []), [ready, profileA, profileB]);
 

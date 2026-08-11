@@ -237,17 +237,14 @@ describe("selectQuestionsForDimensions", () => {
   });
 
   it("فحص انحداري بالبنك الحقيقي: أي زوج من الأبعاد الستة يُنتج 6 أسئلة بالضبط", () => {
-    const dims: (keyof typeof RIASEC_DIMENSIONS extends never ? never : string)[] = [];
-    const allDims = RIASEC_DIMENSIONS;
-    for (let i = 0; i < allDims.length; i++) {
-      for (let j = i + 1; j < allDims.length; j++) {
+    for (let i = 0; i < RIASEC_DIMENSIONS.length; i++) {
+      for (let j = i + 1; j < RIASEC_DIMENSIONS.length; j++) {
         const selected = selectQuestionsForDimensions(tiebreakerQuestionsData as RiasecQuestion[], [
-          allDims[i],
-          allDims[j],
+          RIASEC_DIMENSIONS[i],
+          RIASEC_DIMENSIONS[j],
         ]);
         expect(selected.length).toBe(6);
       }
     }
-    expect(dims).toEqual([]); // متغيّر مساعد فقط لإرضاء TypeScript، لا استخدام فعلياً
   });
 });

@@ -74,6 +74,14 @@ function waitForServer(url, timeoutMs = 60_000) {
     const context = await browser.newContext();
     const page = await context.newPage();
 
+    // إحماء: أول زيارة فعلية لأي مسار بعد تشغيل next dev طازجاً تُحفِّز
+    // تجميعاً عند الطلب (on-demand compilation) قد يستغرق ثوانٍ -- waitForServer
+    // أعلاه يتأكد فقط من استجابة HTTP، لا من اكتمال أول تصيير كامل. بلا هذا
+    // الإحماء، أول مسار في القائمة (/) أنتج مخالفات وهمية عابرة (document-title/
+    // html-has-lang غائبين وقتياً) في نصف عمليات التشغيل الفعلية -- لا تكرّرت
+    // بعد إعادة المحاولة، مؤكِّدة أنها عطل توقيت لا عطل حقيقي (اكتُشف 2026-08-11).
+    await page.goto(BASE_URL + "/", { waitUntil: "networkidle" });
+
     /** @type {Record<string, Record<string, number>>} */
     const tally = {};
 

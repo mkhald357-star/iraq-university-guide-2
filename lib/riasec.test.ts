@@ -5,9 +5,13 @@ import {
   computeCombinedRankingScore,
   topDimensions,
   computeDimensionGaps,
+  findDivergentDimensions,
+  primaryDimension,
+  selectQuestionsForDimensions,
   RIASEC_DIMENSIONS,
   type RiasecQuestion,
 } from "./riasec";
+import tiebreakerQuestionsData from "../data/tiebreaker_questions.json";
 
 // اختبارات تثبّت السلوك الحالي لمحرك RIASEC قبل أي إعادة هيكلة (فصل السوق
 // عن الترتيب، محور القرابة الدراسية، إلخ) — أي تعديل مستقبلي يكسر هذه

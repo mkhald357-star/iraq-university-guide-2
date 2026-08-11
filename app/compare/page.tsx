@@ -42,8 +42,19 @@ const DEMAND_TONE: Record<string, string> = {
   "متشبع": "text-band-reach",
 };
 
-export default function ComparePage() {
-  const [slots, setSlots] = useState<string[]>(["", ""]);
+function CompareContent() {
+  const searchParams = useSearchParams();
+  const validMajorIds = useMemo(() => new Set(majorsData.map((m) => m.id)), []);
+
+  const [slots, setSlots] = useState<string[]>(() => {
+    // تعبئة أولية اختيارية من ?a=<id>&b=<id> -- تُستخدم حين يصل الطالب من
+    // رابط "حسم الحيرة" لمقارنة كاملة لنفس التخصصين. أي قيمة غير معروفة
+    // (رابط مُعدَّل يدوياً أو معطوب) تُهمَل بصمت -- خانة فارغة، لا خطأ.
+    const a = searchParams.get("a");
+    const b = searchParams.get("b");
+    const initial = [a, b].filter((id): id is string => !!id && validMajorIds.has(id));
+    return initial.length >= MIN_COMPARE_MAJORS ? initial : ["", ""];
+  });
   const [profiles, setProfiles] = useState<Record<string, DetailedMajorProfile | null>>({});
 
   const selectedIds = useMemo(() => sanitizeSelection(slots), [slots]);

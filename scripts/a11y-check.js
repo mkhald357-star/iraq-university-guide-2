@@ -8,7 +8,7 @@
  *
  * الاستخدام: node scripts/a11y-check.js (أو npm run a11y-check)
  */
-const { spawn } = require("child_process");
+const { spawn, execFileSync } = require("child_process");
 const http = require("http");
 const path = require("path");
 const { chromium } = require("playwright");
@@ -17,6 +17,24 @@ const AxeBuilder = require("@axe-core/playwright").default;
 const ROOT = path.join(__dirname, "..");
 const PORT = 3100;
 const BASE_URL = `http://localhost:${PORT}`;
+
+/** على Windows، server.kill() يقتل غلاف shell:true فقط، لا عملية next dev
+ *  الحفيدة الفعلية الماسكة للمنفذ فعلياً -- تُترَك يتيمة تحجز المنفذ لأي
+ *  تشغيل تالٍ (اكتُشف فعلياً 2026-08-11: فشل تشغيل ثانٍ بخطأ ERR_ABORTED
+ *  بسبب خادم يتيم من تشغيل سابق لم يُقتَل فعلياً). taskkill /T يقتل شجرة
+ *  العمليات كاملة. */
+function killServerTree(child) {
+  if (!child.pid) return;
+  if (process.platform === "win32") {
+    try {
+      execFileSync("taskkill", ["/F", "/T", "/PID", String(child.pid)], { stdio: "ignore" });
+    } catch {
+      // العملية قد تكون انتهت فعلاً -- لا حاجة للإبلاغ عن هذا كخطأ
+    }
+  } else {
+    child.kill();
+  }
+}
 
 const ROUTES = [
   "/",

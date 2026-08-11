@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import { GraduationCap, Briefcase, ListChecks, Plus, Trophy, AlertCircle } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import majorsData from "../../data/majors.json";

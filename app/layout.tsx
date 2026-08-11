@@ -4,7 +4,9 @@ import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AssistantWidget } from "./components/AssistantWidget";
 import SiteFooter from "./components/SiteFooter";
+import SkipLink from "./components/SkipLink";
 import { ReportIssueProvider } from "./context/ReportIssueContext";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "../lib/jsonLd";
 import {
   SITE_URL,
   SITE_NAME,

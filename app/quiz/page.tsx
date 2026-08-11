@@ -19,7 +19,6 @@ import {
   findDivergentDimensions,
   selectQuestionsForDimensions,
   RIASEC_LABELS,
-  RIASEC_DIMENSIONS,
   type RiasecDimension,
   type RiasecVector,
 } from "../../lib/riasec";

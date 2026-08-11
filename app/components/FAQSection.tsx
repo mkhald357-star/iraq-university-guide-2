@@ -25,9 +25,26 @@ const FAQS = [
   },
 ];
 
+// FAQPage JSON-LD من نفس محتوى FAQS أعلاه حرفياً -- لا محتوى جديد، لا مخاطرة
+// افتعال. < يمنع أي احتمال كسر وسم <script> إن احتوى نص سؤال/جواب لاحقاً
+// على "</script>" (لا يحدث حالياً، لكن حماية صحيحة عموماً لأي JSON مُضمَّن).
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+
 export default function FAQSection() {
   return (
     <section dir="rtl" className="py-24">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
+      />
       <div className="mx-auto max-w-3xl px-5">
         <p className="text-sm font-bold text-primary-700">أسئلة شائعة</p>
         <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">

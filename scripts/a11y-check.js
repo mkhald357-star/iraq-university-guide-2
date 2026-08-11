@@ -65,7 +65,11 @@ function waitForServer(url, timeoutMs = 60_000) {
     console.log("✅ الخادم جاهز — بدء الفحص\n");
 
     const browser = await chromium.launch();
-    const page = await browser.newPage();
+    // AxeBuilder يشترط صفحة من context صريح -- browser.newPage() المختصرة
+    // (تُنشئ context ضمنياً) تُرفَض بخطأ "Please use browser.newContext()"
+    // رغم أنها Page صالحة فنياً (اكتُشف فعلياً عند أول تشغيل، 2026-08-11).
+    const context = await browser.newContext();
+    const page = await context.newPage();
 
     /** @type {Record<string, Record<string, number>>} */
     const tally = {};

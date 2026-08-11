@@ -53,10 +53,13 @@ function waitForServer(url, timeoutMs = 60_000) {
 
 (async () => {
   console.log("⏳ تشغيل next dev...");
-  const npxCmd = process.platform === "win32" ? "npx.cmd" : "npx";
-  const server = spawn(npxCmd, ["next", "dev", "-p", String(PORT)], {
+  // shell:true مع أمر نصّي واحد (لا مصفوفة args) -- يتفادى كلاً من عطل Windows
+  // EINVAL عند spawn المباشر لـ npx.cmd، وتحذير عدم إفلات المعطيات الذي يظهر
+  // فقط عند الجمع بين shell:true ومصفوفة args (اكتُشف فعلياً، 2026-08-11).
+  const server = spawn(`npx next dev -p ${PORT}`, {
     cwd: ROOT,
     stdio: "ignore",
+    shell: true,
   });
 
   let hadFailure = false;

@@ -38,16 +38,26 @@ export default function TrustSection() {
               <dt className="text-xs font-bold text-ink-muted">المصدر</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink">{meta.source}</dd>
             </div>
-            <div className="grid grid-cols-2 gap-5">
+          </dl>
+          {/* ملاحظة بنيوية: زوجا dt/dd هنا في dl منفصلَين، لا متداخلَين داخل
+              dl واحد -- axe-core (فحص definition-list/dlitem، §39) رفض تعشيش
+              div إضافي حول كل زوج ضمن dl واحد (المواصفة تسمح فقط بـ (dt+)(dd+)
+              مسطَّحة داخل div مباشر تحت dl، لا div متداخل داخل div آخر). */}
+          <div className="grid grid-cols-2 gap-5">
+            <dl>
               <div>
                 <dt className="text-xs font-bold text-ink-muted">العام الدراسي</dt>
                 <dd className="mt-1 text-sm font-bold text-ink">{meta.academicYear}</dd>
               </div>
+            </dl>
+            <dl>
               <div>
                 <dt className="text-xs font-bold text-ink-muted">آخر تحديث للبيانات</dt>
                 <dd className="mt-1 text-sm font-bold text-ink">{meta.lastUpdated}</dd>
               </div>
-            </div>
+            </dl>
+          </div>
+          <dl className="grid gap-5">
             <div>
               <dt className="text-xs font-bold text-ink-muted">التغطية الجغرافية</dt>
               <dd className="mt-1 text-sm leading-relaxed text-ink-soft">

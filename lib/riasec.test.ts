@@ -177,3 +177,77 @@ describe("computeDimensionGaps", () => {
     gaps.forEach((g) => expect(g.majorScore).toBe(0));
   });
 });
+
+// اختُرِج findDivergentDimensions/selectQuestionsForDimensions من منطق
+// التكيّف متعددة الجولات في app/quiz/page.tsx (2026-08-11) لاستخدامهما أيضاً
+// في ميزة "حسم الحيرة" المستقلة — نفس مصدر الحقيقة لكلا التدفقين.
+
+describe("findDivergentDimensions", () => {
+  it("يُرجع أكبر n بُعداً تبايناً بين ملفَّي تخصصين، تنازلياً", () => {
+    const a = { R: 9, I: 5, A: 5, S: 5, E: 5, C: 5 };
+    const b = { R: 1, I: 5, A: 8, S: 5, E: 5, C: 5 };
+    // R: فرق 8 | A: فرق 3 | الباقي: فرق 0
+    expect(findDivergentDimensions(a, b, 2)).toEqual(["R", "A"]);
+  });
+
+  it("يحترم n المخصَّص (1 بدل الافتراضي 2)", () => {
+    const a = { R: 9, I: 5, A: 5, S: 5, E: 5, C: 5 };
+    const b = { R: 1, I: 5, A: 8, S: 5, E: 5, C: 5 };
+    expect(findDivergentDimensions(a, b, 1)).toEqual(["R"]);
+  });
+
+  it("تعامل الأبعاد الغائبة من أي ملف كصفر", () => {
+    const a = {};
+    const b = { R: 10 };
+    expect(findDivergentDimensions(a, b, 1)).toEqual(["R"]);
+  });
+});
+
+describe("primaryDimension", () => {
+  it("يختار البُعد الأعلى وزناً مطلقاً ضمن سؤال متعدّد الأبعاد", () => {
+    const q: RiasecQuestion = { id: "q1", text: "", dimensions: { A: 5, C: -8 } };
+    expect(primaryDimension(q)).toBe("C"); // |−8| > |5|
+  });
+
+  it("يُرجع null لسؤال بلا أبعاد", () => {
+    const q: RiasecQuestion = { id: "q1", text: "", dimensions: {} };
+    expect(primaryDimension(q)).toBeNull();
+  });
+});
+
+describe("selectQuestionsForDimensions", () => {
+  const pool: RiasecQuestion[] = [
+    { id: "q1", text: "", dimensions: { R: 8 } },
+    { id: "q2", text: "", dimensions: { I: 8 } },
+    { id: "q3", text: "", dimensions: { A: 8, R: 2 } }, // R ثانوي فقط -- لا يجب أن يُطابَق بحثاً عن R
+  ];
+
+  it("يفلتر بالبُعد الأساسي فقط -- بُعد ثانوي مطابق لا يكفي", () => {
+    const selected = selectQuestionsForDimensions(pool, ["R"]);
+    expect(selected.map((q) => q.id)).toEqual(["q1"]); // لا q3 رغم احتوائه R كثانوي
+  });
+
+  it("يقبل مصفوفة أو Set لنفس النتيجة", () => {
+    expect(selectQuestionsForDimensions(pool, ["I"])).toEqual(selectQuestionsForDimensions(pool, new Set(["I"])));
+  });
+
+  it("يستبعد معرّفات سبق طرحها", () => {
+    const selected = selectQuestionsForDimensions(pool, ["R"], new Set(["q1"]));
+    expect(selected).toEqual([]);
+  });
+
+  it("فحص انحداري بالبنك الحقيقي: أي زوج من الأبعاد الستة يُنتج 6 أسئلة بالضبط", () => {
+    const dims: (keyof typeof RIASEC_DIMENSIONS extends never ? never : string)[] = [];
+    const allDims = RIASEC_DIMENSIONS;
+    for (let i = 0; i < allDims.length; i++) {
+      for (let j = i + 1; j < allDims.length; j++) {
+        const selected = selectQuestionsForDimensions(tiebreakerQuestionsData as RiasecQuestion[], [
+          allDims[i],
+          allDims[j],
+        ]);
+        expect(selected.length).toBe(6);
+      }
+    }
+    expect(dims).toEqual([]); // متغيّر مساعد فقط لإرضاء TypeScript، لا استخدام فعلياً
+  });
+});

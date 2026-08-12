@@ -7,7 +7,7 @@
 // scripts/parse-evening-study.js (or all at once via `npm run rebuild-data`).
 const fs = require("fs");
 const path = require("path");
-const { toDisplayName } = require("./displayName");
+const { toDisplayName, normalizeForDedupMatch } = require("./displayName");
 const { parseStatedMinimum } = require("./departmentNameHealth");
 const SOURCES = require("./admissionSources");
 

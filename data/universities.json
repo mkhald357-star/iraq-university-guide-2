@@ -1,6 +1,6 @@
 {
   "meta": {
-    "lastUpdated": "2026-08-10",
+    "lastUpdated": "2026-08-12",
     "source": "دليل الطالب للسنة الدراسية 2025-2026 + الحدود الدنيا للقبول المركزي (القناة العامة) + دليل الجامعات والكليات الأهلية والأجور الدراسية 2025-2026 - وزارة التعليم العالي والبحث العلمي العراقية",
     "sourceFiles": [
       "dalel_2025_22026.pdf",
@@ -51473,31 +51473,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "إدارة الأعمال",
-              "displayName": "إدارة الأعمال",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
               "name": "اللغة الإنجليزية / الترجمة",
               "displayName": "اللغة الإنجليزية / الترجمة",
               "branch": [],
@@ -51573,54 +51548,6 @@
                 "علمي",
                 "فنون",
                 "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
-              "name": "تقنيات صناعة الأسنان",
-              "displayName": "تقنيات صناعة الأسنان",
-              "branch": [
-                "علمي"
               ],
               "sessions": [
                 "صباحي"
@@ -52276,30 +52203,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
               "name": "التمريض",
               "displayName": "التمريض",
               "branch": [
@@ -52324,59 +52227,12 @@
               "branchSource": "derived-from-government-equivalent"
             },
             {
-              "name": "هندسة الاتصالات",
-              "displayName": "هندسة الاتصالات",
-              "branch": [],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "unknown"
-            },
-            {
               "name": "علوم الحاسوب",
               "displayName": "علوم الحاسوب",
               "branch": [
                 "علمي",
                 "أدبي",
                 "فنون"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
-              "name": "إدارة الأعمال",
-              "displayName": "إدارة الأعمال",
-              "branch": [
-                "علمي",
-                "أدبي"
               ],
               "sessions": [
                 "صباحي"
@@ -62521,30 +62377,6 @@
               "branchSource": "unknown"
             },
             {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
               "name": "الهندسة الكيمياوية",
               "displayName": "الهندسة الكيمياوية",
               "branch": [
@@ -62611,31 +62443,6 @@
               "admissionSuspended": false,
               "note": null,
               "branchSource": "unknown"
-            },
-            {
-              "name": "إدارة الأعمال",
-              "displayName": "إدارة الأعمال",
-              "branch": [
-                "علمي",
-                "أدبي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
             },
             {
               "name": "اللغة الإنجليزية / الترجمة",
@@ -65045,30 +64852,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
               "name": "هندسة الطيران",
               "displayName": "هندسة الطيران",
               "branch": [],
@@ -65190,6 +64973,31 @@
                 "علمي",
                 "أدبي",
                 "فنون"
+              ],
+              "sessions": [
+                "صباحي"
+              ],
+              "cutoffs": [],
+              "averageGrades": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "isDirectAdmission": true,
+              "statedMinimumGrade": null,
+              "tuitionFees": {
+                "صباحي": null,
+                "مسائي": null
+              },
+              "admissionSuspended": false,
+              "note": null,
+              "branchSource": "derived-from-government-equivalent"
+            },
+            {
+              "name": "العلوم المالية والمصرفية",
+              "displayName": "العلوم المالية والمصرفية",
+              "branch": [
+                "علمي",
+                "أدبي"
               ],
               "sessions": [
                 "صباحي"
@@ -65545,30 +65353,6 @@
           "name": "برامج القبول المباشر",
           "nameEn": null,
           "departments": [
-            {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
             {
               "name": "الصيدلة",
               "displayName": "الصيدلة",
@@ -73208,30 +72992,6 @@
           "nameEn": null,
           "departments": [
             {
-              "name": "طب الأسنان",
-              "displayName": "طب الأسنان",
-              "branch": [
-                "علمي"
-              ],
-              "sessions": [
-                "صباحي"
-              ],
-              "cutoffs": [],
-              "averageGrades": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "isDirectAdmission": true,
-              "statedMinimumGrade": null,
-              "tuitionFees": {
-                "صباحي": null,
-                "مسائي": null
-              },
-              "admissionSuspended": false,
-              "note": null,
-              "branchSource": "derived-from-government-equivalent"
-            },
-            {
               "name": "الصيدلة",
               "displayName": "الصيدلة",
               "branch": [
@@ -73324,8 +73084,8 @@
               "branchSource": "derived-from-government-equivalent"
             },
             {
-              "name": "إدارة الأعمال",
-              "displayName": "إدارة الأعمال",
+              "name": "العلوم المالية والمصرفية",
+              "displayName": "العلوم المالية والمصرفية",
               "branch": [
                 "علمي",
                 "أدبي"

@@ -6,7 +6,7 @@ const { z } = require("zod");
 const fs = require("fs");
 const path = require("path");
 const SOURCES = require("./admissionSources");
-const { fixLamAlef } = require("./displayName");
+const { fixLamAlef, normalizeForDedupMatch } = require("./displayName");
 
 const ROOT = path.join(__dirname, "..");
 

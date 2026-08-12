@@ -87,6 +87,10 @@ function findUniversitiesForMajor(major, mapping) {
             isDirectAdmission: dept.isDirectAdmission,
             statedMinimumGrade: dept.statedMinimumGrade ?? null,
             confidence,
+            // أهلية فقط، undefined->null دائماً للحكومية (غياب بنيوي مقصود --
+            // القبول الحكومي مركزي بلا أجر مماثل). راجع data/admission_rules.md §41.
+            tuitionFees: dept.tuitionFees ?? null,
+            admissionSuspended: dept.admissionSuspended ?? false,
           });
         }
       }

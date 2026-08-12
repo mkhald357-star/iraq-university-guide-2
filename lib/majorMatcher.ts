@@ -135,6 +135,9 @@ export interface UniversityOffering {
   isDirectAdmission: boolean;
   statedMinimumGrade?: StatedMinimumGrade | null;
   confidence: number;
+  // انظر Department.tuitionFees أعلاه لنفس القاعدة (أهلية فقط، undefined للحكومية).
+  tuitionFees?: { صباحي: number | null; مسائي: number | null };
+  admissionSuspended?: boolean;
 }
 
 /**

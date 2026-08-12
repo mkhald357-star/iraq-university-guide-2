@@ -54,6 +54,8 @@ export default function CostPage() {
         <MajorPicker index={0} value={majorId} excludeIds={[]} onChange={setMajorId} />
       </div>
 
+      <ChannelNotice />
+
       {major && offerings === null && <p className="text-center text-ink-muted">جارٍ التحميل...</p>}
 
       {major && offerings && sortedPrivate.length === 0 && unverifiedPrivate.length === 0 && government.length === 0 && (

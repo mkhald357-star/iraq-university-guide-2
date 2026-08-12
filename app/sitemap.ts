@@ -17,6 +17,7 @@ const ROUTES = [
   "/compare",
   "/decider",
   "/skills",
+  "/cost",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

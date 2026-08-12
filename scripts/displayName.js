@@ -50,4 +50,22 @@ function toDisplayName(s) {
   return applyCorrections(fixLamAlef(s));
 }
 
-module.exports = { fixLamAlef, applyCorrections, toDisplayName };
+// تطبيع لمطابقة تكرار الأقسام (لا للعرض) -- يبدأ من toDisplayName (يُصلح
+// انعكاس "لا" أولاً، وإلا "طب االسنان" لا تُطابَق "طب الأسنان" إطلاقاً)، ثم
+// يُسقط الهمزات وأداة التعريف وكل ألف متبقية وتاء مربوطة لمقارنة متسامحة.
+// مُختبَر يدوياً (data/admission_rules.md §41) على أزواج حقيقية موجَبة
+// وسالبة معاً -- ليس تضمين نصّي (containment) عمداً، لأن ذلك يُنتج مطابقات
+// كاذبة خطيرة (مثال حقيقي فحصته: "علم النفس الاكلينيكي" يتضمّن جذوراً
+// مشتركة مع "الإعلام" بعد إسقاط الألف، فتضمين ساذج كان سيدمجهما خطأً).
+function normalizeForDedupMatch(s) {
+  if (!s) return "";
+  return toDisplayName(s)
+    .replace(/[أإآ]/g, "ا")
+    .replace(/(^|\s)ال/g, "$1")
+    .replace(/ا/g, "")
+    .replace(/ة/g, "ه")
+    .replace(/[\/\-]/g, "")
+    .replace(/\s+/g, "");
+}
+
+module.exports = { fixLamAlef, applyCorrections, toDisplayName, normalizeForDedupMatch };

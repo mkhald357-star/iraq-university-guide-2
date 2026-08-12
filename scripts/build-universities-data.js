@@ -572,8 +572,16 @@ const privateFinal = privateUnis.map((p) => {
   // الجامعات الموثَّقة يدوياً سابقاً بقائمة "majors" أغنى مما استخرجه
   // الدليل آلياً لها. ندمج أي تخصص يدوي غير مذكور اسمياً في نتيجة الدليل،
   // بدل استبدال البيانات الأدق بأخرى أفقر عرضاً عرضياً.
-  const guideDeptNames = new Set(colleges.flatMap((c) => c.departments.map((d) => d.name.replace(/\s+/g, ""))));
-  const extraManualMajors = (p.majors || []).filter((m) => !guideDeptNames.has(m.replace(/\s+/g, "")));
+  // مطابقة مُطبَّعة (لا نصّية ساذجة) -- المقارنة السابقة (.replace(/\s+/g,""))
+  // كانت تفوّت تكرارات حقيقية بسبب فساد "لام-ألف" الشائع في نص الدليل
+  // المُستخرَج (مثال حقيقي: "طب االسنان" في جدول الدليل لا تُطابَق "طب
+  // الأسنان" في data/private_universities.json نصّياً رغم كونهما نفس القسم)،
+  // فيُضاف القسم مرتين: مرة بأجر حقيقي (اسم مشوَّه من الدليل)، ومرة بأجر
+  // فارغ بالكامل (اسم صحيح من القائمة اليدوية الاحتياطية). راجع
+  // data/admission_rules.md §41 للتوثيق الكامل والحالات المؤكَّدة (12 صفاً
+  // عبر 6 جامعات) التي أصلحها هذا التغيير تحديداً.
+  const guideDeptNames = new Set(colleges.flatMap((c) => c.departments.map((d) => normalizeForDedupMatch(d.displayName ?? d.name))));
+  const extraManualMajors = (p.majors || []).filter((m) => !guideDeptNames.has(normalizeForDedupMatch(m)));
   if (extraManualMajors.length) {
     colleges.push({
       id: `${p.id}_col_manual`,

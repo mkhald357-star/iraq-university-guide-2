@@ -52,6 +52,11 @@ export interface Department {
   isDirectAdmission: boolean;
   // شرط معدّل مُعلَن -- للأقسام الأهلية فقط، null دائماً للحكومية. راجع §28.
   statedMinimumGrade?: StatedMinimumGrade | null;
+  // أجر الدراسة السنوي -- للأقسام الأهلية فقط، غائب (undefined) دائماً
+  // للحكومية (القبول الحكومي مركزي بلا أجر مماثل، غياب بنيوي مقصود لا نقص
+  // بيانات). راجع data/admission_rules.md §41.
+  tuitionFees?: { صباحي: number | null; مسائي: number | null };
+  admissionSuspended?: boolean;
 }
 
 /**

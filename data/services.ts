@@ -79,7 +79,8 @@ export const SERVICES: Service[] = [
     stageId: "apply",
     title: "كلفة الدراسة الأهلية",
     summary: "قارن أجور الجامعات الأهلية لنفس التخصص قبل ما تقرّر.",
-    status: "soon",
+    status: "live",
+    href: "/cost",
   },
 
   /* ── ③ بعد ما تُقبل ── */

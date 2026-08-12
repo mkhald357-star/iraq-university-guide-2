@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { GraduationCap, Wallet, AlertCircle, Trophy } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { MajorPicker } from "../components/MajorPicker";
+import { ChannelNotice } from "../components/ChannelNotice";
 import { fetchOfferingsForMajor } from "../../lib/offeringsClient";
 import { splitOfferings, sortByFeeAscending, computeCheapestHighlight, offeringKey } from "../../lib/costCompare";
 import {

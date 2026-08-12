@@ -215,6 +215,99 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
   }
 }
 
+// أجور الجامعات الأهلية (data/admission_rules.md §41): ثلاثة حراس مستقلون
+// اكتُشفت أعطالها بتحقّق يدوي مباشر من النص الخام، لا افتراضاً. كلها تعمل
+// على مجموعات مُطبَّعة بـnormalizeForDedupMatch (لا مقارنة نصّية ساذجة --
+// كانت السبب الجذري للعطل الأول).
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const hasFee = (f) => f && (f["صباحي"] != null || f["مسائي"] != null);
+  const isFullyNull = (f) => f && f["صباحي"] == null && f["مسائي"] == null;
+
+  // (أ) [FAIL] تكرار حقيقي/فارغ بنفس الجامعة (عبر كليات مختلفة أحياناً) --
+  // توقيع عطل دمج extraManualMajors قبل إصلاحه (§41) -- حارس ارتداد، يجب أن
+  // يكون صفراً دائماً بعد الإصلاح.
+  const realNullDupes = [];
+  for (const uni of universities) {
+    if (uni.type !== "أهلية") continue;
+    const byName = new Map();
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        if (!dept.tuitionFees) continue;
+        const key = normalizeForDedupMatch(dept.displayName ?? dept.name);
+        if (!byName.has(key)) byName.set(key, []);
+        byName.get(key).push({ college: college.name, dept: dept.displayName ?? dept.name, fee: dept.tuitionFees });
+      }
+    }
+    for (const entries of byName.values()) {
+      if (entries.length < 2) continue;
+      if (entries.some((e) => hasFee(e.fee)) && entries.some((e) => isFullyNull(e.fee))) {
+        realNullDupes.push(`${uni.name}: ${JSON.stringify(entries)}`);
+      }
+    }
+  }
+  if (realNullDupes.length) {
+    console.error("[FAIL] tuitionFees: تكرار قسم بأجر حقيقي + نسخة بأجر فارغ بالكامل (نفس الجامعة):", realNullDupes);
+    hasErrors = true;
+  } else {
+    console.log("[OK] tuitionFees: صفر تكرار حقيقي/فارغ عبر كل الجامعات الأهلية");
+  }
+
+  // (ب) [WARN] تناقض بين حقل note ("لا توجد دراسة مسائية") وأجر مسائي حقيقي
+  // فعلياً -- حالة واحدة مؤكَّدة (zahraa_women)، لا تُصلَح تخميناً (لا نعرف
+  // أي حقل هو الخاطئ فعلياً بلا رجوع للمصدر) -- تبقى تحذيراً حتى تصحيح يدوي.
+  const NO_EVENING_NOTE_RE = /لا\s*توجد\s*دراسة\s*مسائية|التوجد\s*دراسة\s*مسائية/;
+  const polarityMismatches = [];
+  for (const uni of universities) {
+    if (uni.type !== "أهلية") continue;
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        if (!dept.tuitionFees || !dept.note) continue;
+        if (NO_EVENING_NOTE_RE.test(dept.note) && dept.tuitionFees["مسائي"] != null) {
+          polarityMismatches.push(
+            `${uni.name}/${college.name}/${dept.displayName ?? dept.name}: note="${dept.note}" لكن مسائي=${dept.tuitionFees["مسائي"]}`
+          );
+        }
+      }
+    }
+  }
+  if (polarityMismatches.length) {
+    console.warn("[WARN] tuitionFees: تناقض بين note وأجر مسائي حقيقي -- يحتاج مراجعة يدوية للمصدر:", polarityMismatches);
+  } else {
+    console.log("[OK] tuitionFees: لا تناقض بين note وأجر مسائي");
+  }
+
+  // (ج) [WARN] تكرار حقيقي×حقيقي بنفس الكلية بالضبط -- توقيع تكرار استخراج
+  // من الدليل نفسه (لا عطل دمج extraManualMajors)، اكتُشف في "ishtar" فقط
+  // (بحث يدوي في النص الخام كشف جذراً أعمق: تعذّر إسناد جدولين متجاورين
+  // لمؤسستين حقيقيتين منفصلتين باسم "عشتار" -- يحتاج تحقيقاً تصالحياً منفصلاً
+  // بالكامل، خارج نطاق هذه الميزة). [WARN] لا [FAIL] عمداً -- حاجب كامل غير
+  // متناسب لحالة معزولة موثَّقة، والصفحة الاستهلاكية تستبعدها صراحة (§41).
+  const sameCollegeDupes = [];
+  for (const uni of universities) {
+    if (uni.type !== "أهلية") continue;
+    for (const college of uni.colleges) {
+      const byName = new Map();
+      for (const dept of college.departments) {
+        if (!dept.tuitionFees) continue;
+        const key = normalizeForDedupMatch(dept.displayName ?? dept.name);
+        if (!byName.has(key)) byName.set(key, []);
+        byName.get(key).push(dept.tuitionFees);
+      }
+      for (const [key, fees] of byName) {
+        if (fees.length >= 2 && fees.filter(hasFee).length >= 2) {
+          sameCollegeDupes.push(`${uni.name}/${college.name}/${key}: ${JSON.stringify(fees)}`);
+        }
+      }
+    }
+  }
+  if (sameCollegeDupes.length) {
+    console.warn("[WARN] tuitionFees: تكرار حقيقي×حقيقي بنفس الكلية (استخراج مصدر غامض، يحتاج مراجعة يدوية):", sameCollegeDupes);
+  } else {
+    console.log("[OK] tuitionFees: لا تكرار حقيقي×حقيقي بنفس الكلية");
+  }
+}
+
 // تغطية الفرع (data/admission_rules.md §29): قسم بمصفوفة branch فارغة يختفي
 // بنيوياً من by-branch/{علمي,أدبي,فنون}.json (المستكشف/فاحص المعدل) ما لم
 // يُوسَم صراحة "unknown" ليُلتقَط عبر by-branch/unknown.json بدلاً منها --

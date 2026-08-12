@@ -280,6 +280,8 @@ export function findUniversitiesForMajor(
             cutoffs: dept.cutoffs,
             isDirectAdmission: dept.isDirectAdmission,
             confidence,
+            tuitionFees: dept.tuitionFees ?? undefined,
+            admissionSuspended: dept.admissionSuspended ?? false,
           });
         }
       }

@@ -784,9 +784,9 @@ if (unknownInMapping.length) {
   console.log("[OK] data/major_department_mapping.json major-id references");
 }
 
-// مهارات تسبق التخرّج (data/major_skills.json، data/admission_rules.md §39):
+// مهارات تسبق التخرّج (data/major_skills.json، data/admission_rules.md §40):
 // محتوى استشاري لا واقعي (نفس اتفاقية study.coreSubjects/career.realJobTitles
-// بلا source -- القرار موثَّق في §39)، لكن يبقى عرضة لخطرين آليَّين حقيقيين لا
+// بلا source -- القرار موثَّق في §40)، لكن يبقى عرضة لخطرين آليَّين حقيقيين لا
 // يحتاجان قراءة بشرية لاكتشافهما: (أ) رقم/نسبة مختلَقة تسرّبت رغم تعليمات
 // التوليد الصريحة، (ب) قالب واحد مُكرَّر بلا تمايز حقيقي بين التخصصات (نقيض
 // الشرط الصريح من المستخدم: "مرنة ومتغيرة حسب التخصص وليست نص ثابت للجميع").

@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run compute-homepage-stats",
+    "predev": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run compute-homepage-stats",
     "dev": "next dev -p 3000",
-    "prebuild": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run compute-homepage-stats && npm run validate-data",
+    "prebuild": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run compute-homepage-stats && npm run validate-data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

@@ -895,6 +895,141 @@ if (fs.existsSync(skillsPath)) {
   }
 }
 
+// بنك أفكار مشاريع التخرّج (data/major_projects.json، data/admission_rules.md
+// §42): نفس اتفاقية المحتوى الاستشاري بلا source التي نجحت في المهارات (§40)،
+// لكن حقل problem هنا يصف "حاجة حقيقية في السوق المحلي" (نص خدمة "projects"
+// نفسه في data/services.ts) -- أعلى خطر افتعال محتمل في المنصة كلها، فيحمل
+// حاجزاً إضافياً (عبارات تفوّق مطلقة) لا يملكه حارس المهارات.
+const ProjectIdeaSchema = z.object({
+  title: z.string().min(10),
+  problem: z.string().min(40),
+  description: z.string().min(60),
+});
+const MajorProjectsSchema = z.object({
+  id: z.string(),
+  technical: z.array(ProjectIdeaSchema).length(13),
+  ai: z.array(ProjectIdeaSchema).length(12),
+  research: z.array(ProjectIdeaSchema).length(13),
+  impact: z.array(ProjectIdeaSchema).length(12),
+});
+
+const projectsPath = path.join(ROOT, "data/major_projects.json");
+if (fs.existsSync(projectsPath)) {
+  const majorProjects = JSON.parse(fs.readFileSync(projectsPath, "utf8"));
+  let projectsHasErrors = false;
+
+  for (const entry of majorProjects) {
+    const result = MajorProjectsSchema.safeParse(entry);
+    if (!result.success) {
+      console.error(
+        `[FAIL] data/major_projects.json (${entry.id}):`,
+        result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ")
+      );
+      projectsHasErrors = true;
+    } else if (!majorIds.has(entry.id)) {
+      console.error(`[FAIL] data/major_projects.json: unknown major id ${entry.id}`);
+      projectsHasErrors = true;
+    }
+  }
+  const projectsCoveredIds = new Set(majorProjects.map((e) => e.id));
+  const missingProjectsIds = [...majorIds].filter((id) => !projectsCoveredIds.has(id));
+  if (missingProjectsIds.length) {
+    console.error(`[FAIL] data/major_projects.json missing ${missingProjectsIds.length} majors:`, missingProjectsIds);
+    projectsHasErrors = true;
+  }
+
+  const PROJECT_ANGLE_KEYS = ["technical", "ai", "research", "impact"];
+
+  // حاجز افتعال صارم -- مطابق تماماً لحارس المهارات، على الحقول الثلاثة كلها.
+  const percentOffenders = [];
+  for (const entry of majorProjects) {
+    for (const angle of PROJECT_ANGLE_KEYS) {
+      for (const idea of entry[angle] || []) {
+        for (const field of ["title", "problem", "description"]) {
+          const v = idea[field] || "";
+          if (v.includes("%") || v.includes("٪")) percentOffenders.push(`${entry.id}.${angle}.${field}: "${v}"`);
+        }
+      }
+    }
+  }
+  if (percentOffenders.length) {
+    console.error("[FAIL] data/major_projects.json يحوي رمز نسبة داخل محتوى استشاري (افتعال محتمل):", percentOffenders);
+    projectsHasErrors = true;
+  }
+
+  // حاجز إضافي خاص بهذه الميزة: عبارات تفوّق مطلقة غير قابلة للتحقق -- خطر
+  // افتعال مختلف عن الأرقام، لا يغطيه حاجز % (data/admission_rules.md §42).
+  const SUPERLATIVE_PHRASES = ["الأول من نوعه", "لا مثيل له", "لا يوجد حل مشابه", "الوحيد في العراق", "أول نظام"];
+  const superlativeOffenders = [];
+  for (const entry of majorProjects) {
+    for (const angle of PROJECT_ANGLE_KEYS) {
+      for (const idea of entry[angle] || []) {
+        for (const field of ["title", "problem", "description"]) {
+          const v = idea[field] || "";
+          for (const phrase of SUPERLATIVE_PHRASES) {
+            if (v.includes(phrase)) superlativeOffenders.push(`${entry.id}.${angle}.${field}: "${phrase}"`);
+          }
+        }
+      }
+    }
+  }
+  if (superlativeOffenders.length) {
+    console.error("[FAIL] data/major_projects.json يحوي ادّعاء تفوّق مطلقاً غير قابل للتحقق:", superlativeOffenders);
+    projectsHasErrors = true;
+  }
+
+  // كاشف قوالب/تكرار -- مطابق تماماً لحارس المهارات، لكل زاوية من الأربع.
+  const normalizeIdea = (s) =>
+    s
+      .replace(/[ً-ْـ]/g, "")
+      .replace(/[أإآ]/g, "ا")
+      .replace(/ى/g, "ي")
+      .replace(/ة/g, "ه")
+      .replace(/\s+/g, " ")
+      .trim();
+  const totalProjectMajors = majorProjects.length;
+  for (const angle of PROJECT_ANGLE_KEYS) {
+    const titleCounts = new Map();
+    const bodyCounts = new Map();
+    for (const entry of majorProjects) {
+      for (const idea of entry[angle] || []) {
+        const titleKey = normalizeIdea(idea.title || "");
+        const bodyKey = normalizeIdea((idea.problem || "") + (idea.description || ""));
+        if (!titleCounts.has(titleKey)) titleCounts.set(titleKey, new Set());
+        titleCounts.get(titleKey).add(entry.id);
+        if (!bodyCounts.has(bodyKey)) bodyCounts.set(bodyKey, new Set());
+        bodyCounts.get(bodyKey).add(entry.id);
+      }
+    }
+    for (const [label, counts] of [
+      ["عنوان الفكرة", titleCounts],
+      ["نص problem+description", bodyCounts],
+    ]) {
+      for (const [key, ids] of counts) {
+        const ratio = ids.size / totalProjectMajors;
+        if (ratio >= 0.3) {
+          console.error(
+            `[FAIL] data/major_projects.json (${angle}): ${label} مكرَّر حرفياً في ${ids.size}/${totalProjectMajors} تخصصاً (≥30%، قالب لا تمايز) -- "${key.slice(0, 60)}"`
+          );
+          projectsHasErrors = true;
+        } else if (ratio >= 0.15) {
+          console.warn(
+            `[WARN] data/major_projects.json (${angle}): ${label} مكرَّر في ${ids.size}/${totalProjectMajors} تخصصاً (≥15%) -- راجع يدوياً: "${key.slice(0, 60)}"`
+          );
+        }
+      }
+    }
+  }
+
+  if (projectsHasErrors) {
+    hasErrors = true;
+  } else {
+    console.log(
+      `[OK] data/major_projects.json matches strict schema (${majorProjects.length}/${majors.length} majors, 13+12+13+12 لكل تخصص، صفر افتعال نسب/تفوّق، صفر تكرار قوالب ≥30%)`
+    );
+  }
+}
+
 if (hasErrors) {
   console.error("\nData validation FAILED.");
   process.exit(1);

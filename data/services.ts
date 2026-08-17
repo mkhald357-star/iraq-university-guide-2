@@ -122,7 +122,8 @@ export const SERVICES: Service[] = [
     stageId: "beyond",
     title: "بنك أفكار مشاريع التخرّج",
     summary: "أفكار مشاريع مرتبطة بتخصصك وبحاجة حقيقية في السوق المحلي.",
-    status: "soon",
+    status: "live",
+    href: "/projects",
   },
   {
     id: "postgrad",

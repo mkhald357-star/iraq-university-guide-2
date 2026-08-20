@@ -1024,7 +1024,7 @@ if (fs.existsSync(projectsPath)) {
     hasErrors = true;
   } else {
     console.log(
-      `[OK] data/major_projects.json matches strict schema (${majorProjects.length}/${majors.length} majors, 13+12+13+12 لكل تخصص، صفر افتعال نسب/تفوّق، صفر تكرار قوالب ≥30%)`
+      `[OK] data/major_projects.json matches strict schema (${majorProjects.length}/${majors.length} majors, 17+16+17 لكل تخصص، صفر افتعال نسب/تفوّق، صفر تكرار قوالب ≥30%)`
     );
   }
 }

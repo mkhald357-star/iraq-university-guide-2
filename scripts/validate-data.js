@@ -907,10 +907,9 @@ const ProjectIdeaSchema = z.object({
 });
 const MajorProjectsSchema = z.object({
   id: z.string(),
-  technical: z.array(ProjectIdeaSchema).length(13),
-  ai: z.array(ProjectIdeaSchema).length(12),
-  research: z.array(ProjectIdeaSchema).length(13),
-  impact: z.array(ProjectIdeaSchema).length(12),
+  technical: z.array(ProjectIdeaSchema).length(17),
+  ai: z.array(ProjectIdeaSchema).length(16),
+  research: z.array(ProjectIdeaSchema).length(17),
 });
 
 const projectsPath = path.join(ROOT, "data/major_projects.json");

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
-import { Wrench, Sparkles, Search, Rocket, AlertCircle } from "lucide-react";
+import { Wrench, Sparkles, Search, AlertCircle } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { PROJECT_ANGLES, type ProjectAngleId } from "../../data/projectAngleGlossary";
 import { fetchMajorProjects, type MajorProjectSet, type ProjectIdea } from "../../lib/projectsClient";
@@ -10,7 +10,6 @@ const ANGLE_ICON: Record<ProjectAngleId, typeof Wrench> = {
   technical: Wrench,
   ai: Sparkles,
   research: Search,
-  impact: Rocket,
 };
 
 function GlossarySection() {

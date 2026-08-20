@@ -937,7 +937,7 @@ if (fs.existsSync(projectsPath)) {
     projectsHasErrors = true;
   }
 
-  const PROJECT_ANGLE_KEYS = ["technical", "ai", "research", "impact"];
+  const PROJECT_ANGLE_KEYS = ["technical", "ai", "research"];
 
   // حاجز افتعال صارم -- مطابق تماماً لحارس المهارات، على الحقول الثلاثة كلها.
   const percentOffenders = [];

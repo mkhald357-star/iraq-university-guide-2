@@ -137,7 +137,6 @@ export default function ProjectsPage(): ReactNode {
           <AngleSection angleId="technical" ideas={projectSet.technical} />
           <AngleSection angleId="ai" ideas={projectSet.ai} />
           <AngleSection angleId="research" ideas={projectSet.research} />
-          <AngleSection angleId="impact" ideas={projectSet.impact} />
         </div>
       )}
 

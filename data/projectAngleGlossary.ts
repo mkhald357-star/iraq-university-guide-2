@@ -2,7 +2,7 @@
 // /projects، لا مكرَّراً لكل تخصص. بيانات خالصة بلا JSX، نفس نمط
 // data/skillCategoryGlossary.ts -- أيقونة كل زاوية تُربَط في app/projects/page.tsx.
 
-export type ProjectAngleId = "technical" | "ai" | "research" | "impact";
+export type ProjectAngleId = "technical" | "ai" | "research";
 
 export interface ProjectAngleMeta {
   id: ProjectAngleId;
@@ -13,9 +13,9 @@ export interface ProjectAngleMeta {
 export const PROJECT_ANGLES: ProjectAngleMeta[] = [
   {
     id: "technical",
-    label: "حلول تقنية",
+    label: "حلول تقنية وعملية",
     glossary:
-      "مشروع تبنيه فعلياً بأدوات تخصصك — نظام، تطبيق، جهاز، أو نموذج أولي يعمل، لا فكرة نظرية على الورق.",
+      "مشروع تبنيه أو تجريه فعلياً بأدوات تخصصك — نظام، تطبيق، جهاز، نموذج أولي يعمل، أو تجربة مختبرية/عملية منفَّذة، لا فكرة نظرية على الورق.",
   },
   {
     id: "ai",
@@ -27,10 +27,5 @@ export const PROJECT_ANGLES: ProjectAngleMeta[] = [
     id: "research",
     label: "بحث ميداني",
     glossary: "تحقيق أو تحليل بيانات حقيقي — مُخرَجه دراسة أو تقرير يكشف واقعاً فعلياً، لا نظاماً مبنياً.",
-  },
-  {
-    id: "impact",
-    label: "ريادة وأثر مجتمعي",
-    glossary: "مشروع بعنصر خدمة أو نموذج عمل يُشغَّل فعلياً — يخدم فئة حقيقية مرتبطة بمجال تخصصك.",
   },
 ];

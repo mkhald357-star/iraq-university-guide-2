@@ -16,7 +16,6 @@ export interface MajorProjectSet {
   technical: ProjectIdea[];
   ai: ProjectIdea[];
   research: ProjectIdea[];
-  impact: ProjectIdea[];
 }
 
 export async function fetchMajorProjects(majorId: string): Promise<MajorProjectSet | null> {

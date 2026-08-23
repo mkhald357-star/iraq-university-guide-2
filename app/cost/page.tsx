@@ -77,9 +77,7 @@ export default function CostPage() {
       {major && sortedPrivate.length > 0 && (
         <div className="rounded-md border border-line bg-surface shadow-sm overflow-hidden">
           <div className="flex items-center gap-3 border-b border-line p-6">
-            <span className="rounded-xl bg-primary-100 p-2.5 text-primary-700">
-              <Wallet className="h-5 w-5" />
-            </span>
+            <IconBadge icon={Wallet} />
             <h2 className="font-bold text-ink">الجامعات الأهلية</h2>
           </div>
           <div className="divide-y divide-line">

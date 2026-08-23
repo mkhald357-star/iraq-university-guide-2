@@ -38,7 +38,7 @@ const RADAR_AXES = RIASEC_DIMENSIONS.map((d) => ({ key: d, label: RIASEC_LABELS[
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function Shimmer({ className = "" }: { className?: string }) {
   return (
-    <div className={`relative overflow-hidden rounded-lg bg-slate-200 ${className}`}>
+    <div className={`relative overflow-hidden rounded-lg bg-surface-muted ${className}`}>
       <div className="absolute inset-0 -translate-x-full animate-[shimmer_1.6s_infinite] bg-gradient-to-r from-transparent via-white/60 to-transparent" />
     </div>
   );
@@ -641,7 +641,7 @@ function ReportContent() {
 
       {/* رأس التقرير */}
       <div className="glass p-8 md:p-10 rounded-3xl space-y-6 border-t-8 border-t-primary">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-slate-100 pb-6 gap-4">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-line pb-6 gap-4">
           <div>
             <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-3">
               التقرير التفصيلي
@@ -926,7 +926,7 @@ function ReportContent() {
         )}
       </section>
 
-      <div className="text-center pt-12 pb-8 border-t border-slate-200 mt-12">
+      <div className="text-center pt-12 pb-8 border-t border-line mt-12">
         <Link
           href="/"
           className="inline-flex items-center gap-2 bg-slate-900 text-white px-10 py-4 rounded-full font-bold hover:bg-slate-800 transition-all shadow-xl hover:-translate-y-1 hover:shadow-2xl"

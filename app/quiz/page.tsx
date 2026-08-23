@@ -89,8 +89,8 @@ function ReviewScreen({
     return defaultLabelMap[val] ?? String(val);
   };
   const colorMap: Record<number, string> = {
-    1: "text-primary font-bold",
-    0: "text-primary-400 font-bold",
+    1: "text-primary-text font-bold",
+    0: "text-primary-text font-bold opacity-70",
     [-1]: "text-ink-muted font-bold",
   };
 
@@ -199,7 +199,7 @@ function SubjectGradeInput({
         max={100}
         value={value ?? ""}
         onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
-        className="w-full p-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
+        className="w-full p-2 text-sm border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
         placeholder="اختياري"
       />
     </div>
@@ -336,7 +336,7 @@ export default function Quiz() {
             <select
               id="province"
               name="province"
-              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
               required
             >
               <option value="">اختر المحافظة</option>
@@ -362,7 +362,7 @@ export default function Quiz() {
               name="branch"
               value={formBranch}
               onChange={(e) => setFormBranch(e.target.value)}
-              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
               required
             >
               <option value="">اختر الفرع</option>
@@ -382,7 +382,7 @@ export default function Quiz() {
             <select
               id="gradeType"
               name="gradeType"
-              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
               required
             >
               <option value="expected">معدل متوقع</option>
@@ -399,13 +399,13 @@ export default function Quiz() {
               name="grade"
               min="0"
               max="100"
-              className="w-full p-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
               placeholder="مثال: 78"
               required
             />
           </div>
           {formBranch && (
-            <div className="border-t border-slate-200 pt-5 space-y-3">
+            <div className="border-t border-line pt-5 space-y-3">
               <div>
                 <h3 className="font-bold text-ink">درجات موادك (اختياري)</h3>
                 <p className="text-xs text-ink-muted mt-1">
@@ -820,7 +820,7 @@ export default function Quiz() {
           </span>
           <span>{Math.round(progress)}%</span>
         </div>
-        <div className="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
+        <div className="w-full bg-line h-3 rounded-full overflow-hidden">
           <div
             className="bg-primary h-full rounded-full transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
@@ -840,7 +840,7 @@ export default function Quiz() {
                   ? "bg-primary cursor-pointer hover:bg-primary-700"
                   : i === currentQuestionIndex
                     ? "bg-primary/60"
-                    : "bg-slate-200 cursor-default"
+                    : "bg-line cursor-default"
               }`}
             />
           ))}

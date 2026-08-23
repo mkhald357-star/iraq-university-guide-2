@@ -110,7 +110,7 @@ export default function DeciderPage() {
               <div
                 key={i}
                 className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  i < currentIndex ? "bg-primary" : i === currentIndex ? "bg-primary/60" : "bg-slate-200"
+                  i < currentIndex ? "bg-primary" : i === currentIndex ? "bg-primary/60" : "bg-line"
                 }`}
               />
             ))}

@@ -67,7 +67,7 @@ function ReportSkeleton() {
       <div className="glass p-8 rounded-3xl space-y-4">
         <Shimmer className="h-6 w-48 mb-4" />
         {[1, 2, 3, 4].map((i) => (
-          <div key={i} className="flex items-start gap-3 bg-white p-4 rounded-xl">
+          <div key={i} className="flex items-start gap-3 bg-surface p-4 rounded-xl">
             <Shimmer className="h-3 w-3 rounded-full mt-1 shrink-0" />
             <div className="flex-1 space-y-2">
               <Shimmer className="h-4 w-full" />
@@ -685,7 +685,7 @@ function ReportContent() {
 
         <div className="grid md:grid-cols-2 gap-6 pt-4">
           <div className="bg-surface-muted p-6 rounded-2xl flex items-start gap-4 border border-line">
-            <div className="bg-white p-3 rounded-xl text-ink-muted shadow-sm">
+            <div className="bg-surface p-3 rounded-xl text-ink-muted shadow-sm">
               <DollarSign className="w-6 h-6" />
             </div>
             <div>
@@ -704,7 +704,7 @@ function ReportContent() {
             </div>
           </div>
           <div className="bg-surface-muted p-6 rounded-2xl flex items-start gap-4 border border-line hover:border-primary/30 transition-colors">
-            <div className="bg-white p-3 rounded-xl text-primary shadow-sm">
+            <div className="bg-surface p-3 rounded-xl text-primary shadow-sm">
               <Briefcase className="w-6 h-6" />
             </div>
             <div>
@@ -750,7 +750,7 @@ function ReportContent() {
                 {points.map((pt, i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-50"
+                    className="flex items-start gap-3 bg-surface p-4 rounded-xl shadow-sm border border-line"
                   >
                     {pt.includes("تحذير") || pt.includes("تشير") ? (
                       <AlertCircle className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" />
@@ -763,7 +763,7 @@ function ReportContent() {
               </div>
 
               {/* جدول الأبعاد الستة كاملة -- لا أعلى بُعدين فقط (TASKS.md المهمة ٤) */}
-              <div className="mt-5 bg-white rounded-2xl border border-slate-100 overflow-hidden">
+              <div className="mt-5 bg-surface rounded-2xl border border-line overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
@@ -779,7 +779,7 @@ function ReportContent() {
                       {dimensionGaps.map((g) => {
                         const isGap = g.gap <= -GAP_THRESHOLD;
                         return (
-                          <tr key={g.dimension} className="border-t border-slate-50">
+                          <tr key={g.dimension} className="border-t border-line">
                             <td className="p-3 font-bold text-ink">{RIASEC_LABELS[g.dimension]}</td>
                             <td className="p-3 tabular-nums">{Math.round(g.userScore)}%</td>
                             <td className="p-3 tabular-nums">{Math.round(g.majorScore)}%</td>
@@ -859,7 +859,7 @@ function ReportContent() {
           </h2>
           <div className="grid gap-3">
             {ineligibleAnalyses.map(({ major: m }, idx) => (
-              <div key={idx} className="bg-white p-4 rounded-xl border border-amber-100">
+              <div key={idx} className="bg-surface p-4 rounded-xl border border-amber-200">
                 <p className="font-bold text-ink">{m.name}</p>
                 <p className="text-sm text-ink-muted mt-1">{m.category}</p>
               </div>
@@ -879,7 +879,7 @@ function ReportContent() {
               <Link
                 key={idx}
                 href={`/report?major=${m.id}`}
-                className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-100 hover:border-primary/40 transition-colors"
+                className="flex items-center justify-between bg-surface p-4 rounded-xl border border-line hover:border-primary/40 transition-colors"
               >
                 <div>
                   <p className="font-bold text-ink">{m.name}</p>

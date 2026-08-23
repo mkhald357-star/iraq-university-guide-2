@@ -144,8 +144,8 @@ export default function ProjectsPage(): ReactNode {
         <p className="text-center text-ink-muted">لا تتوفر أفكار مشاريع لهذا التخصص حالياً.</p>
       )}
 
-      <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
-        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-slate-400" />
+      <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-ink-soft">
+        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
         <p>
           هذه أفكار استرشادية مبنية على طبيعة التخصص، لا مسحاً سوقياً موثَّقاً — نقطة بداية للتفكير والتخصيص، لا قائمة
           نهائية أو تقييماً لجدوى تجارية فعلية.

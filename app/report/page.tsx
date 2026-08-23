@@ -617,8 +617,8 @@ function ReportContent() {
       {/* إخلاء مسؤولية قانوني دائم -- كان موجوداً سابقاً فقط داخل تصدير PDF،
           لا في الصفحة الحيّة نفسها (PROJECT.md §7 بند 21). طالب قد لا يُصدّر
           PDF إطلاقاً فلا يرى التنويه أبداً لولا هذا. */}
-      <div className="bg-slate-50 border border-slate-200 text-slate-600 p-4 rounded-2xl text-sm flex items-start gap-3">
-        <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-slate-400" />
+      <div className="bg-slate-50 border border-slate-200 text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
+        <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-ink-muted" />
         <p>
           هذا التقرير توصية استرشادية إحصائية، وليس قراراً رسمياً للقبول. الجهة الرسمية الوحيدة المعتمدة للتقديم والقبول
           الجامعي هي{" "}
@@ -634,7 +634,7 @@ function ReportContent() {
         </p>
       </div>
 
-      <Link href="/quiz" className="inline-flex items-center gap-2 text-slate-500 hover:text-primary transition-colors">
+      <Link href="/quiz" className="inline-flex items-center gap-2 text-ink-muted hover:text-primary transition-colors">
         <ArrowRight className="w-4 h-4" />
         <span>إعادة الاختبار</span>
       </Link>
@@ -646,10 +646,10 @@ function ReportContent() {
             <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-3">
               التقرير التفصيلي
             </div>
-            <h1 className="text-4xl md:text-5xl font-black text-slate-800">{primaryMajor?.name}</h1>
-            <p className="text-lg text-slate-500 mt-2">قطاع: {primaryMajor?.category}</p>
+            <h1 className="text-4xl md:text-5xl font-black text-ink">{primaryMajor?.name}</h1>
+            <p className="text-lg text-ink-muted mt-2">قطاع: {primaryMajor?.category}</p>
             {primaryMajorRank > 0 && topMajors.length > 1 && (
-              <p className="text-sm text-slate-500 mt-1">
+              <p className="text-sm text-ink-muted mt-1">
                 المرتبة {primaryMajorRank} من {topMajors.length} في نتيجتك
                 {fitGapFromFirst !== null && primaryMajorRank > 1 && (
                   <> · يبعد {Math.abs(fitGapFromFirst).toFixed(1)} نقطة عن التخصص الأول</>
@@ -685,21 +685,21 @@ function ReportContent() {
 
         <div className="grid md:grid-cols-2 gap-6 pt-4">
           <div className="bg-slate-50 p-6 rounded-2xl flex items-start gap-4 border border-slate-100">
-            <div className="bg-white p-3 rounded-xl text-slate-400 shadow-sm">
+            <div className="bg-white p-3 rounded-xl text-ink-muted shadow-sm">
               <DollarSign className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="font-bold text-slate-800">الراتب المتوقع للبداية</h2>
+              <h2 className="font-bold text-ink">الراتب المتوقع للبداية</h2>
               {govSalary?.amount ? (
                 <>
-                  <p className="text-slate-700 text-sm mt-1">
+                  <p className="text-ink text-sm mt-1">
                     {govSalary.amount.toLocaleString("ar-IQ")} د.ع تقريباً — الراتب الاسمي الأساسي عند التعيين الحكومي
                     الأول لحملة البكالوريوس ({govSalary.basis}).
                   </p>
-                  <p className="text-slate-400 text-xs mt-1">{govSalary.scope}</p>
+                  <p className="text-ink-muted text-xs mt-1">{govSalary.scope}</p>
                 </>
               ) : (
-                <p className="text-slate-500 text-sm mt-1">لا تتوفر بيانات رواتب موثّقة المصدر لهذا التخصص حالياً.</p>
+                <p className="text-ink-muted text-sm mt-1">لا تتوفر بيانات رواتب موثّقة المصدر لهذا التخصص حالياً.</p>
               )}
             </div>
           </div>
@@ -708,10 +708,10 @@ function ReportContent() {
               <Briefcase className="w-6 h-6" />
             </div>
             <div>
-              <h2 className="font-bold text-slate-800">مجالات وأماكن العمل</h2>
-              <p className="text-slate-600 mt-1 text-sm leading-relaxed">{employerSectorsText}</p>
+              <h2 className="font-bold text-ink">مجالات وأماكن العمل</h2>
+              <p className="text-ink-soft mt-1 text-sm leading-relaxed">{employerSectorsText}</p>
               {!detailedProfile && (
-                <p className="text-slate-400 text-xs mt-1">
+                <p className="text-ink-muted text-xs mt-1">
                   (معلومات عامة — تفاصيل موثَّقة أدق قيد الإعداد لهذا التخصص)
                 </p>
               )}
@@ -723,8 +723,8 @@ function ReportContent() {
       {/* بصمتك الشخصية -- شكل واحد فقط (لا مقارنة هنا)، يجيب "من أنت؟" قبل
           أي مقارنة بتخصص معيّن. لا مفتاح ألوان لازم لشكل مفرد (العنوان يكفي). */}
       <div className="glass p-8 rounded-3xl">
-        <h2 className="text-xl font-bold text-slate-800 mb-1">بصمتك الشخصية</h2>
-        <p className="text-sm text-slate-500 mb-4">
+        <h2 className="text-xl font-bold text-ink mb-1">بصمتك الشخصية</h2>
+        <p className="text-sm text-ink-muted mb-4">
           توزيع سماتك عبر الأبعاد الستة لنموذج RIASEC، من إجاباتك في الاختبار.
         </p>
         <RadarChart
@@ -741,7 +741,7 @@ function ReportContent() {
             (personalityTranslationsData.translations as Record<string, Record<string, string>>)[m.category] ?? {};
           return (
             <div key={idx} className="mb-10">
-              <h2 className="text-xl font-semibold text-slate-800 mb-3 flex items-center gap-2">
+              <h2 className="text-xl font-semibold text-ink mb-3 flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary rounded-full inline-block" />
                 {m.name} — {m.category}
               </h2>
@@ -757,7 +757,7 @@ function ReportContent() {
                     ) : (
                       <div className="w-2 h-2 mt-2 rounded-full bg-primary flex-shrink-0" />
                     )}
-                    <p className="text-slate-700 leading-relaxed font-medium">{pt}</p>
+                    <p className="text-ink leading-relaxed font-medium">{pt}</p>
                   </div>
                 ))}
               </div>
@@ -767,7 +767,7 @@ function ReportContent() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-slate-50 text-slate-500 text-xs">
+                      <tr className="bg-slate-50 text-ink-muted text-xs">
                         <th className="text-right p-3 font-bold">البُعد</th>
                         <th className="text-right p-3 font-bold">أنت</th>
                         <th className="text-right p-3 font-bold">التخصص</th>
@@ -780,7 +780,7 @@ function ReportContent() {
                         const isGap = g.gap <= -GAP_THRESHOLD;
                         return (
                           <tr key={g.dimension} className="border-t border-slate-50">
-                            <td className="p-3 font-bold text-slate-700">{RIASEC_LABELS[g.dimension]}</td>
+                            <td className="p-3 font-bold text-ink">{RIASEC_LABELS[g.dimension]}</td>
                             <td className="p-3 tabular-nums">{Math.round(g.userScore)}%</td>
                             <td className="p-3 tabular-nums">{Math.round(g.majorScore)}%</td>
                             <td className="p-3">
@@ -790,7 +790,7 @@ function ReportContent() {
                                     ? "text-red-600"
                                     : g.gap >= GAP_THRESHOLD
                                       ? "text-emerald-600"
-                                      : "text-slate-500"
+                                      : "text-ink-muted"
                                 }`}
                               >
                                 {g.gap > 0 ? "+" : ""}
@@ -802,7 +802,7 @@ function ReportContent() {
                                 </span>
                               )}
                             </td>
-                            <td className="p-3 text-slate-500 text-xs">{translations[g.dimension] ?? "—"}</td>
+                            <td className="p-3 text-ink-muted text-xs">{translations[g.dimension] ?? "—"}</td>
                           </tr>
                         );
                       })}
@@ -860,8 +860,8 @@ function ReportContent() {
           <div className="grid gap-3">
             {ineligibleAnalyses.map(({ major: m }, idx) => (
               <div key={idx} className="bg-white p-4 rounded-xl border border-amber-100">
-                <p className="font-bold text-slate-800">{m.name}</p>
-                <p className="text-sm text-slate-500 mt-1">{m.category}</p>
+                <p className="font-bold text-ink">{m.name}</p>
+                <p className="text-sm text-ink-muted mt-1">{m.category}</p>
               </div>
             ))}
           </div>
@@ -873,7 +873,7 @@ function ReportContent() {
           للتخصص الأساسي (TASKS.md المهمة ٣) */}
       {nearestAlternatives.length > 0 && (
         <div className="glass p-8 rounded-3xl space-y-4 border border-primary/20 bg-primary/5">
-          <h2 className="text-xl font-bold text-slate-800">أقرب تخصصات ضمن متناول معدلك وفرعك الآن</h2>
+          <h2 className="text-xl font-bold text-ink">أقرب تخصصات ضمن متناول معدلك وفرعك الآن</h2>
           <div className="grid gap-3">
             {nearestAlternatives.map(({ major: m, fitPercent }, idx) => (
               <Link
@@ -882,8 +882,8 @@ function ReportContent() {
                 className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-100 hover:border-primary/40 transition-colors"
               >
                 <div>
-                  <p className="font-bold text-slate-800">{m.name}</p>
-                  <p className="text-sm text-slate-500">{m.category}</p>
+                  <p className="font-bold text-ink">{m.name}</p>
+                  <p className="text-sm text-ink-muted">{m.category}</p>
                 </div>
                 <div className="text-primary font-black">{Math.round(fitPercent)}%</div>
               </Link>

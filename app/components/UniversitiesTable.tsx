@@ -38,7 +38,7 @@ interface UniversitiesTableProps {
 function cellClass(tone: string) {
   if (tone === "direct") return "text-emerald-700 font-bold";
   if (tone === "stated") return "text-primary-800 font-bold";
-  if (tone === "unstated") return "text-slate-500 italic";
+  if (tone === "unstated") return "text-ink-muted italic";
   return "";
 }
 
@@ -99,9 +99,9 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
                 {hasMajorColumn && (
-                  <td className="border px-3 py-2 text-slate-600">{o.majorName ?? "—"}</td>
+                  <td className="border px-3 py-2 text-ink-soft">{o.majorName ?? "—"}</td>
                 )}
-                <td className="border px-3 py-2 font-bold text-slate-800">{o.universityName}</td>
+                <td className="border px-3 py-2 font-bold text-ink">{o.universityName}</td>
                 <td className="border px-3 py-2">
                   <span
                     className={`px-2 py-0.5 rounded-full text-xs font-bold ${
@@ -154,16 +154,16 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
         </tbody>
       </table>
       {hasAnyDirectAdmission && (
-        <p className="text-xs text-slate-500 mt-2">
+        <p className="text-xs text-ink-muted mt-2">
           <span className="text-emerald-700 font-bold">قبول مباشر</span>: لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم ضمن
           الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.
         </p>
       )}
       {hasAnyPrivate && (
-        <p className="text-xs text-slate-500 mt-1">
+        <p className="text-xs text-ink-muted mt-1">
           <span className="text-primary-800 font-bold">يشترط معدل X%</span>: شرط معدّل معلَن مسبقاً في دليل الجامعات
           الأهلية — لا نتيجة قبول بأثر رجعي كحدود الجامعات الحكومية.{" "}
-          <span className="text-slate-500 italic">الحدّ الأدنى غير متوفّر</span>: الدليل لا يذكر حدّاً لهذا القسم تحديداً —
+          <span className="text-ink-muted italic">الحدّ الأدنى غير متوفّر</span>: الدليل لا يذكر حدّاً لهذا القسم تحديداً —
           هذا لا يعني بالضرورة عدم وجود شرط فعلي غير منشور في مصدرنا.
         </p>
       )}

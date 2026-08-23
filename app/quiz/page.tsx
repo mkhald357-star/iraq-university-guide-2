@@ -91,7 +91,7 @@ function ReviewScreen({
   const colorMap: Record<number, string> = {
     1: "text-primary font-bold",
     0: "text-primary-400 font-bold",
-    [-1]: "text-slate-400 font-bold",
+    [-1]: "text-ink-muted font-bold",
   };
 
   const unanswered = questions.filter((q) => answers[q.id] === undefined);
@@ -103,8 +103,8 @@ function ReviewScreen({
         <div className="flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mx-auto">
           <CheckCircle className="w-8 h-8 text-emerald-600" />
         </div>
-        <h1 className="text-3xl font-black text-slate-800">مراجعة إجاباتك</h1>
-        <p className="text-slate-500">راجع إجاباتك قبل إرسال الاختبار — يمكنك تعديل أي إجابة</p>
+        <h1 className="text-3xl font-black text-ink">مراجعة إجاباتك</h1>
+        <p className="text-ink-muted">راجع إجاباتك قبل إرسال الاختبار — يمكنك تعديل أي إجابة</p>
       </div>
 
       {/* تحذير إجابات فائتة */}
@@ -131,15 +131,15 @@ function ReviewScreen({
               }`}
             >
               {/* رقم */}
-              <span className="shrink-0 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-500">
+              <span className="shrink-0 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-ink-muted">
                 {i + 1}
               </span>
 
               {/* النص والإجابة */}
               <div className="flex-1 min-w-0">
-                <p className="text-xs text-slate-500 truncate">{q.text}</p>
+                <p className="text-xs text-ink-muted truncate">{q.text}</p>
                 <p
-                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-slate-700") : "text-amber-600 font-bold"}`}
+                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-ink") : "text-amber-600 font-bold"}`}
                 >
                   {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
                 </p>
@@ -168,7 +168,7 @@ function ReviewScreen({
         </button>
         <button
           onClick={onBack}
-          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors mx-auto text-sm"
+          className="flex items-center gap-2 text-ink-muted hover:text-ink transition-colors mx-auto text-sm"
         >
           <ChevronRight className="w-4 h-4" />
           الرجوع للسؤال الأخير
@@ -192,7 +192,7 @@ function SubjectGradeInput({
 }) {
   return (
     <div>
-      <label className="block text-xs font-bold text-slate-600 mb-1">{label}</label>
+      <label className="block text-xs font-bold text-ink-soft mb-1">{label}</label>
       <input
         type="number"
         min={0}
@@ -351,7 +351,7 @@ export default function Quiz() {
                 </option>
               ))}
             </select>
-            <p className="text-xs text-slate-500 mt-1">ملاحظة: {UNCOVERED_PROVINCES_REASON}</p>
+            <p className="text-xs text-ink-muted mt-1">ملاحظة: {UNCOVERED_PROVINCES_REASON}</p>
           </div>
           <div>
             <label className="block font-bold mb-2" htmlFor="branch">
@@ -370,7 +370,7 @@ export default function Quiz() {
               <option value="أدبي">أدبي</option>
               <option value="فنون">فنون / إبداع</option>
             </select>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-ink-muted mt-1">
               الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي
               والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك.
             </p>
@@ -407,8 +407,8 @@ export default function Quiz() {
           {formBranch && (
             <div className="border-t border-slate-200 pt-5 space-y-3">
               <div>
-                <h3 className="font-bold text-slate-700">درجات موادك (اختياري)</h3>
-                <p className="text-xs text-slate-500 mt-1">
+                <h3 className="font-bold text-ink">درجات موادك (اختياري)</h3>
+                <p className="text-xs text-ink-muted mt-1">
                   يرفع دقة التوصية عبر ربطها بنقاط قوّتك الدراسية الفعلية (لا رأيك الشخصي فقط) — تخصصان متقاربان شخصياً
                   قد يفرّقهما تفوّقك النسبي في مادة عن أخرى. اترك أي حقل فارغاً إن لم ترغب.
                 </p>
@@ -649,11 +649,11 @@ export default function Quiz() {
       <div className="py-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h1>
-          <p className="text-lg text-slate-600">
+          <p className="text-lg text-ink-soft">
             بناءً على تحليل شخصيتك المهنية عبر أسئلة الاختبار ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
           </p>
           {topUserDimensions.length > 0 && (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-ink-muted">
               أبرز سماتك:{" "}
               <span className="font-bold text-primary">
                 {topUserDimensions.map((d) => RIASEC_LABELS[d.dimension]).join(" و")}
@@ -661,8 +661,8 @@ export default function Quiz() {
             </p>
           )}
         </div>
-        <div className="bg-slate-50 border border-slate-200 text-slate-600 p-4 rounded-2xl text-sm flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-slate-400" />
+        <div className="bg-slate-50 border border-slate-200 text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
+          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-ink-muted" />
           <p>
             هذه توصية استرشادية إحصائية مبنية على نموذج شخصية مهنية، وليست قراراً رسمياً للقبول. الجهة الرسمية الوحيدة
             المعتمدة للتقديم والقبول الجامعي هي{" "}
@@ -713,7 +713,7 @@ export default function Quiz() {
         )}
         <div className="glass p-5 rounded-2xl space-y-2">
           <div className="flex items-center justify-between">
-            <label htmlFor="marketWeight" className="font-bold text-slate-700 text-sm">
+            <label htmlFor="marketWeight" className="font-bold text-ink text-sm">
               كم يهمّك طلب السوق عند الترتيب؟
             </label>
             <span className="text-sm font-bold text-primary">
@@ -730,7 +730,7 @@ export default function Quiz() {
             onChange={(e) => setMarketWeight(Number(e.target.value) / 100)}
             className="w-full accent-primary"
           />
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-ink-muted">
             الترتيب الافتراضي (0٪) يعتمد على توافق شخصيتك فقط. حرّك المنزلق يميناً إن أردت ترجيح التخصصات الأعلى طلباً
             في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
           </p>
@@ -744,10 +744,10 @@ export default function Quiz() {
                 className="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
               >
                 <div className="min-w-0">
-                  <h2 className="text-2xl font-bold text-slate-800 break-words">
+                  <h2 className="text-2xl font-bold text-ink break-words">
                     {index + 1}. {major.name}
                   </h2>
-                  <p className="text-slate-500">{major.category}</p>
+                  <p className="text-ink-muted">{major.category}</p>
                   <span
                     className={`inline-block mt-1 text-xs font-bold px-2.5 py-1 rounded-full ${demand.bg} ${demand.color}`}
                   >
@@ -756,7 +756,7 @@ export default function Quiz() {
                 </div>
                 <div className="text-left shrink-0">
                   <div className="text-3xl font-black text-primary">{Math.round(major.fitPercent)}%</div>
-                  <div className="text-sm text-slate-500">نسبة التوافق الشخصي</div>
+                  <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
                 </div>
               </div>
             );
@@ -764,8 +764,8 @@ export default function Quiz() {
         </div>
         {rankedMajors.length > 0 ? (
           <div className="glass p-8 rounded-2xl bg-primary/5 border-primary/20 text-center space-y-4 mt-8">
-            <h2 className="text-xl font-bold text-slate-800">احصل على تحليل الفجوة والجامعات الحكومية</h2>
-            <p className="text-slate-600">
+            <h2 className="text-xl font-bold text-ink">احصل على تحليل الفجوة والجامعات الحكومية</h2>
+            <p className="text-ink-soft">
               يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا
               التخصص لك.
             </p>
@@ -779,8 +779,8 @@ export default function Quiz() {
           </div>
         ) : (
           <div className="glass p-8 rounded-2xl text-center space-y-2 mt-8">
-            <p className="text-slate-600 font-bold">لم نجد تخصصات مطابقة لفرعك الدراسي ضمن بيانات المنصة الحالية.</p>
-            <p className="text-slate-500 text-sm">جرّب إعادة الاختبار، أو تواصل معنا إن استمرت المشكلة.</p>
+            <p className="text-ink-soft font-bold">لم نجد تخصصات مطابقة لفرعك الدراسي ضمن بيانات المنصة الحالية.</p>
+            <p className="text-ink-muted text-sm">جرّب إعادة الاختبار، أو تواصل معنا إن استمرت المشكلة.</p>
           </div>
         )}
       </div>
@@ -814,7 +814,7 @@ export default function Quiz() {
     <div className="max-w-2xl mx-auto py-12 space-y-8">
       {/* شريط التقدم */}
       <div className="space-y-2">
-        <div className="flex justify-between text-sm font-bold text-slate-600">
+        <div className="flex justify-between text-sm font-bold text-ink-soft">
           <span>
             السؤال {currentQuestionIndex + 1} من {displayedQuestions.length}
           </span>
@@ -859,7 +859,7 @@ export default function Quiz() {
 
       {/* بطاقة السؤال */}
       <div className="glass p-8 md:p-12 rounded-3xl text-center space-y-12 animate-in fade-in zoom-in-95 duration-300 min-h-[350px] flex flex-col justify-center">
-        <h1 className="text-2xl md:text-3xl font-bold text-slate-800 leading-relaxed">{question.text}</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{question.text}</h1>
         <div className="flex flex-col gap-4 mt-auto">
           <button
             onClick={() => handleAnswer(1)}
@@ -875,7 +875,7 @@ export default function Quiz() {
           </button>
           <button
             onClick={() => handleAnswer(-1)}
-            className="bg-slate-100 text-slate-600 border border-slate-200 p-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-slate-100 text-ink-soft border border-slate-200 p-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.no ?? "لا، إطلاقاً"}
           </button>
@@ -886,7 +886,7 @@ export default function Quiz() {
       {currentQuestionIndex > 0 && (
         <button
           onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}
-          className="flex items-center gap-2 text-slate-500 hover:text-slate-700 transition-colors mx-auto"
+          className="flex items-center gap-2 text-ink-muted hover:text-ink transition-colors mx-auto"
         >
           <ChevronRight className="w-4 h-4" />
           السؤال السابق

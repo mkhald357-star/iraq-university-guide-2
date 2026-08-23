@@ -10,7 +10,7 @@ export default function NotFound() {
         </div>
         <div className="space-y-2">
           <h1 className="text-3xl font-black text-primary">الصفحة غير موجودة</h1>
-          <p className="text-slate-600">
+          <p className="text-ink-soft">
             الرابط الذي فتحته غير صحيح أو لم يعد متاحاً. جرّب العودة للصفحة الرئيسية وابدأ من هناك.
           </p>
         </div>

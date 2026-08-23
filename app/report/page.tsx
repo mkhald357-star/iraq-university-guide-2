@@ -787,9 +787,9 @@ function ReportContent() {
                               <span
                                 className={`tabular-nums font-bold ${
                                   isGap
-                                    ? "text-red-600"
+                                    ? "text-band-reach"
                                     : g.gap >= GAP_THRESHOLD
-                                      ? "text-emerald-600"
+                                      ? "text-band-safe"
                                       : "text-ink-muted"
                                 }`}
                               >

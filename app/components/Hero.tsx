@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { GraduationCap, Building2, Landmark, MapPin, type LucideIcon } from "lucide-react";
 import CountUp from "./CountUp";
+import HeroIconField from "./HeroIconField";
 import homepageStats from "../../data/homepage_stats.json";
 
 // الأرقام محسوبة حياً وقت البناء (scripts/compute-homepage-stats.js) -- لا

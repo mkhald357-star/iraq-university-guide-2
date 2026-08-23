@@ -311,7 +311,12 @@ export default function Quiz() {
   if (!filterSettings) {
     return (
       <div className="max-w-xl mx-auto py-12 space-y-8">
-        <h1 className="text-3xl font-bold text-center text-primary-text">ابدأ الاختبار</h1>
+        <div className="text-center">
+          <h1 className="text-3xl font-bold text-primary-text">٤ معلومات سريعة قبل نبدأ</h1>
+          <p className="mt-2 text-ink-soft">
+            نحتاجها لنطابق ميولك بحدود القبول الحقيقية لفرعك ومحافظتك — بلا حفظ، وبلا حساب.
+          </p>
+        </div>
         <form
           className="glass p-8 rounded-3xl space-y-6"
           onSubmit={(e) => {

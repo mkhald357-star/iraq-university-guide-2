@@ -15,6 +15,7 @@ const config: Config = {
       colors: {
         primary: {
           DEFAULT: "var(--c-primary-600)",
+          text: "var(--c-primary-text)",
           50: "var(--c-primary-50)",
           100: "var(--c-primary-100)",
           200: "var(--c-primary-200)",

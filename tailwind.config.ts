@@ -59,6 +59,7 @@ const config: Config = {
       },
       fontFamily: {
         cairo: ["var(--font-cairo)"],
+        display: ["var(--font-display)", "var(--font-cairo)"],
       },
     },
   },

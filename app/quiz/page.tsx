@@ -635,57 +635,42 @@ export default function Quiz() {
             </p>
           )}
         </div>
-        <div className="bg-surface-muted border border-line text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
-          <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-ink-muted" />
-          <p>
-            هذه توصية استرشادية إحصائية مبنية على نموذج شخصية مهنية، وليست قراراً رسمياً للقبول. الجهة الرسمية الوحيدة
-            المعتمدة للتقديم والقبول الجامعي هي{" "}
-            <a
-              href="https://cap.mohesr.gov.iq"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-bold text-primary-text hover:underline"
-            >
-              القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
-            </a>
-            — راجعها دائماً قبل اتخاذ قرارك النهائي.
-          </p>
-        </div>
+        <Alert tone="info" icon={AlertCircle}>
+          هذه توصية استرشادية إحصائية مبنية على نموذج شخصية مهنية، وليست قراراً رسمياً للقبول. الجهة الرسمية الوحيدة
+          المعتمدة للتقديم والقبول الجامعي هي{" "}
+          <a
+            href="https://cap.mohesr.gov.iq"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-primary-text hover:underline"
+          >
+            القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
+          </a>
+          — راجعها دائماً قبل اتخاذ قرارك النهائي.
+        </Alert>
         {warnings.length > 0 && (
-          <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded-2xl flex items-start gap-3">
-            <AlertTriangle className="w-6 h-6 flex-shrink-0" />
-            <div>
-              <h4 className="font-bold">ملاحظة الخوارزمية:</h4>
-              <ul className="text-sm mt-1 space-y-1 list-disc list-inside">
-                {warnings.map((w, i) => (
-                  <li key={i}>{w}</li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <Alert tone="close" icon={AlertTriangle} title="ملاحظة الخوارزمية:">
+            <ul className="mt-1 list-inside list-disc space-y-1">
+              {warnings.map((w, i) => (
+                <li key={i}>{w}</li>
+              ))}
+            </ul>
+          </Alert>
         )}
         {vrsResult && vrsResult.band !== "low" && (
-          <div
-            className={`p-4 rounded-2xl flex items-start gap-3 border ${
-              vrsResult.band === "high"
-                ? "bg-red-50 border-red-200 text-red-800"
-                : "bg-amber-50 border-amber-200 text-amber-800"
-            }`}
+          <Alert
+            tone={vrsResult.band === "high" ? "reach" : "close"}
+            icon={AlertTriangle}
+            title={vrsResult.band === "high" ? "ننصح بمراجعة إجاباتك" : "قد تحتاج نتيجتك مراجعة إضافية"}
           >
-            <AlertTriangle className="w-6 h-6 flex-shrink-0" />
-            <div>
-              <h4 className="font-bold">
-                {vrsResult.band === "high" ? "ننصح بمراجعة إجاباتك" : "قد تحتاج نتيجتك مراجعة إضافية"}
-              </h4>
-              <p className="text-sm mt-1">
-                لاحظ نظام التحقق نمطاً في إجاباتك قد يقلل من دقة التوصية (مثل إجابات متسرعة جداً أو متناقضة أو غير
-                متمايزة). النتيجة أدناه لا تزال معروضة، لكن ننصحك بإعادة الاختبار بتركيز أكبر إن لم تكن التوصية منطقية
-                بالنسبة لك.
-              </p>
-            </div>
-          </div>
+            <p className="mt-1">
+              لاحظ نظام التحقق نمطاً في إجاباتك قد يقلل من دقة التوصية (مثل إجابات متسرعة جداً أو متناقضة أو غير
+              متمايزة). النتيجة أدناه لا تزال معروضة، لكن ننصحك بإعادة الاختبار بتركيز أكبر إن لم تكن التوصية منطقية
+              بالنسبة لك.
+            </p>
+          </Alert>
         )}
-        <div className="glass p-5 rounded-2xl space-y-2">
+        <Card variant="glass" radius="rounded-2xl" padding="p-5" className="space-y-2">
           <div className="flex items-center justify-between">
             <label htmlFor="marketWeight" className="font-bold text-ink text-sm">
               كم يهمّك طلب السوق عند الترتيب؟

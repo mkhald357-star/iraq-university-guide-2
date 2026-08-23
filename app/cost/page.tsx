@@ -125,7 +125,7 @@ export default function CostPage() {
               );
             })}
           </div>
-        </div>
+        </Card>
       )}
 
       {major && unverifiedPrivate.length > 0 && (

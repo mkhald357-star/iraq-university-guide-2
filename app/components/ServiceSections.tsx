@@ -53,20 +53,8 @@ function ServiceCard({ service, featured = false }: { service: Service; featured
   const inner = (
     <>
       <div className="flex items-start justify-between gap-3">
-        <span
-          className={`inline-flex shrink-0 rounded-xl p-2.5 ${
-            live ? "bg-primary-100 text-primary-700" : "bg-surface-muted text-ink-muted"
-          }`}
-        >
-          <Icon className={featured ? "h-6 w-6" : "h-5 w-5"} />
-        </span>
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-bold ${
-            live ? "bg-band-safe-bg text-band-safe" : "bg-surface-muted text-ink-muted"
-          }`}
-        >
-          {live ? "متاح" : "قريباً"}
-        </span>
+        <IconBadge icon={Icon} tone={live ? "primary" : "muted"} size={featured ? "lg" : "md"} />
+        <Badge tone={live ? "safe" : "muted"}>{live ? "متاح" : "قريباً"}</Badge>
       </div>
 
       <h3 className={`mt-4 font-extrabold text-ink ${featured ? "text-xl" : "text-base"}`}>{service.title}</h3>

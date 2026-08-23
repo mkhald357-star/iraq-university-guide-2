@@ -347,66 +347,37 @@ export default function Quiz() {
             setFilterSettings({ province, branch, gradeType, grade });
           }}
         >
-          <div>
-            <label className="block font-bold mb-2" htmlFor="province">
-              المحافظة
-            </label>
-            <select
-              id="province"
-              name="province"
-              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
-              required
-            >
-              <option value="">اختر المحافظة</option>
-              {AVAILABLE_PROVINCES.map((p) => (
-                <option key={p} value={p}>
-                  {p}
-                </option>
-              ))}
-              {UNCOVERED_PROVINCES.map((p) => (
-                <option key={p} value={p} disabled>
-                  {p} (غير مغطّاة)
-                </option>
-              ))}
-            </select>
-            <p className="text-xs text-ink-muted mt-1">ملاحظة: {UNCOVERED_PROVINCES_REASON}</p>
-          </div>
-          <div>
-            <label className="block font-bold mb-2" htmlFor="branch">
-              الفرع الدراسي
-            </label>
-            <select
-              id="branch"
-              name="branch"
-              value={formBranch}
-              onChange={(e) => setFormBranch(e.target.value)}
-              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
-              required
-            >
-              <option value="">اختر الفرع</option>
-              <option value="علمي">علمي (إحيائي / تطبيقي)</option>
-              <option value="أدبي">أدبي</option>
-              <option value="فنون">فنون / إبداع</option>
-            </select>
-            <p className="text-xs text-ink-muted mt-1">
-              الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي
-              والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك.
-            </p>
-          </div>
-          <div>
-            <label className="block font-bold mb-2" htmlFor="gradeType">
-              نوع المعدل
-            </label>
-            <select
-              id="gradeType"
-              name="gradeType"
-              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
-              required
-            >
-              <option value="expected">معدل متوقع</option>
-              <option value="actual">معدل حصل (حقيقي)</option>
-            </select>
-          </div>
+          <SelectField label="المحافظة" id="province" name="province" hint={`ملاحظة: ${UNCOVERED_PROVINCES_REASON}`} required>
+            <option value="">اختر المحافظة</option>
+            {AVAILABLE_PROVINCES.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+            {UNCOVERED_PROVINCES.map((p) => (
+              <option key={p} value={p} disabled>
+                {p} (غير مغطّاة)
+              </option>
+            ))}
+          </SelectField>
+          <SelectField
+            label="الفرع الدراسي"
+            id="branch"
+            name="branch"
+            value={formBranch}
+            onChange={(e) => setFormBranch(e.target.value)}
+            hint="الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك."
+            required
+          >
+            <option value="">اختر الفرع</option>
+            <option value="علمي">علمي (إحيائي / تطبيقي)</option>
+            <option value="أدبي">أدبي</option>
+            <option value="فنون">فنون / إبداع</option>
+          </SelectField>
+          <SelectField label="نوع المعدل" id="gradeType" name="gradeType" required>
+            <option value="expected">معدل متوقع</option>
+            <option value="actual">معدل حصل (حقيقي)</option>
+          </SelectField>
           <div>
             <label className="block font-bold mb-2" htmlFor="grade">
               المعدل (٪)

@@ -76,7 +76,7 @@ export function RadarChart({ axes, series, size = 260 }: { axes: RadarAxis[]; se
               y={y}
               fontSize={11}
               fontWeight={700}
-              fill="#475569"
+              fill="var(--c-text-soft)"
               textAnchor="middle"
               dominantBaseline="middle"
             >

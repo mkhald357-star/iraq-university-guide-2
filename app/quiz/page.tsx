@@ -131,7 +131,7 @@ function ReviewScreen({
               }`}
             >
               {/* رقم */}
-              <span className="shrink-0 w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-ink-muted">
+              <span className="shrink-0 w-7 h-7 rounded-full bg-surface-muted flex items-center justify-center text-xs font-bold text-ink-muted">
                 {i + 1}
               </span>
 

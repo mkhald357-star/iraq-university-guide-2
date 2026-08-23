@@ -189,18 +189,16 @@ function SubjectGradeInput({
   onChange: (value: number | undefined) => void;
 }) {
   return (
-    <div>
-      <label className="block text-xs font-bold text-ink-soft mb-1">{label}</label>
-      <input
-        type="number"
-        min={0}
-        max={100}
-        value={value ?? ""}
-        onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
-        className="w-full p-2 text-sm border border-line rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/40"
-        placeholder="اختياري"
-      />
-    </div>
+    <InputField
+      compact
+      label={label}
+      type="number"
+      min={0}
+      max={100}
+      value={value ?? ""}
+      onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+      placeholder="اختياري"
+    />
   );
 }
 

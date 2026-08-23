@@ -6,6 +6,7 @@ import majorsData from "../../data/majors.json";
 import { MajorPicker } from "../components/MajorPicker";
 import { ChannelNotice } from "../components/ChannelNotice";
 import { fetchOfferingsForMajor } from "../../lib/offeringsClient";
+import { IconBadge, Badge, Card } from "../components/ui";
 import { splitOfferings, sortByFeeAscending, computeCheapestHighlight, offeringKey } from "../../lib/costCompare";
 import {
   TUITION_NOT_PUBLISHED,

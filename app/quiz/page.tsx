@@ -848,7 +848,7 @@ export default function Quiz() {
             {question.answerLabels?.no ?? "لا، إطلاقاً"}
           </button>
         </div>
-      </div>
+      </Card>
 
       {/* زر الرجوع */}
       {currentQuestionIndex > 0 && (

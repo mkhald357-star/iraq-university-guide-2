@@ -30,7 +30,7 @@ export default function ThemeToggle() {
       onClick={toggle}
       aria-label={isDark ? "التبديل للوضع الفاتح" : "التبديل للوضع الداكن"}
       className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink-soft
-                 transition-colors hover:border-primary-300 hover:text-primary-700
+                 transition-colors hover:border-primary-300 hover:text-primary-text
                  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
     >
       {isDark === null ? null : isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}

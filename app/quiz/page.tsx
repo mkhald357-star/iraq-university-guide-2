@@ -162,7 +162,7 @@ function ReviewScreen({
       <div className="space-y-3">
         <button
           onClick={onSubmit}
-          className="w-full bg-primary-700 text-white py-4 rounded-2xl font-black text-lg hover:bg-primary-800 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
+          className="w-full bg-primary-solid text-white py-4 rounded-2xl font-black text-lg hover:bg-primary-solid-hover transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
         >
           إرسال الاختبار وعرض التوصية ✨
         </button>
@@ -476,7 +476,7 @@ export default function Quiz() {
           )}
           <button
             type="submit"
-            className="w-full bg-primary-700 text-white py-3 rounded-xl font-bold hover:bg-primary-800 transition-colors"
+            className="w-full bg-primary-solid text-white py-3 rounded-xl font-bold hover:bg-primary-solid-hover transition-colors"
           >
             بدء الاختبار
           </button>
@@ -771,7 +771,7 @@ export default function Quiz() {
             </p>
             <Link
               href={`/report?major=${rankedMajors[0].id}`}
-              className="inline-flex items-center gap-2 bg-primary-700 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-primary-800 transition-all hover:-translate-y-1"
+              className="inline-flex items-center gap-2 bg-primary-solid text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-primary-solid-hover transition-all hover:-translate-y-1"
             >
               <span>فتح التقرير الشامل والمفصل</span>
               <ArrowLeft className="w-5 h-5" />
@@ -837,7 +837,7 @@ export default function Quiz() {
               aria-label={`الانتقال لسؤال ${i + 1}`}
               className={`h-2.5 flex-1 rounded-full transition-all duration-300 ${
                 i < currentQuestionIndex
-                  ? "bg-primary cursor-pointer hover:bg-primary-700"
+                  ? "bg-primary cursor-pointer hover:bg-primary-solid"
                   : i === currentQuestionIndex
                     ? "bg-primary/60"
                     : "bg-line cursor-default"
@@ -863,7 +863,7 @@ export default function Quiz() {
         <div className="flex flex-col gap-4 mt-auto">
           <button
             onClick={() => handleAnswer(1)}
-            className="bg-primary-700 text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary-solid text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-solid-hover transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.yes ?? "نعم، بالتأكيد"}
           </button>

@@ -59,7 +59,7 @@ export function AssistantWidget() {
       {isOpen && (
         <div className="mb-3 w-[min(22rem,calc(100vw-2.5rem))] h-[28rem] max-h-[70vh] glass rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
           {/* رأس النافذة */}
-          <div className="bg-primary-700 text-white px-4 py-3 flex items-center justify-between shrink-0">
+          <div className="bg-primary-solid text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div>
               <h3 className="font-bold text-sm">المساعد الذكي</h3>
               <p className="text-[11px] text-white/80">يعمل محلياً بلا اتصال خارجي — إجابات فورية</p>
@@ -119,7 +119,7 @@ export function AssistantWidget() {
             <button
               type="submit"
               aria-label="إرسال"
-              className="bg-primary text-white p-2 rounded-xl hover:bg-primary-700 transition-colors shrink-0"
+              className="bg-primary text-white p-2 rounded-xl hover:bg-primary-solid transition-colors shrink-0"
             >
               <Send className="w-4 h-4" />
             </button>
@@ -130,7 +130,7 @@ export function AssistantWidget() {
       <button
         onClick={() => setIsOpen((v) => !v)}
         aria-label={isOpen ? "إغلاق المساعد" : "افتح المساعد الذكي"}
-        className="w-14 h-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:bg-primary-700 transition-all hover:scale-105 active:scale-95"
+        className="w-14 h-14 rounded-full bg-primary text-white shadow-xl flex items-center justify-center hover:bg-primary-solid transition-all hover:scale-105 active:scale-95"
       >
         {isOpen ? <X className="w-6 h-6" /> : <MessageCircle className="w-6 h-6" />}
       </button>

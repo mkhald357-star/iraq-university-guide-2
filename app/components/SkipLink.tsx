@@ -7,7 +7,7 @@ export default function SkipLink() {
     <a
       href="#main-content"
       className="sr-only focus:not-sr-only focus:fixed focus:start-2 focus:top-2 focus:z-50
-                 focus:rounded-md focus:bg-primary-700 focus:px-4 focus:py-2 focus:text-white
+                 focus:rounded-md focus:bg-primary-solid focus:px-4 focus:py-2 focus:text-white
                  focus:font-bold focus-visible:outline focus-visible:outline-2
                  focus-visible:outline-offset-2 focus-visible:outline-primary-600"
     >

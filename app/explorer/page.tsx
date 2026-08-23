@@ -148,7 +148,7 @@ export default function ExplorerPage() {
               onClick={() => setBranch(b.value)}
               className={`rounded-xl px-6 py-2.5 font-bold transition-colors ${
                 branch === b.value
-                  ? "bg-primary-700 text-white"
+                  ? "bg-primary-solid text-white"
                   : "border border-line text-ink-soft hover:bg-surface-muted"
               }`}
             >

@@ -367,7 +367,7 @@ export default function GpaCheckPage() {
                 onClick={() => setSession(opt.value)}
                 className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold transition-colors ${
                   session === opt.value
-                    ? "bg-primary-700 text-white"
+                    ? "bg-primary-solid text-white"
                     : "border border-line text-ink-soft hover:bg-surface-muted"
                 }`}
               >
@@ -384,8 +384,8 @@ export default function GpaCheckPage() {
           <button
             type="submit"
             disabled={branchState.status === "loading" || !branch}
-            className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-700 px-6 py-3 font-bold
-                       text-white transition-colors hover:bg-primary-800 disabled:opacity-50 sm:w-auto"
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-primary-solid px-6 py-3 font-bold
+                       text-white transition-colors hover:bg-primary-solid-hover disabled:opacity-50 sm:w-auto"
           >
             <Search className="h-4 w-4" />
             {branchState.status === "loading" ? "جارٍ التحميل..." : "افحص"}

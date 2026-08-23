@@ -89,6 +89,9 @@
   --g-surface: linear-gradient(180deg, var(--c-bg) 0%, var(--c-bg-subtle) 100%);
   --sh-md: 0 4px 12px rgba(0, 0, 0, 0.35);
   --sh-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+
+  --c-glass-bg: rgba(17, 27, 46, 0.75);
+  --c-glass-border: rgba(255, 255, 255, 0.08);
 }
 
 @tailwind base;

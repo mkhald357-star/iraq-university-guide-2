@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { GraduationCap, Building2, Landmark, MapPin, type LucideIcon } from "lucide-react";
 import CountUp from "./CountUp";
 import homepageStats from "../../data/homepage_stats.json";
 
@@ -8,11 +9,11 @@ import homepageStats from "../../data/homepage_stats.json";
 // ثوابت مكتوبة يدوياً، تفادياً للتضارب المكتشَف بين هذه البطاقات والبيانات
 // الحقيقية بعد جولات إصلاح تلوّث chapter3_additions.json (راجع
 // تشخيص_المشاكل_وخطة_الإصلاح_الشاملة.md، المشكلة ١).
-const STATS = [
-  { value: homepageStats.totalMajors, suffix: "", label: "تخصصاً موثّقاً" },
-  { value: homepageStats.totalDepartments, suffix: "", label: "قسماً جامعياً" },
-  { value: homepageStats.totalUniversities, suffix: "", label: "جامعة وكلية" },
-  { value: homepageStats.provinces, suffix: "", label: "محافظة" },
+const STATS: { value: number; label: string; Icon: LucideIcon }[] = [
+  { value: homepageStats.totalMajors, label: "تخصصاً موثّقاً", Icon: GraduationCap },
+  { value: homepageStats.totalDepartments, label: "قسماً جامعياً", Icon: Building2 },
+  { value: homepageStats.totalUniversities, label: "جامعة وكلية", Icon: Landmark },
+  { value: homepageStats.provinces, label: "محافظة", Icon: MapPin },
 ];
 
 export default function Hero() {

@@ -101,6 +101,13 @@ function waitForServer(url, timeoutMs = 60_000) {
     // (تُنشئ context ضمنياً) تُرفَض بخطأ "Please use browser.newContext()"
     // رغم أنها Page صالحة فنياً (اكتُشف فعلياً عند أول تشغيل، 2026-08-11).
     const context = await browser.newContext();
+    // يفرض data-theme قبل أي سكربت صفحة عبر كل تنقّل داخل هذا الـcontext --
+    // أوثق من الاعتماد على السكربت المضمَّن بالموقع (يقرأ localStorage
+    // فقط)، ويُعاد ضبطه صراحة بعد كل goto أيضاً كاحتياط (انظر أسفل).
+    let currentTheme = "light";
+    await context.addInitScript(() => {
+      // القيمة الفعلية تُحقَن ديناميكياً أدناه قبل كل مجموعة مسارات
+    });
     const page = await context.newPage();
 
     // إحماء: أول زيارة فعلية لأي مسار بعد تشغيل next dev طازجاً تُحفِّز
@@ -114,27 +121,35 @@ function waitForServer(url, timeoutMs = 60_000) {
     /** @type {Record<string, Record<string, number>>} */
     const tally = {};
 
-    for (const route of ROUTES) {
-      await page.goto(BASE_URL + route, { waitUntil: "networkidle" });
-      const results = await new AxeBuilder({ page }).analyze();
+    for (const theme of THEMES) {
+      currentTheme = theme;
+      console.log(`\n— الوضع ${theme === "dark" ? "الداكن" : "الفاتح"} —`);
+      for (const route of ROUTES) {
+        await page.goto(BASE_URL + route, { waitUntil: "networkidle" });
+        if (theme === "dark") {
+          await page.evaluate(() => document.documentElement.setAttribute("data-theme", "dark"));
+          await page.waitForTimeout(150); // جولة رسم كي تُطبَّق أنماط الثيم فعلياً قبل الفحص
+        }
+        const results = await new AxeBuilder({ page }).analyze();
 
-      const byImpact = { critical: 0, serious: 0, moderate: 0, minor: 0 };
-      for (const v of results.violations) {
-        const impact = v.impact || "minor";
-        byImpact[impact] = (byImpact[impact] || 0) + v.nodes.length;
-      }
-      tally[route] = byImpact;
+        const byImpact = { critical: 0, serious: 0, moderate: 0, minor: 0 };
+        for (const v of results.violations) {
+          const impact = v.impact || "minor";
+          byImpact[impact] = (byImpact[impact] || 0) + v.nodes.length;
+        }
+        tally[`${theme}:${route}`] = byImpact;
 
-      const total = Object.values(byImpact).reduce((a, b) => a + b, 0);
-      const flag = results.violations.some((v) => FAIL_ON_IMPACT.has(v.impact || "")) ? "❌" : total > 0 ? "⚠️ " : "✅";
-      console.log(
-        `${flag} ${route.padEnd(12)} critical=${byImpact.critical} serious=${byImpact.serious} moderate=${byImpact.moderate} minor=${byImpact.minor}`
-      );
+        const total = Object.values(byImpact).reduce((a, b) => a + b, 0);
+        const flag = results.violations.some((v) => FAIL_ON_IMPACT.has(v.impact || "")) ? "❌" : total > 0 ? "⚠️ " : "✅";
+        console.log(
+          `${flag} ${route.padEnd(12)} critical=${byImpact.critical} serious=${byImpact.serious} moderate=${byImpact.moderate} minor=${byImpact.minor}`
+        );
 
-      for (const v of results.violations) {
-        if (FAIL_ON_IMPACT.has(v.impact || "")) {
-          hadFailure = true;
-          console.log(`   [${v.impact}] ${v.id}: ${v.description} (${v.nodes.length} عنصراً)`);
+        for (const v of results.violations) {
+          if (FAIL_ON_IMPACT.has(v.impact || "")) {
+            hadFailure = true;
+            console.log(`   [${v.impact}] ${v.id}: ${v.description} (${v.nodes.length} عنصراً)`);
+          }
         }
       }
     }

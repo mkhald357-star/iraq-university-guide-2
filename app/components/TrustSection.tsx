@@ -33,7 +33,7 @@ export default function TrustSection() {
           </a>
         </div>
 
-        <div className="rounded-md border border-line bg-surface p-6 shadow-sm space-y-5">
+        <Card variant="surface" padding="p-6" className="space-y-5">
           <dl>
             <div>
               <dt className="text-xs font-bold text-ink-muted">المصدر</dt>

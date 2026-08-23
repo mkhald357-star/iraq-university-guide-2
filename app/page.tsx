@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import JourneyPanels from "./components/JourneyPanels";
+import ServiceSections from "./components/ServiceSections";
 import StatsSection from "./components/StatsSection";
 import TrustSection from "./components/TrustSection";
 import FAQSection from "./components/FAQSection";

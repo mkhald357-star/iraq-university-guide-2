@@ -59,7 +59,7 @@ export function AssistantWidget() {
       {isOpen && (
         <div className="mb-3 w-[min(22rem,calc(100vw-2.5rem))] h-[28rem] max-h-[70vh] glass rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
           {/* رأس النافذة */}
-          <div className="bg-primary text-white px-4 py-3 flex items-center justify-between shrink-0">
+          <div className="bg-primary-700 text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div>
               <h3 className="font-bold text-sm">المساعد الذكي</h3>
               <p className="text-[11px] text-white/80">يعمل محلياً بلا اتصال خارجي — إجابات فورية</p>

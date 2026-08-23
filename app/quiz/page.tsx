@@ -205,11 +205,11 @@ function SubjectGradeInput({
 // مؤشر طلب السوق -- معروض دائماً منفصلاً بصرياً عن نسبة التوافق الشخصي (لا
 // مدموجاً فيها كرقم واحد)، لأن السؤالين مختلفان تماماً: "أيّ تخصص يشبهك؟"
 // مقابل "ما فرص هذا التخصص؟" (انظر تحليل_الثغرات_وخطة_التطوير.md §3.2).
-function getDemandLevel(multiplier: number): { text: string; color: string; bg: string } {
-  if (multiplier >= 1.4) return { text: "مرتفع جداً", color: "text-emerald-700", bg: "bg-emerald-100" };
-  if (multiplier >= 1.2) return { text: "مرتفع", color: "text-blue-700", bg: "bg-blue-100" };
-  if (multiplier >= 1.0) return { text: "متوسط", color: "text-amber-700", bg: "bg-amber-100" };
-  return { text: "منخفض/متشبع", color: "text-red-700", bg: "bg-red-100" };
+function getDemandLevel(multiplier: number): { text: string; tone: "safe" | "primary" | "close" | "reach" } {
+  if (multiplier >= 1.4) return { text: "مرتفع جداً", tone: "safe" };
+  if (multiplier >= 1.2) return { text: "مرتفع", tone: "primary" };
+  if (multiplier >= 1.0) return { text: "متوسط", tone: "close" };
+  return { text: "منخفض/متشبع", tone: "reach" };
 }
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

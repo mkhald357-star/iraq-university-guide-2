@@ -62,8 +62,8 @@ export default function Hero() {
               هو الخيار الأخف بصرياً كما صُمِّم أصلاً. */}
           <Link
             href="/quiz"
-            className="rounded-lg bg-white px-7 py-3.5 font-bold text-primary-800 shadow-lg
-                       transition-transform duration-200 hover:-translate-y-0.5 hover:bg-primary-50
+            className="rounded-lg bg-white px-7 py-3.5 font-bold text-[#115e59] shadow-lg
+                       transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#f0fdfa]
                        focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
                        focus-visible:outline-white"
           >

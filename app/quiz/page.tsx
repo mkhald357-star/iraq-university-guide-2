@@ -125,7 +125,7 @@ function ReviewScreen({
             <div
               key={q.id}
               className={`flex items-center gap-3 p-3 rounded-xl border transition-colors ${
-                answered ? "bg-surface border-line" : "bg-amber-50 border-amber-200"
+                answered ? "bg-surface border-line" : "bg-band-close-bg border-band-close/30"
               }`}
             >
               {/* رقم */}

@@ -16,6 +16,8 @@ const config: Config = {
         primary: {
           DEFAULT: "var(--c-primary-600)",
           text: "var(--c-primary-text)",
+          solid: "var(--c-primary-solid)",
+          "solid-hover": "var(--c-primary-solid-hover)",
           50: "var(--c-primary-50)",
           100: "var(--c-primary-100)",
           200: "var(--c-primary-200)",

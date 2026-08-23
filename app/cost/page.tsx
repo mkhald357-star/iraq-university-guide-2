@@ -138,9 +138,7 @@ export default function CostPage() {
       {major && government.length > 0 && (
         <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
           <div className="mb-3 flex items-center gap-3">
-            <span className="rounded-xl bg-primary-100 p-2.5 text-primary-700">
-              <GraduationCap className="h-5 w-5" />
-            </span>
+            <IconBadge icon={GraduationCap} />
             <h2 className="font-bold text-ink">الجامعات الحكومية</h2>
           </div>
           <p className="mb-3 text-sm text-ink-soft">{GOVERNMENT_NO_COMPARABLE_FEE}</p>

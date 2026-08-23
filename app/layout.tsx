@@ -22,6 +22,15 @@ const cairo = Cairo({
   weight: ["300", "400", "600", "700", "900"],
 });
 
+// خط عرض ثانٍ للعناوين الكبيرة فقط (h1-h3 عبر globals.css) -- شخصية بصرية
+// مميّزة (بنية هندسية بطابع تحريري) تفصل العناوين عن النص العادي، بخلاف
+// الاعتماد على Cairo وحده لكل شيء. Cairo يبقى وحيداً للنص العادي والواجهة.
+const elMessiri = El_Messiri({
+  subsets: ["arabic", "latin"],
+  variable: "--font-display",
+  weight: ["600", "700"],
+});
+
 export const metadata: Metadata = {
   // 🔴 إلزامي: بدونه تصبح روابط og:image نسبية فلا تُقرأ عند المشاركة
   // (data/admission_rules.md §33). SITE_URL محسومة فعلياً منذ §37 (iraqmajors.com).

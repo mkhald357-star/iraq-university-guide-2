@@ -813,16 +813,20 @@ export default function Quiz() {
 
       {/* تنبيه أسئلة الترجيح التكيفية */}
       {currentQuestionIndex >= ALL_QUIZ_QUESTIONS.length && tieBreakInfo && (
-        <div className="bg-primary-50 border border-primary-200 text-primary-800 p-4 rounded-2xl text-sm">
+        <Alert tone="primary">
           <strong>
             نتيجتك متقاربة جداً بين &quot;{tieBreakInfo.a}&quot; و&quot;{tieBreakInfo.b}&quot;
           </strong>{" "}
           — بضعة أسئلة إضافية لحسم الدقة بينهما بدل ترك الفارق لمعامل السوق وحده.
-        </div>
+        </Alert>
       )}
 
       {/* بطاقة السؤال */}
-      <div className="glass p-8 md:p-12 rounded-3xl text-center space-y-12 animate-in fade-in zoom-in-95 duration-300 min-h-[350px] flex flex-col justify-center">
+      <Card
+        variant="glass"
+        padding="p-8 md:p-12"
+        className="animate-in fade-in zoom-in-95 flex min-h-[350px] flex-col justify-center space-y-12 text-center duration-300"
+      >
         <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{question.text}</h1>
         <div className="flex flex-col gap-4 mt-auto">
           <button

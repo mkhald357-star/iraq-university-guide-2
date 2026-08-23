@@ -101,8 +101,8 @@ function ReviewScreen({
     <div className="max-w-2xl mx-auto py-12 space-y-6 animate-in fade-in duration-300">
       {/* العنوان */}
       <div className="text-center space-y-2">
-        <div className="flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 mx-auto">
-          <CheckCircle className="w-8 h-8 text-emerald-600" />
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-band-safe-bg">
+          <CheckCircle className="h-8 w-8 text-band-safe" />
         </div>
         <h1 className="text-3xl font-black text-ink">مراجعة إجاباتك</h1>
         <p className="text-ink-muted">راجع إجاباتك قبل إرسال الاختبار — يمكنك تعديل أي إجابة</p>
@@ -110,17 +110,14 @@ function ReviewScreen({
 
       {/* تحذير إجابات فائتة */}
       {unanswered.length > 0 && (
-        <div className="flex items-start gap-3 bg-amber-50 border border-amber-200 text-amber-800 p-4 rounded-2xl">
-          <AlertTriangle className="w-5 h-5 flex-shrink-0 mt-0.5" />
-          <p className="text-sm">
-            لم تُجب على <strong>{unanswered.length} سؤال</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
-            دقيقة.
-          </p>
-        </div>
+        <Alert tone="close" icon={AlertTriangle}>
+          لم تُجب على <strong>{unanswered.length} سؤال</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
+          دقيقة.
+        </Alert>
       )}
 
       {/* قائمة الإجابات */}
-      <div className="glass rounded-3xl p-6 space-y-3 max-h-[420px] overflow-y-auto">
+      <Card variant="glass" className="max-h-[420px] space-y-3 overflow-y-auto">
         {questions.map((q, i) => {
           const val = answers[q.id];
           const answered = val !== undefined;

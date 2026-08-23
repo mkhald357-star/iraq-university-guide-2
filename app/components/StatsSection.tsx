@@ -16,7 +16,7 @@ const OVERVIEW = [
 const BRANCHES = [
   { label: "علمي", value: homepageStats.branchCounts.علمي, tone: "var(--c-primary-600)" },
   { label: "أدبي", value: homepageStats.branchCounts.أدبي, tone: "var(--c-primary-400)" },
-  { label: "فنون", value: homepageStats.branchCounts.فنون, tone: "var(--c-primary-200)" },
+  { label: "فنون", value: homepageStats.branchCounts.فنون, tone: "var(--c-primary-300)" },
 ];
 const BRANCH_TOTAL = BRANCHES.reduce((s, b) => s + b.value, 0);
 

@@ -863,7 +863,7 @@ export default function Quiz() {
         <div className="flex flex-col gap-4 mt-auto">
           <button
             onClick={() => handleAnswer(1)}
-            className="bg-primary text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-700 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary-700 text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.yes ?? "نعم، بالتأكيد"}
           </button>

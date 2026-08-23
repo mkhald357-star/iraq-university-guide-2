@@ -23,7 +23,7 @@ export default function TrustSection() {
             href="https://cap.mohesr.gov.iq"
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 font-bold text-primary-700 hover:underline"
+            className="mt-6 inline-flex items-center gap-2 font-bold text-primary-text hover:underline"
           >
             القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
             <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

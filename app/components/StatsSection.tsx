@@ -80,7 +80,7 @@ export default function StatsSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </Card>
         </div>
       </div>
     </section>

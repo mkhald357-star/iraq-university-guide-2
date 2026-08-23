@@ -875,7 +875,7 @@ export default function Quiz() {
           </button>
           <button
             onClick={() => handleAnswer(-1)}
-            className="bg-slate-100 text-ink-soft border border-slate-200 p-4 rounded-xl font-bold text-lg hover:bg-slate-200 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-surface-muted text-ink-soft border border-line p-4 rounded-xl font-bold text-lg hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.no ?? "لا، إطلاقاً"}
           </button>

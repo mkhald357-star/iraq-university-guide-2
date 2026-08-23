@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  // يربط متغيّر dark: في Tailwind بنفس آلية زر التبديل الفعلي
+  // (ThemeToggle.tsx يضبط data-theme على <html>) بدل الافتراضي media (يتبع
+  // نظام التشغيل فقط بلا علاقة باختيار المستخدم الصريح المحفوظ).
+  darkMode: ["selector", '[data-theme="dark"]'],
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",

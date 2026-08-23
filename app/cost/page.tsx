@@ -56,9 +56,7 @@ export default function CostPage() {
           strokeWidth={1}
         />
         <div className="relative">
-          <span className="inline-flex rounded-2xl bg-primary-100 p-3 text-primary-700">
-            <Wallet className="h-6 w-6" />
-          </span>
+          <IconBadge icon={Wallet} size="lg" />
           <h1 className="mt-4 text-3xl font-black text-ink">كلفة الدراسة الأهلية</h1>
           <p className="mt-1 text-ink-soft">قارن أجور الجامعات الأهلية لنفس التخصص قبل ما تقرّر.</p>
         </div>

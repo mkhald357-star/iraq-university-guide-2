@@ -1,5 +1,6 @@
 import CountUp from "./CountUp";
 import homepageStats from "../../data/homepage_stats.json";
+import { Card } from "./ui";
 
 // الأرقام محسوبة حياً وقت البناء (scripts/compute-homepage-stats.js من
 // data/universities.json مباشرة) -- لا ثوابت مكتوبة يدوياً. كانت هذه القيم

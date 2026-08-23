@@ -46,7 +46,7 @@ export default function FAQSection() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
       />
       <div className="mx-auto max-w-3xl px-5">
-        <p className="text-sm font-bold text-primary-700">أسئلة شائعة</p>
+        <p className="text-sm font-bold text-primary-text">أسئلة شائعة</p>
         <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">
           أسئلة يسألها الطلاب فعلاً
         </h2>

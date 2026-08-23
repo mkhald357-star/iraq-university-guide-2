@@ -105,7 +105,14 @@ export default function DeciderPage() {
             — {questions.length} أسئلة قصيرة تفصل بينهما على المحاور الأكثر اختلافاً بينهما.
           </div>
 
-          <div className="flex gap-1.5" role="progressbar" aria-valuenow={currentIndex} aria-valuemax={questions.length}>
+          <div
+            className="flex gap-1.5"
+            role="progressbar"
+            aria-valuenow={currentIndex}
+            aria-valuemin={0}
+            aria-valuemax={questions.length}
+            aria-label={`سؤال ${currentIndex + 1} من ${questions.length}`}
+          >
             {questions.map((_, i) => (
               <div
                 key={i}

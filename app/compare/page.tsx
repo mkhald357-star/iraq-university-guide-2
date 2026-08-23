@@ -119,7 +119,7 @@ function CompareContent() {
           <button
             type="button"
             onClick={addSlot}
-            className="flex items-center gap-1.5 text-sm font-bold text-primary-700 transition-colors hover:text-primary-800"
+            className="flex items-center gap-1.5 text-sm font-bold text-primary-text transition-colors hover:text-primary-800"
           >
             <Plus className="h-4 w-4" />
             أضف تخصصاً {slots.length === 2 ? "ثالثاً" : ""}

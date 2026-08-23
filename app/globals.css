@@ -36,9 +36,12 @@
   --c-unknown: #64748b; /* ⚪ غير معروف */
   --c-unknown-bg: #f8fafc;
 
-  /* ── التدرّجات اللونية ── */
-  --g-primary: linear-gradient(135deg, var(--c-primary-600) 0%, var(--c-primary-800) 100%);
-  --g-primary-hover: linear-gradient(135deg, var(--c-primary-700) 0%, var(--c-primary-900) 100%);
+  /* ── التدرّجات اللونية ── قيم حرفية مقصودة لا متغيّرات السلّم -- خلفية
+     الـHero يجب أن تبقى تيلية زاهية ثابتة بصرف النظر عن الثيم (مؤكَّد بلقطة
+     شاشة فعلية للوضع الداكن)، فلا تُربَط بـ--c-primary-600/800 القابلين
+     لإعادة التعريف الآن للوضع الداكن لأدوار نصية مختلفة تماماً (انظر أسفل). */
+  --g-primary: linear-gradient(135deg, #0d9488 0%, #115e59 100%);
+  --g-primary-hover: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
 
   /* توهّج ناعم للكرات العائمة */
   --g-orb: radial-gradient(circle at 30% 30%, rgba(45, 212, 191, 0.42) 0%, rgba(13, 148, 136, 0.14) 45%, transparent 70%);

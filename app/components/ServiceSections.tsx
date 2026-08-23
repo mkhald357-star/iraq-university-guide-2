@@ -104,7 +104,6 @@ export default function ServiceSections() {
           <section
             key={stage.id}
             aria-labelledby={`h-${stage.id}`}
-            className={stageIdx % 2 ? "" : ""}
             style={stageIdx % 2 ? { background: "var(--g-surface)" } : undefined}
           >
             <div className="mx-auto max-w-6xl px-5 py-10">

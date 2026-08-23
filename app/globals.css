@@ -99,6 +99,8 @@
 
   --c-glass-bg: rgba(17, 27, 46, 0.75);
   --c-glass-border: rgba(255, 255, 255, 0.08);
+
+  --c-primary-text: #0d9488; /* = primary-600 -- 5.00:1 على خلفية داكنة، مُتحقَّق حسابياً */
 }
 
 @tailwind base;

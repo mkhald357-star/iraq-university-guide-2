@@ -62,9 +62,9 @@ export default function CostPage() {
         </div>
       </div>
 
-      <div className="glass rounded-3xl p-6">
+      <Card variant="glass">
         <MajorPicker index={0} value={majorId} excludeIds={[]} onChange={setMajorId} />
-      </div>
+      </Card>
 
       <ChannelNotice />
 

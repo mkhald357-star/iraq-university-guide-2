@@ -67,7 +67,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
       <body
-        className={`${cairo.variable} ${elMessiri.variable} font-cairo bg-surface-subtle text-slate-900 min-h-screen`}
+        className={`${cairo.variable} ${elMessiri.variable} font-cairo bg-surface-subtle text-ink min-h-screen`}
       >
         {/* يُشغَّل قبل الرسم لتفادي "وميض" اللون الخاطئ عند تحميل صفحة
             بالوضع الداكن المحفوظ -- inline لأنه يجب أن يُنفَّذ متزامناً

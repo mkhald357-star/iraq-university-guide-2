@@ -155,7 +155,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
       </table>
       {hasAnyDirectAdmission && (
         <p className="text-xs text-ink-muted mt-2">
-          <span className="text-emerald-700 font-bold">قبول مباشر</span>: لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم ضمن
+          <span className="text-band-safe font-bold">قبول مباشر</span>: لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم ضمن
           الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.
         </p>
       )}

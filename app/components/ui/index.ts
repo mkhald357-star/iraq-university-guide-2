@@ -3,4 +3,5 @@ export { IconBadge } from "./IconBadge";
 export { Badge } from "./Badge";
 export { Card } from "./Card";
 export { SelectField } from "./SelectField";
+export { InputField } from "./InputField";
 export { Alert } from "./Alert";

@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Cairo } from "next/font/google";
+import { Cairo, El_Messiri } from "next/font/google";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AssistantWidget } from "./components/AssistantWidget";

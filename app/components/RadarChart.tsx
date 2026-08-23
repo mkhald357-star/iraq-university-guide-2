@@ -42,7 +42,7 @@ export function RadarChart({ axes, series, size = 260 }: { axes: RadarAxis[]; se
         {/* المحاور */}
         {axes.map((_, i) => {
           const [x, y] = pointAt(i, maxR);
-          return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="#e2e8f0" strokeWidth={1} />;
+          return <line key={i} x1={cx} y1={cy} x2={x} y2={y} stroke="var(--c-border)" strokeWidth={1} />;
         })}
 
         {/* أشكال البيانات -- الأولى معبّأة شفافة، الثانية (إن وُجدت) حدّ فقط لتمييزها بصرياً بلا الاعتماد على اللون وحده */}

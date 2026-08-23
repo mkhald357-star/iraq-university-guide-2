@@ -376,21 +376,7 @@ export default function Quiz() {
             <option value="expected">معدل متوقع</option>
             <option value="actual">معدل حصل (حقيقي)</option>
           </SelectField>
-          <div>
-            <label className="block font-bold mb-2" htmlFor="grade">
-              المعدل (٪)
-            </label>
-            <input
-              id="grade"
-              type="number"
-              name="grade"
-              min="0"
-              max="100"
-              className="w-full p-3 border border-line rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/40"
-              placeholder="مثال: 78"
-              required
-            />
-          </div>
+          <InputField label="المعدل (٪)" id="grade" type="number" name="grade" min="0" max="100" placeholder="مثال: 78" required />
           {formBranch && (
             <div className="border-t border-line pt-5 space-y-3">
               <div>

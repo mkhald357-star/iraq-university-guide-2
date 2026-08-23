@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import Link from "next/link";
-import { ArrowLeft, ChevronRight, AlertTriangle, AlertCircle, CheckCircle, Edit3 } from "lucide-react";
+import { ArrowLeft, ChevronRight, AlertTriangle, AlertCircle, CheckCircle, Edit3, ClipboardList } from "lucide-react";
 import questionsData from "../../data/questions.json";
 import validityQuestionsData from "../../data/validity_questions.json";
 import contradictionPairsData from "../../data/contradiction_pairs.json";

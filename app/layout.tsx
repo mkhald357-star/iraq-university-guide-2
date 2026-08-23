@@ -3,6 +3,7 @@ import { Cairo, El_Messiri } from "next/font/google";
 import type { Metadata } from "next";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { AssistantWidget } from "./components/AssistantWidget";
+import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import SkipLink from "./components/SkipLink";
 import { ReportIssueProvider } from "./context/ReportIssueContext";

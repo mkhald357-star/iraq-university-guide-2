@@ -79,7 +79,7 @@ export function AssistantWidget() {
               <div key={i} className={`flex ${m.role === "user" ? "justify-start" : "justify-end"}`}>
                 <div
                   className={`max-w-[85%] rounded-xl px-3 py-2 text-sm leading-relaxed ${
-                    m.role === "user" ? "bg-slate-100 text-ink" : "bg-primary/10 text-ink"
+                    m.role === "user" ? "bg-surface-muted text-ink" : "bg-primary/10 text-ink"
                   }`}
                 >
                   {m.text}

@@ -693,36 +693,41 @@ export default function Quiz() {
             الترتيب الافتراضي (0٪) يعتمد على توافق شخصيتك فقط. حرّك المنزلق يميناً إن أردت ترجيح التخصصات الأعلى طلباً
             في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
           </p>
-        </div>
+        </Card>
         <div className="grid gap-6 mt-8">
           {rankedMajors.map((major, index) => {
             const demand = getDemandLevel(major.marketMultiplier);
             return (
-              <div
+              <Card
                 key={major.id}
-                className="glass p-6 rounded-2xl flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
+                variant="glass"
+                radius="rounded-2xl"
+                className="flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
               >
                 <div className="min-w-0">
                   <h2 className="text-2xl font-bold text-ink break-words">
                     {index + 1}. {major.name}
                   </h2>
                   <p className="text-ink-muted">{major.category}</p>
-                  <span
-                    className={`inline-block mt-1 text-xs font-bold px-2.5 py-1 rounded-full ${demand.bg} ${demand.color}`}
-                  >
+                  <Badge tone={demand.tone} className="mt-1">
                     طلب السوق: {demand.text}
-                  </span>
+                  </Badge>
                 </div>
                 <div className="text-left shrink-0">
                   <div className="text-3xl font-black text-primary-text">{Math.round(major.fitPercent)}%</div>
                   <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
                 </div>
-              </div>
+              </Card>
             );
           })}
         </div>
         {rankedMajors.length > 0 ? (
-          <div className="glass p-8 rounded-2xl bg-primary/5 border-primary/20 text-center space-y-4 mt-8">
+          <Card
+            variant="glass"
+            radius="rounded-2xl"
+            padding="p-8"
+            className="border-primary/20 bg-primary/5 mt-8 space-y-4 text-center"
+          >
             <h2 className="text-xl font-bold text-ink">احصل على تحليل الفجوة والجامعات الحكومية</h2>
             <p className="text-ink-soft">
               يحتوي التقرير على الكليات والأقسام الدقيقة في الجامعات الحكومية والأهلية، مع تحليل لأسباب اختيار هذا
@@ -735,12 +740,12 @@ export default function Quiz() {
               <span>فتح التقرير الشامل والمفصل</span>
               <ArrowLeft className="w-5 h-5" />
             </Link>
-          </div>
+          </Card>
         ) : (
-          <div className="glass p-8 rounded-2xl text-center space-y-2 mt-8">
+          <Card variant="glass" radius="rounded-2xl" padding="p-8" className="mt-8 space-y-2 text-center">
             <p className="text-ink-soft font-bold">لم نجد تخصصات مطابقة لفرعك الدراسي ضمن بيانات المنصة الحالية.</p>
             <p className="text-ink-muted text-sm">جرّب إعادة الاختبار، أو تواصل معنا إن استمرت المشكلة.</p>
-          </div>
+          </Card>
         )}
       </div>
     );

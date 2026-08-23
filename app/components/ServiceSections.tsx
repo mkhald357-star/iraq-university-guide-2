@@ -143,11 +143,9 @@ export default function ServiceSections() {
               )}
 
               {stage.id === "beyond" && (
-                <div className="mt-8 grid gap-4 sm:grid-cols-4">
+                <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {items.map((s, i) => (
-                    <div key={s.id} className={i === 0 ? "sm:col-span-2 sm:row-span-2" : "sm:col-span-2"}>
-                      <ServiceCard service={s} featured={i === 0} />
-                    </div>
+                    <ServiceCard key={s.id} service={s} featured={i === 0} />
                   ))}
                 </div>
               )}

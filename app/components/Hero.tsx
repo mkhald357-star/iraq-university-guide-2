@@ -37,6 +37,10 @@ export default function Hero() {
         />
       </div>
 
+      {/* ── الطبقة ٣: حقل أيقونات التخصصات -- يتحرّك مع التمرير (parallax)،
+          طبقة أعمق من طفو الكرات أعلاه، انظر HeroIconField.tsx ── */}
+      <HeroIconField />
+
       {/* ── المحتوى ── */}
       <div className="relative mx-auto w-full max-w-6xl px-5 py-20 md:py-24">
         <p

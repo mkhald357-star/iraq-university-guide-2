@@ -44,10 +44,23 @@ export default function CostPage() {
   const cheapestKey = computeCheapestHighlight(priv);
 
   return (
-    <div dir="rtl" className="mx-auto max-w-3xl py-8 space-y-8">
-      <div>
-        <h1 className="text-3xl font-black text-ink">كلفة الدراسة الأهلية</h1>
-        <p className="mt-1 text-ink-soft">قارن أجور الجامعات الأهلية لنفس التخصص قبل ما تقرّر.</p>
+    <div dir="rtl" className="mx-auto max-w-3xl space-y-8 pb-8">
+      <div
+        className="relative -mx-4 overflow-hidden px-4 pb-10 pt-10 md:-mx-8 md:px-8"
+        style={{ background: "var(--g-surface)" }}
+      >
+        <Wallet
+          aria-hidden="true"
+          className="pointer-events-none absolute -end-8 -top-8 h-56 w-56 text-primary-100 md:h-72 md:w-72"
+          strokeWidth={1}
+        />
+        <div className="relative">
+          <span className="inline-flex rounded-2xl bg-primary-100 p-3 text-primary-700">
+            <Wallet className="h-6 w-6" />
+          </span>
+          <h1 className="mt-4 text-3xl font-black text-ink">كلفة الدراسة الأهلية</h1>
+          <p className="mt-1 text-ink-soft">قارن أجور الجامعات الأهلية لنفس التخصص قبل ما تقرّر.</p>
+        </div>
       </div>
 
       <div className="glass rounded-3xl p-6">

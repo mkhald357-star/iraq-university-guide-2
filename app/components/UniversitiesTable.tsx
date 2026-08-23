@@ -36,7 +36,7 @@ interface UniversitiesTableProps {
 }
 
 function cellClass(tone: string) {
-  if (tone === "direct") return "text-emerald-700 font-bold";
+  if (tone === "direct") return "text-band-safe font-bold";
   if (tone === "stated") return "text-primary-800 font-bold";
   if (tone === "unstated") return "text-ink-muted italic";
   return "";

@@ -97,7 +97,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
               o.statedMinimumGrade
             );
             return (
-              <tr key={idx} className={idx % 2 === 0 ? "bg-white" : "bg-slate-50"}>
+              <tr key={idx} className={idx % 2 === 0 ? "bg-surface" : "bg-surface-muted"}>
                 {hasMajorColumn && (
                   <td className="border px-3 py-2 text-ink-soft">{o.majorName ?? "—"}</td>
                 )}

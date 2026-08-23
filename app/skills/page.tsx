@@ -120,7 +120,7 @@ export default function SkillsPage(): ReactNode {
         <p className="text-center text-ink-muted">لا تتوفر بيانات مهارات لهذا التخصص حالياً.</p>
       )}
 
-      <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-ink-soft">
+      <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
         <p>
           هذه توصيات مهنية استرشادية مبنية على طبيعة التخصص وسوق العمل الفعلي، لا بيانات رسمية مُستشهَد بها كالحدود

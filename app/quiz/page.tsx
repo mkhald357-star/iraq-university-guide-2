@@ -661,7 +661,7 @@ export default function Quiz() {
             </p>
           )}
         </div>
-        <div className="bg-slate-50 border border-slate-200 text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
+        <div className="bg-surface-muted border border-line text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
           <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-ink-muted" />
           <p>
             هذه توصية استرشادية إحصائية مبنية على نموذج شخصية مهنية، وليست قراراً رسمياً للقبول. الجهة الرسمية الوحيدة

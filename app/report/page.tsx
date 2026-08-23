@@ -617,7 +617,7 @@ function ReportContent() {
       {/* إخلاء مسؤولية قانوني دائم -- كان موجوداً سابقاً فقط داخل تصدير PDF،
           لا في الصفحة الحيّة نفسها (PROJECT.md §7 بند 21). طالب قد لا يُصدّر
           PDF إطلاقاً فلا يرى التنويه أبداً لولا هذا. */}
-      <div className="bg-slate-50 border border-slate-200 text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
+      <div className="bg-surface-muted border border-line text-ink-soft p-4 rounded-2xl text-sm flex items-start gap-3">
         <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5 text-ink-muted" />
         <p>
           هذا التقرير توصية استرشادية إحصائية، وليس قراراً رسمياً للقبول. الجهة الرسمية الوحيدة المعتمدة للتقديم والقبول
@@ -684,7 +684,7 @@ function ReportContent() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 pt-4">
-          <div className="bg-slate-50 p-6 rounded-2xl flex items-start gap-4 border border-slate-100">
+          <div className="bg-surface-muted p-6 rounded-2xl flex items-start gap-4 border border-line">
             <div className="bg-white p-3 rounded-xl text-ink-muted shadow-sm">
               <DollarSign className="w-6 h-6" />
             </div>
@@ -703,7 +703,7 @@ function ReportContent() {
               )}
             </div>
           </div>
-          <div className="bg-slate-50 p-6 rounded-2xl flex items-start gap-4 border border-slate-100 hover:border-primary/30 transition-colors">
+          <div className="bg-surface-muted p-6 rounded-2xl flex items-start gap-4 border border-line hover:border-primary/30 transition-colors">
             <div className="bg-white p-3 rounded-xl text-primary shadow-sm">
               <Briefcase className="w-6 h-6" />
             </div>
@@ -767,7 +767,7 @@ function ReportContent() {
                 <div className="overflow-x-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="bg-slate-50 text-ink-muted text-xs">
+                      <tr className="bg-surface-muted text-ink-muted text-xs">
                         <th className="text-right p-3 font-bold">البُعد</th>
                         <th className="text-right p-3 font-bold">أنت</th>
                         <th className="text-right p-3 font-bold">التخصص</th>

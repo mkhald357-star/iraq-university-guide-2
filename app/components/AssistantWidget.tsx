@@ -92,7 +92,7 @@ export function AssistantWidget() {
                   <button
                     key={e.id}
                     onClick={() => ask(e.question)}
-                    className="text-xs bg-white border border-slate-200 rounded-full px-3 py-1.5 hover:bg-slate-50 transition-colors text-ink-soft"
+                    className="text-xs bg-surface border border-line rounded-full px-3 py-1.5 hover:bg-surface-muted transition-colors text-ink-soft"
                   >
                     {e.question}
                   </button>

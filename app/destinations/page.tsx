@@ -166,7 +166,7 @@ export default function DestinationsPage() {
         <p className="text-center text-ink-muted">لا تتوفر بيانات وجهات عمل موثَّقة المصدر لهذا التخصص حالياً.</p>
       )}
 
-      <div className="flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-ink-soft">
+      <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
         <p>
           هذه معلومات واقعية استرشادية عن سوق العمل الفعلي، وجهات الترخيص قد تُحدِّث شروطها من وقت لآخر — راجع

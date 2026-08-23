@@ -137,7 +137,7 @@ function ReviewScreen({
               <div className="flex-1 min-w-0">
                 <p className="text-xs text-ink-muted truncate">{q.text}</p>
                 <p
-                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-ink") : "text-amber-600 font-bold"}`}
+                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-ink") : "text-band-close font-bold"}`}
                 >
                   {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
                 </p>
@@ -154,7 +154,7 @@ function ReviewScreen({
             </div>
           );
         })}
-      </div>
+      </Card>
 
       {/* أزرار الإجراء */}
       <div className="space-y-3">

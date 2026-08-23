@@ -129,14 +129,13 @@ export default function CostPage() {
       )}
 
       {major && unverifiedPrivate.length > 0 && (
-        <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
-          <AlertCircle className="mt-0.5 h-5 w-5 shrink-0 text-ink-muted" />
-          <p>{TUITION_UNVERIFIED_SOURCE_NOTE}</p>
-        </div>
+        <Alert tone="info" icon={AlertCircle}>
+          {TUITION_UNVERIFIED_SOURCE_NOTE}
+        </Alert>
       )}
 
       {major && government.length > 0 && (
-        <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
+        <Card variant="surface" padding="p-6">
           <div className="mb-3 flex items-center gap-3">
             <IconBadge icon={GraduationCap} />
             <h2 className="font-bold text-ink">الجامعات الحكومية</h2>
@@ -149,16 +148,13 @@ export default function CostPage() {
               </li>
             ))}
           </ul>
-        </div>
+        </Card>
       )}
 
-      <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
-        <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
-        <p>
-          الأرقام من دليل أجور الجامعات الأهلية الرسمي للعام الدراسي الحالي — قد تتغيّر الأجور من عام لآخر، وبعض
-          الأقسام لا تُنشَر أجورها في الدليل. راجع الجامعة مباشرة قبل أي قرار نهائي.
-        </p>
-      </div>
+      <Alert tone="info" icon={AlertCircle}>
+        الأرقام من دليل أجور الجامعات الأهلية الرسمي للعام الدراسي الحالي — قد تتغيّر الأجور من عام لآخر، وبعض الأقسام
+        لا تُنشَر أجورها في الدليل. راجع الجامعة مباشرة قبل أي قرار نهائي.
+      </Alert>
     </div>
   );
 }

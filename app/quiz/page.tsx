@@ -324,9 +324,7 @@ export default function Quiz() {
 
         <div className="relative mx-auto max-w-xl space-y-8">
           <div className="text-center">
-            <span className="inline-flex rounded-2xl bg-primary-100 p-3 text-primary-700">
-              <ClipboardList className="h-6 w-6" />
-            </span>
+            <IconBadge icon={ClipboardList} size="lg" />
             <h1 className="mt-4 text-3xl font-bold text-primary-text">٤ معلومات سريعة قبل نبدأ</h1>
             <p className="mt-2 text-ink-soft">
               نحتاجها لنطابق ميولك بحدود القبول الحقيقية لفرعك ومحافظتك — بلا حفظ، وبلا حساب.

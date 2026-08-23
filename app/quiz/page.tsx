@@ -503,6 +503,7 @@ export default function Quiz() {
             بدء الاختبار
           </button>
         </form>
+        </div>
       </div>
     );
   }

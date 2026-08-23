@@ -101,13 +101,6 @@ function waitForServer(url, timeoutMs = 60_000) {
     // (تُنشئ context ضمنياً) تُرفَض بخطأ "Please use browser.newContext()"
     // رغم أنها Page صالحة فنياً (اكتُشف فعلياً عند أول تشغيل، 2026-08-11).
     const context = await browser.newContext();
-    // يفرض data-theme قبل أي سكربت صفحة عبر كل تنقّل داخل هذا الـcontext --
-    // أوثق من الاعتماد على السكربت المضمَّن بالموقع (يقرأ localStorage
-    // فقط)، ويُعاد ضبطه صراحة بعد كل goto أيضاً كاحتياط (انظر أسفل).
-    let currentTheme = "light";
-    await context.addInitScript(() => {
-      // القيمة الفعلية تُحقَن ديناميكياً أدناه قبل كل مجموعة مسارات
-    });
     const page = await context.newPage();
 
     // إحماء: أول زيارة فعلية لأي مسار بعد تشغيل next dev طازجاً تُحفِّز

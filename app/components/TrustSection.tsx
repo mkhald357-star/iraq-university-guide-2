@@ -74,7 +74,7 @@ export default function TrustSection() {
               </dd>
             </div>
           </dl>
-        </div>
+        </Card>
       </div>
     </section>
   );

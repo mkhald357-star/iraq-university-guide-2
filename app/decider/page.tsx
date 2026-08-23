@@ -129,7 +129,7 @@ export default function DeciderPage() {
                       ? "bg-primary-700 text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-800 transition-all hover:scale-[1.02] active:scale-[0.98]"
                       : val === 0
                         ? "bg-primary-50 text-primary border border-primary-200 p-4 rounded-xl font-bold text-lg hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
-                        : "bg-surface-muted text-ink-soft border border-line p-4 rounded-xl font-bold text-lg hover:bg-surface hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
+                        : "bg-surface-muted text-ink-soft border border-line p-4 rounded-xl font-bold text-lg hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
                   }
                 >
                   {answerLabel(questions[currentIndex], val)}

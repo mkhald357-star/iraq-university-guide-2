@@ -65,8 +65,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ar" dir="rtl">
-      <body className={`${cairo.variable} font-cairo bg-surface-subtle text-slate-900 min-h-screen`}>
+    <html lang="ar" dir="rtl" suppressHydrationWarning>
+      <body
+        className={`${cairo.variable} ${elMessiri.variable} font-cairo bg-surface-subtle text-slate-900 min-h-screen`}
+      >
+        {/* يُشغَّل قبل الرسم لتفادي "وميض" اللون الخاطئ عند تحميل صفحة
+            بالوضع الداكن المحفوظ -- inline لأنه يجب أن يُنفَّذ متزامناً
+            قبل أول رسم، لا كسكربت خارجي مؤجَّل. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.setAttribute('data-theme','dark')}}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationJsonLd()) }}

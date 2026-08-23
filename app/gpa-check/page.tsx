@@ -367,7 +367,7 @@ export default function GpaCheckPage() {
                 onClick={() => setSession(opt.value)}
                 className={`flex-1 rounded-xl px-3 py-2.5 text-sm font-bold transition-colors ${
                   session === opt.value
-                    ? "bg-primary text-white"
+                    ? "bg-primary-700 text-white"
                     : "border border-line text-ink-soft hover:bg-surface-muted"
                 }`}
               >

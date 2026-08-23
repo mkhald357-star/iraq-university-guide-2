@@ -19,7 +19,7 @@ export default function PaginatedOfferingsTable({ offerings }: { offerings: Expl
         <button
           type="button"
           onClick={() => setVisible((v) => v + BATCH)}
-          className="mt-3 w-full rounded-md border border-line py-2.5 text-sm font-bold text-primary-700
+          className="mt-3 w-full rounded-md border border-line py-2.5 text-sm font-bold text-primary-text
                      transition-colors duration-200 hover:bg-surface-muted"
         >
           عرض المزيد ({remaining.toLocaleString("ar-IQ")} متبقٍّ)

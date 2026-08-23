@@ -115,7 +115,6 @@ function waitForServer(url, timeoutMs = 60_000) {
     const tally = {};
 
     for (const theme of THEMES) {
-      currentTheme = theme;
       console.log(`\n— الوضع ${theme === "dark" ? "الداكن" : "الفاتح"} —`);
       for (const route of ROUTES) {
         await page.goto(BASE_URL + route, { waitUntil: "networkidle" });

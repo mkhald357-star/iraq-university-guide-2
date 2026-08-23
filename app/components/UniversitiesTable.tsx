@@ -105,7 +105,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 <td className="border px-3 py-2">
                   <span
                     className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                      o.universityType === "أهلية" ? "bg-primary-800/10 text-primary-800" : "bg-primary/10 text-primary"
+                      o.universityType === "أهلية" ? "bg-primary-800/10 text-primary-800" : "bg-primary/10 text-primary-text"
                     }`}
                   >
                     {o.universityType === "أهلية" ? "أهلية" : "حكومية"}

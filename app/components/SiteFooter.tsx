@@ -13,7 +13,7 @@ export default function SiteFooter() {
         <button
           type="button"
           onClick={() => reportIssue({ page: pathname })}
-          className="font-bold text-ink-soft underline decoration-dotted underline-offset-4 transition-colors hover:text-primary"
+          className="font-bold text-ink-soft underline decoration-dotted underline-offset-4 transition-colors hover:text-primary-text"
         >
           بلّغ عن خطأ
         </button>

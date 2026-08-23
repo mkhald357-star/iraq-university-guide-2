@@ -369,7 +369,7 @@ function ReportContent() {
     return (
       <div className="text-center py-20">
         <h1 className="text-2xl font-bold">التخصص غير موجود أو لم تكمل الاختبار</h1>
-        <Link href="/quiz" className="text-primary mt-4 inline-block hover:underline font-bold">
+        <Link href="/quiz" className="text-primary-text mt-4 inline-block hover:underline font-bold">
           بدء الاختبار الآن
         </Link>
       </div>
@@ -626,7 +626,7 @@ function ReportContent() {
             href="https://cap.mohesr.gov.iq"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-primary hover:underline"
+            className="font-bold text-primary-text hover:underline"
           >
             القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
           </a>
@@ -634,7 +634,7 @@ function ReportContent() {
         </p>
       </div>
 
-      <Link href="/quiz" className="inline-flex items-center gap-2 text-ink-muted hover:text-primary transition-colors">
+      <Link href="/quiz" className="inline-flex items-center gap-2 text-ink-muted hover:text-primary-text transition-colors">
         <ArrowRight className="w-4 h-4" />
         <span>إعادة الاختبار</span>
       </Link>
@@ -643,7 +643,7 @@ function ReportContent() {
       <div className="glass p-8 md:p-10 rounded-3xl space-y-6 border-t-8 border-t-primary">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-line pb-6 gap-4">
           <div>
-            <div className="inline-block bg-primary/10 text-primary px-4 py-1 rounded-full text-sm font-bold mb-3">
+            <div className="inline-block bg-primary/10 text-primary-text px-4 py-1 rounded-full text-sm font-bold mb-3">
               التقرير التفصيلي
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-ink">{primaryMajor?.name}</h1>
@@ -704,7 +704,7 @@ function ReportContent() {
             </div>
           </div>
           <div className="bg-surface-muted p-6 rounded-2xl flex items-start gap-4 border border-line hover:border-primary/30 transition-colors">
-            <div className="bg-surface p-3 rounded-xl text-primary shadow-sm">
+            <div className="bg-surface p-3 rounded-xl text-primary-text shadow-sm">
               <Briefcase className="w-6 h-6" />
             </div>
             <div>
@@ -885,7 +885,7 @@ function ReportContent() {
                   <p className="font-bold text-ink">{m.name}</p>
                   <p className="text-sm text-ink-muted">{m.category}</p>
                 </div>
-                <div className="text-primary font-black">{Math.round(fitPercent)}%</div>
+                <div className="text-primary-text font-black">{Math.round(fitPercent)}%</div>
               </Link>
             ))}
           </div>

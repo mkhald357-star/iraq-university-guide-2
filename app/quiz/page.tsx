@@ -311,7 +311,7 @@ export default function Quiz() {
   if (!filterSettings) {
     return (
       <div className="max-w-xl mx-auto py-12 space-y-8">
-        <h1 className="text-3xl font-bold text-center text-primary">ابدأ الاختبار</h1>
+        <h1 className="text-3xl font-bold text-center text-primary-text">ابدأ الاختبار</h1>
         <form
           className="glass p-8 rounded-3xl space-y-6"
           onSubmit={(e) => {
@@ -648,14 +648,14 @@ export default function Quiz() {
     return (
       <div className="py-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <div className="text-center space-y-4">
-          <h1 className="text-4xl font-black text-primary">نتيجتك جاهزة!</h1>
+          <h1 className="text-4xl font-black text-primary-text">نتيجتك جاهزة!</h1>
           <p className="text-lg text-ink-soft">
             بناءً على تحليل شخصيتك المهنية عبر أسئلة الاختبار ونموذج RIASEC العالمي، هذه هي أفضل التخصصات لك:
           </p>
           {topUserDimensions.length > 0 && (
             <p className="text-sm text-ink-muted">
               أبرز سماتك:{" "}
-              <span className="font-bold text-primary">
+              <span className="font-bold text-primary-text">
                 {topUserDimensions.map((d) => RIASEC_LABELS[d.dimension]).join(" و")}
               </span>
             </p>
@@ -670,7 +670,7 @@ export default function Quiz() {
               href="https://cap.mohesr.gov.iq"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-primary hover:underline"
+              className="font-bold text-primary-text hover:underline"
             >
               القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
             </a>
@@ -716,7 +716,7 @@ export default function Quiz() {
             <label htmlFor="marketWeight" className="font-bold text-ink text-sm">
               كم يهمّك طلب السوق عند الترتيب؟
             </label>
-            <span className="text-sm font-bold text-primary">
+            <span className="text-sm font-bold text-primary-text">
               {marketWeight === 0 ? "تجاهله كلياً" : `${Math.round(marketWeight * 100)}٪`}
             </span>
           </div>
@@ -755,7 +755,7 @@ export default function Quiz() {
                   </span>
                 </div>
                 <div className="text-left shrink-0">
-                  <div className="text-3xl font-black text-primary">{Math.round(major.fitPercent)}%</div>
+                  <div className="text-3xl font-black text-primary-text">{Math.round(major.fitPercent)}%</div>
                   <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
                 </div>
               </div>
@@ -869,7 +869,7 @@ export default function Quiz() {
           </button>
           <button
             onClick={() => handleAnswer(0)}
-            className="bg-primary-50 text-primary border border-primary-200 p-4 rounded-xl font-bold text-lg hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary-50 text-primary-text border border-primary-200 p-4 rounded-xl font-bold text-lg hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
             {question.answerLabels?.maybe ?? "ربما / أحياناً"}
           </button>

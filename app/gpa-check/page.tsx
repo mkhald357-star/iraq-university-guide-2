@@ -456,7 +456,7 @@ export default function GpaCheckPage() {
             href="https://cap.mohesr.gov.iq"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-bold text-primary hover:underline"
+            className="font-bold text-primary-text hover:underline"
           >
             القبول المركزي التابع لوزارة التعليم العالي والبحث العلمي
           </a>

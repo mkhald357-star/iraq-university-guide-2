@@ -156,7 +156,7 @@ export default function WishlistPage() {
       <div className="text-center py-20 space-y-4">
         <h1 className="text-2xl font-bold">أكمل الاختبار أولاً</h1>
         <p className="text-ink-soft">مخطّط الرغبات يحتاج معدلك وفرعك الدراسي لتصنيف كل رغبة بدقة.</p>
-        <Link href="/quiz" className="text-primary font-bold hover:underline inline-block">
+        <Link href="/quiz" className="text-primary-text font-bold hover:underline inline-block">
           بدء الاختبار الآن
         </Link>
       </div>
@@ -223,7 +223,7 @@ export default function WishlistPage() {
                         key={session}
                         disabled={alreadyAdded}
                         onClick={() => addWish(o, session)}
-                        className="flex items-center gap-1 rounded-lg bg-primary/10 text-primary px-3 py-1.5 font-bold
+                        className="flex items-center gap-1 rounded-lg bg-primary/10 text-primary-text px-3 py-1.5 font-bold
                                    hover:bg-primary/20 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
                       >
                         <Plus className="w-3.5 h-3.5" />
@@ -300,13 +300,13 @@ export default function WishlistPage() {
       <div className="glass p-6 rounded-3xl space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-xl font-bold text-ink flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-primary" />
+            <Sparkles className="w-5 h-5 text-primary-text" />
             بدائل مريحة مقترحة
           </h2>
           <button
             onClick={loadSuggestions}
             disabled={isLoadingSuggestions}
-            className="text-sm font-bold text-primary hover:underline disabled:opacity-50"
+            className="text-sm font-bold text-primary-text hover:underline disabled:opacity-50"
           >
             {isLoadingSuggestions ? "جارٍ البحث..." : "اقترح لي بدائل"}
           </button>

@@ -162,7 +162,7 @@ function ReviewScreen({
       <div className="space-y-3">
         <button
           onClick={onSubmit}
-          className="w-full bg-primary text-white py-4 rounded-2xl font-black text-lg hover:bg-primary-700 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
+          className="w-full bg-primary-700 text-white py-4 rounded-2xl font-black text-lg hover:bg-primary-800 transition-all hover:scale-[1.01] active:scale-[0.99] shadow-lg shadow-primary/20"
         >
           إرسال الاختبار وعرض التوصية ✨
         </button>

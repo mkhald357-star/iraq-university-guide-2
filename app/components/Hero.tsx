@@ -80,14 +80,26 @@ export default function Hero() {
           </Link>
         </div>
 
-        {/* شريط الأرقام الحقيقية */}
-        <div className="a-rise d-5 mt-14 grid max-w-2xl grid-cols-2 gap-6 sm:grid-cols-4">
-          {STATS.map((s) => (
-            <div key={s.label}>
-              <div className="text-3xl font-extrabold text-white md:text-4xl">
+        {/* شريط الأرقام الحقيقية -- مستطيلات كبيرة 2×2، كل واحد بأيقونة
+            خلفية معبِّرة عن معناه (تخرّج/مبنى/معلَم/موقع) بشفافية خفيفة +
+            حركة "طفو" بطيئة مستمرة (a-float، نفس حركة الكرات الضوئية أعلاه)،
+            بدل صفّ نصوص مسطّح بلا شخصية بصرية. */}
+        <div className="mt-14 grid max-w-2xl grid-cols-2 gap-4">
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className={`a-rise d-${i + 2} relative overflow-hidden rounded-2xl border border-white/20
+                          bg-white/10 p-5 backdrop-blur-sm md:p-7`}
+            >
+              <s.Icon
+                aria-hidden="true"
+                className="a-float pointer-events-none absolute -end-3 -top-3 h-20 w-20 text-white/15 md:h-24 md:w-24"
+                style={{ animationDelay: `${i * 0.7}s` }}
+              />
+              <div className="relative text-3xl font-extrabold text-white md:text-4xl">
                 <CountUp to={s.value} />
               </div>
-              <div className="mt-1 text-sm text-white/70">{s.label}</div>
+              <div className="relative mt-1 text-sm text-white/70">{s.label}</div>
             </div>
           ))}
         </div>

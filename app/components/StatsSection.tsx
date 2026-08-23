@@ -24,7 +24,7 @@ export default function StatsSection() {
   return (
     <section dir="rtl" className="py-24">
       <div className="mx-auto max-w-6xl px-5">
-        <p className="text-sm font-bold text-primary-700">بالأرقام</p>
+        <p className="text-sm font-bold text-primary-text">بالأرقام</p>
         <h2 className="mt-2 max-w-2xl text-3xl font-extrabold leading-tight text-ink md:text-4xl">
           {homepageStats.totalDepartments.toLocaleString("ar-IQ")} قسماً جامعياً، من{" "}
           {homepageStats.totalUniversities} جامعة وكلية معتمدة

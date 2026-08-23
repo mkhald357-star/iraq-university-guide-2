@@ -148,7 +148,7 @@ function ReviewScreen({
               {/* زر التعديل */}
               <button
                 onClick={() => onEdit(i)}
-                className="shrink-0 flex items-center gap-1 text-xs text-primary hover:text-primary-800 font-bold transition-colors"
+                className="shrink-0 flex items-center gap-1 text-xs text-primary-text hover:text-primary-800 font-bold transition-colors"
               >
                 <Edit3 className="w-3 h-3" />
                 تعديل

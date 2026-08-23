@@ -107,7 +107,7 @@ export function AssistantWidget() {
               e.preventDefault();
               ask(input);
             }}
-            className="p-2 border-t border-slate-200 flex gap-2 shrink-0 bg-white/80"
+            className="p-2 border-t border-line flex gap-2 shrink-0 bg-surface/80"
           >
             <input
               type="text"

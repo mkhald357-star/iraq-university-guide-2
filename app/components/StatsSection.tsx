@@ -61,7 +61,7 @@ export default function StatsSection() {
             </p>
           </div>
 
-          <div className="rounded-md border border-line bg-surface p-6 shadow-sm">
+          <Card variant="surface" padding="p-6">
             <p className="text-sm font-bold text-ink-muted">توزيع الأقسام حسب الفرع</p>
             <div className="mt-4 flex h-3 w-full overflow-hidden rounded-full">
               {BRANCHES.map((b) => (

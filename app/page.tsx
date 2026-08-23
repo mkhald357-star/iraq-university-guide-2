@@ -17,7 +17,7 @@ export default function Home() {
           خلفياتها الممتدّة كامل العرض أسلوب JourneyPanels. */}
       <div className="relative left-1/2 right-1/2 -mx-[50vw] -mt-4 w-screen md:-mt-8">
         <Hero />
-        <JourneyPanels />
+        <ServiceSections />
         <StatsSection />
         <TrustSection />
         <FAQSection />

@@ -37,7 +37,7 @@ export function RadarChart({ axes, series, size = 260 }: { axes: RadarAxis[]; se
         {/* شبكة الحلقات -- خطوط ثانوية خافتة، لا تنافس بيانات الشكل نفسها */}
         {gridLevels.map((f) => {
           const pts = Array.from({ length: n }, (_, i) => pointAt(i, maxR * f).join(",")).join(" ");
-          return <polygon key={f} points={pts} fill="none" stroke="#e2e8f0" strokeWidth={1} />;
+          return <polygon key={f} points={pts} fill="none" stroke="var(--c-border)" strokeWidth={1} />;
         })}
         {/* المحاور */}
         {axes.map((_, i) => {

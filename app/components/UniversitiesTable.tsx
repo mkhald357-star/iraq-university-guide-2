@@ -62,9 +62,9 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
       <div className="mb-2 flex justify-end">
         <ChannelBadge />
       </div>
-      <table className="min-w-full border border-slate-200 text-sm">
+      <table className="min-w-full border border-line text-sm">
         <thead>
-          <tr className="bg-slate-100">
+          <tr className="bg-surface-muted">
             {hasMajorColumn && <th className="border px-3 py-2 text-right">التخصص</th>}
             <th className="border px-3 py-2 text-right">الجامعة</th>
             <th className="border px-3 py-2 text-right">النوع</th>

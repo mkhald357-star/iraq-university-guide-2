@@ -74,7 +74,7 @@ export function AssistantWidget() {
           </div>
 
           {/* الرسائل */}
-          <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-2 bg-white/60">
+          <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 space-y-2 bg-surface/60">
             {messages.map((m, i) => (
               <div key={i} className={`flex ${m.role === "user" ? "justify-start" : "justify-end"}`}>
                 <div

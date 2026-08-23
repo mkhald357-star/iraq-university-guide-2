@@ -476,7 +476,7 @@ export default function Quiz() {
           )}
           <button
             type="submit"
-            className="w-full bg-primary text-white py-3 rounded-xl font-bold hover:bg-primary-700 transition-colors"
+            className="w-full bg-primary-700 text-white py-3 rounded-xl font-bold hover:bg-primary-800 transition-colors"
           >
             بدء الاختبار
           </button>

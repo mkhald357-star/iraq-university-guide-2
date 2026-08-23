@@ -91,16 +91,15 @@ export default function CostPage() {
                       <p className="font-bold text-ink">{o.universityName}</p>
                       <p className="text-sm text-ink-soft">{o.departmentName}</p>
                       {o.confidence <= 60 && (
-                        <span className="mt-1 inline-block rounded-full bg-surface-muted px-2 py-0.5 text-xs text-ink-muted">
+                        <Badge tone="muted" className="mt-1">
                           تخصص قريب
-                        </span>
+                        </Badge>
                       )}
                     </div>
                     {isCheapest && (
-                      <span className="inline-flex shrink-0 items-center gap-1 rounded-full bg-band-safe-bg px-2.5 py-1 text-xs font-bold text-band-safe">
-                        <Trophy className="h-3 w-3" />
+                      <Badge tone="safe" icon={Trophy}>
                         الأرخص من بين المنشور
-                      </span>
+                      </Badge>
                     )}
                   </div>
                   <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">

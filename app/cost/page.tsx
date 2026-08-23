@@ -119,11 +119,7 @@ export default function CostPage() {
                         <span className="text-ink-muted">{TUITION_NOT_PUBLISHED}</span>
                       )}
                     </div>
-                    {o.admissionSuspended && (
-                      <span className="rounded-full bg-band-reach-bg px-2 py-0.5 text-xs font-bold text-band-reach">
-                        القبول متوقف هذا العام
-                      </span>
-                    )}
+                    {o.admissionSuspended && <Badge tone="reach">القبول متوقف هذا العام</Badge>}
                   </div>
                 </div>
               );

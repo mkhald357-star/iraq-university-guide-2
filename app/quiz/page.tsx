@@ -310,13 +310,30 @@ export default function Quiz() {
   // ---- Pre-filter UI ----
   if (!filterSettings) {
     return (
-      <div className="max-w-xl mx-auto py-12 space-y-8">
-        <div className="text-center">
-          <h1 className="text-3xl font-bold text-primary-text">٤ معلومات سريعة قبل نبدأ</h1>
-          <p className="mt-2 text-ink-soft">
-            نحتاجها لنطابق ميولك بحدود القبول الحقيقية لفرعك ومحافظتك — بلا حفظ، وبلا حساب.
-          </p>
-        </div>
+      <div
+        className="relative -mx-4 overflow-hidden px-4 py-12 md:-mx-8 md:px-8"
+        style={{ background: "var(--g-surface)" }}
+      >
+        {/* أيقونة خلفية كبيرة زخرفية -- كسر التسطّح الأبيض الذي كان يجعل هذه
+            أول صفحة يراها الزائر فعلياً بلا أي شخصية بصرية (data/admission_rules.md
+            ملاحظات layout-craft). ثابتة بلا حركة هنا (لا Hero) -- التركيز
+            على النموذج نفسه. */}
+        <ClipboardList
+          aria-hidden="true"
+          className="pointer-events-none absolute -end-10 -top-10 h-64 w-64 text-primary-100 md:h-80 md:w-80"
+          strokeWidth={1}
+        />
+
+        <div className="relative mx-auto max-w-xl space-y-8">
+          <div className="text-center">
+            <span className="inline-flex rounded-2xl bg-primary-100 p-3 text-primary-700">
+              <ClipboardList className="h-6 w-6" />
+            </span>
+            <h1 className="mt-4 text-3xl font-bold text-primary-text">٤ معلومات سريعة قبل نبدأ</h1>
+            <p className="mt-2 text-ink-soft">
+              نحتاجها لنطابق ميولك بحدود القبول الحقيقية لفرعك ومحافظتك — بلا حفظ، وبلا حساب.
+            </p>
+          </div>
         <form
           className="glass p-8 rounded-3xl space-y-6"
           onSubmit={(e) => {

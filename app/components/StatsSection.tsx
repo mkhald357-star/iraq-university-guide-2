@@ -53,7 +53,7 @@ export default function StatsSection() {
               بخلاف الأهلي حيث القيمة true دائماً بصرف النظر عن نشر حدّ من عدمه
               (data/admission_rules.md §28). ضمّ الأهلي هنا كان يجعل الادّعاء
               مضلِّلاً ("أكثر من نصف") لرقم لا يعكس غياب حدّ فعلياً لمعظمه. */}
-          <div className="rounded-md border border-line bg-band-safe-bg p-6">
+          <Reveal className="rounded-md border border-line bg-band-safe-bg p-6">
             <div className="text-4xl font-extrabold text-band-safe">
               <CountUp to={homepageStats.directAdmissionDepartmentsGov} />
             </div>
@@ -62,28 +62,30 @@ export default function StatsSection() {
               حكومياً) بلا حدّ قبول تنافسي مُعلَن — أي طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل. الأقسام
               الأهلية لها شروط قبول منشورة جزئياً في دليل منفصل، ولا تُحتسَب هنا.
             </p>
-          </div>
+          </Reveal>
 
-          <Card variant="surface" padding="p-6">
-            <p className="text-sm font-bold text-ink-muted">توزيع الأقسام حسب الفرع</p>
-            <div className="mt-4 flex h-3 w-full overflow-hidden rounded-full">
-              {BRANCHES.map((b) => (
-                <span
-                  key={b.label}
-                  style={{ width: `${(b.value / BRANCH_TOTAL) * 100}%`, background: b.tone }}
-                />
-              ))}
-            </div>
-            <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-              {BRANCHES.map((b) => (
-                <div key={b.label} className="flex items-center gap-2 text-sm">
-                  <span className="h-2.5 w-2.5 rounded-full" style={{ background: b.tone }} />
-                  <span className="font-bold text-ink">{b.label}</span>
-                  <span className="text-ink-muted">{b.value.toLocaleString("ar-IQ")}</span>
-                </div>
-              ))}
-            </div>
-          </Card>
+          <Reveal delayMs={80}>
+            <Card variant="surface" padding="p-6">
+              <p className="text-sm font-bold text-ink-muted">توزيع الأقسام حسب الفرع</p>
+              <div className="mt-4 flex h-3 w-full overflow-hidden rounded-full">
+                {BRANCHES.map((b) => (
+                  <span
+                    key={b.label}
+                    style={{ width: `${(b.value / BRANCH_TOTAL) * 100}%`, background: b.tone }}
+                  />
+                ))}
+              </div>
+              <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                {BRANCHES.map((b) => (
+                  <div key={b.label} className="flex items-center gap-2 text-sm">
+                    <span className="h-2.5 w-2.5 rounded-full" style={{ background: b.tone }} />
+                    <span className="font-bold text-ink">{b.label}</span>
+                    <span className="text-ink-muted">{b.value.toLocaleString("ar-IQ")}</span>
+                  </div>
+                ))}
+              </div>
+            </Card>
+          </Reveal>
         </div>
       </div>
     </section>

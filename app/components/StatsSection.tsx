@@ -36,13 +36,15 @@ export default function StatsSection() {
         </p>
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {OVERVIEW.map((s) => (
-            <Card key={s.label} variant="surface" padding="p-5">
-              <div className="text-3xl font-extrabold text-primary-text">
-                <CountUp to={s.value} />
-              </div>
-              <div className="mt-1 text-sm text-ink-soft">{s.label}</div>
-            </Card>
+          {OVERVIEW.map((s, i) => (
+            <Reveal key={s.label} delayMs={i * 60}>
+              <Card variant="surface" padding="p-5">
+                <div className="text-3xl font-extrabold text-primary-text">
+                  <CountUp to={s.value} />
+                </div>
+                <div className="mt-1 text-sm text-ink-soft">{s.label}</div>
+              </Card>
+            </Reveal>
           ))}
         </div>
 

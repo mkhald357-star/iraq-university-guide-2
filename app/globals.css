@@ -152,8 +152,17 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    /* smooth-scroll (لين 7) -- CSS خفيف بلا مكتبة (Lenis إلخ): لا رأس
+       ثابت/لاصق في الموقع (SiteHeader عادي يمرّ مع الصفحة) ولا روابط تثبيت
+       داخلية غير رابط "تخطَّ إلى المحتوى" (SkipLink)، فلا حاجة لـ
+       scroll-padding-top. يُعطَّل تلقائياً تحت prefers-reduced-motion عبر
+       القاعدة العامة أدناه (scroll-behavior: auto !important). */
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-surface-subtle text-slate-900 font-cairo antialiased;
+    @apply bg-surface-subtle text-ink font-cairo antialiased;
     direction: rtl;
     /* حارس ضد تمرير أفقي عرضي -- الـHero في الصفحة الرئيسية يكسر حدود
        <main> المحصورة (max-w-4xl) عبر خدعة "100vw" القياسية (انظر

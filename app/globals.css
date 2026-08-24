@@ -329,6 +329,26 @@
   animation-delay: 600ms;
 }
 
+/* الكشف عند التمرير (motion-system، بلا مكتبة خارجية -- IntersectionObserver
+   فقط في app/components/motion/Reveal.tsx). الحالة الافتراضية مخفية (بلا
+   JS لن تُضاف .is-visible أبداً)؛ شبكة (scripting: none) أدناه صمّام أمان
+   حقيقي لهذه الحالة -- لا تعتمد المنصة أصلاً على عمل بلا JS (النموذج/الاختبار
+   يحتاجانه)، لكن هذا يمنع عناصر مخفية أبدياً في المتصفحات النادرة التي تدعم
+   الاستعلام لكن لا تُشغِّل JS. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.reveal.is-visible {
+  animation: riseIn var(--t-slow) var(--ease) both;
+}
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* ⚠️ إلزامي — إتاحة، لا رفاهية */
 @media (prefers-reduced-motion: reduce) {
   *,

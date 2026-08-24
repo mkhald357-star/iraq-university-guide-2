@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { STAGES, SERVICES, type Service } from "../../data/services";
 import { IconBadge, Badge } from "./ui";
+import { Reveal } from "./motion/Reveal";
 
 // أيقونة مميّزة لكل خدمة على حدة (لا أيقونة عامة واحدة مكرَّرة) -- كل خدمة
 // أصبحت بطاقة مستقلة ظاهرة بذاتها الآن (بدل نظام لوحة/حوار سابق كانت فيه

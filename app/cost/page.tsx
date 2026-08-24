@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { GraduationCap, Wallet, AlertCircle, Trophy } from "lucide-react";
+import { Building2, Landmark, Wallet, AlertCircle, Trophy } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { MajorPicker } from "../components/MajorPicker";
 import { ChannelNotice } from "../components/ChannelNotice";

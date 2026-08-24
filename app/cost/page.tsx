@@ -70,7 +70,10 @@ export default function CostPage() {
       <ChannelNotice />
 
       {!major && (
-        <div className="relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-dashed border-line py-16 text-center">
+        // min-h ثابت -- Lighthouse كشف فعلياً CLS=0.125 هنا سببه "Web font
+        // loaded" (تبديل خط Cairo بعد تحميله يغيّر ارتفاع النص قليلاً)؛ حجز
+        // ارتفاع أدنى يمتص الفرق بدل أن يدفع المحتوى الذي تحته.
+        <div className="relative flex min-h-[280px] flex-col items-center justify-center gap-3 overflow-hidden rounded-2xl border border-dashed border-line py-16 text-center">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 flex items-center justify-center gap-8 opacity-[0.07]"

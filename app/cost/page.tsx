@@ -185,12 +185,15 @@ export default function CostPage() {
             </ul>
           </div>
         </Card>
+        </Reveal>
       )}
 
+      <Reveal>
       <Alert tone="info" icon={AlertCircle}>
         الأرقام من دليل أجور الجامعات الأهلية الرسمي للعام الدراسي الحالي — قد تتغيّر الأجور من عام لآخر، وبعض الأقسام
         لا تُنشَر أجورها في الدليل. راجع الجامعة مباشرة قبل أي قرار نهائي.
       </Alert>
+      </Reveal>
     </div>
   );
 }

@@ -51,7 +51,20 @@ export function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const observer = getSharedObserver();
+
+    // شبكة أمان حقيقية: محتوى الموقع بيانات فعلية (بطاقات خدمات/إحصائيات)
+    // لا زخرفة -- لا يجوز أن يبقى مخفياً للأبد لو تعذّر بناء المراقب لأي
+    // سبب (متصفح قديم بلا IntersectionObserver، أو استثناء غير متوقَّع).
+    // هذا يغطي فشل *الإنشاء* تحديداً، لا حالة "لم يصل المستخدم بعد إلى هذا
+    // القسم" الطبيعية التي يجب أن تبقى مخفية حتى يمرّر فعلياً.
+    let observer: IntersectionObserver;
+    try {
+      observer = getSharedObserver();
+    } catch {
+      setVisible(true);
+      return;
+    }
+
     pending.set(el, () => setVisible(true));
     observer.observe(el);
     return () => {

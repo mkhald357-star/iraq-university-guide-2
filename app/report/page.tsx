@@ -610,7 +610,7 @@ function ReportContent() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto py-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-5xl mx-auto py-8 space-y-8 a-rise">
       {/* تنبيه حداثة البيانات */}
       <DataFreshnessAlert />
 

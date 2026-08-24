@@ -151,15 +151,19 @@ export default function CostPage() {
             })}
           </div>
         </Card>
+        </Reveal>
       )}
 
       {major && unverifiedPrivate.length > 0 && (
+        <Reveal>
         <Alert tone="info" icon={AlertCircle}>
           {TUITION_UNVERIFIED_SOURCE_NOTE}
         </Alert>
+        </Reveal>
       )}
 
       {major && government.length > 0 && (
+        <Reveal>
         <Card variant="surface" padding="" className="overflow-hidden">
           <div className="relative flex items-center gap-3 overflow-hidden p-6 pb-3">
             <Landmark

@@ -93,9 +93,14 @@ export default function CostPage() {
       )}
 
       {major && sortedPrivate.length > 0 && (
-        <Card variant="surface" padding="" className="overflow-hidden">
-          <div className="flex items-center gap-3 border-b border-line p-6">
-            <IconBadge icon={Wallet} />
+        <Card variant="surface" padding="" className="relative overflow-hidden">
+          <Building2
+            aria-hidden="true"
+            className="pointer-events-none absolute -end-6 -top-6 h-28 w-28 text-primary-100 md:h-36 md:w-36"
+            strokeWidth={1}
+          />
+          <div className="relative flex items-center gap-3 border-b border-line p-6">
+            <IconBadge icon={Building2} />
             <h2 className="font-bold text-ink">الجامعات الأهلية</h2>
           </div>
           <div className="divide-y divide-line">

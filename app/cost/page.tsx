@@ -68,6 +68,24 @@ export default function CostPage() {
 
       <ChannelNotice />
 
+      {!major && (
+        <div className="relative flex flex-col items-center gap-3 overflow-hidden rounded-2xl border border-dashed border-line py-16 text-center">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 flex items-center justify-center gap-8 opacity-[0.07]"
+          >
+            <Building2 className="h-28 w-28 md:h-36 md:w-36" strokeWidth={1} />
+            <Wallet className="h-40 w-40 md:h-52 md:w-52" strokeWidth={1} />
+            <Landmark className="h-28 w-28 md:h-36 md:w-36" strokeWidth={1} />
+          </div>
+          <IconBadge icon={Wallet} size="lg" className="relative" />
+          <p className="relative font-bold text-ink">اختر تخصصك أعلاه لعرض الأجور</p>
+          <p className="relative max-w-sm text-sm text-ink-muted">
+            نطابقه فوراً مع كل الجامعات الأهلية الموثَّقة لنفس التخصص، ونرتّبها من الأرخص.
+          </p>
+        </div>
+      )}
+
       {major && offerings === null && <p className="text-center text-ink-muted">جارٍ التحميل...</p>}
 
       {major && offerings && sortedPrivate.length === 0 && unverifiedPrivate.length === 0 && government.length === 0 && (

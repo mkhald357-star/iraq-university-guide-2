@@ -94,7 +94,7 @@ export default function CostPage() {
       )}
 
       {major && sortedPrivate.length > 0 && (
-        <Card variant="surface" padding="" className="overflow-hidden">
+        <Reveal as={Card} variant="surface" padding="" className="overflow-hidden">
           <div className="relative flex items-center gap-3 overflow-hidden border-b border-line p-6">
             <Building2
               aria-hidden="true"

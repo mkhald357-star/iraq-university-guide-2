@@ -1,3 +1,5 @@
+import { Reveal } from "./motion/Reveal";
+
 const FAQS = [
   {
     q: "هل المنصة مجانية؟",

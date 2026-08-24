@@ -825,7 +825,7 @@ export default function Quiz() {
       <Card
         variant="glass"
         padding="p-8 md:p-12"
-        className="animate-in fade-in zoom-in-95 flex min-h-[350px] flex-col justify-center space-y-12 text-center duration-300"
+        className="a-fade flex min-h-[350px] flex-col justify-center space-y-12 text-center"
       >
         <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{question.text}</h1>
         <div className="flex flex-col gap-4 mt-auto">

@@ -32,8 +32,9 @@ export default function TrustSection() {
               <path d="M7 17L17 7M7 7h10v10" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </a>
-        </div>
+        </Reveal>
 
+        <Reveal delayMs={100}>
         <Card variant="surface" padding="p-6" className="space-y-5">
           <dl>
             <div>

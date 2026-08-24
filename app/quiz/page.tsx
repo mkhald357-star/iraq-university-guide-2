@@ -620,7 +620,7 @@ export default function Quiz() {
   // ---- شاشة النتيجة ----
   if (isFinished) {
     return (
-      <div className="py-12 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="py-12 space-y-8 a-rise">
         <div className="text-center space-y-4">
           <h1 className="text-4xl font-black text-primary-text">نتيجتك جاهزة!</h1>
           <p className="text-lg text-ink-soft">

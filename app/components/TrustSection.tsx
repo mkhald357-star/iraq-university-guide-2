@@ -10,7 +10,7 @@ export default function TrustSection() {
   return (
     <section dir="rtl" className="py-24" style={{ background: "var(--g-surface)" }}>
       <div className="mx-auto grid max-w-6xl items-start gap-12 px-5 md:grid-cols-2">
-        <div>
+        <Reveal>
           <p className="text-sm font-bold text-primary-text">من وين هذي الأرقام؟</p>
           <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">
             بيانات رسمية، لا تخمين

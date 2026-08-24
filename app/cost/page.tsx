@@ -158,11 +158,17 @@ export default function CostPage() {
       )}
 
       {major && government.length > 0 && (
-        <Card variant="surface" padding="p-6">
-          <div className="mb-3 flex items-center gap-3">
-            <IconBadge icon={GraduationCap} />
-            <h2 className="font-bold text-ink">الجامعات الحكومية</h2>
+        <Card variant="surface" padding="" className="overflow-hidden">
+          <div className="relative flex items-center gap-3 overflow-hidden p-6 pb-3">
+            <Landmark
+              aria-hidden="true"
+              className="pointer-events-none absolute -end-6 -top-6 h-24 w-24 text-primary-100 md:h-28 md:w-28"
+              strokeWidth={1}
+            />
+            <IconBadge icon={Landmark} className="relative" />
+            <h2 className="relative font-bold text-ink">الجامعات الحكومية</h2>
           </div>
+          <div className="px-6 pb-6">
           <p className="mb-3 text-sm text-ink-soft">{GOVERNMENT_NO_COMPARABLE_FEE}</p>
           <ul className="grid gap-1.5 text-sm text-ink-soft">
             {government.map((o) => (

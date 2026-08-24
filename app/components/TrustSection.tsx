@@ -77,6 +77,7 @@ export default function TrustSection() {
             </div>
           </dl>
         </Card>
+        </Reveal>
       </div>
     </section>
   );

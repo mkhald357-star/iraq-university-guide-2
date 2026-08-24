@@ -54,11 +54,8 @@ export default function FAQSection() {
         </h2>
 
         <div className="mt-10 grid gap-3">
-          {FAQS.map((item) => (
-            <details
-              key={item.q}
-              className="group rounded-md border border-line bg-surface p-5 open:shadow-sm"
-            >
+          {FAQS.map((item, i) => (
+            <Reveal key={item.q} as="details" delayMs={i * 50} className="group rounded-md border border-line bg-surface p-5 open:shadow-sm">
               <summary
                 className="flex cursor-pointer list-none items-center justify-between gap-4
                            font-bold text-ink focus-visible:outline focus-visible:outline-2
@@ -77,7 +74,7 @@ export default function FAQSection() {
                 </svg>
               </summary>
               <p className="mt-3 text-sm leading-relaxed text-ink-soft">{item.a}</p>
-            </details>
+            </Reveal>
           ))}
         </div>
       </div>

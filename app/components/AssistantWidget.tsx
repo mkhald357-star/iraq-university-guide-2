@@ -57,7 +57,7 @@ export function AssistantWidget() {
     // أي حال.
     <div className="fixed bottom-5 right-5 z-50">
       {isOpen && (
-        <div className="mb-3 w-[min(22rem,calc(100vw-2.5rem))] h-[28rem] max-h-[70vh] glass rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-200">
+        <div className="mb-3 w-[min(22rem,calc(100vw-2.5rem))] h-[28rem] max-h-[70vh] glass rounded-2xl shadow-2xl flex flex-col overflow-hidden a-rise">
           {/* رأس النافذة */}
           <div className="bg-primary-solid text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div>

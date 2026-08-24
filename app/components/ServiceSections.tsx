@@ -108,26 +108,34 @@ export default function ServiceSections() {
                   متماثلة الشكل يُضاعف الرتابة بدل حلّها). */}
               {stage.id === "decide" && (
                 <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {items.map((s) => (
-                    <ServiceCard key={s.id} service={s} />
+                  {items.map((s, i) => (
+                    <Reveal key={s.id} delayMs={i * 60}>
+                      <ServiceCard service={s} />
+                    </Reveal>
                   ))}
                 </div>
               )}
 
               {stage.id === "apply" && (
                 <div className="mt-8 grid gap-4 sm:grid-cols-2">
-                  {items.map((s) => (
-                    <ServiceCard key={s.id} service={s} />
+                  {items.map((s, i) => (
+                    <Reveal key={s.id} delayMs={i * 60}>
+                      <ServiceCard service={s} />
+                    </Reveal>
                   ))}
                 </div>
               )}
 
               {stage.id === "started" && (
                 <div className="mt-8 grid gap-4 sm:grid-cols-5">
-                  {items.map((s) => (
-                    <div key={s.id} className={s.status === "live" ? "sm:col-span-3" : "sm:col-span-2"}>
+                  {items.map((s, i) => (
+                    <Reveal
+                      key={s.id}
+                      delayMs={i * 60}
+                      className={s.status === "live" ? "sm:col-span-3" : "sm:col-span-2"}
+                    >
                       <ServiceCard service={s} featured={s.status === "live"} />
-                    </div>
+                    </Reveal>
                   ))}
                 </div>
               )}
@@ -135,7 +143,9 @@ export default function ServiceSections() {
               {stage.id === "beyond" && (
                 <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                   {items.map((s, i) => (
-                    <ServiceCard key={s.id} service={s} featured={i === 0} />
+                    <Reveal key={s.id} delayMs={i * 60}>
+                      <ServiceCard service={s} featured={i === 0} />
+                    </Reveal>
                   ))}
                 </div>
               )}

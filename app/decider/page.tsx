@@ -160,7 +160,7 @@ export default function DeciderPage() {
 
       {finished && verdict && (
         <div className="space-y-5">
-          <div className="glass rounded-3xl p-8 text-center space-y-4">
+          <div className="bg-surface border border-line shadow-sm rounded-3xl p-8 text-center space-y-4">
             <span className="inline-flex rounded-full bg-primary-100 p-3 text-primary-700">
               <Scale className="h-6 w-6" />
             </span>

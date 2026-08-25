@@ -172,7 +172,7 @@ export default function ExplorerPage() {
         <>
           <ChannelNotice />
 
-          <div className="glass grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
+          <div className="bg-surface border border-line shadow-sm grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
             <div>
               <label className="mb-2 block font-bold" htmlFor="province">
                 المحافظة

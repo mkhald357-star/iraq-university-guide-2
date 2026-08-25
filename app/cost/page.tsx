@@ -63,7 +63,7 @@ export default function CostPage() {
         </div>
       </div>
 
-      <Card variant="glass">
+      <Card variant="surface">
         <MajorPicker index={0} value={majorId} excludeIds={[]} onChange={setMajorId} />
       </Card>
 

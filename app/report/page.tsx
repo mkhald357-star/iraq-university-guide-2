@@ -48,7 +48,7 @@ function ReportSkeleton() {
   return (
     <div className="max-w-5xl mx-auto py-8 space-y-8">
       {/* رأس */}
-      <div className="glass p-8 rounded-3xl space-y-6">
+      <div className="bg-surface border border-line shadow-sm p-8 rounded-3xl space-y-6">
         <div className="flex justify-between items-start">
           <div className="space-y-3 flex-1">
             <Shimmer className="h-4 w-24" />
@@ -734,7 +734,7 @@ function ReportContent() {
       </div>
 
       {/* تحليل التوافق */}
-      <div className="glass p-8 rounded-3xl space-y-6">
+      <div className="bg-surface border border-line shadow-sm p-8 rounded-3xl space-y-6">
         {analyses.map(({ major: m, points, dimensionGaps, alignedDimensions }, idx) => {
           const GAP_THRESHOLD = 15; // TASKS.md المهمة ٤: عتبة وسم "فجوة" المقترَحة
           const translations =

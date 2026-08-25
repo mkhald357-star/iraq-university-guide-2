@@ -267,7 +267,7 @@ export default function GpaCheckPage() {
         <p className="mt-1 text-ink-soft">أدخل معدّلك وفرعك، وشوف أي قسم يصلك — بلا اختبار وبلا حساب.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="glass grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
+      <form onSubmit={handleSubmit} className="bg-surface border border-line shadow-sm grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
         <div>
           <label className="mb-2 block font-bold" htmlFor="branch">
             الفرع الدراسي

@@ -103,7 +103,7 @@ function CompareContent() {
         <p className="mt-1 text-ink-soft">ضع تخصصين أو ثلاثة جنباً لجنب: الدراسة، والعمل، والقبول.</p>
       </div>
 
-      <div className="glass rounded-3xl p-6 space-y-3">
+      <div className="bg-surface border border-line shadow-sm rounded-3xl p-6 space-y-3">
         {slots.map((value, index) => (
           <MajorSelect
             key={index}

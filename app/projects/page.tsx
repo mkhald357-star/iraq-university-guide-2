@@ -113,7 +113,7 @@ export default function ProjectsPage(): ReactNode {
 
       <GlossarySection />
 
-      <div className="glass rounded-3xl p-6">
+      <div className="bg-surface border border-line shadow-sm rounded-3xl p-6">
         <label className="mb-2 block font-bold" htmlFor="major">
           اختر التخصص
         </label>

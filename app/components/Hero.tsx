@@ -25,17 +25,18 @@ export default function Hero() {
           كخيار في تصميم القسم نفسه) ── */}
       <div className="absolute inset-0 -z-20" style={{ background: "var(--g-primary)" }} />
 
-      {/* ── الطبقة ٢: كرات ضوئية عائمة ── */}
-      <div aria-hidden="true" className="absolute inset-0 -z-10 pointer-events-none">
-        <span
-          className="absolute h-72 w-72 rounded-full blur-2xl a-float"
-          style={{ background: "var(--g-orb)", top: "12%", insetInlineStart: "6%" }}
-        />
-        <span
-          className="absolute h-96 w-96 rounded-full blur-3xl a-float"
-          style={{ background: "var(--g-orb)", bottom: "-8%", insetInlineEnd: "10%", animationDelay: "2.5s" }}
-        />
-      </div>
+      {/* ── الطبقة ٢: نسيج نقطي هندسي -- بديل عن كرات ضوئية مموَّهة عامة
+          (نمط "blurred blobs" مذكور صراحة كعلامة مواقع مولَّدة في فحص
+          layout-craft/anti-slop). نقاط حادّة صغيرة بلا تمويه، شفافية منخفضة
+          جداً كي لا تنافس حقل الأيقونات أو النص فوقها. ── */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(255,255,255,0.14) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
 
       {/* ── الطبقة ٣: حقل أيقونات التخصصات -- يتحرّك مع التمرير (parallax)،
           طبقة أعمق من طفو الكرات أعلاه، انظر HeroIconField.tsx ── */}

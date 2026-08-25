@@ -723,7 +723,7 @@ export default function Quiz() {
         </div>
         {rankedMajors.length > 0 ? (
           <Card
-            variant="glass"
+            variant="surface"
             radius="rounded-2xl"
             padding="p-8"
             className="border-primary/20 bg-primary/5 mt-8 space-y-4 text-center"

@@ -106,7 +106,7 @@ export default function DestinationsPage() {
         <p className="mt-1 text-ink-soft">أين يشتغل خرّيجو تخصصك فعلاً في العراق، وما الترخيص المطلوب.</p>
       </div>
 
-      <div className="glass rounded-3xl p-6">
+      <div className="bg-surface border border-line shadow-sm rounded-3xl p-6">
         <label className="mb-2 block font-bold" htmlFor="major">
           اختر التخصص
         </label>

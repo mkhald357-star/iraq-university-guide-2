@@ -700,7 +700,7 @@ export default function Quiz() {
             return (
               <Card
                 key={major.id}
-                variant="glass"
+                variant="surface"
                 radius="rounded-2xl"
                 className="flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
               >

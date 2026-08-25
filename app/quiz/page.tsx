@@ -670,7 +670,7 @@ export default function Quiz() {
             </p>
           </Alert>
         )}
-        <Card variant="glass" radius="rounded-2xl" padding="p-5" className="space-y-2">
+        <Card variant="surface" radius="rounded-2xl" padding="p-5" className="space-y-2">
           <div className="flex items-center justify-between">
             <label htmlFor="marketWeight" className="font-bold text-ink text-sm">
               كم يهمّك طلب السوق عند الترتيب؟

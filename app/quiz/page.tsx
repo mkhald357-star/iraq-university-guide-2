@@ -117,7 +117,7 @@ function ReviewScreen({
       )}
 
       {/* قائمة الإجابات */}
-      <Card variant="glass" className="max-h-[420px] space-y-3 overflow-y-auto">
+      <Card variant="surface" radius="rounded-3xl" className="max-h-[420px] space-y-3 overflow-y-auto">
         {questions.map((q, i) => {
           const val = answers[q.id];
           const answered = val !== undefined;

@@ -742,7 +742,7 @@ export default function Quiz() {
             </Link>
           </Card>
         ) : (
-          <Card variant="glass" radius="rounded-2xl" padding="p-8" className="mt-8 space-y-2 text-center">
+          <Card variant="surface" radius="rounded-2xl" padding="p-8" className="mt-8 space-y-2 text-center">
             <p className="text-ink-soft font-bold">لم نجد تخصصات مطابقة لفرعك الدراسي ضمن بيانات المنصة الحالية.</p>
             <p className="text-ink-muted text-sm">جرّب إعادة الاختبار، أو تواصل معنا إن استمرت المشكلة.</p>
           </Card>

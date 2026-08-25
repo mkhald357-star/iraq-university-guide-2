@@ -722,7 +722,7 @@ function ReportContent() {
 
       {/* بصمتك الشخصية -- شكل واحد فقط (لا مقارنة هنا)، يجيب "من أنت؟" قبل
           أي مقارنة بتخصص معيّن. لا مفتاح ألوان لازم لشكل مفرد (العنوان يكفي). */}
-      <div className="glass p-8 rounded-3xl">
+      <div className="bg-surface border border-line shadow-sm p-8 rounded-3xl">
         <h2 className="text-xl font-bold text-ink mb-1">بصمتك الشخصية</h2>
         <p className="text-sm text-ink-muted mb-4">
           توزيع سماتك عبر الأبعاد الستة لنموذج RIASEC، من إجاباتك في الاختبار.

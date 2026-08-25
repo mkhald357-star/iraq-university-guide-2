@@ -852,7 +852,7 @@ function ReportContent() {
       {/* تخصصات تناسب الشخصية لكن الفرع لا يؤهّل لها -- منفصلة تماماً عن
           التوصيات المؤهَّلة، لا مدموجة معها بصمت (TASKS.md المهمة ٣) */}
       {ineligibleAnalyses.length > 0 && (
-        <div className="glass p-8 rounded-3xl space-y-4 border border-amber-200 bg-amber-50/40">
+        <div className="p-8 rounded-3xl space-y-4 border border-amber-200 bg-amber-50/40">
           <h2 className="text-xl font-bold text-amber-800 flex items-center gap-2">
             <AlertTriangle className="w-5 h-5" />
             تخصصات تناسب شخصيتك لكن فرعك لا يؤهّلك لها

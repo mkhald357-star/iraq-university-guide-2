@@ -87,7 +87,7 @@ export default function DeciderPage() {
       </div>
 
       {!ready && (
-        <div className="glass rounded-3xl p-6 space-y-3">
+        <div className="bg-surface border border-line shadow-sm rounded-3xl p-6 space-y-3">
           <MajorPicker index={0} value={majorAId} excludeIds={majorBId ? [majorBId] : []} onChange={setMajorAId} />
           <MajorPicker index={1} value={majorBId} excludeIds={majorAId ? [majorAId] : []} onChange={setMajorBId} />
           {majorAId && majorAId === majorBId && (

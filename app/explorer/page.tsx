@@ -138,7 +138,7 @@ export default function ExplorerPage() {
       </div>
 
       {/* ── اختيار الفرع -- إلزامي أولاً، بلا جلب بيانات قبل الاختيار ── */}
-      <div className="glass rounded-3xl p-6">
+      <div className="bg-surface border border-line shadow-sm rounded-3xl p-6">
         <p className="mb-3 font-bold text-ink">الفرع الدراسي</p>
         <div className="flex flex-wrap gap-3">
           {BRANCHES.map((b) => (

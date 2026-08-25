@@ -35,7 +35,7 @@ export default function IncomePage() {
         <p className="mt-1 text-ink-soft">أرقام دخل من مصادر رسمية فقط — وإن لم تتوفّر، نقولها بصراحة.</p>
       </div>
 
-      <div className="glass rounded-3xl p-6">
+      <div className="bg-surface border border-line shadow-sm rounded-3xl p-6">
         <label className="mb-2 block font-bold" htmlFor="major">
           اختر التخصص
         </label>

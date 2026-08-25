@@ -123,7 +123,7 @@ export default function DeciderPage() {
             ))}
           </div>
 
-          <div className="glass p-8 md:p-12 rounded-3xl text-center space-y-10 min-h-[300px] flex flex-col justify-center">
+          <div className="bg-surface border border-line shadow-sm p-8 md:p-12 rounded-3xl text-center space-y-10 min-h-[300px] flex flex-col justify-center">
             <h2 className="text-xl md:text-2xl font-bold text-ink leading-relaxed">{questions[currentIndex].text}</h2>
             <div className="flex flex-col gap-4 mt-auto">
               {[1, 0, -1].map((val) => (

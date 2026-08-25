@@ -175,7 +175,7 @@ export default function WishlistPage() {
       <ChannelNotice />
 
       {/* ── إضافة رغبة جديدة ── */}
-      <div className="glass p-6 rounded-3xl space-y-4">
+      <div className="bg-surface border border-line shadow-sm p-6 rounded-3xl space-y-4">
         <h2 className="text-xl font-bold text-ink">أضف رغبة</h2>
         <p className="text-xs text-ink-muted">الحدود المعروضة أدناه وفق {CUTOFFS_YEAR}.</p>
         <select
@@ -248,7 +248,7 @@ export default function WishlistPage() {
       </div>
 
       {/* ── قائمة الرغبات المرتَّبة ── */}
-      <div className="glass p-6 rounded-3xl space-y-4">
+      <div className="bg-surface border border-line shadow-sm p-6 rounded-3xl space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-xl font-bold text-ink">رغباتك ({wishlist.length})</h2>
           <div className="flex gap-3 text-sm font-bold">
@@ -297,7 +297,7 @@ export default function WishlistPage() {
       </div>
 
       {/* ── بدائل مريحة مقترحة ── */}
-      <div className="glass p-6 rounded-3xl space-y-4">
+      <div className="bg-surface border border-line shadow-sm p-6 rounded-3xl space-y-4">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <h2 className="text-xl font-bold text-ink flex items-center gap-2">
             <Sparkles className="w-5 h-5 text-primary-text" />

@@ -872,7 +872,7 @@ function ReportContent() {
           أو أهلي يبلغه معدل الطالب فعلاً الآن، أو حين لا يؤهّله فرعه أصلاً
           للتخصص الأساسي (TASKS.md المهمة ٣) */}
       {nearestAlternatives.length > 0 && (
-        <div className="glass p-8 rounded-3xl space-y-4 border border-primary/20 bg-primary/5">
+        <div className="p-8 rounded-3xl space-y-4 border border-primary/20 bg-primary/5">
           <h2 className="text-xl font-bold text-ink">أقرب تخصصات ضمن متناول معدلك وفرعك الآن</h2>
           <div className="grid gap-3">
             {nearestAlternatives.map(({ major: m, fitPercent }, idx) => (

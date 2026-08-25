@@ -823,7 +823,8 @@ export default function Quiz() {
 
       {/* بطاقة السؤال */}
       <Card
-        variant="glass"
+        variant="surface"
+        radius="rounded-3xl"
         padding="p-8 md:p-12"
         className="a-fade flex min-h-[350px] flex-col justify-center space-y-12 text-center"
       >

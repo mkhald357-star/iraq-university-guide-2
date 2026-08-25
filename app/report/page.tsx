@@ -640,7 +640,7 @@ function ReportContent() {
       </Link>
 
       {/* رأس التقرير */}
-      <div className="glass p-8 md:p-10 rounded-3xl space-y-6 border-t-8 border-t-primary">
+      <div className="bg-surface border border-line shadow-sm p-8 md:p-10 rounded-3xl space-y-6 border-t-8 border-t-primary">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between border-b border-line pb-6 gap-4">
           <div>
             <div className="inline-block bg-primary/10 text-primary-text px-4 py-1 rounded-full text-sm font-bold mb-3">

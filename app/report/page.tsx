@@ -64,7 +64,7 @@ function ReportSkeleton() {
       </div>
 
       {/* تحليل */}
-      <div className="glass p-8 rounded-3xl space-y-4">
+      <div className="bg-surface border border-line shadow-sm p-8 rounded-3xl space-y-4">
         <Shimmer className="h-6 w-48 mb-4" />
         {[1, 2, 3, 4].map((i) => (
           <div key={i} className="flex items-start gap-3 bg-surface p-4 rounded-xl">

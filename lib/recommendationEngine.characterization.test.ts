@@ -222,10 +222,14 @@ describe("golden master: rankMajors على بيانات المنصة الحقي�
       },
       DATA
     );
-    // نفس التخصص الأول عادة (نفس اتجاه الميل)، لكن بنسبة توافق أقلّ حدّة --
-    // هذا بالضبط ما يفترض أن يوفّره مقياس أدقّ (تمايز الشدّة، لا القطبين فقط).
+    // المقارنة الصحيحة: توافق *نفس* التخصص الذي تصدَّر عند الميل الحاسم، تحت
+    // الميل المعتدل -- لا "أول تخصص" في كل قائمة (قد يختلف التخصص المتصدِّر
+    // نفسه بين الحالتين، وهذا سلوك صحيح متوقَّع لا عطلاً). فرضية الاختبار:
+    // الميل المعتدل نحو نفس الاتجاه يعطي توافقاً أقلّ تطرّفاً لنفس التخصص.
     expect(summarize(mild)).toMatchSnapshot();
-    expect(mild[0]?.fitPercent).toBeLessThan(decisive[0]?.fitPercent ?? 0);
+    const decisiveTopId = decisive[0]?.id;
+    const mildSameMajor = mild.find((m) => m.id === decisiveTopId);
+    expect(mildSameMajor?.fitPercent).toBeLessThan(decisive[0]?.fitPercent ?? 0);
   });
 
   it("[مقياس 5 نقاط] مزيج إجابات واقعي (بعض شديد، بعض معتدل، بعض محايد) — أدبي، معدل 88", () => {

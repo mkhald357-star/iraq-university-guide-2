@@ -1,5 +1,95 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > [مقياس 5 نقاط] طالب واقعي عملي بميل معتدل (0.5 لا 1) — علمي، معدل 75 — يُنتج توافقاً أقلّ تطرّفاً من الميل الحاسم 1`] = `
+[
+  {
+    "category": "هندسة",
+    "combinedScore": 86.86,
+    "fitPercent": 86.86,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 86.86,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 86.65,
+    "fitPercent": 86.65,
+    "id": "prosthetics_tech",
+    "riasecFitPercent": 86.65,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 86.52,
+    "fitPercent": 86.52,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 86.52,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "زراعة",
+    "combinedScore": 83.89,
+    "fitPercent": 83.89,
+    "id": "agriculture",
+    "riasecFitPercent": 83.89,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 81.28,
+    "fitPercent": 81.28,
+    "id": "civil_engineering",
+    "riasecFitPercent": 81.28,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > [مقياس 5 نقاط] مزيج إجابات واقعي (بعض شديد، بعض معتدل، بعض محايد) — أدبي، معدل 88 1`] = `
+[
+  {
+    "category": "إنسانيات",
+    "combinedScore": 83.58,
+    "fitPercent": 83.58,
+    "id": "geography",
+    "riasecFitPercent": 83.58,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تربية",
+    "combinedScore": 81.49,
+    "fitPercent": 81.49,
+    "id": "physical_education",
+    "riasecFitPercent": 81.49,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "لغات",
+    "combinedScore": 78.77,
+    "fitPercent": 78.77,
+    "id": "foreign_languages_other",
+    "riasecFitPercent": 78.77,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 78.34,
+    "fitPercent": 78.34,
+    "id": "media_journalism",
+    "riasecFitPercent": 78.34,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 77.99,
+    "fitPercent": 77.99,
+    "id": "tourism_hospitality",
+    "riasecFitPercent": 77.99,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
 exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب اجتماعي (S مهيمن) — أدبي، معدل 78 1`] = `
 [
   {

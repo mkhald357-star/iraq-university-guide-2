@@ -236,10 +236,19 @@ describe("computeValidityRiskScore — مقياس الخمس نقاط", () => {
     expect(partial.score).toBeLessThan(full.score);
   });
 
-  it("موافقة جزئية (0.5) على مقياس الصدق تُسجَّل بدرجة أخفّ من الموافقة الكاملة (1)", () => {
-    const partial = computeValidityRiskScore(baselineAnswers(), { q_lie_scale: 0.5 }, {}, NO_CONTRADICTIONS);
-    const full = computeValidityRiskScore(baselineAnswers(), { q_lie_scale: 1 }, {}, NO_CONTRADICTIONS);
+  it("موافقة جزئية (0.5) على مقياس الصدق تُسجَّل ضمن الأسباب لكنها وحدها لا تكفي لبلوغ عتبة تركيبة sdScore>=1 (بخلاف الموافقة الكاملة)", () => {
+    // pYes > 0.6 مطلوب لتفعيل تركيبة "الرغبة بصورة مثالية" (sdScore>=1 &&
+    // pYes>0.6) -- هنا 8 من 10 نعم = 80%.
+    const highYesAnswers: Record<string, number> = {};
+    for (let i = 0; i < 10; i++) highYesAnswers[`q${i}`] = i < 8 ? 1 : -1;
+
+    const partial = computeValidityRiskScore(highYesAnswers, { q_lie_scale: 0.5 }, {}, NO_CONTRADICTIONS);
+    const full = computeValidityRiskScore(highYesAnswers, { q_lie_scale: 1 }, {}, NO_CONTRADICTIONS);
+
     expect(partial.reasons).toContain("إجابة غير واقعية إحصائياً في سؤال الصدق");
+    expect(full.reasons).toContain("نمط إجابات يوحي برغبة في تقديم صورة مثالية");
+    // موافقة جزئية (sdScore=0.5) لا تبلغ عتبة sdScore>=1 وحدها -- التركيبة لا تُطلَق
+    expect(partial.reasons).not.toContain("نمط إجابات يوحي برغبة في تقديم صورة مثالية");
     expect(partial.score).toBeLessThan(full.score);
   });
 

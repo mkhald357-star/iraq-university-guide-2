@@ -502,66 +502,43 @@ export default function Quiz() {
     // الأولى (tieBreakQuestions فارغة بعد).
     const questionPoolForVector = [...(questionsData as QuizItem[]), ...tieBreakQuestions];
     const userVector = computeUserRiasecVector(scoredAnswers, questionPoolForVector);
-    const allowedCats = branchMap[filterSettings.branch] || [];
 
-    // محور القرابة الدراسية (اختياري تماماً -- subjectGrades فارغ افتراضياً
-    // فيُرجِع computeSubjectAffinityFit لكل تخصص `null` ولا يتغيّر شيء عن
-    // السلوك السابق). عند وجود درجة مادة واحدة فأكثر: توافق مزيج 70% شخصية
-    // (RIASEC) + 30% قرابة دراسية موضوعية -- لا استبدال، لأن RIASEC يبقى
-    // الأساس، والقرابة الدراسية إشارة تمييزية إضافية (§1.2 من تحليل الثغرات).
-    const subjectVector = computeSubjectAffinityVector(subjectGrades, filterSettings.grade);
-    const SUBJECT_AFFINITY_BLEND_WEIGHT = 0.3;
-
-    const processedMajors = majorsData
-      .map((major) => {
-        const profile = (riasecProfilesData.profiles as Record<string, any>)[major.id] ?? {};
-        const riasecFitPercent = computeMajorFit(userVector, profile);
-        const majorSubjectWeights = (subjectAffinityWeightsData.weights as Record<string, any>)[major.id] ?? {};
-        const subjectFitPercent = computeSubjectAffinityFit(subjectVector, majorSubjectWeights);
-        const fitPercent =
-          subjectFitPercent === null
-            ? riasecFitPercent
-            : riasecFitPercent * (1 - SUBJECT_AFFINITY_BLEND_WEIGHT) +
-              subjectFitPercent * SUBJECT_AFFINITY_BLEND_WEIGHT;
-        let valid = allowedCats.includes(major.category);
-        if (!gradeIsHigh && major.category === "طبي") valid = false;
-        // بلا وسيط ثالث → وزن السوق = 0 افتراضياً (انظر توثيق الدالة في
-        // lib/riasec.ts) -- الترتيب الافتراضي والتحقق من التعادل أدناه كلاهما
-        // على التوافق الحقيقي (شخصية + قرابة دراسية) وحده، لا معامل السوق.
-        const combinedScore = computeCombinedRankingScore(fitPercent, major.marketMultiplier);
-        return { ...major, fitPercent, riasecFitPercent, subjectFitPercent, combinedScore, valid };
-      })
-      .filter((m) => m.valid);
-
-    processedMajors.sort((a, b) => b.combinedScore - a.combinedScore);
-    const top3 = processedMajors.slice(0, 3);
+    // محرك الترتيب الكامل (فرع + بوابة المعدل + RIASEC + مزيج القرابة
+    // الدراسية) صار في lib/recommendationEngine.ts -- مصدر وحيد، قابل
+    // للاختبار مستقلاً (lib/recommendationEngine.characterization.test.ts).
+    const ranked = rankMajors(
+      {
+        scoredAnswers,
+        questionPool: questionPoolForVector,
+        branch: filterSettings.branch,
+        grade: filterSettings.grade,
+        subjectGrades,
+      },
+      ENGINE_DATA
+    );
+    const top3 = ranked.slice(0, 3);
 
     // ---- نقطة التكيّف متعددة الجولات: نتيجة متقاربة بين أول تخصصين → أسئلة
     // ترجيح إضافية، بحد أقصى MAX_TIEBREAK_ROUNDS جولات (§5.2) ----
-    const AMBIGUITY_THRESHOLD = 6;
     const currentRound = opts?.roundNumber ?? 0;
-    if (
-      currentRound < MAX_TIEBREAK_ROUNDS &&
-      top3.length >= 2 &&
-      top3[0].combinedScore - top3[1].combinedScore < AMBIGUITY_THRESHOLD
-    ) {
-      const profileA = (riasecProfilesData.profiles as Record<string, RiasecVector>)[top3[0].id] ?? {};
-      const profileB = (riasecProfilesData.profiles as Record<string, RiasecVector>)[top3[1].id] ?? {};
-      const targetDims = findDivergentDimensions(profileA, profileB, 2);
-      const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
-      const pool = tiebreakerQuestionsData as QuizItem[];
-      const selected = selectQuestionsForDimensions(pool, targetDims, alreadyAskedIds);
+    const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
+    const decision = planTieBreak(
+      ranked,
+      currentRound,
+      alreadyAskedIds,
+      tiebreakerQuestionsData as QuizItem[],
+      ENGINE_DATA.riasecProfiles
+    );
 
-      if (selected.length > 0) {
-        const startIndex = ALL_QUIZ_QUESTIONS.length + tieBreakQuestions.length;
-        setTieBreakQuestions((prev) => [...prev, ...selected]); // تراكمي عبر الجولات، لا استبدال
-        setTieBreakInfo({ a: top3[0].name, b: top3[1].name });
-        setTieBreakPending(true);
-        setTieBreakRound(currentRound + 1);
-        setCurrentQuestionIndex(startIndex);
-        setShowReview(false);
-        return; // لا نُنهي الاختبار بعد -- ننتظر إجابات جولة الترجيح هذه
-      }
+    if (decision.candidates.length > 0) {
+      const startIndex = ALL_QUIZ_QUESTIONS.length + tieBreakQuestions.length;
+      setTieBreakQuestions((prev) => [...prev, ...decision.candidates]); // تراكمي عبر الجولات، لا استبدال
+      setTieBreakInfo(decision.tieBreakInfo);
+      setTieBreakPending(true);
+      setTieBreakRound(currentRound + 1);
+      setCurrentQuestionIndex(startIndex);
+      setShowReview(false);
+      return; // لا نُنهي الاختبار بعد -- ننتظر إجابات جولة الترجيح هذه
     }
 
     setTieBreakPending(false);
@@ -576,8 +553,7 @@ export default function Quiz() {
     );
 
     setWarnings(finalWarnings);
-    setTopMajors(top3);
-    setAllValidMajors(processedMajors);
+    setAllValidMajors(ranked);
     setTopUserDimensions(userTopDimensions);
     setVrsResult(vrs);
     setIsFinished(true);

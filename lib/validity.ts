@@ -175,8 +175,9 @@ export function computeValidityRiskScore(
     reasons.push("إجابة غير واقعية إحصائياً في سؤال الصدق");
   }
 
-  // 4) نسب الموافقة/الحياد الكلية
-  const pYes = n > 0 ? values.filter((v) => v > 0).length / n : 0;
+  // 4) نسب الموافقة/الحياد الكلية -- v >= 0.5 صريحاً (يطابق "موافق" بدرجتيها
+  // على مقياس الخمس نقاط؛ يساوي حرفياً v > 0 على مجموعة القيم المسموحة).
+  const pYes = n > 0 ? values.filter((v) => v >= 0.5).length / n : 0;
   const pNeutral = n > 0 ? values.filter((v) => v === 0).length / n : 0;
   if (pYes > 0.85) {
     score += 2;

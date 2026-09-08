@@ -165,7 +165,7 @@ export function computeValidityRiskScore(
   }
   const helpOthers = scoredAnswers[HELP_OTHERS_ID] ?? 0;
   const helpOthersReverse = validityAnswers[HELP_OTHERS_REVERSE_ID] ?? 0;
-  if (helpOthers > 0 && helpOthersReverse > 0) {
+  if (helpOthers >= 0.5 && helpOthersReverse >= 0.5) {
     score += 4;
     sdScore += 1;
     reasons.push("إجابتان متناقضتان منطقياً حول مساعدة الآخرين");

@@ -17,22 +17,18 @@ if (files.length === 0) {
   process.exit(1);
 }
 
-// استدعاء تنفيذي tsx المحلي مباشرة (لا npx، لا shell:true) -- يتفادى تحذير
-// Node الأمني حول تمرير وسائط لعملية فرعية عبر shell.
-const tsxBin = path.join(
-  __dirname,
-  "..",
-  "node_modules",
-  ".bin",
-  process.platform === "win32" ? "tsx.cmd" : "tsx"
-);
+// تشغيل واجهة tsx البرمجية (dist/cli.mjs) عبر node مباشرة -- لا عبر شِفرة
+// npx.cmd/tsx.cmd (تفشل تحت Windows بلا shell:true بخطأ EINVAL)، ولا عبر
+// shell:true (تحذير أمني من Node حول وسائط غير مُهرَّبة). node + مسار .mjs
+// مباشر يعمل متطابقاً على كل الأنظمة بلا أي منهما.
+const tsxCli = require.resolve("tsx/cli");
 
 let failed = 0;
 for (const file of files) {
   const full = path.join(dir, file);
   console.log(`\n=== ${file} ===`);
   try {
-    execFileSync(tsxBin, [full], { stdio: "inherit" });
+    execFileSync(process.execPath, [tsxCli, full], { stdio: "inherit" });
   } catch {
     failed++;
     console.error(`فشل تشغيل ${file}`);

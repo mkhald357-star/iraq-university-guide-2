@@ -105,28 +105,17 @@ export function runOneSimulation(
     .map((p) => p.message);
 
   const userVector = computeUserRiasecVector(scoredAnswers, questionsData as any);
-  const allowedCats = BRANCH_MAP[filters.branch] || [];
-  const gradeIsHigh = filters.grade >= 85;
-  const subjectVector = computeSubjectAffinityVector(filters.subjectGrades ?? {}, filters.grade);
 
-  const processed = majorsData
-    .map((m) => {
-      const profile = (riasecProfilesData.profiles as Record<string, any>)[m.id] ?? {};
-      const riasecFitPercent = computeMajorFit(userVector, profile);
-      const majorSubjectWeights = (subjectAffinityWeightsData.weights as Record<string, any>)[m.id] ?? {};
-      const subjectFitPercent = computeSubjectAffinityFit(subjectVector, majorSubjectWeights);
-      const fitPercent =
-        subjectFitPercent === null
-          ? riasecFitPercent
-          : riasecFitPercent * (1 - SUBJECT_AFFINITY_BLEND_WEIGHT) + subjectFitPercent * SUBJECT_AFFINITY_BLEND_WEIGHT;
-      let valid = allowedCats.includes(m.category);
-      if (!gradeIsHigh && m.category === "طبي") valid = false;
-      const combinedScore = computeCombinedRankingScore(fitPercent, m.marketMultiplier);
-      return { ...m, fitPercent, riasecFitPercent, subjectFitPercent, combinedScore, valid };
-    })
-    .filter((m) => m.valid);
-
-  processed.sort((a, b) => b.combinedScore - a.combinedScore);
+  const processed = rankMajors(
+    {
+      scoredAnswers,
+      questionPool: questionsData as any,
+      branch: filters.branch,
+      grade: filters.grade,
+      subjectGrades: filters.subjectGrades ?? {},
+    },
+    ENGINE_DATA
+  );
   const top3 = processed.slice(0, 3).map((m) => ({
     id: m.id, name: m.name, category: m.category, fitPercent: m.fitPercent, combinedScore: m.combinedScore,
   }));

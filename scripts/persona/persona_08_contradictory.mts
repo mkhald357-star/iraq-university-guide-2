@@ -3,7 +3,7 @@
 // طرفي أي زوج تناقض في data/contradiction_pairs.json، لضمان إطلاق كل
 // الأزواج الخمسة معاً في كل تشغيلة. باقي الأسئلة تُجاب عشوائياً.
 import { runOneSimulation, randomFilters, simpleRandom } from "./persona-simulation-harness.mts";
-import contradictionPairsData from "../data/contradiction_pairs.json" with { type: "json" };
+import contradictionPairsData from "../../data/contradiction_pairs.json" with { type: "json" };
 import fs from "fs";
 
 const CONTRADICTION_IDS = new Set<string>();

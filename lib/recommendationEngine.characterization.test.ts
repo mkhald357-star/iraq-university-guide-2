@@ -1,0 +1,256 @@
+import { describe, it, expect } from "vitest";
+import { rankMajors, planTieBreak, type RankMajorsData, type RankedMajor } from "./recommendationEngine";
+import questionsData from "../data/questions.json";
+import majorsData from "../data/majors.json";
+import riasecProfilesData from "../data/major_riasec_profiles.json";
+import subjectAffinityWeightsData from "../data/subject_affinity_weights.json";
+import tiebreakerQuestionsData from "../data/tiebreaker_questions.json";
+import type { RiasecQuestion } from "./riasec";
+
+// اختبار ثابت شاهد (golden master) على السلوك الفعلي الحالي لمحرك الترتيب،
+// مُثبَّت *قبل* أي تعديل مستقبلي (مقياس 5 نقاط، محور السياق، إلخ) -- أي
+// انحراف غير مقصود في هذه اللقطات يعني كسراً حقيقياً في أخطر منطق حسابي
+// بالمنصة. الأرقام هنا ليست "متوقَّعة نظرياً"؛ هي نسخة مُصوَّرة مما يحسبه
+// الكود فعلاً اليوم على بيانات المنصة الحقيقية (لا بيانات وهمية).
+
+const DATA: RankMajorsData = {
+  majors: majorsData,
+  riasecProfiles: riasecProfilesData.profiles as RankMajorsData["riasecProfiles"],
+  subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
+};
+
+const QUESTIONS = questionsData as RiasecQuestion[];
+const TIEBREAKERS = tiebreakerQuestionsData as RiasecQuestion[];
+
+function summarize(ranked: RankedMajor[], n = 5) {
+  return ranked.slice(0, n).map((m) => ({
+    id: m.id,
+    category: m.category,
+    fitPercent: Math.round(m.fitPercent * 100) / 100,
+    riasecFitPercent: Math.round(m.riasecFitPercent * 100) / 100,
+    subjectFitPercent: m.subjectFitPercent === null ? null : Math.round(m.subjectFitPercent * 100) / 100,
+    combinedScore: Math.round(m.combinedScore * 100) / 100,
+  }));
+}
+
+function answersFromWeight(weight: -1 | 0 | 1): Record<string, number> {
+  const answers: Record<string, number> = {};
+  QUESTIONS.forEach((q) => (answers[q.id] = weight));
+  return answers;
+}
+
+/** إجابة حاسمة موافقة بقوة على أول بُعد مهيمن يظهر في كل سؤال (R>I>A>S>E>C ضمنياً حسب ترتيب الملف). */
+function answersFavoring(dim: string): Record<string, number> {
+  const answers: Record<string, number> = {};
+  QUESTIONS.forEach((q) => {
+    const w = (q.dimensions as Record<string, number>)[dim];
+    if (w === undefined) {
+      answers[q.id] = 0;
+    } else {
+      answers[q.id] = w > 0 ? 1 : -1;
+    }
+  });
+  return answers;
+}
+
+describe("golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي)", () => {
+  it("كل الإجابات محايدة (0) — علمي، معدل 70، بلا درجات مواد", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFromWeight(0),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 70,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+    expect(ranked.length).toMatchSnapshot("عدد التخصصات المؤهَّلة (علمي، معدل 70)");
+  });
+
+  it("كل الإجابات 'نعم' (1) — أدبي، معدل 85، بلا درجات مواد", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFromWeight(1),
+        questionPool: QUESTIONS,
+        branch: "أدبي",
+        grade: 85,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("كل الإجابات 'لا' (-1) — فنون، معدل 60", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFromWeight(-1),
+        questionPool: QUESTIONS,
+        branch: "فنون",
+        grade: 60,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب واقعي عملي (R مهيمن) — علمي، معدل 75", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("R"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 75,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب استقصائي (I مهيمن) — علمي، معدل 92، بوابة الطب مفتوحة", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("I"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 92,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب استقصائي (I مهيمن) — علمي، معدل 80 (بوابة الطب مغلقة، تحت 85)", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("I"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 80,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    // لا تخصص من فئة "طبي" يجب أن يظهر إطلاقاً
+    expect(ranked.some((m) => m.category === "طبي")).toBe(false);
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب فني (A مهيمن) مع محور قرابة دراسية (رياضيات عالية) — علمي، معدل 88", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("A"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 88,
+        subjectGrades: { math: 95, physics: 60, chemistry: 60, biology: 60, arabic: 60, english: 60 },
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب اجتماعي (S مهيمن) — أدبي، معدل 78", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("S"),
+        questionPool: QUESTIONS,
+        branch: "أدبي",
+        grade: 78,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب مقاولاتي (E مهيمن) — علمي، معدل 65", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("E"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 65,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("طالب تقليدي منظَّم (C مهيمن) — أدبي، معدل 82", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFavoring("C"),
+        questionPool: QUESTIONS,
+        branch: "أدبي",
+        grade: 82,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
+  it("مساحة خالية: فرع غير معروف يُرجع صفر تخصصات مؤهَّلة", () => {
+    const ranked = rankMajors(
+      {
+        scoredAnswers: answersFromWeight(0),
+        questionPool: QUESTIONS,
+        branch: "غير موجود",
+        grade: 70,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    expect(ranked).toEqual([]);
+  });
+});
+
+describe("golden master: planTieBreak", () => {
+  it("لا ترجيح عند فارق كبير بين أفضل تخصصين", () => {
+    const ranked: RankedMajor[] = [
+      { id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 90, riasecFitPercent: 90, subjectFitPercent: null, combinedScore: 90 },
+      { id: "b", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 70, riasecFitPercent: 70, subjectFitPercent: null, combinedScore: 70 },
+    ];
+    const decision = planTieBreak(ranked, 0, new Set(), TIEBREAKERS, DATA.riasecProfiles);
+    expect(decision.needsTieBreak).toBe(false);
+    expect(decision.candidates).toEqual([]);
+  });
+
+  it("يطلق ترجيحاً عند فارق أقل من AMBIGUITY_THRESHOLD (6)، ويختار 6 أسئلة بالضبط لبُعدين", () => {
+    const ranked: RankedMajor[] = [
+      { id: "electrical_engineering", name: "هندسة الكهرباء", category: "هندسة", marketMultiplier: 1, fitPercent: 80, riasecFitPercent: 80, subjectFitPercent: null, combinedScore: 80 },
+      { id: "electrical_tech", name: "تقنيات الكهرباء", category: "تقنيات طبية مساندة", marketMultiplier: 1, fitPercent: 77, riasecFitPercent: 77, subjectFitPercent: null, combinedScore: 77 },
+    ];
+    const decision = planTieBreak(ranked, 0, new Set(), TIEBREAKERS, DATA.riasecProfiles);
+    expect(decision.needsTieBreak).toBe(true);
+    expect(decision.candidates.length).toBeGreaterThan(0);
+    expect(decision.tieBreakInfo).toEqual({ a: "هندسة الكهرباء", b: "تقنيات الكهرباء" });
+  });
+
+  it("يتوقف بعد 3 جولات (MAX_TIEBREAK_ROUNDS) حتى لو بقي الفارق ضئيلاً", () => {
+    const ranked: RankedMajor[] = [
+      { id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 71, riasecFitPercent: 71, subjectFitPercent: null, combinedScore: 71 },
+      { id: "b", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 70, riasecFitPercent: 70, subjectFitPercent: null, combinedScore: 70 },
+    ];
+    const decision = planTieBreak(ranked, 3, new Set(), TIEBREAKERS, DATA.riasecProfiles);
+    expect(decision.needsTieBreak).toBe(false);
+  });
+
+  it("لا ترجيح مع أقل من تخصصين مؤهَّلين", () => {
+    const decision = planTieBreak(
+      [{ id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 50, riasecFitPercent: 50, subjectFitPercent: null, combinedScore: 50 }],
+      0,
+      new Set(),
+      TIEBREAKERS,
+      DATA.riasecProfiles
+    );
+    expect(decision.needsTieBreak).toBe(false);
+  });
+});

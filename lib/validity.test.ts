@@ -191,3 +191,64 @@ describe("computeValidityRiskScore", () => {
     expect(result.score).toBe(0);
   });
 });
+
+// اختبارات مقياس الخمس نقاط (-1/-0.5/0/0.5/1) -- مرحلة 2026-09 من خطة إصلاح
+// الخوارزمية. القاعدة الحاكمة: كل ما أعلاه بمقياس 3 نقاط يبقى صحيحاً حرفياً
+// (تحقّقت الاختبارات أعلاه دون أي تعديل)؛ هذه الاختبارات تغطّي فقط ما هو
+// جديد أو متدرّج بفضل الدقة الإضافية.
+describe("computeValidityRiskScore — مقياس الخمس نقاط", () => {
+  it("موافقة معتدلة (0.5) على زوج تناقض تُكتشَف تماماً كموافقة كاملة (>=0.5 صريحة لا >0 وحدها)", () => {
+    const answers = { ...baselineAnswers(), q1: 0.5, q2: 0.5 };
+    const result = computeValidityRiskScore(answers, {}, {}, [CONTRADICTION_PAIRS[0]]);
+    expect(result.triggeredContradictions).toHaveLength(1);
+    expect(result.reasons).toContain("تناقض منطقي واحد بين إجاباتك");
+  });
+
+  it("موافقة معتدلة (0.5) واحدة فقط من زوج تناقض (الطرف الآخر محايد) لا تُطلِق التناقض", () => {
+    const answers = { ...baselineAnswers(), q1: 0.5, q2: 0 };
+    const result = computeValidityRiskScore(answers, {}, {}, [CONTRADICTION_PAIRS[0]]);
+    expect(result.triggeredContradictions).toHaveLength(0);
+  });
+
+  it("نمط ميل شديد لأطراف المقياس (كل الإجابات ±1 بلا أي درجة وسيطة) يُصعِّد النتيجة -- إشارة لا يمكن قياسها على 3 نقاط", () => {
+    const answers: Record<string, number> = {};
+    // إجابات طرفية متنوّعة (لا خط مستقيم -- نصفها 1 ونصفها -1) كي لا يُثير
+    // modeRatio بالخطأ، فقط pExtreme الجديد.
+    for (let i = 0; i < 20; i++) answers[`q${i}`] = i % 2 === 0 ? 1 : -1;
+    const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
+    expect(result.reasons).toContain("ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة");
+  });
+
+  it("إجابات معتدلة متنوّعة (0.5/-0.5 لا 1/-1) لا تُثير تحذير الميل الشديد للأطراف", () => {
+    const answers: Record<string, number> = {};
+    for (let i = 0; i < 20; i++) answers[`q${i}`] = i % 2 === 0 ? 0.5 : -0.5;
+    const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
+    expect(result.reasons).not.toContain(
+      "ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة"
+    );
+  });
+
+  it("انحراف جزئي (0.5) واحد عن سؤال التحقق من الانتباه أخفّ من انحراف كامل (1)، لكن كلاهما يُصعِّد", () => {
+    const partial = computeValidityRiskScore(baselineAnswers(), { q_attention_check: 0.5 }, {}, NO_CONTRADICTIONS);
+    const full = computeValidityRiskScore(baselineAnswers(), { q_attention_check: 1 }, {}, NO_CONTRADICTIONS);
+    expect(partial.reasons).toContain("لم تُجب كما طُلب في سؤال التحقق من الانتباه");
+    expect(partial.score).toBeGreaterThan(0);
+    expect(partial.score).toBeLessThan(full.score);
+  });
+
+  it("موافقة جزئية (0.5) على مقياس الصدق تُسجَّل بدرجة أخفّ من الموافقة الكاملة (1)", () => {
+    const partial = computeValidityRiskScore(baselineAnswers(), { q_lie_scale: 0.5 }, {}, NO_CONTRADICTIONS);
+    const full = computeValidityRiskScore(baselineAnswers(), { q_lie_scale: 1 }, {}, NO_CONTRADICTIONS);
+    expect(partial.reasons).toContain("إجابة غير واقعية إحصائياً في سؤال الصدق");
+    expect(partial.score).toBeLessThan(full.score);
+  });
+
+  it("عتبة الخط المستقيم المُعاد معايرتها (0.65/0.80 بدل 0.70/0.85) تكتشف تكراراً جزئياً على مقياس أدقّ", () => {
+    const answers: Record<string, number> = {};
+    // 65% من الإجابات نفس القيمة الحرفية (0.5) بالضبط -- تحت عتبة 3 نقاط
+    // القديمة (0.70) لكن فوق العتبة الجديدة (0.65).
+    for (let i = 0; i < 20; i++) answers[`q${i}`] = i < 13 ? 0.5 : -0.5;
+    const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
+    expect(result.reasons).toContain("تكرار كبير لنفس الإجابة عبر الأسئلة");
+  });
+});

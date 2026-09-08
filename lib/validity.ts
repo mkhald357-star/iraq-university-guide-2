@@ -173,8 +173,12 @@ export function computeValidityRiskScore(
     sdScore += 1;
     reasons.push("إجابتان متناقضتان منطقياً حول مساعدة الآخرين");
   }
-  if ((validityAnswers[LIE_SCALE_ID] ?? 0) === 1) {
-    sdScore += 1;
+  const lieScaleVal = validityAnswers[LIE_SCALE_ID] ?? 0;
+  if (lieScaleVal > 0) {
+    // متدرّج بحجم الموافقة (كان يتطلب v===1 بالضبط) -- موافقة كاملة على ادّعاء
+    // مبالغ فيه ("لم أفشل قط") أقوى إشارة من موافقة جزئية، لكن كلتاهما تستحق
+    // التسجيل. يساوي +1 حرفياً عند v=1 كما كان دائماً.
+    sdScore += lieScaleVal;
     reasons.push("إجابة غير واقعية إحصائياً في سؤال الصدق");
   }
 

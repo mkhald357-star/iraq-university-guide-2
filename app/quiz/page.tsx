@@ -781,6 +781,7 @@ export default function Quiz() {
   // ---- شاشة الأسئلة ----
   const question = displayedQuestions[currentQuestionIndex];
   const progress = (currentQuestionIndex / displayedQuestions.length) * 100;
+  const answerLabels = getAnswerLabels(question);
 
   return (
     <div className="max-w-2xl mx-auto py-12 space-y-8">

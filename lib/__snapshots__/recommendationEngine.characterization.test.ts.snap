@@ -1,6 +1,51 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > [مقياس 5 نقاط] طالب واقعي عملي بميل معتدل (0.5 لا 1) — علمي، معدل 75 — يُنتج توافقاً أقلّ تطرّفاً من الميل الحاسم 1`] = `
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > [مقياس 5 نقاط] الميل المعتدل (0.5) ينتج متجه مستخدم أقلّ تطرّفاً رياضياً من الميل الحاسم (1) على البُعد المستهدَف نفسه > الميل الحاسم (1) 1`] = `
+[
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 83.77,
+    "fitPercent": 83.77,
+    "id": "prosthetics_tech",
+    "riasecFitPercent": 83.77,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 82.58,
+    "fitPercent": 82.58,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 82.58,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 82.14,
+    "fitPercent": 82.14,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 82.14,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "زراعة",
+    "combinedScore": 81.5,
+    "fitPercent": 81.5,
+    "id": "agriculture",
+    "riasecFitPercent": 81.5,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 80.48,
+    "fitPercent": 80.48,
+    "id": "automotive_engineering",
+    "riasecFitPercent": 80.48,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > [مقياس 5 نقاط] الميل المعتدل (0.5) ينتج متجه مستخدم أقلّ تطرّفاً رياضياً من الميل الحاسم (1) على البُعد المستهدَف نفسه > الميل المعتدل (0.5) 1`] = `
 [
   {
     "category": "هندسة",

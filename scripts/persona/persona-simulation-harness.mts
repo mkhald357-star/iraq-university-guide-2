@@ -9,14 +9,14 @@
 // `npm install --no-save tsx` ثم شغّل أي سكربت `persona_XX_*.mts` عبر
 // `npx tsx scripts/persona_XX_....mts`. انظر التقرير المنشور لملخص كل
 // شخصية ونتائجها الكاملة (600 محاكاة، 5 أخطاء حقيقية اكتُشفت وأُصلحت).
-import questionsData from "../data/questions.json" with { type: "json" };
-import validityQuestionsData from "../data/validity_questions.json" with { type: "json" };
-import contradictionPairsData from "../data/contradiction_pairs.json" with { type: "json" };
-import majorsData from "../data/majors.json" with { type: "json" };
-import provincesData from "../data/provinces.json" with { type: "json" };
-import riasecProfilesData from "../data/major_riasec_profiles.json" with { type: "json" };
-import universitiesData from "../data/universities.json" with { type: "json" };
-import majorMappingsData from "../data/major_department_mapping.json" with { type: "json" };
+import questionsData from "../../data/questions.json" with { type: "json" };
+import validityQuestionsData from "../../data/validity_questions.json" with { type: "json" };
+import contradictionPairsData from "../../data/contradiction_pairs.json" with { type: "json" };
+import majorsData from "../../data/majors.json" with { type: "json" };
+import provincesData from "../../data/provinces.json" with { type: "json" };
+import riasecProfilesData from "../../data/major_riasec_profiles.json" with { type: "json" };
+import universitiesData from "../../data/universities.json" with { type: "json" };
+import majorMappingsData from "../../data/major_department_mapping.json" with { type: "json" };
 
 import {
   computeUserRiasecVector,

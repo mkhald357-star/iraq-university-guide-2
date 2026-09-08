@@ -107,15 +107,22 @@ export function runOneSimulation(
   const userVector = computeUserRiasecVector(scoredAnswers, questionsData as any);
   const allowedCats = BRANCH_MAP[filters.branch] || [];
   const gradeIsHigh = filters.grade >= 85;
+  const subjectVector = computeSubjectAffinityVector(filters.subjectGrades ?? {}, filters.grade);
 
   const processed = majorsData
     .map((m) => {
       const profile = (riasecProfilesData.profiles as Record<string, any>)[m.id] ?? {};
-      const fitPercent = computeMajorFit(userVector, profile);
+      const riasecFitPercent = computeMajorFit(userVector, profile);
+      const majorSubjectWeights = (subjectAffinityWeightsData.weights as Record<string, any>)[m.id] ?? {};
+      const subjectFitPercent = computeSubjectAffinityFit(subjectVector, majorSubjectWeights);
+      const fitPercent =
+        subjectFitPercent === null
+          ? riasecFitPercent
+          : riasecFitPercent * (1 - SUBJECT_AFFINITY_BLEND_WEIGHT) + subjectFitPercent * SUBJECT_AFFINITY_BLEND_WEIGHT;
       let valid = allowedCats.includes(m.category);
       if (!gradeIsHigh && m.category === "طبي") valid = false;
       const combinedScore = computeCombinedRankingScore(fitPercent, m.marketMultiplier);
-      return { ...m, fitPercent, combinedScore, valid };
+      return { ...m, fitPercent, riasecFitPercent, subjectFitPercent, combinedScore, valid };
     })
     .filter((m) => m.valid);
 

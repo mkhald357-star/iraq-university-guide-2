@@ -25,7 +25,7 @@
     "build-major-projects": "node scripts/build-major-projects.js",
     "compute-homepage-stats": "node scripts/compute-homepage-stats.js",
     "og": "node scripts/generate-og-image.js",
-    "personas": "for f in scripts/persona/persona_*.mts; do npx tsx \"$f\"; done",
+    "personas": "node scripts/run-personas.js",
     "a11y-check": "node scripts/a11y-check.js",
     "snapshot": "node scripts/generate-project-snapshot.js",
     "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run compute-homepage-stats && npm run validate-data"

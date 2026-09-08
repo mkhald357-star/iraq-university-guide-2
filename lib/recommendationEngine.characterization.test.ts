@@ -1,4 +1,5 @@
 import { describe, it, expect } from "vitest";
+import { computeUserRiasecVector } from "./riasec";
 import { rankMajors, planTieBreak, type RankMajorsData, type RankedMajor } from "./recommendationEngine";
 import questionsData from "../data/questions.json";
 import majorsData from "../data/majors.json";

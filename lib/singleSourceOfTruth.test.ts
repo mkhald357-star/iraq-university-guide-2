@@ -74,6 +74,7 @@ describe("مصدر وحيد للبيانات الحرجة -- لا نسخ مكر�
     const allowList = new Set([
       "lib/recommendationEngine.ts",
       "lib/recommendationEngine.characterization.test.ts",
+      "lib/singleSourceOfTruth.test.ts", // يحتوي نصّي البحث نفسيهما كسلاسل حرفية في `signature`
       "app/quiz/page.tsx", // يستهلك RankedMajor.combinedScore لإعادة الفرز التفاعلي بمنزلق السوق فقط، لا إعادة حساب
     ]);
     const hits = SOURCE_FILES.filter((f) => {

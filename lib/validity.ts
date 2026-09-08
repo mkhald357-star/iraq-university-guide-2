@@ -93,7 +93,11 @@ export function computeValidityRiskScore(
   const values = Object.values(scoredAnswers);
   const n = values.length;
 
-  // 1) كشف الإجابة المتطابقة (Straight-Lining)
+  // 1) كشف الإجابة المتطابقة (Straight-Lining) -- عتبات مُعاد معايرتها لمقياس
+  // الخمس نقاط (كانت 0.85/0.70 لمقياس 3 نقاط): بخمس قيم أدقّ، تطابق عشوائي
+  // بالصدفة على نفس القيمة الحرفية أقل احتمالاً من مقياس 3 نقاط، فيمكن خفض
+  // العتبة قليلاً دون زيادة الإيجابيات الكاذبة -- بينما إجابة متكررة فعلياً
+  // (نقرة واحدة متكررة بصرف النظر عن عدد الأزرار) تبقى مكتشَفة بلا تغيير.
   if (n > 0) {
     const counts: Record<string, number> = {};
     values.forEach((v) => {
@@ -101,12 +105,26 @@ export function computeValidityRiskScore(
     });
     const modeCount = Math.max(...Object.values(counts));
     const modeRatio = modeCount / n;
-    if (modeRatio >= 0.85) {
+    if (modeRatio >= 0.8) {
       score += 3;
       reasons.push("إجابات شبه متطابقة عبر كل الأسئلة");
-    } else if (modeRatio >= 0.7) {
+    } else if (modeRatio >= 0.65) {
       score += 1.5;
       reasons.push("تكرار كبير لنفس الإجابة عبر الأسئلة");
+    }
+  }
+
+  // 1-ب) نمط الميل الشديد لأطراف المقياس -- إشارة جديدة لا يمكن قياسها على
+  // مقياس 3 نقاط أصلاً (كل إجابة غير محايدة كانت طرفية بالتعريف). طالب يختار
+  // "أوافق بشدة"/"لا أوافق إطلاقاً" في كل الأسئلة تقريباً، بلا أي درجة
+  // متوسطة، نمط استجابة معروف نفسياً (extreme response style) يستحق تنبيهاً
+  // مستقلاً عن الخط المستقيم (قد تتنوّع الإجابات طرفياً بين نعم/لا بشدة دون
+  // أي تكرار حرفي يُثير modeRatio).
+  if (n > 0) {
+    const pExtreme = values.filter((v) => Math.abs(v) === 1).length / n;
+    if (pExtreme > 0.9) {
+      score += 1;
+      reasons.push("ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة");
     }
   }
 

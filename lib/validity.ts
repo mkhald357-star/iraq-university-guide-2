@@ -140,7 +140,10 @@ export function computeValidityRiskScore(
   const triggered: ContradictionPair[] = contradictionPairs.filter((pair) => {
     const va = scoredAnswers[pair.a] ?? 0;
     const vb = scoredAnswers[pair.b] ?? 0;
-    return va > 0 && vb > 0;
+    // >= 0.5 صريحاً (لا > 0 كما كان) -- على مقياس القيم المسموحة
+    // {-1,-0.5,0,0.5,1} كلاهما يلتقط بالضبط نفس المجموعة {0.5,1}، فهذا
+    // توضيح للنيّة لا تغيير سلوكي.
+    return va >= 0.5 && vb >= 0.5;
   });
   if (triggered.length >= 4) {
     score += 6;

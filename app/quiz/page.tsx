@@ -11,7 +11,14 @@ import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
-import { computeUserRiasecVector, topDimensions, RIASEC_LABELS, type RiasecDimension, type RiasecVector } from "../../lib/riasec";
+import {
+  computeUserRiasecVector,
+  computeCombinedRankingScore,
+  topDimensions,
+  RIASEC_LABELS,
+  type RiasecDimension,
+  type RiasecVector,
+} from "../../lib/riasec";
 import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
 import { type SubjectGrades } from "../../lib/subjectAffinity";
 import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";

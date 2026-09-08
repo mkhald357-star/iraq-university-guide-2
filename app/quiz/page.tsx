@@ -837,24 +837,39 @@ export default function Quiz() {
         className="a-fade flex min-h-[350px] flex-col justify-center space-y-12 text-center"
       >
         <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{question.text}</h1>
-        <div className="flex flex-col gap-4 mt-auto">
+        <div className="flex flex-col gap-2.5 mt-auto">
+          {/* مقياس خمس نقاط (أوافق بشدة → لا أوافق إطلاقاً) بدل ثلاثة --
+              معلومة أدقّ لكل سؤال بلا إعادة كتابة الأسئلة نفسها، انظر
+              getAnswerLabels أعلاه واختبارات lib/validity.test.ts. */}
           <button
             onClick={() => handleAnswer(1)}
-            className="bg-primary-solid text-white p-4 rounded-xl font-bold text-lg hover:bg-primary-solid-hover transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-primary-solid text-white p-3.5 rounded-xl font-bold text-base hover:bg-primary-solid-hover transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            {question.answerLabels?.yes ?? "نعم، بالتأكيد"}
+            {answerLabels.stronglyYes}
+          </button>
+          <button
+            onClick={() => handleAnswer(0.5)}
+            className="bg-primary-50 text-primary-text border border-primary-200 p-3.5 rounded-xl font-bold text-base hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            {answerLabels.yes}
           </button>
           <button
             onClick={() => handleAnswer(0)}
-            className="bg-primary-50 text-primary-text border border-primary-200 p-4 rounded-xl font-bold text-lg hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-surface text-ink-soft border border-line p-3.5 rounded-xl font-bold text-base hover:bg-surface-muted transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            {question.answerLabels?.maybe ?? "ربما / أحياناً"}
+            {answerLabels.maybe}
+          </button>
+          <button
+            onClick={() => handleAnswer(-0.5)}
+            className="bg-surface-muted text-ink-soft border border-line p-3.5 rounded-xl font-bold text-base hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
+          >
+            {answerLabels.no}
           </button>
           <button
             onClick={() => handleAnswer(-1)}
-            className="bg-surface-muted text-ink-soft border border-line p-4 rounded-xl font-bold text-lg hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
+            className="bg-surface-muted text-ink border border-line-strong p-3.5 rounded-xl font-bold text-base hover:bg-line/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
           >
-            {question.answerLabels?.no ?? "لا، إطلاقاً"}
+            {answerLabels.stronglyNo}
           </button>
         </div>
       </Card>

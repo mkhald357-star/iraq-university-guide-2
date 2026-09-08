@@ -53,16 +53,36 @@ describe("مصدر وحيد للبيانات الحرجة -- لا نسخ مكر�
     expect(hits).toEqual(["lib/branchEligibility.ts"]);
   });
 
-  it('بوابة "المعدل >= 85" لا تظهر إلا في المواضع المعروفة والمُوثَّقة حالياً', () => {
-    // ⚠️ هذه القائمة مؤقتة عمداً: البوابة لا تزال حبيسة app/quiz/page.tsx (لم
-    // تُستخرَج إلى lib/recommendationEngine.ts بعد -- تلك مرحلة لاحقة من
-    // الخطة). نسخة scripts/persona تحاكيها عمداً لتطابق سلوك المنصّة الفعلي.
-    // أي ملف ثالث يحتوي هذا النمط = نسخة جديدة غير مقصودة، اكتشفها هذا الاختبار.
+  it('بوابة "المعدل >= 85" الحرفية لا تظهر في أي ملف -- القيمة الآن ثابت وحيد مُسمّى', () => {
+    // بعد استخراج lib/recommendationEngine.ts (MEDICAL_GATE_GRADE) من
+    // app/quiz/page.tsx، وتحويل حزام محاكاة الشخصيات لاستدعاء rankMajors()
+    // مباشرة بدل إعادة تنفيذ البوابة محلياً، لم يعد الرقم 85 مكتوباً حرفياً
+    // كمقارنة في أي مكان -- فقط في تعريف الثابت نفسه. أي ظهور جديد لهذا
+    // النمط = نسخة موازية غير مقصودة، يكتشفها هذا الاختبار فوراً.
     const pattern = /grade\s*>=\s*85/;
     const hits = SOURCE_FILES.filter((f) => pattern.test(fs.readFileSync(f, "utf8"))).map((f) =>
       path.relative(ROOT, f).replace(/\\/g, "/")
     );
-    expect(hits.sort()).toEqual(["app/quiz/page.tsx", "scripts/persona/persona-simulation-harness.mts"].sort());
+    expect(hits).toEqual([]);
+  });
+
+  it("خط أنابيب الترتيب (rankMajors) مصدر وحيد، ولا مكوّن/سكربت يعيد تنفيذه محلياً", () => {
+    // نبحث عن بصمة إعادة التنفيذ القديمة (فرز بحسب combinedScore + فلترة
+    // بحسب فئة التخصص معاً في نفس الملف) خارج lib/recommendationEngine.ts
+    // نفسه وملف اختباره التوصيفي.
+    const signature = ["combinedScore", "allowedCat"];
+    const allowList = new Set([
+      "lib/recommendationEngine.ts",
+      "lib/recommendationEngine.characterization.test.ts",
+      "app/quiz/page.tsx", // يستهلك RankedMajor.combinedScore لإعادة الفرز التفاعلي بمنزلق السوق فقط، لا إعادة حساب
+    ]);
+    const hits = SOURCE_FILES.filter((f) => {
+      const rel = path.relative(ROOT, f).replace(/\\/g, "/");
+      if (allowList.has(rel)) return false;
+      const content = fs.readFileSync(f, "utf8");
+      return signature.every((s) => content.includes(s));
+    }).map((f) => path.relative(ROOT, f).replace(/\\/g, "/"));
+    expect(hits).toEqual([]);
   });
 
   it("scripts/archive لم يعد يحتوي أي نسخة من محرّك محاكاة الشخصيات (انتقل كاملاً إلى scripts/persona)", () => {

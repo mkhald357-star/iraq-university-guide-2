@@ -26,6 +26,7 @@ import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/va
 import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "../../lib/subjectAffinity";
 import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
 import { IconBadge, Badge, Card, SelectField, InputField, Alert } from "../components/ui";
+import { BRANCH_CATEGORY_MAP } from "../../lib/branchEligibility";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {

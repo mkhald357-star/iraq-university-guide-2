@@ -1,0 +1,453 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب اجتماعي (S مهيمن) — أدبي، معدل 78 1`] = `
+[
+  {
+    "category": "تربية",
+    "combinedScore": 82.24,
+    "fitPercent": 82.24,
+    "id": "education",
+    "riasecFitPercent": 82.24,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تربية",
+    "combinedScore": 80.03,
+    "fitPercent": 80.03,
+    "id": "kindergarten_education",
+    "riasecFitPercent": 80.03,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 79.08,
+    "fitPercent": 79.08,
+    "id": "tourism_hospitality",
+    "riasecFitPercent": 79.08,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تربية",
+    "combinedScore": 77.98,
+    "fitPercent": 77.98,
+    "id": "physical_education",
+    "riasecFitPercent": 77.98,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 77.36,
+    "fitPercent": 77.36,
+    "id": "psychology_sociology",
+    "riasecFitPercent": 77.36,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب استقصائي (I مهيمن) — علمي، معدل 80 (بوابة الطب مغلقة، تحت 85) 1`] = `
+[
+  {
+    "category": "هندسة",
+    "combinedScore": 82.8,
+    "fitPercent": 82.8,
+    "id": "biomedical_engineering",
+    "riasecFitPercent": 82.8,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 81.98,
+    "fitPercent": 81.98,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 81.98,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 80.38,
+    "fitPercent": 80.38,
+    "id": "communications_engineering",
+    "riasecFitPercent": 80.38,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 79.7,
+    "fitPercent": 79.7,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 79.7,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 79.67,
+    "fitPercent": 79.67,
+    "id": "electronics_comm_tech",
+    "riasecFitPercent": 79.67,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب استقصائي (I مهيمن) — علمي، معدل 92، بوابة الطب مفتوحة 1`] = `
+[
+  {
+    "category": "طبي",
+    "combinedScore": 83.13,
+    "fitPercent": 83.13,
+    "id": "dentistry",
+    "riasecFitPercent": 83.13,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 82.8,
+    "fitPercent": 82.8,
+    "id": "biomedical_engineering",
+    "riasecFitPercent": 82.8,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 81.98,
+    "fitPercent": 81.98,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 81.98,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 80.38,
+    "fitPercent": 80.38,
+    "id": "communications_engineering",
+    "riasecFitPercent": 80.38,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 79.7,
+    "fitPercent": 79.7,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 79.7,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب تقليدي منظَّم (C مهيمن) — أدبي، معدل 82 1`] = `
+[
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 79.6,
+    "fitPercent": 79.6,
+    "id": "project_management",
+    "riasecFitPercent": 79.6,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 79.38,
+    "fitPercent": 79.38,
+    "id": "islamic_studies",
+    "riasecFitPercent": 79.38,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 78.76,
+    "fitPercent": 78.76,
+    "id": "accounting",
+    "riasecFitPercent": 78.76,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 78.56,
+    "fitPercent": 78.56,
+    "id": "financial_banking",
+    "riasecFitPercent": 78.56,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 77.58,
+    "fitPercent": 77.58,
+    "id": "geography",
+    "riasecFitPercent": 77.58,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب فني (A مهيمن) مع محور قرابة دراسية (رياضيات عالية) — علمي، معدل 88 1`] = `
+[
+  {
+    "category": "هندسة",
+    "combinedScore": 84.27,
+    "fitPercent": 84.27,
+    "id": "architecture",
+    "riasecFitPercent": 89.76,
+    "subjectFitPercent": 71.47,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 81.24,
+    "fitPercent": 81.24,
+    "id": "urban_regional_planning_engineering",
+    "riasecFitPercent": 84.04,
+    "subjectFitPercent": 74.72,
+  },
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 71.55,
+    "fitPercent": 71.55,
+    "id": "cosmetic_science_tech",
+    "riasecFitPercent": 79.41,
+    "subjectFitPercent": 53.21,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 70.95,
+    "fitPercent": 70.95,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 77.56,
+    "subjectFitPercent": 55.54,
+  },
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 69.95,
+    "fitPercent": 69.95,
+    "id": "prosthetics_tech",
+    "riasecFitPercent": 76.12,
+    "subjectFitPercent": 55.54,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب مقاولاتي (E مهيمن) — علمي، معدل 65 1`] = `
+[
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 79.52,
+    "fitPercent": 79.52,
+    "id": "digital_marketing",
+    "riasecFitPercent": 79.52,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 78.87,
+    "fitPercent": 78.87,
+    "id": "tourism_hospitality",
+    "riasecFitPercent": 78.87,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 78.64,
+    "fitPercent": 78.64,
+    "id": "project_management",
+    "riasecFitPercent": 78.64,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إدارة وتسويق",
+    "combinedScore": 76.4,
+    "fitPercent": 76.4,
+    "id": "business_admin",
+    "riasecFitPercent": 76.4,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 75.54,
+    "fitPercent": 75.54,
+    "id": "urban_regional_planning_engineering",
+    "riasecFitPercent": 75.54,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > طالب واقعي عملي (R مهيمن) — علمي، معدل 75 1`] = `
+[
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 83.77,
+    "fitPercent": 83.77,
+    "id": "prosthetics_tech",
+    "riasecFitPercent": 83.77,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 82.58,
+    "fitPercent": 82.58,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 82.58,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 82.14,
+    "fitPercent": 82.14,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 82.14,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "زراعة",
+    "combinedScore": 81.5,
+    "fitPercent": 81.5,
+    "id": "agriculture",
+    "riasecFitPercent": 81.5,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 80.48,
+    "fitPercent": 80.48,
+    "id": "automotive_engineering",
+    "riasecFitPercent": 80.48,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > كل الإجابات 'لا' (-1) — فنون، معدل 60 1`] = `
+[
+  {
+    "category": "فنون وتصميم",
+    "combinedScore": 61.31,
+    "fitPercent": 61.31,
+    "id": "industrial_craft_design",
+    "riasecFitPercent": 61.31,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "فنون وتصميم",
+    "combinedScore": 56.79,
+    "fitPercent": 56.79,
+    "id": "interior_design",
+    "riasecFitPercent": 56.79,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "فنون وتصميم",
+    "combinedScore": 55.95,
+    "fitPercent": 55.95,
+    "id": "graphic_design",
+    "riasecFitPercent": 55.95,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "فنون وتصميم",
+    "combinedScore": 55.82,
+    "fitPercent": 55.82,
+    "id": "fine_arts",
+    "riasecFitPercent": 55.82,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "فنون وتصميم",
+    "combinedScore": 51.42,
+    "fitPercent": 51.42,
+    "id": "music_performing_arts",
+    "riasecFitPercent": 51.42,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > كل الإجابات 'نعم' (1) — أدبي، معدل 85، بلا درجات مواد 1`] = `
+[
+  {
+    "category": "إنسانيات",
+    "combinedScore": 53.33,
+    "fitPercent": 53.33,
+    "id": "media_journalism",
+    "riasecFitPercent": 53.33,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "لغات",
+    "combinedScore": 51.39,
+    "fitPercent": 51.39,
+    "id": "foreign_languages_other",
+    "riasecFitPercent": 51.39,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 50.45,
+    "fitPercent": 50.45,
+    "id": "psychology_sociology",
+    "riasecFitPercent": 50.45,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "لغات",
+    "combinedScore": 50.33,
+    "fitPercent": 50.33,
+    "id": "arabic_language",
+    "riasecFitPercent": 50.33,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "إنسانيات",
+    "combinedScore": 49.46,
+    "fitPercent": 49.46,
+    "id": "geography",
+    "riasecFitPercent": 49.46,
+    "subjectFitPercent": null,
+  },
+]
+`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > كل الإجابات محايدة (0) — علمي، معدل 70، بلا درجات مواد > عدد التخصصات المؤهَّلة (علمي، معدل 70) 1`] = `60`;
+
+exports[`golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي) > كل الإجابات محايدة (0) — علمي، معدل 70، بلا درجات مواد 1`] = `
+[
+  {
+    "category": "هندسة",
+    "combinedScore": 86.46,
+    "fitPercent": 86.46,
+    "id": "urban_regional_planning_engineering",
+    "riasecFitPercent": 86.46,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 84.72,
+    "fitPercent": 84.72,
+    "id": "optometry_audiology_tech",
+    "riasecFitPercent": 84.72,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 84.19,
+    "fitPercent": 84.19,
+    "id": "prosthetics_engineering",
+    "riasecFitPercent": 84.19,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "هندسة",
+    "combinedScore": 83.17,
+    "fitPercent": 83.17,
+    "id": "renewable_energy_tech",
+    "riasecFitPercent": 83.17,
+    "subjectFitPercent": null,
+  },
+  {
+    "category": "تقنيات طبية مساندة",
+    "combinedScore": 82.2,
+    "fitPercent": 82.2,
+    "id": "prosthetics_tech",
+    "riasecFitPercent": 82.2,
+    "subjectFitPercent": null,
+  },
+]
+`;

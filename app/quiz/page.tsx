@@ -11,22 +11,17 @@ import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
-import {
-  computeUserRiasecVector,
-  computeMajorFit,
-  computeCombinedRankingScore,
-  topDimensions,
-  findDivergentDimensions,
-  selectQuestionsForDimensions,
-  RIASEC_LABELS,
-  type RiasecDimension,
-  type RiasecVector,
-} from "../../lib/riasec";
+import { computeUserRiasecVector, topDimensions, RIASEC_LABELS, type RiasecDimension, type RiasecVector } from "../../lib/riasec";
 import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
-import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "../../lib/subjectAffinity";
+import { type SubjectGrades } from "../../lib/subjectAffinity";
 import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
 import { IconBadge, Badge, Card, SelectField, InputField, Alert } from "../components/ui";
-import { BRANCH_CATEGORY_MAP } from "../../lib/branchEligibility";
+import {
+  rankMajors,
+  planTieBreak,
+  type RankMajorsData,
+  type RankedMajor,
+} from "../../lib/recommendationEngine";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {

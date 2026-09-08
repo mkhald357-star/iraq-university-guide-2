@@ -39,8 +39,44 @@ interface QuizItem {
   // العامة بنص يوضّح صراحة أي طرف من المقارنة يختاره كل زر، فيزول غموض "لا،
   // إطلاقاً" (هل يعني رفض A لصالح B، أم رفض الاثنين معاً؟) دون أي تغيير على
   // dimensions أو آلية التسجيل نفسها. الأسئلة الأخرى بلا هذا الحقل تستخدم
-  // الأزرار العامة كما هي (fallback).
-  answerLabels?: { yes: string; maybe: string; no: string };
+  // الأزرار العامة كما هي (fallback). stronglyYes/stronglyNo اختياريان
+  // (مقياس الخمس نقاط) -- لا سؤال حالياً يملؤهما، تُشتَق آلياً في
+  // getAnswerLabels بدل إعادة كتابة الأربعين سؤالاً.
+  answerLabels?: { yes: string; maybe: string; no: string; stronglyYes?: string; stronglyNo?: string };
+}
+
+interface FiveLevelLabels {
+  stronglyYes: string;
+  yes: string;
+  maybe: string;
+  no: string;
+  stronglyNo: string;
+}
+
+const GENERIC_ANSWER_LABELS: FiveLevelLabels = {
+  stronglyYes: "أوافق بشدة",
+  yes: "أوافق",
+  maybe: "محايد",
+  no: "لا أوافق",
+  stronglyNo: "لا أوافق إطلاقاً",
+};
+
+// ترقية من مقياس 3 نقاط (نعم/ربما/لا) إلى 5 (مع درجتَي شدّة) -- بلا إعادة
+// كتابة الأسئلة الأربعين الحالية. أسئلة المقارنة الصريحة (answerLabels
+// مخصَّصة) كُتبت أصلاً بصيغة "...بوضوح" في طرفيها (yes/no)، فتلائم درجتَي
+// التطرّف الجديدتين تماماً بلا تعديل؛ الدرجتان الوسيطتان نص واجهة عام محايد
+// عن مضمون السؤال (لا ادّعاء بيانات جديد)، ويُفهَمان من موضعهما بين الطرف
+// القوي والمحايد.
+function getAnswerLabels(q: QuizItem): FiveLevelLabels {
+  if (!q.answerLabels) return GENERIC_ANSWER_LABELS;
+  const { yes, maybe, no, stronglyYes, stronglyNo } = q.answerLabels;
+  return {
+    stronglyYes: stronglyYes ?? yes,
+    yes: "أميل لهذا الجانب",
+    maybe,
+    no: "أميل للجانب الآخر",
+    stronglyNo: stronglyNo ?? no,
+  };
 }
 
 // قائمة المحافظات مولَّدة من بيانات الجامعات الفعلية عبر خط أنابيب

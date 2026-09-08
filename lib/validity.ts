@@ -160,7 +160,10 @@ export function computeValidityRiskScore(
   let sdScore = 0;
   const attentionVal = validityAnswers[ATTENTION_CHECK_ID];
   if (attentionVal !== undefined && attentionVal !== 0) {
-    score += 4;
+    // تصعيد متدرّج بحجم الانحراف عن الإجابة المطلوبة (محايد=0) -- انحراف
+    // خطوة واحدة (±0.5، ربما نقرة خاطئة قريبة) أخف من انحراف كامل (±1،
+    // تجاهل صريح للتعليمة). يساوي +4 حرفياً عند |v|=1 كما كان دائماً.
+    score += 4 * Math.abs(attentionVal);
     reasons.push("لم تُجب كما طُلب في سؤال التحقق من الانتباه");
   }
   const helpOthers = scoredAnswers[HELP_OTHERS_ID] ?? 0;

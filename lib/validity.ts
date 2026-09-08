@@ -68,10 +68,13 @@ function computeDimensionConsistency(scoredAnswers: Record<string, number>, ques
 }
 
 /**
- * @param scoredAnswers إجابات كل الأسئلة المُسجَّلة على RIASEC (-1/0/1)، أي كل
- *   ما ليس سؤال تحقق (validity item).
+ * @param scoredAnswers إجابات كل الأسئلة المُسجَّلة على RIASEC، أي كل ما ليس
+ *   سؤال تحقق (validity item). مقياس خمس نقاط: -1/-0.5/0/0.5/1 (مرحلة
+ *   ترقية الإجابة من 3 إلى 5 نقاط، 2026-09) -- كل الإشارات أدناه مُصمَّمة
+ *   لتُعيد حرفياً نفس نتيجة مقياس 3 نقاط الأصلي متى وردت قيم -1/0/1 فقط،
+ *   فلا تنحدر أي معايرة قائمة.
  * @param validityAnswers إجابات أسئلة التحقق الثلاثة فقط (q_attention_check،
- *   q_help_others_reverse، q_lie_scale)، بنفس مقياس -1/0/1.
+ *   q_help_others_reverse، q_lie_scale)، بنفس المقياس.
  * @param timingsMs زمن الإجابة بالمللي ثانية لكل سؤال (سجلّ فارغ إن لم يُقَس).
  * @param contradictionPairs جدول أزواج التناقض المنطقي القابل للتوسعة.
  * @param questions بيانات أبعاد الأسئلة المُسجَّلة (اختياري) — إن مُرِّرت

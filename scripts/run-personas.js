@@ -17,12 +17,22 @@ if (files.length === 0) {
   process.exit(1);
 }
 
+// استدعاء تنفيذي tsx المحلي مباشرة (لا npx، لا shell:true) -- يتفادى تحذير
+// Node الأمني حول تمرير وسائط لعملية فرعية عبر shell.
+const tsxBin = path.join(
+  __dirname,
+  "..",
+  "node_modules",
+  ".bin",
+  process.platform === "win32" ? "tsx.cmd" : "tsx"
+);
+
 let failed = 0;
 for (const file of files) {
   const full = path.join(dir, file);
   console.log(`\n=== ${file} ===`);
   try {
-    execFileSync("npx", ["tsx", full], { stdio: "inherit", shell: true });
+    execFileSync(tsxBin, [full], { stdio: "inherit" });
   } catch {
     failed++;
     console.error(`فشل تشغيل ${file}`);

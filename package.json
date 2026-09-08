@@ -25,6 +25,7 @@
     "build-major-projects": "node scripts/build-major-projects.js",
     "compute-homepage-stats": "node scripts/compute-homepage-stats.js",
     "og": "node scripts/generate-og-image.js",
+    "personas": "for f in scripts/persona/persona_*.mts; do npx tsx \"$f\"; done",
     "a11y-check": "node scripts/a11y-check.js",
     "snapshot": "node scripts/generate-project-snapshot.js",
     "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run compute-homepage-stats && npm run validate-data"
@@ -52,6 +53,7 @@
     "postcss": "^8",
     "prettier": "^3.9.6",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.23.13",
     "typescript": "^5",
     "vitest": "^4.1.10"
   }

@@ -1,15 +1,20 @@
-// محرك محاكاة مشترك يستدعي منطق المنصة الحقيقي مباشرة (lib/riasec.ts،
-// lib/majorMatcher.ts، lib/validity.ts) بلا أي إعادة تنفيذ موازية قد
-// تنحرف عن الكود الفعلي — كل عميل محاكاة (20 عميلاً × 30 محاكاة) يستورد
-// هذا الملف بدل إعادة كتابة الخوارزميات بنفسه، لضمان أن كل النتائج تقيس
-// السلوك الحقيقي للمنصة كما يراه الطالب فعلياً في المتصفح.
+// محرك محاكاة مشترك يستدعي منطق المنصة الحقيقي مباشرة -- lib/riasec.ts،
+// lib/validity.ts، lib/majorMatcher.ts، **وlib/recommendationEngine.ts
+// لخط أنابيب الترتيب كاملاً (فرع + بوابة معدل + RIASEC + قرابة دراسية)،
+// لا إعادة تنفيذ موازية له هنا بعد اليوم**. كل عميل محاكاة (20 عميلاً × 30
+// محاكاة) يستورد هذا الملف بدل إعادة كتابة الخوارزميات بنفسه، لضمان أن كل
+// النتائج تقيس السلوك الحقيقي للمنصة كما يراه الطالب فعلياً في المتصفح.
 //
 // للتشغيل: `npx tsx scripts/persona/persona_XX_....mts` (tsx في
-// devDependencies الآن -- نُقل من scripts/archive/ بعد اكتشاف انحراف حقيقي
-// في BRANCH_MAP هنا (كان ناقصاً "تقنيات طبية مساندة")، أُصلح بالاستيراد من
-// lib/branchEligibility.ts بدل النسخ. أُضيف أيضاً مزيج القرابة الدراسية
-// (SUBJECT_AFFINITY_BLEND_WEIGHT) الذي كان غائباً هنا رغم وجوده في المنصّة
-// الفعلية منذ فترة -- كل محاكاة سابقة بهذا الحزام كانت RIASEC خالصاً.
+// devDependencies).
+//
+// تاريخ الإصلاح: هذا الملف كان يعيد تنفيذ خط أنابيب الترتيب كاملاً بنفسه
+// (نسخة محلية من BRANCH_MAP ناقصة "تقنيات طبية مساندة" -- 9 تخصصات غابت عن
+// كل الـ600 محاكاة المؤرشفة سابقاً -- وبلا مزيج القرابة الدراسية إطلاقاً).
+// بعد استخراج lib/recommendationEngine.ts من app/quiz/page.tsx (نفس خط
+// الأنابيب حرفياً، مُثبَّت بـlib/recommendationEngine.characterization.test.ts)
+// صار هذا الملف يستدعيه مباشرة بدل إعادة تنفيذه -- فينحرف الاثنان معاً وقت
+// أي تغيير مستقبلي، أو لا ينحرف أيّ منهما إطلاقاً.
 import questionsData from "../../data/questions.json" with { type: "json" };
 import validityQuestionsData from "../../data/validity_questions.json" with { type: "json" };
 import contradictionPairsData from "../../data/contradiction_pairs.json" with { type: "json" };
@@ -18,32 +23,26 @@ import provincesData from "../../data/provinces.json" with { type: "json" };
 import riasecProfilesData from "../../data/major_riasec_profiles.json" with { type: "json" };
 import universitiesData from "../../data/universities.json" with { type: "json" };
 import majorMappingsData from "../../data/major_department_mapping.json" with { type: "json" };
+import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json" with { type: "json" };
 
-import {
-  computeUserRiasecVector,
-  computeMajorFit,
-  computeCombinedRankingScore,
-  topDimensions,
-  RIASEC_LABELS,
-  type RiasecDimension,
-} from "../../lib/riasec.ts";
+import { computeUserRiasecVector, topDimensions, type RiasecDimension } from "../../lib/riasec.ts";
 import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity.ts";
 import { findUniversitiesForMajor, rankUniversityOfferings, type University } from "../../lib/majorMatcher.ts";
-import { computeSubjectAffinityVector, computeSubjectAffinityFit } from "../../lib/subjectAffinity.ts";
-import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json" with { type: "json" };
 import { BRANCH_CATEGORY_MAP } from "../../lib/branchEligibility.ts";
+import { rankMajors, type RankMajorsData } from "../../lib/recommendationEngine.ts";
 
 export const AVAILABLE_PROVINCES = provincesData as string[];
 export const ALL_QUESTIONS = [...questionsData, ...validityQuestionsData];
 const VALIDITY_IDS = new Set(validityQuestionsData.map((q) => q.id));
 
-// مصدر وحيد الآن: lib/branchEligibility.ts. هذه النسخة المحلية كانت منحرفة
-// فعلياً -- ناقصة "تقنيات طبية مساندة" (9 تخصصات)، ما جعل كل الـ600 محاكاة
-// المؤرشفة سابقاً تتعامل مع 58 تخصصاً علمياً لا 67. أُصلح بالاستيراد المباشر
-// بدل نسخ الخريطة، فلا يتكرر هذا الانحراف مستقبلاً.
 export const BRANCH_MAP: Record<string, string[]> = BRANCH_CATEGORY_MAP as Record<string, string[]>;
 export const BRANCHES = Object.keys(BRANCH_MAP);
-const SUBJECT_AFFINITY_BLEND_WEIGHT = 0.3; // مطابق لـapp/quiz/page.tsx:519 -- كان غائباً هنا سابقاً
+
+const ENGINE_DATA: RankMajorsData = {
+  majors: majorsData,
+  riasecProfiles: riasecProfilesData.profiles as RankMajorsData["riasecProfiles"],
+  subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
+};
 
 export interface FilterSettings {
   province: string;

@@ -4,11 +4,12 @@
 // هذا الملف بدل إعادة كتابة الخوارزميات بنفسه، لضمان أن كل النتائج تقيس
 // السلوك الحقيقي للمنصة كما يراه الطالب فعلياً في المتصفح.
 //
-// للتشغيل: يحتاج tsx (غير مثبَّت بشكل دائم في package.json عمداً، بنفس
-// نهج Playwright السابق في هذا المشروع) — ثبّته مؤقتاً بـ
-// `npm install --no-save tsx` ثم شغّل أي سكربت `persona_XX_*.mts` عبر
-// `npx tsx scripts/persona_XX_....mts`. انظر التقرير المنشور لملخص كل
-// شخصية ونتائجها الكاملة (600 محاكاة، 5 أخطاء حقيقية اكتُشفت وأُصلحت).
+// للتشغيل: `npx tsx scripts/persona/persona_XX_....mts` (tsx في
+// devDependencies الآن -- نُقل من scripts/archive/ بعد اكتشاف انحراف حقيقي
+// في BRANCH_MAP هنا (كان ناقصاً "تقنيات طبية مساندة")، أُصلح بالاستيراد من
+// lib/branchEligibility.ts بدل النسخ. أُضيف أيضاً مزيج القرابة الدراسية
+// (SUBJECT_AFFINITY_BLEND_WEIGHT) الذي كان غائباً هنا رغم وجوده في المنصّة
+// الفعلية منذ فترة -- كل محاكاة سابقة بهذا الحزام كانت RIASEC خالصاً.
 import questionsData from "../../data/questions.json" with { type: "json" };
 import validityQuestionsData from "../../data/validity_questions.json" with { type: "json" };
 import contradictionPairsData from "../../data/contradiction_pairs.json" with { type: "json" };

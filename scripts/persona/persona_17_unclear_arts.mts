@@ -25,6 +25,6 @@ for (let i = 0; i < 30; i++) {
   results.push(result);
 }
 
-const outPath = "C:\\Users\\al-faris\\AppData\\Local\\Temp\\claude\\e------\\b89db03c-c0b5-4871-a660-6699520ca7b3\\scratchpad\\report_17_unclear_arts.json";
+const outPath = "C:\\Users\\al-faris\\AppData\\Local\\Temp\\claude\\e------\\c9821d8e-90a2-4dc6-9f5b-4818fc044860\\scratchpad\\report_17_unclear_arts.json";
 fs.writeFileSync(outPath, JSON.stringify(results, null, 2), "utf8");
 console.log("Wrote", results.length, "simulations to", outPath);

@@ -46,8 +46,10 @@ describe("مصدر وحيد للبيانات الحرجة -- لا نسخ مكر�
   it("مصفوفة الفروع الحرفية (BRANCH_CATEGORY_MAP) موجودة ككائن فعلي في lib/branchEligibility.ts فقط", () => {
     // نبحث عن التسلسل الحرفي الفعلي للمصفوفة (لا مجرد ذكر اسم فئة في تعليق
     // توضيحي، وهو استخدام مشروع منفصل تماماً موجود فعلاً في عدة ملفات).
-    const literalArray = '["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"]';
-    const hits = filesContaining(literalArray);
+    const literalArray = ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"].join(
+      '", "'
+    );
+    const hits = filesContaining(literalArray).filter((f) => f !== "lib/singleSourceOfTruth.test.ts");
     expect(hits).toEqual(["lib/branchEligibility.ts"]);
   });
 

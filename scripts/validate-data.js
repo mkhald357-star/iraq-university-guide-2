@@ -86,7 +86,19 @@ const QuestionSchema = z.object({
   dimensions: DimensionsSchema,
   // اختياري: أسئلة المقارنة الصريحة ("تفضّل A على B؟") فقط تستخدمه لاستبدال
   // نصوص الأزرار العامة بنص يوضّح أي طرف من المقارنة يختاره كل زر.
-  answerLabels: z.object({ yes: z.string(), maybe: z.string(), no: z.string() }).strict().optional(),
+  // stronglyYes/stronglyNo اختياريان (مرحلة مقياس الخمس نقاط) -- عند غيابهما
+  // تُشتَق نصوصهما آلياً من yes/no في app/quiz/page.tsx (getAnswerLabels)،
+  // فلا حاجة لإعادة كتابة الأسئلة الأربعين الحالية.
+  answerLabels: z
+    .object({
+      yes: z.string(),
+      maybe: z.string(),
+      no: z.string(),
+      stronglyYes: z.string().optional(),
+      stronglyNo: z.string().optional(),
+    })
+    .strict()
+    .optional(),
 });
 
 const RiasecProfileSchema = z

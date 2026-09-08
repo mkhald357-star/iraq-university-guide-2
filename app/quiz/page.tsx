@@ -67,6 +67,14 @@ const ALL_QUIZ_QUESTIONS: QuizItem[] = [
 ];
 const VALIDITY_QUESTION_IDS = new Set(VALIDITY_QUESTIONS.map((q) => q.id));
 
+// بيانات محرك الترتيب (lib/recommendationEngine.ts) -- تُحسَب مرة واحدة هنا
+// بدل إعادة بنائها في كل استدعاء لـrunRecommendationEngine.
+const ENGINE_DATA: RankMajorsData = {
+  majors: majorsData,
+  riasecProfiles: riasecProfilesData.profiles as RankMajorsData["riasecProfiles"],
+  subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
+};
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // مكوّن شاشة المراجعة قبل الإرسال
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

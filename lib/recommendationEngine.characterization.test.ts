@@ -208,7 +208,23 @@ describe("golden master: rankMajors على بيانات المنصة الحقي�
     expect(summarize(ranked)).toMatchSnapshot();
   });
 
-  it("[مقياس 5 نقاط] طالب واقعي عملي بميل معتدل (0.5 لا 1) — علمي، معدل 75 — يُنتج توافقاً أقلّ تطرّفاً من الميل الحاسم", () => {
+  it("[مقياس 5 نقاط] الميل المعتدل (0.5) ينتج متجه مستخدم أقلّ تطرّفاً رياضياً من الميل الحاسم (1) على البُعد المستهدَف نفسه", () => {
+    // خاصية رياضية مضمونة بصرف النظر عن بروفايلات التخصصات (خلافاً لأثرها
+    // النهائي على الترتيب، الذي يعتمد على تفاعل كل الأبعاد الستة معاً مع
+    // بروفايل كل تخصص فعلياً -- غير قابل للتنبؤ ببساطة، فلا يصلح أساساً
+    // لاختبار هنا). computeUserRiasecVector تُطبِّع بمقدار الإجابة مباشرة:
+    // بُعد يحمل وزناً موجباً بحتاً (R لا سلبيات فيه إطلاقاً حالياً) عند
+    // إجابة 0.5 على كل بنوده ينتج بالضبط 75 (منتصف المسافة بين 50 المحايد
+    // و100 الحاسم)، لا 100.
+    const decisiveVector = computeUserRiasecVector(answersFavoring("R"), QUESTIONS);
+    const mildVector = computeUserRiasecVector(answersMildlyFavoring("R"), QUESTIONS);
+    expect(decisiveVector.R).toBe(100);
+    expect(mildVector.R).toBe(75);
+    expect(mildVector.R).toBeLessThan(decisiveVector.R);
+
+    // الأثر الفعلي على الترتيب (تفاعل الأبعاد الستة مع بيانات حقيقية) --
+    // مُسجَّل كشاهد لا كفرضية مُثبَتة رياضياً، والفارق بين الحالتين حقيقي
+    // ومفيد أيضاً حتى لو لم يكن رتيباً (monotonic) على كل تخصص.
     const decisive = rankMajors(
       { scoredAnswers: answersFavoring("R"), questionPool: QUESTIONS, branch: "علمي", grade: 75, subjectGrades: {} },
       DATA
@@ -223,14 +239,8 @@ describe("golden master: rankMajors على بيانات المنصة الحقي�
       },
       DATA
     );
-    // المقارنة الصحيحة: توافق *نفس* التخصص الذي تصدَّر عند الميل الحاسم، تحت
-    // الميل المعتدل -- لا "أول تخصص" في كل قائمة (قد يختلف التخصص المتصدِّر
-    // نفسه بين الحالتين، وهذا سلوك صحيح متوقَّع لا عطلاً). فرضية الاختبار:
-    // الميل المعتدل نحو نفس الاتجاه يعطي توافقاً أقلّ تطرّفاً لنفس التخصص.
-    expect(summarize(mild)).toMatchSnapshot();
-    const decisiveTopId = decisive[0]?.id;
-    const mildSameMajor = mild.find((m) => m.id === decisiveTopId);
-    expect(mildSameMajor?.fitPercent).toBeLessThan(decisive[0]?.fitPercent ?? 0);
+    expect(summarize(decisive)).toMatchSnapshot("الميل الحاسم (1)");
+    expect(summarize(mild)).toMatchSnapshot("الميل المعتدل (0.5)");
   });
 
   it("[مقياس 5 نقاط] مزيج إجابات واقعي (بعض شديد، بعض معتدل، بعض محايد) — أدبي، معدل 88", () => {

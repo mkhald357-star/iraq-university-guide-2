@@ -49,6 +49,8 @@ export interface FilterSettings {
   branch: string;
   gradeType: "expected" | "actual";
   grade: number;
+  /** اختياري -- محور القرابة الدراسية (lib/subjectAffinity.ts)، مطابقاً لنموذج quiz/page.tsx. */
+  subjectGrades?: Record<string, number>;
 }
 
 export type AnswerFn = (question: { id: string; text: string; dimensions: Record<string, number> }, rng: () => number) => -1 | 0 | 1;

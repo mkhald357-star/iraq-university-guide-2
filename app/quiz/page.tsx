@@ -231,12 +231,11 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<AnswerState>({});
   const [isFinished, setIsFinished] = useState(false);
   const [showReview, setShowReview] = useState(false);
-  const [topMajors, setTopMajors] = useState<any[]>([]);
   // كل التخصصات الصالحة لفرع الطالب (لا أفضل 3 فقط) بنسبة توافقها الخام --
   // تُخزَّن كاملة عند إنهاء الاختبار لتُتيح إعادة الترتيب فوراً وتفاعلياً عند
   // تحريك منزلق "أهمية السوق" بلا حاجة لإعادة حساب الاختبار من الصفر
   // (انظر §3.2 من تحليل الثغرات: السوق مفصول عن الترتيب افتراضياً، بيد الطالب فقط).
-  const [allValidMajors, setAllValidMajors] = useState<any[]>([]);
+  const [allValidMajors, setAllValidMajors] = useState<RankedMajor[]>([]);
   const [marketWeight, setMarketWeight] = useState(0);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
@@ -253,8 +252,9 @@ export default function Quiz() {
   // تلقائياً أبكر من ذلك إن نفدت الأسئلة المميِّزة المتبقية لنفس البُعدين
   // (بنك 18 سؤالاً، 3 لكل بُعد RIASEC — يكفي بالضبط لثلاث جولات كحد أقصى
   // لكل بُعد). tieBreakQuestions فارغة افتراضياً فلا يتغيّر سلوك الاختبار
-  // إطلاقاً للحالة الشائعة (نتيجة واضحة من الجولة الأولى).
-  const MAX_TIEBREAK_ROUNDS = 3;
+  // إطلاقاً للحالة الشائعة (نتيجة واضحة من الجولة الأولى). الثابت نفسه صار
+  // مُصدَّراً من lib/recommendationEngine.ts (MAX_TIEBREAK_ROUNDS) -- مصدر
+  // وحيد بدل رقم مكرَّر هنا وهناك.
   const [tieBreakQuestions, setTieBreakQuestions] = useState<QuizItem[]>([]);
   const [tieBreakPending, setTieBreakPending] = useState(false);
   const [tieBreakRound, setTieBreakRound] = useState(0);

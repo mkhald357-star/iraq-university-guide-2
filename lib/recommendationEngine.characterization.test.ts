@@ -207,6 +207,41 @@ describe("golden master: rankMajors على بيانات المنصة الحقي�
     expect(summarize(ranked)).toMatchSnapshot();
   });
 
+  it("[مقياس 5 نقاط] طالب واقعي عملي بميل معتدل (0.5 لا 1) — علمي، معدل 75 — يُنتج توافقاً أقلّ تطرّفاً من الميل الحاسم", () => {
+    const decisive = rankMajors(
+      { scoredAnswers: answersFavoring("R"), questionPool: QUESTIONS, branch: "علمي", grade: 75, subjectGrades: {} },
+      DATA
+    );
+    const mild = rankMajors(
+      {
+        scoredAnswers: answersMildlyFavoring("R"),
+        questionPool: QUESTIONS,
+        branch: "علمي",
+        grade: 75,
+        subjectGrades: {},
+      },
+      DATA
+    );
+    // نفس التخصص الأول عادة (نفس اتجاه الميل)، لكن بنسبة توافق أقلّ حدّة --
+    // هذا بالضبط ما يفترض أن يوفّره مقياس أدقّ (تمايز الشدّة، لا القطبين فقط).
+    expect(summarize(mild)).toMatchSnapshot();
+    expect(mild[0]?.fitPercent).toBeLessThan(decisive[0]?.fitPercent ?? 0);
+  });
+
+  it("[مقياس 5 نقاط] مزيج إجابات واقعي (بعض شديد، بعض معتدل، بعض محايد) — أدبي، معدل 88", () => {
+    const answers: Record<string, number> = {};
+    QUESTIONS.forEach((q, i) => {
+      const cyclePosition = i % 5;
+      const values = [1, 0.5, 0, -0.5, -1];
+      answers[q.id] = values[cyclePosition];
+    });
+    const ranked = rankMajors(
+      { scoredAnswers: answers, questionPool: QUESTIONS, branch: "أدبي", grade: 88, subjectGrades: {} },
+      DATA
+    );
+    expect(summarize(ranked)).toMatchSnapshot();
+  });
+
   it("مساحة خالية: فرع غير معروف يُرجع صفر تخصصات مؤهَّلة", () => {
     const ranked = rankMajors(
       {

@@ -127,18 +127,20 @@ function ReviewScreen({
   onSubmit: () => void;
   onBack: () => void;
 }) {
-  const defaultLabelMap: Record<number, string> = { 1: "نعم، بالتأكيد", 0: "ربما / أحياناً", [-1]: "لا، إطلاقاً" };
   const answerLabelFor = (q: QuizItem, val: number): string => {
-    if (q.answerLabels) {
-      if (val === 1) return q.answerLabels.yes;
-      if (val === 0) return q.answerLabels.maybe;
-      if (val === -1) return q.answerLabels.no;
-    }
-    return defaultLabelMap[val] ?? String(val);
+    const labels = getAnswerLabels(q);
+    if (val === 1) return labels.stronglyYes;
+    if (val === 0.5) return labels.yes;
+    if (val === 0) return labels.maybe;
+    if (val === -0.5) return labels.no;
+    if (val === -1) return labels.stronglyNo;
+    return String(val);
   };
   const colorMap: Record<number, string> = {
     1: "text-primary-text font-bold",
+    0.5: "text-primary-text font-bold opacity-85",
     0: "text-primary-text font-bold opacity-70",
+    [-0.5]: "text-ink-muted font-bold opacity-85",
     [-1]: "text-ink-muted font-bold",
   };
 

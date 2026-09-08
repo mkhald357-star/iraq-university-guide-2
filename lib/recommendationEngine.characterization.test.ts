@@ -53,6 +53,16 @@ function answersFavoring(dim: string): Record<string, number> {
   return answers;
 }
 
+/** نفس answersFavoring لكن بميل معتدل (±0.5) لا حاسم -- يفحص مسار مقياس الخمس نقاط الجديد تحديداً. */
+function answersMildlyFavoring(dim: string): Record<string, number> {
+  const answers: Record<string, number> = {};
+  QUESTIONS.forEach((q) => {
+    const w = (q.dimensions as Record<string, number>)[dim];
+    answers[q.id] = w === undefined ? 0 : w > 0 ? 0.5 : -0.5;
+  });
+  return answers;
+}
+
 describe("golden master: rankMajors على بيانات المنصة الحقيقية (قبل أي تعديل خوارزمي)", () => {
   it("كل الإجابات محايدة (0) — علمي، معدل 70، بلا درجات مواد", () => {
     const ranked = rankMajors(

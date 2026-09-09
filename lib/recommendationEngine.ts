@@ -38,9 +38,16 @@ function clampNumber(value: number, min: number, max: number): number {
 // المرحلة 3 (بصمة السياق): سقف صريح أقل من AMBIGUITY_THRESHOLD -- بالتصميم
 // applyContextTieBreak لا يمكنه أبداً قلب فارق غير غامض (≥6)، فقط ترجيح
 // داخل نطاق الغموض نفسه، تماماً كضمان منزلق السوق (computeCombinedRankingScore)
-// "لا ينقلب فارق توافق حقيقي >15 نقطة".
-export const CONTEXT_TIEBREAK_MAX_BONUS = 4;
-export const CONTEXT_TIEBREAK_WEIGHT = 0.15;
+// "لا ينقلب فارق توافق حقيقي >15 نقطة". القيم مُشتقّة من فحص الأزواج
+// الخمسة الحقيقية ذات بروفايل RIASEC شبه المتطابق (بكالوريوس مقابل دبلوم
+// تقني -- electrical/renewable_energy/petroleum/electronics_comm/prosthetics):
+// جميعها تتفرّق حصراً عبر appliedness بفارق حقيقي 10-15 نقطة. CONTEXT_MIN_AXIS_DIVERGENCE
+// يستبعد فروقاً <10 (غالباً ضوضاء لا إشارة حقيقية بمقياس بياناتنا)، وWEIGHT/MAX_BONUS
+// معايَران كي يكفي فارق 15 نقطة (أقوى الأزواج الخمسة) لترجيح كامل ضمن نطاق
+// الغموض دون أن يتجاوزه أبداً.
+export const CONTEXT_MIN_AXIS_DIVERGENCE = 10;
+export const CONTEXT_TIEBREAK_MAX_BONUS = 5;
+export const CONTEXT_TIEBREAK_WEIGHT = 0.3;
 
 export interface MajorInput {
   id: string;

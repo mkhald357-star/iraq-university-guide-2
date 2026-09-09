@@ -22,7 +22,7 @@ import {
 } from "./riasec";
 import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "./subjectAffinity";
 import { BRANCH_CATEGORY_MAP } from "./branchEligibility";
-import { computeContextFit, type ContextVector } from "./contextAxisMap";
+import { findMostDivergentContextAxis, type ContextVector } from "./contextAxisMap";
 
 // مطابق حرفياً لـapp/quiz/page.tsx:515 (SUBJECT_AFFINITY_BLEND_WEIGHT) و:472
 // (بوابة gradeIsHigh) و:543/247 (AMBIGUITY_THRESHOLD وMAX_TIEBREAK_ROUNDS).

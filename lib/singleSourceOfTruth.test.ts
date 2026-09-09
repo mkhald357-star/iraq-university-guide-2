@@ -92,4 +92,15 @@ describe("مصدر وحيد للبيانات الحرجة -- لا نسخ مكر�
     const stray = fs.readdirSync(archiveDir).filter((f) => f.startsWith("persona"));
     expect(stray).toEqual([]);
   });
+
+  it("خريطة أوزان محور السياق (CONTEXT_QUESTION_WEIGHTS) موجودة في lib/contextAxisMap.ts فقط", () => {
+    // المرحلة 3 -- منع تكرار خريطة السؤال↔المحور في مكان ثانٍ (مثال: نسخة
+    // محلية داخل app/quiz/page.tsx أو سكربت شخصيات) قد تنحرف صامتاً كما حدث
+    // فعلاً مع BRANCH_CATEGORY_MAP سابقاً.
+    const literalArray = ["q_pure_theory_vs_applied_build", "q_hands_on", "q_tangible_result", "q_tinkering"].join(
+      '": { appliedness'
+    );
+    const hits = filesContaining(literalArray).filter((f) => f !== "lib/singleSourceOfTruth.test.ts");
+    expect(hits).toEqual(["lib/contextAxisMap.ts"]);
+  });
 });

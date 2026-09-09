@@ -158,15 +158,19 @@ export function planTieBreak(
  * الغامضة يبقى مطابقاً 100% لما كان -- كل اختبارات
  * recommendationEngine.characterization.test.ts السابقة على rankMajors
  * تبقى صحيحة بلا تعديل). يعالج تحديداً حالة "التوأمين" (مثال:
- * electrical_engineering/electrical_tech) حيث RIASEC وحده لا يفرّق: يقرأ
- * بصمة سياق كل تخصص (data/major_context_index.json، مشتقّة من
- * study.studyNature/subject_affinity_weights الموثَّقين فعلاً) ويرجّح بها
- * *فقط* بين أفضل تخصصين حين يكونان أصلاً ضمن نطاق الغموض
- * (|gap| < AMBIGUITY_THRESHOLD) -- لا يُستدعى ولا يغيّر شيئاً خارج هذا
- * النطاق. السقف CONTEXT_TIEBREAK_MAX_BONUS < AMBIGUITY_THRESHOLD يضمن عدم
- * القدرة على قلب فارق ≥6 حتى لو حاول -- لا يمسّ إلا الزوج المتصدّر
- * (candidates[2:] بلا تغيير)، ومعالجة عناقيد 3+ تخصصات كاملة مؤجَّلة
- * لإعادة بناء الترجيح في المرحلة 4.
+ * electrical_engineering/electrical_tech) حيث RIASEC وحده لا يفرّق لأن
+ * بروفايليهما شبه متطابقين بتصميم: يقرأ بصمة سياق كل تخصص
+ * (data/major_context_index.json) ويحدّد *المحور الوحيد* الذي يفرّق
+ * بينهما فعلياً (findMostDivergentContextAxis) بدل متوسط أربعة محاور (كان
+ * يخفّف الإشارة بمحاور مشتركة لا تحمل معلومة -- راجع تعليق computeContextFit)،
+ * ويرجّح بذلك المحور *فقط* بين أفضل تخصصين حين يكونان أصلاً ضمن نطاق
+ * الغموض (|gap| < AMBIGUITY_THRESHOLD) -- لا يُستدعى ولا يغيّر شيئاً خارج
+ * هذا النطاق، ولا حين يكون الفارق بين التخصصين على ذلك المحور تحت
+ * CONTEXT_MIN_AXIS_DIVERGENCE (لا إشارة حقيقية تستحق الترجيح). السقف
+ * CONTEXT_TIEBREAK_MAX_BONUS < AMBIGUITY_THRESHOLD يضمن عدم القدرة على قلب
+ * فارق ≥6 حتى لو حاول -- لا يمسّ إلا الزوج المتصدّر (candidates[2:] بلا
+ * تغيير)، ومعالجة عناقيد 3+ تخصصات كاملة مؤجَّلة لإعادة بناء الترجيح في
+ * المرحلة 4.
  */
 export function applyContextTieBreak(
   ranked: RankedMajor[],
@@ -182,8 +186,12 @@ export function applyContextTieBreak(
   const contextB = contextIndex[ranked[1].id];
   if (!contextA || !contextB) return ranked;
 
-  const fitA = computeContextFit(userContextVector, contextA);
-  const fitB = computeContextFit(userContextVector, contextB);
+  const axis = findMostDivergentContextAxis(contextA, contextB);
+  const majorAxisGap = Math.abs(contextA[axis] - contextB[axis]);
+  if (majorAxisGap < CONTEXT_MIN_AXIS_DIVERGENCE) return ranked;
+
+  const fitA = 100 - Math.abs(userContextVector[axis] - contextA[axis]);
+  const fitB = 100 - Math.abs(userContextVector[axis] - contextB[axis]);
   const bonus = clampNumber((fitB - fitA) * CONTEXT_TIEBREAK_WEIGHT, -CONTEXT_TIEBREAK_MAX_BONUS, CONTEXT_TIEBREAK_MAX_BONUS);
   if (bonus === 0) return ranked;
 

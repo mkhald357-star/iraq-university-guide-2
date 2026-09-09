@@ -22,6 +22,7 @@ import {
 } from "./riasec";
 import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "./subjectAffinity";
 import { BRANCH_CATEGORY_MAP } from "./branchEligibility";
+import { computeContextFit, type ContextVector } from "./contextAxisMap";
 
 // مطابق حرفياً لـapp/quiz/page.tsx:515 (SUBJECT_AFFINITY_BLEND_WEIGHT) و:472
 // (بوابة gradeIsHigh) و:543/247 (AMBIGUITY_THRESHOLD وMAX_TIEBREAK_ROUNDS).
@@ -29,6 +30,17 @@ export const SUBJECT_AFFINITY_BLEND_WEIGHT = 0.3;
 export const MEDICAL_GATE_GRADE = 85;
 export const AMBIGUITY_THRESHOLD = 6;
 export const MAX_TIEBREAK_ROUNDS = 3;
+
+function clampNumber(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
+}
+
+// المرحلة 3 (بصمة السياق): سقف صريح أقل من AMBIGUITY_THRESHOLD -- بالتصميم
+// applyContextTieBreak لا يمكنه أبداً قلب فارق غير غامض (≥6)، فقط ترجيح
+// داخل نطاق الغموض نفسه، تماماً كضمان منزلق السوق (computeCombinedRankingScore)
+// "لا ينقلب فارق توافق حقيقي >15 نقطة".
+export const CONTEXT_TIEBREAK_MAX_BONUS = 4;
+export const CONTEXT_TIEBREAK_WEIGHT = 0.15;
 
 export interface MajorInput {
   id: string;

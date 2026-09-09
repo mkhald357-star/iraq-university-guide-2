@@ -1,0 +1,720 @@
+{
+  "_meta": {
+    "purpose": "بصمة السياق (Context Fingerprint) -- المرحلة 3 من خطة إصلاح خوارزمية الترتيب: يفصل أزواج التوأمين (بكالوريوس/دبلوم تقني) التي يتطابق بروفايلاها في RIASEC والقرابة الدراسية تقريباً (مثال electrical_engineering/electrical_tech)، عبر محاور مشتقّة حسابياً من دراسة/مسار كل تخصص الموثَّقين في data/major_profiles_detailed.json، لا من بيانات جديدة.",
+    "axes": {
+      "appliedness": "(مختبري+ميداني+سريري) - نظري من study.studyNature -- 0=نظري بحت، 100=تطبيقي بحت",
+      "quantitative": "subject_affinity_weights.quantitative × 10",
+      "humanContact": "study.studyNature.clinical + مكافأة كلمات دالة على تواصل مباشر (طلاب/زبائن/مرضى/جمهور) من career.realJobTitles/employerSectors، سقفها 30",
+      "fieldwork": "study.studyNature.field"
+    },
+    "excludedAxis": "studyLength (yearsOfStudy) وصفي فقط -- لا سؤال حقيقي بين الأربعين يقيس استعداد الطالب لمدة دراسة أطول/أقصر، فبقي جانب التخصص فقط بلا اختراع وزن طالب مقابل له.",
+    "generatedBy": "scripts/build-major-context.js",
+    "generatedAt": "2026-09-09"
+  },
+  "contexts": {
+    "medicine": {
+      "appliedness": 65,
+      "quantitative": 40,
+      "humanContact": 50,
+      "fieldwork": 5,
+      "yearsOfStudy": 6,
+      "studyLengthDisplayScore": 100
+    },
+    "dentistry": {
+      "appliedness": 70,
+      "quantitative": 30,
+      "humanContact": 40,
+      "fieldwork": 5,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "pharmacy": {
+      "appliedness": 55,
+      "quantitative": 40,
+      "humanContact": 20,
+      "fieldwork": 0,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "nursing": {
+      "appliedness": 65,
+      "quantitative": 20,
+      "humanContact": 50,
+      "fieldwork": 0,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "civil_engineering": {
+      "appliedness": 45,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "software_engineering": {
+      "appliedness": 60,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "computer_science": {
+      "appliedness": 50,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "law": {
+      "appliedness": 10,
+      "quantitative": 10,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "business_admin": {
+      "appliedness": 25,
+      "quantitative": 60,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "accounting": {
+      "appliedness": 30,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "arabic_language": {
+      "appliedness": 10,
+      "quantitative": 0,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "fine_arts": {
+      "appliedness": 70,
+      "quantitative": 10,
+      "humanContact": 0,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "agriculture": {
+      "appliedness": 55,
+      "quantitative": 40,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "physical_education": {
+      "appliedness": 60,
+      "quantitative": 20,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "architecture": {
+      "appliedness": 75,
+      "quantitative": 60,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "renewable_energy": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "petroleum_engineering": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "mechanical_engineering": {
+      "appliedness": 55,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "electrical_engineering": {
+      "appliedness": 55,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "chemical_engineering": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "mechatronics_engineering": {
+      "appliedness": 60,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "biomedical_engineering": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "aerospace_engineering": {
+      "appliedness": 50,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "laser_optoelectronics_engineering": {
+      "appliedness": 50,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "mining_engineering": {
+      "appliedness": 60,
+      "quantitative": 70,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "industrial_engineering": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "control_automation_engineering": {
+      "appliedness": 55,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "communications_engineering": {
+      "appliedness": 55,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "automotive_engineering": {
+      "appliedness": 65,
+      "quantitative": 70,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "geomatics_surveying_engineering": {
+      "appliedness": 65,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 35,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "urban_regional_planning_engineering": {
+      "appliedness": 55,
+      "quantitative": 60,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "materials_engineering": {
+      "appliedness": 55,
+      "quantitative": 70,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "refrigeration_ac_engineering": {
+      "appliedness": 70,
+      "quantitative": 70,
+      "humanContact": 0,
+      "fieldwork": 35,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "environmental_engineering": {
+      "appliedness": 55,
+      "quantitative": 60,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "electrical_tech": {
+      "appliedness": 70,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "renewable_energy_tech": {
+      "appliedness": 65,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "petroleum_refining_tech": {
+      "appliedness": 70,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "electronics_comm_tech": {
+      "appliedness": 65,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "prosthetics_engineering": {
+      "appliedness": 60,
+      "quantitative": 50,
+      "humanContact": 20,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "medical_analysis": {
+      "appliedness": 70,
+      "quantitative": 30,
+      "humanContact": 10,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "veterinary_medicine": {
+      "appliedness": 60,
+      "quantitative": 30,
+      "humanContact": 20,
+      "fieldwork": 20,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "forensic_science": {
+      "appliedness": 55,
+      "quantitative": 40,
+      "humanContact": 5,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "radiology_tech": {
+      "appliedness": 70,
+      "quantitative": 40,
+      "humanContact": 20,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "anesthesia_critical_care_tech": {
+      "appliedness": 75,
+      "quantitative": 30,
+      "humanContact": 35,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "rehab_therapy_tech": {
+      "appliedness": 70,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 40,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "prosthetics_tech": {
+      "appliedness": 75,
+      "quantitative": 50,
+      "humanContact": 5,
+      "fieldwork": 15,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "emergency_medical_tech": {
+      "appliedness": 75,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 40,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "optometry_audiology_tech": {
+      "appliedness": 70,
+      "quantitative": 30,
+      "humanContact": 15,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "reproductive_health_tech": {
+      "appliedness": 75,
+      "quantitative": 20,
+      "humanContact": 30,
+      "fieldwork": 15,
+      "yearsOfStudy": 2,
+      "studyLengthDisplayScore": 0
+    },
+    "community_nutrition_health_tech": {
+      "appliedness": 60,
+      "quantitative": 30,
+      "humanContact": 5,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "cosmetic_science_tech": {
+      "appliedness": 70,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "mathematics": {
+      "appliedness": 20,
+      "quantitative": 100,
+      "humanContact": 10,
+      "fieldwork": 0,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "physics": {
+      "appliedness": 40,
+      "quantitative": 80,
+      "humanContact": 10,
+      "fieldwork": 0,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "chemistry": {
+      "appliedness": 55,
+      "quantitative": 50,
+      "humanContact": 10,
+      "fieldwork": 0,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "biology": {
+      "appliedness": 45,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "geology_earth_science": {
+      "appliedness": 50,
+      "quantitative": 50,
+      "humanContact": 10,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "astronomy_space_science": {
+      "appliedness": 40,
+      "quantitative": 90,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "data_science": {
+      "appliedness": 60,
+      "quantitative": 100,
+      "humanContact": 0,
+      "fieldwork": 0,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "plant_crop_production": {
+      "appliedness": 60,
+      "quantitative": 20,
+      "humanContact": 0,
+      "fieldwork": 35,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "animal_livestock_science": {
+      "appliedness": 55,
+      "quantitative": 20,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "water_resources_forestry": {
+      "appliedness": 55,
+      "quantitative": 50,
+      "humanContact": 0,
+      "fieldwork": 30,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "food_science_nutrition": {
+      "appliedness": 55,
+      "quantitative": 30,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "ai": {
+      "appliedness": 55,
+      "quantitative": 90,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "cybersecurity": {
+      "appliedness": 55,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "cybersecurity_tech": {
+      "appliedness": 70,
+      "quantitative": 80,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "ai_tech": {
+      "appliedness": 70,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "digital_marketing": {
+      "appliedness": 45,
+      "quantitative": 30,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "project_management": {
+      "appliedness": 45,
+      "quantitative": 60,
+      "humanContact": 0,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "tourism_hospitality": {
+      "appliedness": 60,
+      "quantitative": 20,
+      "humanContact": 0,
+      "fieldwork": 40,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "information_systems": {
+      "appliedness": 50,
+      "quantitative": 70,
+      "humanContact": 0,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "financial_banking": {
+      "appliedness": 35,
+      "quantitative": 90,
+      "humanContact": 0,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "political_science": {
+      "appliedness": 10,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "geography": {
+      "appliedness": 30,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "history": {
+      "appliedness": 5,
+      "quantitative": 0,
+      "humanContact": 10,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "islamic_studies": {
+      "appliedness": 5,
+      "quantitative": 0,
+      "humanContact": 10,
+      "fieldwork": 5,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "media_journalism": {
+      "appliedness": 40,
+      "quantitative": 10,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "psychology_sociology": {
+      "appliedness": 15,
+      "quantitative": 10,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "archaeology": {
+      "appliedness": 35,
+      "quantitative": 0,
+      "humanContact": 10,
+      "fieldwork": 25,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "english": {
+      "appliedness": 15,
+      "quantitative": 10,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "translation": {
+      "appliedness": 30,
+      "quantitative": 0,
+      "humanContact": 0,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "foreign_languages_other": {
+      "appliedness": 15,
+      "quantitative": 0,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "education": {
+      "appliedness": 45,
+      "quantitative": 30,
+      "humanContact": 10,
+      "fieldwork": 40,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "kindergarten_education": {
+      "appliedness": 55,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 45,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "special_education": {
+      "appliedness": 50,
+      "quantitative": 10,
+      "humanContact": 10,
+      "fieldwork": 40,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "graphic_design": {
+      "appliedness": 70,
+      "quantitative": 20,
+      "humanContact": 10,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "interior_design": {
+      "appliedness": 65,
+      "quantitative": 40,
+      "humanContact": 10,
+      "fieldwork": 20,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    },
+    "music_performing_arts": {
+      "appliedness": 70,
+      "quantitative": 10,
+      "humanContact": 10,
+      "fieldwork": 10,
+      "yearsOfStudy": 5,
+      "studyLengthDisplayScore": 75
+    },
+    "industrial_craft_design": {
+      "appliedness": 65,
+      "quantitative": 30,
+      "humanContact": 10,
+      "fieldwork": 15,
+      "yearsOfStudy": 4,
+      "studyLengthDisplayScore": 50
+    }
+  }
+}

@@ -114,6 +114,11 @@ const ENGINE_DATA: RankMajorsData = {
   subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
 };
 
+// بصمة السياق (المرحلة 3، lib/contextAxisMap.ts) -- تُستخدم حصراً داخل
+// applyContextTieBreak لترجيح أزواج التوأمين ضمن نطاق الغموض، لا لتعديل
+// الترتيب الأساسي (rankMajors) إطلاقاً.
+const CONTEXT_INDEX = majorContextIndexData.contexts as Record<string, ContextVector>;
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // مكوّن شاشة المراجعة قبل الإرسال
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

@@ -23,6 +23,7 @@
     "build-major-profiles": "node scripts/build-major-profiles.js",
     "build-major-skills": "node scripts/build-major-skills.js",
     "build-major-projects": "node scripts/build-major-projects.js",
+    "build-major-context": "node scripts/build-major-context.js",
     "compute-homepage-stats": "node scripts/compute-homepage-stats.js",
     "og": "node scripts/generate-og-image.js",
     "personas": "node scripts/run-personas.js",

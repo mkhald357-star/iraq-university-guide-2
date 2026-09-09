@@ -95,6 +95,12 @@ export function computeUserContextVector(answers: Record<string, number>, questi
 /**
  * نسبة توافق سياقي بين متجه الطالب وبصمة التخصص (كلاهما 0-100 بالفعل، لا
  * حاجة لضرب ×10 كما في RIASEC) -- نفس منهج RMSE في computeMajorFit تماماً.
+ * ملاحظة استخدام: هذا مقياس *عام* عبر المحاور الأربعة معاً -- مفيد للعرض
+ * التوصيفي، لكن applyContextTieBreak (lib/recommendationEngine.ts) لا
+ * يستخدمه لأن متوسط أربعة محاور يخفّف إشارة المحور الوحيد الذي يفرّق زوجاً
+ * بعينه فعلياً (مثال: appliedness بين هندسة/تقنيات الكهرباء) وسط ثلاثة
+ * محاور مشتركة بين التوأمين لا تحمل معلومة تمييزية أصلاً -- استُخدم بدلاً
+ * منه findMostDivergentContextAxis أدناه.
  */
 export function computeContextFit(userVector: ContextVector, majorVector: ContextVector): number {
   let sumSquares = 0;
@@ -105,4 +111,17 @@ export function computeContextFit(userVector: ContextVector, majorVector: Contex
   });
   const rmse = Math.sqrt(sumSquares / CONTEXT_AXES.length);
   return clamp(100 - rmse, 0, 100);
+}
+
+/**
+ * أبرز محور يفرّق بين بصمتَي تخصصين (الأكبر فارقاً) -- نفس منطق
+ * findDivergentDimensions في lib/riasec.ts تماماً، مطبَّقاً على محاور
+ * السياق بدل RIASEC. مصمَّم خصيصاً لزوج "توأمين" (بروفايل RIASEC شبه
+ * متطابق) حيث محور واحد فقط يحمل الفارق الحقيقي (الدراسة النظرية/التطبيقية
+ * عادة)، وبقية المحاور مشتركة بينهما فلا تحمل معلومة مفيدة للفصل.
+ */
+export function findMostDivergentContextAxis(majorA: ContextVector, majorB: ContextVector): ContextAxis {
+  return [...CONTEXT_AXES].sort(
+    (a, b) => Math.abs((majorB[b] ?? 50) - (majorA[b] ?? 50)) - Math.abs((majorB[a] ?? 50) - (majorA[a] ?? 50))
+  )[0];
 }

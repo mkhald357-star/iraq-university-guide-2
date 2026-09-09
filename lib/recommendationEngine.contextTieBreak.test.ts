@@ -122,6 +122,28 @@ describe("applyContextTieBreak -- ضمانات السلامة (لا يمسّ إ�
     expect(result).toEqual(single);
   });
 
+  it("النتيجة تبقى مرتَّبة تنازلياً حتى لو انخفض المركز الثاني تحت المركز الثالث بعد التعديل", () => {
+    // عطل حقيقي رُصد أثناء تطوير هذه المرحلة (لا افتراضي): مع شخصية واقعية
+    // (اهتمام تطبيقي عالٍ + منطق رياضي متوسط)، renewable_energy_tech/
+    // prosthetics_engineering/prosthetics_tech الثلاثة الأوائل بفوارق ضئيلة
+    // (85.99/84.39/83.82) -- ترجيح المركزين 1/2 فقط دون إعادة فرز كامل ترك
+    // prosthetics_engineering (بعد خفضه) بنقاط أقل من prosthetics_tech
+    // الثالث، فانكسر ترتيب النتيجة (index[1].combinedScore < index[2]).
+    const ranked: RankedMajor[] = [
+      { id: "renewable_energy_tech", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 85.99, riasecFitPercent: 85.99, subjectFitPercent: null, combinedScore: 85.99 },
+      { id: "prosthetics_engineering", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 84.39, riasecFitPercent: 84.39, subjectFitPercent: null, combinedScore: 84.39 },
+      { id: "prosthetics_tech", name: "ج", category: "x", marketMultiplier: 1, fitPercent: 83.82, riasecFitPercent: 83.82, subjectFitPercent: null, combinedScore: 83.82 },
+    ];
+    const userContextVector: ContextVector = { appliedness: 100, quantitative: 71.05, humanContact: 50, fieldwork: 50 };
+
+    const result = applyContextTieBreak(ranked, userContextVector, CONTEXT_INDEX);
+
+    for (let i = 1; i < result.length; i++) {
+      expect(result[i].combinedScore).toBeLessThanOrEqual(result[i - 1].combinedScore);
+    }
+    expect(result.map((m) => m.id)).toEqual(["renewable_energy_tech", "prosthetics_tech", "prosthetics_engineering"]);
+  });
+
   it("لا تغيير حين لا توجد بصمة سياق لأحد التخصصين (معرّف غير معروف)", () => {
     const ranked: RankedMajor[] = [
       { id: "unknown_major_xyz", name: "غير معروف", category: "x", marketMultiplier: 1, fitPercent: 80, riasecFitPercent: 80, subjectFitPercent: null, combinedScore: 80 },

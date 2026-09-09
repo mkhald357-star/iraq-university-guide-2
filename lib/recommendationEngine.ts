@@ -144,3 +144,43 @@ export function planTieBreak(
     tieBreakInfo: { a: ranked[0].name, b: ranked[1].name },
   };
 }
+
+/**
+ * المرحلة 3 من خطة إصلاح الخوارزمية -- يُستدعى *بعد* rankMajors و*قبل*
+ * planTieBreak (لا يمسّ rankMajors نفسه، والترتيب الأساسي لغير الحالات
+ * الغامضة يبقى مطابقاً 100% لما كان -- كل اختبارات
+ * recommendationEngine.characterization.test.ts السابقة على rankMajors
+ * تبقى صحيحة بلا تعديل). يعالج تحديداً حالة "التوأمين" (مثال:
+ * electrical_engineering/electrical_tech) حيث RIASEC وحده لا يفرّق: يقرأ
+ * بصمة سياق كل تخصص (data/major_context_index.json، مشتقّة من
+ * study.studyNature/subject_affinity_weights الموثَّقين فعلاً) ويرجّح بها
+ * *فقط* بين أفضل تخصصين حين يكونان أصلاً ضمن نطاق الغموض
+ * (|gap| < AMBIGUITY_THRESHOLD) -- لا يُستدعى ولا يغيّر شيئاً خارج هذا
+ * النطاق. السقف CONTEXT_TIEBREAK_MAX_BONUS < AMBIGUITY_THRESHOLD يضمن عدم
+ * القدرة على قلب فارق ≥6 حتى لو حاول -- لا يمسّ إلا الزوج المتصدّر
+ * (candidates[2:] بلا تغيير)، ومعالجة عناقيد 3+ تخصصات كاملة مؤجَّلة
+ * لإعادة بناء الترجيح في المرحلة 4.
+ */
+export function applyContextTieBreak(
+  ranked: RankedMajor[],
+  userContextVector: ContextVector,
+  contextIndex: Record<string, ContextVector>
+): RankedMajor[] {
+  if (ranked.length < 2) return ranked;
+
+  const gap = ranked[0].combinedScore - ranked[1].combinedScore;
+  if (Math.abs(gap) >= AMBIGUITY_THRESHOLD) return ranked;
+
+  const contextA = contextIndex[ranked[0].id];
+  const contextB = contextIndex[ranked[1].id];
+  if (!contextA || !contextB) return ranked;
+
+  const fitA = computeContextFit(userContextVector, contextA);
+  const fitB = computeContextFit(userContextVector, contextB);
+  const bonus = clampNumber((fitB - fitA) * CONTEXT_TIEBREAK_WEIGHT, -CONTEXT_TIEBREAK_MAX_BONUS, CONTEXT_TIEBREAK_MAX_BONUS);
+  if (bonus === 0) return ranked;
+
+  const adjustedSecond: RankedMajor = { ...ranked[1], combinedScore: ranked[1].combinedScore + bonus };
+  const [first, second] = [ranked[0], adjustedSecond].sort((a, b) => b.combinedScore - a.combinedScore);
+  return [first, second, ...ranked.slice(2)];
+}

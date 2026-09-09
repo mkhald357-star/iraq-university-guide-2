@@ -562,14 +562,20 @@ export default function Quiz() {
       },
       ENGINE_DATA
     );
-    const top3 = ranked.slice(0, 3);
+
+    // المرحلة 3: ترجيح بصمة السياق -- يعمل فقط حين يكون أفضل تخصصين ضمن نطاق
+    // الغموض أصلاً (لا يمسّ ranked خارج ذلك)، ويستخدم إجابات RIASEC نفسها
+    // (لا سؤال إضافي) لفصل أزواج مثل هندسة/تقنيات كهرباء.
+    const userContextVector = computeUserContextVector(scoredAnswers, questionPoolForVector.map((q) => q.id));
+    const contextRanked = applyContextTieBreak(ranked, userContextVector, CONTEXT_INDEX);
+    const top3 = contextRanked.slice(0, 3);
 
     // ---- نقطة التكيّف متعددة الجولات: نتيجة متقاربة بين أول تخصصين → أسئلة
     // ترجيح إضافية، بحد أقصى MAX_TIEBREAK_ROUNDS جولات (§5.2) ----
     const currentRound = opts?.roundNumber ?? 0;
     const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
     const decision = planTieBreak(
-      ranked,
+      contextRanked,
       currentRound,
       alreadyAskedIds,
       tiebreakerQuestionsData as QuizItem[],

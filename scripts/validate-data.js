@@ -105,6 +105,18 @@ const RiasecProfileSchema = z
   .object(Object.fromEntries(RIASEC_DIMENSIONS.map((d) => [d, z.number().min(0).max(10).optional()])))
   .strict();
 
+// بصمة السياق (data/major_context_index.json، المرحلة 3 من خطة إصلاح
+// خوارزمية الترتيب -- lib/contextAxisMap.ts) -- محاور 0-100 مشتقّة حسابياً
+// من study.studyNature/subject_affinity_weights، زائداً yearsOfStudy وصفياً.
+const CONTEXT_AXES = ["appliedness", "quantitative", "humanContact", "fieldwork"];
+const ContextIndexEntrySchema = z
+  .object({
+    ...Object.fromEntries(CONTEXT_AXES.map((axis) => [axis, z.number().min(0).max(100)])),
+    yearsOfStudy: z.number().min(1).max(10),
+    studyLengthDisplayScore: z.number().min(0).max(100),
+  })
+  .strict();
+
 const ValidityQuestionSchema = z.object({
   id: z.string(),
   text: z.string(),

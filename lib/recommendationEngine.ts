@@ -200,6 +200,8 @@ export function applyContextTieBreak(
   if (bonus === 0) return ranked;
 
   const adjustedSecond: RankedMajor = { ...ranked[1], combinedScore: ranked[1].combinedScore + bonus };
-  const [first, second] = [ranked[0], adjustedSecond].sort((a, b) => b.combinedScore - a.combinedScore);
-  return [first, second, ...ranked.slice(2)];
+  // فرز كامل لا فرز الزوج الأول فقط -- إن كان المركزان 2/3 متقاربين أيضاً
+  // (حالة حقيقية رُصدت فعلياً)، تعديل نقاط المركز الثاني وحده دون إعادة
+  // مقارنته بالمركز الثالث قد يكسر ترتيب النتيجة النهائية تنازلياً.
+  return [ranked[0], adjustedSecond, ...ranked.slice(2)].sort((a, b) => b.combinedScore - a.combinedScore);
 }

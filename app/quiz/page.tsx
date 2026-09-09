@@ -22,10 +22,13 @@ import {
 import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
 import { type SubjectGrades } from "../../lib/subjectAffinity";
 import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
+import majorContextIndexData from "../../data/major_context_index.json";
+import { computeUserContextVector, type ContextVector } from "../../lib/contextAxisMap";
 import { IconBadge, Badge, Card, SelectField, InputField, Alert } from "../components/ui";
 import {
   rankMajors,
   planTieBreak,
+  applyContextTieBreak,
   type RankMajorsData,
   type RankedMajor,
 } from "../../lib/recommendationEngine";

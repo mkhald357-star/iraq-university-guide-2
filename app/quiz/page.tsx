@@ -605,7 +605,7 @@ export default function Quiz() {
     );
 
     setWarnings(finalWarnings);
-    setAllValidMajors(ranked);
+    setAllValidMajors(contextRanked);
     setTopUserDimensions(userTopDimensions);
     setVrsResult(vrs);
     setIsFinished(true);

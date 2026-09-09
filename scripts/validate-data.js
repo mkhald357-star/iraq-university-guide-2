@@ -633,6 +633,36 @@ if (!majorsMissingSubjectWeight.length && !subjectWeightsWithoutMajor.length) {
   console.log("[OK] every major has exactly one subject-affinity weight entry");
 }
 
+// بصمة السياق (data/major_context_index.json، المرحلة 3) -- نفس منطق تحقق
+// RIASEC/القرابة الدراسية أعلاه بالضبط: تغطية 88/88 كاملة (مصدراها
+// study.studyNature وsubject_affinity_weights متوفران لكل الـ88 تخصصاً)،
+// فلا عذر لتخصص ناقص هنا كما في major_profiles_detailed الجزئي عمداً.
+const contextIndexFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_context_index.json"), "utf8"));
+const contextResult = z.record(z.string(), ContextIndexEntrySchema).safeParse(contextIndexFile.contexts);
+if (!contextResult.success) {
+  console.error("[FAIL] data/major_context_index.json: schema validation failed");
+  for (const issue of contextResult.error.issues.slice(0, 20)) {
+    console.error(`  - ${issue.path.join(".")}: ${issue.message}`);
+  }
+  hasErrors = true;
+} else {
+  console.log("[OK] data/major_context_index.json");
+}
+const contextIds = new Set(Object.keys(contextIndexFile.contexts || {}));
+const majorsMissingContext = majors.map((m) => m.id).filter((id) => !contextIds.has(id));
+const contextWithoutMajor = [...contextIds].filter((id) => !majorIds.has(id));
+if (majorsMissingContext.length) {
+  console.error("[FAIL] majors missing a context-fingerprint entry:", majorsMissingContext);
+  hasErrors = true;
+}
+if (contextWithoutMajor.length) {
+  console.error("[FAIL] context-fingerprint entries reference unknown major ids:", contextWithoutMajor);
+  hasErrors = true;
+}
+if (!majorsMissingContext.length && !contextWithoutMajor.length) {
+  console.log("[OK] every major has exactly one context-fingerprint entry");
+}
+
 // التقرير المفصَّل لكل تخصص (data/major_profiles_detailed.json، §4.2 من تحليل
 // الثغرات) -- نسخة أولية جزئية عمداً (14 من 88 تخصصاً، بحث حقيقي موثَّق
 // المصادر لا يُستنسَخ بسرعة لبقية التخصصات) -- فلا نطلب اكتمال 88/88 هنا

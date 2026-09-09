@@ -70,11 +70,14 @@ describe("applyContextTieBreak -- بصمة السياق تفصل زوجاً حق
     expect(result[1].id).toBe("electrical_tech");
   });
 
-  it("طالب محايد تماماً (50 على كل محور) لا يغيّر الترتيب الأصلي", () => {
+  it("طالب في منتصف المسافة تماماً بين بصمتَي التخصصين (62.5 = (55+70)/2) لا يغيّر الترتيب الأصلي", () => {
+    // appliedness عند electrical_engineering=55 وelectrical_tech=70 --
+    // منتصف المسافة بينهما (62.5) يعني عدم تفضيل أيّهما على الإطلاق عبر
+    // هذا المحور، فلا يوجد أساس لأي ترجيح (bonus=0 بالضبط).
     const ranked = pair(80, 77);
-    const neutralVector: ContextVector = { appliedness: 50, quantitative: 50, humanContact: 50, fieldwork: 50 };
+    const indifferentVector: ContextVector = { appliedness: 62.5, quantitative: 50, humanContact: 50, fieldwork: 50 };
 
-    const result = applyContextTieBreak(ranked, neutralVector, CONTEXT_INDEX);
+    const result = applyContextTieBreak(ranked, indifferentVector, CONTEXT_INDEX);
 
     expect(result[0].id).toBe("electrical_engineering");
     expect(result[1].combinedScore).toBe(77);

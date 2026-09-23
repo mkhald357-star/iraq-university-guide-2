@@ -1208,6 +1208,37 @@ if (fs.existsSync(projectsPath)) {
   }
 }
 
+// ملفات "مرشَّحة" لا تُشحن: أي بيانات مشتقّة تنتظر مصادقة ميدانية (مثل
+// بروفايلات أقسام مُعاد اشتقاقها) تُسمّى <name>.candidate.json ويُمنع على كود
+// المنتج استيرادها -- أقوى من راية تشغيل، لأن الملف يصير غير قابل للوصول من
+// حزمة المنتج أصلاً ويصمد أمام دمج متسرّع. المسموح لها وحدها: أدوات القياس.
+{
+  const productDirs = ["app", "lib", "components"];
+  const allowedPrefixes = [path.join("lib", "eval"), path.join("scripts", "eval"), "reports"];
+  const offenders = [];
+  const walk = (dir) => {
+    if (!fs.existsSync(dir)) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        walk(full);
+        continue;
+      }
+      if (!/\.(ts|tsx|js|jsx|mts)$/.test(entry.name)) continue;
+      const rel = path.relative(ROOT, full);
+      if (allowedPrefixes.some((p) => rel.startsWith(p))) continue;
+      if (/\.candidate\.json/.test(fs.readFileSync(full, "utf8"))) offenders.push(rel);
+    }
+  };
+  productDirs.forEach((d) => walk(path.join(ROOT, d)));
+  if (offenders.length) {
+    console.error("[FAIL] كود المنتج يستورد ملفاً مرشَّحاً (.candidate.json) لم يُصادَق عليه بعد:", offenders);
+    hasErrors = true;
+  } else {
+    console.log("[OK] لا ملف مرشَّح (.candidate.json) مستورَد في كود المنتج");
+  }
+}
+
 if (hasErrors) {
   console.error("\nData validation FAILED.");
   process.exit(1);

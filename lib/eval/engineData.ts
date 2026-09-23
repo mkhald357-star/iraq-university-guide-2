@@ -22,27 +22,35 @@ export const REAL_VALIDITY_ITEMS = validityQuestionsData as unknown as ValidityI
 export const REAL_MAJORS = majorsData as RankMajorsData["majors"];
 export const REAL_PROFILES = riasecProfilesData.profiles as RankMajorsData["riasecProfiles"];
 
-export function buildSessionData(
-  overrides: Partial<
-    Pick<SessionData, "coreQuestions" | "tiebreakerPool" | "fitStrategy" | "truthStrategy" | "roundMode" | "reservePool" | "reserveConfig" | "minLoadingShare" | "contextIndex" | "contextTieBreak">
-  > = {}
-): SessionData {
-  return {
-    fitStrategy: overrides.fitStrategy,
-    roundMode: overrides.roundMode,
-    minLoadingShare: overrides.minLoadingShare,
-    contextTieBreak: overrides.contextTieBreak,
-    reservePool: overrides.reservePool,
-    reserveConfig: overrides.reserveConfig,
-    truthStrategy: overrides.truthStrategy,
-    majors: REAL_MAJORS,
-    riasecProfiles: REAL_PROFILES,
-    subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
-    coreQuestions: overrides.coreQuestions ?? REAL_CORE_QUESTIONS,
-    tiebreakerPool: overrides.tiebreakerPool ?? REAL_TIEBREAKER_QUESTIONS,
-    validityIds: new Set(REAL_VALIDITY_ITEMS.map((v) => v.id)),
-    validityItems: REAL_VALIDITY_ITEMS,
-    contextIndex: overrides.contextIndex ?? (majorContextIndexData.contexts as Record<string, ContextVector>),
-    contradictionPairs: contradictionPairsData,
-  };
+/** إعداد المنتج الحالي حرفياً -- كل ما لا يُمرَّر صراحةً يبقى عليه. */
+const DEFAULTS: SessionData = {
+  fitStrategy: undefined,
+  roundMode: undefined,
+  minLoadingShare: undefined,
+  contextTieBreak: undefined,
+  reservePool: undefined,
+  reserveConfig: undefined,
+  truthStrategy: undefined,
+  majors: REAL_MAJORS,
+  riasecProfiles: REAL_PROFILES,
+  subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
+  coreQuestions: REAL_CORE_QUESTIONS,
+  tiebreakerPool: REAL_TIEBREAKER_QUESTIONS,
+  validityIds: new Set(REAL_VALIDITY_ITEMS.map((v) => v.id)),
+  validityItems: REAL_VALIDITY_ITEMS,
+  contextIndex: majorContextIndexData.contexts as Record<string, ContextVector>,
+  contradictionPairs: contradictionPairsData,
+};
+
+/**
+ * يبني إعداد جلسة محاكاة. **كل حقل قابل للحقن** -- كانت `majors` و
+ * `riasecProfiles` و`subjectWeights` و`contradictionPairs` مثبَّتة حرفياً، فلم
+ * يكن ممكناً قياس نسخة بديلة من معايير الأقسام بنفس الأداة (الإصدار 2، المسار أ).
+ *
+ * القيم `undefined` تُسقَط قبل الدمج: مستدعٍ يمرّر `{ fitStrategy: cfg.fitStrategy }`
+ * وقيمتها غير معرَّفة يجب أن يحصل على سلوك اليوم نفسه، لا أن يمحو الافتراضي.
+ */
+export function buildSessionData(overrides: Partial<SessionData> = {}): SessionData {
+  const defined = Object.fromEntries(Object.entries(overrides).filter(([, v]) => v !== undefined)) as Partial<SessionData>;
+  return { ...DEFAULTS, ...defined };
 }

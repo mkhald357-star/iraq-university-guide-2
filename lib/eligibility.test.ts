@@ -68,9 +68,47 @@ describe("computeEligibility", () => {
   });
 
   it("حدّ الدراسة المسائية يُحتسَب أيضاً كمسار بلوغ صالح حتى لو تجاوز الصباحي معدل الطالب", () => {
-    const offerings = [makeOffering({ averageGrades: { صباحي: 90, مسائي: 60 } })];
+    // القسم يقدّم الدوامين فعلاً -- في البيانات الحقيقية لا يوجد قسم برقم
+    // مسائي لا يُعلن دواماً مسائياً (0 من 1349).
+    const offerings = [makeOffering({ sessions: ["صباحي", "مسائي"], averageGrades: { صباحي: 90, مسائي: 60 } })];
     const result = computeEligibility("علمي", 65, offerings);
     expect(result.reachableOffers).toHaveLength(1);
+  });
+
+  it("قسم صباحي فقط لا يُبلَغ بأرضية مسائية لا يقدّمها", () => {
+    const offerings = [makeOffering({ sessions: ["صباحي"], averageGrades: { صباحي: 90, مسائي: 60 } })];
+    expect(computeEligibility("علمي", 65, offerings).reachableOffers).toHaveLength(0);
+  });
+
+  it("قسم أهلي بلا حدّ منشور ليس «في المتناول» لأي معدل -- بل مجهول (عطل §32 الذي نجا في هذا الملف)", () => {
+    const privateNoMin = makeOffering({
+      universityType: "أهلية",
+      isDirectAdmission: true,
+      averageGrades: { صباحي: null, مسائي: null },
+      statedMinimumGrade: null,
+    });
+    const result = computeEligibility("علمي", 50, [privateNoMin]);
+    expect(result.reachableOffers).toHaveLength(0);
+    expect(result.unknownOffers).toHaveLength(1);
+  });
+
+  it("قسم أهلي بحدّ معلن يُقارَن به كأي حدّ", () => {
+    const privateWithMin = makeOffering({
+      universityType: "أهلية",
+      isDirectAdmission: true,
+      averageGrades: { صباحي: null, مسائي: null },
+      statedMinimumGrade: { value: 85, raw: "معدل ( 85 )%", source: "دليل", sourceYear: "2025-2026" },
+    });
+    expect(computeEligibility("علمي", 90, [privateWithMin]).reachableOffers).toHaveLength(1);
+    expect(computeEligibility("علمي", 80, [privateWithMin]).reachableOffers).toHaveLength(0);
+  });
+
+  it("الحدّ التنافسي الأدنى يستبعد الأهلي والأرضية المسائية", () => {
+    const offerings = [
+      makeOffering({ averageGrades: { صباحي: 80, مسائي: 60 }, sessions: ["صباحي", "مسائي"] }),
+      makeOffering({ universityType: "أهلية", isDirectAdmission: true, averageGrades: { صباحي: 50, مسائي: null } }),
+    ];
+    expect(computeEligibility("علمي", 70, offerings).lowestCutoff).toBe(80);
   });
 
   it("تُجمَع الفروع المسموحة من كل العروض دون تكرار", () => {

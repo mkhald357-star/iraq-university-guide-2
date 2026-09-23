@@ -390,6 +390,8 @@ export default function Quiz() {
       localStorage.removeItem("quizResults");
       localStorage.removeItem("userAnswers");
       localStorage.removeItem("filterSettings");
+      localStorage.removeItem("subjectGrades");
+      localStorage.removeItem("quizResultsV2");
     } catch {
       // تجاهل — الاختبار يعمل بلا حفظ محلي، أفضل من انهيار كامل.
     }
@@ -637,6 +639,9 @@ export default function Quiz() {
         })
       );
       localStorage.setItem("userAnswers", JSON.stringify(step.scoredAnswers));
+      // درجات المواد الاختيارية تدخل التوافق بوزن 30% -- بدونها يحسب /report
+      // توافقاً مختلفاً عن الاختبار لنفس التخصص (الإصدار 2، المسار C-C).
+      localStorage.setItem("subjectGrades", JSON.stringify(subjectGrades));
       localStorage.setItem("needsReview", JSON.stringify(step.vrs.band !== "low"));
     } catch {
       // تجاهل — النتيجة تُعرض من الحالة في الذاكرة بغضّ النظر؛ فقط لن

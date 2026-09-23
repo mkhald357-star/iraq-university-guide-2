@@ -10,7 +10,14 @@ import questionsData from "../../data/questions.json";
 import tiebreakerQuestionsData from "../../data/tiebreaker_questions.json";
 import reserveQuestionsData from "../../data/reserve_questions.json";
 import { buildScoredPool } from "../../lib/scoredPool";
-import { PRODUCT_FIT_STRATEGY, PRODUCT_MIN_LOADING_SHARE } from "../../lib/recommendationEngine";
+import {
+  PRODUCT_FIT_STRATEGY,
+  PRODUCT_MIN_LOADING_SHARE,
+  rankMajorsFromVector,
+  type RankMajorsData,
+} from "../../lib/recommendationEngine";
+import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
+import type { SubjectGrades } from "../../lib/subjectAffinity";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { rankUniversityOfferings } from "../../lib/majorMatcher";
 import type { UniversityOffering } from "../../lib/majorMatcher";
@@ -276,6 +283,9 @@ function ReportContent() {
   const [userAnswers, setUserAnswers] = useState<Record<string, number>>({});
   const [quizResults, setQuizResults] = useState<any[]>([]);
   const [filterSettings, setFilterSettings] = useState<any>(null);
+  const [subjectGrades, setSubjectGrades] = useState<SubjectGrades>({});
+  // اسم المجال لكل تخصص موصى به (quizResultsV2) -- يُعرض فوق تحليله.
+  const [familyByMajor, setFamilyByMajor] = useState<Record<string, string>>({});
   const [offeringsByMajor, setOfferingsByMajor] = useState<Record<string, UniversityOffering[]>>({});
   const [detailedProfileState, setDetailedProfileState] = useState<DetailedMajorProfile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -301,13 +311,28 @@ function ReportContent() {
       let ua: Record<string, number> = {};
       let qr: any[] = [];
       let fs: any = null;
+      let sg: SubjectGrades = {};
+      let fam: Record<string, string> = {};
       try {
         const savedAnswers = localStorage.getItem("userAnswers");
         const savedResults = localStorage.getItem("quizResults");
         const savedFilters = localStorage.getItem("filterSettings");
+        const savedSubjects = localStorage.getItem("subjectGrades");
+        const savedV2 = localStorage.getItem("quizResultsV2");
         if (savedAnswers) ua = JSON.parse(savedAnswers);
         if (savedResults) qr = JSON.parse(savedResults);
         if (savedFilters) fs = JSON.parse(savedFilters);
+        if (savedSubjects) sg = JSON.parse(savedSubjects);
+        // نتيجة محفوظة من الإصدار السابق لا تحمل هذا المفتاح -- تُفتح بلا أسماء
+        // مجالات، لا تنكسر.
+        if (savedV2) {
+          const v2 = JSON.parse(savedV2);
+          if (v2?.version === 2 && Array.isArray(v2.families)) {
+            v2.families.forEach((f: { familyName: string; lead: { id: string }; siblings: { id: string }[] }) => {
+              [f.lead, ...(f.siblings ?? [])].forEach((m) => (fam[m.id] = f.familyName));
+            });
+          }
+        }
       } catch {
         // نتجاهل البيانات التالفة بصمت — الحقول تبقى بقيمها الافتراضية
         // (نتائج فارغة) فتُعرض شاشة "لم تكمل الاختبار" الطبيعية أدناه.
@@ -316,6 +341,8 @@ function ReportContent() {
       setUserAnswers(ua);
       setQuizResults(qr);
       setFilterSettings(fs);
+      setSubjectGrades(sg);
+      setFamilyByMajor(fam);
 
       // ── جلب عروض الجامعات فقط للتخصصات المعروضة فعلياً في هذه الصفحة ──
       // (التخصص الأساسي + حتى 3 توصيات) بدل تحميل بيانات كل التخصصات الـ88
@@ -439,6 +466,31 @@ function ReportContent() {
   );
   const riasecProfiles = riasecProfilesData.profiles as Record<string, Partial<Record<string, number>>>;
 
+  // ── ترتيب واحد بنفس دالة الاختبار (الإصدار 2، المسار C-C) ──
+  // كان التقرير يعيد حساب التوافق بـcomputeMajorFitWith مباشرةً، بلا مزج درجات
+  // المواد (30%) -- لأن الاختبار لم يكن يحفظها أصلاً -- فيرتّب البدائل بمقياس
+  // مختلف عن التوصيات الثلاث على الصفحة نفسها، ويعرض لنفس التخصص نسبة تختلف
+  // عمّا رآه الطالب في الاختبار متى أدخل درجات مواده.
+  const REPORT_ENGINE_DATA: RankMajorsData = {
+    fitStrategy: PRODUCT_FIT_STRATEGY,
+    minLoadingShare: PRODUCT_MIN_LOADING_SHARE,
+    majors: majorsData,
+    riasecProfiles: riasecProfiles as RankMajorsData["riasecProfiles"],
+    subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
+  };
+  const fitById: Record<string, number> = filterSettings
+    ? Object.fromEntries(
+        rankMajorsFromVector(
+          userRiasecVector,
+          { branch: filterSettings.branch, grade: filterSettings.grade, subjectGrades },
+          REPORT_ENGINE_DATA
+        ).map((m) => [m.id, m.fitPercent])
+      )
+    : {};
+  // تخصص خارج فرع الطالب لا يظهر في ترتيب فرعه -- يُحسب له التوافق الشخصي وحده.
+  const fitFor = (id: string) =>
+    fitById[id] ?? computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, riasecProfiles[id] ?? {});
+
   // ── بوّابة الأهلية كقرار قاطع (TASKS.md المهمة ٣) ──
   // قبول الفرع شرط إداري قاطع (نعم/لا)، لا توافقاً متدرّجاً. تُحسَب على كل
   // عروض التخصص (لا فقط المحافظة المُفلترة) كي لا يُخلَط "غير موجود بمحافظتك"
@@ -454,8 +506,7 @@ function ReportContent() {
     const candidates = majorsData
       .filter((m) => m.id !== excludeMajorId && allowedCats.includes(m.category))
       .map((m) => {
-        const profile = riasecProfiles[m.id] ?? {};
-        const fitPercent = computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, profile);
+        const fitPercent = fitFor(m.id);
         const mOfferings = offeringsByMajor[m.id] || [];
         const mEligibility = computeEligibility(filterSettings.branch, filterSettings.grade, mOfferings);
         return { major: m, fitPercent, eligibility: mEligibility };
@@ -480,7 +531,7 @@ function ReportContent() {
   } => {
     const points: string[] = [];
     const profile = riasecProfiles[majorObj.id] ?? {};
-    const fitPercent = majorObj.fitPercent ?? computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, profile);
+    const fitPercent = majorObj.fitPercent ?? fitFor(majorObj.id);
     // كل الأبعاد الستة مع فارقها، لا أعلى بُعدين فقط (TASKS.md المهمة ٤).
     const dimensionGaps = computeDimensionGaps(userRiasecVector, profile);
 
@@ -590,11 +641,11 @@ function ReportContent() {
   // المرتبة والفارق عن التخصص الأول (TASKS.md المهمة ٤) -- فقط حين تُعرَض
   // الصفحة عبر نتيجة اختبار حقيقية بأكثر من تخصص واحد (topMajors من quizResults).
   const primaryMajorRank = topMajors.findIndex((m: any) => m.id === primaryMajor.id) + 1;
-  const topMajorFit =
-    topMajors.length > 1
-      ? (topMajors[0].fitPercent ?? computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, riasecProfiles[topMajors[0].id] ?? {}))
-      : null;
-  const primaryMajorFit = computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, riasecProfiles[primaryMajor.id] ?? {});
+  // المقياس نفسه للطرفين: كان topMajorFit محفوظاً (بمزج المواد) وprimaryMajorFit
+  // مُعاد حسابه بدونه، فيُطرح فارقٌ بين مقياسين مختلفين.
+  const topMajorFit = topMajors.length > 1 ? (topMajors[0].fitPercent ?? fitFor(topMajors[0].id)) : null;
+  const primaryMajorFit =
+    topMajors.find((m: any) => m.id === primaryMajor.id)?.fitPercent ?? fitFor(primaryMajor.id);
   const fitGapFromFirst = topMajorFit !== null && primaryMajorRank > 0 ? primaryMajorFit - topMajorFit : null;
   const isNarrowMargin = fitGapFromFirst !== null && Math.abs(fitGapFromFirst) < 3 && primaryMajorRank > 1;
 
@@ -751,6 +802,9 @@ function ReportContent() {
             (personalityTranslationsData.translations as Record<string, Record<string, string>>)[m.category] ?? {};
           return (
             <div key={idx} className="mb-10">
+              {familyByMajor[m.id] && (
+                <p className="mb-1 text-xs font-bold text-primary-text">مجال {familyByMajor[m.id]}</p>
+              )}
               <h2 className="text-xl font-semibold text-ink mb-3 flex items-center gap-2">
                 <span className="w-2 h-2 bg-primary rounded-full inline-block" />
                 {m.name} — {m.category}

@@ -7,15 +7,20 @@ import { ArrowRight, TrendingUp, DollarSign, Briefcase, AlertCircle, Download, A
 import majorsData from "../../data/majors.json";
 import universitiesMeta from "../../data/universities_meta.json";
 import questionsData from "../../data/questions.json";
+import tiebreakerQuestionsData from "../../data/tiebreaker_questions.json";
+import reserveQuestionsData from "../../data/reserve_questions.json";
+import { buildScoredPool } from "../../lib/scoredPool";
+import { PRODUCT_FIT_STRATEGY, PRODUCT_MIN_LOADING_SHARE } from "../../lib/recommendationEngine";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { rankUniversityOfferings } from "../../lib/majorMatcher";
 import type { UniversityOffering } from "../../lib/majorMatcher";
 import {
   computeUserRiasecVector,
-  computeMajorFit,
+  computeMajorFitWith,
   computeDimensionGaps,
   RIASEC_LABELS,
   RIASEC_DIMENSIONS,
+  type RiasecQuestion,
 } from "../../lib/riasec";
 import { computeEligibility } from "../../lib/eligibility";
 import personalityTranslationsData from "../../data/personality_translations.json";
@@ -426,7 +431,12 @@ function ReportContent() {
   }
 
   // ── تحليل التوافق القائم على نموذج RIASEC ──
-  const userRiasecVector = computeUserRiasecVector(userAnswers, questionsData);
+  // نفس حوض الاختبار: الأساسية + أي سؤال إضافي أجاب عنه الطالب فعلاً
+  const userRiasecVector = computeUserRiasecVector(
+    userAnswers,
+    buildScoredPool<RiasecQuestion>(userAnswers, questionsData as RiasecQuestion[], [reserveQuestionsData as RiasecQuestion[], tiebreakerQuestionsData as RiasecQuestion[]]),
+    PRODUCT_MIN_LOADING_SHARE
+  );
   const riasecProfiles = riasecProfilesData.profiles as Record<string, Partial<Record<string, number>>>;
 
   // ── بوّابة الأهلية كقرار قاطع (TASKS.md المهمة ٣) ──
@@ -445,7 +455,7 @@ function ReportContent() {
       .filter((m) => m.id !== excludeMajorId && allowedCats.includes(m.category))
       .map((m) => {
         const profile = riasecProfiles[m.id] ?? {};
-        const fitPercent = computeMajorFit(userRiasecVector, profile);
+        const fitPercent = computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, profile);
         const mOfferings = offeringsByMajor[m.id] || [];
         const mEligibility = computeEligibility(filterSettings.branch, filterSettings.grade, mOfferings);
         return { major: m, fitPercent, eligibility: mEligibility };
@@ -470,7 +480,7 @@ function ReportContent() {
   } => {
     const points: string[] = [];
     const profile = riasecProfiles[majorObj.id] ?? {};
-    const fitPercent = majorObj.fitPercent ?? computeMajorFit(userRiasecVector, profile);
+    const fitPercent = majorObj.fitPercent ?? computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, profile);
     // كل الأبعاد الستة مع فارقها، لا أعلى بُعدين فقط (TASKS.md المهمة ٤).
     const dimensionGaps = computeDimensionGaps(userRiasecVector, profile);
 
@@ -582,9 +592,9 @@ function ReportContent() {
   const primaryMajorRank = topMajors.findIndex((m: any) => m.id === primaryMajor.id) + 1;
   const topMajorFit =
     topMajors.length > 1
-      ? (topMajors[0].fitPercent ?? computeMajorFit(userRiasecVector, riasecProfiles[topMajors[0].id] ?? {}))
+      ? (topMajors[0].fitPercent ?? computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, riasecProfiles[topMajors[0].id] ?? {}))
       : null;
-  const primaryMajorFit = computeMajorFit(userRiasecVector, riasecProfiles[primaryMajor.id] ?? {});
+  const primaryMajorFit = computeMajorFitWith(PRODUCT_FIT_STRATEGY, userRiasecVector, riasecProfiles[primaryMajor.id] ?? {});
   const fitGapFromFirst = topMajorFit !== null && primaryMajorRank > 0 ? primaryMajorFit - topMajorFit : null;
   const isNarrowMargin = fitGapFromFirst !== null && Math.abs(fitGapFromFirst) < 3 && primaryMajorRank > 1;
 

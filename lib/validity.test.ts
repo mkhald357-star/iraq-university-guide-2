@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { computeValidityRiskScore } from "./validity";
+import { computeValidityRiskScore, computeAcquiescenceIndex } from "./validity";
 import type { ContradictionPair, ScoredQuestionLike } from "./validity";
 
 const NO_CONTRADICTIONS: ContradictionPair[] = [];
@@ -210,13 +210,22 @@ describe("computeValidityRiskScore — مقياس الخمس نقاط", () => {
     expect(result.triggeredContradictions).toHaveLength(0);
   });
 
-  it("نمط ميل شديد لأطراف المقياس (كل الإجابات ±1 بلا أي درجة وسيطة) يُصعِّد النتيجة -- إشارة لا يمكن قياسها على 3 نقاط", () => {
+  it("كل الإجابات ±1 بلا أي درجة وسيطة = إشارة 'بلا درجة وسيطة' (الأقوى)", () => {
     const answers: Record<string, number> = {};
     // إجابات طرفية متنوّعة (لا خط مستقيم -- نصفها 1 ونصفها -1) كي لا يُثير
-    // modeRatio بالخطأ، فقط pExtreme الجديد.
+    // modeRatio بالخطأ.
     for (let i = 0; i < 20; i++) answers[`q${i}`] = i % 2 === 0 ? 1 : -1;
     const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
+    expect(result.reasons).toContain("كل إجاباتك غير المحايدة في أقصى طرفي المقياس، بلا أي درجة وسيطة واحدة");
+  });
+
+  it("درجة وسيطة واحدة تُسقط الإشارة الأقوى إلى تحذير الميل الشديد للأطراف", () => {
+    const answers: Record<string, number> = {};
+    for (let i = 0; i < 20; i++) answers[`q${i}`] = i % 2 === 0 ? 1 : -1;
+    answers.q1 = -0.5; // 19 من 20 طرفية: فوق عتبة pExtreme ودون شرط "بلا وسيطة"
+    const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
     expect(result.reasons).toContain("ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة");
+    expect(result.reasons).not.toContain("كل إجاباتك غير المحايدة في أقصى طرفي المقياس، بلا أي درجة وسيطة واحدة");
   });
 
   it("إجابات معتدلة متنوّعة (0.5/-0.5 لا 1/-1) لا تُثير تحذير الميل الشديد للأطراف", () => {
@@ -259,5 +268,34 @@ describe("computeValidityRiskScore — مقياس الخمس نقاط", () => {
     for (let i = 0; i < 20; i++) answers[`q${i}`] = i < 13 ? 0.5 : -0.5;
     const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
     expect(result.reasons).toContain("تكرار كبير لنفس الإجابة عبر الأسئلة");
+  });
+});
+
+describe("مؤشر الموافقة المتوازن ومقياس الصدق (البنك ذو البنود المعكوسة)", () => {
+  const balanced = [
+    { id: "p1", dimensions: { R: 8 } },
+    { id: "p2", dimensions: { S: 7 } },
+    { id: "r1", dimensions: { R: -7 } },
+    { id: "r2", dimensions: { S: -7 } },
+  ];
+
+  it("ميل حقيقي (يوافق البند ويخالف معكوسه) = مؤشر قرب الصفر", () => {
+    expect(computeAcquiescenceIndex({ p1: 1, p2: 0.5, r1: -1, r2: -0.5 }, balanced)).toBeCloseTo(0);
+  });
+
+  it("من يوافق على العبارة وعكسها معاً يُكشف كموافقة تلقائية", () => {
+    const answers = { p1: 1, p2: 1, r1: 1, r2: 0.5 };
+    expect(computeAcquiescenceIndex(answers, balanced)).toBeGreaterThan(0.35);
+    const result = computeValidityRiskScore(answers, {}, {}, [], balanced);
+    expect(result.band).not.toBe("low");
+  });
+
+  it("بنك أحادي الاتجاه لا يسمح بالمؤشر (null) فلا يُطلق إنذاراً", () => {
+    expect(computeAcquiescenceIndex({ p1: 1, p2: 1 }, balanced.slice(0, 2))).toBeNull();
+  });
+
+  it("موافقة كاملة على «لم أفشل قط» وحدها توصي بالمراجعة (medium)", () => {
+    const result = computeValidityRiskScore({ p1: 1, r1: -1, p2: 0.5, r2: -0.5 }, { q_lie_scale: 1 }, {}, [], balanced);
+    expect(result.band).toBe("medium");
   });
 });

@@ -1,37 +1,43 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, AlertTriangle, AlertCircle, CheckCircle, Edit3, ClipboardList } from "lucide-react";
 import questionsData from "../../data/questions.json";
 import validityQuestionsData from "../../data/validity_questions.json";
 import contradictionPairsData from "../../data/contradiction_pairs.json";
 import tiebreakerQuestionsData from "../../data/tiebreaker_questions.json";
+import reserveQuestionsData from "../../data/reserve_questions.json";
 import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
 import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
 import {
-  computeUserRiasecVector,
   computeCombinedRankingScore,
-  topDimensions,
   RIASEC_LABELS,
   type RiasecDimension,
   type RiasecVector,
 } from "../../lib/riasec";
-import { computeValidityRiskScore, type ValidityCheckResult } from "../../lib/validity";
+import { type ValidityCheckResult } from "../../lib/validity";
 import { type SubjectGrades } from "../../lib/subjectAffinity";
 import subjectAffinityWeightsData from "../../data/subject_affinity_weights.json";
 import majorContextIndexData from "../../data/major_context_index.json";
-import { computeUserContextVector, type ContextVector } from "../../lib/contextAxisMap";
+import { type ContextVector } from "../../lib/contextAxisMap";
 import { IconBadge, Badge, Card, SelectField, InputField, Alert } from "../components/ui";
 import {
-  rankMajors,
-  planTieBreak,
-  applyContextTieBreak,
+  PRODUCT_FIT_STRATEGY,
+  PRODUCT_MIN_LOADING_SHARE,
   type RankMajorsData,
   type RankedMajor,
 } from "../../lib/recommendationEngine";
+import { evaluateQuizStep, type QuizEngineData, type RoundMode } from "../../lib/quizEngine";
+import { DEFAULT_RESERVE_ROUND_CONFIG, type ReserveTrigger } from "../../lib/adaptiveRound";
+import { groupScreens, pickAnswers, type ItemFormat, type QuizScreen } from "../../lib/itemFormats";
+import { ArrowScale } from "../components/quiz/ArrowScale";
+import { GridScreen } from "../components/quiz/GridScreen";
+import { PickScreen } from "../components/quiz/PickScreen";
+import { QuizProgress } from "../components/quiz/QuizProgress";
+import { getAnswerLabels, labelFor, type ScaleValue } from "../components/quiz/answerLabels";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {
@@ -44,43 +50,14 @@ interface QuizItem {
   // dimensions أو آلية التسجيل نفسها. الأسئلة الأخرى بلا هذا الحقل تستخدم
   // الأزرار العامة كما هي (fallback). stronglyYes/stronglyNo اختياريان
   // (مقياس الخمس نقاط) -- لا سؤال حالياً يملؤهما، تُشتَق آلياً في
-  // getAnswerLabels بدل إعادة كتابة الأربعين سؤالاً.
+  // getAnswerLabels (app/components/quiz/answerLabels.ts) بدل إعادة كتابة البنك.
   answerLabels?: { yes: string; maybe: string; no: string; stronglyYes?: string; stronglyNo?: string };
+  // شكل الشاشة (lib/itemFormats.ts): صفّ موقف grid أو خيار أقرب/أبعد pick.
+  format?: ItemFormat;
+  screenId?: string;
+  lead?: string;
 }
-
-interface FiveLevelLabels {
-  stronglyYes: string;
-  yes: string;
-  maybe: string;
-  no: string;
-  stronglyNo: string;
-}
-
-const GENERIC_ANSWER_LABELS: FiveLevelLabels = {
-  stronglyYes: "أوافق بشدة",
-  yes: "أوافق",
-  maybe: "محايد",
-  no: "لا أوافق",
-  stronglyNo: "لا أوافق إطلاقاً",
-};
-
-// ترقية من مقياس 3 نقاط (نعم/ربما/لا) إلى 5 (مع درجتَي شدّة) -- بلا إعادة
-// كتابة الأسئلة الأربعين الحالية. أسئلة المقارنة الصريحة (answerLabels
-// مخصَّصة) كُتبت أصلاً بصيغة "...بوضوح" في طرفيها (yes/no)، فتلائم درجتَي
-// التطرّف الجديدتين تماماً بلا تعديل؛ الدرجتان الوسيطتان نص واجهة عام محايد
-// عن مضمون السؤال (لا ادّعاء بيانات جديد)، ويُفهَمان من موضعهما بين الطرف
-// القوي والمحايد.
-function getAnswerLabels(q: QuizItem): FiveLevelLabels {
-  if (!q.answerLabels) return GENERIC_ANSWER_LABELS;
-  const { yes, maybe, no, stronglyYes, stronglyNo } = q.answerLabels;
-  return {
-    stronglyYes: stronglyYes ?? yes,
-    yes: "أميل لهذا الجانب",
-    maybe,
-    no: "أميل للجانب الآخر",
-    stronglyNo: stronglyNo ?? no,
-  };
-}
+type Screen = QuizScreen<QuizItem>;
 
 // قائمة المحافظات مولَّدة من بيانات الجامعات الفعلية عبر خط أنابيب
 // الاستخراج (data/provinces.json، ملف صغير مشتق حتى لا نستورد كل بيانات
@@ -90,25 +67,33 @@ const AVAILABLE_PROVINCES = provincesData as string[];
 
 // أسئلة تحقق/جدّية (VRS) لا تُحسب ضمن أبعاد RIASEC — dimensions فارغة عمداً،
 // ما يجعل computeUserRiasecVector يتجاهلها تلقائياً دون أي تعديل إضافي فيه.
-// نُدرجها بمواضع ثابتة داخل تسلسل الأسئلة: سؤال الانتباه الموجَّه في المنتصف
+// نُدرجها بمواضع ثابتة داخل تسلسل الشاشات: سؤال الانتباه الموجَّه في المنتصف
 // تقريباً، وتوأم "مساعدة الآخرين" المعكوس + مقياس الصدق قرب النهاية (كما
 // أوصى تقرير كشف التحيز — كي لا يُلاحظ الطالب نمطها بسهولة).
+// البنك عبارات مسطّحة تُجمَع في 22 شاشة محتوى (مقارنة طرفية / موقف / أقرب-أبعد).
 const SCORED_QUESTIONS = questionsData as QuizItem[];
 const VALIDITY_QUESTIONS = validityQuestionsData as QuizItem[];
 const [ATTENTION_CHECK, HELP_OTHERS_REVERSE, LIE_SCALE] = VALIDITY_QUESTIONS;
-const ATTENTION_CHECK_POSITION = 18;
-const ALL_QUIZ_QUESTIONS: QuizItem[] = [
-  ...SCORED_QUESTIONS.slice(0, ATTENTION_CHECK_POSITION),
-  ATTENTION_CHECK,
-  ...SCORED_QUESTIONS.slice(ATTENTION_CHECK_POSITION),
-  HELP_OTHERS_REVERSE,
-  LIE_SCALE,
+const ATTENTION_CHECK_SCREEN = 11;
+const singleScreen = (q: QuizItem): Screen => ({ id: q.id, format: "single", items: [q] });
+const CORE_SCREENS = groupScreens(SCORED_QUESTIONS);
+const ALL_QUIZ_SCREENS: Screen[] = [
+  ...CORE_SCREENS.slice(0, ATTENTION_CHECK_SCREEN),
+  singleScreen(ATTENTION_CHECK),
+  ...CORE_SCREENS.slice(ATTENTION_CHECK_SCREEN),
+  singleScreen(HELP_OTHERS_REVERSE),
+  singleScreen(LIE_SCALE),
 ];
+// زمن استقرار السهم قبل الانتقال التلقائي (لمس/فأرة فقط) -- يرى الطالب إجابته أولاً.
+const AUTO_ADVANCE_MS = 650;
+type PickState = Record<string, { most: string | null; least: string | null }>;
 const VALIDITY_QUESTION_IDS = new Set(VALIDITY_QUESTIONS.map((q) => q.id));
 
 // بيانات محرك الترتيب (lib/recommendationEngine.ts) -- تُحسَب مرة واحدة هنا
 // بدل إعادة بنائها في كل استدعاء لـrunRecommendationEngine.
 const ENGINE_DATA: RankMajorsData = {
+  fitStrategy: PRODUCT_FIT_STRATEGY,
+  minLoadingShare: PRODUCT_MIN_LOADING_SHARE,
   majors: majorsData,
   riasecProfiles: riasecProfilesData.profiles as RankMajorsData["riasecProfiles"],
   subjectWeights: subjectAffinityWeightsData.weights as RankMajorsData["subjectWeights"],
@@ -119,31 +104,47 @@ const ENGINE_DATA: RankMajorsData = {
 // الترتيب الأساسي (rankMajors) إطلاقاً.
 const CONTEXT_INDEX = majorContextIndexData.contexts as Record<string, ContextVector>;
 
+// وضع الجولات الإضافية: "reserve" = جولة فكّ حيرة واحدة (3-5 عبارات حسب الحاجة) عند تقارب
+// أفضل التخصصات أو ضعف قياس بُعد (lib/adaptiveRound.ts) -- حلّت محلّ جولات
+// الترجيح الثلاث القديمة التي كانت تستسلم صامتة في ~75% من الجلسات حين ينفد
+// بنك البُعدين (انظر QA-REPORT-ALGORITHM.md).
+const QUIZ_ROUND_MODE: RoundMode = "reserve";
+
+// مصدر وحيد لمنطق التقييم: نفس الدالة التي تقيسها أداة المحاكاة (lib/eval).
+const QUIZ_ENGINE_DATA: QuizEngineData = {
+  ...ENGINE_DATA,
+  coreQuestions: SCORED_QUESTIONS,
+  tiebreakerPool: tiebreakerQuestionsData as QuizItem[],
+  // بنك الاحتياط المُراجَع (data/reserve_questions.json) -- لا بنك /decider
+  // القديم الذي حكمت المراجعة النفسية بحذف 9 من بنوده الـ18 أو إعادة صياغتها.
+  reservePool: reserveQuestionsData as QuizItem[],
+  reserveConfig: DEFAULT_RESERVE_ROUND_CONFIG,
+  roundMode: QUIZ_ROUND_MODE,
+  contextTieBreak: false,
+  validityIds: VALIDITY_QUESTION_IDS,
+  contextIndex: CONTEXT_INDEX,
+  contradictionPairs: contradictionPairsData,
+};
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // مكوّن شاشة المراجعة قبل الإرسال
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 function ReviewScreen({
-  questions,
+  screens,
   answers,
+  picks,
   onEdit,
   onSubmit,
   onBack,
 }: {
-  questions: QuizItem[];
+  screens: Screen[];
   answers: AnswerState;
+  picks: PickState;
   onEdit: (index: number) => void;
   onSubmit: () => void;
   onBack: () => void;
 }) {
-  const answerLabelFor = (q: QuizItem, val: number): string => {
-    const labels = getAnswerLabels(q);
-    if (val === 1) return labels.stronglyYes;
-    if (val === 0.5) return labels.yes;
-    if (val === 0) return labels.maybe;
-    if (val === -0.5) return labels.no;
-    if (val === -1) return labels.stronglyNo;
-    return String(val);
-  };
+  const answerLabelFor = (q: QuizItem, val: number): string => labelFor(getAnswerLabels(q), val as ScaleValue);
   const colorMap: Record<number, string> = {
     1: "text-primary-text font-bold",
     0.5: "text-primary-text font-bold opacity-85",
@@ -151,8 +152,11 @@ function ReviewScreen({
     [-0.5]: "text-ink-muted font-bold opacity-85",
     [-1]: "text-ink-muted font-bold",
   };
-
-  const unanswered = questions.filter((q) => answers[q.id] === undefined);
+  const isComplete = (s: Screen) =>
+    s.format === "pick"
+      ? Boolean(picks[s.id]?.most && picks[s.id]?.least)
+      : s.items.every((q) => answers[q.id] !== undefined);
+  const unanswered = screens.filter((s) => !isComplete(s));
 
   return (
     <div className="max-w-2xl mx-auto py-12 space-y-6 a-fade">
@@ -168,20 +172,43 @@ function ReviewScreen({
       {/* تحذير إجابات فائتة */}
       {unanswered.length > 0 && (
         <Alert tone="close" icon={AlertTriangle}>
-          لم تُجب على <strong>{unanswered.length} سؤال</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
+          لم تُكمل <strong>{unanswered.length} شاشة</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
           دقيقة.
         </Alert>
       )}
 
       {/* قائمة الإجابات */}
       <Card variant="surface" radius="rounded-3xl" className="max-h-[420px] space-y-3 overflow-y-auto">
-        {questions.map((q, i) => {
-          const val = answers[q.id];
-          const answered = val !== undefined;
+        {screens.map((s, i) => {
+          const answered = isComplete(s);
+          const pick = picks[s.id];
+          const rows: { key: string; text: string; value: string; tone: string }[] =
+            s.format === "pick"
+              ? [
+                  {
+                    key: "most",
+                    text: "الأقرب لي",
+                    value: s.items.find((q) => q.id === pick?.most)?.text ?? "لم يتم الاختيار",
+                    tone: pick?.most ? "text-primary-text font-bold" : "text-band-close font-bold",
+                  },
+                  {
+                    key: "least",
+                    text: "الأبعد عني",
+                    value: s.items.find((q) => q.id === pick?.least)?.text ?? "لم يتم الاختيار",
+                    tone: pick?.least ? "text-ink-muted font-bold" : "text-band-close font-bold",
+                  },
+                ]
+              : s.items.map((q) => ({
+                  key: q.id,
+                  text: q.text,
+                  value: answers[q.id] !== undefined ? answerLabelFor(q, answers[q.id]) : "لم يتم الإجابة",
+                  tone:
+                    answers[q.id] !== undefined ? (colorMap[answers[q.id]] ?? "text-ink") : "text-band-close font-bold",
+                }));
           return (
             <div
-              key={q.id}
-              className={`flex items-center gap-3 p-3 rounded-xl border transition-colors ${
+              key={s.id}
+              className={`flex items-start gap-3 p-3 rounded-xl border transition-colors ${
                 answered ? "bg-surface border-line" : "bg-band-close-bg border-band-close/30"
               }`}
             >
@@ -191,13 +218,14 @@ function ReviewScreen({
               </span>
 
               {/* النص والإجابة */}
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-ink-muted truncate">{q.text}</p>
-                <p
-                  className={`text-sm mt-0.5 ${answered ? (colorMap[val] ?? "text-ink") : "text-band-close font-bold"}`}
-                >
-                  {answered ? answerLabelFor(q, val) : "لم يتم الإجابة"}
-                </p>
+              <div className="flex-1 min-w-0 space-y-1.5">
+                {s.lead && <p className="text-xs font-bold text-ink-soft truncate">{s.lead}</p>}
+                {rows.map((r) => (
+                  <div key={r.key}>
+                    <p className="text-xs text-ink-muted truncate">{r.text}</p>
+                    <p className={`text-sm mt-0.5 ${r.tone}`}>{r.value}</p>
+                  </div>
+                ))}
               </div>
 
               {/* زر التعديل */}
@@ -273,8 +301,13 @@ function getDemandLevel(multiplier: number): { text: string; tone: "safe" | "pri
 // المكوّن الرئيسي
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 export default function Quiz() {
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  // موضع الطالب بالشاشات (لا بالعبارات) -- شاشة الموقف أو الأقرب/الأبعد تضم عدة عبارات.
+  const [currentScreenIndex, setCurrentScreenIndex] = useState(0);
   const [answers, setAnswers] = useState<AnswerState>({});
+  const [picks, setPicks] = useState<PickState>({});
+  const answersRef = useRef<AnswerState>(answers);
+  answersRef.current = answers;
+  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isFinished, setIsFinished] = useState(false);
   const [showReview, setShowReview] = useState(false);
   // كل التخصصات الصالحة لفرع الطالب (لا أفضل 3 فقط) بنسبة توافقها الخام --
@@ -305,6 +338,13 @@ export default function Quiz() {
   const [tieBreakPending, setTieBreakPending] = useState(false);
   const [tieBreakRound, setTieBreakRound] = useState(0);
   const [tieBreakInfo, setTieBreakInfo] = useState<{ a: string; b: string } | null>(null);
+  // سبب جولة الاحتياط (تقارب أفضل التخصصات / ضعف قياس بُعد / الاثنان) -- يحدّد رسالة الطالب
+  const [tieBreakTrigger, setTieBreakTrigger] = useState<ReserveTrigger | null>(null);
+  const [weakDimensions, setWeakDimensions] = useState<RiasecDimension[]>([]);
+  // أول تخصصين لا يزالان متقاربين عند الإنهاء -- نقول ذلك للطالب بصدق بدل تفضيل وهمي
+  const [closeCall, setCloseCall] = useState(false);
+  // تحت نقطة واحدة: دقة المركز الأول نحو 32-45% فقط (المدقّق C1) -- نقول "متعادلان" لا "متقاربان"
+  const [tiedCall, setTiedCall] = useState(false);
 
   const [filterSettings, setFilterSettings] = useState<null | {
     province: string;
@@ -324,7 +364,10 @@ export default function Quiz() {
     return [...allValidMajors]
       .map((m) => ({
         ...m,
-        combinedScore: computeCombinedRankingScore(m.fitPercent, m.marketMultiplier, marketWeight),
+        // tieBreakAdjustment = أثر ترجيح السياق -- كان يسقط هنا صامتاً فتختلف
+        // النتيجة المعروضة عمّا حُفظ لصفحة /report.
+        combinedScore:
+          computeCombinedRankingScore(m.fitPercent, m.marketMultiplier, marketWeight) + (m.tieBreakAdjustment ?? 0),
       }))
       .sort((a, b) => b.combinedScore - a.combinedScore)
       .slice(0, 3);
@@ -347,7 +390,8 @@ export default function Quiz() {
   // إعادة ضبط "توقيت بداية السؤال" عند كل انتقال — يغذّي مكوّن الزمن في VRS
   useEffect(() => {
     setQuestionShownAt(Date.now());
-  }, [currentQuestionIndex]);
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+  }, [currentScreenIndex]);
 
   // Persist filterSettings
   useEffect(() => {
@@ -521,98 +565,54 @@ export default function Quiz() {
   // مباشراً لتخصص بعينه. أسئلة الترجيح (tieBreakQuestions) تُلحَق في آخر
   // القائمة فقط حين تُفعَّل فعلياً (فارغة في الحالة الشائعة، فلا يتغيّر طول
   // الاختبار أو سلوكه إطلاقاً عندما تكون النتيجة واضحة أصلاً).
-  const displayedQuestions = [...ALL_QUIZ_QUESTIONS, ...tieBreakQuestions];
+  const displayedScreens: Screen[] = [...ALL_QUIZ_SCREENS, ...tieBreakQuestions.map(singleScreen)];
 
   // ---- محرك التوصية القائم على RIASEC + نظام كشف الجدّية (VRS) ----
   // roundNumber = عدد جولات الترجيح المُنجَزة فعلياً حتى الآن (0 = الجولة
   // الأولى بعد الأسئلة الأربعين مباشرة) -- يُحدّ بـMAX_TIEBREAK_ROUNDS لمنع
   // إرهاق الطالب بأسئلة ترجيح لا نهائية إن ظلّ التعادل قائماً.
   const runRecommendationEngine = (finalAnswers: AnswerState, opts?: { roundNumber?: number }) => {
-    // فصل إجابات الأسئلة المُسجَّلة فعلياً على RIASEC عن إجابات أسئلة التحقق
-    // الثلاثة (dimensions فارغة، لا تدخل حساب المتجه الشخصي إطلاقاً).
-    const scoredAnswers: AnswerState = {};
-    const validityAnswers: AnswerState = {};
-    Object.entries(finalAnswers).forEach(([id, val]) => {
-      if (VALIDITY_QUESTION_IDS.has(id)) validityAnswers[id] = val;
-      else scoredAnswers[id] = val;
-    });
-
-    // جدول تناقضات منطقية قابل للتوسعة (data/contradiction_pairs.json) بدل
-    // زوج واحد مبرمَج يدوياً — كل زوج "نعم+نعم" منطقياً متعارض يُضاف كتنبيه.
-    const finalWarnings: string[] = contradictionPairsData
-      .filter((pair) => (scoredAnswers[pair.a] ?? 0) > 0 && (scoredAnswers[pair.b] ?? 0) > 0)
-      .map((pair) => pair.message);
-
-    // نطاق التطبيع (min/max) يجب أن يشمل أسئلة الترجيح المعروضة فعلياً وإلا
-    // تُحسَب مساهمتها بمقياس خاطئ -- questionsData وحدها تكفي في الجولة
-    // الأولى (tieBreakQuestions فارغة بعد).
-    const questionPoolForVector = [...(questionsData as QuizItem[]), ...tieBreakQuestions];
-    const userVector = computeUserRiasecVector(scoredAnswers, questionPoolForVector);
-
-    // محرك الترتيب الكامل (فرع + بوابة المعدل + RIASEC + مزيج القرابة
-    // الدراسية) صار في lib/recommendationEngine.ts -- مصدر وحيد، قابل
-    // للاختبار مستقلاً (lib/recommendationEngine.characterization.test.ts).
-    const ranked = rankMajors(
+    // كل منطق التقييم (فصل التحقق، التناقضات، الترتيب، ترجيح السياق، قرار
+    // جولة الاحتياط، VRS) في lib/quizEngine.ts -- نفس الدالة التي تقيسها أداة
+    // المحاكاة، فلا يمكن أن يرى الطالب محركاً غير الذي قِيست دقّته وعدالته.
+    const step = evaluateQuizStep(
       {
-        scoredAnswers,
-        questionPool: questionPoolForVector,
+        answers: finalAnswers,
+        extraQuestionsAsked: tieBreakQuestions,
+        round: opts?.roundNumber ?? 0,
         branch: filterSettings.branch,
         grade: filterSettings.grade,
         subjectGrades,
+        timingsMs: timings,
       },
-      ENGINE_DATA
+      QUIZ_ENGINE_DATA
     );
 
-    // المرحلة 3: ترجيح بصمة السياق -- يعمل فقط حين يكون أفضل تخصصين ضمن نطاق
-    // الغموض أصلاً (لا يمسّ ranked خارج ذلك)، ويستخدم إجابات RIASEC نفسها
-    // (لا سؤال إضافي) لفصل أزواج مثل هندسة/تقنيات كهرباء.
-    const userContextVector = computeUserContextVector(scoredAnswers, questionPoolForVector.map((q) => q.id));
-    const contextRanked = applyContextTieBreak(ranked, userContextVector, CONTEXT_INDEX);
-    const top3 = contextRanked.slice(0, 3);
-
-    // ---- نقطة التكيّف متعددة الجولات: نتيجة متقاربة بين أول تخصصين → أسئلة
-    // ترجيح إضافية، بحد أقصى MAX_TIEBREAK_ROUNDS جولات (§5.2) ----
-    const currentRound = opts?.roundNumber ?? 0;
-    const alreadyAskedIds = new Set(tieBreakQuestions.map((q) => q.id));
-    const decision = planTieBreak(
-      contextRanked,
-      currentRound,
-      alreadyAskedIds,
-      tiebreakerQuestionsData as QuizItem[],
-      ENGINE_DATA.riasecProfiles
-    );
-
-    if (decision.candidates.length > 0) {
-      const startIndex = ALL_QUIZ_QUESTIONS.length + tieBreakQuestions.length;
-      setTieBreakQuestions((prev) => [...prev, ...decision.candidates]); // تراكمي عبر الجولات، لا استبدال
-      setTieBreakInfo(decision.tieBreakInfo);
+    if (step.kind === "askMore") {
+      const startIndex = ALL_QUIZ_SCREENS.length + tieBreakQuestions.length;
+      setTieBreakQuestions((prev) => [...prev, ...(step.questions as QuizItem[])]);
+      setTieBreakInfo(step.tieBreakInfo);
+      setTieBreakTrigger(step.trigger === "legacy_tiebreak" ? "ambiguity" : step.trigger);
+      setWeakDimensions(step.weakDimensions);
       setTieBreakPending(true);
-      setTieBreakRound(currentRound + 1);
-      setCurrentQuestionIndex(startIndex);
+      setTieBreakRound(step.nextRound);
+      setCurrentScreenIndex(startIndex);
       setShowReview(false);
-      return; // لا نُنهي الاختبار بعد -- ننتظر إجابات جولة الترجيح هذه
+      return; // لا نُنهي الاختبار بعد -- ننتظر إجابات هذه الجولة
     }
 
     setTieBreakPending(false);
-    const userTopDimensions = topDimensions(userVector, 2);
-
-    const vrs = computeValidityRiskScore(
-      scoredAnswers,
-      validityAnswers,
-      timings,
-      contradictionPairsData,
-      questionsData
-    );
-
-    setWarnings(finalWarnings);
-    setAllValidMajors(contextRanked);
-    setTopUserDimensions(userTopDimensions);
-    setVrsResult(vrs);
+    setWarnings(step.warnings);
+    setAllValidMajors(step.ranked);
+    setTopUserDimensions(step.topUserDimensions);
+    setVrsResult(step.vrs);
+    setCloseCall(step.closeCall);
+    setTiedCall(step.finalGap < 1);
     setIsFinished(true);
     try {
-      localStorage.setItem("quizResults", JSON.stringify(top3));
-      localStorage.setItem("userAnswers", JSON.stringify(scoredAnswers));
-      localStorage.setItem("needsReview", JSON.stringify(vrs.band !== "low"));
+      localStorage.setItem("quizResults", JSON.stringify(step.ranked.slice(0, 3)));
+      localStorage.setItem("userAnswers", JSON.stringify(step.scoredAnswers));
+      localStorage.setItem("needsReview", JSON.stringify(step.vrs.band !== "low"));
     } catch {
       // تجاهل — النتيجة تُعرض من الحالة في الذاكرة بغضّ النظر؛ فقط لن
       // تُستعاد لاحقاً في صفحة /report إذا أُعيد فتحها في تبويب جديد.
@@ -620,23 +620,50 @@ export default function Quiz() {
   };
 
   // ---- معالجة الإجابة ----
-  const handleAnswer = (answerWeight: number) => {
-    const question = displayedQuestions[currentQuestionIndex];
-    const newAnswers = { ...answers, [question.id]: answerWeight };
-    setAnswers(newAnswers);
-    setTimings((prev) => ({ ...prev, [question.id]: Date.now() - questionShownAt }));
+  // الزمن يُسجَّل **لكل قرار** لا لكل عبارة: شاشة الموقف قراراتها بعدد صفوفها
+  // فيُقسَّم زمنها عليها، أما شاشة «الأقرب/الأبعد» فقرار واحد عن الشاشة كلها،
+  // فتُسجَّل بمفتاح الشاشة بزمنها كاملاً -- قسمتها على خياراتها الأربعة كانت
+  // تُظهر اختياراً في 6 ثوانٍ كأنه 1.5 ثانية، فيُنذر مؤشر التسرّع في VRS
+  // بالخطأ (تشخيص المدقّق C4).
+  const finishScreen = (screenIndex: number) => {
+    if (advanceTimer.current) clearTimeout(advanceTimer.current);
+    const screen = displayedScreens[screenIndex];
+    const elapsed = Date.now() - questionShownAt;
+    const entries: [string, number][] =
+      screen.format === "pick"
+        ? [[screen.id, elapsed]]
+        : screen.items.map((q) => [q.id, Math.round(elapsed / screen.items.length)]);
+    setTimings((prev) => ({ ...prev, ...Object.fromEntries(entries) }));
 
-    // آخر سؤال → انتقل لشاشة المراجعة، أو أنهِ مباشرة إن كان هذا آخر سؤال
-    // ترجيح إضافي (لا داعي لمراجعة ثانية على 3-4 أسئلة فقط أُضيفت لتوّها).
-    if (currentQuestionIndex >= displayedQuestions.length - 1) {
+    // آخر شاشة → انتقل لشاشة المراجعة، أو أنهِ مباشرة إن كانت هذه آخر عبارة
+    // ترجيح إضافية (لا داعي لمراجعة ثانية على 4 أسئلة فقط أُضيفت لتوّها).
+    if (screenIndex >= displayedScreens.length - 1) {
+      const finalAnswers = { ...answersRef.current };
       if (tieBreakPending) {
-        setTimeout(() => runRecommendationEngine(newAnswers, { roundNumber: tieBreakRound }), 150);
+        setTimeout(() => runRecommendationEngine(finalAnswers, { roundNumber: tieBreakRound }), 150);
       } else {
         setTimeout(() => setShowReview(true), 150);
       }
     } else {
-      setTimeout(() => setCurrentQuestionIndex((prev) => prev + 1), 150);
+      setCurrentScreenIndex(screenIndex + 1);
     }
+  };
+
+  const answerItem = (id: string, value: number) => {
+    const next = { ...answersRef.current, [id]: value };
+    answersRef.current = next;
+    setAnswers(next);
+  };
+
+  // الأقرب +1 والأبعد −1 والباقيان 0 (lib/itemFormats.ts) -- اختيار ناقص لا يُسجَّل.
+  const answerPick = (screen: Screen, most: string | null, least: string | null) => {
+    setPicks((prev) => ({ ...prev, [screen.id]: { most, least } }));
+    const next = { ...answersRef.current };
+    const ids = screen.items.map((q) => q.id);
+    if (most && least) Object.assign(next, pickAnswers(ids, most, least));
+    else ids.forEach((id) => delete next[id]);
+    answersRef.current = next;
+    setAnswers(next);
   };
 
   // ---- شاشة النتيجة ----
@@ -654,6 +681,18 @@ export default function Quiz() {
               <span className="font-bold text-primary-text">
                 {topUserDimensions.map((d) => RIASEC_LABELS[d.dimension]).join(" و")}
               </span>
+            </p>
+          )}
+          {vrsResult && (
+            <p className="text-sm text-ink-muted">
+              ثقة النتيجة:{" "}
+              {vrsResult.band === "high" ? (
+                <Badge tone="reach">منخفضة — راجع إجاباتك</Badge>
+              ) : vrsResult.band === "medium" || closeCall ? (
+                <Badge tone="close">متوسطة — أول خيارين متقاربان أو بعض الإجابات غير حاسمة</Badge>
+              ) : (
+                <Badge tone="safe">عالية</Badge>
+              )}
             </p>
           )}
         </div>
@@ -716,6 +755,19 @@ export default function Quiz() {
             في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
           </p>
         </Card>
+        {closeCall && rankedMajors.length >= 2 && (
+          <Alert
+            tone="primary"
+            title={tiedCall ? "أول خيارين متعادلان في توافقهما معك" : "أول خيارين متقاربان في توافقهما معك"}
+          >
+            <p className="mt-1">
+              {tiedCall
+                ? `«${rankedMajors[0].name}» و«${rankedMajors[1].name}» متعادلان عملياً — ترتيبهما هنا لا يعني أن أحدهما يناسبك أكثر من الآخر.`
+                : `«${rankedMajors[0].name}» يتقدّم على «${rankedMajors[1].name}» بفارق صغير فقط — كلاهما يناسب ميولك بدرجة متقاربة.`}{" "}
+              قارن بينهما في طبيعة الدراسة وفرص العمل قبل أن تقرّر.
+            </p>
+          </Alert>
+        )}
         <div className="grid gap-6 mt-8">
           {rankedMajors.map((major, index) => {
             const demand = getDemandLevel(major.marketMultiplier);
@@ -777,122 +829,100 @@ export default function Quiz() {
   if (showReview) {
     return (
       <ReviewScreen
-        questions={displayedQuestions}
+        screens={displayedScreens}
         answers={answers}
+        picks={picks}
         onEdit={(index) => {
           setShowReview(false);
-          setCurrentQuestionIndex(index);
+          setCurrentScreenIndex(index);
         }}
         onSubmit={() => runRecommendationEngine({ ...answers })}
         onBack={() => {
           setShowReview(false);
-          setCurrentQuestionIndex(displayedQuestions.length - 1);
+          setCurrentScreenIndex(displayedScreens.length - 1);
         }}
       />
     );
   }
 
   // ---- شاشة الأسئلة ----
-  const question = displayedQuestions[currentQuestionIndex];
-  const progress = (currentQuestionIndex / displayedQuestions.length) * 100;
-  const answerLabels = getAnswerLabels(question);
+  const screen = displayedScreens[currentScreenIndex];
+  const screenIndex = currentScreenIndex;
 
   return (
-    <div className="max-w-2xl mx-auto py-12 space-y-8">
-      {/* شريط التقدم */}
-      <div className="space-y-2">
-        <div className="flex justify-between text-sm font-bold text-ink-soft">
-          <span>
-            السؤال {currentQuestionIndex + 1} من {displayedQuestions.length}
-          </span>
-          <span>{Math.round(progress)}%</span>
-        </div>
-        <div className="w-full bg-line h-3 rounded-full overflow-hidden">
-          <div
-            className="bg-primary h-full rounded-full transition-all duration-500 ease-out"
-            style={{ width: `${progress}%` }}
-          />
-        </div>
-
-        {/* نقاط الخطوات — اضغط على نقطة سابقة للرجوع إليها */}
-        <div className="flex gap-1.5 mt-1">
-          {displayedQuestions.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => i < currentQuestionIndex && setCurrentQuestionIndex(i)}
-              disabled={i >= currentQuestionIndex}
-              aria-label={`الانتقال لسؤال ${i + 1}`}
-              className={`h-2.5 flex-1 rounded-full transition-all duration-300 ${
-                i < currentQuestionIndex
-                  ? "bg-primary cursor-pointer hover:bg-primary-solid"
-                  : i === currentQuestionIndex
-                    ? "bg-primary/60"
-                    : "bg-line cursor-default"
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+    <div className="max-w-2xl mx-auto py-12 pb-28 space-y-8 md:pb-12">
+      <QuizProgress current={currentScreenIndex} total={displayedScreens.length} />
 
       {/* تنبيه أسئلة الترجيح التكيفية */}
-      {currentQuestionIndex >= ALL_QUIZ_QUESTIONS.length && tieBreakInfo && (
+      {currentScreenIndex >= ALL_QUIZ_SCREENS.length && tieBreakPending && (
         <Alert tone="primary">
-          <strong>
-            نتيجتك متقاربة جداً بين &quot;{tieBreakInfo.a}&quot; و&quot;{tieBreakInfo.b}&quot;
-          </strong>{" "}
-          — بضعة أسئلة إضافية لحسم الدقة بينهما بدل ترك الفارق لمعامل السوق وحده.
+          {tieBreakTrigger !== "weak_dimension" && tieBreakInfo ? (
+            <strong>
+              نتيجتك متقاربة بين &quot;{tieBreakInfo.a}&quot; و&quot;{tieBreakInfo.b}&quot;
+            </strong>
+          ) : (
+            <strong>
+              إجاباتك عن جانب {weakDimensions.map((d) => RIASEC_LABELS[d]).join(" و")} كانت محايدة أو متباينة
+            </strong>
+          )}{" "}
+          — {tieBreakQuestions.length} أسئلة قصيرة إضافية فقط (جولة واحدة) لتكون النتيجة أدق.
         </Alert>
       )}
 
-      {/* بطاقة السؤال */}
-      <Card
-        variant="surface"
-        radius="rounded-3xl"
-        padding="p-8 md:p-12"
-        className="a-fade flex min-h-[350px] flex-col justify-center space-y-12 text-center"
-      >
-        <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{question.text}</h1>
-        <div className="flex flex-col gap-2.5 mt-auto">
-          {/* مقياس خمس نقاط (أوافق بشدة → لا أوافق إطلاقاً) بدل ثلاثة --
-              معلومة أدقّ لكل سؤال بلا إعادة كتابة الأسئلة نفسها، انظر
-              getAnswerLabels أعلاه واختبارات lib/validity.test.ts. */}
-          <button
-            onClick={() => handleAnswer(1)}
-            className="bg-primary-solid text-white p-3.5 rounded-xl font-bold text-base hover:bg-primary-solid-hover transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {answerLabels.stronglyYes}
-          </button>
-          <button
-            onClick={() => handleAnswer(0.5)}
-            className="bg-primary-50 text-primary-text border border-primary-200 p-3.5 rounded-xl font-bold text-base hover:bg-primary-100 transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {answerLabels.yes}
-          </button>
-          <button
-            onClick={() => handleAnswer(0)}
-            className="bg-surface text-ink-soft border border-line p-3.5 rounded-xl font-bold text-base hover:bg-surface-muted transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {answerLabels.maybe}
-          </button>
-          <button
-            onClick={() => handleAnswer(-0.5)}
-            className="bg-surface-muted text-ink-soft border border-line p-3.5 rounded-xl font-bold text-base hover:border-line-strong transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {answerLabels.no}
-          </button>
-          <button
-            onClick={() => handleAnswer(-1)}
-            className="bg-surface-muted text-ink border border-line-strong p-3.5 rounded-xl font-bold text-base hover:bg-line/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
-          >
-            {answerLabels.stronglyNo}
-          </button>
-        </div>
+      {/* بطاقة الشاشة -- المفتاح يعيد حركة الدخول عند كل انتقال */}
+      <Card key={screen.id} variant="surface" radius="rounded-3xl" padding="p-5 md:p-10" className="a-fade">
+        {screen.format === "grid" ? (
+          <GridScreen
+            scenario={screen.lead ?? ""}
+            rows={screen.items}
+            answers={answers as Record<string, ScaleValue | undefined>}
+            onAnswer={answerItem}
+            onNext={() => finishScreen(screenIndex)}
+          />
+        ) : screen.format === "pick" ? (
+          <PickScreen
+            prompt={screen.lead ?? ""}
+            options={screen.items}
+            most={picks[screen.id]?.most ?? null}
+            least={picks[screen.id]?.least ?? null}
+            onChange={(most, least) => answerPick(screen, most, least)}
+            onNext={() => finishScreen(screenIndex)}
+          />
+        ) : (
+          <div className="flex min-h-[300px] flex-col justify-center space-y-10 text-center">
+            <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{screen.items[0].text}</h1>
+            {/* مقياس خمس نقاط بسهم تفاعلي: سحب أو نقر أو أسهم لوحة المفاتيح.
+                اللمس/الفأرة ينتقل تلقائياً بعد استقرار السهم؛ لوحة المفاتيح
+                تؤكّد بـEnter (بلا قفز مفاجئ أثناء التنقّل بالأسهم). */}
+            <ArrowScale
+              value={(answers[screen.items[0].id] as ScaleValue | undefined) ?? null}
+              onChange={(v, source) => {
+                answerItem(screen.items[0].id, v);
+                if (advanceTimer.current) clearTimeout(advanceTimer.current);
+                if (source === "pointer")
+                  advanceTimer.current = setTimeout(() => finishScreen(screenIndex), AUTO_ADVANCE_MS);
+              }}
+              onConfirm={() => finishScreen(screenIndex)}
+              labels={getAnswerLabels(screen.items[0])}
+              ariaLabel={screen.items[0].text}
+            />
+            {answers[screen.items[0].id] !== undefined && (
+              <button
+                type="button"
+                onClick={() => finishScreen(screenIndex)}
+                className="mx-auto rounded-xl bg-primary-solid px-8 py-3 font-bold text-white transition-all hover:bg-primary-solid-hover active:scale-[0.98]"
+              >
+                التالي
+              </button>
+            )}
+          </div>
+        )}
       </Card>
 
       {/* زر الرجوع */}
-      {currentQuestionIndex > 0 && (
+      {currentScreenIndex > 0 && (
         <button
-          onClick={() => setCurrentQuestionIndex((prev) => prev - 1)}
+          onClick={() => setCurrentScreenIndex((prev) => prev - 1)}
           className="flex items-center gap-2 text-ink-muted hover:text-ink transition-colors mx-auto"
         >
           <ChevronRight className="w-4 h-4" />

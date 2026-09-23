@@ -34,6 +34,9 @@ const LIE_SCALE_ID = "q_lie_scale";
 export interface ScoredQuestionLike {
   id: string;
   dimensions: Partial<Record<string, number>>;
+  /** شكل الشاشة (lib/itemFormats.ts) -- "pick" ليس مقياس موافقة. */
+  format?: "single" | "grid" | "pick";
+  screenId?: string;
 }
 
 /**
@@ -80,6 +83,80 @@ function computeDimensionConsistency(scoredAnswers: Record<string, number>, ques
  * @param questions بيانات أبعاد الأسئلة المُسجَّلة (اختياري) — إن مُرِّرت
  *   يُفعَّل فحص اتساق الإجابات داخل كل بُعد (انظر computeDimensionConsistency).
  */
+/** نسبة الإجابات الطرفية (±1) التي يُعدّ فوقها نمط الإجابة متطرفاً. */
+export const EXTREME_RESPONSE_THRESHOLD = 0.9;
+
+/**
+ * نمط التطرّف بلا أي درجة وسيطة: من إجابات الموافقة غير المحايدة، نسبة
+ * الطرفية (±1). طالب يجيب من ميله الحقيقي يستخدم "أوافق"/"لا أوافق" أحياناً؛
+ * نمط التطرّف يحوّل كل ميل إلى أقصاه. يُحسب فقط مع عدد كافٍ من الإجابات
+ * غير المحايدة (البنك متعدد الأشكال يوفّر نحو 50 عبارة موافقة).
+ */
+export const EXTREME_NO_MIDDLE_SHARE = 1;
+/**
+ * الحد الأدنى للإجابات غير المحايدة كي تُحسب الإشارة: **نسبة** من عبارات
+ * الموافقة المُجابة لا عدد مطلق. عتبة مطلقة (24) عاقبت البنوك الأقصر: عند 36
+ * عبارة موافقة يبقى وسيط الإجابات غير المحايدة 24-28، فسقط الكشف من 95% إلى
+ * 58-91% لمجرّد قِصَر البنك لا لتغيّر السلوك (تشخيص المدقّق C5). الأرضية
+ * المطلقة تمنع إطلاقها على من أجاب القليل فقط.
+ */
+export const EXTREME_NO_MIDDLE_MIN_SHARE = 0.5;
+export const EXTREME_NO_MIDDLE_MIN_ANSWERS = 16;
+
+/**
+ * خط مستقيم داخل شاشات الموقف (grid): كل صفوف الشاشة بنفس الإجابة حرفياً
+ * رغم أنها تقيس أبعاداً مختلفة (وبعضها معكوس الاتجاه). يُحسب على شاشات
+ * بثلاثة صفوف فأكثر، ويُشترط عدد أدنى منها.
+ */
+export const GRID_STRAIGHT_LINE_SHARE = 0.75;
+export const GRID_STRAIGHT_LINE_MIN_SCREENS = 5;
+
+/**
+ * نسبة شاشات الموقف (3 صفوف فأكثر) التي أُجيبت كل صفوفها بنفس القيمة.
+ * null إن كانت الشاشات المؤهَّلة أقل من الحد الأدنى.
+ */
+export function computeGridStraightLineShare(
+  scoredAnswers: Record<string, number>,
+  questions: ScoredQuestionLike[]
+): number | null {
+  const screens = new Map<string, number[]>();
+  questions.forEach((q) => {
+    if (q.format !== "grid" || !q.screenId || !(q.id in scoredAnswers)) return;
+    const rows = screens.get(q.screenId) ?? [];
+    rows.push(scoredAnswers[q.id]);
+    screens.set(q.screenId, rows);
+  });
+  const eligible = [...screens.values()].filter((rows) => rows.length >= 3);
+  if (eligible.length < GRID_STRAIGHT_LINE_MIN_SCREENS) return null;
+  return eligible.filter((rows) => rows.every((v) => v === rows[0])).length / eligible.length;
+}
+
+/** عتبة مؤشر الموافقة المتوازن (0 = متوازن تماماً، 1 = موافقة كاملة على كل شيء). */
+export const ACQUIESCENCE_THRESHOLD = 0.35;
+
+/**
+ * متوسط الموافقة الخام بين البنود الموجبة والمعكوسة الاتجاه (حسب إشارة الوزن
+ * الأساسي لكل بند). null إن لم يوجد في البنك بندان على الأقل من كل اتجاه --
+ * بنك أحادي الاتجاه لا يسمح بفصل الموافقة التلقائية عن الميل الحقيقي.
+ */
+export function computeAcquiescenceIndex(
+  scoredAnswers: Record<string, number>,
+  questions: ScoredQuestionLike[]
+): number | null {
+  const pos: number[] = [];
+  const rev: number[] = [];
+  questions.forEach((q) => {
+    if (!(q.id in scoredAnswers) || q.format === "pick") return;
+    const entries = Object.values(q.dimensions).filter((w): w is number => typeof w === "number" && w !== 0);
+    if (entries.length === 0) return;
+    const primary = entries.reduce((a, b) => (Math.abs(b) > Math.abs(a) ? b : a));
+    (primary > 0 ? pos : rev).push(scoredAnswers[q.id]);
+  });
+  if (pos.length < 2 || rev.length < 2) return null;
+  const mean = (xs: number[]) => xs.reduce((s, x) => s + x, 0) / xs.length;
+  return (mean(pos) + mean(rev)) / 2;
+}
+
 export function computeValidityRiskScore(
   scoredAnswers: Record<string, number>,
   validityAnswers: Record<string, number>,
@@ -90,7 +167,12 @@ export function computeValidityRiskScore(
   const reasons: string[] = [];
   let score = 0;
 
-  const values = Object.values(scoredAnswers);
+  // إجابات مقياس الموافقة فقط -- خيارات "الأقرب/الأبعد" (pick) قيمها ±1/0
+  // بالتصميم، فتضخّم الخط المستقيم والتطرّف والحياد لو حُسبت معها.
+  const pickIds = new Set((questions ?? []).filter((q) => q.format === "pick").map((q) => q.id));
+  const values = Object.entries(scoredAnswers)
+    .filter(([id]) => !pickIds.has(id))
+    .map(([, v]) => v);
   const n = values.length;
 
   // 1) كشف الإجابة المتطابقة (Straight-Lining) -- عتبات مُعاد معايرتها لمقياس
@@ -120,12 +202,25 @@ export function computeValidityRiskScore(
   // متوسطة، نمط استجابة معروف نفسياً (extreme response style) يستحق تنبيهاً
   // مستقلاً عن الخط المستقيم (قد تتنوّع الإجابات طرفياً بين نعم/لا بشدة دون
   // أي تكرار حرفي يُثير modeRatio).
-  if (n > 0) {
+  const nonNeutral = values.filter((v) => v !== 0);
+  const noMiddleShare = nonNeutral.length > 0 ? nonNeutral.filter((v) => Math.abs(v) === 1).length / nonNeutral.length : 0;
+  const nonNeutralFloor = Math.max(EXTREME_NO_MIDDLE_MIN_ANSWERS, EXTREME_NO_MIDDLE_MIN_SHARE * n);
+  if (nonNeutral.length >= nonNeutralFloor && noMiddleShare >= EXTREME_NO_MIDDLE_SHARE) {
+    score += 3;
+    reasons.push("كل إجاباتك غير المحايدة في أقصى طرفي المقياس، بلا أي درجة وسيطة واحدة");
+  } else if (n > 0) {
     const pExtreme = values.filter((v) => Math.abs(v) === 1).length / n;
-    if (pExtreme > 0.9) {
+    if (pExtreme > EXTREME_RESPONSE_THRESHOLD) {
       score += 1;
       reasons.push("ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة");
     }
+  }
+
+  // 1-ج) خط مستقيم داخل شاشات الموقف (grid)
+  const gridStraight = questions ? computeGridStraightLineShare(scoredAnswers, questions) : null;
+  if (gridStraight !== null && gridStraight >= GRID_STRAIGHT_LINE_SHARE) {
+    score += 3;
+    reasons.push("إجابة واحدة متكررة لكل عبارات الموقف في أغلب شاشات المواقف، رغم اختلاف ما تقيسه");
   }
 
   // 2) مؤشر التناقض المنطقي (يشمل مفهوم "الأشكال المتوازية" أيضاً — أزواج
@@ -194,8 +289,26 @@ export function computeValidityRiskScore(
     score += 1.5;
     reasons.push('ميل مفرط لإجابة "ربما" الحيادية');
   }
-  if (sdScore >= 1 && pYes > 0.6) {
+  // مؤشر الموافقة المتوازن (acquiescence index) -- ممكن فقط لأن البنك صار
+  // يضمّ بنوداً معكوسة الاتجاه في كل بُعد: طالب يجيب من ميله الحقيقي يوافق
+  // على البند ويخالف معكوسه، فمتوسط الموافقة الخام على المجموعتين ≈ 0؛ من
+  // يوافق على كل شيء يوافق على الاثنين فيرتفع المتوسط. أدقّ من pYes الذي صار
+  // ينخفض طبيعياً مع البنود المعكوسة (فكفّ عن كشف الموافقة الدائمة).
+  const acquiescence = questions ? computeAcquiescenceIndex(scoredAnswers, questions) : null;
+  if (acquiescence !== null && acquiescence > ACQUIESCENCE_THRESHOLD) {
+    score += 3;
+    reasons.push("موافقة على العبارة وعكسها معاً في أبعاد عدة — نمط موافقة تلقائية بصرف النظر عن المحتوى");
+  }
+  const positiveSelfImage = pYes > 0.6 || (acquiescence !== null && acquiescence > ACQUIESCENCE_THRESHOLD / 2);
+  if (sdScore >= 1 && positiveSelfImage) {
     score += 2;
+    reasons.push("نمط إجابات يوحي برغبة في تقديم صورة مثالية");
+  } else if (lieScaleVal >= 1) {
+    // موافقة كاملة على "لم أفشل قط ولم أتردد في أي قرار" -- منطق مقياس الكذب
+    // الكلاسيكي: ادّعاء شبه مستحيل واقعياً يكفي وحده للتوصية بالمراجعة. كان
+    // يُهمَل ما لم يقترن بموافقة عامة مرتفعة (pYes)، وهذه صارت تنخفض طبيعياً
+    // مع البنود المعكوسة، فسقط كشف نمط "الصورة المثالية" عملياً.
+    score += 3;
     reasons.push("نمط إجابات يوحي برغبة في تقديم صورة مثالية");
   }
 

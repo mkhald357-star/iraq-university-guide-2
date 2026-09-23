@@ -9,7 +9,7 @@
     },
     "excludedAxis": "studyLength (yearsOfStudy) وصفي فقط -- لا سؤال حقيقي بين الأربعين يقيس استعداد الطالب لمدة دراسة أطول/أقصر، فبقي جانب التخصص فقط بلا اختراع وزن طالب مقابل له.",
     "generatedBy": "scripts/build-major-context.js",
-    "generatedAt": "2026-09-09"
+    "generatedAt": "2026-09-23"
   },
   "contexts": {
     "medicine": {

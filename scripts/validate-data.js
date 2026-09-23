@@ -99,6 +99,11 @@ const QuestionSchema = z.object({
     })
     .strict()
     .optional(),
+  // البنك متعدد الأشكال (lib/itemFormats.ts): صفّ موقف grid أو خيار pick مع
+  // معرّف شاشته ونص الموقف/السؤال المشترك.
+  format: z.enum(["single", "grid", "pick"]).optional(),
+  screenId: z.string().optional(),
+  lead: z.string().optional(),
 });
 
 const RiasecProfileSchema = z
@@ -517,17 +522,111 @@ const majorIds = new Set(majors.map((m) => m.id));
   }
 }
 
-// Must have exactly 40 questions (36 single/dual-dimension items + 4 dual-
-// dimension "إما/أو" comparison items added 2026-07-22 specifically to sharpen
-// discrimination between near-duplicate RIASEC profile pairs -- the algorithm
-// assumes a fixed, curated question bank -- a silent drop/duplication would
-// skew every dimension).
+// البنك الأساسي (2026-09-22): 22 شاشة محتوى (+3 تحقق = 25 شاشة يراها الطالب)
+// بثلاثة أشكال: عبارة مفردة (منها أسئلة المقارنة الطرفية)، وموقف grid بعبارتين
+// أو ثلاث، وأقرب-أبعد pick بين 4 أنشطة. مختارة بمحاكاة خط المنتج الكامل
+// (scripts/eval/select-formats.mts، QA-REPORT-ALGORITHM.md).
+// قرار المالك: 90% من الشاشات سطر أو سطران، و10% فقط ثلاثة أسطر -- شاشة بثلاثة
+// أسطر تُتعب القارئ، وغالباً يكون السطر الثالث مستنتَجاً من الآخرين.
+// كل بُعد يحتاج 3 عبارات موافقة أساسية على الأقل (lib/validity.ts يتجاهل أي بُعد
+// بأقل من 3 بنود في فحص الاتساق)، وخيارات pick لا تُحتسب منها.
+const CORE_SCREEN_COUNT = 22;
+const PICK_SCREENS_MAX = 5;
+const THREE_ROW_SCREENS_MAX = 2;
 const questions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/questions.json"), "utf8"));
-if (questions.length !== 40) {
-  console.error(`[FAIL] data/questions.json: expected exactly 40 questions, found ${questions.length}`);
+const coreScreens = [];
+{
+  const byKey = new Map();
+  questions.forEach((q) => {
+    const format = q.format || "single";
+    if (format !== "single" && !q.screenId) {
+      console.error(`[FAIL] data/questions.json: ${q.id} (${format}) بلا screenId`);
+      hasErrors = true;
+    }
+    const key = format === "single" ? `single:${q.id}` : q.screenId;
+    if (!byKey.has(key)) {
+      const screen = { key, format, lead: q.lead, items: [] };
+      byKey.set(key, screen);
+      coreScreens.push(screen);
+    }
+    const screen = byKey.get(key);
+    if (screen.format !== format || screen.lead !== q.lead) {
+      console.error(`[FAIL] data/questions.json: شاشة ${key} بأشكال أو نص موقف غير متّسق (${q.id})`);
+      hasErrors = true;
+    }
+    if (screen.items.length && screen.items[screen.items.length - 1] !== questions[questions.indexOf(q) - 1]) {
+      console.error(`[FAIL] data/questions.json: عناصر الشاشة ${key} غير متجاورة (${q.id})`);
+      hasErrors = true;
+    }
+    screen.items.push(q);
+  });
+}
+if (coreScreens.length !== CORE_SCREEN_COUNT) {
+  console.error(`[FAIL] data/questions.json: expected exactly ${CORE_SCREEN_COUNT} screens, found ${coreScreens.length}`);
   hasErrors = true;
 } else {
-  console.log("[OK] data/questions.json has exactly 40 questions");
+  console.log(`[OK] data/questions.json has exactly ${CORE_SCREEN_COUNT} screens (${questions.length} statements)`);
+}
+const primaryDim = (q) =>
+  Object.entries(q.dimensions || {}).reduce((best, [d, w]) => (Math.abs(w) > Math.abs(best[1]) ? [d, w] : best), ["", 0])[0];
+const pickScreens = coreScreens.filter((s) => s.format === "pick");
+pickScreens.forEach((s) => {
+  const dims = s.items.map(primaryDim);
+  if (s.items.length !== 4 || new Set(dims).size !== 4 || !s.lead) {
+    console.error(`[FAIL] data/questions.json: شاشة pick ${s.key} يجب أن تضم 4 خيارات من 4 أبعاد مختلفة مع نص سؤال`, dims);
+    hasErrors = true;
+  }
+});
+const gridScreens = coreScreens.filter((s) => s.format === "grid");
+gridScreens.forEach((s) => {
+  if (s.items.length < 2 || s.items.length > 3 || !s.lead) {
+    console.error(`[FAIL] data/questions.json: شاشة grid ${s.key} يجب أن تضم 2-3 عبارات مع نص موقف`);
+    hasErrors = true;
+  }
+});
+const threeRow = gridScreens.filter((s) => s.items.length === 3).length;
+if (threeRow > THREE_ROW_SCREENS_MAX) {
+  console.error(`[FAIL] data/questions.json: ${threeRow} شاشات بثلاثة أسطر، والحد ${THREE_ROW_SCREENS_MAX} (10% من الشاشات)`);
+  hasErrors = true;
+} else {
+  console.log(`[OK] ${threeRow} شاشة بثلاثة أسطر من ${coreScreens.length} (الحد ${THREE_ROW_SCREENS_MAX})`);
+}
+// وزن خيار pick = PICK_WEIGHT_SCALE (0.5، lib/itemFormats.ts) × وزن العبارة
+// الأساسي 7 = 3.5. الوزن الكامل يسحب متجه الطالب نحو 50 ويضخّم التخصصات
+// متوسّطة البروفايل (تشخيص المعايرة، QA-REPORT-ALGORITHM.md)، فيُفرض هنا كي
+// لا يعود بصمت عند إعادة كتابة البنك.
+const PICK_OPTION_WEIGHT = 3.5;
+const badPickWeights = [];
+pickScreens.forEach((s) =>
+  s.items.forEach((q) => {
+    const ws = Object.values(q.dimensions || {}).filter((w) => w !== 0);
+    if (ws.length !== 1 || Math.abs(Math.abs(ws[0]) - PICK_OPTION_WEIGHT) > 1e-9) badPickWeights.push(`${q.id}:${JSON.stringify(q.dimensions)}`);
+  })
+);
+if (badPickWeights.length) {
+  console.error(`[FAIL] data/questions.json: خيار pick يجب أن يحمل بُعداً واحداً بوزن ±${PICK_OPTION_WEIGHT}:`, badPickWeights);
+  hasErrors = true;
+} else if (pickScreens.length) {
+  console.log(`[OK] كل خيارات pick بوزن ±${PICK_OPTION_WEIGHT} (PICK_WEIGHT_SCALE مطبَّق)`);
+}
+const pickDimCounts = {};
+pickScreens.forEach((s) => s.items.forEach((q) => (pickDimCounts[primaryDim(q)] = (pickDimCounts[primaryDim(q)] || 0) + 1)));
+if (pickScreens.length > PICK_SCREENS_MAX || (pickScreens.length > 0 && RIASEC_DIMENSIONS.some((d) => (pickDimCounts[d] || 0) < 2))) {
+  console.error(`[FAIL] data/questions.json: pick ≤${PICK_SCREENS_MAX} شاشات وكل بُعد في شاشتين منها على الأقل`, pickScreens.length, pickDimCounts);
+  hasErrors = true;
+} else if (pickScreens.length) {
+  console.log(`[OK] ${pickScreens.length} pick screens, every dimension in ≥2`, JSON.stringify(pickDimCounts));
+}
+const primaryCounts = {};
+questions
+  .filter((q) => (q.format || "single") !== "pick")
+  .forEach((q) => (primaryCounts[primaryDim(q)] = (primaryCounts[primaryDim(q)] || 0) + 1));
+const thinDims = RIASEC_DIMENSIONS.filter((d) => (primaryCounts[d] || 0) < 3);
+if (thinDims.length) {
+  console.error("[FAIL] data/questions.json: dimensions with fewer than 3 primary agree-scale items:", thinDims, primaryCounts);
+  hasErrors = true;
+} else {
+  console.log("[OK] every RIASEC dimension has at least 3 primary agree-scale core items", JSON.stringify(primaryCounts));
 }
 const questionIds = questions.map((q) => q.id);
 const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);
@@ -547,6 +646,11 @@ if (validityQuestions.length !== 3) {
   console.log("[OK] data/validity_questions.json has exactly 3 items");
 }
 const validityIds = new Set(validityQuestions.map((q) => q.id));
+const orphanTwins = validityQuestions.filter((v) => v.validity?.pairsWith && !questionIds.includes(v.validity.pairsWith));
+if (orphanTwins.length) {
+  console.error("[FAIL] validity reverse-twin partner missing from the core bank:", orphanTwins.map((v) => v.validity.pairsWith));
+  hasErrors = true;
+}
 const idCollisions = [...validityIds].filter((id) => questionIds.includes(id));
 if (idCollisions.length) {
   console.error("[FAIL] data/validity_questions.json ids collide with data/questions.json:", idCollisions);
@@ -576,9 +680,30 @@ if (tiebreakerCollisions.length) {
   hasErrors = true;
 }
 
+// بنك الاحتياط (data/reserve_questions.json) -- بلا حد للعدد، يُسحب منه حتى
+// 5 بنود في جولة واحدة (lib/adaptiveRound.ts). نفس مخطّط الأسئلة، وبلا تصادم
+// معرّفات مع الأساسية/التحقق/بنك /decider (tiebreaker_questions.json).
+const reserveQuestions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/reserve_questions.json"), "utf8"));
+const reserveResult = z.array(QuestionSchema).safeParse(reserveQuestions);
+if (!reserveResult.success) {
+  console.error("[FAIL] data/reserve_questions.json: schema validation failed");
+  for (const issue of reserveResult.error.issues.slice(0, 20)) console.error(`  - ${issue.path.join(".")}: ${issue.message}`);
+  hasErrors = true;
+} else {
+  console.log(`[OK] data/reserve_questions.json (${reserveQuestions.length} بنداً)`);
+}
+const reserveIds = reserveQuestions.map((q) => q.id);
+const reserveCollisions = reserveIds.filter(
+  (id, i) => questionIds.includes(id) || validityIds.has(id) || tiebreakerIds.includes(id) || reserveIds.indexOf(id) !== i
+);
+if (reserveCollisions.length) {
+  console.error("[FAIL] data/reserve_questions.json ids collide with other banks or repeat:", reserveCollisions);
+  hasErrors = true;
+}
+
 // Every contradiction pair must reference two distinct, real question ids.
 const contradictionPairs = JSON.parse(fs.readFileSync(path.join(ROOT, "data/contradiction_pairs.json"), "utf8"));
-const allKnownIds = new Set([...questionIds, ...validityIds]);
+const allKnownIds = new Set([...questionIds, ...reserveIds, ...validityIds]);
 const badPairs = contradictionPairs.filter((p) => p.a === p.b || !allKnownIds.has(p.a) || !allKnownIds.has(p.b));
 if (badPairs.length) {
   console.error("[FAIL] data/contradiction_pairs.json has pairs referencing unknown/identical ids:", badPairs);

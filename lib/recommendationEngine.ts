@@ -12,13 +12,14 @@
  */
 import {
   computeUserRiasecVector,
-  computeMajorFit,
+  computeMajorFitWith,
   computeCombinedRankingScore,
   findDivergentDimensions,
   selectQuestionsForDimensions,
   type RiasecDimension,
   type RiasecVector,
   type RiasecQuestion,
+  type FitStrategy,
 } from "./riasec";
 import { computeSubjectAffinityVector, computeSubjectAffinityFit, type SubjectGrades } from "./subjectAffinity";
 import { BRANCH_CATEGORY_MAP } from "./branchEligibility";
@@ -30,6 +31,20 @@ export const SUBJECT_AFFINITY_BLEND_WEIGHT = 0.3;
 export const MEDICAL_GATE_GRADE = 85;
 export const AMBIGUITY_THRESHOLD = 6;
 export const MAX_TIEBREAK_ROUNDS = 3;
+
+/**
+ * صيغة المطابقة التي يستخدمها المنتج فعلاً (الاختبار + /report) -- مصدر وحيد
+ * كي لا يعرض التقرير نسبة توافق بصيغة غير التي رُتّبت بها النتيجة.
+ */
+export const PRODUCT_FIT_STRATEGY: FitStrategy = "level";
+
+/**
+ * أوزان البُعد الثانوية الصغيرة تُهمَل في متجه الطالب (computeUserRiasecVector)
+ * -- تُقلّص بُعداً مثل C نحو 50 لأن ثلث وزنه يأتي من بنود يحرّكها بُعد آخر.
+ * 0.5 مُثبَت بالمحاكاة (3 نماذج إجابة) وبالشخصيات المؤلَّفة معاً: تحسّن طفيف
+ * ومتّسق في الدقة واسترجاع المرساة والمعايرة (QA-REPORT-ALGORITHM.md).
+ */
+export const PRODUCT_MIN_LOADING_SHARE = 0.5;
 
 function clampNumber(value: number, min: number, max: number): number {
   return Math.max(min, Math.min(max, value));
@@ -61,6 +76,12 @@ export interface RankedMajor extends MajorInput {
   riasecFitPercent: number;
   subjectFitPercent: number | null;
   combinedScore: number;
+  /**
+   * أي تعديل ترجيحي أُضيف على combinedScore بعد rankMajors (ترجيح السياق).
+   * أي إعادة حساب لـcombinedScore (منزلق السوق في الواجهة) يجب أن تعيد إضافته،
+   * وإلا ضاع أثر الترجيح بصمت من الشاشة.
+   */
+  tieBreakAdjustment?: number;
 }
 
 export interface RankMajorsInput {
@@ -77,11 +98,27 @@ export interface RankMajorsData {
   majors: MajorInput[];
   riasecProfiles: Record<string, RiasecVector>;
   subjectWeights: Record<string, Partial<Record<string, number>>>;
+  /** صيغة المطابقة -- الافتراضي "level" (computeMajorFit الحالية). البدائل قيد التقييم في lib/eval. */
+  fitStrategy?: FitStrategy;
+  /** computeUserRiasecVector(minLoadingShare) -- الافتراضي 0 (كل الأوزان). */
+  minLoadingShare?: number;
 }
 
 /** يُطبَّق على التخصصات المُصفَّاة فعلياً (بعد الفرع والبوابة)، مرتَّبة تنازلياً. */
 export function rankMajors(input: RankMajorsInput, data: RankMajorsData): RankedMajor[] {
-  const userVector = computeUserRiasecVector(input.scoredAnswers, input.questionPool);
+  const userVector = computeUserRiasecVector(input.scoredAnswers, input.questionPool, data.minLoadingShare ?? 0);
+  return rankMajorsFromVector(userVector, input, data);
+}
+
+/**
+ * نفس rankMajors لكن بمتجه RIASEC جاهز بدل الإجابات -- تستخدمه أداة التقييم
+ * (lib/eval) لحساب "الترتيب الحقيقي" من متجه الميول الكامن θ لطالب اصطناعي.
+ */
+export function rankMajorsFromVector(
+  userVector: Record<RiasecDimension, number>,
+  input: Pick<RankMajorsInput, "branch" | "grade" | "subjectGrades">,
+  data: RankMajorsData
+): RankedMajor[] {
   const allowedCategories = BRANCH_CATEGORY_MAP[input.branch] || [];
   const gradeIsHigh = input.grade >= MEDICAL_GATE_GRADE;
   const subjectVector = computeSubjectAffinityVector(input.subjectGrades, input.grade);
@@ -89,7 +126,7 @@ export function rankMajors(input: RankMajorsInput, data: RankMajorsData): Ranked
   const processed: RankedMajor[] = data.majors
     .map((major) => {
       const profile = data.riasecProfiles[major.id] ?? {};
-      const riasecFitPercent = computeMajorFit(userVector, profile);
+      const riasecFitPercent = computeMajorFitWith(data.fitStrategy ?? "level", userVector, profile);
       const majorSubjectWeights = data.subjectWeights[major.id] ?? {};
       const subjectFitPercent = computeSubjectAffinityFit(subjectVector, majorSubjectWeights);
       const fitPercent =
@@ -199,7 +236,11 @@ export function applyContextTieBreak(
   const bonus = clampNumber((fitB - fitA) * CONTEXT_TIEBREAK_WEIGHT, -CONTEXT_TIEBREAK_MAX_BONUS, CONTEXT_TIEBREAK_MAX_BONUS);
   if (bonus === 0) return ranked;
 
-  const adjustedSecond: RankedMajor = { ...ranked[1], combinedScore: ranked[1].combinedScore + bonus };
+  const adjustedSecond: RankedMajor = {
+    ...ranked[1],
+    combinedScore: ranked[1].combinedScore + bonus,
+    tieBreakAdjustment: (ranked[1].tieBreakAdjustment ?? 0) + bonus,
+  };
   // فرز كامل لا فرز الزوج الأول فقط -- إن كان المركزان 2/3 متقاربين أيضاً
   // (حالة حقيقية رُصدت فعلياً)، تعديل نقاط المركز الثاني وحده دون إعادة
   // مقارنته بالمركز الثالث قد يكسر ترتيب النتيجة النهائية تنازلياً.

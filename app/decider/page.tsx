@@ -188,7 +188,7 @@ export default function DeciderPage() {
             )}
 
             <p className="rounded-lg border-s-4 border-primary-600 bg-surface-subtle p-3 text-xs leading-relaxed text-ink-muted">
-              هذا ترجيح مبني على {questions.length} أسئلة تفضيل قصيرة فقط، لا اختبار الميول الكامل (40 سؤالاً في «بوصلة
+              هذا ترجيح مبني على {questions.length} أسئلة تفضيل قصيرة فقط، لا اختبار الميول الكامل (25 شاشة في «بوصلة
               التخصص») — اعتبره مؤشراً إضافياً لا حكماً نهائياً.
             </p>
           </div>

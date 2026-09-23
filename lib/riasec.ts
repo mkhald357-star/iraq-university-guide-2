@@ -39,7 +39,15 @@ function clamp(value: number, min: number, max: number): number {
  */
 export function computeUserRiasecVector(
   answers: Record<string, number>,
-  questions: RiasecQuestion[]
+  questions: RiasecQuestion[],
+  /**
+   * أدنى نسبة لوزن البُعد من أكبر وزن في البند كي يُحتسَب (0 = كل الأوزان،
+   * السلوك الأصلي). الأوزان الثانوية الصغيرة (±2-3 بجانب 8) "تلوّث" بُعداً
+   * ببنود يحرّكها بُعد آخر، فيتقلّص ذلك البُعد نحو 50 بدرجات غير متساوية بين
+   * الأبعاد (تشخيص مدقّق المحاكاة C0-13) -- 0.5 مثلاً يُسقطها ويُبقي بنود
+   * المقارنة المتوازنة (±7/±7) كاملة.
+   */
+  minLoadingShare = 0
 ): Record<RiasecDimension, number> {
   const raw: Record<RiasecDimension, number> = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
   const maxPossible: Record<RiasecDimension, number> = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 };
@@ -47,9 +55,11 @@ export function computeUserRiasecVector(
 
   questions.forEach((q) => {
     const ans = answers[q.id] ?? 0;
+    const maxLoading = Math.max(...RIASEC_DIMENSIONS.map((d) => Math.abs(q.dimensions[d] ?? 0)));
     RIASEC_DIMENSIONS.forEach((d) => {
       const w = q.dimensions[d] ?? 0;
       if (w === 0) return;
+      if (Math.abs(w) < minLoadingShare * maxLoading) return;
       raw[d] += w * ans;
       // بغض النظر عن إشارة الوزن، أقصى مساهمة ممكنة لسؤال واحد هي |w|
       // (عند الإجابة الأكثر توافقاً معه) وأدناها -|w| (عند الإجابة المعاكسة).
@@ -86,6 +96,59 @@ export function computeMajorFit(userVector: Record<RiasecDimension, number>, maj
   });
   const rmse = Math.sqrt(sumSquares / RIASEC_DIMENSIONS.length);
   return clamp(100 - rmse, 0, 100);
+}
+
+export type FitStrategy = "level" | "shape" | "correlation" | "blend" | "asymmetric";
+
+/**
+ * وزن الفرق حين يفوق ميل الطالب ما يتطلّبه التخصص (قيمة بروفايل منخفضة =
+ * "لا يحتاجه التخصص"، لا "يجب أن يكرهه الطالب"). طالب محايد (50) تجاه الفن
+ * لا يُعاقَب كأنه نقيض تخصص هندسي قيمته الفنية 1.
+ */
+export const ASYMMETRIC_SURPLUS_WEIGHT = 0.35;
+
+/** انحراف معياري (0-100) لمتجه الطالب يُعدّ دونه "مسطّحاً" بلا شكل تفضيلات. */
+export const FLAT_PROFILE_STD = 4;
+
+/**
+ * بدائل قيد التقييم (lib/eval) لصيغة المطابقة -- "level" هي computeMajorFit
+ * الحالية بالضبط. "shape" تطرح متوسط كل متجه قبل المسافة (تُلغي أثر ميل
+ * الطالب العام للموافقة). "correlation" ارتباط بيرسون محوَّلاً إلى 0-100
+ * (تُلغي المستوى والمدى معاً، أي أثر شدّة الإجابة أيضاً). "blend" نصف
+ * level ونصف correlation.
+ */
+export function computeMajorFitWith(
+  strategy: FitStrategy,
+  userVector: Record<RiasecDimension, number>,
+  majorProfile: RiasecVector
+): number {
+  if (strategy === "level") return computeMajorFit(userVector, majorProfile);
+  if (strategy === "asymmetric") {
+    let sumSquares = 0;
+    RIASEC_DIMENSIONS.forEach((d) => {
+      const diff = (userVector[d] ?? 0) - (majorProfile[d] ?? 0) * 10;
+      sumSquares += diff > 0 ? (ASYMMETRIC_SURPLUS_WEIGHT * diff) ** 2 : diff ** 2;
+    });
+    return clamp(100 - Math.sqrt(sumSquares / RIASEC_DIMENSIONS.length), 0, 100);
+  }
+  const u = RIASEC_DIMENSIONS.map((d) => userVector[d] ?? 0);
+  const m = RIASEC_DIMENSIONS.map((d) => (majorProfile[d] ?? 0) * 10);
+  const uMean = u.reduce((s, x) => s + x, 0) / u.length;
+  const mMean = m.reduce((s, x) => s + x, 0) / m.length;
+  if (strategy === "shape") {
+    const rmse = Math.sqrt(u.reduce((s, x, i) => s + (x - uMean - (m[i] - mMean)) ** 2, 0) / u.length);
+    return clamp(100 - rmse, 0, 100);
+  }
+  const cov = u.reduce((s, x, i) => s + (x - uMean) * (m[i] - mMean), 0);
+  const uVar = u.reduce((s, x) => s + (x - uMean) ** 2, 0);
+  const mVar = m.reduce((s, x) => s + (x - mMean) ** 2, 0);
+  // متجه طالب شبه مسطّح (إجابات محايدة تقريباً في كل الأبعاد) بلا "شكل" يُقارَن --
+  // الارتباط هنا ضوضاء بحتة، فنعود لمطابقة المستوى بدل ترتيب اعتباطي.
+  if (Math.sqrt(uVar / u.length) < FLAT_PROFILE_STD) return computeMajorFit(userVector, majorProfile);
+  const r = uVar > 0 && mVar > 0 ? cov / Math.sqrt(uVar * mVar) : 0;
+  const correlationFit = 50 * (1 + r);
+  if (strategy === "correlation") return correlationFit;
+  return 0.5 * computeMajorFit(userVector, majorProfile) + 0.5 * correlationFit;
 }
 
 /**

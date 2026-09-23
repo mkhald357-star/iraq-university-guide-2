@@ -38,6 +38,7 @@ import { ArrowScale } from "../components/quiz/ArrowScale";
 import { GridScreen } from "../components/quiz/GridScreen";
 import { PickScreen } from "../components/quiz/PickScreen";
 import { QuizProgress } from "../components/quiz/QuizProgress";
+import { PilotPanel } from "../components/quiz/PilotPanel";
 import { getAnswerLabels, labelFor, type ScaleValue } from "../components/quiz/answerLabels";
 import { MAJOR_FAMILIES } from "../../lib/majorFamilies";
 import { selectFamilyRecommendations } from "../../lib/familyRecommendation";
@@ -322,6 +323,13 @@ export default function Quiz() {
   const [marketWeight, setMarketWeight] = useState(0);
   // منزلق واقعية القبول (الإصدار 2، C-D) -- مطفأ افتراضياً بقرار المالك.
   const [admissionWeight, setAdmissionWeight] = useState(0);
+  // رابط التجربة الميدانية (/quiz?pilot=1) -- لوحة الرمز لا تظهر لغيره.
+  // يُقرأ من العنوان بعد التحميل لا عبر useSearchParams: التصدير الثابت يتطلّب
+  // معه حدّ Suspense يؤخّر عرض الصفحة كلها.
+  const [isPilot, setIsPilot] = useState(false);
+  useEffect(() => {
+    setIsPilot(new URLSearchParams(window.location.search).get("pilot") === "1");
+  }, []);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
   const [vrsResult, setVrsResult] = useState<ValidityCheckResult | null>(null);
@@ -926,6 +934,15 @@ export default function Quiz() {
             فرعك الدراسي يفتح {familySelection.familiesAvailable} مجالات فقط في بياناتنا، فعرضنا ما هو متاح كاملاً بلا
             حشو.
           </p>
+        )}
+        {isPilot && filterSettings && (
+          <PilotPanel
+            branch={filterSettings.branch}
+            grade={filterSettings.grade}
+            subjectGrades={subjectGrades as Record<string, number | undefined>}
+            answers={answers}
+            shownLeads={rankedMajors.map((m) => m.id)}
+          />
         )}
         {rankedMajors.length > 0 ? (
           <Card

@@ -1,0 +1,743 @@
+{
+  "_meta": {
+    "model": "Holland Code (RIASEC)",
+    "dimensions": {
+      "R": "الواقعي/العملي (Realistic) — العمل اليدوي، الأدوات، الآلات، الميدان",
+      "I": "الاستقصائي/التحليلي (Investigative) — البحث، التحليل، حل المسائل العلمية",
+      "A": "الفني/الإبداعي (Artistic) — التصميم، التعبير، الابتكار الحر",
+      "S": "الاجتماعي/الخدمي (Social) — مساعدة الآخرين، التعليم، الرعاية",
+      "E": "المقاولاتي/القيادي (Enterprising) — الإقناع، القيادة، ريادة الأعمال، المخاطرة",
+      "C": "التقليدي/المنظّم (Conventional) — الدقة، الأرقام، الإجراءات، التنظيم"
+    },
+    "scale": "كل بُعد من 0 إلى 10، يمثل مدى ارتباط التخصص بهذا البُعد",
+    "note": "مبنية على تحليل مهني قياسي (Holland Code) مطبّق على واقع سوق العمل والدراسة العراقي، وليست مستخرجة آلياً من المصادر الرسمية",
+    "engineering_vs_technical_split_2026_07_23": "TASKS.md المهمة ٢: مسح شامل لكل أسماء الأقسام في data/universities.json كشف 7 حالات كانت فيها بادئتا «هندسة X» (بكالوريوس هندسة، كلية الهندسة، 4-5 سنوات) و«تقنيات X» (دبلوم/بكالوريوس تقني، جامعة تقنية أو معهد تقني) لنفس المجال تتشاركان نمط مطابقة واحداً في major_department_mapping.json فيبتلع أحدهما الآخر صامتاً (تحقّق فعلي من 150 اسم قسم هندسي و174 اسم قسم تقني عبر كل الجامعات، لا افتراضاً). فُصلت كل حالة لتخصصين مستقلين: cybersecurity/cybersecurity_tech، ai/ai_tech، electrical_engineering/electrical_tech، renewable_energy/renewable_energy_tech، petroleum_engineering/petroleum_refining_tech، communications_engineering/electronics_comm_tech، وprosthetics_tech/prosthetics_engineering (الاتجاه معكوس هنا: الهندسي كان الغائب لا التقني). بروفايلات النسخ التقنية اشتُقّت من الهندسية بزيادة البُعد الواقعي (R) ونقصان الاستقصائي (I) نقطة واحدة (والعكس لـprosthetics_engineering)، اتساقاً مع الفرق الواقعي بين مسار تطبيقي-تقني ومسار نظري-هندسي أعمق لنفس المجال. الفصل الفعلي بين الأقسام في الكود يعتمد على حارس بادئة صريح (excludeIfDepartmentStartsWith في lib/majorMatcher.ts) لا فرقاً في البروفايل، فالبروفايل هنا وصفي فقط.",
+    "decoupling_2026_07_22": "جولة سابقة (2026-07-22 الأولى) عدّلت 17 بروفايلاً (ai/computer_science/civil_engineering/renewable_energy/law/english/graphic_design/project_management/mathematics/physics/chemistry/biology/history/arabic_language/translation/fine_arts/astronomy_space_science) لمعالجة تحيّز كان يمنع أحد كل زوج من الوصول للمرتبة #1 بسبب معامل السوق وحده لا فرق شخصي حقيقي. بعد تحليل ثغرات لاحق (تحليل_الثغرات_وخطة_التطوير.md §3.2) تبيّن أن العلاج الأصح جذرياً هو فصل معامل السوق عن الترتيب كلياً (انظر computeCombinedRankingScore في lib/riasec.ts -- السوق الآن بوزن 0 افتراضياً، بيد الطالب حصراً عبر منزلق اختياري)، لا ترقيع البروفايلات. لذا أُعيدت كل الـ17 قيمة لأصلها النفسي القديم (قبل هذا التعديل) -- تحقَّق آلياً عبر محاكاة أن فصل السوق عن الترتيب يحلّ مشكلة الاستبعاد البنيوي تلقائياً وبلا استثناء، دون الحاجة لأي تعديل يدوي على البروفايلات إطلاقاً.",
+    "candidate": {
+      "status": "مرشَّح — غير مشحون. لا يستورده كود المنتج؛ يُفصل فيه بالتجربة الميدانية (≥100 طالب).",
+      "method": "وسيط ثلاثة محكّمين مستقلين عُمي عن البروفايل الحالي، بعدسات: المهن (مع مراسي O*NET)، المنهج، الطالب المزدهر.",
+      "ratedMajors": [
+        "mathematics",
+        "financial_banking",
+        "petroleum_engineering",
+        "petroleum_refining_tech",
+        "chemistry",
+        "anesthesia_critical_care_tech",
+        "software_engineering",
+        "civil_engineering",
+        "communications_engineering",
+        "biomedical_engineering",
+        "dentistry",
+        "fine_arts"
+      ],
+      "unchangedMajors": "منسوخة حرفياً من data/major_riasec_profiles.json",
+      "provenance": "reports/profiles-v2/aggregate.json"
+    }
+  },
+  "profiles": {
+    "software_engineering": {
+      "R": 3,
+      "I": 8,
+      "A": 4,
+      "S": 2,
+      "E": 3,
+      "C": 7
+    },
+    "ai": {
+      "R": 2,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "cybersecurity": {
+      "R": 3,
+      "I": 8,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 7
+    },
+    "computer_science": {
+      "R": 2,
+      "I": 8,
+      "A": 2,
+      "S": 2,
+      "E": 3,
+      "C": 6
+    },
+    "digital_marketing": {
+      "R": 1,
+      "I": 3,
+      "A": 6,
+      "S": 5,
+      "E": 8,
+      "C": 4
+    },
+    "business_admin": {
+      "R": 1,
+      "I": 3,
+      "A": 2,
+      "S": 5,
+      "E": 8,
+      "C": 6
+    },
+    "accounting": {
+      "R": 1,
+      "I": 4,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 9
+    },
+    "medicine": {
+      "R": 3,
+      "I": 8,
+      "A": 1,
+      "S": 8,
+      "E": 3,
+      "C": 5
+    },
+    "dentistry": {
+      "R": 7,
+      "I": 7,
+      "A": 4,
+      "S": 6,
+      "E": 4,
+      "C": 5
+    },
+    "pharmacy": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 5,
+      "E": 3,
+      "C": 7
+    },
+    "nursing": {
+      "R": 4,
+      "I": 5,
+      "A": 1,
+      "S": 9,
+      "E": 2,
+      "C": 5
+    },
+    "medical_analysis": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 3,
+      "E": 2,
+      "C": 8
+    },
+    "civil_engineering": {
+      "R": 7,
+      "I": 6,
+      "A": 3,
+      "S": 2,
+      "E": 5,
+      "C": 6
+    },
+    "architecture": {
+      "R": 5,
+      "I": 5,
+      "A": 9,
+      "S": 3,
+      "E": 4,
+      "C": 4
+    },
+    "renewable_energy": {
+      "R": 7,
+      "I": 7,
+      "A": 2,
+      "S": 2,
+      "E": 4,
+      "C": 4
+    },
+    "petroleum_engineering": {
+      "R": 7,
+      "I": 7,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 5
+    },
+    "law": {
+      "R": 1,
+      "I": 5,
+      "A": 3,
+      "S": 6,
+      "E": 8,
+      "C": 6
+    },
+    "political_science": {
+      "R": 1,
+      "I": 6,
+      "A": 3,
+      "S": 7,
+      "E": 7,
+      "C": 4
+    },
+    "english": {
+      "R": 1,
+      "I": 5,
+      "A": 6,
+      "S": 5,
+      "E": 3,
+      "C": 5
+    },
+    "education": {
+      "R": 2,
+      "I": 4,
+      "A": 4,
+      "S": 9,
+      "E": 3,
+      "C": 5
+    },
+    "graphic_design": {
+      "R": 2,
+      "I": 2,
+      "A": 10,
+      "S": 3,
+      "E": 4,
+      "C": 2
+    },
+    "interior_design": {
+      "R": 4,
+      "I": 3,
+      "A": 9,
+      "S": 3,
+      "E": 4,
+      "C": 3
+    },
+    "project_management": {
+      "R": 2,
+      "I": 4,
+      "A": 2,
+      "S": 5,
+      "E": 8,
+      "C": 7
+    },
+    "mechanical_engineering": {
+      "R": 8,
+      "I": 7,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "electrical_engineering": {
+      "R": 7,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "chemical_engineering": {
+      "R": 6,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "mechatronics_engineering": {
+      "R": 7,
+      "I": 8,
+      "A": 2,
+      "S": 1,
+      "E": 4,
+      "C": 5
+    },
+    "biomedical_engineering": {
+      "R": 7,
+      "I": 7,
+      "A": 2,
+      "S": 3,
+      "E": 3,
+      "C": 5
+    },
+    "mathematics": {
+      "R": 1,
+      "I": 9,
+      "A": 3,
+      "S": 5,
+      "E": 2,
+      "C": 6
+    },
+    "physics": {
+      "R": 3,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 2,
+      "C": 5
+    },
+    "chemistry": {
+      "R": 5,
+      "I": 8,
+      "A": 2,
+      "S": 4,
+      "E": 1,
+      "C": 6
+    },
+    "biology": {
+      "R": 4,
+      "I": 9,
+      "A": 1,
+      "S": 2,
+      "E": 2,
+      "C": 5
+    },
+    "geography": {
+      "R": 4,
+      "I": 6,
+      "A": 3,
+      "S": 4,
+      "E": 3,
+      "C": 5
+    },
+    "history": {
+      "R": 1,
+      "I": 7,
+      "A": 5,
+      "S": 4,
+      "E": 3,
+      "C": 5
+    },
+    "agriculture": {
+      "R": 8,
+      "I": 5,
+      "A": 2,
+      "S": 3,
+      "E": 4,
+      "C": 4
+    },
+    "veterinary_medicine": {
+      "R": 6,
+      "I": 7,
+      "A": 1,
+      "S": 6,
+      "E": 2,
+      "C": 5
+    },
+    "islamic_studies": {
+      "R": 1,
+      "I": 6,
+      "A": 3,
+      "S": 6,
+      "E": 3,
+      "C": 7
+    },
+    "arabic_language": {
+      "R": 1,
+      "I": 6,
+      "A": 7,
+      "S": 5,
+      "E": 3,
+      "C": 5
+    },
+    "translation": {
+      "R": 1,
+      "I": 6,
+      "A": 6,
+      "S": 4,
+      "E": 3,
+      "C": 6
+    },
+    "media_journalism": {
+      "R": 2,
+      "I": 4,
+      "A": 7,
+      "S": 6,
+      "E": 7,
+      "C": 3
+    },
+    "fine_arts": {
+      "R": 5,
+      "I": 3,
+      "A": 10,
+      "S": 4,
+      "E": 4,
+      "C": 2
+    },
+    "kindergarten_education": {
+      "R": 2,
+      "I": 2,
+      "A": 5,
+      "S": 9,
+      "E": 3,
+      "C": 5
+    },
+    "physical_education": {
+      "R": 7,
+      "I": 2,
+      "A": 2,
+      "S": 8,
+      "E": 4,
+      "C": 3
+    },
+    "forensic_science": {
+      "R": 4,
+      "I": 8,
+      "A": 1,
+      "S": 3,
+      "E": 2,
+      "C": 7
+    },
+    "tourism_hospitality": {
+      "R": 2,
+      "I": 2,
+      "A": 5,
+      "S": 7,
+      "E": 7,
+      "C": 4
+    },
+    "psychology_sociology": {
+      "R": 1,
+      "I": 7,
+      "A": 4,
+      "S": 8,
+      "E": 4,
+      "C": 4
+    },
+    "radiology_tech": {
+      "R": 8,
+      "I": 4,
+      "A": 2,
+      "S": 2,
+      "E": 2,
+      "C": 7
+    },
+    "anesthesia_critical_care_tech": {
+      "R": 7,
+      "I": 5,
+      "A": 1,
+      "S": 6,
+      "E": 2,
+      "C": 7
+    },
+    "rehab_therapy_tech": {
+      "R": 3,
+      "I": 5,
+      "A": 7,
+      "S": 8,
+      "E": 3,
+      "C": 2
+    },
+    "prosthetics_tech": {
+      "R": 8,
+      "I": 5,
+      "A": 6,
+      "S": 5,
+      "E": 2,
+      "C": 5
+    },
+    "emergency_medical_tech": {
+      "R": 7,
+      "I": 5,
+      "A": 1,
+      "S": 7,
+      "E": 6,
+      "C": 4
+    },
+    "optometry_audiology_tech": {
+      "R": 3,
+      "I": 5,
+      "A": 2,
+      "S": 4,
+      "E": 5,
+      "C": 5
+    },
+    "reproductive_health_tech": {
+      "R": 4,
+      "I": 8,
+      "A": 1,
+      "S": 7,
+      "E": 6,
+      "C": 6
+    },
+    "community_nutrition_health_tech": {
+      "R": 2,
+      "I": 2,
+      "A": 2,
+      "S": 7,
+      "E": 7,
+      "C": 3
+    },
+    "cosmetic_science_tech": {
+      "R": 3,
+      "I": 3,
+      "A": 7,
+      "S": 4,
+      "E": 6,
+      "C": 2
+    },
+    "aerospace_engineering": {
+      "R": 6,
+      "I": 8,
+      "A": 3,
+      "S": 1,
+      "E": 1,
+      "C": 9
+    },
+    "laser_optoelectronics_engineering": {
+      "R": 3,
+      "I": 9,
+      "A": 5,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "mining_engineering": {
+      "R": 9,
+      "I": 5,
+      "A": 1,
+      "S": 4,
+      "E": 4,
+      "C": 2
+    },
+    "industrial_engineering": {
+      "R": 4,
+      "I": 7,
+      "A": 3,
+      "S": 2,
+      "E": 7,
+      "C": 8
+    },
+    "control_automation_engineering": {
+      "R": 3,
+      "I": 8,
+      "A": 2,
+      "S": 1,
+      "E": 3,
+      "C": 9
+    },
+    "communications_engineering": {
+      "R": 7,
+      "I": 8,
+      "A": 2,
+      "S": 2,
+      "E": 3,
+      "C": 5
+    },
+    "automotive_engineering": {
+      "R": 9,
+      "I": 6,
+      "A": 4,
+      "S": 1,
+      "E": 7,
+      "C": 4
+    },
+    "geomatics_surveying_engineering": {
+      "R": 7,
+      "I": 6,
+      "A": 2,
+      "S": 2,
+      "E": 4,
+      "C": 8
+    },
+    "urban_regional_planning_engineering": {
+      "R": 3,
+      "I": 6,
+      "A": 7,
+      "S": 6,
+      "E": 5,
+      "C": 4
+    },
+    "materials_engineering": {
+      "R": 6,
+      "I": 9,
+      "A": 2,
+      "S": 1,
+      "E": 2,
+      "C": 6
+    },
+    "refrigeration_ac_engineering": {
+      "R": 9,
+      "I": 5,
+      "A": 1,
+      "S": 2,
+      "E": 6,
+      "C": 6
+    },
+    "environmental_engineering": {
+      "R": 5,
+      "I": 7,
+      "A": 2,
+      "S": 7,
+      "E": 3,
+      "C": 5
+    },
+    "geology_earth_science": {
+      "R": 7,
+      "I": 8,
+      "A": 1,
+      "S": 1,
+      "E": 1,
+      "C": 2
+    },
+    "astronomy_space_science": {
+      "R": 3,
+      "I": 10,
+      "A": 5,
+      "S": 1,
+      "E": 3,
+      "C": 2
+    },
+    "data_science": {
+      "R": 1,
+      "I": 8,
+      "A": 2,
+      "S": 3,
+      "E": 6,
+      "C": 9
+    },
+    "plant_crop_production": {
+      "R": 7,
+      "I": 5,
+      "A": 1,
+      "S": 3,
+      "E": 1,
+      "C": 7
+    },
+    "animal_livestock_science": {
+      "R": 5,
+      "I": 4,
+      "A": 1,
+      "S": 7,
+      "E": 2,
+      "C": 4
+    },
+    "water_resources_forestry": {
+      "R": 6,
+      "I": 8,
+      "A": 4,
+      "S": 1,
+      "E": 5,
+      "C": 9
+    },
+    "food_science_nutrition": {
+      "R": 4,
+      "I": 6,
+      "A": 1,
+      "S": 6,
+      "E": 5,
+      "C": 8
+    },
+    "archaeology": {
+      "R": 5,
+      "I": 9,
+      "A": 3,
+      "S": 2,
+      "E": 1,
+      "C": 8
+    },
+    "foreign_languages_other": {
+      "R": 1,
+      "I": 6,
+      "A": 5,
+      "S": 6,
+      "E": 6,
+      "C": 4
+    },
+    "music_performing_arts": {
+      "R": 3,
+      "I": 5,
+      "A": 9,
+      "S": 6,
+      "E": 3,
+      "C": 4
+    },
+    "special_education": {
+      "R": 2,
+      "I": 7,
+      "A": 2,
+      "S": 9,
+      "E": 2,
+      "C": 8
+    },
+    "information_systems": {
+      "R": 2,
+      "I": 7,
+      "A": 1,
+      "S": 2,
+      "E": 4,
+      "C": 5
+    },
+    "financial_banking": {
+      "R": 1,
+      "I": 5,
+      "A": 1,
+      "S": 3,
+      "E": 5,
+      "C": 9
+    },
+    "industrial_craft_design": {
+      "R": 7,
+      "I": 2,
+      "A": 6,
+      "S": 2,
+      "E": 3,
+      "C": 3
+    },
+    "cybersecurity_tech": {
+      "R": 4,
+      "I": 7,
+      "A": 1,
+      "S": 2,
+      "E": 3,
+      "C": 7
+    },
+    "ai_tech": {
+      "R": 2,
+      "I": 8,
+      "A": 3,
+      "S": 1,
+      "E": 4,
+      "C": 4
+    },
+    "electrical_tech": {
+      "R": 8,
+      "I": 7,
+      "A": 1,
+      "S": 1,
+      "E": 3,
+      "C": 5
+    },
+    "renewable_energy_tech": {
+      "R": 7,
+      "I": 7,
+      "A": 3,
+      "S": 3,
+      "E": 5,
+      "C": 4
+    },
+    "petroleum_refining_tech": {
+      "R": 8,
+      "I": 4,
+      "A": 1,
+      "S": 2,
+      "E": 1,
+      "C": 7
+    },
+    "electronics_comm_tech": {
+      "R": 5,
+      "I": 7,
+      "A": 2,
+      "S": 3,
+      "E": 6,
+      "C": 6
+    },
+    "prosthetics_engineering": {
+      "R": 7,
+      "I": 6,
+      "A": 6,
+      "S": 5,
+      "E": 2,
+      "C": 5
+    }
+  }
+}

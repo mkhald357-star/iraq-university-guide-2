@@ -1301,6 +1301,30 @@ if (fs.existsSync(projectsPath)) {
   } else {
     console.log("[OK] لا ملف مرشَّح (.candidate.json) مستورَد في كود المنتج");
   }
+
+  // البروفايلات المرشَّحة (المسار ج) -- إن وُجدت يجب أن تكون قابلة للقياس جنباً
+  // إلى جنب مع الحالية: نفس التخصصات، ستة أبعاد صحيحة 0-10، وغير المحكَّم منسوخ حرفياً.
+  const candPath = path.join(ROOT, "data", "major_riasec_profiles.candidate.json");
+  if (fs.existsSync(candPath)) {
+    const cand = JSON.parse(fs.readFileSync(candPath, "utf8"));
+    const cur = JSON.parse(fs.readFileSync(path.join(ROOT, "data", "major_riasec_profiles.json"), "utf8")).profiles;
+    const rated = new Set(cand._meta?.candidate?.ratedMajors ?? []);
+    const problems = [];
+    const curIds = Object.keys(cur).sort().join();
+    if (Object.keys(cand.profiles ?? {}).sort().join() !== curIds) problems.push("مجموعة التخصصات تختلف عن الحالية");
+    for (const [id, p] of Object.entries(cand.profiles ?? {})) {
+      for (const d of ["R", "I", "A", "S", "E", "C"]) {
+        if (!Number.isInteger(p[d]) || p[d] < 0 || p[d] > 10) problems.push(`${id}.${d}`);
+      }
+      if (!rated.has(id) && JSON.stringify(p) !== JSON.stringify(cur[id])) problems.push(`${id} غير محكَّم لكنه يختلف عن الحالي`);
+    }
+    if (problems.length) {
+      console.error("[FAIL] data/major_riasec_profiles.candidate.json:", problems.slice(0, 10));
+      hasErrors = true;
+    } else {
+      console.log(`[OK] البروفايلات المرشَّحة: ${rated.size} محكَّماً، والباقي منسوخ حرفياً`);
+    }
+  }
 }
 
 if (hasErrors) {

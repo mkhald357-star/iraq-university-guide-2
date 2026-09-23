@@ -780,22 +780,32 @@ export default function Quiz() {
             في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
           </p>
         </Card>
-        {closeCall && rankedMajors.length >= 2 && (
+        {/* الفارق الذي قاسه المحرك هو بين **أول تخصصين** في القائمة المسطّحة،
+            لا بين قائدَي مجالين -- تسمية القادة هنا كانت تعرض رقماً لم يُقَس
+            (رصده المدقّق عند C-B). عتبة «متقاربان» (4 نقاط) مضبوطة لفوارق
+            التخصصات، ولا إفصاح على مستوى المجال قبل معايرة خاصة به. */}
+        {closeCall && sortedMajors.length >= 2 && (
           <Alert
             tone="primary"
             title={tiedCall ? "أول خيارين متعادلان في توافقهما معك" : "أول خيارين متقاربان في توافقهما معك"}
           >
             <p className="mt-1">
               {tiedCall
-                ? `«${rankedMajors[0].name}» و«${rankedMajors[1].name}» متعادلان عملياً — ترتيبهما هنا لا يعني أن أحدهما يناسبك أكثر من الآخر.`
-                : `«${rankedMajors[0].name}» يتقدّم على «${rankedMajors[1].name}» بفارق صغير فقط — كلاهما يناسب ميولك بدرجة متقاربة.`}{" "}
+                ? `«${sortedMajors[0].name}» و«${sortedMajors[1].name}» متعادلان عملياً — ترتيبهما لا يعني أن أحدهما يناسبك أكثر من الآخر.`
+                : `«${sortedMajors[0].name}» يتقدّم على «${sortedMajors[1].name}» بفارق صغير فقط — كلاهما يناسب ميولك بدرجة متقاربة.`}{" "}
               قارن بينهما في طبيعة الدراسة وفرص العمل قبل أن تقرّر.
             </p>
           </Alert>
         )}
         {/* ثلاثة **مجالات** مختلفة بدل ثلاثة تخصصات متشابهة: أداة القياس تفصل
             بين المجالات بثقة (عائلة التوصية الأولى صحيحة 70.7%) ولا تفصل داخل
-            المجال الواحد، فترتيب المتشابهات ادّعاء دقة غير موجودة. */}
+            المجال الواحد، فترتيب المتشابهات ادّعاء دقة غير موجودة.
+
+            **المجال هو التوصية، لا العضو**: قياس المدقّق عند C-B يُظهر أن
+            اختيار "أقرب عضو" يسوء كلما تماسك المجال (الحوسبة 61% فقط مقابل
+            علوم الحياة 97%) -- لأن أعضاء المجال المتماسك متقاربون في الميول
+            أصلاً. لذلك يُعرض العضو بوصفه "الأقرب حسب إجاباتك" بلا تراتب بصري
+            قوي، وكل الأعضاء بنفس وزن العرض. */}
         <div className="grid gap-6 mt-8">
           {familySelection.recommendations.map((rec, index) => {
             const demand = getDemandLevel(rec.lead.marketMultiplier);
@@ -806,40 +816,41 @@ export default function Quiz() {
                 radius="rounded-2xl"
                 className="space-y-3 border-r-4 border-r-primary"
               >
-                <div className="flex flex-wrap items-start justify-between gap-4">
+                <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-primary-text">
-                      {index + 1}. مجال {rec.familyName}
-                    </p>
-                    <h2 className="mt-1 text-2xl font-bold text-ink break-words">{rec.lead.name}</h2>
-                    <p className="text-ink-muted">{rec.lead.category}</p>
-                    <Badge tone={demand.tone} className="mt-1">
-                      طلب السوق: {demand.text}
-                    </Badge>
+                    <p className="text-xs font-bold text-ink-muted">المجال {index + 1} من 3</p>
+                    <h2 className="mt-0.5 text-2xl font-bold text-ink break-words">{rec.familyName}</h2>
                   </div>
                   <div className="text-left shrink-0">
                     <div className="text-3xl font-black text-primary-text">{Math.round(rec.lead.fitPercent)}%</div>
-                    <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
+                    <div className="text-sm text-ink-muted">توافق أعلى أعضائه</div>
                   </div>
                 </div>
-                {rec.siblings.length > 0 && (
-                  <div className="border-t border-line pt-3">
-                    <p className="text-xs font-bold text-ink-soft">
-                      وفي المجال نفسه، قريبة منك أيضاً — الفرق بينها في طبيعة الدراسة لا في ميولك:
-                    </p>
-                    <ul className="mt-2 flex flex-wrap gap-2">
-                      {rec.siblings.map((s) => (
-                        <li
-                          key={s.id}
-                          className="rounded-lg bg-surface-muted px-3 py-1.5 text-sm text-ink"
-                        >
-                          {s.name}{" "}
-                          <span className="text-ink-muted">{Math.round(s.fitPercent)}%</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <div className="border-t border-line pt-3">
+                  <p className="text-xs font-bold text-ink-soft">
+                    {rec.siblings.length > 0
+                      ? "تخصصات هذا المجال، الأقرب إلى إجاباتك أولاً — الفروق بينها في طبيعة الدراسة أكثر منها في ميولك:"
+                      : "التخصص المتاح لك في هذا المجال:"}
+                  </p>
+                  <ul className="mt-2 space-y-1.5">
+                    {[rec.lead, ...rec.siblings].map((m) => (
+                      <li
+                        key={m.id}
+                        className="flex items-center justify-between gap-3 rounded-lg bg-surface-muted px-3 py-2"
+                      >
+                        <span className="min-w-0 text-ink">
+                          {m.name} <span className="text-xs text-ink-muted">{m.category}</span>
+                        </span>
+                        <span className="shrink-0 text-sm font-bold text-primary-text">
+                          {Math.round(m.fitPercent)}%
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="mt-2 text-xs text-ink-muted">
+                    طلب السوق لأقربها إليك ({rec.lead.name}): {demand.text}
+                  </p>
+                </div>
               </Card>
             );
           })}

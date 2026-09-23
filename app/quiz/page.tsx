@@ -941,6 +941,21 @@ export default function Quiz() {
                       </li>
                     ))}
                   </ul>
+                  {/* المدقّق (C7): نصف من تتصدّرهم تخصصات فوق معدلهم لهم عضو آخر في
+                      المجال نفسه في المتناول -- يُسمّى صراحةً بدل أن يُترك للقراءة. */}
+                  {filterSettings &&
+                    (() => {
+                      const members = [rec.lead, ...rec.siblings];
+                      if (feasibilityNote(filterSettings.grade, ADMISSION_INDEX[rec.lead.id]).tone !== "below") return null;
+                      const within = members.find(
+                        (m) => ["above", "near"].includes(feasibilityNote(filterSettings.grade, ADMISSION_INDEX[m.id]).tone)
+                      );
+                      return within ? (
+                        <p className="mt-2 text-sm font-bold text-ink">
+                          في متناول معدلك ضمن هذا المجال: {within.name}
+                        </p>
+                      ) : null;
+                    })()}
                   <p className="mt-2 text-xs text-ink-muted">
                     طلب السوق لأقربها إليك ({rec.lead.name}): {demand.text}
                   </p>

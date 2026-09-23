@@ -18,14 +18,16 @@
 //
 // ── قواعد القرار، مسجَّلة قبل أول رمز (المدقّق، مراجعة المسار هـ) ──
 // الاستبعاد: رمز من بنك أسئلة غير الحالي (بصمة مختلفة)، أو نطاق صدق "high".
+// التحليل الأساسي (الحاكم): مصدر النيّة "ميول" مع يقين ≥ 4 فقط. "قُبلت فعلاً"
+//    خارجه -- قرار معدّل لا ميول. الثانوي (للقراءة لا للحكم): كل من سمّى تخصصاً.
 // P1 (صلاحية التوصية): لكل فرع على حدة، intendedFamilyInShown3 ≥ خطّ الصدفة
-//    + 0.20، وخطّ الصدفة = متوسط 2000 تبديل عشوائي للنيّات بين طلاب الفرع نفسه.
+//    + 0.20، **و** الحدّ الأدنى لفترة ثقة 95% (ويلسون) فوق خطّ الصدفة. خطّ
+//    الصدفة = متوسط 2000 تبديل عشوائي للنيّات بين طلاب الفرع نفسه.
 //    فرع الفنون يُقاس ويُعرض ولا يدخل الحكم (3 مجالات فقط -- الصدفة شبه كاملة).
 // P2 (المرشَّحة مقابل الحالية): اختبار ويلكوكسون للأزواج المرتّبة على رتبة
-//    تخصص النيّة، ثنائي الطرف α=0.05. تُعتمد المرشَّحة فقط إن كانت رتبتها أفضل
-//    بدلالة **و** لم يسقط P1 بها في أي فرع.
-// التحليل الأساسي: كل من سمّى تخصصاً. الثانوي (للقراءة لا للحكم): مصدر النيّة
-//    "ميول" أو "قُبلت فعلاً" مع يقين ≥ 4.
+//    تخصص النيّة، ثنائي الطرف α=0.05، والاتجاه بإشارة z (سالبة = المرشَّحة
+//    أفضل). تُعتمد المرشَّحة فقط إن: تحسّنت بدلالة **و** لم تسقط إصابة المجال
+//    أكثر من 3 نقاط **و** لم يسقط P1 بها في أي فرع.
 // القدرة: مع 100 طالب يُكشف فرق نحو 15 نقطة فقط -- فرق أصغر لا يُحسم بها.
 import fs from "fs";
 import path from "path";
@@ -76,7 +78,7 @@ if (fs.existsSync(candidatePath)) {
   variants.push({ name: "المرشَّحة", profiles: JSON.parse(fs.readFileSync(candidatePath, "utf8")).profiles });
 }
 
-type Row = { branch: string; intended: string; familiesShown: string[]; firstFamily: string; majorShown: boolean; rank: number; primary: boolean };
+type Row = { branch: string; intended: string; familiesShown: string[]; firstFamily: string; majorShown: boolean; rank: number; restricted: boolean };
 
 function rowsFor(profiles: RankMajorsData["riasecProfiles"]): Row[] {
   return usable
@@ -100,7 +102,7 @@ function rowsFor(profiles: RankMajorsData["riasecProfiles"]): Row[] {
         firstFamily: sel.recommendations[0]?.familyId ?? "",
         majorShown: sel.recommendations.some((x) => x.lead.id === r.intendedMajorId || x.siblings.some((s) => s.id === r.intendedMajorId)),
         rank: pos < 0 ? ranked.length : pos + 1,
-        primary: (r.intentSource === "interest" || r.intentSource === "admitted") && (r.intentCertainty ?? 0) >= 4,
+        restricted: r.intentSource === "interest" && (r.intentCertainty ?? 0) >= 4,
       };
     });
 }
@@ -126,6 +128,15 @@ function permutationChance(rows: Row[], n = 2000): number {
   return total / n;
 }
 
+/** الحدّ الأدنى لفترة ثقة ويلسون 95% لنسبة. */
+function wilsonLower(p: number, n: number, z = 1.96): number {
+  if (!n) return 0;
+  const denom = 1 + (z * z) / n;
+  const centre = p + (z * z) / (2 * n);
+  const margin = z * Math.sqrt((p * (1 - p)) / n + (z * z) / (4 * n * n));
+  return (centre - margin) / denom;
+}
+
 function summarize(rows: Row[]) {
   const n = rows.length || 1;
   const byBranch: Record<string, unknown> = {};
@@ -133,12 +144,21 @@ function summarize(rows: Row[]) {
     const br = rows.filter((r) => r.branch === branch);
     const hit = familyHitRate(br, br.map((r) => r.intended));
     const chance = permutationChance(br);
+    const lower = wilsonLower(hit, br.length);
     byBranch[branch] = {
       n: br.length,
       intendedFamilyInShown3: +hit.toFixed(3),
+      ci95Lower: +lower.toFixed(3),
       chance: +chance.toFixed(3),
       liftOverChance: +(hit - chance).toFixed(3),
-      P1: branch === "فنون" ? "خارج الحكم" : br.length < 20 ? "عيّنة صغيرة" : hit - chance >= 0.2 ? "يمرّ" : "يسقط",
+      P1:
+        branch === "فنون"
+          ? "خارج الحكم"
+          : br.length < 20
+            ? "عيّنة صغيرة"
+            : hit - chance >= 0.2 && lower > chance
+              ? "يمرّ"
+              : "يسقط",
     };
   }
   return {
@@ -180,6 +200,11 @@ export function wilcoxon(a: number[], b: number[]) {
 }
 
 const rowsByVariant = variants.map((v) => ({ name: v.name, rows: rowsFor(v.profiles) }));
+const variantSummaries = rowsByVariant.map((v) => ({
+  name: v.name,
+  primaryAnalysis: summarize(v.rows.filter((r) => r.restricted)),
+  secondary_allWithIntent: summarize(v.rows),
+}));
 
 const ratings = usable.map((r) => r.fitRating).filter((x): x is number => x !== null);
 const result = {
@@ -191,20 +216,31 @@ const result = {
   enoughForProfileDecision: usable.length >= MIN_N,
   meanFitRating: ratings.length ? +(ratings.reduce((s, x) => s + x, 0) / ratings.length).toFixed(2) : null,
   fitRatingDistribution: [1, 2, 3, 4, 5].map((k) => ratings.filter((x) => x === k).length),
-  variants: rowsByVariant.map((v) => ({
-    name: v.name,
-    primaryAnalysis: summarize(v.rows),
-    secondary_interestOrAdmitted_certain: summarize(v.rows.filter((r) => r.primary)),
-  })),
-  // P2: رتبة تخصص النيّة، المرشَّحة مقابل الحالية (أصغر = أفضل)
+  variants: variantSummaries,
+  // P2: رتبة تخصص النيّة، المرشَّحة مقابل الحالية، على المجموعة الحاكمة (أصغر = أفضل)
   P2:
     rowsByVariant.length === 2
       ? (() => {
-          const cur = rowsByVariant[0].rows.map((r) => r.rank);
-          const cand = rowsByVariant[1].rows.map((r) => r.rank);
-          const w = wilcoxon(cand, cur);
-          const candBetter = cand.reduce((s, x) => s + x, 0) < cur.reduce((s, x) => s + x, 0);
-          return { ...w, candidateBetterOnAverage: candBetter, significant: w.p !== null && w.p < 0.05 };
+          const cur = rowsByVariant[0].rows.filter((r) => r.restricted);
+          const cand = rowsByVariant[1].rows.filter((r) => r.restricted);
+          // wilcoxon(cand, cur): W+ يجمع رتب (المرشَّحة − الحالية) الموجبة، فـz سالبة = رتب المرشَّحة أصغر = أفضل
+          const w = wilcoxon(cand.map((r) => r.rank), cur.map((r) => r.rank));
+          const hitCur = familyHitRate(cur, cur.map((r) => r.intended));
+          const hitCand = familyHitRate(cand, cand.map((r) => r.intended));
+          const significant = w.p !== null && w.p < 0.05;
+          const candidateBetter = w.z !== null && w.z < 0;
+          const hitNotWorse = hitCand >= hitCur - 0.03;
+          const p1Holds = Object.values(variantSummaries[1].primaryAnalysis.byBranch as Record<string, { P1: string }>).every((b) => b.P1 !== "يسقط");
+          return {
+            ...w,
+            candidateBetter,
+            significant,
+            familyHitCurrent: +hitCur.toFixed(3),
+            familyHitCandidate: +hitCand.toFixed(3),
+            hitNotWorseBy3pts: hitNotWorse,
+            candidateP1Holds: p1Holds,
+            adoptCandidate: significant && candidateBetter && hitNotWorse && p1Holds,
+          };
         })()
       : "لا بروفايلات مرشَّحة",
 };

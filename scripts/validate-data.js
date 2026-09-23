@@ -1257,6 +1257,21 @@ if (fs.existsSync(projectsPath)) {
   }
 }
 
+// فهرس واقعية القبول (data/major_admission_index.json، يولّده
+// scripts/build-major-admission-index.js): كل تخصص له مدخل، وتخصص بلا حدّ
+// تنافسي موثَّق يُطبَع صراحةً (محايد في الترتيب لا "سهل").
+{
+  const admission = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_admission_index.json"), "utf8")).majors;
+  const missing = majors.filter((m) => !admission[m.id]).map((m) => m.id);
+  const none = Object.entries(admission).filter(([, e]) => e.confidence === "none").map(([id]) => id);
+  if (missing.length) {
+    console.error("[FAIL] data/major_admission_index.json: تخصصات بلا مدخل:", missing);
+    hasErrors = true;
+  } else {
+    console.log(`[OK] data/major_admission_index.json: ${Object.keys(admission).length} تخصصاً` + (none.length ? `، بلا حدّ تنافسي موثَّق (محايدة): ${none.join("، ")}` : ""));
+  }
+}
+
 // ملفات "مرشَّحة" لا تُشحن: أي بيانات مشتقّة تنتظر مصادقة ميدانية (مثل
 // بروفايلات أقسام مُعاد اشتقاقها) تُسمّى <name>.candidate.json ويُمنع على كود
 // المنتج استيرادها -- أقوى من راية تشغيل، لأن الملف يصير غير قابل للوصول من

@@ -11,9 +11,10 @@ import reserveQuestionsData from "../../data/reserve_questions.json";
 import majorsData from "../../data/majors.json";
 import provincesData from "../../data/provinces.json";
 import riasecProfilesData from "../../data/major_riasec_profiles.json";
-import { UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
+import { CUTOFFS_YEAR, UNCOVERED_PROVINCES, UNCOVERED_PROVINCES_REASON } from "../../lib/admissionDisclosure";
 import {
   computeCombinedRankingScore,
+  applyAdmissionWeight,
   RIASEC_LABELS,
   type RiasecDimension,
   type RiasecVector,
@@ -40,6 +41,7 @@ import { QuizProgress } from "../components/quiz/QuizProgress";
 import { getAnswerLabels, labelFor, type ScaleValue } from "../components/quiz/answerLabels";
 import { MAJOR_FAMILIES } from "../../lib/majorFamilies";
 import { selectFamilyRecommendations } from "../../lib/familyRecommendation";
+import { ADMISSION_INDEX, computeFeasibilityPercent, feasibilityNote } from "../../lib/admissionFeasibility";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {
@@ -318,6 +320,8 @@ export default function Quiz() {
   // (انظر §3.2 من تحليل الثغرات: السوق مفصول عن الترتيب افتراضياً، بيد الطالب فقط).
   const [allValidMajors, setAllValidMajors] = useState<RankedMajor[]>([]);
   const [marketWeight, setMarketWeight] = useState(0);
+  // منزلق واقعية القبول (الإصدار 2، C-D) -- مطفأ افتراضياً بقرار المالك.
+  const [admissionWeight, setAdmissionWeight] = useState(0);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
   const [vrsResult, setVrsResult] = useState<ValidityCheckResult | null>(null);
@@ -370,16 +374,46 @@ export default function Quiz() {
         ...m,
         // tieBreakAdjustment = أثر ترجيح السياق -- كان يسقط هنا صامتاً فتختلف
         // النتيجة المعروضة عمّا حُفظ لصفحة /report.
-        combinedScore:
+        // المنزلقان يعيدان التقييم للعرض فقط؛ بوزنين صفريين الترتيب هو ترتيب
+        // المحرك حرفياً (applyAdmissionWeight يُرجع المدخل نفسه عند الصفر).
+        combinedScore: applyAdmissionWeight(
           computeCombinedRankingScore(m.fitPercent, m.marketMultiplier, marketWeight) + (m.tieBreakAdjustment ?? 0),
+          filterSettings ? computeFeasibilityPercent(filterSettings.grade, ADMISSION_INDEX[m.id]) : null,
+          admissionWeight
+        ),
       }))
       .sort((a, b) => b.combinedScore - a.combinedScore);
-  }, [allValidMajors, marketWeight]);
+  }, [allValidMajors, marketWeight, admissionWeight, filterSettings]);
 
   // ثلاث عائلات مختلفة، كل واحدة بأقرب أفرادها ومعها بقيتهم
   // (lib/familyRecommendation.ts -- السبب والقياس موثّقان هناك).
   const familySelection = useMemo(() => selectFamilyRecommendations(sortedMajors, MAJOR_FAMILIES), [sortedMajors]);
   const rankedMajors = useMemo(() => familySelection.recommendations.map((r) => r.lead), [familySelection]);
+
+  // ما يُحفظ للتقرير = ما على الشاشة الآن، لا ترتيب المحرك الأصلي: بلا هذا،
+  // يحرّك الطالب منزلقاً فتتغيّر توصياته أمامه، ثم يفتح التقرير فيجد القديمة.
+  useEffect(() => {
+    if (!isFinished || familySelection.recommendations.length === 0) return;
+    try {
+      localStorage.setItem("quizResults", JSON.stringify(familySelection.recommendations.map((r) => r.lead)));
+      localStorage.setItem(
+        "quizResultsV2",
+        JSON.stringify({
+          version: 2,
+          families: familySelection.recommendations.map((r) => ({
+            familyId: r.familyId,
+            familyName: r.familyName,
+            lead: r.lead,
+            siblings: r.siblings,
+          })),
+          insufficientFamilies: familySelection.insufficientFamilies,
+          weights: { market: marketWeight, admission: admissionWeight },
+        })
+      );
+    } catch {
+      // التخزين قد يكون معطّلاً -- النتيجة معروضة من الذاكرة بغضّ النظر.
+    }
+  }, [isFinished, familySelection, marketWeight, admissionWeight]);
 
   // Clear session on mount
   useEffect(() => {
@@ -784,6 +818,28 @@ export default function Quiz() {
             الترتيب الافتراضي (0٪) يعتمد على توافق شخصيتك فقط. حرّك المنزلق يميناً إن أردت ترجيح التخصصات الأعلى طلباً
             في السوق ضمن الترتيب أيضاً — القرار بيدك أنت، لا خوارزمية خفية.
           </p>
+          <div className="flex items-center justify-between border-t border-line pt-3">
+            <label htmlFor="admissionWeight" className="font-bold text-ink text-sm">
+              كم يهمّك أن يكون التخصص في متناول معدلك؟
+            </label>
+            <span className="text-sm font-bold text-primary-text">
+              {admissionWeight === 0 ? "تجاهله كلياً" : `${Math.round(admissionWeight * 100)}٪`}
+            </span>
+          </div>
+          <input
+            id="admissionWeight"
+            type="range"
+            min={0}
+            max={100}
+            step={10}
+            value={admissionWeight * 100}
+            onChange={(e) => setAdmissionWeight(Number(e.target.value) / 100)}
+            className="w-full accent-primary"
+          />
+          <p className="text-xs text-ink-muted">
+            يقارن معدلك بأدنى حدّ قبول حكومي منشور لكل تخصص (نتائج القبول المركزي {CUTOFFS_YEAR}، القناة العامة — ليست
+            ضماناً لهذا العام). التخصصات بلا حدّ منشور، ومنها الجامعات الأهلية، لا تتحرّك لأننا لا نعرف حدّها.
+          </p>
         </Card>
         {/* الفارق الذي قاسه المحرك هو بين **أول تخصصين** في القائمة المسطّحة،
             لا بين قائدَي مجالين -- تسمية القادة هنا كانت تعرض رقماً لم يُقَس
@@ -845,6 +901,11 @@ export default function Quiz() {
                       >
                         <span className="min-w-0 text-ink">
                           {m.name} <span className="text-xs text-ink-muted">{m.category}</span>
+                          {filterSettings && (
+                            <span className="block text-xs text-ink-muted">
+                              {feasibilityNote(filterSettings.grade, ADMISSION_INDEX[m.id]).text}
+                            </span>
+                          )}
                         </span>
                         <span className="shrink-0 text-sm font-bold text-primary-text">
                           {Math.round(m.fitPercent)}%

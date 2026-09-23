@@ -177,6 +177,28 @@ export function computeCombinedRankingScore(
   return fitPercent + (marketMultiplier - 1) * MAX_MARKET_INFLUENCE * weight;
 }
 
+/** أقصى أثر لمنزلق واقعية القبول -- مساوٍ لأثر منزلق السوق عمداً. */
+export const MAX_ADMISSION_INFLUENCE = 15;
+
+/**
+ * منزلق "أهمية واقعية القبول" (الإصدار 2، المسار C-D): شقيق
+ * computeCombinedRankingScore لا معامل رابع فيه، كي تبقى كل الاستدعاءات
+ * القائمة ولقطات الترتيب المرجعية كما هي حرفياً.
+ *
+ * وزن 0 (الافتراضي) = الترتيب نفسه بايتاً ببايت. وحدّ غير معروف (null) لا
+ * يتحرّك بأي وزن -- المجهول ليس سهلاً.
+ */
+export function applyAdmissionWeight(
+  combinedScore: number,
+  feasibilityPercent: number | null,
+  studentAdmissionWeight: number = 0
+): number {
+  if (feasibilityPercent === null) return combinedScore;
+  const weight = clamp(studentAdmissionWeight, 0, 1);
+  if (weight === 0) return combinedScore;
+  return combinedScore + ((feasibilityPercent - 50) / 50) * MAX_ADMISSION_INFLUENCE * weight;
+}
+
 /** يُرجع أعلى n أبعاد لدى المستخدم مرتّبة تنازلياً، لعرضها كتفسير للنتيجة. */
 export function topDimensions(
   userVector: Record<RiasecDimension, number>,

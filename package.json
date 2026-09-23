@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "predev": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats",
+    "predev": "npm run build-major-offerings && npm run build-major-admission-index && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats",
     "dev": "next dev -p 3000",
-    "prebuild": "npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data",
+    "prebuild": "npm run build-major-offerings && npm run build-major-admission-index && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -29,7 +29,8 @@
     "personas": "node scripts/run-personas.js",
     "a11y-check": "node scripts/a11y-check.js",
     "snapshot": "node scripts/generate-project-snapshot.js",
-    "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data"
+    "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-admission-index && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data",
+    "build-major-admission-index": "node scripts/build-major-admission-index.js"
   },
   "dependencies": {
     "lucide-react": "^1.21.0",

@@ -38,6 +38,8 @@ import { GridScreen } from "../components/quiz/GridScreen";
 import { PickScreen } from "../components/quiz/PickScreen";
 import { QuizProgress } from "../components/quiz/QuizProgress";
 import { getAnswerLabels, labelFor, type ScaleValue } from "../components/quiz/answerLabels";
+import { MAJOR_FAMILIES } from "../../lib/majorFamilies";
+import { selectFamilyRecommendations } from "../../lib/familyRecommendation";
 
 type AnswerState = Record<string, number>;
 interface QuizItem {
@@ -360,7 +362,9 @@ export default function Quiz() {
 
   // إعادة ترتيب فورية عند تحريك منزلق "أهمية السوق" -- بلا إعادة حساب
   // الاختبار كاملاً، فقط إعادة فرز القائمة المخزَّنة أصلاً حسب الوزن الحالي.
-  const rankedMajors = useMemo(() => {
+  // القائمة المرتّبة كاملةً (لا أفضل ثلاثة): اختيار العائلات يحتاجها كلها كي
+  // يجد بقية أفراد كل عائلة.
+  const sortedMajors = useMemo(() => {
     return [...allValidMajors]
       .map((m) => ({
         ...m,
@@ -369,9 +373,13 @@ export default function Quiz() {
         combinedScore:
           computeCombinedRankingScore(m.fitPercent, m.marketMultiplier, marketWeight) + (m.tieBreakAdjustment ?? 0),
       }))
-      .sort((a, b) => b.combinedScore - a.combinedScore)
-      .slice(0, 3);
+      .sort((a, b) => b.combinedScore - a.combinedScore);
   }, [allValidMajors, marketWeight]);
+
+  // ثلاث عائلات مختلفة، كل واحدة بأقرب أفرادها ومعها بقيتهم
+  // (lib/familyRecommendation.ts -- السبب والقياس موثّقان هناك).
+  const familySelection = useMemo(() => selectFamilyRecommendations(sortedMajors, MAJOR_FAMILIES), [sortedMajors]);
+  const rankedMajors = useMemo(() => familySelection.recommendations.map((r) => r.lead), [familySelection]);
 
   // Clear session on mount
   useEffect(() => {
@@ -610,7 +618,24 @@ export default function Quiz() {
     setTiedCall(step.finalGap < 1);
     setIsFinished(true);
     try {
-      localStorage.setItem("quizResults", JSON.stringify(step.ranked.slice(0, 3)));
+      // المفتاح القديم يبقى بشكله (RankedMajor[3]) كي يفتح تقرير محفوظ من
+      // الإصدار السابق بلا كسر، لكن محتواه صار **قادة العائلات** لا أفضل
+      // ثلاثة تخصصات، فيطابق ما رآه الطالب على الشاشة.
+      const savedSelection = selectFamilyRecommendations(step.ranked, MAJOR_FAMILIES);
+      localStorage.setItem("quizResults", JSON.stringify(savedSelection.recommendations.map((r) => r.lead)));
+      localStorage.setItem(
+        "quizResultsV2",
+        JSON.stringify({
+          version: 2,
+          families: savedSelection.recommendations.map((r) => ({
+            familyId: r.familyId,
+            familyName: r.familyName,
+            lead: r.lead,
+            siblings: r.siblings,
+          })),
+          insufficientFamilies: savedSelection.insufficientFamilies,
+        })
+      );
       localStorage.setItem("userAnswers", JSON.stringify(step.scoredAnswers));
       localStorage.setItem("needsReview", JSON.stringify(step.vrs.band !== "low"));
     } catch {
@@ -768,33 +793,63 @@ export default function Quiz() {
             </p>
           </Alert>
         )}
+        {/* ثلاثة **مجالات** مختلفة بدل ثلاثة تخصصات متشابهة: أداة القياس تفصل
+            بين المجالات بثقة (عائلة التوصية الأولى صحيحة 70.7%) ولا تفصل داخل
+            المجال الواحد، فترتيب المتشابهات ادّعاء دقة غير موجودة. */}
         <div className="grid gap-6 mt-8">
-          {rankedMajors.map((major, index) => {
-            const demand = getDemandLevel(major.marketMultiplier);
+          {familySelection.recommendations.map((rec, index) => {
+            const demand = getDemandLevel(rec.lead.marketMultiplier);
             return (
               <Card
-                key={major.id}
+                key={rec.familyId}
                 variant="surface"
                 radius="rounded-2xl"
-                className="flex flex-wrap items-center justify-between gap-4 border-r-4 border-r-primary"
+                className="space-y-3 border-r-4 border-r-primary"
               >
-                <div className="min-w-0">
-                  <h2 className="text-2xl font-bold text-ink break-words">
-                    {index + 1}. {major.name}
-                  </h2>
-                  <p className="text-ink-muted">{major.category}</p>
-                  <Badge tone={demand.tone} className="mt-1">
-                    طلب السوق: {demand.text}
-                  </Badge>
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-primary-text">
+                      {index + 1}. مجال {rec.familyName}
+                    </p>
+                    <h2 className="mt-1 text-2xl font-bold text-ink break-words">{rec.lead.name}</h2>
+                    <p className="text-ink-muted">{rec.lead.category}</p>
+                    <Badge tone={demand.tone} className="mt-1">
+                      طلب السوق: {demand.text}
+                    </Badge>
+                  </div>
+                  <div className="text-left shrink-0">
+                    <div className="text-3xl font-black text-primary-text">{Math.round(rec.lead.fitPercent)}%</div>
+                    <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
+                  </div>
                 </div>
-                <div className="text-left shrink-0">
-                  <div className="text-3xl font-black text-primary-text">{Math.round(major.fitPercent)}%</div>
-                  <div className="text-sm text-ink-muted">نسبة التوافق الشخصي</div>
-                </div>
+                {rec.siblings.length > 0 && (
+                  <div className="border-t border-line pt-3">
+                    <p className="text-xs font-bold text-ink-soft">
+                      وفي المجال نفسه، قريبة منك أيضاً — الفرق بينها في طبيعة الدراسة لا في ميولك:
+                    </p>
+                    <ul className="mt-2 flex flex-wrap gap-2">
+                      {rec.siblings.map((s) => (
+                        <li
+                          key={s.id}
+                          className="rounded-lg bg-surface-muted px-3 py-1.5 text-sm text-ink"
+                        >
+                          {s.name}{" "}
+                          <span className="text-ink-muted">{Math.round(s.fitPercent)}%</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </Card>
             );
           })}
         </div>
+        {familySelection.insufficientFamilies && (
+          <p className="mt-3 text-sm text-ink-muted">
+            فرعك الدراسي يفتح {familySelection.familiesAvailable} مجالات فقط في بياناتنا، فعرضنا ما هو متاح كاملاً بلا
+            حشو.
+          </p>
+        )}
         {rankedMajors.length > 0 ? (
           <Card
             variant="surface"

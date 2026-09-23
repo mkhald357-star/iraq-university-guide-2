@@ -1208,6 +1208,55 @@ if (fs.existsSync(projectsPath)) {
   }
 }
 
+// عائلات التخصصات (data/major_families.json): المجال الدراسي الذي تُعرض به
+// التوصية. ثلاثة شروط تجعل "ثلاث توصيات من عائلات مختلفة" قابلاً للتحقيق:
+// تغطية كاملة بلا تكرار، وتماسك الفرع داخل العائلة (وإلا صارت فارغة لطالب من
+// فرع آخر)، وثلاث عائلات متاحة على الأقل لكل فرع.
+{
+  const familiesFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_families.json"), "utf8"));
+  const fams = familiesFile.families;
+  const catOf = Object.fromEntries(majors.map((m) => [m.id, m.category]));
+  const BRANCH_CATEGORIES = {
+    علمي: ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"],
+    أدبي: ["إنسانيات", "لغات", "تربية", "إدارة وتسويق"],
+    فنون: ["فنون وتصميم"],
+  };
+  const branchKeyOf = (id) =>
+    Object.keys(BRANCH_CATEGORIES)
+      .filter((b) => BRANCH_CATEGORIES[b].includes(catOf[id]))
+      .sort()
+      .join("|");
+  const seen = new Map();
+  const famProblems = [];
+  fams.forEach((f) => {
+    f.memberIds.forEach((id) => {
+      if (!catOf[id]) famProblems.push(`${f.id}: معرّف غير موجود ${id}`);
+      else if (seen.has(id)) famProblems.push(`${id} في عائلتين: ${seen.get(id)} و${f.id}`);
+      else seen.set(id, f.id);
+    });
+    const keys = [...new Set(f.memberIds.filter((id) => catOf[id]).map(branchKeyOf))];
+    if (keys.length > 1) famProblems.push(`${f.id}: أفرادها عبر فروع مختلفة (${keys.join(" / ")})`);
+  });
+  majors.forEach((m) => {
+    if (!seen.has(m.id)) famProblems.push(`تخصص بلا عائلة: ${m.id}`);
+  });
+  const perBranch = Object.fromEntries(
+    Object.keys(BRANCH_CATEGORIES).map((b) => [
+      b,
+      fams.filter((f) => f.memberIds.some((id) => BRANCH_CATEGORIES[b].includes(catOf[id]))).length,
+    ])
+  );
+  Object.entries(perBranch).forEach(([b, n]) => {
+    if (n < 3) famProblems.push(`فرع ${b}: ${n} عائلة فقط -- لا تكفي لثلاث توصيات من عائلات مختلفة`);
+  });
+  if (famProblems.length) {
+    console.error("[FAIL] data/major_families.json:", famProblems);
+    hasErrors = true;
+  } else {
+    console.log(`[OK] data/major_families.json: ${fams.length} عائلة تغطي ${seen.size} تخصصاً، متماسكة بالفرع`, JSON.stringify(perBranch));
+  }
+}
+
 // ملفات "مرشَّحة" لا تُشحن: أي بيانات مشتقّة تنتظر مصادقة ميدانية (مثل
 // بروفايلات أقسام مُعاد اشتقاقها) تُسمّى <name>.candidate.json ويُمنع على كود
 // المنتج استيرادها -- أقوى من راية تشغيل، لأن الملف يصير غير قابل للوصول من

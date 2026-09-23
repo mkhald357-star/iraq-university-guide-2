@@ -1,0 +1,229 @@
+{
+  "_meta": {
+    "purpose": "عائلات التخصصات: المجال الدراسي الذي يتعرّف عليه الطالب. التوصية تعرض ثلاث عائلات مختلفة، كل واحدة بأقرب أفرادها إليه (قرار المالك 2026-09-23).",
+    "method": "منسَّقة بالمعنى (المجال) لا بالتجميع الآلي: تجميع بروفايلات RIASEC ينتج كتلاً حسب البُعد الغالب لا حسب المجال -- عند عتبة 82 وضع الصيدلة والأمن السيبراني وهندسة البرمجيات والرياضيات في عائلة واحدة لأنها كلها استقصائية. scripts/derive-major-families.js يبقى أداة اقتراح ومراجعة.",
+    "constraint": "كل عائلة متماسكة بالفرع: كل أفرادها يقبلهم نفس الفروع، وإلا صارت العائلة فارغة لطالب من فرع آخر."
+  },
+  "families": [
+    {
+      "id": "computing",
+      "name": "الحوسبة والذكاء الاصطناعي",
+      "memberIds": [
+        "software_engineering",
+        "computer_science",
+        "ai",
+        "ai_tech",
+        "cybersecurity",
+        "cybersecurity_tech",
+        "data_science"
+      ]
+    },
+    {
+      "id": "electrical_electronics",
+      "name": "الكهرباء والإلكترونيات والاتصالات",
+      "memberIds": [
+        "electrical_engineering",
+        "electrical_tech",
+        "communications_engineering",
+        "electronics_comm_tech",
+        "control_automation_engineering",
+        "mechatronics_engineering",
+        "laser_optoelectronics_engineering"
+      ]
+    },
+    {
+      "id": "mechanical_manufacturing",
+      "name": "الميكانيك والتصنيع والمركبات",
+      "memberIds": [
+        "mechanical_engineering",
+        "industrial_engineering",
+        "automotive_engineering",
+        "refrigeration_ac_engineering",
+        "aerospace_engineering"
+      ]
+    },
+    {
+      "id": "civil_built",
+      "name": "البناء والعمارة والتخطيط",
+      "memberIds": [
+        "civil_engineering",
+        "architecture",
+        "urban_regional_planning_engineering",
+        "geomatics_surveying_engineering"
+      ]
+    },
+    {
+      "id": "energy_earth",
+      "name": "الطاقة والنفط وعلوم الأرض",
+      "memberIds": [
+        "petroleum_engineering",
+        "petroleum_refining_tech",
+        "renewable_energy",
+        "renewable_energy_tech",
+        "mining_engineering",
+        "geology_earth_science"
+      ]
+    },
+    {
+      "id": "chemical_materials",
+      "name": "الكيمياء والمواد والبيئة",
+      "memberIds": [
+        "chemical_engineering",
+        "materials_engineering",
+        "environmental_engineering",
+        "chemistry"
+      ]
+    },
+    {
+      "id": "physics_math",
+      "name": "الرياضيات والفيزياء والفلك",
+      "memberIds": [
+        "mathematics",
+        "physics",
+        "astronomy_space_science"
+      ]
+    },
+    {
+      "id": "medicine_clinical",
+      "name": "الطب وطب الأسنان والصيدلة",
+      "memberIds": [
+        "medicine",
+        "dentistry",
+        "pharmacy"
+      ]
+    },
+    {
+      "id": "nursing_care",
+      "name": "التمريض والرعاية الحرجة والطوارئ",
+      "memberIds": [
+        "nursing",
+        "anesthesia_critical_care_tech",
+        "emergency_medical_tech",
+        "reproductive_health_tech"
+      ]
+    },
+    {
+      "id": "medical_diagnostics",
+      "name": "التحاليل والأشعة وعلوم التجميل",
+      "memberIds": [
+        "medical_analysis",
+        "forensic_science",
+        "radiology_tech",
+        "cosmetic_science_tech"
+      ]
+    },
+    {
+      "id": "medical_engineering",
+      "name": "الهندسة الطبية والأطراف والتأهيل",
+      "memberIds": [
+        "biomedical_engineering",
+        "prosthetics_engineering",
+        "prosthetics_tech",
+        "rehab_therapy_tech",
+        "optometry_audiology_tech"
+      ]
+    },
+    {
+      "id": "life_sciences",
+      "name": "علوم الحياة والتغذية",
+      "memberIds": [
+        "biology",
+        "food_science_nutrition",
+        "community_nutrition_health_tech"
+      ]
+    },
+    {
+      "id": "agriculture_veterinary",
+      "name": "الزراعة والثروة الحيوانية والبيطرة",
+      "memberIds": [
+        "agriculture",
+        "plant_crop_production",
+        "animal_livestock_science",
+        "water_resources_forestry",
+        "veterinary_medicine"
+      ]
+    },
+    {
+      "id": "business_management",
+      "name": "الإدارة والمال والتسويق",
+      "memberIds": [
+        "business_admin",
+        "accounting",
+        "financial_banking",
+        "project_management",
+        "digital_marketing",
+        "information_systems",
+        "tourism_hospitality"
+      ]
+    },
+    {
+      "id": "law_politics",
+      "name": "القانون والعلوم السياسية",
+      "memberIds": [
+        "law",
+        "political_science"
+      ]
+    },
+    {
+      "id": "humanities_social",
+      "name": "الإنسانيات وعلوم المجتمع",
+      "memberIds": [
+        "psychology_sociology",
+        "history",
+        "geography",
+        "archaeology",
+        "islamic_studies"
+      ]
+    },
+    {
+      "id": "media_communication",
+      "name": "الإعلام والاتصال",
+      "memberIds": [
+        "media_journalism"
+      ]
+    },
+    {
+      "id": "languages",
+      "name": "اللغات والترجمة",
+      "memberIds": [
+        "english",
+        "arabic_language",
+        "translation",
+        "foreign_languages_other"
+      ]
+    },
+    {
+      "id": "education",
+      "name": "التربية والتعليم",
+      "memberIds": [
+        "education",
+        "kindergarten_education",
+        "special_education",
+        "physical_education"
+      ]
+    },
+    {
+      "id": "visual_design",
+      "name": "التصميم البصري والصناعي",
+      "memberIds": [
+        "graphic_design",
+        "interior_design",
+        "industrial_craft_design"
+      ]
+    },
+    {
+      "id": "fine_arts",
+      "name": "الفنون الجميلة",
+      "memberIds": [
+        "fine_arts"
+      ]
+    },
+    {
+      "id": "performing_arts",
+      "name": "الموسيقى والفنون الأدائية",
+      "memberIds": [
+        "music_performing_arts"
+      ]
+    }
+  ]
+}

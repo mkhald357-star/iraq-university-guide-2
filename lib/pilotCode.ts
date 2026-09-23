@@ -8,12 +8,33 @@
  * **طوعاً** لمنظّم التجربة. لا يُرسل شيء تلقائياً، ولا يظهر هذا إلا برابط
  * التجربة (/quiz?pilot=1).
  *
- * **أقل بيانات ممكنة**: الإجابات، والفرع، والمعدل مقرَّباً، ودرجات المواد إن
- * أُدخلت، وسؤالان. **لا اسم ولا محافظة ولا وسيلة تواصل** -- لا شيء يعرّف
- * الطالب.
+ * **أقل بيانات ممكنة**: الإجابات، والفرع، والمعدل مقرَّباً، ودرجات المواد
+ * مقرَّبة لأقرب 5، ونيّة الطالب، وتقييمه. **لا اسم ولا محافظة ولا وسيلة
+ * تواصل**. درجات المواد الدقيقة شبه-معرِّف داخل المدرسة الواحدة (المدقّق)،
+ * فالتقريب يجري هنا في المكتبة لا في الواجهة وحدها.
+ *
+ * الإصدار 2 (بعد مراجعة المدقّق قبل أول رمز):
+ * - النيّة تُسأل **قبل** الاختبار: سؤالها بعد رؤية المجالات يثبّت الإجابة على
+ *   ما عُرض فيصير المقياس دائرياً. ومعها مصدرها ودرجة اليقين، لأن "أدرس الطب
+ *   لأن معدلي يسمح" ليس دليلاً على الميول.
+ * - بصمة البنك ونطاق الصدق (VRS): رمز من بنك أسئلة آخر، أو إجابات مشكوك في
+ *   جدّيتها، يُعزَل في التحليل لا يُخلَط.
  */
 
-export const PILOT_CODE_VERSION = 1;
+export const PILOT_CODE_VERSION = 2;
+
+/** لماذا اختار الطالب هذا التخصص -- يفصل الميول عن القيود. */
+export type IntentSource = "interest" | "grade" | "family" | "admitted" | "other";
+
+/** يُقرِّب درجة مادة لأقرب 5 -- يكفي للتحليل ولا يعرّف طالباً في صفّه. */
+export function roundSubjectGrade(g: number): number {
+  return Math.round(g / 5) * 5;
+}
+
+/** بصمة بنك الأسئلة (المعرّفات مرتّبة) -- تكشف رموزاً من إصدار بنك مختلف. */
+export function bankFingerprint(questionIds: string[]): string {
+  return `${questionIds.length}-${checksum([...questionIds].sort().join("|"))}`;
+}
 const PREFIX = "IQM1.";
 
 export interface PilotRecord {
@@ -28,10 +49,18 @@ export interface PilotRecord {
   answers: Record<string, number>;
   /** ما عرضته المنصة: قادة المجالات الثلاثة بالترتيب. */
   shownLeads: string[];
-  /** التخصص الذي يدرسه الطالب أو ينوي دراسته فعلاً (معرّف من data/majors.json)، أو null. */
+  /** التخصص الذي يدرسه الطالب أو ينوي دراسته فعلاً (معرّف من data/majors.json)، أو null. سُئل قبل الاختبار. */
   intendedMajorId: string | null;
-  /** "كم تناسبك هذه التوصيات؟" 1..5، أو null. */
+  /** مصدر النيّة، أو null إن لم يقرّر. */
+  intentSource: IntentSource | null;
+  /** يقينه من هذه النيّة 1..5، أو null. */
+  intentCertainty: number | null;
+  /** "كم تناسبك هذه التوصيات؟" 1..5، أو null. سُئل بعد رؤية النتيجة. */
   fitRating: number | null;
+  /** bankFingerprint لبنك الأسئلة الذي أجاب عنه. */
+  bank: string;
+  /** نطاق مؤشر صدق الإجابات: low | medium | high. */
+  vrsBand: string | null;
 }
 
 function toBase64Url(s: string): string {
@@ -56,7 +85,12 @@ function checksum(s: string): string {
 }
 
 export function encodePilotRecord(rec: Omit<PilotRecord, "v">): string {
-  const body = toBase64Url(JSON.stringify({ ...rec, v: PILOT_CODE_VERSION }));
+  const safe = {
+    ...rec,
+    grade: Math.round(rec.grade),
+    subjectGrades: Object.fromEntries(Object.entries(rec.subjectGrades).map(([k, g]) => [k, roundSubjectGrade(g)])),
+  };
+  const body = toBase64Url(JSON.stringify({ ...safe, v: PILOT_CODE_VERSION }));
   return `${PREFIX}${body}.${checksum(body)}`;
 }
 

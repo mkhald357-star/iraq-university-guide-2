@@ -605,6 +605,12 @@ function ReportContent() {
               requiredGrade !== null && filterSettings.grade >= requiredGrade
                 ? ` (منها أفضل خيار حكومي بحد أدنى ${requiredGrade}% وفق حدود ${CUTOFFS_YEAR} في ${majorBestPublic!.universityName})`
                 : ""
+            }${
+              majorEligibility.eveningOnlyOffers.length === majorEligibility.reachableOffers.length
+                ? "، كلها بالدوام المسائي فقط (دراسة بأجور)"
+                : majorEligibility.eveningOnlyOffers.length > 0
+                  ? `، منها ${majorEligibility.eveningOnlyOffers.length} بالدوام المسائي فقط (دراسة بأجور)`
+                  : ""
             }.`
           );
         } else if (majorEligibility.lowestCutoff !== null) {

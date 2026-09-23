@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import majorsData from "../../../data/majors.json";
 import { encodePilotRecord } from "../../../lib/pilotCode";
+import type { PilotIntakeResult } from "./PilotIntake";
 
 /**
  * لوحة التجربة الميدانية (الإصدار 2، المسار هـ) -- تظهر **فقط** برابط
  * /quiz?pilot=1 الذي يُعطى للطلاب المشاركين. تنتج رمزاً نصياً ينسخه الطالب
  * ويرسله طوعاً؛ لا يُرسل شيء تلقائياً. التفاصيل والخصوصية في lib/pilotCode.ts.
+ *
+ * النيّة سُئلت قبل الاختبار (PilotIntake)؛ هنا سؤال واحد فقط عن النتيجة نفسها.
  */
 export function PilotPanel({
   branch,
@@ -15,14 +17,19 @@ export function PilotPanel({
   subjectGrades,
   answers,
   shownLeads,
+  intake,
+  bank,
+  vrsBand,
 }: {
   branch: string;
   grade: number;
   subjectGrades: Record<string, number | undefined>;
   answers: Record<string, number>;
   shownLeads: string[];
+  intake: PilotIntakeResult;
+  bank: string;
+  vrsBand: string | null;
 }) {
-  const [intended, setIntended] = useState<string>("");
   const [rating, setRating] = useState<number | null>(null);
   const [code, setCode] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -39,8 +46,12 @@ export function PilotPanel({
         subjectGrades: cleanSubjects,
         answers,
         shownLeads,
-        intendedMajorId: intended || null,
+        intendedMajorId: intake.intendedMajorId,
+        intentSource: intake.intentSource,
+        intentCertainty: intake.intentCertainty,
         fitRating: rating,
+        bank,
+        vrsBand,
       })
     );
     setCopied(false);
@@ -66,26 +77,10 @@ export function PilotPanel({
           مشاركتك في تجربة التحقق من دقة المنصة
         </h2>
         <p className="mt-1 text-sm text-ink-soft">
-          سؤالان قصيران، ثم رمز تنسخه وترسله لمنظّم التجربة. الرمز يحمل إجاباتك وفرعك ومعدلك فقط —{" "}
+          سؤال أخير، ثم رمز تنسخه وترسله لمنظّم التجربة. الرمز يحمل إجاباتك وفرعك ومعدلك ودرجات موادك مقرَّبة —{" "}
           <strong>بلا اسم ولا محافظة ولا أي وسيلة تواصل</strong>، ولا يُرسَل شيء من هنا تلقائياً.
         </p>
       </div>
-
-      <label className="block space-y-1">
-        <span className="text-sm font-bold text-ink">ما التخصص الذي تدرسه أو تنوي دراسته فعلاً؟</span>
-        <select
-          value={intended}
-          onChange={(e) => setIntended(e.target.value)}
-          className="w-full rounded-xl border border-line bg-surface p-2.5 text-ink"
-        >
-          <option value="">لم أقرّر بعد</option>
-          {majorsData.map((m) => (
-            <option key={m.id} value={m.id}>
-              {m.name}
-            </option>
-          ))}
-        </select>
-      </label>
 
       <fieldset className="space-y-1">
         <legend className="text-sm font-bold text-ink">كم تناسبك هذه التوصيات؟</legend>

@@ -26,6 +26,11 @@ export interface EligibilityResult {
    * تُحتسب صامتة في أي اتجاه (data/admission_rules.md §28 و§32).
    */
   unknownOffers: UniversityOffering[];
+  /**
+   * من reachableOffers: ما لا يُبلَغ إلا بالدوام المسائي (أرضية ثابتة، دراسة
+   * بأجور). يجب أن تقول الواجهة ذلك صراحةً -- شرط المدقّق لاعتبار المسائي بلوغاً.
+   */
+  eveningOnlyOffers: UniversityOffering[];
   /** أدنى حدّ تنافسي صباحي حقيقي بين كل عروض هذا التخصص (null إن كانت كلها قبولاً مباشراً بلا حدّ تنافسي أصلاً). */
   lowestCutoff: number | null;
   /** الفارق بين معدل الطالب وأدنى حدّ (موجب = يتجاوزه، سالب = دونه). null إن لم يوجد حدّ تنافسي أصلاً. */
@@ -61,13 +66,17 @@ export function computeEligibility(
   const BAND_RANK = { safe: 0, close: 1, unknown: 2, reach: 3 } as const;
   const classified = offerings.map((o) => {
     const sessions = (o.sessions.length ? o.sessions : ["صباحي"]) as StudySession[];
-    const band = sessions
-      .map((session) => classifyOffering({ majorId: "", majorName: "", session, offering: o }, studentGrade).band)
-      .reduce((best, b) => (BAND_RANK[b] < BAND_RANK[best] ? b : best));
-    return { offering: o, band };
+    const bySession = sessions.map((session) => ({
+      session,
+      band: classifyOffering({ majorId: "", majorName: "", session, offering: o }, studentGrade).band,
+    }));
+    const band = bySession.map((x) => x.band).reduce((best, b) => (BAND_RANK[b] < BAND_RANK[best] ? b : best));
+    const reachedIn = bySession.filter((x) => x.band === "safe" || x.band === "close").map((x) => x.session);
+    return { offering: o, band, eveningOnly: reachedIn.length > 0 && reachedIn.every((s) => s === "مسائي") };
   });
   const reachableOffers = classified.filter((c) => c.band === "safe" || c.band === "close").map((c) => c.offering);
   const unknownOffers = classified.filter((c) => c.band === "unknown").map((c) => c.offering);
+  const eveningOnlyOffers = classified.filter((c) => c.eveningOnly).map((c) => c.offering);
 
   // الحدّ التنافسي: حكومي غير مباشر بحدّ صباحي منشور فقط.
   const competitiveCutoffs = offerings
@@ -76,5 +85,5 @@ export function computeEligibility(
   const lowestCutoff = competitiveCutoffs.length > 0 ? Math.min(...competitiveCutoffs) : null;
   const gapToLowest = lowestCutoff !== null ? studentGrade - lowestCutoff : null;
 
-  return { branchEligible, allowedBranches, reachableOffers, unknownOffers, lowestCutoff, gapToLowest };
+  return { branchEligible, allowedBranches, reachableOffers, unknownOffers, eveningOnlyOffers, lowestCutoff, gapToLowest };
 }

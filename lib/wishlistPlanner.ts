@@ -10,8 +10,8 @@
  * ملاحظة تصميمية: لا حقل `cutoff` مفرد على العرض كما قد يُفترَض للوهلة
  * الأولى — البيانات الحقيقية (`UniversityOffering` في majorMatcher.ts) تفصل
  * صباحي/مسائي، وتميّز "قبول مباشر" (بلا حدّ تنافسي إطلاقاً) عن "بلا بيانات".
- * القسم المباشر يُصنَّف "مريح" دائماً — ليس "غير معروف" كما قد يُظَنّ لو
- * عُومِل الفراغ في averageGrades كحالة واحدة فقط.
+ * لكن "قبول مباشر" مستنتَج من غياب الرقم لا مؤكَّد، فلا يُصنَّف "مريحاً"
+ * (الإصدار 2): يُقارَن برقم الجلسة المطلوبة إن وُجد، وإلا فهو "غير معروف".
  */
 
 import type { UniversityOffering } from "./majorMatcher";
@@ -66,12 +66,12 @@ export function classifyOffering(wish: WishOffering, gpa: number): ClassifiedWis
     return classifyPrivate(wish, gpa);
   }
 
-  // الحكومي: كما هو -- isDirectAdmission هناك مؤكَّد ثلاثياً (cutoffs.length===0
-  // فعلياً، لا فراغ رقم) فهو "بلا منافسة" حقيقي. لا تغيير في هذا الفرع.
-  if (offering.isDirectAdmission) {
-    return { ...wish, band: "safe", cutoff: null, margin: null };
-  }
-
+  // الحكومي "قبول مباشر" = غياب رقم في مصدرنا، لا "مفتوح لأي معدل" (الإصدار 2،
+  // عائق رصده المدقّق): الوسم مستنتَج من غياب الحدّ (admission_rules.md §9 و§11)،
+  // وفي 62 تخصصاً منها الطب (تلعفر، والحدّ المنشور للتخصص 99.57). كان يُصنَّف
+  // "مريح" فيقول /report لطالب الـ55 إنه يبلغ الطب، وتمتلئ اقتراحات /wishlist
+  // المريحة بأقسام بلا رقم. الآن يسقط إلى رقم الجلسة المطلوبة: الصباحي غائب
+  // ⇒ مجهول، والمسائي يُقارَن بأرضيته القانونية دائماً.
   const cutoff = offering.averageGrades[session];
   if (cutoff === null) {
     return { ...wish, band: "unknown", cutoff: null, margin: null };

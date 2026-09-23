@@ -60,10 +60,11 @@ describe("computeEligibility", () => {
     expect(result.gapToLowest).toBeNull();
   });
 
-  it("قسم قبول مباشر (بلا حدّ تنافسي) يُعتبر دائماً بالمتناول بصرف النظر عن المعدل", () => {
+  it("قسم قبول مباشر بلا رقم لا يُحتسَب بلوغاً -- يُعَدّ مجهولاً (الإصدار 2)", () => {
     const offerings = [makeOffering({ isDirectAdmission: true, averageGrades: { صباحي: null, مسائي: null } })];
     const result = computeEligibility("علمي", 40, offerings);
-    expect(result.reachableOffers).toHaveLength(1);
+    expect(result.reachableOffers).toHaveLength(0);
+    expect(result.unknownOffers).toHaveLength(1);
     expect(result.lowestCutoff).toBeNull(); // لا حدّ تنافسي حقيقي أصلاً بين العروض
   });
 
@@ -119,5 +120,19 @@ describe("computeEligibility", () => {
     const result = computeEligibility("أدبي", 80, offerings);
     expect(result.allowedBranches.sort()).toEqual(["أدبي", "علمي"]);
     expect(result.branchEligible).toBe(true);
+  });
+});
+
+describe("eveningOnlyOffers (الإصدار 2، شرط المدقّق: المسائي بلوغ بأجور يُسمّى باسمه)", () => {
+  it("قسم يُبلَغ بالمسائي وحده يُعلَّم، ويبقى ضمن reachableOffers", () => {
+    const offerings = [makeOffering({ sessions: ["صباحي", "مسائي"], averageGrades: { صباحي: 90, مسائي: 60 } })];
+    const r = computeEligibility("علمي", 65, offerings);
+    expect(r.reachableOffers).toHaveLength(1);
+    expect(r.eveningOnlyOffers).toHaveLength(1);
+  });
+  it("قسم يُبلَغ صباحاً لا يُعلَّم مسائياً فقط", () => {
+    const offerings = [makeOffering({ sessions: ["صباحي", "مسائي"], averageGrades: { صباحي: 70, مسائي: 60 } })];
+    const r = computeEligibility("علمي", 80, offerings);
+    expect(r.eveningOnlyOffers).toHaveLength(0);
   });
 });

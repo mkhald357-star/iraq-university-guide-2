@@ -39,6 +39,8 @@ import { GridScreen } from "../components/quiz/GridScreen";
 import { PickScreen } from "../components/quiz/PickScreen";
 import { QuizProgress } from "../components/quiz/QuizProgress";
 import { PilotPanel } from "../components/quiz/PilotPanel";
+import { PilotIntake, type PilotIntakeResult } from "../components/quiz/PilotIntake";
+import { bankFingerprint } from "../../lib/pilotCode";
 import { getAnswerLabels, labelFor, type ScaleValue } from "../components/quiz/answerLabels";
 import { MAJOR_FAMILIES } from "../../lib/majorFamilies";
 import { selectFamilyRecommendations } from "../../lib/familyRecommendation";
@@ -330,6 +332,7 @@ export default function Quiz() {
   useEffect(() => {
     setIsPilot(new URLSearchParams(window.location.search).get("pilot") === "1");
   }, []);
+  const [pilotIntake, setPilotIntake] = useState<PilotIntakeResult | null>(null);
   const [warnings, setWarnings] = useState<string[]>([]);
   const [topUserDimensions, setTopUserDimensions] = useState<{ dimension: RiasecDimension; score: number }[]>([]);
   const [vrsResult, setVrsResult] = useState<ValidityCheckResult | null>(null);
@@ -849,6 +852,23 @@ export default function Quiz() {
             ضماناً لهذا العام). التخصصات بلا حدّ منشور، ومنها الجامعات الأهلية، لا تتحرّك لأننا لا نعرف حدّها.
           </p>
         </Card>
+        {/* المنزلق مطفأ افتراضياً (قرار المالك)، فالطالب الذي لا يحرّكه قد تتصدّر
+            توصيته تخصصات كلها فوق معدله. شرط المدقّق لبقاء الافتراضي صفراً: قل له
+            ذلك صراحةً بدل أن يكتشفه في التقرير. */}
+        {admissionWeight === 0 &&
+          filterSettings &&
+          familySelection.recommendations[0] &&
+          [familySelection.recommendations[0].lead, ...familySelection.recommendations[0].siblings].every(
+            (m) => feasibilityNote(filterSettings.grade, ADMISSION_INDEX[m.id]).tone === "below"
+          ) && (
+            <Alert tone="primary" title="التوصية الأولى فوق معدلك في كل تخصصاتها">
+              <p className="mt-1">
+                كل تخصصات مجال «{familySelection.recommendations[0].familyName}» حدّها الحكومي المنشور أعلى من معدلك (
+                {filterSettings.grade}٪). هي الأقرب لميولك، لكن إن أردت أن ترى ما يبلغه معدلك فحرّك منزلق «في متناول
+                معدلك» أعلاه، أو راجع الدوام المسائي والجامعات الأهلية في التقرير.
+              </p>
+            </Alert>
+          )}
         {/* الفارق الذي قاسه المحرك هو بين **أول تخصصين** في القائمة المسطّحة،
             لا بين قائدَي مجالين -- تسمية القادة هنا كانت تعرض رقماً لم يُقَس
             (رصده المدقّق عند C-B). عتبة «متقاربان» (4 نقاط) مضبوطة لفوارق
@@ -935,13 +955,16 @@ export default function Quiz() {
             حشو.
           </p>
         )}
-        {isPilot && filterSettings && (
+        {isPilot && filterSettings && pilotIntake?.participating && (
           <PilotPanel
             branch={filterSettings.branch}
             grade={filterSettings.grade}
             subjectGrades={subjectGrades as Record<string, number | undefined>}
             answers={answers}
             shownLeads={rankedMajors.map((m) => m.id)}
+            intake={pilotIntake}
+            bank={bankFingerprint(SCORED_QUESTIONS.map((q) => q.id))}
+            vrsBand={vrsResult?.band ?? null}
           />
         )}
         {rankedMajors.length > 0 ? (
@@ -991,6 +1014,15 @@ export default function Quiz() {
           setCurrentScreenIndex(displayedScreens.length - 1);
         }}
       />
+    );
+  }
+
+  // ---- بوابة التجربة الميدانية: النيّة تُسأل قبل أول سؤال (المدقّق، المسار هـ) ----
+  if (isPilot && !pilotIntake) {
+    return (
+      <div className="py-12">
+        <PilotIntake onDone={setPilotIntake} />
+      </div>
     );
   }
 

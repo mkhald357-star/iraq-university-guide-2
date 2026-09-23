@@ -55,11 +55,17 @@ describe("classifyOffering", () => {
     expect(classifyOffering(w, 75).band).toBe("unknown");
   });
 
-  it("مريح دائماً لقبول مباشر، بصرف النظر عن غياب averageGrades -- هذا فرق جوهري عن 'غير معروف'", () => {
+  it("قبول مباشر حكومي بلا رقم ⇒ مجهول لا مريح (الإصدار 2): غياب الرقم ليس بلوغاً", () => {
     const w = makeWish({ isDirectAdmission: true, averageGrades: { صباحي: null, مسائي: null } });
     const result = classifyOffering(w, 40);
-    expect(result.band).toBe("safe");
+    expect(result.band).toBe("unknown");
     expect(result.cutoff).toBeNull();
+  });
+
+  it("قبول مباشر حكومي بدوام مسائي يُقارَن بأرضية المسائي -- لا يبلغه من هو دونها", () => {
+    const w = makeWish({ isDirectAdmission: true, averageGrades: { صباحي: null, مسائي: 65 } }, "مسائي");
+    expect(classifyOffering(w, 60).band).toBe("reach");
+    expect(classifyOffering(w, 70).band).toBe("safe");
   });
 
   it("يقارن حدّ الجلسة المسائية تحديداً عند اختيار الطالب لها، لا الصباحية", () => {
@@ -93,9 +99,9 @@ describe("classifyOffering -- الأهلي (data/admission_rules.md §32)", () =
     expect(classifyOffering(w, 85).band).toBe("reach");
   });
 
-  it("حكومي بقبول مباشر يبقى safe -- لا انحدار عن السلوك القديم", () => {
-    const w = makeWish({ universityType: "حكومية", isDirectAdmission: true });
-    expect(classifyOffering(w, 50).band).toBe("safe");
+  it("حكومي بقبول مباشر لا يُصنَّف safe لمعدل 50 -- عائق الإصدار الذي رصده المدقّق", () => {
+    const w = makeWish({ universityType: "حكومية", isDirectAdmission: true, averageGrades: { صباحي: null, مسائي: null } });
+    expect(classifyOffering(w, 50).band).toBe("unknown");
   });
 
   it("unknown لا تُحتسَب رغبة آمنة في NO_SAFETY_NET", () => {
@@ -148,19 +154,20 @@ describe("NO_REACHABLE على بيانات حقيقية (فرع علمي، data/
 
   it("معدّل 45 لا يُنتج 'مريح' لأي أهلي بلا حدّ منشور -- الحارس ضد العطل الأصلي", () => {
     // العطل الأصلي: كل الأهلي (98% منه بلا حدّ منشور) كان يُصنَّف safe لأي
-    // معدّل. الـ82 "مريح" الباقية بمعدل 45 حقيقية (حكومي بقبول مباشر مؤكَّد
-    // ثلاثياً، أو أهلي ببلوغ حدّ معلَن فعلاً) -- الفحص: صفر منها أهلي بلا حدّ.
+    // معدّل. وكانت 82 "مريحة" باقية بمعدل 45 كلها حكومي "قبول مباشر" -- وهو
+    // عطل ثانٍ (الإصدار 2): الوسم مستنتَج من غياب الرقم. أدنى أرضية منشورة 55،
+    // فالصحيح لمعدل 45 صفر "مريح" إطلاقاً.
     const { safeOfferings } = classifyAll(45);
     const wronglySafe = safeOfferings.filter(
       (o) => o.universityType === "أهلية" && o.statedMinimumGrade?.value == null
     );
-    expect(safeOfferings.length).toBeGreaterThan(0); // حكومي مباشر حقيقي موجود
     expect(wronglySafe).toEqual([]);
+    expect(safeOfferings.filter((o) => o.isDirectAdmission && o.universityType === "حكومية")).toEqual([]);
   });
 
   it("NO_REACHABLE تُفعَّل فعلاً حين تُستبعَد كل خيارات القبول المباشر الحكومي (محاكاة فلترة جامعة واحدة)", () => {
-    // فرع علمي كاملاً به دائماً بعض الحكومي المباشر (82 عند معدل 45) -- لإثبات
-    // أن NO_REACHABLE قابلة للتفعيل فعلياً، نحاكي نطاقاً أضيق يخلو منها.
+    // كان الحكومي المباشر (82 عند معدل 45) يمنع NO_REACHABLE في الفرع كاملاً؛
+    // النطاق الأضيق يبقى فحصاً مستقلاً عن ذلك التغيير.
     const withoutGovDirect = allOfferings.filter((o) => !(o.universityType === "حكومية" && o.isDirectAdmission));
     const { counts } = classifyAll(45, withoutGovDirect);
     const reachable = counts.safe + counts.close;
@@ -320,5 +327,26 @@ describe("تحقّق بيانات حقيقية: كل حدّ في public/data/maj
         }
       }
     }
+  });
+});
+
+describe("قبول مباشر حكومي على بيانات حقيقية (الإصدار 2، عائق المدقّق)", () => {
+  it("لا عرض حكومي يُصنَّف مريحاً لمعدل 55 إلا برقم منشور يفوقه المعدل بالهامش", () => {
+    const dir = path.join(__dirname, "../public/data/by-branch");
+    let direct = 0;
+    const wronglySafe: string[] = [];
+    for (const f of fs.readdirSync(dir)) {
+      const offerings = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as UniversityOffering[];
+      for (const o of offerings) {
+        if (o.universityType === "أهلية" || !o.isDirectAdmission) continue;
+        direct++;
+        for (const session of ["صباحي", "مسائي"] as const) {
+          const r = classifyOffering({ majorId: "", majorName: "", session, offering: o }, 55);
+          if (r.band === "safe" && (r.cutoff === null || r.cutoff > 55 - SAFE_MARGIN)) wronglySafe.push(`${o.departmentName}/${session}`);
+        }
+      }
+    }
+    expect(direct).toBeGreaterThan(0);
+    expect(wronglySafe).toEqual([]);
   });
 });

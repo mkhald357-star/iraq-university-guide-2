@@ -13,7 +13,7 @@ interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
 // عبر 9 صفحات (rounded-xl border border-line p-3 focus:ring-primary/40).
 export const SelectField = forwardRef<HTMLSelectElement, SelectFieldProps>(function SelectField(
   { label, optional, hint, id, className = "", children, ...rest },
-  ref,
+  ref
 ) {
   return (
     <div>

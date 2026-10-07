@@ -12,7 +12,9 @@ const reserve: QuizEngineData = buildSessionData({ roundMode: "reserve" });
 function answersFavoring(dims: string[], core: RiasecQuestion[]): Record<string, number> {
   return Object.fromEntries(
     core.map((q) => {
-      const w = Object.entries(q.dimensions).filter(([d]) => dims.includes(d)).reduce((s, [, v]) => s + (v ?? 0), 0);
+      const w = Object.entries(q.dimensions)
+        .filter(([d]) => dims.includes(d))
+        .reduce((s, [, v]) => s + (v ?? 0), 0);
       return [q.id, w > 0 ? 1 : w < 0 ? -1 : 0];
     })
   );
@@ -26,14 +28,21 @@ describe("evaluateQuizStep -- وضع legacy مطابق للسلوك السابق
       const answers = answersFavoring(dims, legacy.coreQuestions);
       const step = evaluateQuizStep({ ...baseInput, answers }, legacy);
       const ranked = applyContextTieBreak(
-        rankMajors({ scoredAnswers: answers, questionPool: legacy.coreQuestions, branch: "علمي", grade: 90, subjectGrades: {} }, legacy),
-        computeUserContextVector(answers, legacy.coreQuestions.map((q) => q.id)),
+        rankMajors(
+          { scoredAnswers: answers, questionPool: legacy.coreQuestions, branch: "علمي", grade: 90, subjectGrades: {} },
+          legacy
+        ),
+        computeUserContextVector(
+          answers,
+          legacy.coreQuestions.map((q) => q.id)
+        ),
         legacy.contextIndex
       );
       const decision = planTieBreak(ranked, 0, new Set(), legacy.tiebreakerPool, legacy.riasecProfiles);
       if (decision.candidates.length > 0) {
         expect(step.kind).toBe("askMore");
-        if (step.kind === "askMore") expect(step.questions.map((q) => q.id)).toEqual(decision.candidates.map((q) => q.id));
+        if (step.kind === "askMore")
+          expect(step.questions.map((q) => q.id)).toEqual(decision.candidates.map((q) => q.id));
       } else {
         expect(step.kind).toBe("final");
         if (step.kind === "final") expect(step.ranked.map((m) => m.id)).toEqual(ranked.map((m) => m.id));
@@ -50,7 +59,10 @@ describe("evaluateQuizStep -- وضع reserve (جولة واحدة)", () => {
       if (first.kind === "askMore") {
         expect(first.questions.length).toBeLessThanOrEqual(5);
         const withExtra = { ...answers, ...Object.fromEntries(first.questions.map((q) => [q.id, 0.5])) };
-        const second = evaluateQuizStep({ ...baseInput, answers: withExtra, extraQuestionsAsked: first.questions, round: first.nextRound }, reserve);
+        const second = evaluateQuizStep(
+          { ...baseInput, answers: withExtra, extraQuestionsAsked: first.questions, round: first.nextRound },
+          reserve
+        );
         expect(second.kind).toBe("final");
       }
     }

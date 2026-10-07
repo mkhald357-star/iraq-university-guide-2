@@ -103,7 +103,8 @@ export default function IncomePage() {
                 <span className="font-bold text-ink">
                   {salaryAllowances.universal.dependency.amountIQD.toLocaleString("ar-IQ")} د.ع شهرياً
                 </span>{" "}
-                مخصصة إعالة (م. {salaryAllowances.universal.dependency.article}) -- {salaryAllowances.universal.dependency.conditions}
+                مخصصة إعالة (م. {salaryAllowances.universal.dependency.article}) --{" "}
+                {salaryAllowances.universal.dependency.conditions}
               </li>
               <li>
                 <span className="font-bold text-ink">
@@ -123,16 +124,24 @@ export default function IncomePage() {
               <li className="flex items-start gap-2">
                 <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-band-close" />
                 <span>
-                  مخصصة خطورة مهنية: <span className="font-bold text-ink">{salaryAllowances.hazardAllowance.rangePercent[0]}٪–{salaryAllowances.hazardAllowance.rangePercent[1]}٪</span> من
-                  الراتب (م. {salaryAllowances.hazardAllowance.article}) -- {salaryAllowances.hazardAllowance.grantedBy}.{" "}
-                  {salaryAllowances.hazardAllowance.eligibilityNote}.
+                  مخصصة خطورة مهنية:{" "}
+                  <span className="font-bold text-ink">
+                    {salaryAllowances.hazardAllowance.rangePercent[0]}٪–
+                    {salaryAllowances.hazardAllowance.rangePercent[1]}٪
+                  </span>{" "}
+                  من الراتب (م. {salaryAllowances.hazardAllowance.article}) --{" "}
+                  {salaryAllowances.hazardAllowance.grantedBy}. {salaryAllowances.hazardAllowance.eligibilityNote}.
                 </span>
               </li>
               <li className="flex items-start gap-2">
                 <ShieldAlert className="mt-0.5 h-4 w-4 shrink-0 text-band-close" />
                 <span>
-                  مخصصة منع مزاولة المهنة: <span className="font-bold text-ink">{salaryAllowances.practiceProhibitionAllowance.minPercent}٪ فأكثر</span> من
-                  الراتب ({salaryAllowances.practiceProhibitionAllowance.legalBasis}) -- {salaryAllowances.practiceProhibitionAllowance.appliesTo}.{" "}
+                  مخصصة منع مزاولة المهنة:{" "}
+                  <span className="font-bold text-ink">
+                    {salaryAllowances.practiceProhibitionAllowance.minPercent}٪ فأكثر
+                  </span>{" "}
+                  من الراتب ({salaryAllowances.practiceProhibitionAllowance.legalBasis}) --{" "}
+                  {salaryAllowances.practiceProhibitionAllowance.appliesTo}.{" "}
                   {salaryAllowances.practiceProhibitionAllowance.eligibilityNote}.
                 </span>
               </li>
@@ -177,9 +186,9 @@ export default function IncomePage() {
       <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
         <p>
-          الرقم المعروض هو <span className="font-bold">الراتب الاسمي الحكومي الأول فقط</span> عند التعيين المركزي
-          لحملة البكالوريوس — لا يمثّل القطاع الخاص، ولا العمل الحر، ولا مخصصات نقابية إضافية قد تنطبق على بعض
-          المهن. راجع المصدر المذكور مباشرة لأي قرار يعتمد عليه.
+          الرقم المعروض هو <span className="font-bold">الراتب الاسمي الحكومي الأول فقط</span> عند التعيين المركزي لحملة
+          البكالوريوس — لا يمثّل القطاع الخاص، ولا العمل الحر، ولا مخصصات نقابية إضافية قد تنطبق على بعض المهن. راجع
+          المصدر المذكور مباشرة لأي قرار يعتمد عليه.
         </p>
       </div>
     </div>

@@ -1,5 +1,11 @@
 import { describe, it, expect } from "vitest";
-import { computeEffectiveFee, splitOfferings, sortByFeeAscending, computeCheapestHighlight, offeringKey } from "./costCompare";
+import {
+  computeEffectiveFee,
+  splitOfferings,
+  sortByFeeAscending,
+  computeCheapestHighlight,
+  offeringKey,
+} from "./costCompare";
 import type { UniversityOffering } from "./majorMatcher";
 
 function offering(overrides: Partial<UniversityOffering> = {}): UniversityOffering {

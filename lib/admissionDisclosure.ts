@@ -30,8 +30,7 @@ export const ADMISSION_CHANNEL = "القناة العامة";
  */
 export const UNCOVERED_PROVINCES = ["أربيل", "دهوك", "السليمانية"] as const;
 
-export const UNCOVERED_PROVINCES_REASON =
-  "إقليم كردستان له نظام قبول منفصل عن القبول المركزي، ولم ندخل بياناته بعد.";
+export const UNCOVERED_PROVINCES_REASON = "إقليم كردستان له نظام قبول منفصل عن القبول المركزي، ولم ندخل بياناته بعد.";
 
 export const SPECIAL_CHANNELS = [
   "ذوي الشهداء",
@@ -75,8 +74,7 @@ export const PRIVATE_NO_MIN_HINT =
 
 /** ملاحظة مجموعة "بلا حدّ منشور" في /gpa-check -- data/admission_rules.md §32. */
 export const PRIVATE_NO_PUBLISHED_MIN_GROUP_NOTE =
-  "دليل الجامعات الأهلية لا ينشر حدّاً أدنى لهذه الأقسام. " +
-  "ما نقدر نأكّد إذا معدّلك يوصلها — راجع الجامعة مباشرة.";
+  "دليل الجامعات الأهلية لا ينشر حدّاً أدنى لهذه الأقسام. " + "ما نقدر نأكّد إذا معدّلك يوصلها — راجع الجامعة مباشرة.";
 
 /**
  * أجر الدراسة (/cost، data/admission_rules.md §41): قسم أهلي حقيقي بلا رقم

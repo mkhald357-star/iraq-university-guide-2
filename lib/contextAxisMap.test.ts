@@ -26,10 +26,7 @@ describe("computeUserContextVector", () => {
   });
 
   it("سؤال غير مُحمَّل على أي محور سياق (مثال: q_leadership) لا يؤثر إطلاقاً", () => {
-    const withExtra = computeUserContextVector(
-      { q_math_logic: 1, q_leadership: 1 },
-      ["q_math_logic", "q_leadership"]
-    );
+    const withExtra = computeUserContextVector({ q_math_logic: 1, q_leadership: 1 }, ["q_math_logic", "q_leadership"]);
     const withoutExtra = computeUserContextVector({ q_math_logic: 1 }, ["q_math_logic"]);
     expect(withExtra).toEqual(withoutExtra);
   });

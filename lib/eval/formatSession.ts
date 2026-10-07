@@ -16,7 +16,13 @@ import type { RiasecQuestion } from "../riasec";
 import { groupScreens, type FormattedItemLike } from "../itemFormats";
 import type { SimStudent } from "./population";
 import type { CachedAnswers, ValidityItemLike } from "./session";
-import { answerPickScreen, answerScoredItemWithNoise, answerTimingMs, answerValidityItem, type ResponseModel } from "./responseModels";
+import {
+  answerPickScreen,
+  answerScoredItemWithNoise,
+  answerTimingMs,
+  answerValidityItem,
+  type ResponseModel,
+} from "./responseModels";
 import { gaussian, type Rng } from "./random";
 
 export interface FormatRealism {
@@ -61,7 +67,10 @@ export function precomputeFormatAnswers(
       let prev: number | null = null;
       for (const q of screen.items) {
         const z = Math.sqrt(realism.rho) * shared + Math.sqrt(1 - realism.rho) * gaussian(rng);
-        const v: number = flat && prev !== null ? prev : answerScoredItemWithNoise(q, student, model, rng, z, fatigue(q.id, order), prev, realism.carry);
+        const v: number =
+          flat && prev !== null
+            ? prev
+            : answerScoredItemWithNoise(q, student, model, rng, z, fatigue(q.id, order), prev, realism.carry);
         scored[q.id] = v;
         prev = v;
         order += 1;

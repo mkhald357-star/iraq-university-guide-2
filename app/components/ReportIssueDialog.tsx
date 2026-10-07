@@ -2,13 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { buildReportText, telegramLink, mailtoLink, type IssueContext } from "../../lib/reportIssue";
 
-export default function ReportIssueDialog({
-  context,
-  onClose,
-}: {
-  context: IssueContext | null;
-  onClose: () => void;
-}) {
+export default function ReportIssueDialog({ context, onClose }: { context: IssueContext | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   const [text, setText] = useState("");
 

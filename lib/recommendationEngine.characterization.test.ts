@@ -280,8 +280,26 @@ describe("golden master: rankMajors على بيانات المنصة الحقي�
 describe("golden master: planTieBreak", () => {
   it("لا ترجيح عند فارق كبير بين أفضل تخصصين", () => {
     const ranked: RankedMajor[] = [
-      { id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 90, riasecFitPercent: 90, subjectFitPercent: null, combinedScore: 90 },
-      { id: "b", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 70, riasecFitPercent: 70, subjectFitPercent: null, combinedScore: 70 },
+      {
+        id: "a",
+        name: "أ",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 90,
+        riasecFitPercent: 90,
+        subjectFitPercent: null,
+        combinedScore: 90,
+      },
+      {
+        id: "b",
+        name: "ب",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 70,
+        riasecFitPercent: 70,
+        subjectFitPercent: null,
+        combinedScore: 70,
+      },
     ];
     const decision = planTieBreak(ranked, 0, new Set(), TIEBREAKERS, DATA.riasecProfiles);
     expect(decision.needsTieBreak).toBe(false);
@@ -290,8 +308,26 @@ describe("golden master: planTieBreak", () => {
 
   it("يطلق ترجيحاً عند فارق أقل من AMBIGUITY_THRESHOLD (6)، ويختار 6 أسئلة بالضبط لبُعدين", () => {
     const ranked: RankedMajor[] = [
-      { id: "electrical_engineering", name: "هندسة الكهرباء", category: "هندسة", marketMultiplier: 1, fitPercent: 80, riasecFitPercent: 80, subjectFitPercent: null, combinedScore: 80 },
-      { id: "electrical_tech", name: "تقنيات الكهرباء", category: "تقنيات طبية مساندة", marketMultiplier: 1, fitPercent: 77, riasecFitPercent: 77, subjectFitPercent: null, combinedScore: 77 },
+      {
+        id: "electrical_engineering",
+        name: "هندسة الكهرباء",
+        category: "هندسة",
+        marketMultiplier: 1,
+        fitPercent: 80,
+        riasecFitPercent: 80,
+        subjectFitPercent: null,
+        combinedScore: 80,
+      },
+      {
+        id: "electrical_tech",
+        name: "تقنيات الكهرباء",
+        category: "تقنيات طبية مساندة",
+        marketMultiplier: 1,
+        fitPercent: 77,
+        riasecFitPercent: 77,
+        subjectFitPercent: null,
+        combinedScore: 77,
+      },
     ];
     const decision = planTieBreak(ranked, 0, new Set(), TIEBREAKERS, DATA.riasecProfiles);
     expect(decision.needsTieBreak).toBe(true);
@@ -301,8 +337,26 @@ describe("golden master: planTieBreak", () => {
 
   it("يتوقف بعد 3 جولات (MAX_TIEBREAK_ROUNDS) حتى لو بقي الفارق ضئيلاً", () => {
     const ranked: RankedMajor[] = [
-      { id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 71, riasecFitPercent: 71, subjectFitPercent: null, combinedScore: 71 },
-      { id: "b", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 70, riasecFitPercent: 70, subjectFitPercent: null, combinedScore: 70 },
+      {
+        id: "a",
+        name: "أ",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 71,
+        riasecFitPercent: 71,
+        subjectFitPercent: null,
+        combinedScore: 71,
+      },
+      {
+        id: "b",
+        name: "ب",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 70,
+        riasecFitPercent: 70,
+        subjectFitPercent: null,
+        combinedScore: 70,
+      },
     ];
     const decision = planTieBreak(ranked, 3, new Set(), TIEBREAKERS, DATA.riasecProfiles);
     expect(decision.needsTieBreak).toBe(false);
@@ -310,7 +364,18 @@ describe("golden master: planTieBreak", () => {
 
   it("لا ترجيح مع أقل من تخصصين مؤهَّلين", () => {
     const decision = planTieBreak(
-      [{ id: "a", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 50, riasecFitPercent: 50, subjectFitPercent: null, combinedScore: 50 }],
+      [
+        {
+          id: "a",
+          name: "أ",
+          category: "x",
+          marketMultiplier: 1,
+          fitPercent: 50,
+          riasecFitPercent: 50,
+          subjectFitPercent: null,
+          combinedScore: 50,
+        },
+      ],
       0,
       new Set(),
       TIEBREAKERS,

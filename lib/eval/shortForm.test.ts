@@ -13,7 +13,12 @@ const data = buildProductSessionData();
 
 describe("الاختبار القصير -- حدود المنتج", () => {
   it("لا جولة ثانية أبداً، ولا أكثر من 5 أسئلة إضافية، ولا استسلام صامت", () => {
-    const students = generatePopulation(createRng(31), { size: 300, branch: "علمي", majors: data.majors, profiles: data.riasecProfiles });
+    const students = generatePopulation(createRng(31), {
+      size: 300,
+      branch: "علمي",
+      majors: data.majors,
+      profiles: data.riasecProfiles,
+    });
     const rng = createRng(32);
     for (const s of students) {
       const r = simulateSession(s, "linear", rng, data);
@@ -35,7 +40,10 @@ describe("الاختبار القصير -- حدود المنتج", () => {
   });
 
   it("كشف الموافقة الدائمة يعمل دون إنذار كاذب على الطالب العادي", () => {
-    const s = runEvaluation({ branch: "علمي", model: "linear", size: 600, seed: 99, styleMix: { normal: 1, acquiescent: 1 } }, data);
+    const s = runEvaluation(
+      { branch: "علمي", model: "linear", size: 600, seed: 99, styleMix: { normal: 1, acquiescent: 1 } },
+      data
+    );
     expect(s.flaggedRateByStyle.normal ?? 1).toBeLessThanOrEqual(0.03);
     expect(s.flaggedRateByStyle.acquiescent ?? 0).toBeGreaterThanOrEqual(0.7);
     expect(s.top1AccuracyByStyle.acquiescent ?? 0).toBeGreaterThanOrEqual(0.45);

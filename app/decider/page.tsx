@@ -49,7 +49,10 @@ export default function DeciderPage() {
     [majorBId]
   );
 
-  const targetDims = useMemo(() => (ready ? findDivergentDimensions(profileA, profileB, 2) : []), [ready, profileA, profileB]);
+  const targetDims = useMemo(
+    () => (ready ? findDivergentDimensions(profileA, profileB, 2) : []),
+    [ready, profileA, profileB]
+  );
 
   const questions = useMemo(
     () => (ready ? selectQuestionsForDimensions(tiebreakerQuestionsData as RiasecQuestion[], targetDims) : []),

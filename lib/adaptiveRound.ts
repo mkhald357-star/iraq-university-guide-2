@@ -71,7 +71,10 @@ export interface ReserveRoundPlan {
   weakDimensions: RiasecDimension[];
 }
 
-function spreadByDimension(majors: RankedMajor[], profiles: Record<string, RiasecVector>): Record<RiasecDimension, number> {
+function spreadByDimension(
+  majors: RankedMajor[],
+  profiles: Record<string, RiasecVector>
+): Record<RiasecDimension, number> {
   const out = {} as Record<RiasecDimension, number>;
   RIASEC_DIMENSIONS.forEach((d) => {
     const values = majors.map((m) => (profiles[m.id]?.[d] ?? 0) * 10);
@@ -112,12 +115,14 @@ export function planReserveRound(
   const measurement = measureDimensions(answers, answeredPool);
   const weakDimensions = RIASEC_DIMENSIONS.filter((d) => {
     const m = measurement[d];
-    const weak = m.evidenceRatio < config.weakEvidenceRatio || (m.nonNeutralItems >= 2 && m.consistency < config.weakConsistency);
+    const weak =
+      m.evidenceRatio < config.weakEvidenceRatio || (m.nonNeutralItems >= 2 && m.consistency < config.weakConsistency);
     return weak && topKSpread[d] >= config.relevanceSpread;
   });
 
   if (!ambiguous && weakDimensions.length === 0) return none;
-  const trigger: ReserveTrigger = ambiguous && weakDimensions.length > 0 ? "both" : ambiguous ? "ambiguity" : "weak_dimension";
+  const trigger: ReserveTrigger =
+    ambiguous && weakDimensions.length > 0 ? "both" : ambiguous ? "ambiguity" : "weak_dimension";
 
   const targetSpread = ambiguous ? clusterSpread : topKSpread;
   const weakSet = new Set(weakDimensions);

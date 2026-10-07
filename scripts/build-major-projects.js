@@ -25,4 +25,6 @@ for (const entry of projects) {
 }
 
 console.log(`Wrote ${projects.length} per-major project files to ${OUT_DIR}`);
-console.log(`Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / projects.length / 1024).toFixed(1)} KB/file)`);
+console.log(
+  `Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / projects.length / 1024).toFixed(1)} KB/file)`
+);

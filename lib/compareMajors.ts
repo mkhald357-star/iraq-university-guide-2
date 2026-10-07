@@ -12,11 +12,11 @@ export const MIN_COMPARE_MAJORS = 2;
  * القيم الست بفحص مباشر للملف -- لا افتراضاً). "غير متوفر" بلا ترتيب: لا
  * نملك ما يكفي لتصنيفه أعلى أو أدنى من غيره. */
 const DEMAND_LEVEL_RANK: Record<string, number> = {
-  "متشبع": 1,
+  متشبع: 1,
   "شديد الانخفاض": 1,
-  "منخفض": 2,
-  "متوسط": 3,
-  "مرتفع": 4,
+  منخفض: 2,
+  متوسط: 3,
+  مرتفع: 4,
 };
 
 export function rankDemandLevel(level?: string | null): number | null {

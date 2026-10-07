@@ -14,11 +14,13 @@ const read = (p) => JSON.parse(fs.readFileSync(path.join(ROOT, p), "utf8"));
 
 const majors = read("data/majors.json");
 const profiles = read("data/major_riasec_profiles.json").profiles;
-const { BRANCH_CATEGORY_MAP } = { BRANCH_CATEGORY_MAP: {
-  علمي: ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"],
-  أدبي: ["إنسانيات", "لغات", "تربية", "إدارة وتسويق"],
-  فنون: ["فنون وتصميم"],
-} };
+const { BRANCH_CATEGORY_MAP } = {
+  BRANCH_CATEGORY_MAP: {
+    علمي: ["تكنولوجيا", "هندسة", "طبي", "تقنيات طبية مساندة", "علوم", "زراعة", "إدارة وتسويق"],
+    أدبي: ["إنسانيات", "لغات", "تربية", "إدارة وتسويق"],
+    فنون: ["فنون وتصميم"],
+  },
+};
 const arg = (k, d) => (process.argv.includes(k) ? Number(process.argv[process.argv.indexOf(k) + 1]) : d);
 const THRESHOLD = arg("--threshold", 78);
 
@@ -26,10 +28,14 @@ const THRESHOLD = arg("--threshold", 78);
 const DIMS = ["R", "I", "A", "S", "E", "C"];
 function profileSimilarity(a, b) {
   let s = 0;
-  DIMS.forEach((d) => (s += (((a[d] ?? 0) * 10) - ((b[d] ?? 0) * 10)) ** 2));
+  DIMS.forEach((d) => (s += ((a[d] ?? 0) * 10 - (b[d] ?? 0) * 10) ** 2));
   return Math.max(0, Math.min(100, 100 - Math.sqrt(s / DIMS.length)));
 }
-const branchesOf = (cat) => Object.keys(BRANCH_CATEGORY_MAP).filter((b) => BRANCH_CATEGORY_MAP[b].includes(cat)).sort().join("|");
+const branchesOf = (cat) =>
+  Object.keys(BRANCH_CATEGORY_MAP)
+    .filter((b) => BRANCH_CATEGORY_MAP[b].includes(cat))
+    .sort()
+    .join("|");
 const branchKey = Object.fromEntries(majors.map((m) => [m.id, branchesOf(m.category)]));
 
 // تجميع هرمي بمتوسط الارتباط
@@ -55,7 +61,9 @@ for (;;) {
 const name = Object.fromEntries(majors.map((m) => [m.id, m.name]));
 const cat = Object.fromEntries(majors.map((m) => [m.id, m.category]));
 clusters.sort((a, b) => b.ids.length - a.ids.length);
-console.log(`عتبة التشابه ${THRESHOLD} → ${clusters.length} عائلة (${clusters.filter((c) => c.ids.length === 1).length} منها تخصص واحد)\n`);
+console.log(
+  `عتبة التشابه ${THRESHOLD} → ${clusters.length} عائلة (${clusters.filter((c) => c.ids.length === 1).length} منها تخصص واحد)\n`
+);
 clusters.forEach((c, i) => {
   const cats = [...new Set(c.ids.map((id) => cat[id]))];
   console.log(`${i + 1}. [${c.key}] (${c.ids.length}) فئات: ${cats.join("، ")}`);

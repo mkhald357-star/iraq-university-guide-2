@@ -5,18 +5,22 @@
  * -- تصحيح المحاولة الآلية السابقة التي أنتجت 168/178 نتيجة كاذبة باعتمادها
  * أول ظهور وحده. يُعلّم "يحتاج مراجعة" فقط -- القرار بشري دائماً.
  */
-const fs = require('fs');
-const path = require('path');
-const ROOT = path.join(__dirname, '..');
-const { fixLamAlef } = require('./displayName');
+const fs = require("fs");
+const path = require("path");
+const ROOT = path.join(__dirname, "..");
+const { fixLamAlef } = require("./displayName");
 
-const RAW_TXT = path.join(ROOT, 'data/raw/dalel.full.txt');
-const records = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/raw/chapter3_additions.json'), 'utf8'));
+const RAW_TXT = path.join(ROOT, "data/raw/dalel.full.txt");
+const records = JSON.parse(fs.readFileSync(path.join(ROOT, "data/raw/chapter3_additions.json"), "utf8"));
 
-const norm = (s = '') => String(s)
-  .replace(/[ً-ْـ]/g, '')
-  .replace(/[أإآ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه')
-  .replace(/\s+/g, ' ').trim();
+const norm = (s = "") =>
+  String(s)
+    .replace(/[ً-ْـ]/g, "")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/\s+/g, " ")
+    .trim();
 
 // ⚠️ اكتُشف أثناء التنفيذ: النصّ الخام (dalel.full.txt) يحمل أثر انعكاس رابطة
 // "لا" الموثَّق فعلاً (data/admission_rules.md §19) -- مثال حقيقي: "جامعة
@@ -26,7 +30,10 @@ const norm = (s = '') => String(s)
 // بالكامل (0 مواضع)، فتُصنَّف زوراً "عنوان الجامعة غير موجود" -- سلبية كاذبة
 // من منهجية البحث نفسها، لا غياباً حقيقياً. يُطبَّق الإصلاح على النصّ الخام
 // فقط (المصدر الفعلي للفساد)؛ لا حاجة له على السجلات النظيفة أصلاً.
-const lines = fs.readFileSync(RAW_TXT, 'utf8').split('\n').map((l) => norm(fixLamAlef(l)));
+const lines = fs
+  .readFileSync(RAW_TXT, "utf8")
+  .split("\n")
+  .map((l) => norm(fixLamAlef(l)));
 
 const UNI = (r) => r.university;
 const DEPT = (r) => r.department;
@@ -39,19 +46,28 @@ for (const r of records) {
   const deptNorm = norm(DEPT(r));
 
   const anchors = [];
-  lines.forEach((l, i) => { if (uniNorm && l.includes(uniNorm)) anchors.push(i); });
+  lines.forEach((l, i) => {
+    if (uniNorm && l.includes(uniNorm)) anchors.push(i);
+  });
 
-  let found = false, foundAt = null;
+  let found = false,
+    foundAt = null;
   for (const a of anchors) {
     for (let i = a; i < Math.min(a + WINDOW, lines.length); i++) {
-      if (deptNorm && lines[i].includes(deptNorm)) { found = true; foundAt = i + 1; break; }
+      if (deptNorm && lines[i].includes(deptNorm)) {
+        found = true;
+        foundAt = i + 1;
+        break;
+      }
     }
     if (found) break;
   }
 
   const anywhere = [];
   if (!found && deptNorm) {
-    lines.forEach((l, i) => { if (l.includes(deptNorm)) anywhere.push(i + 1); });
+    lines.forEach((l, i) => {
+      if (l.includes(deptNorm)) anywhere.push(i + 1);
+    });
   }
 
   out.push({
@@ -59,22 +75,30 @@ for (const r of records) {
     college: r.college,
     department: DEPT(r),
     anchorsFound: anchors.length,
-    status: anchors.length === 0 ? 'عنوان الجامعة غير موجود'
-          : found ? 'موجود'
-          : anywhere.length ? 'موجود لكن في موضع بعيد — إسناد مشبوه'
-          : 'غير موجود',
-    line: foundAt ?? '',
-    elsewhere: anywhere.slice(0, 5).join(' '),
+    status:
+      anchors.length === 0
+        ? "عنوان الجامعة غير موجود"
+        : found
+          ? "موجود"
+          : anywhere.length
+            ? "موجود لكن في موضع بعيد — إسناد مشبوه"
+            : "غير موجود",
+    line: foundAt ?? "",
+    elsewhere: anywhere.slice(0, 5).join(" "),
   });
 }
 
-const esc = (v) => `"${String(v ?? '').replace(/"/g, '""')}"`;
-fs.mkdirSync(path.join(ROOT, 'reports'), { recursive: true });
+const esc = (v) => `"${String(v ?? "").replace(/"/g, '""')}"`;
+fs.mkdirSync(path.join(ROOT, "reports"), { recursive: true });
 fs.writeFileSync(
-  path.join(ROOT, 'reports/chapter3-presence.csv'),
-  '﻿' + ['university,college,department,anchors,status,line,elsewhere',
-    ...out.map((o) => [o.university, o.college, o.department, o.anchorsFound, o.status, o.line, o.elsewhere].map(esc).join(','))
-  ].join('\n'),
+  path.join(ROOT, "reports/chapter3-presence.csv"),
+  "﻿" +
+    [
+      "university,college,department,anchors,status,line,elsewhere",
+      ...out.map((o) =>
+        [o.university, o.college, o.department, o.anchorsFound, o.status, o.line, o.elsewhere].map(esc).join(",")
+      ),
+    ].join("\n")
 );
 
 const tally = out.reduce((a, o) => ((a[o.status] = (a[o.status] || 0) + 1), a), {});

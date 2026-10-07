@@ -179,8 +179,7 @@ function ReviewScreen({
       {/* تحذير إجابات فائتة */}
       {unanswered.length > 0 && (
         <Alert tone="close" icon={AlertTriangle}>
-          لم تُكمل <strong>{unanswered.length} شاشة</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية
-          دقيقة.
+          لم تُكمل <strong>{unanswered.length} شاشة</strong>. يُفضَّل الإجابة على جميع الأسئلة للحصول على توصية دقيقة.
         </Alert>
       )}
 
@@ -484,132 +483,147 @@ export default function Quiz() {
               نحتاجها لنطابق ميولك بحدود القبول الحقيقية لفرعك ومحافظتك — بلا حفظ، وبلا حساب.
             </p>
           </div>
-        <form
-          className="glass p-8 rounded-3xl space-y-6"
-          onSubmit={(e) => {
-            e.preventDefault();
-            const form = e.currentTarget as HTMLFormElement;
-            const province = (form.elements.namedItem("province") as HTMLSelectElement).value;
-            const branch = (form.elements.namedItem("branch") as HTMLSelectElement).value;
-            const gradeType = (form.elements.namedItem("gradeType") as HTMLSelectElement).value as
-              "expected" | "actual";
-            const grade = Number((form.elements.namedItem("grade") as HTMLInputElement).value);
-            // بلا هذا، يبقى توقيت "بداية السؤال" عند وقت تحميل الصفحة (قبل
-            // ملء نموذج الفلترة أصلاً)، فيُحتسب زمن ملء النموذج بأكمله
-            // خطأً كجزء من "زمن الإجابة على السؤال الأول" في مؤشر الجدّية.
-            setQuestionShownAt(Date.now());
-            setFilterSettings({ province, branch, gradeType, grade });
-          }}
-        >
-          <SelectField label="المحافظة" id="province" name="province" hint={`ملاحظة: ${UNCOVERED_PROVINCES_REASON}`} required>
-            <option value="">اختر المحافظة</option>
-            {AVAILABLE_PROVINCES.map((p) => (
-              <option key={p} value={p}>
-                {p}
-              </option>
-            ))}
-            {UNCOVERED_PROVINCES.map((p) => (
-              <option key={p} value={p} disabled>
-                {p} (غير مغطّاة)
-              </option>
-            ))}
-          </SelectField>
-          <SelectField
-            label="الفرع الدراسي"
-            id="branch"
-            name="branch"
-            value={formBranch}
-            onChange={(e) => setFormBranch(e.target.value)}
-            hint="الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك."
-            required
+          <form
+            className="glass p-8 rounded-3xl space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.currentTarget as HTMLFormElement;
+              const province = (form.elements.namedItem("province") as HTMLSelectElement).value;
+              const branch = (form.elements.namedItem("branch") as HTMLSelectElement).value;
+              const gradeType = (form.elements.namedItem("gradeType") as HTMLSelectElement).value as
+                "expected" | "actual";
+              const grade = Number((form.elements.namedItem("grade") as HTMLInputElement).value);
+              // بلا هذا، يبقى توقيت "بداية السؤال" عند وقت تحميل الصفحة (قبل
+              // ملء نموذج الفلترة أصلاً)، فيُحتسب زمن ملء النموذج بأكمله
+              // خطأً كجزء من "زمن الإجابة على السؤال الأول" في مؤشر الجدّية.
+              setQuestionShownAt(Date.now());
+              setFilterSettings({ province, branch, gradeType, grade });
+            }}
           >
-            <option value="">اختر الفرع</option>
-            <option value="علمي">علمي (إحيائي / تطبيقي)</option>
-            <option value="أدبي">أدبي</option>
-            <option value="فنون">فنون / إبداع</option>
-          </SelectField>
-          <SelectField label="نوع المعدل" id="gradeType" name="gradeType" required>
-            <option value="expected">معدل متوقع</option>
-            <option value="actual">معدل حصل (حقيقي)</option>
-          </SelectField>
-          <InputField label="المعدل (٪)" id="grade" type="number" name="grade" min="0" max="100" placeholder="مثال: 78" required />
-          {formBranch && (
-            <div className="border-t border-line pt-5 space-y-3">
-              <div>
-                <h3 className="font-bold text-ink">درجات موادك (اختياري)</h3>
-                <p className="text-xs text-ink-muted mt-1">
-                  يرفع دقة التوصية عبر ربطها بنقاط قوّتك الدراسية الفعلية (لا رأيك الشخصي فقط) — تخصصان متقاربان شخصياً
-                  قد يفرّقهما تفوّقك النسبي في مادة عن أخرى. اترك أي حقل فارغاً إن لم ترغب.
-                </p>
+            <SelectField
+              label="المحافظة"
+              id="province"
+              name="province"
+              hint={`ملاحظة: ${UNCOVERED_PROVINCES_REASON}`}
+              required
+            >
+              <option value="">اختر المحافظة</option>
+              {AVAILABLE_PROVINCES.map((p) => (
+                <option key={p} value={p}>
+                  {p}
+                </option>
+              ))}
+              {UNCOVERED_PROVINCES.map((p) => (
+                <option key={p} value={p} disabled>
+                  {p} (غير مغطّاة)
+                </option>
+              ))}
+            </SelectField>
+            <SelectField
+              label="الفرع الدراسي"
+              id="branch"
+              name="branch"
+              value={formBranch}
+              onChange={(e) => setFormBranch(e.target.value)}
+              hint="الفروع الرسمية الثلاثة فقط في نظام القبول المركزي. تخصصات الإدارة والتسويق والمحاسبة مقبولة من فرعي العلمي والأدبي، وستظهر تلقائياً ضمن توصياتك أياً كان فرعك."
+              required
+            >
+              <option value="">اختر الفرع</option>
+              <option value="علمي">علمي (إحيائي / تطبيقي)</option>
+              <option value="أدبي">أدبي</option>
+              <option value="فنون">فنون / إبداع</option>
+            </SelectField>
+            <SelectField label="نوع المعدل" id="gradeType" name="gradeType" required>
+              <option value="expected">معدل متوقع</option>
+              <option value="actual">معدل حصل (حقيقي)</option>
+            </SelectField>
+            <InputField
+              label="المعدل (٪)"
+              id="grade"
+              type="number"
+              name="grade"
+              min="0"
+              max="100"
+              placeholder="مثال: 78"
+              required
+            />
+            {formBranch && (
+              <div className="border-t border-line pt-5 space-y-3">
+                <div>
+                  <h3 className="font-bold text-ink">درجات موادك (اختياري)</h3>
+                  <p className="text-xs text-ink-muted mt-1">
+                    يرفع دقة التوصية عبر ربطها بنقاط قوّتك الدراسية الفعلية (لا رأيك الشخصي فقط) — تخصصان متقاربان
+                    شخصياً قد يفرّقهما تفوّقك النسبي في مادة عن أخرى. اترك أي حقل فارغاً إن لم ترغب.
+                  </p>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {formBranch === "علمي" ? (
+                    <>
+                      <SubjectGradeInput
+                        label="الرياضيات"
+                        value={subjectGrades.math}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, math: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="الفيزياء"
+                        value={subjectGrades.physics}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, physics: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="الكيمياء"
+                        value={subjectGrades.chemistry}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, chemistry: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="الأحياء"
+                        value={subjectGrades.biology}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, biology: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="اللغة العربية"
+                        value={subjectGrades.arabic}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="اللغة الإنجليزية"
+                        value={subjectGrades.english}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      <SubjectGradeInput
+                        label="اللغة العربية"
+                        value={subjectGrades.arabic}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="اللغة الإنجليزية"
+                        value={subjectGrades.english}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="التاريخ"
+                        value={subjectGrades.history}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, history: v }))}
+                      />
+                      <SubjectGradeInput
+                        label="الجغرافية"
+                        value={subjectGrades.geography}
+                        onChange={(v) => setSubjectGrades((s) => ({ ...s, geography: v }))}
+                      />
+                    </>
+                  )}
+                </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                {formBranch === "علمي" ? (
-                  <>
-                    <SubjectGradeInput
-                      label="الرياضيات"
-                      value={subjectGrades.math}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, math: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="الفيزياء"
-                      value={subjectGrades.physics}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, physics: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="الكيمياء"
-                      value={subjectGrades.chemistry}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, chemistry: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="الأحياء"
-                      value={subjectGrades.biology}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, biology: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="اللغة العربية"
-                      value={subjectGrades.arabic}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="اللغة الإنجليزية"
-                      value={subjectGrades.english}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
-                    />
-                  </>
-                ) : (
-                  <>
-                    <SubjectGradeInput
-                      label="اللغة العربية"
-                      value={subjectGrades.arabic}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, arabic: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="اللغة الإنجليزية"
-                      value={subjectGrades.english}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, english: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="التاريخ"
-                      value={subjectGrades.history}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, history: v }))}
-                    />
-                    <SubjectGradeInput
-                      label="الجغرافية"
-                      value={subjectGrades.geography}
-                      onChange={(v) => setSubjectGrades((s) => ({ ...s, geography: v }))}
-                    />
-                  </>
-                )}
-              </div>
-            </div>
-          )}
-          <button
-            type="submit"
-            className="w-full bg-primary-solid text-white py-3 rounded-xl font-bold hover:bg-primary-solid-hover transition-colors"
-          >
-            بدء الاختبار
-          </button>
-        </form>
+            )}
+            <button
+              type="submit"
+              className="w-full bg-primary-solid text-white py-3 rounded-xl font-bold hover:bg-primary-solid-hover transition-colors"
+            >
+              بدء الاختبار
+            </button>
+          </form>
         </div>
       </div>
     );
@@ -946,14 +960,13 @@ export default function Quiz() {
                   {filterSettings &&
                     (() => {
                       const members = [rec.lead, ...rec.siblings];
-                      if (feasibilityNote(filterSettings.grade, ADMISSION_INDEX[rec.lead.id]).tone !== "below") return null;
-                      const within = members.find(
-                        (m) => ["above", "near"].includes(feasibilityNote(filterSettings.grade, ADMISSION_INDEX[m.id]).tone)
+                      if (feasibilityNote(filterSettings.grade, ADMISSION_INDEX[rec.lead.id]).tone !== "below")
+                        return null;
+                      const within = members.find((m) =>
+                        ["above", "near"].includes(feasibilityNote(filterSettings.grade, ADMISSION_INDEX[m.id]).tone)
                       );
                       return within ? (
-                        <p className="mt-2 text-sm font-bold text-ink">
-                          في متناول معدلك ضمن هذا المجال: {within.name}
-                        </p>
+                        <p className="mt-2 text-sm font-bold text-ink">في متناول معدلك ضمن هذا المجال: {within.name}</p>
                       ) : null;
                     })()}
                   <p className="mt-2 text-xs text-ink-muted">

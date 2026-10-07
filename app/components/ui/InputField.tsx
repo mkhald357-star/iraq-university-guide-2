@@ -13,7 +13,7 @@ interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 // 10 حقل درجات مادة + حقل المعدل الرئيسي في نموذج الاختبار.
 export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
   { label, optional, hint, compact, id, className = "", ...rest },
-  ref,
+  ref
 ) {
   return (
     <div>

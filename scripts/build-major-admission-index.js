@@ -67,7 +67,13 @@ for (const major of majors) {
   const governmentTotal = cutoffs.length + directAdmissionOfferings + unknownOfferings;
   const coverage = governmentTotal ? +(cutoffs.length / governmentTotal).toFixed(3) : 0;
   const confidence =
-    cutoffs.length >= 5 && coverage >= 0.5 ? "high" : cutoffs.length >= 2 ? "medium" : cutoffs.length === 1 ? "low" : "none";
+    cutoffs.length >= 5 && coverage >= 0.5
+      ? "high"
+      : cutoffs.length >= 2
+        ? "medium"
+        : cutoffs.length === 1
+          ? "low"
+          : "none";
   index[major.id] = {
     competitiveOfferings: cutoffs.length,
     directAdmissionOfferings,
@@ -109,5 +115,11 @@ fs.writeFileSync(
 );
 const byConf = {};
 Object.values(index).forEach((e) => (byConf[e.confidence] = (byConf[e.confidence] || 0) + 1));
-const none = Object.entries(index).filter(([, e]) => e.confidence === "none").map(([id]) => id);
-console.log(`major_admission_index.json: ${Object.keys(index).length} تخصصاً`, JSON.stringify(byConf), none.length ? `| بلا حدّ: ${none.join("، ")}` : "");
+const none = Object.entries(index)
+  .filter(([, e]) => e.confidence === "none")
+  .map(([id]) => id);
+console.log(
+  `major_admission_index.json: ${Object.keys(index).length} تخصصاً`,
+  JSON.stringify(byConf),
+  none.length ? `| بلا حدّ: ${none.join("، ")}` : ""
+);

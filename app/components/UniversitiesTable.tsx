@@ -98,14 +98,14 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
             );
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-surface" : "bg-surface-muted"}>
-                {hasMajorColumn && (
-                  <td className="border px-3 py-2 text-ink-soft">{o.majorName ?? "—"}</td>
-                )}
+                {hasMajorColumn && <td className="border px-3 py-2 text-ink-soft">{o.majorName ?? "—"}</td>}
                 <td className="border px-3 py-2 font-bold text-ink">{o.universityName}</td>
                 <td className="border px-3 py-2">
                   <span
                     className={`px-2 py-0.5 rounded-full text-xs font-bold ${
-                      o.universityType === "أهلية" ? "bg-primary-800/10 text-primary-800" : "bg-primary/10 text-primary-text"
+                      o.universityType === "أهلية"
+                        ? "bg-primary-800/10 text-primary-800"
+                        : "bg-primary/10 text-primary-text"
                     }`}
                   >
                     {o.universityType === "أهلية" ? "أهلية" : "حكومية"}
@@ -163,8 +163,8 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
         <p className="text-xs text-ink-muted mt-1">
           <span className="text-primary-800 font-bold">يشترط معدل X%</span>: شرط معدّل معلَن مسبقاً في دليل الجامعات
           الأهلية — لا نتيجة قبول بأثر رجعي كحدود الجامعات الحكومية.{" "}
-          <span className="text-ink-muted italic">الحدّ الأدنى غير متوفّر</span>: الدليل لا يذكر حدّاً لهذا القسم تحديداً —
-          هذا لا يعني بالضرورة عدم وجود شرط فعلي غير منشور في مصدرنا.
+          <span className="text-ink-muted italic">الحدّ الأدنى غير متوفّر</span>: الدليل لا يذكر حدّاً لهذا القسم
+          تحديداً — هذا لا يعني بالضرورة عدم وجود شرط فعلي غير منشور في مصدرنا.
         </p>
       )}
     </div>

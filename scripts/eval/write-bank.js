@@ -61,7 +61,9 @@ const pairs = proposal.pairs
 fs.writeFileSync(path.join(ROOT, "data/questions.json"), JSON.stringify(core, null, 2) + "\n");
 fs.writeFileSync(path.join(ROOT, "data/reserve_questions.json"), JSON.stringify(reserve, null, 2) + "\n");
 fs.writeFileSync(path.join(ROOT, "data/contradiction_pairs.json"), JSON.stringify(pairs, null, 2) + "\n");
-console.log(`أساسية ${core.length} | احتياط ${reserve.length} | أزواج تناقض ${pairs.length} | إعادة تسمية: ${JSON.stringify(renamed)}`);
+console.log(
+  `أساسية ${core.length} | احتياط ${reserve.length} | أزواج تناقض ${pairs.length} | إعادة تسمية: ${JSON.stringify(renamed)}`
+);
 console.log(
   `أزواج داخل الأساسية: ${pairs.filter((p) => core.some((q) => q.id === p.a) && core.some((q) => q.id === p.b)).length}`
 );

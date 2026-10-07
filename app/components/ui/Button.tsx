@@ -31,8 +31,7 @@ interface CommonProps {
   className?: string;
 }
 
-type ButtonAsButton = CommonProps &
-  Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> & { href?: undefined };
+type ButtonAsButton = CommonProps & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className"> & { href?: undefined };
 type ButtonAsLink = CommonProps & { href: string };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
@@ -41,7 +40,7 @@ export type ButtonProps = ButtonAsButton | ButtonAsLink;
 // عبر أكثر من 20 موضعاً كان مبعثراً في الصفحات سابقاً (bg-primary-solid إلخ).
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   { variant = "primary", size = "md", icon, loading, children, className = "", ...rest },
-  ref,
+  ref
 ) {
   const cls = `${BASE} ${VARIANT_CLASSES[variant]} ${SIZE_CLASSES[size]} ${className}`;
 

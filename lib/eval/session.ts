@@ -142,7 +142,9 @@ export function simulateSession(student: SimStudent, model: ResponseModel, rng: 
   const unique = [...new Map(pool.map((q) => [q.id, q])).values()];
   // بنك متعدد الأشكال يُجاب بنموذج الأشكال الواقعي (ضوضاء مترابطة داخل الموقف،
   // اختيار ثورستوني للأقرب/الأبعد)؛ بنك العبارات المفردة كما كان.
-  const formatBank = (data.coreQuestions as FormattedItemLike[]).some((q) => q.format === "grid" || q.format === "pick");
+  const formatBank = (data.coreQuestions as FormattedItemLike[]).some(
+    (q) => q.format === "grid" || q.format === "pick"
+  );
   const cached = formatBank
     ? precomputeFormatAnswers(student, model, rng, unique as (RiasecQuestion & FormattedItemLike)[], data.validityItems)
     : precomputeAnswers(student, model, rng, unique, data.validityItems);

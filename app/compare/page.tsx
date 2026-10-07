@@ -35,11 +35,11 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
 }
 
 const DEMAND_TONE: Record<string, string> = {
-  "مرتفع": "text-band-safe",
-  "متوسط": "text-band-close",
-  "منخفض": "text-band-reach",
+  مرتفع: "text-band-safe",
+  متوسط: "text-band-close",
+  منخفض: "text-band-reach",
   "شديد الانخفاض": "text-band-reach",
-  "متشبع": "text-band-reach",
+  متشبع: "text-band-reach",
 };
 
 function CompareContent() {
@@ -127,9 +127,7 @@ function CompareContent() {
         )}
       </div>
 
-      {!showComparison && (
-        <p className="text-center text-ink-muted">اختر تخصصين على الأقل لبدء الموازنة.</p>
-      )}
+      {!showComparison && <p className="text-center text-ink-muted">اختر تخصصين على الأقل لبدء الموازنة.</p>}
 
       {showComparison && (
         <div className="flex gap-4 overflow-x-auto pb-2">
@@ -176,9 +174,7 @@ function CompareContent() {
                   {major?.category && <p className="text-xs text-ink-muted">{major.category}</p>}
                 </div>
 
-                {!profile && (
-                  <p className="text-sm text-ink-muted">جارٍ تحميل بيانات هذا التخصص...</p>
-                )}
+                {!profile && <p className="text-sm text-ink-muted">جارٍ تحميل بيانات هذا التخصص...</p>}
 
                 {profile && (
                   <>
@@ -191,7 +187,9 @@ function CompareContent() {
                         {eligibility?.allowedBranches?.length ? eligibility.allowedBranches.join("، ") : "غير محدَّد"}
                       </Row>
                       <Row label="القبول المباشر">
-                        {eligibility?.hasDirectAdmissionOffers ? "يوجد قبول مباشر في بعض الأقسام" : "لا قبول مباشر موثَّق"}
+                        {eligibility?.hasDirectAdmissionOffers
+                          ? "يوجد قبول مباشر في بعض الأقسام"
+                          : "لا قبول مباشر موثَّق"}
                       </Row>
                     </div>
 
@@ -215,7 +213,9 @@ function CompareContent() {
                     <div>
                       <SectionHeading icon={Briefcase} title="العمل" />
                       <Row label="مستوى الطلب">
-                        <span className={`font-bold ${market?.demandLevel ? DEMAND_TONE[market.demandLevel] ?? "" : ""}`}>
+                        <span
+                          className={`font-bold ${market?.demandLevel ? (DEMAND_TONE[market.demandLevel] ?? "") : ""}`}
+                        >
                           {market?.demandLevel ?? "غير متوفر"}
                         </span>
                       </Row>

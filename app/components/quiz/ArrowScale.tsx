@@ -74,7 +74,14 @@ export function ArrowScale({
       e.preventDefault();
       // بلا موضع افتراضي: أول ضغطة سهم من حالة "لا إجابة" تختار جانباً صريحاً
       // (يمين/أعلى = أوافق، يسار/أسفل = لا أوافق) ولا تسجّل "محايد" ضمناً.
-      const firstPress = index === null ? (e.key === "ArrowRight" || e.key === "ArrowUp" ? 1 : e.key === "ArrowLeft" || e.key === "ArrowDown" ? 3 : null) : null;
+      const firstPress =
+        index === null
+          ? e.key === "ArrowRight" || e.key === "ArrowUp"
+            ? 1
+            : e.key === "ArrowLeft" || e.key === "ArrowDown"
+              ? 3
+              : null
+          : null;
       commit(firstPress ?? moves[e.key], "keyboard");
     } else if (e.key === "Enter" && value !== null) {
       e.preventDefault();

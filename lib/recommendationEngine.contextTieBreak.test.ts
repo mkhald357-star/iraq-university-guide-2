@@ -62,7 +62,12 @@ describe("applyContextTieBreak -- بصمة السياق تفصل زوجاً حق
 
   it("طالب يميل بوضوح للنظري يبقي هندسة الكهرباء متصدّرة (لا قلب في الاتجاه المعاكس)", () => {
     const ranked = pair(80, 77);
-    const theoreticalPersonaVector: ContextVector = { appliedness: 0, quantitative: 50, humanContact: 50, fieldwork: 50 };
+    const theoreticalPersonaVector: ContextVector = {
+      appliedness: 0,
+      quantitative: 50,
+      humanContact: 50,
+      fieldwork: 50,
+    };
 
     const result = applyContextTieBreak(ranked, theoreticalPersonaVector, CONTEXT_INDEX);
 
@@ -97,7 +102,16 @@ describe("applyContextTieBreak -- ضمانات السلامة (لا يمسّ إ�
   it("لا يمسّ إلا أفضل تخصصين -- الثالث فما بعده يبقى بلا تغيير", () => {
     const ranked: RankedMajor[] = [
       ...pair(80, 77),
-      { id: "mechanical_engineering", name: "هندسة ميكانيك", category: "هندسة", marketMultiplier: 1, fitPercent: 60, riasecFitPercent: 60, subjectFitPercent: null, combinedScore: 60 },
+      {
+        id: "mechanical_engineering",
+        name: "هندسة ميكانيك",
+        category: "هندسة",
+        marketMultiplier: 1,
+        fitPercent: 60,
+        riasecFitPercent: 60,
+        subjectFitPercent: null,
+        combinedScore: 60,
+      },
     ];
     const appliedPersonaVector: ContextVector = { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 };
 
@@ -118,7 +132,11 @@ describe("applyContextTieBreak -- ضمانات السلامة (لا يمسّ إ�
 
   it("لا تغيير حين تخصص واحد فقط في القائمة", () => {
     const single = pair(80, 77).slice(0, 1);
-    const result = applyContextTieBreak(single, { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 }, CONTEXT_INDEX);
+    const result = applyContextTieBreak(
+      single,
+      { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 },
+      CONTEXT_INDEX
+    );
     expect(result).toEqual(single);
   });
 
@@ -130,9 +148,36 @@ describe("applyContextTieBreak -- ضمانات السلامة (لا يمسّ إ�
     // prosthetics_engineering (بعد خفضه) بنقاط أقل من prosthetics_tech
     // الثالث، فانكسر ترتيب النتيجة (index[1].combinedScore < index[2]).
     const ranked: RankedMajor[] = [
-      { id: "renewable_energy_tech", name: "أ", category: "x", marketMultiplier: 1, fitPercent: 85.99, riasecFitPercent: 85.99, subjectFitPercent: null, combinedScore: 85.99 },
-      { id: "prosthetics_engineering", name: "ب", category: "x", marketMultiplier: 1, fitPercent: 84.39, riasecFitPercent: 84.39, subjectFitPercent: null, combinedScore: 84.39 },
-      { id: "prosthetics_tech", name: "ج", category: "x", marketMultiplier: 1, fitPercent: 83.82, riasecFitPercent: 83.82, subjectFitPercent: null, combinedScore: 83.82 },
+      {
+        id: "renewable_energy_tech",
+        name: "أ",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 85.99,
+        riasecFitPercent: 85.99,
+        subjectFitPercent: null,
+        combinedScore: 85.99,
+      },
+      {
+        id: "prosthetics_engineering",
+        name: "ب",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 84.39,
+        riasecFitPercent: 84.39,
+        subjectFitPercent: null,
+        combinedScore: 84.39,
+      },
+      {
+        id: "prosthetics_tech",
+        name: "ج",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 83.82,
+        riasecFitPercent: 83.82,
+        subjectFitPercent: null,
+        combinedScore: 83.82,
+      },
     ];
     const userContextVector: ContextVector = { appliedness: 100, quantitative: 71.05, humanContact: 50, fieldwork: 50 };
 
@@ -146,10 +191,32 @@ describe("applyContextTieBreak -- ضمانات السلامة (لا يمسّ إ�
 
   it("لا تغيير حين لا توجد بصمة سياق لأحد التخصصين (معرّف غير معروف)", () => {
     const ranked: RankedMajor[] = [
-      { id: "unknown_major_xyz", name: "غير معروف", category: "x", marketMultiplier: 1, fitPercent: 80, riasecFitPercent: 80, subjectFitPercent: null, combinedScore: 80 },
-      { id: "electrical_tech", name: "تقنيات الكهرباء", category: "تقنيات", marketMultiplier: 1, fitPercent: 77, riasecFitPercent: 77, subjectFitPercent: null, combinedScore: 77 },
+      {
+        id: "unknown_major_xyz",
+        name: "غير معروف",
+        category: "x",
+        marketMultiplier: 1,
+        fitPercent: 80,
+        riasecFitPercent: 80,
+        subjectFitPercent: null,
+        combinedScore: 80,
+      },
+      {
+        id: "electrical_tech",
+        name: "تقنيات الكهرباء",
+        category: "تقنيات",
+        marketMultiplier: 1,
+        fitPercent: 77,
+        riasecFitPercent: 77,
+        subjectFitPercent: null,
+        combinedScore: 77,
+      },
     ];
-    const result = applyContextTieBreak(ranked, { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 }, CONTEXT_INDEX);
+    const result = applyContextTieBreak(
+      ranked,
+      { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 },
+      CONTEXT_INDEX
+    );
     expect(result).toEqual(ranked);
   });
 });
@@ -165,7 +232,11 @@ describe("applyContextTieBreak -- عتبة الحد الأدنى للفارق ا
       electrical_engineering: { appliedness: 50, quantitative: 50, humanContact: 50, fieldwork: 50 },
       electrical_tech: { appliedness: 52, quantitative: 50, humanContact: 50, fieldwork: 50 },
     };
-    const result = applyContextTieBreak(ranked, { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 }, tinyDivergenceIndex);
+    const result = applyContextTieBreak(
+      ranked,
+      { appliedness: 100, quantitative: 50, humanContact: 50, fieldwork: 50 },
+      tinyDivergenceIndex
+    );
     expect(result).toEqual(ranked);
   });
 });

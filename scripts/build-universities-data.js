@@ -497,7 +497,13 @@ const finalUniversities = universities.map((u) => {
         isDirectAdmission: d.cutoffs.length === 0,
       };
     });
-    return { id: `${u.id}_col_${cIdx + 1}`, name: c.name, displayName: toDisplayName(c.name), nameEn: null, departments };
+    return {
+      id: `${u.id}_col_${cIdx + 1}`,
+      name: c.name,
+      displayName: toDisplayName(c.name),
+      nameEn: null,
+      departments,
+    };
   });
   const { _collegesMap, ...rest } = u;
   return { ...rest, colleges };
@@ -580,7 +586,9 @@ const privateFinal = privateUnis.map((p) => {
   // فارغ بالكامل (اسم صحيح من القائمة اليدوية الاحتياطية). راجع
   // data/admission_rules.md §41 للتوثيق الكامل والحالات المؤكَّدة (12 صفاً
   // عبر 6 جامعات) التي أصلحها هذا التغيير تحديداً.
-  const guideDeptNames = new Set(colleges.flatMap((c) => c.departments.map((d) => normalizeForDedupMatch(d.displayName ?? d.name))));
+  const guideDeptNames = new Set(
+    colleges.flatMap((c) => c.departments.map((d) => normalizeForDedupMatch(d.displayName ?? d.name)))
+  );
   const extraManualMajors = (p.majors || []).filter((m) => !guideDeptNames.has(normalizeForDedupMatch(m)));
   if (extraManualMajors.length) {
     colleges.push({

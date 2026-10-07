@@ -31,7 +31,14 @@ function idealAnswers(pool: RiasecQuestion[], theta: SimStudent["theta"]): Recor
   pool.forEach((q) => (out[q.id] = quantize(clamp(1.6 * itemSignal(q, theta), -1, 1))));
   pickScreensOf(pool).forEach((options) => {
     const sorted = [...options].sort((a, b) => itemSignal(b, theta) - itemSignal(a, theta));
-    Object.assign(out, pickAnswers(options.map((o) => o.id), sorted[0].id, sorted[sorted.length - 1].id));
+    Object.assign(
+      out,
+      pickAnswers(
+        options.map((o) => o.id),
+        sorted[0].id,
+        sorted[sorted.length - 1].id
+      )
+    );
   });
   return out;
 }
@@ -66,7 +73,15 @@ export function searchReachability(
   const profile = data.riasecProfiles[majorId] ?? {};
   const theta = { R: 0, I: 0, A: 0, S: 0, E: 0, C: 0 } as SimStudent["theta"];
   (Object.keys(theta) as (keyof typeof theta)[]).forEach((d) => (theta[d] = (profile[d] ?? 0) * 10));
-  const student: SimStudent = { id: 0, theta, branch, grade, subjectGrades: {}, style: "normal", anchorMajorId: majorId };
+  const student: SimStudent = {
+    id: 0,
+    theta,
+    branch,
+    grade,
+    subjectGrades: {},
+    style: "normal",
+    anchorMajorId: majorId,
+  };
   const timings: Record<string, number> = {};
   [...pool, ...data.validityItems].forEach((q) => (timings[q.id] = 5000));
 
@@ -99,7 +114,9 @@ export function searchReachability(
     for (let it = 0; it < iterations; it++) {
       const q = pool[Math.floor(rng() * pool.length)];
       const options = pickOf.get(q.id);
-      const previous = options ? Object.fromEntries(options.map((o) => [o.id, answers[o.id]])) : { [q.id]: answers[q.id] };
+      const previous = options
+        ? Object.fromEntries(options.map((o) => [o.id, answers[o.id]]))
+        : { [q.id]: answers[q.id] };
       if (options) Object.assign(answers, randomPick(options, rng));
       else {
         const next = ANSWER_LEVELS[Math.floor(rng() * ANSWER_LEVELS.length)];

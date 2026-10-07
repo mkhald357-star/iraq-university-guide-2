@@ -28,8 +28,8 @@ export default function StatsSection() {
       <div className="mx-auto max-w-6xl px-5">
         <p className="text-sm font-bold text-primary-text">بالأرقام</p>
         <h2 className="mt-2 max-w-2xl text-3xl font-extrabold leading-tight text-ink md:text-4xl">
-          {homepageStats.totalDepartments.toLocaleString("ar-IQ")} قسماً جامعياً، من{" "}
-          {homepageStats.totalUniversities} جامعة وكلية معتمدة
+          {homepageStats.totalDepartments.toLocaleString("ar-IQ")} قسماً جامعياً، من {homepageStats.totalUniversities}{" "}
+          جامعة وكلية معتمدة
         </h2>
         <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink-soft">
           كل رقم هنا محسوب من الدليل الرسمي، لا تقديراً. هذا ما تختار من بينه فعلياً.
@@ -58,9 +58,9 @@ export default function StatsSection() {
               <CountUp to={homepageStats.directAdmissionDepartmentsGov} />
             </div>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              قسم حكومي بقبول مباشر (من أصل {homepageStats.governmentDepartments.toLocaleString("ar-IQ")} قسماً
-              حكومياً) بلا حدّ قبول تنافسي مُعلَن — أي طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل. الأقسام
-              الأهلية لها شروط قبول منشورة جزئياً في دليل منفصل، ولا تُحتسَب هنا.
+              قسم حكومي بقبول مباشر (من أصل {homepageStats.governmentDepartments.toLocaleString("ar-IQ")} قسماً حكومياً)
+              بلا حدّ قبول تنافسي مُعلَن — أي طالب مؤهَّل بفرعه يُقبَل دونما منافسة على المعدل. الأقسام الأهلية لها شروط
+              قبول منشورة جزئياً في دليل منفصل، ولا تُحتسَب هنا.
             </p>
           </Reveal>
 
@@ -69,10 +69,7 @@ export default function StatsSection() {
               <p className="text-sm font-bold text-ink-muted">توزيع الأقسام حسب الفرع</p>
               <div className="mt-4 flex h-3 w-full overflow-hidden rounded-full">
                 {BRANCHES.map((b) => (
-                  <span
-                    key={b.label}
-                    style={{ width: `${(b.value / BRANCH_TOTAL) * 100}%`, background: b.tone }}
-                  />
+                  <span key={b.label} style={{ width: `${(b.value / BRANCH_TOTAL) * 100}%`, background: b.tone }} />
                 ))}
               </div>
               <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">

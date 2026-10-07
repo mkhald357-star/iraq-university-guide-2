@@ -25,4 +25,6 @@ for (const entry of skills) {
 }
 
 console.log(`Wrote ${skills.length} per-major skills files to ${OUT_DIR}`);
-console.log(`Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / skills.length / 1024).toFixed(1)} KB/file)`);
+console.log(
+  `Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / skills.length / 1024).toFixed(1)} KB/file)`
+);

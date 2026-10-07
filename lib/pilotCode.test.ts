@@ -26,7 +26,9 @@ describe("رمز التجربة الميدانية", () => {
   });
 
   it("يقرّب درجات المواد لأقرب 5 داخل المكتبة -- شبه-معرِّف داخل الصفّ (المدقّق)", () => {
-    const back = decodePilotRecord(encodePilotRecord({ ...rec, grade: 84.6, subjectGrades: { math: 93, physics: 71.4 } }));
+    const back = decodePilotRecord(
+      encodePilotRecord({ ...rec, grade: 84.6, subjectGrades: { math: 93, physics: 71.4 } })
+    );
     expect(back.ok).toBe(true);
     if (back.ok) {
       expect(back.record.subjectGrades).toEqual({ math: 95, physics: 70 });
@@ -39,7 +41,6 @@ describe("رمز التجربة الميدانية", () => {
     expect(bankFingerprint(["a", "b", "c"])).toBe(bankFingerprint(["c", "a", "b"]));
     expect(bankFingerprint(["a", "b", "c"])).not.toBe(bankFingerprint(["a", "b", "d"]));
   });
-
 
   it("يكشف رمزاً منقوصاً أو محرَّفاً عند النسخ", () => {
     const code = encodePilotRecord(rec);

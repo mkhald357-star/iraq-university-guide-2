@@ -8,7 +8,10 @@ import {
 import { applyAdmissionWeight } from "./riasec";
 import majorsData from "../data/majors.json";
 
-const entry = (cutoffMin: number | null, confidence: MajorAdmissionEntry["confidence"] = "high"): MajorAdmissionEntry => ({
+const entry = (
+  cutoffMin: number | null,
+  confidence: MajorAdmissionEntry["confidence"] = "high"
+): MajorAdmissionEntry => ({
   competitiveOfferings: cutoffMin === null ? 0 : 10,
   directAdmissionOfferings: 0,
   privateOfferings: 0,

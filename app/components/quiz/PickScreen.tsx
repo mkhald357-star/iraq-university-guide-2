@@ -35,7 +35,8 @@ export function PickScreen({
     return onChange(most, id);
   };
 
-  const step = most === null ? "اختر النشاط الأقرب إليك" : least === null ? "والآن اختر الأبعد عنك" : "ممتاز — اضغط التالي";
+  const step =
+    most === null ? "اختر النشاط الأقرب إليك" : least === null ? "والآن اختر الأبعد عنك" : "ممتاز — اضغط التالي";
   const complete = most !== null && least !== null;
 
   return (

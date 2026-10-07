@@ -3,7 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { AlertCircle, Search } from "lucide-react";
 import provincesData from "../../data/provinces.json";
-import { fetchOfferingsForBranch, toUniversityOffering, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
+import {
+  fetchOfferingsForBranch,
+  toUniversityOffering,
+  type Branch,
+  type ExplorerOffering,
+} from "../../lib/offeringsClient";
 import { classifyOffering } from "../../lib/wishlistPlanner";
 import type { Band, StudySession } from "../../lib/wishlistPlanner";
 import PaginatedOfferingsTable from "../components/PaginatedOfferingsTable";
@@ -53,10 +58,7 @@ function bestBand(offering: ExplorerOffering, grade: number, sessionsToConsider:
 export default function GpaCheckPage() {
   const [branch, setBranch] = useState<Branch | "">("");
   const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
-  const offerings = useMemo(
-    () => (branchState.status === "ready" ? branchState.data : []),
-    [branchState]
-  );
+  const offerings = useMemo(() => (branchState.status === "ready" ? branchState.data : []), [branchState]);
 
   const [grade, setGrade] = useState("");
   const [province, setProvince] = useState("");
@@ -267,7 +269,10 @@ export default function GpaCheckPage() {
         <p className="mt-1 text-ink-soft">أدخل معدّلك وفرعك، وشوف أي قسم يصلك — بلا اختبار وبلا حساب.</p>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-surface border border-line shadow-sm grid gap-4 rounded-3xl p-6 sm:grid-cols-2">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-surface border border-line shadow-sm grid gap-4 rounded-3xl p-6 sm:grid-cols-2"
+      >
         <div>
           <label className="mb-2 block font-bold" htmlFor="branch">
             الفرع الدراسي
@@ -356,11 +361,13 @@ export default function GpaCheckPage() {
             الجلسة الدراسية <span className="font-normal text-ink-muted">(اختياري)</span>
           </label>
           <div className="flex gap-2">
-            {([
-              { value: "both", label: "كلاهما" },
-              { value: "صباحي", label: "صباحي" },
-              { value: "مسائي", label: "مسائي" },
-            ] as const).map((opt) => (
+            {(
+              [
+                { value: "both", label: "كلاهما" },
+                { value: "صباحي", label: "صباحي" },
+                { value: "مسائي", label: "مسائي" },
+              ] as const
+            ).map((opt) => (
               <button
                 key={opt.value}
                 type="button"
@@ -405,14 +412,13 @@ export default function GpaCheckPage() {
               <EmptyState diagnosis={emptyDiagnosis} grade={Number(grade)} onRelax={relaxFilter} />
             ) : (
               <p className="text-center text-ink-muted">
-                لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات {ADMISSION_CHANNEL}. جرّب توسيع الفلاتر أو معدلاً آخر.
+                لا توجد أقسام ضمن معدّلك في هذه الفلاتر وفق بيانات {ADMISSION_CHANNEL}. جرّب توسيع الفلاتر أو معدلاً
+                آخر.
               </p>
             )
           ) : (
             <div className="space-y-4">
-              {noReachable && (
-                <EmptyState diagnosis={noReachable} grade={Number(grade)} onRelax={relaxFilter} />
-              )}
+              {noReachable && <EmptyState diagnosis={noReachable} grade={Number(grade)} onRelax={relaxFilter} />}
 
               {hasUnknownBranch && (
                 <p className="rounded-xl border border-line bg-surface-muted p-3 text-xs text-ink-muted">
@@ -424,7 +430,11 @@ export default function GpaCheckPage() {
                 if (list.length === 0) return null;
                 const ui = BAND_UI[band];
                 return (
-                  <details key={band} className="group rounded-md border border-line bg-surface p-5" open={band === "safe"}>
+                  <details
+                    key={band}
+                    className="group rounded-md border border-line bg-surface p-5"
+                    open={band === "safe"}
+                  >
                     <summary className="flex cursor-pointer list-none items-center gap-3 font-extrabold text-ink">
                       <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold ${ui.bg} ${ui.text}`}>
                         {ui.label}

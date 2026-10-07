@@ -22,8 +22,7 @@ const TEMPLATE = path.join(__dirname, "og-template.html");
 // normalizeArabic القائم فعلاً بين lib/majorMatcher.ts وscripts/build-major-offerings.js).
 // حدِّثها يدوياً إن تغيّر النصّ في lib/siteMeta.ts.
 const TITLE = "اختر تخصصك الجامعي بالأرقام الحقيقية";
-const DESC =
-  "منصّة عراقية مجانية: اختبار ميول علمي، ومطابقة بحدود القبول الرسمية لكل قسم في العراق. مجاناً وبلا حساب.";
+const DESC = "منصّة عراقية مجانية: اختبار ميول علمي، ومطابقة بحدود القبول الرسمية لكل قسم في العراق. مجاناً وبلا حساب.";
 
 (async () => {
   const stats = JSON.parse(fs.readFileSync(path.join(ROOT, "data/homepage_stats.json"), "utf8"));

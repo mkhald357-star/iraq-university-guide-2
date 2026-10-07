@@ -85,5 +85,13 @@ export function computeEligibility(
   const lowestCutoff = competitiveCutoffs.length > 0 ? Math.min(...competitiveCutoffs) : null;
   const gapToLowest = lowestCutoff !== null ? studentGrade - lowestCutoff : null;
 
-  return { branchEligible, allowedBranches, reachableOffers, unknownOffers, eveningOnlyOffers, lowestCutoff, gapToLowest };
+  return {
+    branchEligible,
+    allowedBranches,
+    reachableOffers,
+    unknownOffers,
+    eveningOnlyOffers,
+    lowestCutoff,
+    gapToLowest,
+  };
 }

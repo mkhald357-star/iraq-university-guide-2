@@ -43,7 +43,8 @@ function sigmoid(x: number): number {
 
 function continuousResponse(model: ResponseModel, s: number, rng: Rng): number | { level: number } {
   if (model === "linear") return GAIN * s + NOISE * gaussian(rng);
-  if (model === "ideal_point") return 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION) + NOISE * gaussian(rng);
+  if (model === "ideal_point")
+    return 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION) + NOISE * gaussian(rng);
   // graded response: P(level >= k) منحدر لوجستي لكل عتبة
   const u = rng();
   let index = 0;
@@ -111,7 +112,8 @@ export function answerScoredItemWithNoise(
   const s = itemSignal(item, student.theta);
   let x: number;
   if (model === "linear") x = GAIN * s + NOISE * noiseScale * z;
-  else if (model === "ideal_point") x = 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION) + NOISE * noiseScale * z;
+  else if (model === "ideal_point")
+    x = 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION) + NOISE * noiseScale * z;
   else {
     const u = normalCdf(z);
     let index = 0;
@@ -147,10 +149,7 @@ export function answerPickScreen(
   }
   const utility = options.map((o) => {
     const s = itemSignal(o, student.theta);
-    let u =
-      model === "ideal_point"
-        ? 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION)
-        : GAIN * s;
+    let u = model === "ideal_point" ? 1 - IDEAL_POINT_SLOPE * Math.abs(s - IDEAL_POINT_LOCATION) : GAIN * s;
     u += NOISE * noiseScale * gaussian(rng) * (model === "graded" ? 1.25 : 1);
     if (student.style === "social_desirability") {
       const primary = primaryDimension(o as RiasecQuestion);

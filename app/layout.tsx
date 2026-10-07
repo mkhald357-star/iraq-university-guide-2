@@ -8,14 +8,7 @@ import SiteFooter from "./components/SiteFooter";
 import SkipLink from "./components/SkipLink";
 import { ReportIssueProvider } from "./context/ReportIssueContext";
 import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "../lib/jsonLd";
-import {
-  SITE_URL,
-  SITE_NAME,
-  SITE_TAGLINE,
-  SITE_DESCRIPTION,
-  OG_IMAGE_PATH,
-  OG_IMAGE_ALT,
-} from "../lib/siteMeta";
+import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, OG_IMAGE_PATH, OG_IMAGE_ALT } from "../lib/siteMeta";
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -67,9 +60,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl" suppressHydrationWarning>
-      <body
-        className={`${cairo.variable} ${elMessiri.variable} font-cairo bg-surface-subtle text-ink min-h-screen`}
-      >
+      <body className={`${cairo.variable} ${elMessiri.variable} font-cairo bg-surface-subtle text-ink min-h-screen`}>
         {/* يُشغَّل قبل الرسم لتفادي "وميض" اللون الخاطئ عند تحميل صفحة
             بالوضع الداكن المحفوظ -- inline لأنه يجب أن يُنفَّذ متزامناً
             قبل أول رسم، لا كسكربت خارجي مؤجَّل. */}
@@ -82,10 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationJsonLd()) }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteJsonLd()) }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteJsonLd()) }} />
         <SkipLink />
         <SiteHeader />
         <ErrorBoundary>

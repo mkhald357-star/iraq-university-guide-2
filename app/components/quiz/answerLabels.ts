@@ -24,7 +24,13 @@ export interface AnswerLabelsSource {
 export function getAnswerLabels(q: AnswerLabelsSource): FiveLevelLabels {
   if (!q.answerLabels) return GENERIC_ANSWER_LABELS;
   const { yes, maybe, no, stronglyYes, stronglyNo } = q.answerLabels;
-  return { stronglyYes: stronglyYes ?? yes, yes: "أميل لهذا الجانب", maybe, no: "أميل للجانب الآخر", stronglyNo: stronglyNo ?? no };
+  return {
+    stronglyYes: stronglyYes ?? yes,
+    yes: "أميل لهذا الجانب",
+    maybe,
+    no: "أميل للجانب الآخر",
+    stronglyNo: stronglyNo ?? no,
+  };
 }
 
 /** القيم مرتّبة من بداية السطر (يمين، RTL) إلى نهايته. */

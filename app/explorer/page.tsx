@@ -30,19 +30,14 @@ function effectiveMinCutoff(o: ExplorerOffering): number {
     return o.statedMinimumGrade?.value ?? Infinity;
   }
   if (o.isDirectAdmission) return -Infinity;
-  const values = [o.averageGrades["صباحي"], o.averageGrades["مسائي"]].filter(
-    (v): v is number => v !== null
-  );
+  const values = [o.averageGrades["صباحي"], o.averageGrades["مسائي"]].filter((v): v is number => v !== null);
   return values.length > 0 ? Math.min(...values) : Infinity;
 }
 
 export default function ExplorerPage() {
   const [branch, setBranch] = useState<Branch | "">("");
   const [branchState, setBranchState] = useState<ViewState<ExplorerOffering[]>>({ status: "idle" });
-  const offerings = useMemo(
-    () => (branchState.status === "ready" ? branchState.data : []),
-    [branchState]
-  );
+  const offerings = useMemo(() => (branchState.status === "ready" ? branchState.data : []), [branchState]);
 
   const [province, setProvince] = useState("");
   const [maxCutoff, setMaxCutoff] = useState("");

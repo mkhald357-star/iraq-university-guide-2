@@ -121,7 +121,13 @@ export function evaluateQuizStep(input: QuizStepInput, data: QuizEngineData): Qu
 
   if (mode === "legacy") {
     const alreadyAskedIds = new Set(input.extraQuestionsAsked.map((q) => q.id));
-    const decision = planTieBreak(contextRanked, input.round, alreadyAskedIds, data.tiebreakerPool, data.riasecProfiles);
+    const decision = planTieBreak(
+      contextRanked,
+      input.round,
+      alreadyAskedIds,
+      data.tiebreakerPool,
+      data.riasecProfiles
+    );
     if (decision.candidates.length > 0) {
       return {
         kind: "askMore",
@@ -151,8 +157,7 @@ export function evaluateQuizStep(input: QuizStepInput, data: QuizEngineData): Qu
         return {
           kind: "askMore",
           questions: plan.questions,
-          tieBreakInfo:
-            contextRanked.length >= 2 ? { a: contextRanked[0].name, b: contextRanked[1].name } : null,
+          tieBreakInfo: contextRanked.length >= 2 ? { a: contextRanked[0].name, b: contextRanked[1].name } : null,
           trigger: plan.trigger ?? "ambiguity",
           weakDimensions: plan.weakDimensions,
           nextRound: 1,

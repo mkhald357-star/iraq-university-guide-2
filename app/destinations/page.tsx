@@ -151,9 +151,7 @@ export default function DestinationsPage() {
               </span>
               <h2 className="font-bold text-ink">قطاعات العمل</h2>
             </div>
-            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              {(career.employerSectors ?? []).join("، ")}
-            </p>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">{(career.employerSectors ?? []).join("، ")}</p>
           </div>
 
           <LicensingCard req={career.licensingRequirement}>
@@ -169,8 +167,8 @@ export default function DestinationsPage() {
       <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />
         <p>
-          هذه معلومات واقعية استرشادية عن سوق العمل الفعلي، وجهات الترخيص قد تُحدِّث شروطها من وقت لآخر — راجع
-          الجهة الرسمية المذكورة مباشرة قبل اتخاذ قرار يعتمد عليها.
+          هذه معلومات واقعية استرشادية عن سوق العمل الفعلي، وجهات الترخيص قد تُحدِّث شروطها من وقت لآخر — راجع الجهة
+          الرسمية المذكورة مباشرة قبل اتخاذ قرار يعتمد عليها.
         </p>
       </div>
     </div>

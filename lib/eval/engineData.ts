@@ -51,6 +51,8 @@ const DEFAULTS: SessionData = {
  * وقيمتها غير معرَّفة يجب أن يحصل على سلوك اليوم نفسه، لا أن يمحو الافتراضي.
  */
 export function buildSessionData(overrides: Partial<SessionData> = {}): SessionData {
-  const defined = Object.fromEntries(Object.entries(overrides).filter(([, v]) => v !== undefined)) as Partial<SessionData>;
+  const defined = Object.fromEntries(
+    Object.entries(overrides).filter(([, v]) => v !== undefined)
+  ) as Partial<SessionData>;
   return { ...DEFAULTS, ...defined };
 }

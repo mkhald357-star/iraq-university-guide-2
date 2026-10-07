@@ -205,7 +205,8 @@ function validate(label, filePath, schema) {
       }
     }
   }
-  if (sourcesOk) console.log("[OK] كل مصادر admissionSources.js موجودة، وسنوات أسماء الملفات (حيث تُستخرَج) تطابق المُعلَنة");
+  if (sourcesOk)
+    console.log("[OK] كل مصادر admissionSources.js موجودة، وسنوات أسماء الملفات (حيث تُستخرَج) تطابق المُعلَنة");
 }
 
 validate("data/universities.json", path.join(ROOT, "data/universities.json"), UniversitiesFileSchema);
@@ -301,7 +302,10 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     }
   }
   if (polarityMismatches.length) {
-    console.warn("[WARN] tuitionFees: تناقض بين note وأجر مسائي حقيقي -- يحتاج مراجعة يدوية للمصدر:", polarityMismatches);
+    console.warn(
+      "[WARN] tuitionFees: تناقض بين note وأجر مسائي حقيقي -- يحتاج مراجعة يدوية للمصدر:",
+      polarityMismatches
+    );
   } else {
     console.log("[OK] tuitionFees: لا تناقض بين note وأجر مسائي");
   }
@@ -331,7 +335,10 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     }
   }
   if (sameCollegeDupes.length) {
-    console.warn("[WARN] tuitionFees: تكرار حقيقي×حقيقي بنفس الكلية (استخراج مصدر غامض، يحتاج مراجعة يدوية):", sameCollegeDupes);
+    console.warn(
+      "[WARN] tuitionFees: تكرار حقيقي×حقيقي بنفس الكلية (استخراج مصدر غامض، يحتاج مراجعة يدوية):",
+      sameCollegeDupes
+    );
   } else {
     console.log("[OK] tuitionFees: لا تكرار حقيقي×حقيقي بنفس الكلية");
   }
@@ -353,7 +360,9 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
         }
         const hasBranch = (dept.branch || []).length > 0;
         if (!hasBranch && dept.branchSource !== "unknown") {
-          badBranchSource.push(`${uni.name}/${college.name}/${dept.name}: بلا فرع وبلا وسم unknown (branchSource=${dept.branchSource})`);
+          badBranchSource.push(
+            `${uni.name}/${college.name}/${dept.name}: بلا فرع وبلا وسم unknown (branchSource=${dept.branchSource})`
+          );
         }
       }
     }
@@ -375,9 +384,7 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
 {
   const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
   const REGULATED_DEPARTMENTS = new Set(["الطب", "طب الاسنان", "الصيدلة"]);
-  const exceptions = JSON.parse(
-    fs.readFileSync(path.join(ROOT, "data/direct-admission-exceptions.json"), "utf8")
-  );
+  const exceptions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/direct-admission-exceptions.json"), "utf8"));
   const exceptionKey = (u, c, d) => `${u}|${c}|${d}`;
   const allowedExceptions = new Set(
     exceptions
@@ -562,18 +569,26 @@ const coreScreens = [];
   });
 }
 if (coreScreens.length !== CORE_SCREEN_COUNT) {
-  console.error(`[FAIL] data/questions.json: expected exactly ${CORE_SCREEN_COUNT} screens, found ${coreScreens.length}`);
+  console.error(
+    `[FAIL] data/questions.json: expected exactly ${CORE_SCREEN_COUNT} screens, found ${coreScreens.length}`
+  );
   hasErrors = true;
 } else {
   console.log(`[OK] data/questions.json has exactly ${CORE_SCREEN_COUNT} screens (${questions.length} statements)`);
 }
 const primaryDim = (q) =>
-  Object.entries(q.dimensions || {}).reduce((best, [d, w]) => (Math.abs(w) > Math.abs(best[1]) ? [d, w] : best), ["", 0])[0];
+  Object.entries(q.dimensions || {}).reduce(
+    (best, [d, w]) => (Math.abs(w) > Math.abs(best[1]) ? [d, w] : best),
+    ["", 0]
+  )[0];
 const pickScreens = coreScreens.filter((s) => s.format === "pick");
 pickScreens.forEach((s) => {
   const dims = s.items.map(primaryDim);
   if (s.items.length !== 4 || new Set(dims).size !== 4 || !s.lead) {
-    console.error(`[FAIL] data/questions.json: شاشة pick ${s.key} يجب أن تضم 4 خيارات من 4 أبعاد مختلفة مع نص سؤال`, dims);
+    console.error(
+      `[FAIL] data/questions.json: شاشة pick ${s.key} يجب أن تضم 4 خيارات من 4 أبعاد مختلفة مع نص سؤال`,
+      dims
+    );
     hasErrors = true;
   }
 });
@@ -586,7 +601,9 @@ gridScreens.forEach((s) => {
 });
 const threeRow = gridScreens.filter((s) => s.items.length === 3).length;
 if (threeRow > THREE_ROW_SCREENS_MAX) {
-  console.error(`[FAIL] data/questions.json: ${threeRow} شاشات بثلاثة أسطر، والحد ${THREE_ROW_SCREENS_MAX} (10% من الشاشات)`);
+  console.error(
+    `[FAIL] data/questions.json: ${threeRow} شاشات بثلاثة أسطر، والحد ${THREE_ROW_SCREENS_MAX} (10% من الشاشات)`
+  );
   hasErrors = true;
 } else {
   console.log(`[OK] ${threeRow} شاشة بثلاثة أسطر من ${coreScreens.length} (الحد ${THREE_ROW_SCREENS_MAX})`);
@@ -600,19 +617,32 @@ const badPickWeights = [];
 pickScreens.forEach((s) =>
   s.items.forEach((q) => {
     const ws = Object.values(q.dimensions || {}).filter((w) => w !== 0);
-    if (ws.length !== 1 || Math.abs(Math.abs(ws[0]) - PICK_OPTION_WEIGHT) > 1e-9) badPickWeights.push(`${q.id}:${JSON.stringify(q.dimensions)}`);
+    if (ws.length !== 1 || Math.abs(Math.abs(ws[0]) - PICK_OPTION_WEIGHT) > 1e-9)
+      badPickWeights.push(`${q.id}:${JSON.stringify(q.dimensions)}`);
   })
 );
 if (badPickWeights.length) {
-  console.error(`[FAIL] data/questions.json: خيار pick يجب أن يحمل بُعداً واحداً بوزن ±${PICK_OPTION_WEIGHT}:`, badPickWeights);
+  console.error(
+    `[FAIL] data/questions.json: خيار pick يجب أن يحمل بُعداً واحداً بوزن ±${PICK_OPTION_WEIGHT}:`,
+    badPickWeights
+  );
   hasErrors = true;
 } else if (pickScreens.length) {
   console.log(`[OK] كل خيارات pick بوزن ±${PICK_OPTION_WEIGHT} (PICK_WEIGHT_SCALE مطبَّق)`);
 }
 const pickDimCounts = {};
-pickScreens.forEach((s) => s.items.forEach((q) => (pickDimCounts[primaryDim(q)] = (pickDimCounts[primaryDim(q)] || 0) + 1)));
-if (pickScreens.length > PICK_SCREENS_MAX || (pickScreens.length > 0 && RIASEC_DIMENSIONS.some((d) => (pickDimCounts[d] || 0) < 2))) {
-  console.error(`[FAIL] data/questions.json: pick ≤${PICK_SCREENS_MAX} شاشات وكل بُعد في شاشتين منها على الأقل`, pickScreens.length, pickDimCounts);
+pickScreens.forEach((s) =>
+  s.items.forEach((q) => (pickDimCounts[primaryDim(q)] = (pickDimCounts[primaryDim(q)] || 0) + 1))
+);
+if (
+  pickScreens.length > PICK_SCREENS_MAX ||
+  (pickScreens.length > 0 && RIASEC_DIMENSIONS.some((d) => (pickDimCounts[d] || 0) < 2))
+) {
+  console.error(
+    `[FAIL] data/questions.json: pick ≤${PICK_SCREENS_MAX} شاشات وكل بُعد في شاشتين منها على الأقل`,
+    pickScreens.length,
+    pickDimCounts
+  );
   hasErrors = true;
 } else if (pickScreens.length) {
   console.log(`[OK] ${pickScreens.length} pick screens, every dimension in ≥2`, JSON.stringify(pickDimCounts));
@@ -623,10 +653,17 @@ questions
   .forEach((q) => (primaryCounts[primaryDim(q)] = (primaryCounts[primaryDim(q)] || 0) + 1));
 const thinDims = RIASEC_DIMENSIONS.filter((d) => (primaryCounts[d] || 0) < 3);
 if (thinDims.length) {
-  console.error("[FAIL] data/questions.json: dimensions with fewer than 3 primary agree-scale items:", thinDims, primaryCounts);
+  console.error(
+    "[FAIL] data/questions.json: dimensions with fewer than 3 primary agree-scale items:",
+    thinDims,
+    primaryCounts
+  );
   hasErrors = true;
 } else {
-  console.log("[OK] every RIASEC dimension has at least 3 primary agree-scale core items", JSON.stringify(primaryCounts));
+  console.log(
+    "[OK] every RIASEC dimension has at least 3 primary agree-scale core items",
+    JSON.stringify(primaryCounts)
+  );
 }
 const questionIds = questions.map((q) => q.id);
 const dupQuestionIds = questionIds.filter((id, i) => questionIds.indexOf(id) !== i);
@@ -646,9 +683,14 @@ if (validityQuestions.length !== 3) {
   console.log("[OK] data/validity_questions.json has exactly 3 items");
 }
 const validityIds = new Set(validityQuestions.map((q) => q.id));
-const orphanTwins = validityQuestions.filter((v) => v.validity?.pairsWith && !questionIds.includes(v.validity.pairsWith));
+const orphanTwins = validityQuestions.filter(
+  (v) => v.validity?.pairsWith && !questionIds.includes(v.validity.pairsWith)
+);
 if (orphanTwins.length) {
-  console.error("[FAIL] validity reverse-twin partner missing from the core bank:", orphanTwins.map((v) => v.validity.pairsWith));
+  console.error(
+    "[FAIL] validity reverse-twin partner missing from the core bank:",
+    orphanTwins.map((v) => v.validity.pairsWith)
+  );
   hasErrors = true;
 }
 const idCollisions = [...validityIds].filter((id) => questionIds.includes(id));
@@ -687,14 +729,16 @@ const reserveQuestions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/reserv
 const reserveResult = z.array(QuestionSchema).safeParse(reserveQuestions);
 if (!reserveResult.success) {
   console.error("[FAIL] data/reserve_questions.json: schema validation failed");
-  for (const issue of reserveResult.error.issues.slice(0, 20)) console.error(`  - ${issue.path.join(".")}: ${issue.message}`);
+  for (const issue of reserveResult.error.issues.slice(0, 20))
+    console.error(`  - ${issue.path.join(".")}: ${issue.message}`);
   hasErrors = true;
 } else {
   console.log(`[OK] data/reserve_questions.json (${reserveQuestions.length} بنداً)`);
 }
 const reserveIds = reserveQuestions.map((q) => q.id);
 const reserveCollisions = reserveIds.filter(
-  (id, i) => questionIds.includes(id) || validityIds.has(id) || tiebreakerIds.includes(id) || reserveIds.indexOf(id) !== i
+  (id, i) =>
+    questionIds.includes(id) || validityIds.has(id) || tiebreakerIds.includes(id) || reserveIds.indexOf(id) !== i
 );
 if (reserveCollisions.length) {
   console.error("[FAIL] data/reserve_questions.json ids collide with other banks or repeat:", reserveCollisions);
@@ -989,7 +1033,10 @@ if (fs.existsSync(skillsPath)) {
   for (const entry of majorSkills) {
     const result = MajorSkillsSchema.safeParse(entry);
     if (!result.success) {
-      console.error(`[FAIL] data/major_skills.json (${entry.id}):`, result.error.issues.map((i) => i.message).join("; "));
+      console.error(
+        `[FAIL] data/major_skills.json (${entry.id}):`,
+        result.error.issues.map((i) => i.message).join("; ")
+      );
       skillsHasErrors = true;
     } else if (!majorIds.has(entry.id)) {
       console.error(`[FAIL] data/major_skills.json: unknown major id ${entry.id}`);
@@ -1070,7 +1117,9 @@ if (fs.existsSync(skillsPath)) {
   if (skillsHasErrors) {
     hasErrors = true;
   } else {
-    console.log(`[OK] data/major_skills.json matches strict schema (${majorSkills.length}/${majors.length} majors, 3+3+3 لكل تخصص، صفر افتعال نسب، صفر تكرار قوالب ≥30%)`);
+    console.log(
+      `[OK] data/major_skills.json matches strict schema (${majorSkills.length}/${majors.length} majors, 3+3+3 لكل تخصص، صفر افتعال نسب، صفر تكرار قوالب ≥30%)`
+    );
   }
 }
 
@@ -1253,7 +1302,10 @@ if (fs.existsSync(projectsPath)) {
     console.error("[FAIL] data/major_families.json:", famProblems);
     hasErrors = true;
   } else {
-    console.log(`[OK] data/major_families.json: ${fams.length} عائلة تغطي ${seen.size} تخصصاً، متماسكة بالفرع`, JSON.stringify(perBranch));
+    console.log(
+      `[OK] data/major_families.json: ${fams.length} عائلة تغطي ${seen.size} تخصصاً، متماسكة بالفرع`,
+      JSON.stringify(perBranch)
+    );
   }
 }
 
@@ -1263,12 +1315,17 @@ if (fs.existsSync(projectsPath)) {
 {
   const admission = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_admission_index.json"), "utf8")).majors;
   const missing = majors.filter((m) => !admission[m.id]).map((m) => m.id);
-  const none = Object.entries(admission).filter(([, e]) => e.confidence === "none").map(([id]) => id);
+  const none = Object.entries(admission)
+    .filter(([, e]) => e.confidence === "none")
+    .map(([id]) => id);
   if (missing.length) {
     console.error("[FAIL] data/major_admission_index.json: تخصصات بلا مدخل:", missing);
     hasErrors = true;
   } else {
-    console.log(`[OK] data/major_admission_index.json: ${Object.keys(admission).length} تخصصاً` + (none.length ? `، بلا حدّ تنافسي موثَّق (محايدة): ${none.join("، ")}` : ""));
+    console.log(
+      `[OK] data/major_admission_index.json: ${Object.keys(admission).length} تخصصاً` +
+        (none.length ? `، بلا حدّ تنافسي موثَّق (محايدة): ${none.join("، ")}` : "")
+    );
   }
 }
 
@@ -1311,12 +1368,18 @@ if (fs.existsSync(projectsPath)) {
     const rated = new Set(cand._meta?.candidate?.ratedMajors ?? []);
     const problems = [];
     const curIds = Object.keys(cur).sort().join();
-    if (Object.keys(cand.profiles ?? {}).sort().join() !== curIds) problems.push("مجموعة التخصصات تختلف عن الحالية");
+    if (
+      Object.keys(cand.profiles ?? {})
+        .sort()
+        .join() !== curIds
+    )
+      problems.push("مجموعة التخصصات تختلف عن الحالية");
     for (const [id, p] of Object.entries(cand.profiles ?? {})) {
       for (const d of ["R", "I", "A", "S", "E", "C"]) {
         if (!Number.isInteger(p[d]) || p[d] < 0 || p[d] > 10) problems.push(`${id}.${d}`);
       }
-      if (!rated.has(id) && JSON.stringify(p) !== JSON.stringify(cur[id])) problems.push(`${id} غير محكَّم لكنه يختلف عن الحالي`);
+      if (!rated.has(id) && JSON.stringify(p) !== JSON.stringify(cur[id]))
+        problems.push(`${id} غير محكَّم لكنه يختلف عن الحالي`);
     }
     if (problems.length) {
       console.error("[FAIL] data/major_riasec_profiles.candidate.json:", problems.slice(0, 10));

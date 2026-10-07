@@ -25,7 +25,7 @@ function getSharedObserver(): IntersectionObserver {
         pending.delete(entry.target);
       }
     },
-    { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
+    { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
   );
   return sharedObserver;
 }

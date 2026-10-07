@@ -18,12 +18,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // 3 أحرف بنفس الأحرف الثلاثة بترتيب مختلف) -- فحذف كل الألفات (بلا قاعدة "ال"
 // الخاصة بأول الكلمة) يجب أن يبقى مطابقاً تماماً قبل وبعد الإصلاح دائماً.
 function stripAllAlef(text) {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[أإآ]/g, "ا")
-    .replace(/ا/g, "")
-    .replace(/\s+/g, "");
+  return text.toLowerCase().trim().replace(/[أإآ]/g, "ا").replace(/ا/g, "").replace(/\s+/g, "");
 }
 
 describe("fixLamAlef", () => {

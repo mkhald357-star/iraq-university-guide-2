@@ -233,7 +233,11 @@ export function applyContextTieBreak(
 
   const fitA = 100 - Math.abs(userContextVector[axis] - contextA[axis]);
   const fitB = 100 - Math.abs(userContextVector[axis] - contextB[axis]);
-  const bonus = clampNumber((fitB - fitA) * CONTEXT_TIEBREAK_WEIGHT, -CONTEXT_TIEBREAK_MAX_BONUS, CONTEXT_TIEBREAK_MAX_BONUS);
+  const bonus = clampNumber(
+    (fitB - fitA) * CONTEXT_TIEBREAK_WEIGHT,
+    -CONTEXT_TIEBREAK_MAX_BONUS,
+    CONTEXT_TIEBREAK_MAX_BONUS
+  );
   if (bonus === 0) return ranked;
 
   const adjustedSecond: RankedMajor = {

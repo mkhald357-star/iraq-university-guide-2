@@ -100,7 +100,11 @@ describe("classifyOffering -- الأهلي (data/admission_rules.md §32)", () =
   });
 
   it("حكومي بقبول مباشر لا يُصنَّف safe لمعدل 50 -- عائق الإصدار الذي رصده المدقّق", () => {
-    const w = makeWish({ universityType: "حكومية", isDirectAdmission: true, averageGrades: { صباحي: null, مسائي: null } });
+    const w = makeWish({
+      universityType: "حكومية",
+      isDirectAdmission: true,
+      averageGrades: { صباحي: null, مسائي: null },
+    });
     expect(classifyOffering(w, 50).band).toBe("unknown");
   });
 
@@ -136,9 +140,7 @@ describe("classifyOffering على بيانات حقيقية (لا وهمية، d
 
 describe("NO_REACHABLE على بيانات حقيقية (فرع علمي، data/admission_rules.md §32)", () => {
   const dir = path.join(__dirname, "../public/data/by-branch");
-  const allOfferings = JSON.parse(
-    fs.readFileSync(path.join(dir, "علمي.json"), "utf8")
-  ) as UniversityOffering[];
+  const allOfferings = JSON.parse(fs.readFileSync(path.join(dir, "علمي.json"), "utf8")) as UniversityOffering[];
 
   function classifyAll(grade: number, offerings: UniversityOffering[] = allOfferings) {
     const counts = { safe: 0, close: 0, unknown: 0, reach: 0 };
@@ -342,7 +344,8 @@ describe("قبول مباشر حكومي على بيانات حقيقية (ال�
         direct++;
         for (const session of ["صباحي", "مسائي"] as const) {
           const r = classifyOffering({ majorId: "", majorName: "", session, offering: o }, 55);
-          if (r.band === "safe" && (r.cutoff === null || r.cutoff > 55 - SAFE_MARGIN)) wronglySafe.push(`${o.departmentName}/${session}`);
+          if (r.band === "safe" && (r.cutoff === null || r.cutoff > 55 - SAFE_MARGIN))
+            wronglySafe.push(`${o.departmentName}/${session}`);
         }
       }
     }

@@ -39,9 +39,11 @@ export default function CostPage() {
     };
   }, [majorId]);
 
-  const { private: priv, unverifiedPrivate, government } = offerings
-    ? splitOfferings(offerings)
-    : { private: [], unverifiedPrivate: [], government: [] };
+  const {
+    private: priv,
+    unverifiedPrivate,
+    government,
+  } = offerings ? splitOfferings(offerings) : { private: [], unverifiedPrivate: [], government: [] };
   const sortedPrivate = sortByFeeAscending(priv);
   const cheapestKey = computeCheapestHighlight(priv);
 
@@ -92,110 +94,114 @@ export default function CostPage() {
 
       {major && offerings === null && <p className="text-center text-ink-muted">جارٍ التحميل...</p>}
 
-      {major && offerings && sortedPrivate.length === 0 && unverifiedPrivate.length === 0 && government.length === 0 && (
-        <p className="text-center text-ink-muted">لا تتوفر عروض جامعات موثَّقة لهذا التخصص حالياً.</p>
-      )}
+      {major &&
+        offerings &&
+        sortedPrivate.length === 0 &&
+        unverifiedPrivate.length === 0 &&
+        government.length === 0 && (
+          <p className="text-center text-ink-muted">لا تتوفر عروض جامعات موثَّقة لهذا التخصص حالياً.</p>
+        )}
 
       {major && sortedPrivate.length > 0 && (
         <Reveal>
-        <Card variant="surface" padding="" className="overflow-hidden">
-          <div className="relative flex items-center gap-3 overflow-hidden border-b border-line p-6">
-            <Building2
-              aria-hidden="true"
-              className="pointer-events-none absolute -end-6 -top-6 h-24 w-24 text-primary-100 md:h-28 md:w-28"
-              strokeWidth={1}
-            />
-            <IconBadge icon={Building2} className="relative" />
-            <h2 className="relative font-bold text-ink">الجامعات الأهلية</h2>
-          </div>
-          <div className="divide-y divide-line">
-            {sortedPrivate.map((o) => {
-              const key = offeringKey(o);
-              const isCheapest = key === cheapestKey;
-              return (
-                <div key={key} className={`p-5 ${isCheapest ? "bg-band-safe-bg" : ""}`}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <p className="font-bold text-ink">{o.universityName}</p>
-                      <p className="text-sm text-ink-soft">{o.departmentName}</p>
-                      {o.confidence <= 60 && (
-                        <Badge tone="muted" className="mt-1">
-                          تخصص قريب
+          <Card variant="surface" padding="" className="overflow-hidden">
+            <div className="relative flex items-center gap-3 overflow-hidden border-b border-line p-6">
+              <Building2
+                aria-hidden="true"
+                className="pointer-events-none absolute -end-6 -top-6 h-24 w-24 text-primary-100 md:h-28 md:w-28"
+                strokeWidth={1}
+              />
+              <IconBadge icon={Building2} className="relative" />
+              <h2 className="relative font-bold text-ink">الجامعات الأهلية</h2>
+            </div>
+            <div className="divide-y divide-line">
+              {sortedPrivate.map((o) => {
+                const key = offeringKey(o);
+                const isCheapest = key === cheapestKey;
+                return (
+                  <div key={key} className={`p-5 ${isCheapest ? "bg-band-safe-bg" : ""}`}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <p className="font-bold text-ink">{o.universityName}</p>
+                        <p className="text-sm text-ink-soft">{o.departmentName}</p>
+                        {o.confidence <= 60 && (
+                          <Badge tone="muted" className="mt-1">
+                            تخصص قريب
+                          </Badge>
+                        )}
+                      </div>
+                      {isCheapest && (
+                        <Badge tone="safe" icon={Trophy}>
+                          الأرخص من بين المنشور
                         </Badge>
                       )}
                     </div>
-                    {isCheapest && (
-                      <Badge tone="safe" icon={Trophy}>
-                        الأرخص من بين المنشور
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
-                    <div>
-                      <span className="text-ink-muted">صباحي: </span>
-                      {o.tuitionFees?.["صباحي"] != null ? (
-                        <span className="font-bold text-ink">{formatFee(o.tuitionFees["صباحي"])}</span>
-                      ) : (
-                        <span className="text-ink-muted">{TUITION_NOT_PUBLISHED}</span>
-                      )}
+                    <div className="mt-3 flex flex-wrap gap-x-6 gap-y-1 text-sm">
+                      <div>
+                        <span className="text-ink-muted">صباحي: </span>
+                        {o.tuitionFees?.["صباحي"] != null ? (
+                          <span className="font-bold text-ink">{formatFee(o.tuitionFees["صباحي"])}</span>
+                        ) : (
+                          <span className="text-ink-muted">{TUITION_NOT_PUBLISHED}</span>
+                        )}
+                      </div>
+                      <div>
+                        <span className="text-ink-muted">مسائي: </span>
+                        {o.tuitionFees?.["مسائي"] != null ? (
+                          <span className="font-bold text-ink">{formatFee(o.tuitionFees["مسائي"])}</span>
+                        ) : (
+                          <span className="text-ink-muted">{TUITION_NOT_PUBLISHED}</span>
+                        )}
+                      </div>
+                      {o.admissionSuspended && <Badge tone="reach">القبول متوقف هذا العام</Badge>}
                     </div>
-                    <div>
-                      <span className="text-ink-muted">مسائي: </span>
-                      {o.tuitionFees?.["مسائي"] != null ? (
-                        <span className="font-bold text-ink">{formatFee(o.tuitionFees["مسائي"])}</span>
-                      ) : (
-                        <span className="text-ink-muted">{TUITION_NOT_PUBLISHED}</span>
-                      )}
-                    </div>
-                    {o.admissionSuspended && <Badge tone="reach">القبول متوقف هذا العام</Badge>}
                   </div>
-                </div>
-              );
-            })}
-          </div>
-        </Card>
+                );
+              })}
+            </div>
+          </Card>
         </Reveal>
       )}
 
       {major && unverifiedPrivate.length > 0 && (
         <Reveal>
-        <Alert tone="info" icon={AlertCircle}>
-          {TUITION_UNVERIFIED_SOURCE_NOTE}
-        </Alert>
+          <Alert tone="info" icon={AlertCircle}>
+            {TUITION_UNVERIFIED_SOURCE_NOTE}
+          </Alert>
         </Reveal>
       )}
 
       {major && government.length > 0 && (
         <Reveal>
-        <Card variant="surface" padding="" className="overflow-hidden">
-          <div className="relative flex items-center gap-3 overflow-hidden p-6 pb-3">
-            <Landmark
-              aria-hidden="true"
-              className="pointer-events-none absolute -end-6 -top-6 h-24 w-24 text-primary-100 md:h-28 md:w-28"
-              strokeWidth={1}
-            />
-            <IconBadge icon={Landmark} className="relative" />
-            <h2 className="relative font-bold text-ink">الجامعات الحكومية</h2>
-          </div>
-          <div className="px-6 pb-6">
-            <p className="mb-3 text-sm text-ink-soft">{GOVERNMENT_NO_COMPARABLE_FEE}</p>
-            <ul className="grid gap-1.5 text-sm text-ink-soft">
-              {government.map((o) => (
-                <li key={offeringKey(o)}>
-                  {o.universityName} — {o.departmentName}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </Card>
+          <Card variant="surface" padding="" className="overflow-hidden">
+            <div className="relative flex items-center gap-3 overflow-hidden p-6 pb-3">
+              <Landmark
+                aria-hidden="true"
+                className="pointer-events-none absolute -end-6 -top-6 h-24 w-24 text-primary-100 md:h-28 md:w-28"
+                strokeWidth={1}
+              />
+              <IconBadge icon={Landmark} className="relative" />
+              <h2 className="relative font-bold text-ink">الجامعات الحكومية</h2>
+            </div>
+            <div className="px-6 pb-6">
+              <p className="mb-3 text-sm text-ink-soft">{GOVERNMENT_NO_COMPARABLE_FEE}</p>
+              <ul className="grid gap-1.5 text-sm text-ink-soft">
+                {government.map((o) => (
+                  <li key={offeringKey(o)}>
+                    {o.universityName} — {o.departmentName}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Card>
         </Reveal>
       )}
 
       <Reveal>
-      <Alert tone="info" icon={AlertCircle}>
-        الأرقام من دليل أجور الجامعات الأهلية الرسمي للعام الدراسي الحالي — قد تتغيّر الأجور من عام لآخر، وبعض الأقسام
-        لا تُنشَر أجورها في الدليل. راجع الجامعة مباشرة قبل أي قرار نهائي.
-      </Alert>
+        <Alert tone="info" icon={AlertCircle}>
+          الأرقام من دليل أجور الجامعات الأهلية الرسمي للعام الدراسي الحالي — قد تتغيّر الأجور من عام لآخر، وبعض الأقسام
+          لا تُنشَر أجورها في الدليل. راجع الجامعة مباشرة قبل أي قرار نهائي.
+        </Alert>
       </Reveal>
     </div>
   );

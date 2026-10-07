@@ -47,10 +47,10 @@ export function PilotIntake({ onDone }: { onDone: (r: PilotIntakeResult) => void
           قبل أن تبدأ: تجربة التحقق من دقة المنصة
         </h1>
         <p className="text-sm text-ink-soft">
-          نختبر هل توصيات المنصة تطابق ما يختاره الطلاب فعلاً. في النهاية ستحصل على رمز نصي تنسخه وترسله لمنظّم
-          التجربة <strong>إن أردت</strong>. الرمز يحمل إجاباتك وفرعك ومعدلك ودرجات موادك مقرَّبة —{" "}
-          <strong>بلا اسم ولا محافظة ولا أي وسيلة تواصل</strong>، ولا يُرسَل شيء من هنا تلقائياً. الرمز <strong>مرمَّز لا مشفَّر</strong>: من يحمله يستطيع قراءة ما فيه، فأرسله
-          لمنظّم التجربة وحده.
+          نختبر هل توصيات المنصة تطابق ما يختاره الطلاب فعلاً. في النهاية ستحصل على رمز نصي تنسخه وترسله لمنظّم التجربة{" "}
+          <strong>إن أردت</strong>. الرمز يحمل إجاباتك وفرعك ومعدلك ودرجات موادك مقرَّبة —{" "}
+          <strong>بلا اسم ولا محافظة ولا أي وسيلة تواصل</strong>، ولا يُرسَل شيء من هنا تلقائياً. الرمز{" "}
+          <strong>مرمَّز لا مشفَّر</strong>: من يحمله يستطيع قراءة ما فيه، فأرسله لمنظّم التجربة وحده.
         </p>
       </div>
 
@@ -118,7 +118,9 @@ export function PilotIntake({ onDone }: { onDone: (r: PilotIntakeResult) => void
                     aria-checked={certainty === n}
                     onClick={() => setCertainty(n)}
                     className={`h-11 w-11 rounded-xl border font-bold transition-colors ${
-                      certainty === n ? "border-primary-solid bg-primary-solid text-white" : "border-line bg-surface text-ink"
+                      certainty === n
+                        ? "border-primary-solid bg-primary-solid text-white"
+                        : "border-line bg-surface text-ink"
                     }`}
                   >
                     {n}
@@ -149,7 +151,9 @@ export function PilotIntake({ onDone }: { onDone: (r: PilotIntakeResult) => void
         </button>
         <button
           type="button"
-          onClick={() => onDone({ participating: false, intendedMajorId: null, intentSource: null, intentCertainty: null })}
+          onClick={() =>
+            onDone({ participating: false, intendedMajorId: null, intentSource: null, intentCertainty: null })
+          }
           className="w-full rounded-xl border border-line bg-surface p-2.5 text-sm font-bold text-ink-soft"
         >
           أكمل الاختبار بلا مشاركة

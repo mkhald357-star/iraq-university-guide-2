@@ -232,9 +232,7 @@ describe("computeValidityRiskScore — مقياس الخمس نقاط", () => {
     const answers: Record<string, number> = {};
     for (let i = 0; i < 20; i++) answers[`q${i}`] = i % 2 === 0 ? 0.5 : -0.5;
     const result = computeValidityRiskScore(answers, {}, {}, NO_CONTRADICTIONS);
-    expect(result.reasons).not.toContain(
-      "ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة"
-    );
+    expect(result.reasons).not.toContain("ميل شديد لأقصى طرفي مقياس الإجابة في كل الأسئلة تقريباً، بلا أي إجابة وسيطة");
   });
 
   it("انحراف جزئي (0.5) واحد عن سؤال التحقق من الانتباه أخفّ من انحراف كامل (1)، لكن كلاهما يُصعِّد", () => {

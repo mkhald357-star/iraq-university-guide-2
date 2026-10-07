@@ -59,8 +59,19 @@ describe("itemFormats", () => {
   });
 
   it("تسجيل pick: الأقرب يرفع بُعده والأبعد يخفضه بنفس المقدار، ولا يتحرّك بُعد غائب عن الشاشة", () => {
-    const options = bank.filter((q) => q.format === "pick") as { id: string; text: string; dimensions: Record<string, number> }[];
-    const v = computeUserRiasecVector(pickAnswers(options.map((o) => o.id), "k1_R", "k1_C"), options);
+    const options = bank.filter((q) => q.format === "pick") as {
+      id: string;
+      text: string;
+      dimensions: Record<string, number>;
+    }[];
+    const v = computeUserRiasecVector(
+      pickAnswers(
+        options.map((o) => o.id),
+        "k1_R",
+        "k1_C"
+      ),
+      options
+    );
     expect(v.R).toBe(100);
     expect(v.C).toBe(0);
     expect(v.I).toBe(50);
@@ -101,12 +112,16 @@ describe("VRS مع الأشكال", () => {
   });
 
   it("كل الإجابات غير المحايدة طرفية بلا أي درجة وسيطة = نمط تطرّف يرفع إلى متوسط", () => {
-    const items = Array.from({ length: 30 }, (_, i) => single(`x${i}`, { [["R", "I", "A", "S", "E", "C"][i % 6]]: i % 4 === 0 ? -7 : 7 }));
+    const items = Array.from({ length: 30 }, (_, i) =>
+      single(`x${i}`, { [["R", "I", "A", "S", "E", "C"][i % 6]]: i % 4 === 0 ? -7 : 7 })
+    );
     const extreme = Object.fromEntries(items.map((q, i) => [q.id, i % 5 === 0 ? 0 : i % 2 ? 1 : -1]));
     const r = computeValidityRiskScore(extreme, {}, {}, [], items);
     expect(r.reasons.some((x) => x.includes("درجة وسيطة واحدة"))).toBe(true);
     const oneMiddle = { ...extreme, x1: 0.5 };
-    expect(computeValidityRiskScore(oneMiddle, {}, {}, [], items).reasons.some((x) => x.includes("درجة وسيطة واحدة"))).toBe(false);
+    expect(
+      computeValidityRiskScore(oneMiddle, {}, {}, [], items).reasons.some((x) => x.includes("درجة وسيطة واحدة"))
+    ).toBe(false);
   });
 });
 

@@ -132,7 +132,11 @@ function waitForServer(url, timeoutMs = 60_000) {
         tally[`${theme}:${route}`] = byImpact;
 
         const total = Object.values(byImpact).reduce((a, b) => a + b, 0);
-        const flag = results.violations.some((v) => FAIL_ON_IMPACT.has(v.impact || "")) ? "❌" : total > 0 ? "⚠️ " : "✅";
+        const flag = results.violations.some((v) => FAIL_ON_IMPACT.has(v.impact || ""))
+          ? "❌"
+          : total > 0
+            ? "⚠️ "
+            : "✅";
         console.log(
           `${flag} ${route.padEnd(12)} critical=${byImpact.critical} serious=${byImpact.serious} moderate=${byImpact.moderate} minor=${byImpact.minor}`
         );
@@ -148,7 +152,9 @@ function waitForServer(url, timeoutMs = 60_000) {
 
     await browser.close();
 
-    console.log("\n" + (hadFailure ? "❌ توجد مخالفات critical/serious يجب إصلاحها." : "✅ لا مخالفات critical/serious."));
+    console.log(
+      "\n" + (hadFailure ? "❌ توجد مخالفات critical/serious يجب إصلاحها." : "✅ لا مخالفات critical/serious.")
+    );
   } finally {
     killServerTree(server);
   }

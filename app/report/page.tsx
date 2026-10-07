@@ -461,7 +461,10 @@ function ReportContent() {
   // نفس حوض الاختبار: الأساسية + أي سؤال إضافي أجاب عنه الطالب فعلاً
   const userRiasecVector = computeUserRiasecVector(
     userAnswers,
-    buildScoredPool<RiasecQuestion>(userAnswers, questionsData as RiasecQuestion[], [reserveQuestionsData as RiasecQuestion[], tiebreakerQuestionsData as RiasecQuestion[]]),
+    buildScoredPool<RiasecQuestion>(userAnswers, questionsData as RiasecQuestion[], [
+      reserveQuestionsData as RiasecQuestion[],
+      tiebreakerQuestionsData as RiasecQuestion[],
+    ]),
     PRODUCT_MIN_LOADING_SHARE
   );
   const riasecProfiles = riasecProfilesData.profiles as Record<string, Partial<Record<string, number>>>;
@@ -650,8 +653,7 @@ function ReportContent() {
   // المقياس نفسه للطرفين: كان topMajorFit محفوظاً (بمزج المواد) وprimaryMajorFit
   // مُعاد حسابه بدونه، فيُطرح فارقٌ بين مقياسين مختلفين.
   const topMajorFit = topMajors.length > 1 ? (topMajors[0].fitPercent ?? fitFor(topMajors[0].id)) : null;
-  const primaryMajorFit =
-    topMajors.find((m: any) => m.id === primaryMajor.id)?.fitPercent ?? fitFor(primaryMajor.id);
+  const primaryMajorFit = topMajors.find((m: any) => m.id === primaryMajor.id)?.fitPercent ?? fitFor(primaryMajor.id);
   const fitGapFromFirst = topMajorFit !== null && primaryMajorRank > 0 ? primaryMajorFit - topMajorFit : null;
   const isNarrowMargin = fitGapFromFirst !== null && Math.abs(fitGapFromFirst) < 3 && primaryMajorRank > 1;
 
@@ -701,7 +703,10 @@ function ReportContent() {
         </p>
       </div>
 
-      <Link href="/quiz" className="inline-flex items-center gap-2 text-ink-muted hover:text-primary-text transition-colors">
+      <Link
+        href="/quiz"
+        className="inline-flex items-center gap-2 text-ink-muted hover:text-primary-text transition-colors"
+      >
         <ArrowRight className="w-4 h-4" />
         <span>إعادة الاختبار</span>
       </Link>

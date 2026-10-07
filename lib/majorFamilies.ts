@@ -23,7 +23,9 @@ export interface FamilyData {
   byId: Record<string, MajorFamily>;
 }
 
-export function buildFamilyData(raw: { families: MajorFamily[] } = familiesData as { families: MajorFamily[] }): FamilyData {
+export function buildFamilyData(
+  raw: { families: MajorFamily[] } = familiesData as { families: MajorFamily[] }
+): FamilyData {
   const byMajor: Record<string, string> = {};
   const byId: Record<string, MajorFamily> = {};
   raw.families.forEach((f) => {

@@ -1,10 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
-  rankDemandLevel,
-  computeComparisonHighlights,
-  sanitizeSelection,
-  MAX_COMPARE_MAJORS,
-} from "./compareMajors";
+import { rankDemandLevel, computeComparisonHighlights, sanitizeSelection, MAX_COMPARE_MAJORS } from "./compareMajors";
 import type { DetailedMajorProfile } from "./majorProfileClient";
 
 function profile(overrides: Partial<DetailedMajorProfile> = {}): DetailedMajorProfile {

@@ -27,4 +27,6 @@ for (const profile of profiles) {
 }
 
 console.log(`Wrote ${profiles.length} per-major profile files to ${OUT_DIR}`);
-console.log(`Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / profiles.length / 1024).toFixed(1)} KB/file)`);
+console.log(
+  `Total size: ${(totalBytes / 1024).toFixed(0)} KB (avg ${(totalBytes / profiles.length / 1024).toFixed(1)} KB/file)`
+);

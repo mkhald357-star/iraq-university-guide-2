@@ -203,7 +203,8 @@ export function computeValidityRiskScore(
   // مستقلاً عن الخط المستقيم (قد تتنوّع الإجابات طرفياً بين نعم/لا بشدة دون
   // أي تكرار حرفي يُثير modeRatio).
   const nonNeutral = values.filter((v) => v !== 0);
-  const noMiddleShare = nonNeutral.length > 0 ? nonNeutral.filter((v) => Math.abs(v) === 1).length / nonNeutral.length : 0;
+  const noMiddleShare =
+    nonNeutral.length > 0 ? nonNeutral.filter((v) => Math.abs(v) === 1).length / nonNeutral.length : 0;
   const nonNeutralFloor = Math.max(EXTREME_NO_MIDDLE_MIN_ANSWERS, EXTREME_NO_MIDDLE_MIN_SHARE * n);
   if (nonNeutral.length >= nonNeutralFloor && noMiddleShare >= EXTREME_NO_MIDDLE_SHARE) {
     score += 3;

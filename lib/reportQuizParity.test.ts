@@ -15,7 +15,10 @@ import { buildProductSessionData } from "./eval/productConfig";
 describe("تطابق نسبة التوافق بين /report و/quiz", () => {
   const data = buildProductSessionData();
   // بلا جولة فكّ حيرة: نريد المخرج النهائي مباشرةً للمقارنة
-  const noRound = { ...data, reserveConfig: { ...data.reserveConfig!, epsilon: 0, weakEvidenceRatio: 0, weakConsistency: 0 } };
+  const noRound = {
+    ...data,
+    reserveConfig: { ...data.reserveConfig!, epsilon: 0, weakEvidenceRatio: 0, weakConsistency: 0 },
+  };
   const answers = Object.fromEntries(data.coreQuestions.map((q, i) => [q.id, [1, 0.5, 0, -0.5, -1][i % 5]]));
 
   for (const subjectGrades of [{}, { math: 97, physics: 58, chemistry: 71, biology: 88 }]) {

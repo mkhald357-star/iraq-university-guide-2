@@ -116,9 +116,7 @@ export default function SkillsPage(): ReactNode {
         </div>
       )}
 
-      {major && !skillSet && (
-        <p className="text-center text-ink-muted">لا تتوفر بيانات مهارات لهذا التخصص حالياً.</p>
-      )}
+      {major && !skillSet && <p className="text-center text-ink-muted">لا تتوفر بيانات مهارات لهذا التخصص حالياً.</p>}
 
       <div className="flex items-start gap-3 rounded-2xl border border-line bg-surface-muted p-4 text-sm text-ink-soft">
         <AlertCircle className="mt-0.5 h-5 w-5 flex-shrink-0 text-ink-muted" />

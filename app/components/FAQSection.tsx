@@ -18,11 +18,11 @@ const FAQS = [
     a: "لا حالياً. نظام القبول هناك منفصل تماماً عن القبول المركزي العام، ونفضّل ما نعرض بيانات غير مؤكدة بدل تخمينها.",
   },
   {
-    q: "شنو يعني \"قبول مباشر\"؟",
+    q: 'شنو يعني "قبول مباشر"؟',
     a: "قسم بلا حدّ قبول تنافسي مُعلَن ضمن الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل فيه دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.",
   },
   {
-    q: "ليش بعض الأدوات مكتوب عليها \"قيد التطوير\"؟",
+    q: 'ليش بعض الأدوات مكتوب عليها "قيد التطوير"؟',
     a: "لأننا ما ننشر أداة قبل ما نوثّق بياناتها من مصدر رسمي. نفضّل التأخير على نشر رقم غير موثوق.",
   },
 ];
@@ -49,13 +49,16 @@ export default function FAQSection() {
       />
       <div className="mx-auto max-w-3xl px-5">
         <p className="text-sm font-bold text-primary-text">أسئلة شائعة</p>
-        <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">
-          أسئلة يسألها الطلاب فعلاً
-        </h2>
+        <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">أسئلة يسألها الطلاب فعلاً</h2>
 
         <div className="mt-10 grid gap-3">
           {FAQS.map((item, i) => (
-            <Reveal key={item.q} as="details" delayMs={i * 50} className="group rounded-md border border-line bg-surface p-5 open:shadow-sm">
+            <Reveal
+              key={item.q}
+              as="details"
+              delayMs={i * 50}
+              className="group rounded-md border border-line bg-surface p-5 open:shadow-sm"
+            >
               <summary
                 className="flex cursor-pointer list-none items-center justify-between gap-4
                            font-bold text-ink focus-visible:outline focus-visible:outline-2

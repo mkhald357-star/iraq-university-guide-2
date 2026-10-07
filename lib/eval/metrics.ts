@@ -118,7 +118,9 @@ export function summarize(
       calibrated.reduce((s, e) => s + Math.abs(Math.log(Math.max(e.calibration as number, 1e-3))), 0) /
       (calibrated.length || 1),
     calibrationOutOfRange: calibrated
-      .filter((e) => (e.calibration as number) < CALIBRATION_RANGE[0] || (e.calibration as number) > CALIBRATION_RANGE[1])
+      .filter(
+        (e) => (e.calibration as number) < CALIBRATION_RANGE[0] || (e.calibration as number) > CALIBRATION_RANGE[1]
+      )
       .sort((a, b) => (a.calibration as number) - (b.calibration as number)),
     exposures,
     flaggedRateByStyle: ratio(styleFlagged),

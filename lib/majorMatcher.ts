@@ -148,14 +148,14 @@ export interface UniversityOffering {
  * إسقاط الألف من الجهتين قبل المقارنة يجعل المطابقة متينة أمام هذا الخلل
  * دون الحاجة لتكرار كل صيغة تالفة يدوياً في قاموس المطابقة.
  */
-import { normalizeArabicText } from "./departmentNormalizer";
+import { normalizeForPatternMatch } from "./departmentNormalizer";
 
 function stripCollegePrefix(name: string): string {
   return (name || "").replace(/^(كلية|كليات|معهد|المعهد)\s+/, "").trim() || name;
 }
 
 function normalizeArabic(text: string): string {
-  return normalizeArabicText(text);
+  return normalizeForPatternMatch(text);
 }
 
 /**

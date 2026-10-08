@@ -3,7 +3,7 @@
 
 import { usePathname } from "next/navigation";
 import { Flag } from "lucide-react";
-import { admissionCell } from "../../lib/admissionLabel";
+import { admissionCell, GOV_EVENING_MIN_HINT } from "../../lib/admissionLabel";
 import { ChannelBadge } from "./ChannelNotice";
 import { useReportIssue } from "../context/ReportIssueContext";
 import {
@@ -36,15 +36,13 @@ interface UniversitiesTableProps {
 }
 
 function cellClass(tone: string) {
-  if (tone === "direct") return "text-band-safe font-bold";
   if (tone === "stated") return "text-primary-800 font-bold";
   if (tone === "unstated") return "text-ink-muted italic";
   return "";
 }
 
 function cellTitle(tone: string) {
-  if (tone === "direct")
-    return "لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم — القبول بلا منافسة على المعدل ضمن الفرع/الجلسة، لا مجرد بيانات ناقصة.";
+  if (tone === "evening") return GOV_EVENING_MIN_HINT;
   if (tone === "stated") return PRIVATE_MIN_HINT;
   if (tone === "unstated") return PRIVATE_NO_MIN_HINT;
   return undefined;
@@ -58,6 +56,9 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
       o.universityType !== "أهلية" &&
       ((o.sessions?.includes("صباحي") && o.averageGrades?.["صباحي"] == null) ||
         (o.sessions?.includes("مسائي") && o.averageGrades?.["مسائي"] == null))
+  );
+  const hasAnyGovEvening = offerings.some(
+    (o) => o.universityType !== "أهلية" && o.sessions?.includes("مسائي") && o.averageGrades?.["مسائي"] != null
   );
   const hasAnyPrivate = offerings.some((o) => o.universityType === "أهلية");
   const hasMajorColumn = offerings.some((o) => !!o.majorName);
@@ -99,7 +100,8 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
               hasEvening,
               !!o.isDirectAdmission,
               o.averageGrades?.["مسائي"],
-              o.statedMinimumGrade
+              o.statedMinimumGrade,
+              "مسائي"
             );
             return (
               <tr key={idx} className={idx % 2 === 0 ? "bg-surface" : "bg-surface-muted"}>
@@ -162,6 +164,11 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
         <p className="text-xs text-ink-muted mt-2">
           <span className="text-ink-muted font-bold">لا حدّ منشور في دليل 2025-2026</span>: لم يرد لهذا القسم حدّ قبول
           تنافسي منشور في ملف الحدود الدنيا الرسمي لهذا العام (مثل الأقسام المستحدثة أو المستثناة مركزياً).
+        </p>
+      )}
+      {hasAnyGovEvening && (
+        <p className="text-xs text-ink-muted mt-1">
+          <span className="text-ink-soft font-bold">المسائي (حدّ أدنى)</span>: {GOV_EVENING_MIN_HINT}
         </p>
       )}
       {hasAnyPrivate && (

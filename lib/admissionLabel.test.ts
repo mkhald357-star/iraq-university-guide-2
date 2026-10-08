@@ -41,6 +41,17 @@ describe("admissionCell -- لا قبول مباشر في أي قسم حكومي 
     expect(admissionCell("حكومية", true, false, 78.5, null)).toEqual({ text: "78.5%", tone: "competitive" });
   });
 
+  it("حكومي مسائي برقم يُوسَم 'حدّ أدنى' (قاعدة الدليل حسب نوع الكلية) ولا يُعرض كمعدل تنافسي", () => {
+    expect(admissionCell("حكومية", true, false, 65, null, "مسائي")).toEqual({
+      text: "65% (حدّ أدنى)",
+      tone: "evening",
+    });
+    // الصباحي نفسه بالرقم نفسه يبقى تنافسياً
+    expect(admissionCell("حكومية", true, false, 65, null, "صباحي")).toEqual({ text: "65%", tone: "competitive" });
+    // مسائي بلا رقم: لا حدّ منشور، لا وسم 'حدّ أدنى'
+    expect(admissionCell("حكومية", true, false, null, null, "مسائي").text).toBe(GOV_NO_PUBLISHED_CUTOFF);
+  });
+
   it("حكومي بلا رقم منشور يعرض 'لا حدّ منشور في دليل 2025-2026' ولا يعرض 'قبول مباشر' أبداً", () => {
     expect(admissionCell("حكومية", true, false, null, null)).toEqual({
       text: GOV_NO_PUBLISHED_CUTOFF,

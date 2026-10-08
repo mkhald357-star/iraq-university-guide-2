@@ -186,11 +186,6 @@ function CompareContent() {
                       <Row label="الفروع المؤهَّلة">
                         {eligibility?.allowedBranches?.length ? eligibility.allowedBranches.join("، ") : "غير محدَّد"}
                       </Row>
-                      <Row label="القبول المباشر">
-                        {eligibility?.hasDirectAdmissionOffers
-                          ? "يوجد قبول مباشر في بعض الأقسام"
-                          : "لا قبول مباشر موثَّق"}
-                      </Row>
                     </div>
 
                     <div>

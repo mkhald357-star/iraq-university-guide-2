@@ -183,7 +183,14 @@ function exportPDF(data: {
   const uniRows = data.universities
     .map((u) => {
       const morning = admissionCell(u.uniType, u.hasMorning, u.isDirectAdmission, u.morningGrade, u.statedMinimumGrade);
-      const evening = admissionCell(u.uniType, u.hasEvening, u.isDirectAdmission, u.eveningGrade, u.statedMinimumGrade);
+      const evening = admissionCell(
+        u.uniType,
+        u.hasEvening,
+        u.isDirectAdmission,
+        u.eveningGrade,
+        u.statedMinimumGrade,
+        "مسائي"
+      );
       return `
       <tr>
         <td>${u.uniName}</td>

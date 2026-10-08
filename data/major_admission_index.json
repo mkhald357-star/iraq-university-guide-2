@@ -22,7 +22,7 @@
     "ai": {
       "competitiveOfferings": 14,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 36,
+      "privateOfferings": 38,
       "statedPrivateMinCount": 2,
       "unknownOfferings": 2,
       "suspendedOfferings": 0,
@@ -48,45 +48,45 @@
       "confidence": "high"
     },
     "computer_science": {
-      "competitiveOfferings": 55,
+      "competitiveOfferings": 54,
       "directAdmissionOfferings": 0,
       "privateOfferings": 49,
       "statedPrivateMinCount": 1,
       "unknownOfferings": 3,
       "suspendedOfferings": 3,
       "cutoffMin": 50,
-      "cutoffP25": 64.78,
-      "cutoffMedian": 74.71,
+      "cutoffP25": 64.18,
+      "cutoffMedian": 74.25,
       "cutoffMax": 95.43,
-      "coverage": 0.948,
+      "coverage": 0.947,
       "confidence": "high"
     },
     "digital_marketing": {
-      "competitiveOfferings": 6,
+      "competitiveOfferings": 5,
       "directAdmissionOfferings": 0,
       "privateOfferings": 6,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 1,
       "suspendedOfferings": 0,
       "cutoffMin": 50,
-      "cutoffP25": 52.82,
+      "cutoffP25": 50.43,
       "cutoffMedian": 60,
       "cutoffMax": 83.43,
-      "coverage": 0.857,
+      "coverage": 0.833,
       "confidence": "high"
     },
     "business_admin": {
-      "competitiveOfferings": 88,
+      "competitiveOfferings": 83,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 65,
+      "privateOfferings": 61,
       "statedPrivateMinCount": 1,
-      "unknownOfferings": 23,
+      "unknownOfferings": 11,
       "suspendedOfferings": 0,
       "cutoffMin": 50,
-      "cutoffP25": 51.22,
+      "cutoffP25": 51.14,
       "cutoffMedian": 60,
       "cutoffMax": 86.43,
-      "coverage": 0.793,
+      "coverage": 0.883,
       "confidence": "high"
     },
     "accounting": {
@@ -286,7 +286,7 @@
       "confidence": "high"
     },
     "graphic_design": {
-      "competitiveOfferings": 5,
+      "competitiveOfferings": 4,
       "directAdmissionOfferings": 0,
       "privateOfferings": 1,
       "statedPrivateMinCount": 0,
@@ -294,10 +294,10 @@
       "suspendedOfferings": 0,
       "cutoffMin": 60.14,
       "cutoffP25": 60.14,
-      "cutoffMedian": 79.14,
+      "cutoffMedian": 78.72,
       "cutoffMax": 97.71,
       "coverage": 1,
-      "confidence": "high"
+      "confidence": "medium"
     },
     "interior_design": {
       "competitiveOfferings": 1,
@@ -344,7 +344,7 @@
     "electrical_engineering": {
       "competitiveOfferings": 22,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 5,
+      "privateOfferings": 6,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 5,
       "suspendedOfferings": 0,
@@ -426,31 +426,31 @@
       "confidence": "high"
     },
     "chemistry": {
-      "competitiveOfferings": 38,
+      "competitiveOfferings": 37,
       "directAdmissionOfferings": 0,
       "privateOfferings": 13,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 2,
       "suspendedOfferings": 0,
       "cutoffMin": 60,
-      "cutoffP25": 65.18,
-      "cutoffMedian": 68.15,
-      "cutoffMax": 92.57,
-      "coverage": 0.95,
+      "cutoffP25": 65,
+      "cutoffMedian": 67.86,
+      "cutoffMax": 83,
+      "coverage": 0.949,
       "confidence": "high"
     },
     "biology": {
-      "competitiveOfferings": 55,
+      "competitiveOfferings": 47,
       "directAdmissionOfferings": 0,
       "privateOfferings": 20,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 1,
       "suspendedOfferings": 0,
       "cutoffMin": 50.29,
-      "cutoffP25": 63,
-      "cutoffMedian": 67.71,
+      "cutoffP25": 63.72,
+      "cutoffMedian": 67.86,
       "cutoffMax": 85.57,
-      "coverage": 0.982,
+      "coverage": 0.979,
       "confidence": "high"
     },
     "geography": {
@@ -510,15 +510,15 @@
       "confidence": "high"
     },
     "islamic_studies": {
-      "competitiveOfferings": 70,
+      "competitiveOfferings": 69,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 27,
+      "privateOfferings": 26,
       "statedPrivateMinCount": 1,
       "unknownOfferings": 1,
       "suspendedOfferings": 1,
       "cutoffMin": 55,
-      "cutoffP25": 55.75,
-      "cutoffMedian": 57.22,
+      "cutoffP25": 55.71,
+      "cutoffMedian": 57.57,
       "cutoffMax": 71.71,
       "coverage": 0.986,
       "confidence": "high"
@@ -552,17 +552,17 @@
       "confidence": "high"
     },
     "media_journalism": {
-      "competitiveOfferings": 37,
+      "competitiveOfferings": 19,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 46,
+      "privateOfferings": 31,
       "statedPrivateMinCount": 0,
-      "unknownOfferings": 2,
-      "suspendedOfferings": 3,
+      "unknownOfferings": 0,
+      "suspendedOfferings": 1,
       "cutoffMin": 60,
       "cutoffP25": 60,
       "cutoffMedian": 60.14,
       "cutoffMax": 86.29,
-      "coverage": 0.949,
+      "coverage": 1,
       "confidence": "high"
     },
     "fine_arts": {
@@ -692,18 +692,18 @@
       "confidence": "low"
     },
     "prosthetics_tech": {
-      "competitiveOfferings": 6,
+      "competitiveOfferings": 5,
       "directAdmissionOfferings": 0,
       "privateOfferings": 0,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 6,
       "suspendedOfferings": 0,
       "cutoffMin": 75,
-      "cutoffP25": 80.68,
-      "cutoffMedian": 86,
+      "cutoffP25": 82.71,
+      "cutoffMedian": 89.29,
       "cutoffMax": 95.29,
-      "coverage": 0.5,
-      "confidence": "high"
+      "coverage": 0.455,
+      "confidence": "medium"
     },
     "emergency_medical_tech": {
       "competitiveOfferings": 3,
@@ -832,17 +832,17 @@
       "confidence": "high"
     },
     "control_automation_engineering": {
-      "competitiveOfferings": 12,
+      "competitiveOfferings": 7,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 6,
+      "privateOfferings": 2,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 2,
       "suspendedOfferings": 0,
       "cutoffMin": 64,
-      "cutoffP25": 86.82,
-      "cutoffMedian": 90.43,
-      "cutoffMax": 96,
-      "coverage": 0.857,
+      "cutoffP25": 76.15,
+      "cutoffMedian": 90,
+      "cutoffMax": 95,
+      "coverage": 0.778,
       "confidence": "high"
     },
     "communications_engineering": {
@@ -930,17 +930,17 @@
       "confidence": "medium"
     },
     "environmental_engineering": {
-      "competitiveOfferings": 35,
+      "competitiveOfferings": 22,
       "directAdmissionOfferings": 0,
-      "privateOfferings": 12,
+      "privateOfferings": 1,
       "statedPrivateMinCount": 0,
-      "unknownOfferings": 5,
+      "unknownOfferings": 0,
       "suspendedOfferings": 0,
       "cutoffMin": 51.29,
-      "cutoffP25": 63,
-      "cutoffMedian": 70.71,
-      "cutoffMax": 91,
-      "coverage": 0.875,
+      "cutoffP25": 60.75,
+      "cutoffMedian": 64,
+      "cutoffMax": 89,
+      "coverage": 1,
       "confidence": "high"
     },
     "geology_earth_science": {
@@ -1032,13 +1032,13 @@
       "directAdmissionOfferings": 0,
       "privateOfferings": 10,
       "statedPrivateMinCount": 0,
-      "unknownOfferings": 3,
+      "unknownOfferings": 2,
       "suspendedOfferings": 0,
       "cutoffMin": 55,
       "cutoffP25": 55,
       "cutoffMedian": 60,
       "cutoffMax": 91.29,
-      "coverage": 0.813,
+      "coverage": 0.867,
       "confidence": "high"
     },
     "archaeology": {
@@ -1098,7 +1098,7 @@
       "confidence": "high"
     },
     "information_systems": {
-      "competitiveOfferings": 14,
+      "competitiveOfferings": 13,
       "directAdmissionOfferings": 0,
       "privateOfferings": 1,
       "statedPrivateMinCount": 0,
@@ -1108,7 +1108,7 @@
       "cutoffP25": 60,
       "cutoffMedian": 60,
       "cutoffMax": 81.43,
-      "coverage": 0.933,
+      "coverage": 0.929,
       "confidence": "high"
     },
     "financial_banking": {
@@ -1224,15 +1224,15 @@
       "confidence": "high"
     },
     "prosthetics_engineering": {
-      "competitiveOfferings": 4,
+      "competitiveOfferings": 3,
       "directAdmissionOfferings": 0,
       "privateOfferings": 2,
       "statedPrivateMinCount": 0,
       "unknownOfferings": 0,
       "suspendedOfferings": 0,
       "cutoffMin": 75,
-      "cutoffP25": 78.75,
-      "cutoffMedian": 87.47,
+      "cutoffP25": 84.97,
+      "cutoffMedian": 94.95,
       "cutoffMax": 95.29,
       "coverage": 1,
       "confidence": "medium"

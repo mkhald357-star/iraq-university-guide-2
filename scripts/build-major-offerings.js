@@ -19,7 +19,7 @@ const universities = universitiesFile.universities;
 const mappingFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_department_mapping.json"), "utf8"));
 const mappings = mappingFile.mappings;
 
-const { normalizeArabicText } = require("./departmentNormalizer");
+const { normalizeForPatternMatch } = require("./departmentNormalizer");
 
 function stripCollegePrefix(name) {
   return (name || "").replace(/^(كلية|كليات|معهد|المعهد)\s+/, "").trim() || name;
@@ -37,17 +37,17 @@ function matchMajorToDepartment(major, departmentName, mapping) {
   ) {
     return { isMatch: false, confidence: 0 };
   }
-  const depNorm = normalizeArabicText(departmentName);
-  const majorNameNorm = normalizeArabicText(major.name);
-  const mappingNameNorm = normalizeArabicText(mapping.majorName);
+  const depNorm = normalizeForPatternMatch(departmentName);
+  const majorNameNorm = normalizeForPatternMatch(major.name);
+  const mappingNameNorm = normalizeForPatternMatch(mapping.majorName);
   let score = 0;
   if (depNorm === majorNameNorm || depNorm === mappingNameNorm) {
     score = 100;
-  } else if (mapping.aliases.some((alias) => normalizeArabicText(alias) === depNorm)) {
+  } else if (mapping.aliases.some((alias) => normalizeForPatternMatch(alias) === depNorm)) {
     score = 85;
   } else {
     const matchingPatterns = mapping.departmentPatterns.filter((pattern) =>
-      depNorm.includes(normalizeArabicText(pattern))
+      depNorm.includes(normalizeForPatternMatch(pattern))
     );
     if (matchingPatterns.length > 1) score = 75;
     else if (matchingPatterns.length === 1) score = 60;

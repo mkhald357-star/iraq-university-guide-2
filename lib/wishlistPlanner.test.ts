@@ -332,24 +332,27 @@ describe("تحقّق بيانات حقيقية: كل حدّ في public/data/maj
   });
 });
 
-describe("قبول مباشر حكومي على بيانات حقيقية (الإصدار 2، عائق المدقّق)", () => {
-  it("لا عرض حكومي يُصنَّف مريحاً لمعدل 55 إلا برقم منشور يفوقه المعدل بالهامش", () => {
+describe("حقيقة القبول الحكومي على بيانات حقيقية (PLAN-ADMISSION-FIX.md)", () => {
+  it("صفر قبول مباشر في الحكومي، ولا عرض بلا رقم منشور يُصنَّف مريحاً", () => {
     const dir = path.join(__dirname, "../public/data/by-branch");
-    let direct = 0;
+    let directGov = 0;
+    let unnotedCount = 0;
     const wronglySafe: string[] = [];
     for (const f of fs.readdirSync(dir)) {
       const offerings = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8")) as UniversityOffering[];
       for (const o of offerings) {
-        if (o.universityType === "أهلية" || !o.isDirectAdmission) continue;
-        direct++;
+        if (o.universityType === "أهلية") continue;
+        if (o.isDirectAdmission) directGov++;
         for (const session of ["صباحي", "مسائي"] as const) {
           const r = classifyOffering({ majorId: "", majorName: "", session, offering: o }, 55);
+          if (r.cutoff === null) unnotedCount++;
           if (r.band === "safe" && (r.cutoff === null || r.cutoff > 55 - SAFE_MARGIN))
             wronglySafe.push(`${o.departmentName}/${session}`);
         }
       }
     }
-    expect(direct).toBeGreaterThan(0);
+    expect(directGov).toBe(0);
+    expect(unnotedCount).toBeGreaterThan(0);
     expect(wronglySafe).toEqual([]);
   });
 });

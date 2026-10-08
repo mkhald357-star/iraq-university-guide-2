@@ -232,11 +232,9 @@ export default function WishlistPage() {
                           ? o.statedMinimumGrade?.value != null
                             ? privateStatedMin(o.statedMinimumGrade.value)
                             : PRIVATE_NO_PUBLISHED_MIN
-                          : o.isDirectAdmission
-                            ? "(مباشر)"
-                            : grade !== null
-                              ? `${grade}%`
-                              : ""}
+                          : grade !== null
+                            ? `${grade}%`
+                            : "(بلا حدّ منشور)"}
                       </button>
                     );
                   })}

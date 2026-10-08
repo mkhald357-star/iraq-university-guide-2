@@ -19,14 +19,10 @@ const universities = universitiesFile.universities;
 const mappingFile = JSON.parse(fs.readFileSync(path.join(ROOT, "data/major_department_mapping.json"), "utf8"));
 const mappings = mappingFile.mappings;
 
-function normalizeArabic(text) {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[أإآ]/g, "ا")
-    .replace(/(^|\s)ال/g, "$1")
-    .replace(/ا/g, "")
-    .replace(/\s+/g, "");
+const { normalizeArabicText } = require("./departmentNormalizer");
+
+function stripCollegePrefix(name) {
+  return (name || "").replace(/^(كلية|كليات|معهد|المعهد)\s+/, "").trim() || name;
 }
 
 function startsWithAnyPrefix(departmentName, prefixes) {
@@ -41,16 +37,18 @@ function matchMajorToDepartment(major, departmentName, mapping) {
   ) {
     return { isMatch: false, confidence: 0 };
   }
-  const depNorm = normalizeArabic(departmentName);
-  const majorNameNorm = normalizeArabic(major.name);
-  const mappingNameNorm = normalizeArabic(mapping.majorName);
+  const depNorm = normalizeArabicText(departmentName);
+  const majorNameNorm = normalizeArabicText(major.name);
+  const mappingNameNorm = normalizeArabicText(mapping.majorName);
   let score = 0;
   if (depNorm === majorNameNorm || depNorm === mappingNameNorm) {
     score = 100;
-  } else if (mapping.aliases.some((alias) => normalizeArabic(alias) === depNorm)) {
+  } else if (mapping.aliases.some((alias) => normalizeArabicText(alias) === depNorm)) {
     score = 85;
   } else {
-    const matchingPatterns = mapping.departmentPatterns.filter((pattern) => depNorm.includes(normalizeArabic(pattern)));
+    const matchingPatterns = mapping.departmentPatterns.filter((pattern) =>
+      depNorm.includes(normalizeArabicText(pattern))
+    );
     if (matchingPatterns.length > 1) score = 75;
     else if (matchingPatterns.length === 1) score = 60;
   }
@@ -69,8 +67,15 @@ function findUniversitiesForMajor(major, mapping) {
   for (const uni of universities) {
     for (const college of uni.colleges) {
       for (const dept of college.departments) {
-        const { isMatch, confidence } = matchMajorToDepartment(major, dept.name, m);
-        if (isMatch) {
+        let matchRes = matchMajorToDepartment(major, dept.name, m);
+        if (!matchRes.isMatch && (dept.name === "عام" || dept.isCollegeLevelProgram)) {
+          const collegeStripped = stripCollegePrefix(college.name);
+          const fallbackRes = matchMajorToDepartment(major, collegeStripped, m);
+          if (fallbackRes.isMatch) {
+            matchRes = fallbackRes;
+          }
+        }
+        if (matchRes.isMatch) {
           offerings.push({
             universityId: uni.id,
             universityName: uni.name,
@@ -86,7 +91,7 @@ function findUniversitiesForMajor(major, mapping) {
             cutoffs: dept.cutoffs,
             isDirectAdmission: dept.isDirectAdmission,
             statedMinimumGrade: dept.statedMinimumGrade ?? null,
-            confidence,
+            confidence: matchRes.confidence,
             // أهلية فقط، undefined->null دائماً للحكومية (غياب بنيوي مقصود --
             // القبول الحكومي مركزي بلا أجر مماثل). راجع data/admission_rules.md §41.
             tuitionFees: dept.tuitionFees ?? null,

@@ -47,11 +47,9 @@ export default function WishRow({
             ? wish.offering.statedMinimumGrade?.value != null
               ? privateStatedMin(wish.offering.statedMinimumGrade.value)
               : PRIVATE_NO_PUBLISHED_MIN
-            : wish.offering.isDirectAdmission
-              ? "قبول مباشر"
-              : wish.cutoff === null
-                ? "بلا حدّ منشور"
-                : `الحد ${wish.cutoff}% · ${wish.margin! >= 0 ? "+" : ""}${wish.margin}`}
+            : wish.cutoff === null
+              ? "لا حدّ منشور"
+              : `الحد ${wish.cutoff}% · ${wish.margin! >= 0 ? "+" : ""}${wish.margin}`}
         </div>
       </div>
 

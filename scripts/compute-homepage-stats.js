@@ -30,6 +30,8 @@ let directAdmissionDepartments = 0;
 // الادّعاء "بلا حدّ قبول تنافسي" مضلِّلاً لمعظم الأهلي (الحدّ قد يكون منشوراً
 // وغير مُستخرَج بعد، أو غير منشور أصلاً -- لا "لا حدّ" كالحكومي).
 let directAdmissionDepartmentsGov = 0;
+let publishedDepartmentsGov = 0;
+let noPublishedCutoffDepartmentsGov = 0;
 let governmentDepartments = 0;
 const branchCounts = { علمي: 0, أدبي: 0, فنون: 0 };
 
@@ -49,6 +51,8 @@ for (const uni of universities) {
       if (uni.type === "حكومية") {
         governmentDepartments++;
         if (dept.isDirectAdmission) directAdmissionDepartmentsGov++;
+        if (dept.admissionStatus === "published") publishedDepartmentsGov++;
+        if (dept.admissionStatus === "noPublishedCutoff") noPublishedCutoffDepartmentsGov++;
       }
       for (const b of dept.branch) {
         if (branchCounts[b] !== undefined) branchCounts[b]++;
@@ -76,6 +80,8 @@ const stats = {
   directAdmissionDepartments,
   governmentDepartments,
   directAdmissionDepartmentsGov,
+  publishedDepartmentsGov,
+  noPublishedCutoffDepartmentsGov,
   branchCounts,
   morningMin,
   morningMax,

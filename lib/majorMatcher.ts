@@ -148,21 +148,14 @@ export interface UniversityOffering {
  * إسقاط الألف من الجهتين قبل المقارنة يجعل المطابقة متينة أمام هذا الخلل
  * دون الحاجة لتكرار كل صيغة تالفة يدوياً في قاموس المطابقة.
  */
+import { normalizeArabicText } from "./departmentNormalizer";
+
+function stripCollegePrefix(name: string): string {
+  return (name || "").replace(/^(كلية|كليات|معهد|المعهد)\s+/, "").trim() || name;
+}
+
 function normalizeArabic(text: string): string {
-  return (
-    text
-      .toLowerCase()
-      .trim()
-      .replace(/[أإآ]/g, "ا")
-      // احذف "أل" التعريف من بداية كل كلمة *قبل* حذف الألف عموماً أدناه —
-      // وإلا يبقى "ل" متيتّم من "ال" في نسخة القسم المُعرَّفة ("التصميم
-      // الداخلي") لا نظير له في نسخة التخصص غير المُعرَّفة ("تصميم داخلي")،
-      // فتفشل المطابقة رغم تطابق المعنى تماماً (رُصد فعلياً: "الداخلي" تصبح
-      // "لدخلي" بعد حذف الألف فقط، بينما "داخلي" تصبح "دخلي" — لا تطابق).
-      .replace(/(^|\s)ال/g, "$1")
-      .replace(/ا/g, "")
-      .replace(/\s+/g, "")
-  );
+  return normalizeArabicText(text);
 }
 
 /**
@@ -262,9 +255,16 @@ export function findUniversitiesForMajor(
 
     for (const college of uni.colleges) {
       for (const dept of college.departments) {
-        const { isMatch, confidence } = matchMajorToDepartment(major, dept.name, mapping);
+        let matchRes = matchMajorToDepartment(major, dept.name, mapping);
+        if (!matchRes.isMatch && (dept.name === "عام" || (dept as any).isCollegeLevelProgram)) {
+          const collegeStripped = stripCollegePrefix(college.name);
+          const fallbackRes = matchMajorToDepartment(major, collegeStripped, mapping);
+          if (fallbackRes.isMatch) {
+            matchRes = fallbackRes;
+          }
+        }
 
-        if (isMatch) {
+        if (matchRes.isMatch) {
           offerings.push({
             universityId: uni.id,
             universityName: uni.name,
@@ -279,7 +279,7 @@ export function findUniversitiesForMajor(
             averageGrades: dept.averageGrades,
             cutoffs: dept.cutoffs,
             isDirectAdmission: dept.isDirectAdmission,
-            confidence,
+            confidence: matchRes.confidence,
             tuitionFees: dept.tuitionFees ?? undefined,
             admissionSuspended: dept.admissionSuspended ?? false,
           });

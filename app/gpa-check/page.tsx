@@ -155,7 +155,6 @@ export default function GpaCheckPage() {
       if (min == null) return { ok: false, gap: Infinity };
       return { ok: grade >= min, gap: min - grade };
     }
-    if (o.isDirectAdmission) return { ok: true, gap: -Infinity };
     const cutoff = o.averageGrades[sess];
     if (cutoff == null) return { ok: false, gap: Infinity };
     return { ok: grade >= cutoff, gap: cutoff - grade };

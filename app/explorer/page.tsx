@@ -29,7 +29,6 @@ function effectiveMinCutoff(o: ExplorerOffering): number {
   if (o.universityType === "أهلية") {
     return o.statedMinimumGrade?.value ?? Infinity;
   }
-  if (o.isDirectAdmission) return -Infinity;
   const values = [o.averageGrades["صباحي"], o.averageGrades["مسائي"]].filter((v): v is number => v !== null);
   return values.length > 0 ? Math.min(...values) : Infinity;
 }

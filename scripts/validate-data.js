@@ -30,6 +30,7 @@ const DepartmentSchema = z.object({
     مسائي: z.number().nullable(),
   }),
   isDirectAdmission: z.boolean(),
+  admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),
   // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها
   // الدليل الرسمي لأجور الجامعات والكليات الأهلية 2025-2026. اختيارية لأن
   // الجامعات الحكومية بلا أجور دراسة مركزية مماثلة (القبول تنافسي بلا رسوم).
@@ -226,7 +227,9 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     for (const college of uni.colleges) {
       for (const dept of college.departments) {
         if (dept.isDirectAdmission) continue;
+        if (dept.admissionStatus === "noPublishedCutoff") continue;
         for (const session of dept.sessions) {
+          if (session === "صباحي" && dept.cutoffs.length === 0) continue;
           if (dept.averageGrades[session] == null) {
             missingCompetitiveGrades.push(`${uni.name} / ${college.name} / ${dept.name} / ${session}`);
           }
@@ -242,6 +245,143 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     hasErrors = true;
   } else {
     console.log("[OK] كل الأقسام التنافسية تحمل رقماً حقيقياً لكل جلسة مذكورة");
+  }
+}
+
+// حراس خطة حقيقة القبول (PLAN-ADMISSION-FIX.md §8 وdata/admission_rules.md):
+// 1. لا قبول مباشر في أي قسم حكومي (isDirectAdmission = false دائماً للحكومي)
+// 2. تفريغ data/direct-admission-exceptions.json إلى مصفوفة فارغة تماماً
+// 3. تماسك admissionStatus للحكومي: إما published (له رقم) أو noPublishedCutoff (بلا رقم)
+// 4. اكتمال استيراد مصادر الحدود الخام (cutoffs و evening_study)
+// 5. حالات انحدار مسمّاة (المكامن النفطية = 90، كيمياء التربية الصرفة مسائي، كلية التميز بلا حد منشور)
+{
+  const { universities } = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8"));
+  const exceptionsPath = path.join(ROOT, "data/direct-admission-exceptions.json");
+  const exceptions = fs.existsSync(exceptionsPath) ? JSON.parse(fs.readFileSync(exceptionsPath, "utf8")) : [];
+
+  if (!Array.isArray(exceptions) || exceptions.length !== 0) {
+    console.error("[FAIL] data/direct-admission-exceptions.json يجب أن يكون مصفوفة فارغة تماماً []:", exceptions);
+    hasErrors = true;
+  } else {
+    console.log("[OK] ملف direct-admission-exceptions.json مفرّغ تماماً []");
+  }
+
+  const govDirectDepts = [];
+  const statusIncoherent = [];
+  let govDeptsCount = 0;
+
+  for (const uni of universities) {
+    if (uni.type !== "حكومية") continue;
+    for (const college of uni.colleges) {
+      for (const dept of college.departments) {
+        govDeptsCount++;
+        if (dept.isDirectAdmission === true) {
+          govDirectDepts.push(`${uni.name} / ${college.name} / ${dept.name}`);
+        }
+        if (dept.admissionStatus === "published") {
+          const hasGrade =
+            dept.averageGrades && (dept.averageGrades["صباحي"] != null || dept.averageGrades["مسائي"] != null);
+          if (!hasGrade) {
+            statusIncoherent.push(`${uni.name} / ${college.name} / ${dept.name}: موسوم published بلا أي رقم`);
+          }
+        } else if (dept.admissionStatus === "noPublishedCutoff") {
+          const hasGrade =
+            dept.averageGrades && (dept.averageGrades["صباحي"] != null || dept.averageGrades["مسائي"] != null);
+          if (hasGrade) {
+            statusIncoherent.push(
+              `${uni.name} / ${college.name} / ${dept.name}: موسوم noPublishedCutoff لكن يحمل رقماً`
+            );
+          }
+        } else {
+          statusIncoherent.push(
+            `${uni.name} / ${college.name} / ${dept.name}: حالة admissionStatus غير صالحة (${dept.admissionStatus})`
+          );
+        }
+      }
+    }
+  }
+
+  if (govDirectDepts.length) {
+    console.error(`[FAIL] وُجدت أقسام حكومية تحمل isDirectAdmission=true (${govDirectDepts.length}):`, govDirectDepts);
+    hasErrors = true;
+  } else {
+    console.log(
+      `[OK] صفر قبول مباشر في الجامعات الحكومية (${govDeptsCount} قسماً حكومياً كلها isDirectAdmission=false)`
+    );
+  }
+
+  if (statusIncoherent.length) {
+    console.error("[FAIL] تضارب في admissionStatus للأقسام الحكومية:", statusIncoherent);
+    hasErrors = true;
+  } else {
+    console.log("[OK] تماسك تام لحقل admissionStatus عبر كل الأقسام الحكومية");
+  }
+
+  // اكتمال الاستيراد: التحقق من أن كل صفوف cutoffs_2025_2026.json تنتمي لجامعات حكومية معتمدة
+  const cutoffsRaw = JSON.parse(fs.readFileSync(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"), "utf8"));
+  const eveningRaw = JSON.parse(fs.readFileSync(path.join(ROOT, "data/raw/evening_study_2025_2026.json"), "utf8"));
+  const govUniNames = new Set(universities.filter((u) => u.type === "حكومية").map((u) => u.name));
+  const normKeySimple = (s) => (s || "").replace(/[أإآ]/g, "ا").replace(/ا/g, "").replace(/\s+/g, "").trim();
+  const govUniNorms = new Set([...govUniNames].map(normKeySimple));
+
+  const orphanCutoffs = cutoffsRaw.filter((r) => !govUniNorms.has(normKeySimple(r.university)));
+  const orphanEvening = eveningRaw.filter((r) => !govUniNorms.has(normKeySimple(r.university)));
+
+  if (orphanCutoffs.length || orphanEvening.length) {
+    console.error("[FAIL] أيتام في مصادر الحدود الخام:", {
+      orphanCutoffs: orphanCutoffs.length,
+      orphanEvening: orphanEvening.length,
+    });
+    hasErrors = true;
+  } else {
+    console.log(
+      `[OK] اكتمال استيراد مصادر الحدود الخام: ${cutoffsRaw.length} صباحي و${eveningRaw.length} مسائي مربوطة بالجامعات`
+    );
+  }
+
+  // اختبارات انحدار مسمّاة (Named Regression Assertions)
+  // 1. المكامن النفطية / جامعة الموصل / كلية هندسة النفط والتعدين = 90 وصفر تكرار
+  const mosulUni = universities.find((u) => u.name === "جامعة الموصل");
+  const mosulMining = mosulUni?.colleges?.find((c) => c.name === "كلية هندسة النفط والتعدين");
+  const reservoirsDept = mosulMining?.departments?.find((d) => d.name === "قسم المكامن النفطية");
+  const dupeReservoirs = mosulMining?.departments?.find((d) => d.name === "قسم هندسة المكامن النفطية");
+
+  if (!reservoirsDept || reservoirsDept.averageGrades?.["صباحي"] !== 90 || dupeReservoirs) {
+    console.error("[FAIL] انحدار في حالة المكامن النفطية / جامعة الموصل:", {
+      found: !!reservoirsDept,
+      grade: reservoirsDept?.averageGrades?.["صباحي"],
+      dupeExists: !!dupeReservoirs,
+    });
+    hasErrors = true;
+  } else {
+    console.log("[OK] فحص انحدار المكامن النفطية / الموصل: المعدل 90 وصفر تكرار");
+  }
+
+  // 2. الكيمياء / جامعة بغداد / كلية التربية للعلوم الصرفة = مسائي وليس مباشراً
+  const baghdadUni = universities.find((u) => u.name === "جامعة بغداد");
+  const pureScience = baghdadUni?.colleges?.find((c) => c.name.includes("التربية للعلوم الصرفة"));
+  const chemistryDept = pureScience?.departments?.find((d) => d.name.includes("الكيمياء"));
+  if (!chemistryDept || chemistryDept.isDirectAdmission || chemistryDept.averageGrades?.["مسائي"] == null) {
+    console.error("[FAIL] انحدار في كيمياء التربية للعلوم الصرفة / جامعة بغداد:", {
+      found: !!chemistryDept,
+      isDirectAdmission: chemistryDept?.isDirectAdmission,
+      eveningGrade: chemistryDept?.averageGrades?.["مسائي"],
+    });
+    hasErrors = true;
+  } else {
+    console.log("[OK] فحص انحدار كيمياء التربية للعلوم الصرفة / بغداد: رقم مسائي وليس مباشراً");
+  }
+
+  // 3. كلية التميز / جامعة بغداد = noPublishedCutoff
+  const tamayuzCollege = baghdadUni?.colleges?.find((c) => c.name === "كلية التميز");
+  const invalidTamayuz = tamayuzCollege?.departments?.filter(
+    (d) => d.admissionStatus !== "noPublishedCutoff" || d.isDirectAdmission || d.averageGrades?.["صباحي"] != null
+  );
+  if (!tamayuzCollege || (invalidTamayuz && invalidTamayuz.length > 0)) {
+    console.error("[FAIL] انحدار في كلية التميز / جامعة بغداد:", invalidTamayuz);
+    hasErrors = true;
+  } else {
+    console.log(`[OK] فحص انحدار كلية التميز / بغداد: كل أقسامها (${tamayuzCollege.departments.length}) بلا حدّ منشور`);
   }
 }
 

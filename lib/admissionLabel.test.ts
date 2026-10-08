@@ -1,31 +1,24 @@
 import { describe, it, expect } from "vitest";
-import { formatGrade, admissionCell } from "./admissionLabel";
+import { formatGrade, admissionCell, GOV_NO_PUBLISHED_CUTOFF } from "./admissionLabel";
 import universities from "../data/universities.json";
 
-describe("formatGrade -- لا تخلط بين 'قبول مباشر' و'بيانات مفقودة'", () => {
-  it("قسم بقبول مباشر حقيقي يعرض 'قبول مباشر' حتى لو كانت القيمة null", () => {
-    expect(formatGrade(null, true, true)).toEqual({ text: "قبول مباشر", isDirect: true });
-  });
-
-  it("قسم تنافسي (isDirectAdmission=false) بقيمة null يعرض 'غير متوفر' -- لا 'قبول مباشر'", () => {
-    expect(formatGrade(null, true, false)).toEqual({ text: "غير متوفر", isDirect: false });
-  });
-
-  it("قسم تنافسي بقيمة حقيقية يعرض النسبة", () => {
+describe("formatGrade -- الرقم أولاً، ولا قبول مباشر للحكومي (PLAN-ADMISSION-FIX.md)", () => {
+  it("قسم بقيمة حقيقية يعرض النسبة دائماً حتى لو كانت هناك راية مباشر قديمة (الرقم أولاً)", () => {
     expect(formatGrade(78.5, true, false)).toEqual({ text: "78.5%", isDirect: false });
+    expect(formatGrade(60, true, true)).toEqual({ text: "60%", isDirect: false });
   });
 
-  it("جلسة غير متاحة أصلاً تعرض شرطة بصرف النظر عن isDirectAdmission", () => {
+  it("قسم بلا رقم متاح يعرض 'لا حدّ منشور في دليل 2025-2026'", () => {
+    expect(formatGrade(null, true, false)).toEqual({ text: GOV_NO_PUBLISHED_CUTOFF, isDirect: false });
+  });
+
+  it("جلسة غير متاحة أصلاً تعرض شرطة بصرف النظر عن أي راية", () => {
     expect(formatGrade(null, false, false)).toEqual({ text: "—", isDirect: false });
     expect(formatGrade(null, false, true)).toEqual({ text: "—", isDirect: false });
   });
-
-  it("قسم بقبول مباشر ورقم موجود (حالة مسائي المُشتقّة من eveningMinGradeFor) يعرض 'قبول مباشر' لا الرقم -- القبول المباشر أولوية دلالية أعلى من أي رقم مصاحب", () => {
-    expect(formatGrade(60, true, true)).toEqual({ text: "قبول مباشر", isDirect: true });
-  });
 });
 
-describe("admissionCell -- الأهلي لا يعرض 'قبول مباشر' إطلاقاً (data/admission_rules.md §28)", () => {
+describe("admissionCell -- لا قبول مباشر في أي قسم حكومي أو أهلي (PLAN-ADMISSION-FIX.md)", () => {
   it("أهلي بشرط معدّل معلَن يعرض الشرط، لا 'قبول مباشر'", () => {
     expect(admissionCell("أهلية", true, true, null, { value: 90 })).toEqual({
       text: "يشترط معدل 90% فأكثر",
@@ -33,7 +26,7 @@ describe("admissionCell -- الأهلي لا يعرض 'قبول مباشر' إط
     });
   });
 
-  it("أهلي بلا شرط معلَن يعرض 'الحدّ الأدنى غير متوفّر' -- لا 'قبول مباشر' رغم isDirectAdmission=true", () => {
+  it("أهلي بلا شرط معلَن يعرض 'الحدّ الأدنى غير متوفّر' -- لا 'قبول مباشر'", () => {
     expect(admissionCell("أهلية", true, true, null, null)).toEqual({
       text: "الحدّ الأدنى غير متوفّر",
       tone: "unstated",
@@ -44,23 +37,26 @@ describe("admissionCell -- الأهلي لا يعرض 'قبول مباشر' إط
     expect(admissionCell("أهلية", false, true, null, { value: 90 })).toEqual({ text: "—", tone: "none" });
   });
 
-  it("حكومي بقبول مباشر حقيقي يعرض 'قبول مباشر' كالسابق تماماً -- لم يتغيّر سلوك الحكومي", () => {
-    expect(admissionCell("حكومية", true, true, null, null)).toEqual({ text: "قبول مباشر", tone: "direct" });
-  });
-
-  it("حكومي تنافسي بقيمة حقيقية يعرض النسبة كالسابق", () => {
+  it("حكومي برقم معلن يعرض النسبة دائماً", () => {
     expect(admissionCell("حكومية", true, false, 78.5, null)).toEqual({ text: "78.5%", tone: "competitive" });
   });
 
-  it("حكومي تنافسي بقيمة null يعرض 'غير متوفر' كالسابق", () => {
-    expect(admissionCell("حكومية", true, false, null, null)).toEqual({ text: "غير متوفر", tone: "unstated" });
+  it("حكومي بلا رقم منشور يعرض 'لا حدّ منشور في دليل 2025-2026' ولا يعرض 'قبول مباشر' أبداً", () => {
+    expect(admissionCell("حكومية", true, false, null, null)).toEqual({
+      text: GOV_NO_PUBLISHED_CUTOFF,
+      tone: "unstated",
+    });
+    // حتى لو كانت الراية القديمة true خطأً:
+    expect(admissionCell("حكومية", true, true, null, null)).toEqual({
+      text: GOV_NO_PUBLISHED_CUTOFF,
+      tone: "unstated",
+    });
   });
 
-  it("فحص بنيوي على بيانات حقيقية: لا قسم أهلي واحد ينتج 'قبول مباشر' عبر admissionCell", () => {
+  it("فحص بنيوي شامل على كل أقسام universities.json: صفر قبول مباشر في الحكومي والأهلي عبر admissionCell", () => {
     const list: any[] = Array.isArray(universities) ? universities : (universities as any).universities;
     const offenders: string[] = [];
     for (const u of list) {
-      if (u.type !== "أهلية") continue;
       for (const c of u.colleges || []) {
         for (const d of c.departments || []) {
           for (const session of ["صباحي", "مسائي"] as const) {

@@ -1,28 +1,25 @@
 import { PRIVATE_NO_PUBLISHED_MIN, privateStatedMin } from "./admissionDisclosure";
 
+export const GOV_NO_PUBLISHED_CUTOFF = "لا حدّ منشور في دليل 2025-2026";
+
 /**
- * "قبول مباشر" يُشتَقّ حصراً من isDirectAdmission (الحقل الحقيقي المحسوب في
- * scripts/build-universities-data.js من طول مصفوفة cutoffs الفعلية) -- لا من
- * فراغ القيمة. فراغ القيمة بدون isDirectAdmission يعني بيانات مفقودة فعلياً
- * (فجوة استخراج)، لا قبولاً مباشراً، وهذان معنيان متناقضان تماماً لا يجوز
- * دمجهما (انظر data/admission_rules.md §17). دالة مستقلة (لا داخل مكوّن React)
- * لتبقى قابلة للاختبار المباشر بلا حاجة لبنية اختبار مكوّنات جديدة.
+ * لا يوجد قبول مباشر في أي قسم حكومي (PLAN-ADMISSION-FIX.md).
+ * كل قسم حكومي إما له رقم تنافسي منشور رسمياً أو "لا حدّ منشور في دليل 2025-2026".
+ * دالة مستقلة لتبقى قابلة للاختبار المباشر.
  */
-export function formatGrade(value: number | null | undefined, sessionAvailable: boolean, isDirectAdmission: boolean) {
+export function formatGrade(value: number | null | undefined, sessionAvailable: boolean, isDirectAdmission?: boolean) {
   if (!sessionAvailable) return { text: "—", isDirect: false };
+  if (value != null) return { text: `${value}%`, isDirect: false };
   if (isDirectAdmission) return { text: "قبول مباشر", isDirect: true };
-  if (value == null) return { text: "غير متوفر", isDirect: false };
-  return { text: `${value}%`, isDirect: false };
+  return { text: GOV_NO_PUBLISHED_CUTOFF, isDirect: false };
 }
 
 export type AdmissionCellTone = "direct" | "stated" | "unstated" | "competitive" | "none";
 
 /**
- * خلية عرض حدّ القبول -- تفرّع حسب نوع الجامعة (data/admission_rules.md §28).
- * الحكومي: كما formatGrade تماماً (isDirectAdmission يعني غياب منافسة حقيقي
- * مؤكَّد بـcutoffs.length===0). الأهلي: "قبول مباشر" غير دقيق بنيوياً (الدليل
- * ينشر شرط معدّل انتقائياً) -- إمّا شرط معلَن (statedMinimumGrade) أو "الحدّ
- * الأدنى غير متوفّر"، أبداً "قبول مباشر".
+ * خلية عرض حدّ القبول -- تفرّع حسب نوع الجامعة (PLAN-ADMISSION-FIX.md وdata/admission_rules.md §28).
+ * الأهلي: شرط معلَن (statedMinimumGrade) أو "الحدّ الأدنى غير متوفّر".
+ * الحكومي: الرقم منشوراً (XX%) أو "لا حدّ منشور في دليل 2025-2026". لا مسار يُنتج "قبول مباشر" لحكومي إطلاقاً.
  */
 export function admissionCell(
   universityType: string | undefined,
@@ -40,7 +37,10 @@ export function admissionCell(
     return { text: PRIVATE_NO_PUBLISHED_MIN, tone: "unstated" };
   }
 
-  if (isDirectAdmission) return { text: "قبول مباشر", tone: "direct" };
-  if (averageValue == null) return { text: "غير متوفر", tone: "unstated" };
-  return { text: `${averageValue}%`, tone: "competitive" };
+  // حكومي: الرقم أولاً، ولا قبول مباشر في أي قسم حكومي إطلاقاً
+  if (averageValue != null) {
+    return { text: `${averageValue}%`, tone: "competitive" };
+  }
+
+  return { text: GOV_NO_PUBLISHED_CUTOFF, tone: "unstated" };
 }

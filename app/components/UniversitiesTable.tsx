@@ -53,7 +53,12 @@ function cellTitle(tone: string) {
 export default function UniversitiesTable({ offerings }: UniversitiesTableProps) {
   const pathname = usePathname();
   const reportIssue = useReportIssue();
-  const hasAnyDirectAdmission = offerings.some((o) => o.universityType !== "أهلية" && o.isDirectAdmission);
+  const hasAnyNoPublishedCutoff = offerings.some(
+    (o) =>
+      o.universityType !== "أهلية" &&
+      ((o.sessions?.includes("صباحي") && o.averageGrades?.["صباحي"] == null) ||
+        (o.sessions?.includes("مسائي") && o.averageGrades?.["مسائي"] == null))
+  );
   const hasAnyPrivate = offerings.some((o) => o.universityType === "أهلية");
   const hasMajorColumn = offerings.some((o) => !!o.majorName);
 
@@ -153,10 +158,10 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
           })}
         </tbody>
       </table>
-      {hasAnyDirectAdmission && (
+      {hasAnyNoPublishedCutoff && (
         <p className="text-xs text-ink-muted mt-2">
-          <span className="text-band-safe font-bold">قبول مباشر</span>: لا يوجد حدّ قبول تنافسي مُعلَن لهذا القسم ضمن
-          الدليل الرسمي — أي طالب مؤهَّل بفرعه يُقبَل دون منافسة على المعدل، وهذا ليس نقصاً في البيانات.
+          <span className="text-ink-muted font-bold">لا حدّ منشور في دليل 2025-2026</span>: لم يرد لهذا القسم حدّ قبول
+          تنافسي منشور في ملف الحدود الدنيا الرسمي لهذا العام (مثل الأقسام المستحدثة أو المستثناة مركزياً).
         </p>
       )}
       {hasAnyPrivate && (

@@ -9,6 +9,7 @@ const fs = require("fs");
 const path = require("path");
 const { toDisplayName, normalizeForDedupMatch } = require("./displayName");
 const { parseStatedMinimum } = require("./departmentNameHealth");
+const { normalizeDepartmentKey } = require("./departmentNormalizer");
 const SOURCES = require("./admissionSources");
 
 const ROOT = path.join(__dirname, "..");
@@ -203,6 +204,25 @@ const COLLEGE_NAME_ALIASES = {
   "جامعة النهرين": {
     "كلية اقتصاديات": "كلية اقتصاديات االعمال",
   },
+  "الجامعة التكنولوجية": {
+    "كلية هندسة االنتاج والمعادن": "كلية هندسة الإنتاج والمعادن",
+  },
+  "جامعة المثنى": {
+    "كلية التربية": "كلية التربية للعلوم االنسانية",
+  },
+};
+
+const DEPARTMENT_NAME_ALIASES = {
+  "جامعة المثنى": {
+    "كلية التربية للعلوم االنسانية": {
+      "قسم اللغة الإنكليزية": "قسم اللغة االنكليزية",
+    },
+  },
+  "جامعة الفلوجة": {
+    "كلية التربية": {
+      "قسم اللغة اإلنكليزية": "قسم اللغة االنكليزية",
+    },
+  },
 };
 
 // حالات نادرة إضافية حيث المفتاح المبتور نفسه يخصّ أكثر من كلية حقيقية،
@@ -321,7 +341,11 @@ for (const row of cutoffs) {
     continue;
   }
   const college = getCollege(uni, row.college, row.department);
-  const dept = getDept(college, row.department, row.college);
+  const resolvedDept =
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
+    row.department;
+  const dept = getDept(college, resolvedDept, row.college);
   dept.sessions.add("صباحي");
   dept.cutoffs.push({
     branch: row.branch,
@@ -338,7 +362,11 @@ for (const row of evening) {
     continue;
   }
   const college = getCollege(uni, row.college, row.department);
-  const dept = getDept(college, row.department, row.college);
+  const resolvedDept =
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
+    row.department;
+  const dept = getDept(college, resolvedDept, row.college);
   dept.sessions.add("مسائي");
   const grade = eveningMinGradeFor(row.college);
   if (dept.eveningMinGrade === null || grade < dept.eveningMinGrade) dept.eveningMinGrade = grade;
@@ -358,7 +386,11 @@ for (const row of chapter3Additions) {
     continue;
   }
   const college = getCollege(uni, row.college);
-  const dept = getDept(college, row.department, row.college);
+  const resolvedDept =
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
+    DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
+    row.department;
+  const dept = getDept(college, resolvedDept, row.college);
   dept.sessions.add("صباحي");
   (row.branch || []).forEach((b) => dept.directBranches.add(b));
 }
@@ -481,12 +513,86 @@ for (const u of universities) {
   }
 }
 
+// دمج وحذف الأقسام المكررة والمشوَّهة في الجامعات الحكومية (انظر PLAN-ADMISSION-FIX.md §5 1-أ و1-ب)
+const DEDUPLICATIONS = [
+  {
+    uni: "جامعة الموصل",
+    college: "كلية هندسة النفط والتعدين",
+    remove: "قسم هندسة المكامن النفطية",
+    keep: "قسم المكامن النفطية",
+  },
+  { uni: "جامعة الموصل", college: "كلية هندسة النفط والتعدين", remove: "قسم هندسة التعدين", keep: "قسم التعدين" },
+  {
+    uni: "الجامعة التقنية الشمالية",
+    college: "الكلية التقنية الهندسية",
+    remove: "قسم هندسة تقنيات األجهزة الطبية",
+    keep: "قسم هندسة تقنيات االجهزة الطبية",
+  },
+  {
+    uni: "الجامعة التقنية الشمالية",
+    college: "المعهد التقني الحويجة",
+    remove: "قسم تقنيات األدلة الجنائية",
+    keep: "قسم تقنيات االدلة الجنائية",
+  },
+  {
+    uni: "الجامعة التكنولوجية",
+    college: "كلية هندسة الحاسوب",
+    remove: "واالمن السيبراني",
+    keep: "قسم الشبكات واالمن السيبراني",
+  },
+  {
+    uni: "جامعة الأنبار",
+    college: "كلية الهندسة",
+    remove: "قسم الهندسة الكيمياوية",
+    keep: "قسم الكيميائية والبتروكيميائية",
+  },
+  { uni: "جامعة بابل", college: "كلية الهندسة", remove: "قسم الكهربائية", keep: "قسم الكهرباء" },
+  {
+    uni: "جامعة ذي قار",
+    college: "كلية الهندسة",
+    remove: "قسم الكهرباء والإلكترونيك",
+    keep: "قسم الكهربائية وااللكترونية",
+  },
+  {
+    uni: "جامعة ميسان",
+    college: "كلية الهندسة",
+    remove: "قسم الميكانيك (ميكانيك عام والتصميم والتصنيع)",
+    keep: "قسم الميكانيكية",
+  },
+  { uni: "جامعة الفلوجة", college: "كلية التربية", remove: "قسم اللغة اإلنكليزية", keep: "قسم اللغة االنكليزية" },
+];
+
+for (const { uni: uName, college: cName, remove, keep } of DEDUPLICATIONS) {
+  const uni = universities.find((u) => u.name === uName);
+  if (!uni) continue;
+  const college = uni._collegesMap.get(cName);
+  if (!college) continue;
+  const remDept = college.departmentsMap.get(remove);
+  const keepDept = college.departmentsMap.get(keep);
+  if (remDept && keepDept) {
+    for (const s of remDept.sessions) keepDept.sessions.add(s);
+    for (const b of remDept.directBranches) keepDept.directBranches.add(b);
+    for (const c of remDept.cutoffs) keepDept.cutoffs.push(c);
+    if (
+      remDept.eveningMinGrade !== null &&
+      (keepDept.eveningMinGrade === null || remDept.eveningMinGrade < keepDept.eveningMinGrade)
+    ) {
+      keepDept.eveningMinGrade = remDept.eveningMinGrade;
+    }
+    college.departmentsMap.delete(remove);
+  }
+}
+
 const finalUniversities = universities.map((u) => {
   const colleges = [...u._collegesMap.values()].map((c, cIdx) => {
     const departments = [...c.departmentsMap.values()].map((d) => {
       const nonQuotaCutoffs = d.cutoffs.filter((x) => !x.isQuota);
       const bestMorning = nonQuotaCutoffs.length ? Math.min(...nonQuotaCutoffs.map((x) => x.averagePercent)) : null;
       const branches = [...new Set([...d.cutoffs.map((x) => x.branch), ...d.directBranches])];
+
+      const hasAnyCutoff = bestMorning !== null || d.eveningMinGrade !== null;
+      const admissionStatus = hasAnyCutoff ? "published" : "noPublishedCutoff";
+
       return {
         name: d.name,
         displayName: toDisplayName(d.name),
@@ -494,7 +600,8 @@ const finalUniversities = universities.map((u) => {
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
         averageGrades: { صباحي: bestMorning, مسائي: d.eveningMinGrade },
-        isDirectAdmission: d.cutoffs.length === 0,
+        isDirectAdmission: false, // لا يوجد قبول مباشر في أي قسم حكومي إطلاقاً
+        admissionStatus,
       };
     });
     return {
@@ -534,6 +641,7 @@ function buildPrivateDepartment(d) {
     cutoffs: [],
     averageGrades: { صباحي: null, مسائي: null },
     isDirectAdmission: true,
+    admissionStatus: statedMinimumGrade ? "published" : "noPublishedCutoff",
     statedMinimumGrade,
     tuitionFees: {
       صباحي: typeof d.morningFee === "number" ? d.morningFee : null,
@@ -553,6 +661,7 @@ function makeManualDepartment(m) {
     cutoffs: [],
     averageGrades: { صباحي: null, مسائي: null },
     isDirectAdmission: true,
+    admissionStatus: "noPublishedCutoff",
     statedMinimumGrade: null,
     tuitionFees: { صباحي: null, مسائي: null },
     admissionSuspended: false,

@@ -11,6 +11,7 @@
 
 import type { UniversityOffering } from "./majorMatcher";
 import { classifyOffering } from "./wishlistPlanner";
+import { offeringsForBranch } from "./branchCutoff";
 import type { StudySession } from "./wishlistPlanner";
 
 export interface EligibilityResult {
@@ -49,6 +50,9 @@ export function computeEligibility(
   const allowedBranches = [...new Set(offerings.flatMap((o) => o.departmentBranches))];
   // بلا أي عرض إطلاقاً لهذا التخصص، لا معنى لـ"مؤهَّل" -- لا شيء ليكون مؤهَّلاً له.
   const branchEligible = offerings.length > 0 && allowedBranches.includes(studentBranch);
+  // ما يُقاس عليه معدل الطالب: الأقسام التي تقبل فرعه فقط، كلٌّ بحد فرعه هو
+  // (averageGrades.صباحي هو أدنى حد بين كل الفروع -- lib/branchCutoff.ts).
+  const branchOfferings = offeringsForBranch(offerings, studentBranch);
 
   // **تفويض لا تكرار**: قواعد "هل يبلغه معدل الطالب؟" مصدرها الوحيد
   // classifyOffering في lib/wishlistPlanner.ts (مغطّاة باختباراتها). كانت
@@ -64,7 +68,7 @@ export function computeEligibility(
   // الصباحي بحدّه التنافسي، والمسائي بأرضيته -- وهي حدّ أدنى حقيقي للتقديم على
   // الدراسة المسائية (§8 بند 1: "المسائي خيار احتياطي واقعي")، لا حدّ تنافسي.
   const BAND_RANK = { safe: 0, close: 1, unknown: 2, reach: 3 } as const;
-  const classified = offerings.map((o) => {
+  const classified = branchOfferings.map((o) => {
     const sessions = (o.sessions.length ? o.sessions : ["صباحي"]) as StudySession[];
     const bySession = sessions.map((session) => ({
       session,
@@ -79,7 +83,7 @@ export function computeEligibility(
   const eveningOnlyOffers = classified.filter((c) => c.eveningOnly).map((c) => c.offering);
 
   // الحدّ التنافسي: حكومي غير مباشر بحدّ صباحي منشور فقط.
-  const competitiveCutoffs = offerings
+  const competitiveCutoffs = branchOfferings
     .filter((o) => o.universityType !== "أهلية" && !o.isDirectAdmission && o.averageGrades["صباحي"] !== null)
     .map((o) => o.averageGrades["صباحي"] as number);
   const lowestCutoff = competitiveCutoffs.length > 0 ? Math.min(...competitiveCutoffs) : null;

@@ -29,6 +29,9 @@ const DepartmentSchema = z.object({
     صباحي: z.number().nullable(),
     مسائي: z.number().nullable(),
   }),
+  // الحد الصباحي لكل فرع مقبول (أدنى حد غير حصة لذلك الفرع) -- حكومي فقط. averageGrades.صباحي
+  // هو الأدنى بين كل الفروع فلا يُعرض لطالب فرع بعينه (lib/branchCutoff.ts).
+  morningByBranch: z.record(z.string(), z.number().nullable()).optional(),
   isDirectAdmission: z.boolean(),
   admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),
   // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها

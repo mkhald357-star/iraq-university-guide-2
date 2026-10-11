@@ -18,6 +18,7 @@
     "extract-pdf-text": "node scripts/extract-pdf-text.js",
     "parse-cutoffs": "node scripts/parse-cutoffs.js",
     "parse-evening-study": "node scripts/parse-evening-study.js",
+    "parse-chapter3-branches": "node scripts/parse-chapter3-branches.js",
     "build-universities-data": "node scripts/build-universities-data.js && node scripts/derive-private-branches.js",
     "build-major-offerings": "node scripts/build-major-offerings.js",
     "build-major-profiles": "node scripts/build-major-profiles.js",
@@ -29,7 +30,7 @@
     "personas": "node scripts/run-personas.js",
     "a11y-check": "node scripts/a11y-check.js",
     "snapshot": "node scripts/generate-project-snapshot.js",
-    "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run build-universities-data && npm run build-major-offerings && npm run build-major-admission-index && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data",
+    "rebuild-data": "npm run extract-pdf-text && npm run parse-cutoffs && npm run parse-evening-study && npm run parse-chapter3-branches && npm run build-universities-data && npm run build-major-offerings && npm run build-major-admission-index && npm run build-major-profiles && npm run build-major-skills && npm run build-major-projects && npm run build-major-context && npm run compute-homepage-stats && npm run validate-data",
     "build-major-admission-index": "node scripts/build-major-admission-index.js"
   },
   "dependencies": {

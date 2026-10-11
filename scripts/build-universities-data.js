@@ -11,6 +11,7 @@ const { toDisplayName, normalizeForDedupMatch } = require("./displayName");
 const { parseStatedMinimum } = require("./departmentNameHealth");
 const { normalizeDepartmentKey } = require("./departmentNormalizer");
 const SOURCES = require("./admissionSources");
+const { createGuideLookup } = require("./guideBranches");
 
 const ROOT = path.join(__dirname, "..");
 const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));
@@ -210,6 +211,13 @@ const COLLEGE_NAME_ALIASES = {
   "جامعة المثنى": {
     "كلية التربية": "كلية التربية للعلوم االنسانية",
   },
+  // كلية الآثار (جامعة الموصل): الفصل 3 يكتبها بهمزة ممدودة ("كلية الآثار") بينما
+  // ملف الحدود والمسائي يكتبانها "كلية االثار" -- كيان واحد حقيقي (دليل ص: 42 "االثار"
+  // في الفصل 3 والبند 56 في المسائي)، فكان يُنتج كليتين: واحدة بحدّها الرسمي
+  // وأخرى بأقسامها الثلاثة بلا حد. تصحيح موضعي مُتحقَّق منه (2026-10-11).
+  "جامعة الموصل": {
+    "كلية الآثار": "كلية االثار",
+  },
 };
 
 const DEPARTMENT_NAME_ALIASES = {
@@ -332,6 +340,77 @@ function getDept(college, deptName, collegeNameForFallback) {
   return college.departmentsMap.get(key);
 }
 
+// إصلاح تعدّد الأحرم (2026-10-11، تدقيق صفحات 15-24 من «الحدود الدنيا» صفاً بصف).
+// الدليل يذكر الحرم لكل حد ("الكلية التقنية الهندسية / الموصل" و"/ كركوك") لكن
+// getCollege كان يستلم اسم الكلية وحده فيُدمج الحرمان في سجل واحد: يُخزَّن الحدّان
+// معاً ويُعرض الأدنى (مثال: هندسة تقنيات الأجهزة الطبية: الموصل 84.57 وكركوك 81.57
+// فيظهر 81.57 للحرمين)، والأسوأ أن أقسام الحرم في مصدر المسائي (اسم الكلية بلاحقة
+// "/الحرم") كانت تُنشأ كلية موازية بلا حد صباحي.
+// القاعدتان:
+//  (1) كليات مقسَّمة بالأحرم -- قائمة موضعية مُتحقَّقة (الدليل نفسه يذكر حدّين
+//      لنفس القسم/الفرع/الجنس بحسب الحرم): يُلحَق الحرم باسم الكلية. القيمة هي
+//      الحرم الذي يبقى بلا لاحقة (السجل الأصلي في مصدر المسائي)، وnull = كل الأحرم بلاحقة.
+//  (2) وإلا: إن وُجد في مصدر المسائي سجل كلية بنفس الاسم + "/" + نفس الحرم فتُسنَد إليه
+//      الحدود (كيان واحد بمصدرين) بدل إنشاء كلية موازية بأقسام بلا حد.
+const CAMPUS_SPLIT_COLLEGES = {
+  [normKey("الجامعة التقنية الشمالية")]: {
+    [normKey("الكلية التقنية الهندسية")]: null,
+    [normKey("الكلية التقنية الهندسية للحاسوب والذكاء االصطناعي")]: null,
+    [normKey("المعهد التقني الطبي")]: null,
+  },
+  [normKey("جامعة الفرات الأوسط التقنية")]: {
+    [normKey("الكلية التقنية الصحية والطبية")]: "الكوفة",
+  },
+};
+const eveningSuffixed = new Map(); // جامعة|كلية|حرم -> اسم الكلية كما كُتب في مصدر المسائي
+for (const r of evening) {
+  const parts = (r.college || "").split("/");
+  if (parts.length === 2 && CAMPUS_QUALIFIERS.has(parts[1].trim())) {
+    eveningSuffixed.set([normKey(r.university), normKey(parts[0]), normKey(parts[1])].join("|"), r.college);
+  }
+}
+function campusCollegeName(uni, college, campus) {
+  const split = CAMPUS_SPLIT_COLLEGES[normKey(uni.name)];
+  const key = normKey(college);
+  if (split && Object.prototype.hasOwnProperty.call(split, key)) {
+    const unsuffixed = split[key];
+    return unsuffixed && normKey(unsuffixed) === normKey(campus) ? college : `${college}/${campus}`;
+  }
+  return null;
+}
+function resolveCutoffCollege(uni, row) {
+  const campus = (row.qualifiers || []).find((q) => CAMPUS_QUALIFIERS.has(q));
+  if (!campus) return row.college;
+  return (
+    campusCollegeName(uni, row.college, campus) ||
+    eveningSuffixed.get([normKey(uni.name), normKey(row.college), normKey(campus)].join("|")) ||
+    row.college
+  );
+}
+function resolveEveningCollege(uni, row) {
+  const campus = (row.campusOrTrack || "").trim();
+  if (!campus || !CAMPUS_QUALIFIERS.has(campus) || (row.college || "").includes("/")) return row.college;
+  // مصدر المسائي نفسه يكتب أحياناً الحرم كلاحقة ("كلية التربية /الدواية") وأحياناً كحقل منفصل
+  // (campusOrTrack) لنفس الكلية والحرم -- نوحّدهما في سجل واحد.
+  return (
+    campusCollegeName(uni, row.college, campus) ||
+    eveningSuffixed.get([normKey(uni.name), normKey(row.college), normKey(campus)].join("|")) ||
+    row.college
+  );
+}
+
+// جدول «الفروع المقبولة» من الفصل 3 للدليل (scripts/parse-chapter3-branches.js)، يُطابَق عبر
+// scripts/guideBranches.js بتحفّظ: نفس الكلية ومجموعة فروع واحدة لا لبس فيها؛ غير ذلك = لا
+// معلومة (يبقى السلوك السابق).
+let chapter3Branches = [];
+try {
+  chapter3Branches = require(path.join(ROOT, "data/raw/chapter3_branches.json"));
+} catch (e) {
+  console.warn("[تنبيه] data/raw/chapter3_branches.json غير موجود -- شغّل scripts/parse-chapter3-branches.js");
+}
+const guideBranchesFor = createGuideLookup(chapter3Branches);
+const GUIDE_CONFLICTS = [];
+
 let unmatchedUni = new Set();
 
 for (const row of cutoffs) {
@@ -340,7 +419,7 @@ for (const row of cutoffs) {
     unmatchedUni.add(row.university);
     continue;
   }
-  const college = getCollege(uni, row.college, row.department);
+  const college = getCollege(uni, resolveCutoffCollege(uni, row), row.department);
   const resolvedDept =
     DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
     DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
@@ -361,7 +440,7 @@ for (const row of evening) {
     unmatchedUni.add(row.university);
     continue;
   }
-  const college = getCollege(uni, row.college, row.department);
+  const college = getCollege(uni, resolveEveningCollege(uni, row), row.department);
   const resolvedDept =
     DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
     DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
@@ -418,8 +497,46 @@ for (const u of universities) {
       ([key, d]) => key !== "__COLLEGE_LEVEL__" && d.cutoffs.length === 0
     );
     if (realDeptsWithoutCutoffs.length === 0) continue; // لا قسم حقيقي آخر يحتاج الحد -- أبقِ الكلية بلا تغيير
+    // فروع كل قسم المقبولة: الفصل 3 المضاف يدوياً أولاً، ثم جدول فروع الدليل المفكَّك.
+    const allowedOf = (d) => (d.directBranches.size ? d.directBranches : guideBranchesFor(u, college.name, d.name));
+    // حد كلية لفرع لا يقبله أي من أقسامها في المنصة بحسب الدليل:
+    //  (أ) الدليل يذكر في الكلية قسماً يقبل هذا الفرع لكنه غير موجود في المنصة (مثال: آداب البصرة/
+    //      الفلسفة تقبل الفنون) ⇒ الحد يخص ذلك القسم الغائب، فلا يُنسب لأقسام لا تقبل الفرع.
+    //  (ب) لا قسم في الكلية يقبله بحسب الدليل أصلاً ⇒ تعارض بين الوثيقتين الرسميتين (جدول الحدود
+    //      يثبت قبولاً فعلياً) ⇒ لا يُسقط الرقم الرسمي: يُوزَّع كما كان.
+    // كلاهما يُسجَّل للمراجعة في reports/admission-fix/guide-cutoff-conflicts.json.
+    const guideCollege = guideBranchesFor.collegeBranches(u, college.name);
+    const orphan = new Set();
+    collegeLevel.cutoffs
+      .filter((c) =>
+        realDeptsWithoutCutoffs.every(([, d]) => {
+          const a = allowedOf(d);
+          return a && !a.has(c.branch);
+        })
+      )
+      .forEach((c) => {
+        const missingDept = !!(guideCollege && guideCollege.has(c.branch));
+        if (!missingDept) orphan.add(c.branch);
+        GUIDE_CONFLICTS.push({
+          type: missingDept ? "قسم يقبل الفرع في الدليل غير موجود في المنصة" : "تعارض بين جدول الحدود ودليل الفروع",
+          university: u.name,
+          college: college.name,
+          branch: c.branch,
+          averagePercent: c.averagePercent,
+          kept: !missingDept,
+          departments: realDeptsWithoutCutoffs.map(([, d]) => d.name),
+        });
+      });
     realDeptsWithoutCutoffs.forEach(([, d]) => {
-      d.cutoffs.push(...collegeLevel.cutoffs);
+      // قسم لا يستقبل حد الكلية إلا لفروعه المقبولة (الفصل 3 / جدول فروع الدليل):
+      // مثال: تربية القادسية/الرياضيات علمي فقط فلا يُنسب له حد "أدبي" الكلية، وكلية
+      // الآثار/الموصل: "الحفاظ على الآثار" علمي/أدبي وحد "فنون" لـ"آثار قديمة" وحدها.
+      const allowed = allowedOf(d);
+      const applicable = allowed
+        ? collegeLevel.cutoffs.filter((c) => allowed.has(c.branch) || orphan.has(c.branch))
+        : collegeLevel.cutoffs;
+      if (!applicable.length) return;
+      d.cutoffs.push(...applicable);
       d.sessions.add("صباحي");
     });
     college.departmentsMap.delete("__COLLEGE_LEVEL__");
@@ -504,8 +621,12 @@ for (const u of universities) {
         .map(([, d]) => [...new Set([...d.cutoffs.map((c) => c.branch), ...d.directBranches])].sort().join(","))
     );
     gapDepts.forEach(([, d]) => {
-      const inferred =
-        siblingBranchSets.size === 1
+      // جدول فروع الدليل الرسمي أولاً (نص صريح)، ثم الاستدلال من الأشقاء، ثم التصنيف العام
+      // (مثال: بوليتكنك بغداد/التصميم الداخلي: الدليل علمي/أدبي، والتصنيف العام كان يضيف فنون).
+      const guide = guideBranchesFor(u, college.name, d.name);
+      const inferred = guide
+        ? [...guide]
+        : siblingBranchSets.size === 1
           ? [...siblingBranchSets][0].split(",")
           : classifyFallbackBranch(college.name, d.name);
       inferred.forEach((b) => d.directBranches.add(b));
@@ -560,26 +681,43 @@ const DEDUPLICATIONS = [
     keep: "قسم الميكانيكية",
   },
   { uni: "جامعة الفلوجة", college: "كلية التربية", remove: "قسم اللغة اإلنكليزية", keep: "قسم اللغة االنكليزية" },
+  // كلية الآثار/الموصل: "قسم االثار القديمة" (المسائي، دليل بند 56) هو نفسه "آثار قديمة" (الفصل 3،
+  // دليل بند 42، فروعه علمي/أدبي/فنون = فروع حدود الكلية الثلاثة الرسمية). تصحيح مُتحقَّق (2026-10-11).
+  { uni: "جامعة الموصل", college: "كلية االثار", remove: "قسم االثار القديمة", keep: "آثار قديمة" },
 ];
 
 for (const { uni: uName, college: cName, remove, keep } of DEDUPLICATIONS) {
   const uni = universities.find((u) => u.name === uName);
   if (!uni) continue;
-  const college = uni._collegesMap.get(cName);
-  if (!college) continue;
-  const remDept = college.departmentsMap.get(remove);
-  const keepDept = college.departmentsMap.get(keep);
-  if (remDept && keepDept) {
-    for (const s of remDept.sessions) keepDept.sessions.add(s);
-    for (const b of remDept.directBranches) keepDept.directBranches.add(b);
-    for (const c of remDept.cutoffs) keepDept.cutoffs.push(c);
-    if (
-      remDept.eveningMinGrade !== null &&
-      (keepDept.eveningMinGrade === null || remDept.eveningMinGrade < keepDept.eveningMinGrade)
-    ) {
-      keepDept.eveningMinGrade = remDept.eveningMinGrade;
+  // الكلية نفسها، أو سجلاتها المقسَّمة بالأحرم ("الكلية/الموصل"، "الكلية/كركوك")
+  const colleges = [...uni._collegesMap.entries()]
+    .filter(([key]) => key === cName || key.startsWith(cName + "/"))
+    .map(([, c]) => c);
+  for (const college of colleges) {
+    const remDept = college.departmentsMap.get(remove);
+    const keepDept = college.departmentsMap.get(keep);
+    if (remDept && keepDept) {
+      for (const s of remDept.sessions) keepDept.sessions.add(s);
+      for (const b of remDept.directBranches) keepDept.directBranches.add(b);
+      for (const c of remDept.cutoffs) {
+        // لا تكرار لنفس الحد بعد الدمج (حدّ الكلية قد وصل إلى القسمين معاً قبل الدمج)
+        const dup = keepDept.cutoffs.some(
+          (k) =>
+            k.branch === c.branch &&
+            k.gender === c.gender &&
+            k.averagePercent === c.averagePercent &&
+            k.isQuota === c.isQuota
+        );
+        if (!dup) keepDept.cutoffs.push(c);
+      }
+      if (
+        remDept.eveningMinGrade !== null &&
+        (keepDept.eveningMinGrade === null || remDept.eveningMinGrade < keepDept.eveningMinGrade)
+      ) {
+        keepDept.eveningMinGrade = remDept.eveningMinGrade;
+      }
+      college.departmentsMap.delete(remove);
     }
-    college.departmentsMap.delete(remove);
   }
 }
 
@@ -588,7 +726,18 @@ const finalUniversities = universities.map((u) => {
     const departments = [...c.departmentsMap.values()].map((d) => {
       const nonQuotaCutoffs = d.cutoffs.filter((x) => !x.isQuota);
       const bestMorning = nonQuotaCutoffs.length ? Math.min(...nonQuotaCutoffs.map((x) => x.averagePercent)) : null;
-      const branches = [...new Set([...d.cutoffs.map((x) => x.branch), ...d.directBranches])];
+      // الفروع المقبولة: فروع الحدود الرسمية + الفصل 3 المضاف + جدول فروع الدليل (فرع يقبله
+      // الدليل بلا حد منشور له يظهر للطالب "بلا حد منشور" بدل أن يُخفى عنه القسم).
+      const guide = d.directBranches.size ? null : guideBranchesFor(u, c.name, d.name);
+      const branches = [...new Set([...d.cutoffs.map((x) => x.branch), ...d.directBranches, ...(guide || [])])];
+      // الحد الصباحي لكل فرع على حدة (أدنى حد غير حصة لذلك الفرع، على كل الأجناس):
+      // averageGrades.صباحي هو الأدنى بين كل الفروع، فلا يصلح لعرض حد فرع الطالب.
+      const morningByBranch = Object.fromEntries(
+        branches.map((b) => {
+          const v = nonQuotaCutoffs.filter((x) => x.branch === b).map((x) => x.averagePercent);
+          return [b, v.length ? Math.min(...v) : null];
+        })
+      );
 
       const hasAnyCutoff = bestMorning !== null || d.eveningMinGrade !== null;
       const admissionStatus = hasAnyCutoff ? "published" : "noPublishedCutoff";
@@ -600,6 +749,7 @@ const finalUniversities = universities.map((u) => {
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
         averageGrades: { صباحي: bestMorning, مسائي: d.eveningMinGrade },
+        morningByBranch,
         isDirectAdmission: false, // لا يوجد قبول مباشر في أي قسم حكومي إطلاقاً
         admissionStatus,
       };
@@ -760,6 +910,15 @@ const out = {
 
 const OUT = path.join(ROOT, "data/universities.json");
 fs.writeFileSync(OUT, JSON.stringify(out, null, 2), "utf8");
+
+// تعارضات «حد كلية بفرع لا يقبله أي قسم فيها بحسب جدول فروع الدليل» -- للمراجعة البشرية
+fs.mkdirSync(path.join(ROOT, "reports/admission-fix"), { recursive: true });
+fs.writeFileSync(
+  path.join(ROOT, "reports/admission-fix/guide-cutoff-conflicts.json"),
+  JSON.stringify(GUIDE_CONFLICTS, null, 2) + "\n",
+  "utf8"
+);
+console.log("Guide/cutoff branch conflicts (kept, flagged):", GUIDE_CONFLICTS.length);
 
 // Small derived file (province names only) so client components that just
 // need a province dropdown (e.g. app/quiz/page.tsx) don't have to import

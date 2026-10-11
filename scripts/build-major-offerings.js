@@ -186,7 +186,12 @@ for (const uni of universities) {
         continue;
       }
       for (const b of dept.branch) {
-        if (branchRecords[b]) branchRecords[b].push(record);
+        if (!branchRecords[b]) continue;
+        // سجل الفرع يحمل حدّ ذلك الفرع نفسه (morningByBranch) لا أدنى حد بين كل الفروع:
+        // طالب العلمي يرى حد علم النفس/بغداد 81.71 لا 60 (حد الأدبي). فرع يقبله الدليل بلا
+        // حد منشور له = null ("لا حد منشور") لا رقم فرع آخر.
+        const morning = dept.morningByBranch ? (dept.morningByBranch[b] ?? null) : dept.averageGrades["صباحي"];
+        branchRecords[b].push({ ...record, averageGrades: { ...dept.averageGrades, صباحي: morning } });
       }
     }
   }

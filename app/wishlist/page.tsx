@@ -6,6 +6,7 @@ import { AlertCircle, AlertTriangle, Info, Plus, Sparkles } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { BRANCH_CATEGORY_MAP, fetchOfferingsForMajor } from "../../lib/offeringsClient";
 import { computeEligibility } from "../../lib/eligibility";
+import { offeringForBranch, offeringsForBranch } from "../../lib/branchCutoff";
 import { analyzeWishlist } from "../../lib/wishlistPlanner";
 import type { AlternativeCandidate, ClassifiedWish, StudySession, WishOffering } from "../../lib/wishlistPlanner";
 import type { UniversityOffering } from "../../lib/majorMatcher";
@@ -74,14 +75,15 @@ export default function WishlistPage() {
     setIsLoadingOfferings(true);
     fetchOfferingsForMajor(selectedMajorId).then((offerings) => {
       if (!cancelled) {
-        setMajorOfferings(offerings);
+        // الأقسام التي تقبل فرع الطالب فقط وبحد فرعه -- lib/branchCutoff.ts
+        setMajorOfferings(offeringsForBranch(offerings, filterSettings?.branch));
         setIsLoadingOfferings(false);
       }
     });
     return () => {
       cancelled = true;
     };
-  }, [selectedMajorId]);
+  }, [selectedMajorId, filterSettings?.branch]);
 
   const chosenKeys = useMemo(() => new Set(wishlist.map(wishKey)), [wishlist]);
 
@@ -91,7 +93,12 @@ export default function WishlistPage() {
   // المؤهَّلة لفرع الطالب، مكلف بما يكفي لتفادي حسابه تلقائياً بلا طلب).
   const analysis = useMemo(() => {
     if (!filterSettings) return null;
-    return analyzeWishlist(wishlist, filterSettings.grade);
+    // رغبات محفوظة سابقاً تحمل لقطة العرض بأدنى حد بين كل الفروع؛ يُعاد حسابها بحد فرع الطالب
+    const branchWishes = wishlist.map((w) => ({
+      ...w,
+      offering: offeringForBranch(w.offering, filterSettings.branch),
+    }));
+    return analyzeWishlist(branchWishes, filterSettings.grade);
   }, [wishlist, filterSettings]);
 
   const diagnostics = analysis?.diagnostics ?? [];
@@ -109,12 +116,20 @@ export default function WishlistPage() {
         const offerings = await fetchOfferingsForMajor(m.id);
         const eligibility = computeEligibility(filterSettings.branch, filterSettings.grade, offerings);
         if (!eligibility.branchEligible) return null;
-        const candidate: AlternativeCandidate = { majorId: m.id, majorName: m.name, offerings };
+        const candidate: AlternativeCandidate = {
+          majorId: m.id,
+          majorName: m.name,
+          offerings: offeringsForBranch(offerings, filterSettings.branch),
+        };
         return candidate;
       })
     );
     const candidates = results.filter((c): c is AlternativeCandidate => c !== null);
-    const result = analyzeWishlist(wishlist, filterSettings.grade, candidates);
+    const branchWishes = wishlist.map((w) => ({
+      ...w,
+      offering: offeringForBranch(w.offering, filterSettings.branch),
+    }));
+    const result = analyzeWishlist(branchWishes, filterSettings.grade, candidates);
     setSuggestedSafe(result.suggestedSafe);
     setIsLoadingSuggestions(false);
   }

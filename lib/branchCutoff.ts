@@ -1,0 +1,61 @@
+/**
+ * الحد الصباحي بحسب فرع الطالب.
+ *
+ * `averageGrades.صباحي` في بيانات القسم هو **أدنى حد بين كل الفروع** (مثال: علم النفس/بغداد:
+ * علمي 81.71، فنون 63.57، أدبي 60 ⇒ 60)، فعرضه لطالب العلمي يُوهمه أن حدّه 60. الحد الصحيح
+ * لطالب فرع معيّن هو أدنى حد غير حصة **لذلك الفرع** من `cutoffs` الرسمية، وقسم لا يقبل فرعه
+ * أصلاً لا يُعرض له.
+ *
+ * عروض بلا `cutoffs` (الأهلي، أو سجلات by-branch المُخفَّفة المحسوبة لكل فرع مسبقاً في
+ * scripts/build-major-offerings.js) تُعاد كما هي.
+ */
+import type { UniversityOffering } from "./majorMatcher";
+
+type Cutoffish = Pick<UniversityOffering, "cutoffs" | "averageGrades" | "universityType" | "departmentBranches">;
+
+/** هل يقبل القسم فرع الطالب؟ قسم بلا فروع معروفة (كل الأهلي اليوم) لا يُستبعد. */
+export function acceptsBranch(o: Pick<UniversityOffering, "departmentBranches">, branch: string): boolean {
+  return !o.departmentBranches || o.departmentBranches.length === 0 || o.departmentBranches.includes(branch);
+}
+
+/** أدنى حد صباحي رسمي (غير حصة) لفرع الطالب، أو null إن لم يُنشر له حد في هذا القسم. */
+export function morningCutoffForBranch(o: Cutoffish, branch: string): number | null {
+  if (o.universityType === "أهلية" || !o.cutoffs || o.cutoffs.length === 0) return o.averageGrades["صباحي"];
+  const values = o.cutoffs.filter((c) => !c.isQuota && c.branch === branch).map((c) => c.averagePercent);
+  return values.length ? Math.min(...values) : null;
+}
+
+/** نسخة من العرض حدّها الصباحي هو حد فرع الطالب، موسومة بالفرع (forBranch) ليعرف العارض ذلك. */
+export function offeringForBranch<T extends Cutoffish>(o: T, branch: string): T & { forBranch: string } {
+  return { ...o, averageGrades: { ...o.averageGrades, صباحي: morningCutoffForBranch(o, branch) }, forBranch: branch };
+}
+
+const BRANCH_ORDER = ["علمي", "أدبي", "فنون"];
+
+/**
+ * حدود القسم الصباحية لكل فرع (لعرضها حين لا يُعرف فرع الطالب): [{branch, min}] بترتيب
+ * علمي/أدبي/فنون. يُعاد [] لعرض أهلي أو بلا cutoffs.
+ */
+export function morningCutoffsByBranch(o: {
+  universityType?: string;
+  cutoffs?: { branch: string; averagePercent: number; isQuota: boolean }[];
+}): { branch: string; min: number }[] {
+  if (o.universityType === "أهلية" || !o.cutoffs || o.cutoffs.length === 0) return [];
+  const mins = new Map<string, number>();
+  for (const c of o.cutoffs) {
+    if (c.isQuota) continue;
+    mins.set(c.branch, Math.min(mins.get(c.branch) ?? Infinity, c.averagePercent));
+  }
+  return [...mins.entries()]
+    .map(([branch, min]) => ({ branch, min }))
+    .sort((a, b) => BRANCH_ORDER.indexOf(a.branch) - BRANCH_ORDER.indexOf(b.branch));
+}
+
+/** عروض تقبل فرع الطالب فقط، كلٌّ بحد ذلك الفرع. بلا فرع معروف تُعاد القائمة كما هي. */
+export function offeringsForBranch<T extends Cutoffish>(
+  offerings: T[],
+  branch: string | null | undefined
+): (T & { forBranch?: string })[] {
+  if (!branch) return offerings;
+  return offerings.filter((o) => acceptsBranch(o, branch)).map((o) => offeringForBranch(o, branch));
+}

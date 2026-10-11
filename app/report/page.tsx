@@ -30,6 +30,7 @@ import {
   type RiasecQuestion,
 } from "../../lib/riasec";
 import { computeEligibility } from "../../lib/eligibility";
+import { offeringsForBranch } from "../../lib/branchCutoff";
 import personalityTranslationsData from "../../data/personality_translations.json";
 import { fetchMajorProfile, type DetailedMajorProfile } from "../../lib/majorProfileClient";
 import { SITE_NAME } from "../../lib/siteMeta";
@@ -447,7 +448,8 @@ function ReportContent() {
   // إظهار صفحة فارغة فوراً — كثير من التخصصات (خصوصاً النادرة جغرافياً)
   // متاحة فعلاً في محافظات أخرى، والطالب يستفيد من رؤيتها مع توضيح أنها
   // خارج محافظته، بدل رسالة "لم نجد شيئاً" رغم وجود خيارات حقيقية في العراق.
-  const primaryOfferingsNational = offeringsByMajor[primaryMajor.id] || [];
+  // الأقسام التي تقبل فرع الطالب فقط، وبحد فرعه (لا أدنى حد بين كل الفروع) -- lib/branchCutoff.ts
+  const primaryOfferingsNational = offeringsForBranch(offeringsByMajor[primaryMajor.id] || [], filterSettings?.branch);
   let offerings = filterSettings?.province
     ? primaryOfferingsNational.filter((o) => o.province === filterSettings.province)
     : primaryOfferingsNational;
@@ -548,7 +550,7 @@ function ReportContent() {
     // أفضل قسم حكومي حقيقي لهذا التخصص تحديداً (لا تخصص الصفحة الأساسي
     // فقط) — نحتاجه لمقارنة معدل الطالب الفعلي بالحد الأدنى الحقيقي، بدل
     // رسالة عامة "معدلك مناسب" لا تُقارَن بأي رقم فعلي.
-    const majorOfferingsNational = offeringsByMajor[majorObj.id] || [];
+    const majorOfferingsNational = offeringsForBranch(offeringsByMajor[majorObj.id] || [], filterSettings?.branch);
     const majorOfferings = filterSettings?.province
       ? majorOfferingsNational.filter((o) => o.province === filterSettings.province)
       : majorOfferingsNational;
@@ -558,7 +560,7 @@ function ReportContent() {
     // بوّابة الأهلية على مستوى العراق كله (لا محافظة الطالب فقط) -- سؤال
     // "هل فرعي مقبول لهذا التخصص إطلاقاً؟" وطني بطبيعته، منفصل عن سؤال
     // "أي جامعة قريبة مني" (TASKS.md المهمة ٣).
-    const nationalOfferings = majorOfferingsNational;
+    const nationalOfferings = offeringsByMajor[majorObj.id] || [];
     const majorEligibility = filterSettings
       ? computeEligibility(filterSettings.branch, filterSettings.grade, nationalOfferings)
       : null;

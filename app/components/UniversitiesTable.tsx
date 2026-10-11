@@ -12,6 +12,7 @@ import {
   PRIVATE_NO_MIN_HINT,
   BRANCH_UNKNOWN_BADGE,
 } from "../../lib/admissionDisclosure";
+import { morningCutoffsByBranch } from "../../lib/branchCutoff";
 
 interface UniversityOffering {
   universityName: string;
@@ -29,6 +30,10 @@ interface UniversityOffering {
   /** اسم التخصص المطابَق (فاحص المعدل/مستكشف الجامعات فقط) -- عمود اختياري،
       يظهر فقط إن وُجد في عرض واحد على الأقل ضمن القائمة الممرَّرة. */
   majorName?: string | null;
+  /** حدود القسم الرسمية (عروض التخصص الكاملة) -- لعرض حد كل فرع حين لا يُعرف فرع الطالب. */
+  cutoffs?: { branch: string; gender: string; averagePercent: number; isQuota: boolean }[];
+  /** مضبوط حين حُسب الحد الصباحي لفرع الطالب (lib/branchCutoff.ts). */
+  forBranch?: string;
 }
 
 interface UniversitiesTableProps {
@@ -130,6 +135,18 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 </td>
                 <td className={`border px-3 py-2 ${cellClass(morning.tone)}`}>
                   <span title={cellTitle(morning.tone)}>{morning.text}</span>
+                  {o.forBranch ? (
+                    <span className="block text-xs text-ink-muted">لفرع {o.forBranch}</span>
+                  ) : (
+                    morningCutoffsByBranch(o).length > 1 && (
+                      // بلا فرع معروف: الرقم أعلاه أدنى حد بين الفروع، فيُعرض حد كل فرع صراحة
+                      <span className="block text-xs text-ink-muted">
+                        {morningCutoffsByBranch(o)
+                          .map((x) => `${x.branch} ${x.min}%`)
+                          .join(" · ")}
+                      </span>
+                    )
+                  )}
                 </td>
                 <td className={`border px-3 py-2 ${cellClass(evening.tone)}`}>
                   <span title={cellTitle(evening.tone)}>{evening.text}</span>

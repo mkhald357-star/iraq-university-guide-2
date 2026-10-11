@@ -21,6 +21,27 @@ export const CUTOFFS_DOCUMENT = (universitiesMeta as { cutoffsSourceDocument: st
 export const ADMISSION_CHANNEL = "القناة العامة";
 
 /**
+ * قواعد الدراسة المسائية الحكومية (data/evening-rules.json عبر universities_meta.json):
+ * السنة المعروضة وحالتها. «reported» = معلَنة من الوزارة لتلك السنة ولم يُحصَل بعد على نص الكتاب الرسمي.
+ */
+export interface EveningRulesMeta {
+  year: string;
+  status: string;
+  label: string;
+  note: string;
+  fallbackYear: string;
+}
+export const EVENING_RULES = (universitiesMeta as unknown as { eveningRules: EveningRulesMeta }).eveningRules;
+
+/** سطر قصير بجوار عمود المسائي: السنة وحالة المصدر. */
+export const EVENING_COLUMN_YEAR = EVENING_RULES.year;
+
+/** تنبيه المسائي الكامل: الأرقام المعروضة هي حدود التقديم (لا معدلات تنافسية) لسنة معيّنة بحالة مصدرها. */
+export const EVENING_RULES_NOTICE =
+  `${EVENING_RULES.label}. ${EVENING_RULES.note} ` +
+  `هذه حدود للتقديم وليست معدلات تنافسية للقسم. قائمة الأقسام ذات الدراسة المسائية من دليل الطالب ${EVENING_RULES.fallbackYear}.`;
+
+/**
  * محافظات إقليم كردستان -- غير مغطّاة إطلاقاً في أي مصدر بيانات على المنصة
  * اليوم (تحقَّق مباشرةً عبر فحص كل من data/universities.json المدموج،
  * data/private_universities.json، وdata/raw/chapter3_additions.json تحديداً

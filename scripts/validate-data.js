@@ -32,6 +32,20 @@ const DepartmentSchema = z.object({
   // الحد الصباحي لكل فرع مقبول (أدنى حد غير حصة لذلك الفرع) -- حكومي فقط. averageGrades.صباحي
   // هو الأدنى بين كل الفروع فلا يُعرض لطالب فرع بعينه (lib/branchCutoff.ts).
   morningByBranch: z.record(z.string(), z.number().nullable()).optional(),
+  // المسائي الحكومي: حد التقديم لكل فرع يقبله القسم + مصدره وسقف الأجور (data/evening-rules.json)
+  eveningByBranch: z.record(z.string(), z.number().nullable()).optional(),
+  evening: z
+    .object({
+      year: z.string(),
+      status: z.string(),
+      ruleId: z.string(),
+      basis: z.string(),
+      note: z.string().nullable(),
+      feeCap: z.number().nullable(),
+      feeYear: z.string().nullable(),
+      feeRuleId: z.string().nullable(),
+    })
+    .optional(),
   isDirectAdmission: z.boolean(),
   admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),
   // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها
@@ -424,6 +438,62 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     hasErrors = true;
   } else {
     console.log("[OK] tuitionFees: صفر تكرار حقيقي/فارغ عبر كل الجامعات الأهلية");
+  }
+
+  // ── المسائي الحكومي: بيانات القواعد كاملة وبلا قيم مختلَقة (PLAN-ADMISSION-ACCURACY.md م1) ──
+  {
+    const rulesPath = path.join(ROOT, "data/evening-rules.json");
+    const rules = JSON.parse(fs.readFileSync(rulesPath, "utf8"));
+    const allowed = new Set();
+    for (const y of Object.values(rules.years)) {
+      for (const r of y.floors) {
+        for (const v of [...Object.values(r.floors || {}), r.floor, r.floorMale, r.floorFemale]) {
+          if (typeof v === "number") allowed.add(v);
+        }
+      }
+    }
+    const badEvening = [];
+    let withEvening = 0;
+    const { universities: eveningUniversities } = JSON.parse(
+      fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8")
+    );
+    for (const uni of eveningUniversities) {
+      if (uni.type !== "حكومية") continue;
+      for (const college of uni.colleges) {
+        for (const dept of college.departments) {
+          const where = `${uni.name}/${college.name}/${dept.name}`;
+          if (!dept.sessions.includes("مسائي")) {
+            if (dept.eveningByBranch || dept.evening) badEvening.push(`${where}: حقول مسائي بلا جلسة مسائية`);
+            continue;
+          }
+          withEvening++;
+          if (!dept.eveningByBranch || !dept.evening) {
+            badEvening.push(`${where}: جلسة مسائية بلا eveningByBranch/evening`);
+            continue;
+          }
+          if (!(dept.evening.feeCap > 0)) badEvening.push(`${where}: بلا سقف أجور`);
+          const vals = [];
+          for (const [b, v] of Object.entries(dept.eveningByBranch)) {
+            if (v == null) continue;
+            vals.push(v);
+            if (!allowed.has(v)) badEvening.push(`${where}: قيمة ${v} خارج جدول القواعد`);
+            if (dept.branch.length && !dept.branch.includes(b))
+              badEvening.push(`${where}: حد مسائي لفرع غير مقبول (${b})`);
+          }
+          const min = vals.length ? Math.min(...vals) : null;
+          if (min !== dept.averageGrades["مسائي"])
+            badEvening.push(`${where}: averageGrades.مسائي≠أدنى eveningByBranch`);
+        }
+      }
+    }
+    if (badEvening.length) {
+      console.error(`[FAIL] بيانات المسائي: ${badEvening.length} مخالفة`, badEvening.slice(0, 10));
+      process.exitCode = 1;
+    } else {
+      console.log(
+        `[OK] بيانات المسائي الحكومي (${withEvening} قسماً): حد لكل فرع + مصدر + سقف أجور، وكل قيمة ضمن data/evening-rules.json`
+      );
+    }
   }
 
   // (ب) [WARN] تناقض بين حقل note ("لا توجد دراسة مسائية") وأجر مسائي حقيقي

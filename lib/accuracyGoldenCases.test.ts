@@ -37,23 +37,6 @@ describe("حالات ذهبية: عيوب معروفة (it.fails حتى تُصل
     expect(merged).toHaveLength(0);
   });
 
-  it.fails("التربية البدنية مسائي: 57 للذكور و55 للإناث (القيمة 56 مختلَقة، والرقم الحالي 60/56)", () => {
-    const rows: number[] = [];
-    for (const u of unis.filter((x) => x.type === "حكومية")) {
-      for (const c of u.colleges) {
-        if (!/التربية البدنية/.test(c.name)) continue;
-        for (const d of c.departments) if (d.averageGrades["مسائي"] != null) rows.push(d.averageGrades["مسائي"]);
-      }
-    }
-    expect(rows.length).toBeGreaterThan(0);
-    expect(rows.every((v) => v === 57 || v === 55)).toBe(true);
-  });
-
-  it.fails("إدارة واقتصاد: حد المسائي الرسمي 60 (فقرة ح) لا 58", () => {
-    const c = uni("basrah").colleges.find((x) => x.name === "كلية االدارة واالقتصاد")!;
-    for (const d of c.departments) expect(d.averageGrades["مسائي"]).toBe(60);
-  });
-
   it.fails("حرم كركوك للجامعة التقنية الشمالية يخصّ محافظة كركوك لا نينوى (مقر الجامعة): حقل province للحرم", () => {
     const c = uni("northern_technical").colleges.find((x) => x.name === "المعهد التقني الطبي/كركوك") as unknown as {
       province?: string;
@@ -68,6 +51,63 @@ describe("حالات ذهبية: عيوب معروفة (it.fails حتى تُصل
 });
 
 describe("حالات ذهبية: إصلاحات قائمة (it)", () => {
+  type EveningDept = Dept & {
+    eveningByBranch?: Record<string, number | null>;
+    evening?: { year: string; note: string | null; feeCap: number | null };
+  };
+
+  it("المسائي: إدارة واقتصاد 60 لعلمي وأدبي (جدول 2026-2027)، لا 58، ولا فنون", () => {
+    const c = college("basrah", "كلية االدارة واالقتصاد");
+    for (const d of c.departments as EveningDept[]) {
+      expect(d.eveningByBranch?.["علمي"], d.name).toBe(60);
+      expect(d.evening?.year).toBe("2026-2027");
+    }
+  });
+
+  it("المسائي: الهندسة 70، التمريض 80، العلوم 65 (الرفع المعلَن لعام 2026-2027)", () => {
+    const eng = (college("baghdad", "كلية الهندسة").departments as EveningDept[]).filter((d) => d.eveningByBranch);
+    expect(eng.length).toBeGreaterThan(0);
+    for (const d of eng) expect(d.eveningByBranch?.["علمي"], d.name).toBe(70);
+    const nursing = unis.flatMap((u) => u.colleges).filter((c) => /تمريض/.test(c.name));
+    for (const c of nursing)
+      for (const d of c.departments as EveningDept[]) if (d.eveningByBranch) expect(d.eveningByBranch["علمي"]).toBe(80);
+    const sci = college("baghdad", "كلية العلوم").departments as EveningDept[];
+    for (const d of sci.filter((x) => x.eveningByBranch)) expect(d.eveningByBranch?.["علمي"], d.name).toBe(65);
+  });
+
+  it("المسائي: التربية البدنية 55 (الأدنى) مع تنبيه 57 ذكور/55 إناث، ولا قيمة 56 مختلَقة", () => {
+    const values: number[] = [];
+    for (const u of unis.filter((x) => x.type === "حكومية")) {
+      for (const c of u.colleges) {
+        if (!/التربية البدنية/.test(c.name)) continue;
+        for (const d of c.departments as EveningDept[]) {
+          if (d.averageGrades["مسائي"] == null) continue;
+          values.push(d.averageGrades["مسائي"]);
+          expect(d.evening?.note, `${u.name} / ${c.name}`).toContain("57");
+        }
+      }
+    }
+    expect(values.length).toBeGreaterThan(0);
+    expect(values.every((v) => v === 55)).toBe(true);
+  });
+
+  it("المسائي: كل قسم مسائي يحمل سقف أجور وسنة مصدر، ولا قيمة خارج جدول القواعد", () => {
+    const allowed = new Set([50, 55, 57, 58, 60, 65, 67, 70, 75, 80]);
+    let n = 0;
+    for (const u of unis.filter((x) => x.type === "حكومية")) {
+      for (const c of u.colleges) {
+        for (const d of c.departments as (Dept & { sessions: string[] } & EveningDept)[]) {
+          if (!d.sessions.includes("مسائي")) continue;
+          n++;
+          expect(d.evening?.feeCap, `${u.name}/${c.name}/${d.name}`).toBeGreaterThan(0);
+          for (const v of Object.values(d.eveningByBranch ?? {}))
+            if (v != null) expect(allowed.has(v), String(v)).toBe(true);
+        }
+      }
+    }
+    expect(n).toBeGreaterThan(1000);
+  });
+
   it("تمريض المعهد الطبي/الشمالية: الموصل 90.14 وكركوك 87.71 في سجلّين", () => {
     const nt = uni("northern_technical");
     const nursing = (campus: string) =>

@@ -62,11 +62,19 @@ const baseline = {
     platformMissingBranch: br.platformMissingBranch,
   },
   evening: {
+    currentYear: ev.currentYear,
     departmentsWithEvening: ev.withEvening,
-    correctVsOfficialCategory: ev.correct,
-    wrongVsOfficialCategory: ev.wrong,
-    ambiguousCategory: ev.ambiguous,
-    fabricatedPhysicalEducation56: ev.fabricatedPhysicalEducation56,
+    byBasis: ev.byBasis,
+    byYear: ev.byYear,
+    violations:
+      ev.missingEveningData +
+      ev.valueOutsideRules +
+      ev.valueOnUnacceptedBranch +
+      ev.minMismatch +
+      ev.unknownRule +
+      ev.fabricated56 +
+      ev.eveningFieldsWithoutSession +
+      ev.noFeeCap,
   },
   gender: { singleGenderBranchCombos: singleGenderCombos, maleFemaleDifferCombos: genderDiffCombos },
 };

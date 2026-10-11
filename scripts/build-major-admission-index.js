@@ -20,7 +20,18 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 const DIR = path.join(ROOT, "public/data/major-offerings");
 const OUT = path.join(ROOT, "data/major_admission_index.json");
-const EVENING_FLOORS = new Set([55, 56, 58, 60, 65, 70, 75]); // جدول §5 الثابت
+// أرضيات المسائي المسموحة: كل قيمة حدّ في data/evening-rules.json (أي سنة) -- المصدر الوحيد لجدول §5
+const EVENING_FLOORS = (() => {
+  const rules = JSON.parse(fs.readFileSync(path.join(__dirname, "..", "data", "evening-rules.json"), "utf8"));
+  const set = new Set();
+  for (const y of Object.values(rules.years)) {
+    for (const r of y.floors) {
+      for (const v of [...Object.values(r.floors || {}), r.floor, r.floorMale, r.floorFemale])
+        if (typeof v === "number") set.add(v);
+    }
+  }
+  return set;
+})();
 
 const majors = JSON.parse(fs.readFileSync(path.join(ROOT, "data/majors.json"), "utf8"));
 const meta = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities_meta.json"), "utf8"));

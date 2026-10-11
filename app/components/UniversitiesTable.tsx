@@ -8,6 +8,8 @@ import { ChannelBadge } from "./ChannelNotice";
 import { useReportIssue } from "../context/ReportIssueContext";
 import {
   CUTOFFS_YEAR,
+  EVENING_COLUMN_YEAR,
+  EVENING_RULES_NOTICE,
   PRIVATE_MIN_HINT,
   PRIVATE_NO_MIN_HINT,
   BRANCH_UNKNOWN_BADGE,
@@ -32,8 +34,19 @@ interface UniversityOffering {
   majorName?: string | null;
   /** حدود القسم الرسمية (عروض التخصص الكاملة) -- لعرض حد كل فرع حين لا يُعرف فرع الطالب. */
   cutoffs?: { branch: string; gender: string; averagePercent: number; isQuota: boolean }[];
-  /** مضبوط حين حُسب الحد الصباحي لفرع الطالب (lib/branchCutoff.ts). */
+  /** مضبوط حين حُسب الحد الصباحي والمسائي لفرع الطالب (lib/branchCutoff.ts). */
   forBranch?: string;
+  /** مصدر حد المسائي وسقف أجوره (حكومي بدراسة مسائية). */
+  evening?: {
+    year: string;
+    status: string;
+    basis: string;
+    note: string | null;
+    feeCap: number | null;
+    feeYear: string | null;
+  };
+  /** حد المسائي لكل فرع (عروض التخصص الكاملة). */
+  eveningByBranch?: Record<string, number | null>;
 }
 
 interface UniversitiesTableProps {
@@ -83,7 +96,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
             <th className="border px-3 py-2 text-right">الكلية</th>
             <th className="border px-3 py-2 text-right">القسم</th>
             <th className="border px-3 py-2 text-right">صباحي ({CUTOFFS_YEAR})</th>
-            <th className="border px-3 py-2 text-right">مسائي ({CUTOFFS_YEAR})</th>
+            <th className="border px-3 py-2 text-right">مسائي · حدّ التقديم {EVENING_COLUMN_YEAR}</th>
             <th className="border px-3 py-2 text-right">
               <span className="sr-only">إبلاغ</span>
             </th>
@@ -150,6 +163,15 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 </td>
                 <td className={`border px-3 py-2 ${cellClass(evening.tone)}`}>
                   <span title={cellTitle(evening.tone)}>{evening.text}</span>
+                  {o.evening?.note && <span className="block text-xs text-ink-muted">{o.evening.note}</span>}
+                  {o.evening?.feeCap != null && (
+                    <span className="block text-xs text-ink-muted">
+                      أجور حتى {o.evening.feeCap.toLocaleString("ar-IQ")} د.ع سنوياً
+                    </span>
+                  )}
+                  {o.evening && o.evening.year !== EVENING_COLUMN_YEAR && (
+                    <span className="block text-xs text-ink-muted">حدّ دليل {o.evening.year}</span>
+                  )}
                 </td>
                 <td className="border px-2 py-2 text-center">
                   <button
@@ -185,7 +207,8 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
       )}
       {hasAnyGovEvening && (
         <p className="text-xs text-ink-muted mt-1">
-          <span className="text-ink-soft font-bold">المسائي (حدّ أدنى)</span>: {GOV_EVENING_MIN_HINT}
+          <span className="text-ink-soft font-bold">المسائي (حدّ أدنى)</span>: {GOV_EVENING_MIN_HINT}{" "}
+          <span className="text-ink-muted">{EVENING_RULES_NOTICE}</span>
         </p>
       )}
       {hasAnyPrivate && (

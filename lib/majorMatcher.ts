@@ -50,6 +50,10 @@ export interface Department {
     مسائي: number | null;
   };
   isDirectAdmission: boolean;
+  /** حد التقديم المسائي لكل فرع يقبله القسم (حكومي بدراسة مسائية). */
+  eveningByBranch?: Record<string, number | null>;
+  /** مصدر حد المسائي وسقف أجوره. */
+  evening?: EveningInfo;
   // شرط معدّل مُعلَن -- للأقسام الأهلية فقط، null دائماً للحكومية. راجع §28.
   statedMinimumGrade?: StatedMinimumGrade | null;
   // أجر الدراسة السنوي -- للأقسام الأهلية فقط، غائب (undefined) دائماً
@@ -138,6 +142,23 @@ export interface UniversityOffering {
   // انظر Department.tuitionFees أعلاه لنفس القاعدة (أهلية فقط، undefined للحكومية).
   tuitionFees?: { صباحي: number | null; مسائي: number | null };
   admissionSuspended?: boolean;
+  /** حد التقديم المسائي لكل فرع يقبله القسم (حكومي بدراسة مسائية فقط) -- data/evening-rules.json. */
+  eveningByBranch?: Record<string, number | null>;
+  /** مصدر حد المسائي وسقف أجوره: السنة وحالتها وصفّ القاعدة (data/evening-rules.json). */
+  evening?: EveningInfo;
+}
+
+/** وصف حد المسائي لقسم: من أي سنة وأي صف قاعدة، وسقف الأجور السنوية (دينار). */
+export interface EveningInfo {
+  year: string;
+  status: "reported" | "official-guide" | string;
+  ruleId: string;
+  /** table = صف مباشر؛ official-2025 = احتياط دليل 2025-2026؛ inferred-* = استدلال موثَّق. */
+  basis: string;
+  note: string | null;
+  feeCap: number | null;
+  feeYear: string | null;
+  feeRuleId: string | null;
 }
 
 /**
@@ -282,6 +303,8 @@ export function findUniversitiesForMajor(
             confidence: matchRes.confidence,
             tuitionFees: dept.tuitionFees ?? undefined,
             admissionSuspended: dept.admissionSuspended ?? false,
+            ...(dept.eveningByBranch ? { eveningByBranch: dept.eveningByBranch } : {}),
+            ...(dept.evening ? { evening: dept.evening } : {}),
           });
         }
       }

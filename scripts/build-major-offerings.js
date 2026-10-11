@@ -191,7 +191,13 @@ for (const uni of universities) {
         // طالب العلمي يرى حد علم النفس/بغداد 81.71 لا 60 (حد الأدبي). فرع يقبله الدليل بلا
         // حد منشور له = null ("لا حد منشور") لا رقم فرع آخر.
         const morning = dept.morningByBranch ? (dept.morningByBranch[b] ?? null) : dept.averageGrades["صباحي"];
-        branchRecords[b].push({ ...record, averageGrades: { ...dept.averageGrades, صباحي: morning } });
+        // وحد المسائي لهذا الفرع كذلك (جدول حدود التقديم يختلف بحسب الفرع: data/evening-rules.json)
+        const evening = dept.eveningByBranch ? (dept.eveningByBranch[b] ?? null) : dept.averageGrades["مسائي"];
+        branchRecords[b].push({
+          ...record,
+          averageGrades: { ...dept.averageGrades, صباحي: morning, مسائي: evening },
+          ...(dept.evening ? { evening: dept.evening } : {}),
+        });
       }
     }
   }

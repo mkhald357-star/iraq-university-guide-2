@@ -12,6 +12,7 @@ const { parseStatedMinimum } = require("./departmentNameHealth");
 const { normalizeDepartmentKey } = require("./departmentNormalizer");
 const SOURCES = require("./admissionSources");
 const { createGuideLookup } = require("./guideBranches");
+const { resolveEvening } = require("./eveningRules");
 
 const ROOT = path.join(__dirname, "..");
 const cutoffs = require(path.join(ROOT, "data/raw/cutoffs_2025_2026.json"));
@@ -134,19 +135,8 @@ function normKey(s) {
   return (s || "").replace(/[أإآ]/g, "ا").replace(/ا/g, "").replace(/\s+/g, "").trim();
 }
 
-function eveningMinGradeFor(collegeName) {
-  const c = collegeName || "";
-  if (/تمريض/.test(c)) return 70;
-  if (/بيطري/.test(c)) return 65;
-  if (/تقنيات طبية|تقنيات صحية|طبية والصحية|صحية والطبية/.test(c)) return 75;
-  if (/هندسة|الهندسة/.test(c) && !/تقنيات هندسية|تقنية هندسية/.test(c)) return 65;
-  if (/تقنيات هندسية|تقنية هندسية|كلية تقنية/.test(c)) return 60;
-  if (/علوم|حاسوب|تكنولوجيا المعلومات/.test(c)) return 60;
-  if (/قانون|حقوق/.test(c)) return 65;
-  if (/سياسية|ادارة|اقتصاد|إدارة/.test(c)) return 60;
-  if (/تربية البدنية|علوم الرياضة/.test(c)) return 56; // avg of 57(m)/55(f); refine per-gender in UI if needed
-  return 58;
-}
+// حد التقديم المسائي وسقف أجوره: data/evening-rules.json عبر scripts/eveningRules.js (حل محل
+// تصنيف بالتعابير النمطية على اسم الكلية كان يفشل مع الأسماء المشوّهة ويحمل قيمة مختلَقة 56).
 
 function stripCollegePrefix(name) {
   return (name || "").replace(/^(كلية|كليات|معهد|المعهد)\s+/, "").trim() || name;
@@ -333,7 +323,7 @@ function getDept(college, deptName, collegeNameForFallback) {
       isCollegeLevelProgram: !effectiveName,
       sessions: new Set(),
       cutoffs: [],
-      eveningMinGrade: null,
+      hasEvening: false,
       directBranches: new Set(),
     });
   }
@@ -447,8 +437,7 @@ for (const row of evening) {
     row.department;
   const dept = getDept(college, resolvedDept, row.college);
   dept.sessions.add("مسائي");
-  const grade = eveningMinGradeFor(row.college);
-  if (dept.eveningMinGrade === null || grade < dept.eveningMinGrade) dept.eveningMinGrade = grade;
+  dept.hasEvening = true;
 }
 
 // Chapter 3 (college/department/branch-eligibility table) additions:
@@ -710,12 +699,7 @@ for (const { uni: uName, college: cName, remove, keep } of DEDUPLICATIONS) {
         );
         if (!dup) keepDept.cutoffs.push(c);
       }
-      if (
-        remDept.eveningMinGrade !== null &&
-        (keepDept.eveningMinGrade === null || remDept.eveningMinGrade < keepDept.eveningMinGrade)
-      ) {
-        keepDept.eveningMinGrade = remDept.eveningMinGrade;
-      }
+      keepDept.hasEvening = keepDept.hasEvening || remDept.hasEvening;
       college.departmentsMap.delete(remove);
     }
   }
@@ -739,7 +723,12 @@ const finalUniversities = universities.map((u) => {
         })
       );
 
-      const hasAnyCutoff = bestMorning !== null || d.eveningMinGrade !== null;
+      // المسائي: حد التقديم لكل فرع يقبله القسم + سقف الأجور، من جدول السنة الحالية (أو الاحتياط)
+      const ev = d.hasEvening ? resolveEvening(c.name, d.name, branches) : null;
+      const eveningValues = ev ? Object.values(ev.byBranch).filter((v) => v != null) : [];
+      const bestEvening = eveningValues.length ? Math.min(...eveningValues) : null;
+
+      const hasAnyCutoff = bestMorning !== null || bestEvening !== null;
       const admissionStatus = hasAnyCutoff ? "published" : "noPublishedCutoff";
 
       return {
@@ -748,8 +737,23 @@ const finalUniversities = universities.map((u) => {
         branch: branches,
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
-        averageGrades: { صباحي: bestMorning, مسائي: d.eveningMinGrade },
+        averageGrades: { صباحي: bestMorning, مسائي: bestEvening },
         morningByBranch,
+        ...(ev
+          ? {
+              eveningByBranch: Object.fromEntries(branches.map((b) => [b, ev.byBranch[b] ?? null])),
+              evening: {
+                year: ev.year,
+                status: ev.status,
+                ruleId: ev.ruleId,
+                basis: ev.basis,
+                note: ev.note,
+                feeCap: ev.fee.cap,
+                feeYear: ev.fee.year,
+                feeRuleId: ev.fee.ruleId,
+              },
+            }
+          : {}),
         isDirectAdmission: false, // لا يوجد قبول مباشر في أي قسم حكومي إطلاقاً
         admissionStatus,
       };
@@ -902,6 +906,18 @@ const out = {
     // لا تحملان نفس السنة مستقبلاً حتى لو تطابقتا اليوم.
     cutoffsSourceYear: SOURCES.cutoffs.year,
     cutoffsSourceDocument: SOURCES.cutoffs.document,
+    // قواعد المسائي (data/evening-rules.json): السنة المعروضة وحالتها ونص التنبيه للطالب
+    eveningRules: (() => {
+      const r = require(path.join(ROOT, "data/evening-rules.json"));
+      const y = r.years[r._meta.currentYear];
+      return {
+        year: r._meta.currentYear,
+        status: y.status,
+        label: y.statusLabel,
+        note: y.statusNote,
+        fallbackYear: r._meta.fallbackYear,
+      };
+    })(),
     version: "4.0.0",
     notes: `يغطي الجامعات الحكومية والتقنية المشمولة بالقبول المركزي (36 جامعة، مع أقسام إضافية من الفصل 3 لبرامج القبول المباشر غير التنافسي) + ${privateFinal.length} جامعة وكلية أهلية معتمدة رسمياً (كليات/أقسام/أجور دراسية حقيقية متاحة لـ${privateWithDepts} منها، مستخرجة من دليل الوزارة الرسمي لأجور الجامعات الأهلية 2025-2026؛ الباقي بلا تفاصيل أقسام بعد). لا يشمل: (أ) جامعات إقليم كردستان (نظام قبول إقليمي منفصل تماماً، الفصل الخامس من الدليل تالف النص بشدة)، (ب) معاهد خريجي الفروع المهنية (الفصل 3، القسم ج-2 -- يشترط شهادات مهنية سابقة، فئة طلاب مختلفة عن نطاق هذه المنصة). التفاصيل الكاملة والمصادر في data/admission_rules.md.`,
   },

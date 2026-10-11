@@ -4,7 +4,7 @@
  * (كانت معرَّفة فقط في report/page.tsx أصلاً).
  */
 
-import type { UniversityOffering, StatedMinimumGrade } from "./majorMatcher";
+import type { UniversityOffering, StatedMinimumGrade, EveningInfo } from "./majorMatcher";
 import { DataFetchError } from "./viewState";
 
 const DEFAULT_TIMEOUT_MS = 12_000;
@@ -75,6 +75,8 @@ export interface ExplorerOffering {
   sessions: string[];
   averageGrades: { صباحي: number | null; مسائي: number | null };
   isDirectAdmission: boolean;
+  /** مصدر حد المسائي وسقف أجوره (حكومي بدراسة مسائية). */
+  evening?: EveningInfo;
   statedMinimumGrade?: StatedMinimumGrade | null;
   /** false لقسم بلا فرع معروف (كل الأهلي اليوم، الدليل لا يذكر الفرع --
       data/admission_rules.md §29) -- يُعرَض دائماً موسوماً، لا يُخفى. */

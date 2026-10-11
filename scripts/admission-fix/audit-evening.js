@@ -1,114 +1,137 @@
-// تدقيق: الحد المسائي لكل قسم حكومي مقابل القاعدة الرسمية للدراسة المسائية.
-// المصدر: data/raw/dalel.full.txt السطور 3506-3517 («5 - أولاً»، وبند «ثانياً»: للجامعة تخفيض حتى 3 درجات
-// عدا الفقرات د، هـ، و، ي).
+// تدقيق: بيانات المسائي الحكومي في data/universities.json مقابل data/evening-rules.json.
+// للقراءة فقط. المخرجات: reports/admission-fix/audit/evening-audit.json
+// الاستخدام: node scripts/admission-fix/audit-evening.js [--strict]
 //
-//   أ تمريض 70 | ب طب بيطري 65 | ج تقنيات طبية وصحية 75 | د هندسة 65 | هـ تقنيات هندسية 60
-//   و علوم وحاسوب وتكنولوجيا معلومات 60 | ز قانون 65 | ح علوم سياسية وإدارة واقتصاد 60
-//   ط باقي التخصصات 58 | ي تربية بدنية: 57 ذكور و55 إناث
-//
-// هذا تصنيف **مرجعي للقياس** (للقراءة فقط). كليات يلتبس تصنيفها نصاً (المعاهد، تربية العلوم الصرفة،
-// القانون والعلوم السياسية…) تُعدّ "ملتبسة" ولا تُحسب خطأ حتى يحسمها المالك (PLAN-ADMISSION-ACCURACY.md §3).
-// المخرجات: reports/admission-fix/audit/evening-audit.json
+// فحوص:
+//  1. كل قسم بجلسة مسائية يحمل eveningByBranch وevening (سنة، صف قاعدة، basis، سقف أجور).
+//  2. كل قيمة حد ضمن قيم جدول القواعد، وتُسند فقط لفروع يقبلها القسم، ولا 56 مختلَقة.
+//  3. averageGrades.مسائي = أدنى قيمة غير فارغة في eveningByBranch.
+//  4. لا حقول مسائي في قسم بلا جلسة مسائية.
+//  5. توزيع الأساس (basis) ومراجعة غير المباشر: احتياط دليل 2025-2026 والاستدلالات.
 const fs = require("fs");
 const path = require("path");
-const { fixLamAlef } = require("../displayName");
 
 const ROOT = path.join(__dirname, "..", "..");
+const rules = JSON.parse(fs.readFileSync(path.join(ROOT, "data/evening-rules.json"), "utf8"));
 const universities = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8")).universities.filter(
   (u) => u.type === "حكومية"
 );
 
-const norm = (s) =>
-  fixLamAlef(s || "")
-    .replace(/([ون])\1{2,}/g, "")
-    .replace(/[أإآ]/g, "ا")
-    .replace(/\s+/g, " ")
-    .trim();
-
-// يُعيد { category, min, ambiguous?: سبب }
-function referenceFor(collegeName) {
-  const c = norm(collegeName.split("/")[0]);
-  const has = (re) => re.test(c);
-  const amb = (why, category = "؟") => ({ category, min: null, ambiguous: why });
-  if (has(/(^|\s)(معهد|المعهد)(\s|$)/)) return amb("المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)", "معهد");
-  if (has(/تمريض/)) return { category: "أ", min: 70 };
-  if (has(/بيطري/)) return { category: "ب", min: 65 };
-  if (has(/(التقنية|التقنيات|تقنيات)\s.*(صحية|طبية)|(صحية|طبية)\s.*(تقنية|تقنيات)/)) return { category: "ج", min: 75 };
-  if (has(/بوليتكنك/)) return amb("بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً", "بوليتكنك");
-  if (has(/الكلية التقنية الهندسية|الكلية التقنية الاقسام الهندسية|هندسة تقنيات/)) return { category: "هـ", min: 60 };
-  if (has(/الكلية التقنية|كلية التقنيات|كلية تقنيات/))
-    return amb("كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة", "تقنية");
-  if (has(/(^|\s)(ال)?هندسة(\s|$)/)) return { category: "د", min: 65 };
-  if (has(/تربية بدنية|التربية البدنية/)) return { category: "ي", min: null, genderSplit: { ذكر: 57, أنثى: 55 } };
-  if (has(/قانون|القانون|حقوق|الحقوق/)) {
-    return /سياسية/.test(c) ? amb("قانون وعلوم سياسية معاً: 65 أم 60", "ز/ح") : { category: "ز", min: 65 };
+const allowed = new Set();
+for (const y of Object.values(rules.years)) {
+  for (const r of y.floors) {
+    for (const v of [...Object.values(r.floors || {}), r.floor, r.floorMale, r.floorFemale]) {
+      if (typeof v === "number") allowed.add(v);
+    }
   }
-  if (has(/السياسية|الادارة|اداره|اقتصاد|الاقتصاد|اقتصاديات/)) return { category: "ح", min: 60 };
-  if (has(/علوم الحاسوب|الحاسوب|تكنولوجيا المعلومات|الذكاء الاصطناعي|معلوماتية/)) return { category: "و", min: 60 };
-  if (has(/التربية.*للعلوم$|التربية للعلوم الصرفة|العلوم الطبية|التقنيات الاحيائية/))
-    return amb("اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58", "و؟");
-  // كلية علوم صريحة: "العلوم"، "العلوم للبنات"، "علوم البيئة"، "علوم الاغذية"… (لا الإسلامية/السياحية/الإنسانية)
-  if (has(/^(كلية )?(ال)?علوم(?!\s+(ال)?(اس[لا]{1,2}مية|سياحية|انسانية|طبية|سياسية))/))
-    return { category: "و", min: 60 };
-  return { category: "ط", min: 58 };
 }
+const ruleIds = new Set(Object.values(rules.years).flatMap((y) => y.floors.map((r) => r.id)));
 
 const stat = {
   departments: 0,
   withEvening: 0,
-  correct: 0,
-  wrong: 0,
-  ambiguous: 0,
-  fabricatedPhysicalEducation56: 0,
-  nonFloorCategoriesNeedLoweringNote: 0,
+  missingEveningData: 0,
+  valueOutsideRules: 0,
+  valueOnUnacceptedBranch: 0,
+  minMismatch: 0,
+  unknownRule: 0,
+  fabricated56: 0,
+  eveningFieldsWithoutSession: 0,
+  noFeeCap: 0,
 };
-const wrong = [];
-const ambiguous = [];
-const byCollege = new Map();
+const byBasis = {};
+const byYear = {};
+const violations = [];
+const review = [];
+const bad = (kind, u, c, d, extra) =>
+  violations.push({ kind, university: u.name, college: c.name, department: d.name, ...extra });
+
 for (const u of universities) {
   for (const c of u.colleges) {
-    const ref = referenceFor(c.name);
     for (const d of c.departments) {
       stat.departments++;
-      const v = d.averageGrades["مسائي"];
-      if (v == null) continue;
+      const hasSession = d.sessions.includes("مسائي");
+      if (!hasSession) {
+        if (d.eveningByBranch || d.evening) {
+          stat.eveningFieldsWithoutSession++;
+          bad("eveningFieldsWithoutSession", u, c, d);
+        }
+        continue;
+      }
       stat.withEvening++;
-      if (ref.category === "ي" && v === 56) stat.fabricatedPhysicalEducation56++;
-      if (!["د", "هـ", "و", "ي"].includes(ref.category)) stat.nonFloorCategoriesNeedLoweringNote++;
-      if (ref.ambiguous) {
-        stat.ambiguous++;
-        ambiguous.push({ university: u.name, college: c.name, department: d.name, platform: v, why: ref.ambiguous });
+      if (!d.eveningByBranch || !d.evening) {
+        stat.missingEveningData++;
+        bad("missingEveningData", u, c, d);
         continue;
       }
-      const expected = ref.genderSplit ? null : ref.min;
-      const ok = ref.genderSplit ? v === 57 || v === 55 : v === expected;
-      if (ok) {
-        stat.correct++;
-        continue;
+      const e = d.evening;
+      byBasis[e.basis] = (byBasis[e.basis] || 0) + 1;
+      byYear[e.year] = (byYear[e.year] || 0) + 1;
+      if (!ruleIds.has(e.ruleId)) {
+        stat.unknownRule++;
+        bad("unknownRule", u, c, d, { ruleId: e.ruleId });
       }
-      stat.wrong++;
-      wrong.push({
-        university: u.name,
-        college: c.name,
-        department: d.name,
-        category: ref.category,
-        platform: v,
-        expected: ref.genderSplit ? "57 ذكور / 55 إناث" : expected,
-      });
-      const k = `${norm(c.name.split("/")[0])} (${ref.category}): منصة ${v} ≠ ${ref.genderSplit ? "57/55" : expected}`;
-      byCollege.set(k, (byCollege.get(k) || 0) + 1);
+      if (!(e.feeCap > 0)) {
+        stat.noFeeCap++;
+        bad("noFeeCap", u, c, d);
+      }
+      const vals = [];
+      for (const [b, v] of Object.entries(d.eveningByBranch)) {
+        if (v == null) continue;
+        vals.push(v);
+        if (v === 56) {
+          stat.fabricated56++;
+          bad("fabricated56", u, c, d);
+        }
+        if (!allowed.has(v)) {
+          stat.valueOutsideRules++;
+          bad("valueOutsideRules", u, c, d, { branch: b, value: v });
+        }
+        if (d.branch.length && !d.branch.includes(b)) {
+          stat.valueOnUnacceptedBranch++;
+          bad("valueOnUnacceptedBranch", u, c, d, { branch: b });
+        }
+      }
+      const min = vals.length ? Math.min(...vals) : null;
+      if (min !== d.averageGrades["مسائي"]) {
+        stat.minMismatch++;
+        bad("minMismatch", u, c, d, { expected: min, actual: d.averageGrades["مسائي"] });
+      }
+      if (e.basis !== "table")
+        review.push({
+          university: u.name,
+          college: c.name,
+          department: d.name,
+          basis: e.basis,
+          year: e.year,
+          ruleId: e.ruleId,
+          values: d.eveningByBranch,
+        });
     }
   }
 }
 
 const outDir = path.join(ROOT, "reports", "admission-fix", "audit");
 fs.mkdirSync(outDir, { recursive: true });
-const groups = [...byCollege.entries()].sort((a, b) => b[1] - a[1]).map(([k, n]) => ({ group: k, departments: n }));
+const summary = { ...stat, byBasis, byYear, currentYear: rules._meta.currentYear };
 fs.writeFileSync(
   path.join(outDir, "evening-audit.json"),
-  JSON.stringify({ summary: stat, groups, wrong, ambiguous }, null, 2) + "\n",
+  JSON.stringify({ summary, violations, review }, null, 2) + "\n",
   "utf8"
 );
-console.log(JSON.stringify(stat, null, 1));
-groups.slice(0, 25).forEach((g) => console.log(String(g.departments).padStart(4), g.group));
-if (process.argv.includes("--strict") && (stat.wrong || stat.fabricatedPhysicalEducation56)) process.exit(1);
+console.log(JSON.stringify(summary, null, 1));
+const grp = {};
+review.forEach((r) => {
+  const k = `${r.basis} | ${r.year} | ${r.ruleId} | ${r.college.split("/")[0]}`;
+  grp[k] = (grp[k] || 0) + 1;
+});
+console.log("\nأقسام لا تعتمد على صف مباشر من جدول السنة الحالية:");
+Object.entries(grp)
+  .sort((a, b) => b[1] - a[1])
+  .slice(0, 20)
+  .forEach(([k, n]) => console.log(String(n).padStart(4), k));
+if (violations.length) {
+  console.log(`\nمخالفات (${violations.length}):`);
+  violations.slice(0, 15).forEach((v) => console.log("  ", JSON.stringify(v)));
+}
+if (process.argv.includes("--strict") && violations.length) process.exit(1);

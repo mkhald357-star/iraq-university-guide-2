@@ -18,11 +18,19 @@
     "platformMissingBranch": 0
   },
   "evening": {
+    "currentYear": "2026-2027",
     "departmentsWithEvening": 1353,
-    "correctVsOfficialCategory": 758,
-    "wrongVsOfficialCategory": 276,
-    "ambiguousCategory": 319,
-    "fabricatedPhysicalEducation56": 1
+    "byBasis": {
+      "table": 1309,
+      "official-2025": 20,
+      "inferred-combined": 5,
+      "inferred-polytechnic": 19
+    },
+    "byYear": {
+      "2026-2027": 1333,
+      "2025-2026": 20
+    },
+    "violations": 0
   },
   "gender": {
     "singleGenderBranchCombos": 125,

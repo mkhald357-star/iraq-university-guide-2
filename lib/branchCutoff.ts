@@ -11,7 +11,9 @@
  */
 import type { UniversityOffering } from "./majorMatcher";
 
-type Cutoffish = Pick<UniversityOffering, "cutoffs" | "averageGrades" | "universityType" | "departmentBranches">;
+type Cutoffish = Pick<UniversityOffering, "cutoffs" | "averageGrades" | "universityType" | "departmentBranches"> & {
+  eveningByBranch?: Record<string, number | null>;
+};
 
 /** هل يقبل القسم فرع الطالب؟ قسم بلا فروع معروفة (كل الأهلي اليوم) لا يُستبعد. */
 export function acceptsBranch(o: Pick<UniversityOffering, "departmentBranches">, branch: string): boolean {
@@ -25,9 +27,26 @@ export function morningCutoffForBranch(o: Cutoffish, branch: string): number | n
   return values.length ? Math.min(...values) : null;
 }
 
-/** نسخة من العرض حدّها الصباحي هو حد فرع الطالب، موسومة بالفرع (forBranch) ليعرف العارض ذلك. */
+/**
+ * حد التقديم المسائي لفرع الطالب (data/evening-rules.json: يختلف بحسب الفرع). عرض بلا eveningByBranch
+ * (أهلي، أو سجل by-branch المحسوب مسبقاً لفرعه) يُعاد رقمه كما هو.
+ */
+export function eveningCutoffForBranch(o: Cutoffish, branch: string): number | null {
+  if (o.universityType === "أهلية" || !o.eveningByBranch) return o.averageGrades["مسائي"];
+  return o.eveningByBranch[branch] ?? null;
+}
+
+/** نسخة من العرض حدّاه الصباحي والمسائي هما حدا فرع الطالب، موسومة بالفرع (forBranch) ليعرف العارض ذلك. */
 export function offeringForBranch<T extends Cutoffish>(o: T, branch: string): T & { forBranch: string } {
-  return { ...o, averageGrades: { ...o.averageGrades, صباحي: morningCutoffForBranch(o, branch) }, forBranch: branch };
+  return {
+    ...o,
+    averageGrades: {
+      ...o.averageGrades,
+      صباحي: morningCutoffForBranch(o, branch),
+      مسائي: eveningCutoffForBranch(o, branch),
+    },
+    forBranch: branch,
+  };
 }
 
 const BRANCH_ORDER = ["علمي", "أدبي", "فنون"];

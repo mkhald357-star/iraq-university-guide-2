@@ -1,4 +1,4 @@
-import { PRIVATE_NO_PUBLISHED_MIN, privateStatedMin } from "./admissionDisclosure";
+import { PRIVATE_NO_PUBLISHED_MIN, privateStatedMin, EVENING_RULES } from "./admissionDisclosure";
 
 export const GOV_NO_PUBLISHED_CUTOFF = "لا حدّ منشور في دليل 2025-2026";
 
@@ -16,9 +16,14 @@ export function formatGrade(value: number | null | undefined, sessionAvailable: 
 
 export type AdmissionCellTone = "direct" | "stated" | "unstated" | "competitive" | "evening" | "none";
 
-/** تلميح خلية المسائي الحكومي: حدّ أدنى ثابت بنص الدليل لا معدل تنافسي (dalel.full.txt، شروط التقديم للدراسة المسائية). */
+/**
+ * تلميح خلية المسائي الحكومي: حدّ أدنى للتقديم يحدّده جدول الوزارة بحسب نوع الكلية والفرع
+ * (data/evening-rules.json)، وليس معدلاً تنافسياً لهذا القسم. السنة وحالة المصدر من البيانات لا مصلَّبة.
+ */
 export const GOV_EVENING_MIN_HINT =
-  "الحدّ الأدنى للدراسة المسائية يُحدَّد في دليل القبول حسب نوع الكلية (مثلاً تمريض 70%، هندسة 65%)، وليس معدلاً تنافسياً لهذا القسم. للجامعة خفضه حتى 3 درجات في بعض الكليات.";
+  `حدّ التقديم على الدراسة المسائية لعام ${EVENING_RULES.year} بحسب نوع الكلية وفرعك، وليس معدلاً تنافسياً لهذا القسم. ` +
+  `${EVENING_RULES.status === "reported" ? "معلَن من وزارة التعليم العالي ولم يُحصَل بعد على نص الكتاب الرسمي. " : ""}` +
+  "قد تعتمد الجامعة حداً أدنى بحدود 3 درجات وفق ضوابط الوزارة، فراجع إعلان كليتك.";
 
 /**
  * خلية عرض حدّ القبول -- تفرّع حسب نوع الجامعة (PLAN-ADMISSION-FIX.md وdata/admission_rules.md §28).

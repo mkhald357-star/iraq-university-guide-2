@@ -25,7 +25,7 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
     expect(dupe).toBeUndefined();
   });
 
-  it("2. كيمياء التربية للعلوم الصرفة / جامعة بغداد: رقم مسائي وليس مباشراً", () => {
+  it("2. كيمياء التربية للعلوم الصرفة / جامعة بغداد: رقم مسائي وليس مباشراً (حد التقديم 2026-2027: صف «التربية/العلوم الصرفة» = 65)", () => {
     const baghdad = govUniversities.find((u) => u.name === "جامعة بغداد");
     expect(baghdad).toBeDefined();
     const college = baghdad?.colleges.find((c) => c.name.includes("التربية للعلوم الصرفة"));
@@ -34,7 +34,7 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
     expect(chemistry).toBeDefined();
 
     expect(chemistry?.isDirectAdmission).toBe(false);
-    expect(chemistry?.averageGrades["مسائي"]).toBe(60);
+    expect(chemistry?.averageGrades["مسائي"]).toBe(65);
     expect(chemistry?.admissionStatus).toBe("published");
 
     // فحص عرض الخلية: المسائي يعرض 60%
@@ -45,7 +45,7 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
       chemistry?.averageGrades["مسائي"],
       null
     );
-    expect(eveningCell.text).toBe("60%");
+    expect(eveningCell.text).toBe("65%");
     expect(eveningCell.tone).toBe("competitive");
   });
 

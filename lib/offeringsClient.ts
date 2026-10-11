@@ -4,7 +4,7 @@
  * (كانت معرَّفة فقط في report/page.tsx أصلاً).
  */
 
-import type { UniversityOffering, StatedMinimumGrade, EveningInfo } from "./majorMatcher";
+import type { UniversityOffering, StatedMinimumGrade, EveningInfo, GenderRestriction } from "./majorMatcher";
 import { DataFetchError } from "./viewState";
 
 const DEFAULT_TIMEOUT_MS = 12_000;
@@ -77,6 +77,10 @@ export interface ExplorerOffering {
   isDirectAdmission: boolean;
   /** مصدر حد المسائي وسقف أجوره (حكومي بدراسة مسائية). */
   evening?: EveningInfo;
+  /** الجنس لقسم محدَّد فقط (قسم لجنس واحد). */
+  genderRestriction?: GenderRestriction;
+  /** حدّا الذكور والإناث لفرع هذا السجل حين يختلفان (قسم محدَّد فقط). */
+  morningGender?: { ذكر: number; أنثى: number };
   statedMinimumGrade?: StatedMinimumGrade | null;
   /** false لقسم بلا فرع معروف (كل الأهلي اليوم، الدليل لا يذكر الفرع --
       data/admission_rules.md §29) -- يُعرَض دائماً موسوماً، لا يُخفى. */

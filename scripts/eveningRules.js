@@ -238,6 +238,7 @@ function resolveEvening(collegeName, deptName, deptBranches) {
       basis: kind ? "official-2025" : "official-2025-unclassified",
       byBranch,
       note: fr.floorMale != null ? `${fr.floorMale}% للذكور و${fr.floorFemale}% للإناث` : null,
+      ...(fr.floorMale != null ? { genderFloors: { ذكر: fr.floorMale, أنثى: fr.floorFemale } } : {}),
     };
   }
 

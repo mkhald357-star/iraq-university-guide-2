@@ -43,11 +43,6 @@ describe("حالات ذهبية: عيوب معروفة (it.fails حتى تُصل
     };
     expect(c.province).toBe("كركوك");
   });
-
-  it.fails("لا يُعرض قسم بحد إناث فقط كأنه متاح للذكر: الحقل genders غير موجود بعد (م2)", () => {
-    const d = college("mosul", "كلية التربية األساسية").departments.find((x) => x.name === "قسم رياض االطفال للبنات")!;
-    expect(Object.prototype.hasOwnProperty.call(d, "genders")).toBe(true);
-  });
 });
 
 describe("حالات ذهبية: إصلاحات قائمة (it)", () => {
@@ -131,5 +126,55 @@ describe("حالات ذهبية: إصلاحات قائمة (it)", () => {
     expect(values(d, "أدبي")).toEqual([57.14]);
     expect(values(d, "علمي")).toEqual([55.29]);
     expect(values(d, "فنون")).toEqual([55.14]);
+  });
+
+  describe("الجنس لقسم محدَّد فقط (م2)", () => {
+    type G = Dept & {
+      genderRestriction?: string;
+      genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
+    };
+    const gov = unis.filter((u) => u.type !== "أهلية" && u.type !== "private" && u.type !== "أهلي");
+    const all: { d: G; c: string }[] = [];
+    for (const u of gov) for (const c of u.colleges) for (const d of c.departments) all.push({ d: d as G, c: c.name });
+
+    it("رياض أطفال الموصل للبنات: للإناث فقط", () => {
+      const d = college("mosul", "كلية التربية األساسية").departments.find(
+        (x) => x.name === "قسم رياض االطفال للبنات"
+      ) as G;
+      expect(d.genderRestriction).toBe("أنثى");
+    });
+
+    it("القيد يظهر فقط لقسم كل حدوده الرسمية لجنس واحد، ولا يظهر لقسم فيه حدّ مختلط", () => {
+      for (const { d } of all) {
+        const genders = new Set(d.cutoffs.filter((c) => !c.isQuota).map((c) => c.gender));
+        if (d.genderRestriction) {
+          expect([...genders], d.name).toEqual([d.genderRestriction]);
+        } else {
+          expect(genders.size === 1 && !genders.has("مختلط"), d.name).toBe(false);
+        }
+      }
+    });
+
+    it("genderByBranch: حدّان مختلفان فعلاً، ويطابقان cutoffs الرسمية", () => {
+      let n = 0;
+      for (const { d } of all) {
+        for (const [branch, g] of Object.entries(d.genderByBranch ?? {})) {
+          n++;
+          expect(g.ذكر, d.name).not.toBe(g.أنثى);
+          expect(values(d, branch, "ذكر")).toContain(g.ذكر);
+          expect(values(d, branch, "أنثى")).toContain(g.أنثى);
+        }
+      }
+      expect(n).toBeGreaterThan(0);
+    });
+
+    it("القسم المختلط لا يحمل أي حقل جنس (بيانات حكومية)", () => {
+      const mixed = all.filter(({ d }) => d.cutoffs.length > 0 && d.cutoffs.every((c) => c.gender === "مختلط"));
+      expect(mixed.length).toBeGreaterThan(500);
+      for (const { d } of mixed) {
+        expect(d.genderRestriction, d.name).toBeUndefined();
+        expect(d.genderByBranch, d.name).toBeUndefined();
+      }
+    });
   });
 });

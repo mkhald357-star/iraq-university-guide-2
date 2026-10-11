@@ -1061,6 +1061,7 @@
               "morningByBranch": {
                 "علمي": 74.14
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -1089,6 +1090,7 @@
               "morningByBranch": {
                 "علمي": 73.8
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -1117,6 +1119,7 @@
               "morningByBranch": {
                 "علمي": 72
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -1364,6 +1367,12 @@
               },
               "morningByBranch": {
                 "علمي": 96.43
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 96.43,
+                  "أنثى": 96.57
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -2472,6 +2481,7 @@
                 "علمي": 86.86,
                 "أدبي": 73.14
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2522,6 +2532,7 @@
                 "علمي": 68.71,
                 "أدبي": 62.86
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -2551,6 +2562,7 @@
               "morningByBranch": {
                 "علمي": 68.86
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -2601,6 +2613,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2652,6 +2665,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2703,6 +2717,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2754,6 +2769,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2805,6 +2821,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -2856,6 +2873,7 @@
                 "علمي": 68.86,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -4203,6 +4221,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -4251,6 +4273,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -5356,6 +5382,12 @@
               },
               "morningByBranch": {
                 "علمي": 96.14
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 96.14,
+                  "أنثى": 96.43
+                }
               },
               "isDirectAdmission": false,
               "admissionStatus": "published",
@@ -6800,6 +6832,7 @@
                 "علمي": 64,
                 "أدبي": 60.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -7418,6 +7451,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -8501,6 +8538,12 @@
               },
               "morningByBranch": {
                 "علمي": 93.57
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 93.57,
+                  "أنثى": 94.86
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -9875,6 +9918,7 @@
                 "علمي": 73.71,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -9926,6 +9970,7 @@
                 "علمي": 73.71,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -9977,6 +10022,7 @@
                 "علمي": 73.71,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -10028,6 +10074,7 @@
                 "علمي": 73.71,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -10767,6 +10814,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -12010,6 +12061,12 @@
               "morningByBranch": {
                 "علمي": 94.71
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95.14,
+                  "أنثى": 94.71
+                }
+              },
               "eveningByBranch": {
                 "علمي": 80
               },
@@ -13057,6 +13114,7 @@
                 "علمي": 83.71,
                 "أدبي": 71
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -13086,6 +13144,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -13128,6 +13187,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -13178,6 +13238,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -13229,6 +13290,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -13785,6 +13847,7 @@
                 "علمي": 62.43,
                 "أدبي": 61
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -14563,6 +14626,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -19344,6 +19411,12 @@
               "morningByBranch": {
                 "علمي": 94.72
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 94.72,
+                  "أنثى": 95.71
+                }
+              },
               "eveningByBranch": {
                 "علمي": 80
               },
@@ -19796,6 +19869,7 @@
                 "علمي": 86.86,
                 "أدبي": 70.14
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -19839,6 +19913,7 @@
               "morningByBranch": {
                 "علمي": 67
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -19881,6 +19956,7 @@
               "morningByBranch": {
                 "علمي": 67
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -19923,6 +19999,7 @@
               "morningByBranch": {
                 "علمي": 67
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -19965,6 +20042,7 @@
               "morningByBranch": {
                 "علمي": 67
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -20015,6 +20093,7 @@
                 "علمي": 67,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -20066,6 +20145,7 @@
                 "علمي": 67,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -20380,6 +20460,7 @@
                 "علمي": 63.14,
                 "أدبي": null
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -20868,6 +20949,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -21868,6 +21953,12 @@
               },
               "morningByBranch": {
                 "علمي": 93.71
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 93.71,
+                  "أنثى": 94.57
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -23058,6 +23149,7 @@
                 "علمي": 79.43,
                 "أدبي": 71.86
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23101,6 +23193,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -23143,6 +23236,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -23193,6 +23287,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23244,6 +23339,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23295,6 +23391,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23346,6 +23443,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23397,6 +23495,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -23448,6 +23547,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -25008,6 +25108,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -26047,6 +26151,12 @@
               "morningByBranch": {
                 "علمي": 95
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95,
+                  "أنثى": 96.14
+                }
+              },
               "eveningByBranch": {
                 "علمي": 80
               },
@@ -27002,6 +27112,7 @@
                 "أدبي": 63.57,
                 "علمي": 62.57
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "أدبي": 65,
                 "علمي": 65
@@ -27045,6 +27156,7 @@
               "morningByBranch": {
                 "علمي": 65.71
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -27103,6 +27215,7 @@
                 "علمي": 65.71,
                 "أدبي": 61.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "فنون": 65,
                 "علمي": 65,
@@ -27163,6 +27276,7 @@
                 "علمي": 65.71,
                 "أدبي": 61.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "فنون": 65,
                 "علمي": 65,
@@ -27768,6 +27882,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -29343,6 +29461,7 @@
                 "علمي": 80.71,
                 "أدبي": 70
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -29386,6 +29505,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -29428,6 +29548,7 @@
               "morningByBranch": {
                 "علمي": 62
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -29478,6 +29599,7 @@
                 "علمي": 62,
                 "أدبي": 60
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -30386,6 +30508,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -31036,6 +31162,7 @@
                 "علمي": 83.86,
                 "أدبي": 70
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -31087,6 +31214,7 @@
                 "علمي": 65.71,
                 "أدبي": 63
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -31138,6 +31266,7 @@
                 "علمي": 67.86,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -31189,6 +31318,7 @@
                 "علمي": 67.86,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -31240,6 +31370,7 @@
                 "علمي": 67.86,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -31291,6 +31422,7 @@
                 "علمي": 67.86,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -33406,6 +33538,7 @@
               "morningByBranch": {
                 "علمي": 66
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -33448,6 +33581,7 @@
               "morningByBranch": {
                 "علمي": 66
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -33490,6 +33624,7 @@
               "morningByBranch": {
                 "علمي": 66
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -33532,6 +33667,7 @@
               "morningByBranch": {
                 "علمي": 66
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -33752,6 +33888,12 @@
               },
               "morningByBranch": {
                 "علمي": 95.71
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95.71,
+                  "أنثى": 96
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -34981,6 +35123,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -36660,6 +36806,7 @@
                 "أدبي": 62.86,
                 "علمي": null
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -37374,6 +37521,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -38219,6 +38370,12 @@
               },
               "morningByBranch": {
                 "علمي": 95.71
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95.71,
+                  "أنثى": 96
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -39364,6 +39521,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -40117,6 +40278,12 @@
               },
               "morningByBranch": {
                 "علمي": 95.29
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95.29,
+                  "أنثى": 96.43
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -41285,6 +41452,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -42215,6 +42386,12 @@
               },
               "morningByBranch": {
                 "علمي": 95.29
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 95.29,
+                  "أنثى": 96
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -43263,6 +43440,7 @@
               "morningByBranch": {
                 "علمي": 63.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -43305,6 +43483,7 @@
               "morningByBranch": {
                 "علمي": 63.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -43347,6 +43526,7 @@
               "morningByBranch": {
                 "علمي": 63.43
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -43397,6 +43577,7 @@
                 "علمي": 63.43,
                 "أدبي": 60.14
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -43448,6 +43629,7 @@
                 "علمي": 63.43,
                 "أدبي": 60.14
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -43499,6 +43681,7 @@
                 "علمي": 63.43,
                 "أدبي": 60.14
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -43552,6 +43735,7 @@
                 "أدبي": 60.14,
                 "فنون": null
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65,
@@ -43971,6 +44155,7 @@
                 "علمي": 62,
                 "أدبي": null
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -44374,6 +44559,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -46145,6 +46334,7 @@
                 "علمي": 63.57,
                 "أدبي": 61.14
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -46452,6 +46642,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -47077,6 +47271,12 @@
               },
               "morningByBranch": {
                 "علمي": 93.71
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 93.71,
+                  "أنثى": 95.14
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -47828,6 +48028,7 @@
                 "أدبي": 68,
                 "علمي": 67.57
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -48172,6 +48373,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -48855,6 +49060,12 @@
               },
               "morningByBranch": {
                 "علمي": 94.29
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 94.29,
+                  "أنثى": 95.86
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -49880,6 +50091,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -51462,6 +51677,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -53276,6 +53495,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -53800,6 +54023,12 @@
               },
               "morningByBranch": {
                 "علمي": 94.14
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 94.29,
+                  "أنثى": 94.14
+                }
               },
               "eveningByBranch": {
                 "علمي": 80
@@ -55204,6 +55433,12 @@
               "morningByBranch": {
                 "علمي": 93.14
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 93.29,
+                  "أنثى": 93.14
+                }
+              },
               "eveningByBranch": {
                 "علمي": 80
               },
@@ -56492,6 +56727,10 @@
                 "ruleId": "physical_education",
                 "basis": "official-2025",
                 "note": "57% للذكور و55% للإناث",
+                "genderFloors": {
+                  "ذكر": 57,
+                  "أنثى": 55
+                },
                 "feeCap": 900000,
                 "feeYear": "2026-2027",
                 "feeRuleId": "humanities"
@@ -57763,6 +58002,7 @@
                 "أدبي": 80.57,
                 "علمي": 79.29
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -57799,6 +58039,7 @@
                 "علمي": 62.29,
                 "أدبي": 61
               },
+              "genderRestriction": "أنثى",
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -57828,6 +58069,7 @@
               "morningByBranch": {
                 "علمي": 63.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65
               },
@@ -57878,6 +58120,7 @@
                 "علمي": 63.29,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -57929,6 +58172,7 @@
                 "علمي": 63.29,
                 "أدبي": 60.29
               },
+              "genderRestriction": "أنثى",
               "eveningByBranch": {
                 "علمي": 65,
                 "أدبي": 65
@@ -60157,6 +60401,12 @@
               "morningByBranch": {
                 "علمي": 89.29
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 90.14,
+                  "أنثى": 89.29
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -60465,6 +60715,12 @@
               "morningByBranch": {
                 "علمي": 87.71
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 87.71,
+                  "أنثى": 88
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -60627,6 +60883,7 @@
               "morningByBranch": {
                 "علمي": 78
               },
+              "genderRestriction": "ذكر",
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -64433,6 +64690,12 @@
               "morningByBranch": {
                 "علمي": 85.71
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 85.71,
+                  "أنثى": 89.29
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -64813,6 +65076,12 @@
               "morningByBranch": {
                 "علمي": 86.29
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 86.29,
+                  "أنثى": 88.86
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -65062,6 +65331,12 @@
               },
               "morningByBranch": {
                 "علمي": 86.57
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 86.57,
+                  "أنثى": 88.71
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -65351,6 +65626,12 @@
               "morningByBranch": {
                 "علمي": 85.43
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 85.43,
+                  "أنثى": 87.71
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -65594,6 +65875,12 @@
               },
               "morningByBranch": {
                 "علمي": 85.43
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 85.43,
+                  "أنثى": 87.57
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -68058,6 +68345,12 @@
               "morningByBranch": {
                 "علمي": 90.29
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 90.29,
+                  "أنثى": 92.57
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -68155,6 +68448,12 @@
               },
               "morningByBranch": {
                 "علمي": 89.71
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 89.71,
+                  "أنثى": 92
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -68656,6 +68955,12 @@
               "morningByBranch": {
                 "علمي": 88.29
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 88.29,
+                  "أنثى": 91.14
+                }
+              },
               "isDirectAdmission": false,
               "admissionStatus": "published",
               "branchSource": "extracted"
@@ -68866,6 +69171,12 @@
               },
               "morningByBranch": {
                 "علمي": 87.14
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 87.14,
+                  "أنثى": 88.14
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -71578,6 +71889,12 @@
               "morningByBranch": {
                 "علمي": 87.71
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 87.71,
+                  "أنثى": 89.57
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -71945,6 +72262,12 @@
               },
               "morningByBranch": {
                 "علمي": 86.43
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 86.43,
+                  "أنثى": 89.29
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -72484,6 +72807,12 @@
               },
               "morningByBranch": {
                 "علمي": 85.43
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 85.43,
+                  "أنثى": 87.86
+                }
               },
               "eveningByBranch": {
                 "علمي": 75
@@ -73160,6 +73489,12 @@
               "morningByBranch": {
                 "علمي": 84.14
               },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 84.14,
+                  "أنثى": 86.29
+                }
+              },
               "eveningByBranch": {
                 "علمي": 75
               },
@@ -73488,6 +73823,12 @@
               },
               "morningByBranch": {
                 "علمي": 83
+              },
+              "genderByBranch": {
+                "علمي": {
+                  "ذكر": 83,
+                  "أنثى": 86
+                }
               },
               "eveningByBranch": {
                 "علمي": 75

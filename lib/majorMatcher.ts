@@ -54,6 +54,10 @@ export interface Department {
   eveningByBranch?: Record<string, number | null>;
   /** مصدر حد المسائي وسقف أجوره. */
   evening?: EveningInfo;
+  /** يُذكر الجنس لقسم محدَّد فقط: قسم لجنس واحد (كل حدوده الرسمية لذلك الجنس). غائب لبقية الأقسام. */
+  genderRestriction?: GenderRestriction;
+  /** فروعٌ حدّ الذكور فيها يخالف حدّ الإناث (قسم محدَّد فقط): {فرع: {ذكر, أنثى}}. */
+  genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
   // شرط معدّل مُعلَن -- للأقسام الأهلية فقط، null دائماً للحكومية. راجع §28.
   statedMinimumGrade?: StatedMinimumGrade | null;
   // أجر الدراسة السنوي -- للأقسام الأهلية فقط، غائب (undefined) دائماً
@@ -146,7 +150,12 @@ export interface UniversityOffering {
   eveningByBranch?: Record<string, number | null>;
   /** مصدر حد المسائي وسقف أجوره: السنة وحالتها وصفّ القاعدة (data/evening-rules.json). */
   evening?: EveningInfo;
+  /** الجنس لقسم محدَّد فقط (انظر Department.genderRestriction). */
+  genderRestriction?: GenderRestriction;
+  genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
 }
+
+export type GenderRestriction = "ذكر" | "أنثى";
 
 /** وصف حد المسائي لقسم: من أي سنة وأي صف قاعدة، وسقف الأجور السنوية (دينار). */
 export interface EveningInfo {
@@ -159,6 +168,8 @@ export interface EveningInfo {
   feeCap: number | null;
   feeYear: string | null;
   feeRuleId: string | null;
+  /** حدّا الذكور والإناث حين يختلفان (التربية البدنية 2025-2026 فقط). */
+  genderFloors?: { ذكر: number; أنثى: number };
 }
 
 /**
@@ -305,6 +316,8 @@ export function findUniversitiesForMajor(
             admissionSuspended: dept.admissionSuspended ?? false,
             ...(dept.eveningByBranch ? { eveningByBranch: dept.eveningByBranch } : {}),
             ...(dept.evening ? { evening: dept.evening } : {}),
+            ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
+            ...(dept.genderByBranch ? { genderByBranch: dept.genderByBranch } : {}),
           });
         }
       }

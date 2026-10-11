@@ -15,6 +15,7 @@ import {
   BRANCH_UNKNOWN_BADGE,
 } from "../../lib/admissionDisclosure";
 import { morningCutoffsByBranch } from "../../lib/branchCutoff";
+import { genderCutoffLine, genderRestrictionLabel } from "../../lib/genderNote";
 
 interface UniversityOffering {
   universityName: string;
@@ -47,6 +48,10 @@ interface UniversityOffering {
   };
   /** حد المسائي لكل فرع (عروض التخصص الكاملة). */
   eveningByBranch?: Record<string, number | null>;
+  /** الجنس لقسم محدَّد فقط (lib/genderNote.ts). */
+  genderRestriction?: "ذكر" | "أنثى";
+  morningGender?: { ذكر: number; أنثى: number };
+  genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
 }
 
 interface UniversitiesTableProps {
@@ -140,6 +145,11 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 <td className="border px-3 py-2">{o.collegeName}</td>
                 <td className="border px-3 py-2">
                   {o.departmentName ?? "—"}
+                  {genderRestrictionLabel(o.genderRestriction) && (
+                    <span className="ms-2 rounded-full bg-surface-muted px-2 py-0.5 text-xs font-bold text-ink-muted">
+                      {genderRestrictionLabel(o.genderRestriction)}
+                    </span>
+                  )}
                   {o.branchKnown === false && (
                     <span className="ms-2 rounded-full bg-surface-muted px-2 py-0.5 text-xs font-bold text-ink-muted">
                       {BRANCH_UNKNOWN_BADGE}
@@ -148,6 +158,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 </td>
                 <td className={`border px-3 py-2 ${cellClass(morning.tone)}`}>
                   <span title={cellTitle(morning.tone)}>{morning.text}</span>
+                  {genderCutoffLine(o) && <span className="block text-xs text-ink-muted">{genderCutoffLine(o)}</span>}
                   {o.forBranch ? (
                     <span className="block text-xs text-ink-muted">لفرع {o.forBranch}</span>
                   ) : (

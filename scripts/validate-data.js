@@ -44,8 +44,12 @@ const DepartmentSchema = z.object({
       feeCap: z.number().nullable(),
       feeYear: z.string().nullable(),
       feeRuleId: z.string().nullable(),
+      genderFloors: z.object({ ذكر: z.number(), أنثى: z.number() }).optional(),
     })
     .optional(),
+  // الجنس لقسم محدَّد فقط (م2): قسم لجنس واحد، أو فرع يختلف فيه حدّ الذكور عن الإناث
+  genderRestriction: z.enum(["ذكر", "أنثى"]).optional(),
+  genderByBranch: z.record(z.string(), z.object({ ذكر: z.number(), أنثى: z.number() })).optional(),
   isDirectAdmission: z.boolean(),
   admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),
   // أجور الدراسة السنوية (دينار عراقي) -- خاصة بالجامعات الأهلية فقط، مصدرها
@@ -492,6 +496,47 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
     } else {
       console.log(
         `[OK] بيانات المسائي الحكومي (${withEvening} قسماً): حد لكل فرع + مصدر + سقف أجور، وكل قيمة ضمن data/evening-rules.json`
+      );
+    }
+  }
+
+  // ── الجنس لقسم محدَّد فقط: كل قيد مدعوم بحدود رسمية، ولا قيد على قسم مختلط (م2) ──
+  {
+    const { universities: genderUniversities } = JSON.parse(
+      fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8")
+    );
+    const badGender = [];
+    let restricted = 0;
+    let differing = 0;
+    for (const uni of genderUniversities) {
+      for (const college of uni.colleges) {
+        for (const dept of college.departments) {
+          const where = `${uni.name}/${college.name}/${dept.name}`;
+          const rows = (dept.cutoffs || []).filter((c) => !c.isQuota);
+          const genders = new Set(rows.map((c) => c.gender));
+          const onlyOne = genders.size === 1 && !genders.has("مختلط") ? [...genders][0] : null;
+          if (dept.genderRestriction) {
+            restricted++;
+            if (dept.genderRestriction !== onlyOne) badGender.push(`${where}: قيد جنس لا تدعمه الحدود الرسمية`);
+          } else if (onlyOne) {
+            badGender.push(`${where}: قسم لجنس واحد (${onlyOne}) بلا genderRestriction`);
+          }
+          for (const [b, g] of Object.entries(dept.genderByBranch || {})) {
+            differing++;
+            const m = rows.filter((c) => c.branch === b && c.gender === "ذكر").map((c) => c.averagePercent);
+            const f = rows.filter((c) => c.branch === b && c.gender === "أنثى").map((c) => c.averagePercent);
+            if (!m.includes(g.ذكر) || !f.includes(g.أنثى) || g.ذكر === g.أنثى)
+              badGender.push(`${where}: genderByBranch[${b}] لا يطابق الحدود الرسمية`);
+          }
+        }
+      }
+    }
+    if (badGender.length) {
+      console.error(`[FAIL] الجنس: ${badGender.length} مخالفة`, badGender.slice(0, 10));
+      process.exitCode = 1;
+    } else {
+      console.log(
+        `[OK] الجنس لقسم محدَّد فقط: ${restricted} قسماً لجنس واحد، ${differing} فرعاً بحدّين مختلفين، وكلها مطابقة للحدود الرسمية`
       );
     }
   }

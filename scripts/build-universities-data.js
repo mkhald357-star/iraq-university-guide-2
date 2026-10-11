@@ -728,6 +728,19 @@ const finalUniversities = universities.map((u) => {
       const eveningValues = ev ? Object.values(ev.byBranch).filter((v) => v != null) : [];
       const bestEvening = eveningValues.length ? Math.min(...eveningValues) : null;
 
+      // الجنس: يُذكر لقسم محدَّد فقط -- (أ) قسم لجنس واحد بحسب الحدود الرسمية (كل حدوده أنثى فقط أو ذكر فقط)،
+      // (ب) قسم بحدّين مختلفين للذكور والإناث (تمريض…). بقية الأقسام (مختلط) لا يُذكر لها جنس إطلاقاً.
+      const genderSet = new Set(nonQuotaCutoffs.map((x) => x.gender));
+      const genderRestriction = genderSet.size === 1 && !genderSet.has("مختلط") ? [...genderSet][0] : null;
+      const genderByBranch = {};
+      for (const b of branches) {
+        const m = nonQuotaCutoffs.filter((x) => x.branch === b && x.gender === "ذكر").map((x) => x.averagePercent);
+        const f = nonQuotaCutoffs.filter((x) => x.branch === b && x.gender === "أنثى").map((x) => x.averagePercent);
+        if (m.length && f.length && Math.min(...m) !== Math.min(...f)) {
+          genderByBranch[b] = { ذكر: Math.min(...m), أنثى: Math.min(...f) };
+        }
+      }
+
       const hasAnyCutoff = bestMorning !== null || bestEvening !== null;
       const admissionStatus = hasAnyCutoff ? "published" : "noPublishedCutoff";
 
@@ -739,6 +752,8 @@ const finalUniversities = universities.map((u) => {
         cutoffs: d.cutoffs,
         averageGrades: { صباحي: bestMorning, مسائي: bestEvening },
         morningByBranch,
+        ...(genderRestriction ? { genderRestriction } : {}),
+        ...(Object.keys(genderByBranch).length ? { genderByBranch } : {}),
         ...(ev
           ? {
               eveningByBranch: Object.fromEntries(branches.map((b) => [b, ev.byBranch[b] ?? null])),
@@ -748,6 +763,7 @@ const finalUniversities = universities.map((u) => {
                 ruleId: ev.ruleId,
                 basis: ev.basis,
                 note: ev.note,
+                ...(ev.genderFloors ? { genderFloors: ev.genderFloors } : {}),
                 feeCap: ev.fee.cap,
                 feeYear: ev.fee.year,
                 feeRuleId: ev.fee.ruleId,

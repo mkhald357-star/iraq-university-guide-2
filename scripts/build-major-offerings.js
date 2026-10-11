@@ -96,6 +96,11 @@ function findUniversitiesForMajor(major, mapping) {
             // القبول الحكومي مركزي بلا أجر مماثل). راجع data/admission_rules.md §41.
             tuitionFees: dept.tuitionFees ?? null,
             admissionSuspended: dept.admissionSuspended ?? false,
+            // حد المسائي لكل فرع ومصدره، والجنس لقسم محدَّد فقط (غائبة عن بقية الأقسام)
+            ...(dept.eveningByBranch ? { eveningByBranch: dept.eveningByBranch } : {}),
+            ...(dept.evening ? { evening: dept.evening } : {}),
+            ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
+            ...(dept.genderByBranch ? { genderByBranch: dept.genderByBranch } : {}),
           });
         }
       }
@@ -197,6 +202,9 @@ for (const uni of universities) {
           ...record,
           averageGrades: { ...dept.averageGrades, صباحي: morning, مسائي: evening },
           ...(dept.evening ? { evening: dept.evening } : {}),
+          // الجنس لقسم محدَّد فقط: قسم لجنس واحد، أو حدّان مختلفان لهذا الفرع
+          ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
+          ...(dept.genderByBranch && dept.genderByBranch[b] ? { morningGender: dept.genderByBranch[b] } : {}),
         });
       }
     }

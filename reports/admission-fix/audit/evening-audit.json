@@ -1,0 +1,4526 @@
+{
+  "summary": {
+    "departments": 1687,
+    "withEvening": 1353,
+    "correct": 758,
+    "wrong": 276,
+    "ambiguous": 319,
+    "fabricatedPhysicalEducation56": 1,
+    "nonFloorCategoriesNeedLoweringNote": 957
+  },
+  "groups": [
+    {
+      "group": "كلية الادارة والاقتصاد (ح): منصة 58 ≠ 60",
+      "departments": 84
+    },
+    {
+      "group": "كلية التربية للعلوم الانسانية (ط): منصة 60 ≠ 58",
+      "departments": 67
+    },
+    {
+      "group": "كلية العلوم الاسالمية (ط): منصة 60 ≠ 58",
+      "departments": 41
+    },
+    {
+      "group": "الكلية التقنية الهندسية (هـ): منصة 58 ≠ 60",
+      "departments": 31
+    },
+    {
+      "group": "كلية التربية البدنية وعلوم الرياضة (ي): منصة 60 ≠ 57/55",
+      "departments": 18
+    },
+    {
+      "group": "الكلية التقنية الاقسام الهندسية (هـ): منصة 58 ≠ 60",
+      "departments": 7
+    },
+    {
+      "group": "كلية العلوم السياحية (ط): منصة 60 ≠ 58",
+      "departments": 5
+    },
+    {
+      "group": "كلية التربية ابن رشد للعلوم الانسانية (ط): منصة 60 ≠ 58",
+      "departments": 4
+    },
+    {
+      "group": "كلية الادارة الصناعية للنفط والغاز (ح): منصة 58 ≠ 60",
+      "departments": 4
+    },
+    {
+      "group": "الكلية التقنية الهندسية الكهربائية (هـ): منصة 58 ≠ 60",
+      "departments": 4
+    },
+    {
+      "group": "كلية الادارة (ح): منصة 58 ≠ 60",
+      "departments": 2
+    },
+    {
+      "group": "كلية هندسة تقنيات النفط والغاز (هـ): منصة 65 ≠ 60",
+      "departments": 2
+    },
+    {
+      "group": "الكلية التقنية الاقسام الطبية (ج): منصة 58 ≠ 75",
+      "departments": 2
+    },
+    {
+      "group": "الكلية التقنية الهندسية للذكاء الاصطناعي (هـ): منصة 58 ≠ 60",
+      "departments": 2
+    },
+    {
+      "group": "كلية التربية البدنية (ي): منصة 56 ≠ 57/55",
+      "departments": 1
+    },
+    {
+      "group": "كلية التربية البدنية وعلوم الرياضة للبنات (ي): منصة 60 ≠ 57/55",
+      "departments": 1
+    },
+    {
+      "group": "كلية التقنيات الصحية (ج): منصة 58 ≠ 75",
+      "departments": 1
+    }
+  ],
+  "wrong": [
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة الصناعية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية ابن رشد للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية ابن رشد للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية ابن رشد للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية ابن رشد للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الفلسفة االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم االديان المقارنة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العلوم المالية والمصرفية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية البدنية",
+      "department": "عام",
+      "category": "ي",
+      "platform": 56,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية البدنية وعلوم الرياضة للبنات",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االحصاء",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية العلوم السياحية",
+      "department": "قسم الدراسات السياحية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية العلوم السياحية",
+      "department": "قسم الدراسات الفندقية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة المستنصرية",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االحصاء",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم نظم المعلومات االدارية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة المشاريع",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم التمويل واالستثمار",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم االرشاد النفسي والتوجيه التربوي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية االدارة",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة الصناعية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم نظم المعلومات االدارية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة التسويق",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم السياحة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الكوفة",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة التسويق",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التربية الفنية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العلوم المالية والمصرفية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الفقه واصوله",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم التفسير وعلوم القران",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الحديث وعلومه",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم االديان المقارنة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة القادسية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة القادسية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة القادسية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة القادسية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة القادسية",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم التفسير وعلوم القران",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العلوم المالية والمصرفية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الحديث وعلومه",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم اصول الفقه",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم مقارنة االديان",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم التفسير",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم اإلحصاء",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العلوم المالية والمصرفية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االحصاء",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية التطبيقية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم السياحية",
+      "department": "قسم الدراسات السياحية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم السياحية",
+      "department": "قسم الدراسات الفندقية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم السياحية",
+      "department": "قسم السفر وخدمة الطيران",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الفقه واصوله",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الدراسات القرانية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم علوم القران",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االحصاء",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة الكردية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة ميسان",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ميسان",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ميسان",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة ميسان",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية االدارة",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم التاريد",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم الجغرافية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم علوم القران والتربية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العقيدة والفكر االسالمي",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم العلوم المالية والمصرفية اإلسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة سومر",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة سومر",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة سومر",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة القاسم الخضراء",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االدارة العامة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم االقتصاد",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم العلوم المالية والمصرفية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الشريعة",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم المعامالت المالية والمصرفية االسالمية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم القران الكريم وعلومه",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الفلوجة",
+      "college": "كلية العلوم االسالمية",
+      "department": "قسم الحديث وعلومه",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة البصرة للنفط والغاز",
+      "college": "كلية االدارة الصناعية للنفط والغاز",
+      "department": "قسم اقتصاديات النفط والغاز",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة للنفط والغاز",
+      "college": "كلية االدارة الصناعية للنفط والغاز",
+      "department": "قسم ادارة المشاريع النفطية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة للنفط والغاز",
+      "college": "كلية االدارة الصناعية للنفط والغاز",
+      "department": "قسم ادارة وتسويق النفط والغاز",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة البصرة للنفط والغاز",
+      "college": "كلية االدارة الصناعية للنفط والغاز",
+      "department": "قسم المحاسبة النفطية",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم ادارة االعمال",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية االدارة واالقتصاد",
+      "department": "قسم المحاسبة",
+      "category": "ح",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة االنكليزية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم العلوم التربوية والنفسية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم االنسانية",
+      "department": "قسم اللغة العربية",
+      "category": "ط",
+      "platform": 60,
+      "expected": 58
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية البدنية وعلوم الرياضة",
+      "department": "عام",
+      "category": "ي",
+      "platform": 60,
+      "expected": "57 ذكور / 55 إناث"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات االجهزة الطبية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات البناء واالنشاءات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات الطائرات المسيرة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات الصناعات الكيمياوية والنفطية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات ميكانيك القوى",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات الميكانيك التطبيقي",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/الموصل",
+      "department": "قسم هندسة تقنيات الجيوماتكس",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات االجهزة الطبية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات العمارة والبناء",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات المساحة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات ميكانيك القوى",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات االلكترونيك والسيطرة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الهندسية/كركوك",
+      "department": "قسم هندسة تقنيات البيئة والتلوث",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "كلية هندسة تقنيات النفط والغاز",
+      "department": "قسم هندسة تقنيات الوقود والطاقة",
+      "category": "هـ",
+      "platform": 65,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "كلية هندسة تقنيات النفط والغاز",
+      "department": "قسم هندسة تقنيات الطاقة المتجددة",
+      "category": "هـ",
+      "platform": 65,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الطبية/المسيب",
+      "department": "قسم تقنيات فحص البصر",
+      "category": "ج",
+      "platform": 58,
+      "expected": 75
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الطبية/المسيب",
+      "department": "قسم تقنيات االطراف والمساند الصناعية",
+      "category": "ج",
+      "platform": 58,
+      "expected": 75
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الطيران",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الفيزياء الصحية والعالج االشعاعي",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الليزر وااللكترونيات البصرية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات االتصاالت",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات البناء واالنشاءات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات ميكانيك القوى",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة تقنيات البناء واالنشاءات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة تقنيات ميكانيك القدرة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة تقنيات المكائن والمعدات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الوقود والطاقة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم التقنيات الكيميائية والبتروكيميائية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات ميكانيك الحراريات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات السيطرة واالتمتة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة تقنيات البناء واالنشاءات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة النظم الكهروميكانيكية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االقسام الهندسية",
+      "department": "قسم هندسة تقنيات النظم الكهروميكانيكية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية الكهربائية",
+      "department": "قسم هندسة تقنيات االجهزة الطبية",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية الكهربائية",
+      "department": "قسم هندسة تقنيات الحاسوب",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية الكهربائية",
+      "department": "قسم هندسة تقنيات السيطرة واالتمتة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية الكهربائية",
+      "department": "هندسة تقنيات الفضاء والطائرات المسيرة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية للذكاء االصطناعي/بغداد",
+      "department": "قسم هندسة تقنيات االمن السيبراني",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية للذكاء االصطناعي/بغداد",
+      "department": "قسم هندسة تقنيات الذكاء االصطناعي",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الوقود والطاقة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات البناء واالنشاءات",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الميكاترونكس",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات المساحة",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات ميكانيك القوى",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية الهندسية",
+      "department": "قسم هندسة تقنيات الميكانيك التطبيقي",
+      "category": "هـ",
+      "platform": 58,
+      "expected": 60
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية التقنيات الصحية",
+      "department": "قسم تقنيات صحة المجتمع",
+      "category": "ج",
+      "platform": 58,
+      "expected": 75
+    }
+  ],
+  "ambiguous": [
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة بغداد",
+      "college": "كلية التربية ابن رشد للعلوم",
+      "department": "قسم العلوم التربوية والنفسية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحاسوب",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة البصرة",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الموصل",
+      "college": "كلية التربية للعلوم",
+      "department": "قسم العلوم التربوية والنفسية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة النهرين",
+      "college": "كلية التقنيات االحيائية",
+      "department": "قسم التقنيات الحيوية الجزيئية والطبية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة النهرين",
+      "college": "كلية التقنيات االحيائية",
+      "department": "قسم علوم الحياة التطبيقي",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة النهرين",
+      "college": "كلية التقنيات االحيائية",
+      "department": "قسم التقنيات االحيائية الميكروبية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة تكريت",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الأنبار",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية القانون والعلوم السياسية",
+      "department": "قسم القانون",
+      "platform": 60,
+      "why": "قانون وعلوم سياسية معاً: 65 أم 60"
+    },
+    {
+      "university": "الجامعة العراقية",
+      "college": "كلية القانون والعلوم السياسية",
+      "department": "قسم العلوم السياسية",
+      "platform": 60,
+      "why": "قانون وعلوم سياسية معاً: 65 أم 60"
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة بابل",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية القانون والعلوم السياسية",
+      "department": "قسم القانون",
+      "platform": 60,
+      "why": "قانون وعلوم سياسية معاً: 65 أم 60"
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة ديالى",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الحاسوب والذكاء االصطناعي",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم التحليالت المرضية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم الفيزياء الطبية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كربلاء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة ذي قار",
+      "college": "كلية التربية للعلوم",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية القانون والعلوم السياسية",
+      "department": "قسم القانون",
+      "platform": 60,
+      "why": "قانون وعلوم سياسية معاً: 65 أم 60"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية القانون والعلوم السياسية",
+      "department": "قسم العلوم السياسية",
+      "platform": 60,
+      "why": "قانون وعلوم سياسية معاً: 65 أم 60"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة كركوك",
+      "college": "كلية التربية للعلوم",
+      "department": "قسم اللغة التركية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الحاسوب",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة واسط",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم التحليالت المرضية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم الصحة البيئية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة المثنى",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الكيمياء",
+      "platform": 58,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 58,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة سامراء",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 58,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة جابر بن حيان للعلوم الطبية والصيدلانية",
+      "college": "كلية العلوم الطبية",
+      "department": "قسم التحليالت المرضية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة جابر بن حيان للعلوم الطبية والصيدلانية",
+      "college": "كلية العلوم الطبية",
+      "department": "قسم الفيزياء الطبية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة جابر بن حيان للعلوم الطبية والصيدلانية",
+      "college": "كلية العلوم الطبية",
+      "department": "قسم االدلة الجنائية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة جابر بن حيان للعلوم الطبية والصيدلانية",
+      "college": "كلية العلوم الطبية",
+      "department": "قسم علوم التجميل",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الفيزياء",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم علوم الحياة",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الحمدانية",
+      "college": "كلية التربية للعلوم الصرفة",
+      "department": "قسم الرياضيات",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الشطرة",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم التحليالت المرضية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "جامعة الشطرة",
+      "college": "كلية العلوم الطبية التطبيقية",
+      "department": "قسم الفيزياء الطبية",
+      "platform": 60,
+      "why": "اسم يحوي «علوم» لكنه ليس كلية علوم صريحة: 60 أم 58"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الحويجة",
+      "department": "قسم هندسة تقنيات الميكاترونكس",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الحويجة",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الحويجة",
+      "department": "قسم التقنيات المالية والمصرفية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الزراعية",
+      "department": "قسم تقنيات االنتاج الحيواني",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الزراعية",
+      "department": "قسم تقنيات االنتاج النباتي",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الزراعية",
+      "department": "قسم تقنيات مكافة التصحر",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الزراعية",
+      "department": "قسم تقنيات النباتات الطبية والنواتج الطبيعية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية الزراعية",
+      "department": "قسم التقانات االحيائية وعلوم األغذية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم ادارة تقنيات المعلومات",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات اقتصاديات النفط والغاز",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات التخدير",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات االشعة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات فحص البصر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات طب الطوارئ واالسعاف الفوري",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/الموصل",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/كركوك",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/كركوك",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الطبي/كركوك",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم االسعاف الفوري",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم االطراف الصناعية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم تقنيات الميكانيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم تقنيات االلكترونيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم تقنيات االجهزة الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الدور",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات فحص البصر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات االدلة الجنائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات االنتاج النباتي",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم التقنيات الميكانيكية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات ميكانيك القدرة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات تكرير النفط والغاز",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات االنسان االلي واالالت الذكية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم تقنيات ادارة المكتب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الحويجة",
+      "department": "قسم التقنيات المالية والمصرفية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني النمرود",
+      "department": "قسم تقنيات التغذية العالجية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني النمرود",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم التقنيات الكهربائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات الصناعات الكيمياوية والنفطية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات األجهزة الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات التبريد والتكييف",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات الشبكات وبرمجيات الحاسوب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات الميكاترونكس",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني الموصل",
+      "department": "قسم تقنيات صناعة االطراف والمساند",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات الميكانيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم التقنيات الكهربائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم التقنيات االلكترونية واالتصاالت",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات ميكانيك القدرة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات الصناعات الكيمياوية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات فحص ولحام المعدات النفطية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات ادارة المواد",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني كركوك",
+      "department": "قسم تقنيات ادارة التسويق",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات ادارة المواد",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات االقتصاد الرقمي والتكنولوجيا الرقمية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات السياحة والفندقة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "معهد االدارة التقني",
+      "department": "قسم التقنيات المالية والمصرفية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "الكلية التقنية",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الشمالية",
+      "college": "المعهد التقني",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية تقنيات التاهيل الطبي واالطراف الصناعية/الكوفة",
+      "department": "قسم تقنيات التاهيل الطبي لالطراف الصناعية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية تقنيات التاهيل الطبي واالطراف الصناعية/الكوفة",
+      "department": "قسم تقنيات االطراف الصناعية واالجهزة المساعدة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك كربالء",
+      "department": "قسم تقنيات هندسة البناء واالنشاءات",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك كربالء",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك كربالء",
+      "department": "قسم تقنيات هندسة الطاقة المتجددة",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك كربالء",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك القادسية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك القادسية",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك القادسية",
+      "department": "قسم تقنيات التأمين",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الزراعية",
+      "department": "قسم تقنيات االنتاج الحيواني",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االقسام الزراعية",
+      "department": "قسم تقنيات االنتاج النباتي",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االدارية/الكوفة",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االدارية/الكوفة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "الكلية التقنية االدارية/الكوفة",
+      "department": "قسم تقنيات ادارة المستشفيات",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات صناعة االطراف والمساند",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات طب الطوارئ واالسعافات األولية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الكوفة",
+      "department": "قسم تقنيات طيف التوحد",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني بابل",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني بابل",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني بابل",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني بابل",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات التأهيل الطبي والعالج الطبيعي",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات االدلة الجنائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات صناعة االطراف والمساند",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني القادسية",
+      "department": "قسم تقنيات االشعة والسونار",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني المسيب",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني المسيب",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني المسيب",
+      "department": "قسم تقنيات االجهزة الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات غسيل الكلى",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات المساحة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تكنولوجيا المعلومات واالتصاالت",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات تكرير النفط والغاز",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات الحفر وانتاج النفط",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني السماوة",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني كربالء",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني كربالء",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الرميثة",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الرميثة",
+      "department": "قسم تقنيات االدلة الجنائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني الرميثة",
+      "department": "قسم تقنيات الطاقة المتجددة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات صناعة االسنان",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم فحص البصر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم االدلة الجنائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات وقاية وتقويم االسنان",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات التجميل والليزر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات االلكترونيك واالتصاالت",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات االجهزة الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات تكرير النفط",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "المعهد التقني النجف",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "جامعة الفرات الأوسط التقنية",
+      "college": "كلية البوليتكنك",
+      "department": "قسم تقنيات الهندسة الميكانيكية",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الشطرة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية الشطرة",
+      "department": "قسم هندسة تقنيات البيئة والتلوث",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "كلية البوليتكنك القرنة",
+      "department": "قسم تقنيات هندسة الحاسوب والذكاء االصطناعي",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "كلية البوليتكنك القرنة",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم ادارة تقنيات المعلومات",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "الكلية التقنية االقسام االدارية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات التخدير",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات االدلة الجنائية والعدلية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات طب الطوارئ واالسعافات االولية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات غسيل الكلى",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم التقنيات المدنية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الناصرية",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الشطرة",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني الشطرة",
+      "department": "قسم التقنيات الكهربائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات الميكانيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني العمارة",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم التقنيات الميكانيكية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم التقنيات المدنية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم التقنيات الكهربائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم التقنيات االلكترونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم تقنيات المساحة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم تقنيات ميكانيك القدرة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم تقنيات الصناعات الكيمياوية والنفطية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني التكنولوجي",
+      "department": "قسم تقنيات شبكات وبرامجيات الحاسوب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني االداري",
+      "department": "قسم تقنيات ادارة المكتب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الجنوبية",
+      "college": "المعهد التقني االداري",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية بعقوبة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات هندسة االلكترونيك والذكاء االصطناعي",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات هندسة الصناعات الكيمياوية والنفطية",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم هندسة التصنيع المبرمج",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات التصميم الداخلي",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات الصياغة والمجوهرات",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "كلية البوليتكنك بغداد",
+      "department": "قسم تقنيات الخزف",
+      "platform": 58,
+      "why": "بوليتكنك: كلية بتخصصات هندسية وإدارية وطبية معاً"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات ادارة االعمال",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم ادارة تقنيات المعلومات",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات االدارة السياحية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية االدارية",
+      "department": "قسم تقنيات العلوم المالية والمصرفية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد الطبي",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد الطبي",
+      "department": "قسم تقنيات وقاية االسنان",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد الطبي",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد الطبي",
+      "department": "قسم تقنيات التخدير",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد الطبي",
+      "department": "قسم تقنيات االشعة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات الميكانيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بعقوبة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات االدلة الجنائية والعدلية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات االدارة الصحية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات الصيدلة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الطبي",
+      "department": "قسم تقنيات فحص البصر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات االحيائية الزراعية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم التقنيات المدنية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات المساحة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات ميكانيك القدرة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات االجهزة الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات الطاقة المتجددة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات البتروكيمياويات",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات فحص ولحام المعدات النفطية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات االمن السيبراني",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات ادارة المواد",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الكوت",
+      "department": "قسم تقنيات التأمين وادارة المخاطر",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات االنتاج النباتي",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات الصناعات الغذائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني الصويرة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم تقنيات التمريض",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم تقنيات صحة المجتمع",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم التقنيات الميكانيكية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم التقنيات المدنية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم التقنيات الكهربائية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني االنبار",
+      "department": "قسم تقنيات االدارة القانونية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بلد",
+      "department": "قسم تقنيات الكلية الصناعية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بلد",
+      "department": "قسم تقنيات المختبرات الطبية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "المعهد التقني بلد",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد التكنلوجيا",
+      "department": "قسم تقنيات الكهرباء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد التكنلوجيا",
+      "department": "قسم تقنيات المساحة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد التكنلوجيا",
+      "department": "قسم تقنيات ميكانيك القدرة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم تقنيات انظمة الحاسوب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم تقنيات ادارة المكتب",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم تقنيات االحصاء",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم التقنيات المالية والمصرفية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة",
+      "department": "قسم تقنيات ادارة وتسويق النفط والغاز",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات انظمة الحاسبات",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات ادارة المواد",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات االقتصاد الرقمي والتكنولوجيا الرقمية",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات السياحة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات ادارة التسويق والمبيعات االلكتروني",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات التأمين",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد االدارة التقني",
+      "department": "قسم تقنيات ادارة االزمات والكوارث",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد الفنون التطبيقية",
+      "department": "قسم تقنيات تصميم االقمشة",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد اعداد المدربين التقنيين/بغداد",
+      "department": "قسم تقنيات االلكترونيك",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "معهد اعداد المدربين التقنيين/بغداد",
+      "department": "قسم تقنيات الذكاء االصطناعي",
+      "platform": 58,
+      "why": "المعاهد غير مذكورة نصاً في البند (القراءة الحرفية: ط=58)"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية",
+      "department": "قسم تقنيات الهندسة الكهربائية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية",
+      "department": "قسم التقنيات الكهروميكانيكية",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    },
+    {
+      "university": "الجامعة التقنية الوسطى",
+      "college": "الكلية التقنية",
+      "department": "قسم تقنيات المحاسبة",
+      "platform": 58,
+      "why": "كلية تقنية بلا تخصيص هندسي/طبي: لا فقرة صريحة"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "generatedFrom": "data/universities.json",
+  "cutoffs": {
+    "officialRows": 1222,
+    "ok": 1220,
+    "notAssignedToDepartment": 2,
+    "deptNotFound": 0,
+    "mismatch": 0,
+    "platformCutoffsWithoutOfficialRow": 0,
+    "departmentsWithMergedCampusValues": 13,
+    "rawInSyncWithText": true
+  },
+  "guideBranches": {
+    "governmentDepartments": 1687,
+    "matchedWithGuide": 1523,
+    "unmatched": 164,
+    "platformExtraBranch": 2,
+    "platformMissingBranch": 0
+  },
+  "evening": {
+    "departmentsWithEvening": 1353,
+    "correctVsOfficialCategory": 758,
+    "wrongVsOfficialCategory": 276,
+    "ambiguousCategory": 319,
+    "fabricatedPhysicalEducation56": 1
+  },
+  "gender": {
+    "singleGenderBranchCombos": 125,
+    "maleFemaleDifferCombos": 31
+  }
+}

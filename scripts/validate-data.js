@@ -49,6 +49,8 @@ const DepartmentSchema = z.object({
     .optional(),
   // الجنس لقسم محدَّد فقط (م2): قسم لجنس واحد، أو فرع يختلف فيه حدّ الذكور عن الإناث
   genderRestriction: z.enum(["ذكر", "أنثى"]).optional(),
+  // مصدر الفروع المقبولة (حكومي): cutoffs | chapter3 | guide | unknown (لا استدلال)
+  branchBasis: z.enum(["cutoffs", "chapter3", "guide", "unknown", "none"]).optional(),
   genderByBranch: z.record(z.string(), z.object({ ذكر: z.number(), أنثى: z.number() })).optional(),
   isDirectAdmission: z.boolean(),
   admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),

@@ -38,7 +38,7 @@ for (const u of list) {
   if (u.type !== "حكومية") continue;
   for (const c of u.colleges || [])
     for (const p of c.departments || []) {
-      p.branchSource = "extracted";
+      p.branchSource = (p.branch || []).length ? "extracted" : "unknown";
       const k = norm(p.name);
       if (!k) continue;
       if (!govBranches.has(k)) govBranches.set(k, new Set());

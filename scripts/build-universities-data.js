@@ -541,41 +541,11 @@ for (const u of universities) {
   }
 }
 
-// إصلاح فجوة بيانات حقيقية (اكتُشفت بتدقيق اكتمال شامل، 2026-07-22): 202 قسم
-// (من أصل 1838) لا يُسند لها أي فرع (branch: []) لأنها تُقرأ حصراً من جدول
-// الدراسة المسائية (الفصل الرابع، قائمة أهلية بلا عمود فرع إطلاقاً) بلا أي
-// صف حدود دنيا صباحي أو إضافة فصل 3 يرافقها لتزويدها بفرع. القاعدة الرسمية
-// (انظر §5 أدناه في admission_rules.md): "تسري عليها نفس التخصصات المعتمدة
-// مركزياً في نفس الكلية" -- فنستدل الفرع بأولوية:
-// (أ) اتفاق تام بين كل الأقسام الشقيقة الحقيقية (بيانات صباحي فعلية) في نفس
-//     الكلية -- استدلال مباشر من بيانات رسمية حقيقية لنفس المؤسسة، لا تخمين.
-// (ب) تصنيف عام حسب نوع القسم/الكلية عند غياب/تعارض بيانات الأشقاء، مبني على
-//     نمط الأقسام الشقيقة المُتحقَّق منه فعلياً عبر عشرات الكليات المشابهة
-//     (المعاهد/الكليات التقنية تقبل علمي حصراً إلا مسارات الإدارة/المحاسبة/
-//     القانون/التسويق/التأمين التقنية التي تقبل أدبي أيضاً؛ التربية البدنية
-//     تقبل الفروع الثلاثة؛ الفنون/التصميم تقبل فنون+أدبي+علمي؛ العلوم
-//     التربوية/الإنسانية في كليات التربية تقبل أدبي+علمي).
-// هذه قاعدة استدلالية موثَّقة صراحة (كجدول حدود المسائي نفسه)، وليست بيانات
-// مستخرجة حرفياً -- إن ظهر لاحقاً نص رسمي يخصّ فرعاً بعينه لقسم معيّن هنا
-// فهو الأولوية ويجب أن يُصحِّح هذا التخمين.
-function classifyFallbackBranch(collegeName, deptName) {
-  const s = `${collegeName} ${deptName}`;
-  if (/فنون|تصميم|خزف|صياغة والمجوهرات/.test(s)) return ["فنون", "أدبي", "علمي"];
-  if (/تربية البدنية|علوم الرياضة/.test(collegeName)) return ["علمي", "أدبي", "فنون"];
-  if (
-    /ادارة|محاسبة|قانونية|مالية والمصرفية|تسويق|تأمين|ادارة المكتب|ادارة المواد|ادارة الاعمال|ادارة المستشفيات|الادارة الصحية/.test(
-      deptName
-    )
-  )
-    return ["علمي", "أدبي"];
-  if (
-    /تاريخ|تاريد|علوم القران|التربية االسالمية|ارشاد نفسي|تربوية والنفسية|تربوية ونفسية|اللغة التركية|اللغة االنكليزية|اللغة الانكليزية/.test(
-      deptName
-    )
-  )
-    return ["أدبي", "علمي"];
-  return ["علمي"];
-}
+// أقسام بلا حد منشور ولا فرع من الحدود الرسمية أو الفصل 3 (مسائي فقط غالباً): فرعها من جدول فروع
+// الدليل (scripts/guideBranches.js) وحده. ما لا نصّ له يبقى **بلا فرع معروف** (branch: [] و
+// branchBasis: "unknown") فيظهر موسوماً «الفرع غير معروف» في by-branch/unknown.json ولا يُعدّ
+// مؤهِّلاً بتخمين. كان هنا تصنيف استدلالي من اسم القسم وأشقاء الكلية (12 قسماً)؛ أُلغي (م5، 2026-10-11)
+// وفق قاعدة الخطة: لا رقم ولا فرع بلا مصدر رسمي.
 for (const u of universities) {
   for (const college of u._collegesMap.values()) {
     const entries = [...college.departmentsMap.entries()];
@@ -583,21 +553,10 @@ for (const u of universities) {
       ([key, d]) => key !== "__COLLEGE_LEVEL__" && d.cutoffs.length === 0 && d.directBranches.size === 0
     );
     if (gapDepts.length === 0) continue;
-    const siblingBranchSets = new Set(
-      entries
-        .filter(([key, d]) => key !== "__COLLEGE_LEVEL__" && (d.cutoffs.length > 0 || d.directBranches.size > 0))
-        .map(([, d]) => [...new Set([...d.cutoffs.map((c) => c.branch), ...d.directBranches])].sort().join(","))
-    );
     gapDepts.forEach(([, d]) => {
-      // جدول فروع الدليل الرسمي أولاً (نص صريح)، ثم الاستدلال من الأشقاء، ثم التصنيف العام
-      // (مثال: بوليتكنك بغداد/التصميم الداخلي: الدليل علمي/أدبي، والتصنيف العام كان يضيف فنون).
       const guide = guideBranchesFor(u, college.name, d.name);
-      const inferred = guide
-        ? [...guide]
-        : siblingBranchSets.size === 1
-          ? [...siblingBranchSets][0].split(",")
-          : classifyFallbackBranch(college.name, d.name);
-      inferred.forEach((b) => d.directBranches.add(b));
+      d.branchBasis = guide ? "guide" : "unknown";
+      if (guide) guide.forEach((b) => d.directBranches.add(b));
     });
   }
 }
@@ -757,6 +716,11 @@ const finalUniversities = universities.map((u) => {
         }
       }
 
+      // مصدر قائمة الفروع المقبولة: cutoffs = من صفوف الحدود الرسمية، chapter3 = الفصل 3 المضاف يدوياً،
+      // guide = جدول فروع الدليل، unknown = لا نصّ رسمي (branch: [])؛ لا استدلال بعد الآن.
+      const branchBasis =
+        d.branchBasis || (d.cutoffs.length ? "cutoffs" : d.directBranches.size ? "chapter3" : guide ? "guide" : "none");
+
       const hasAnyCutoff = bestMorning !== null || bestEvening !== null;
       const admissionStatus = hasAnyCutoff ? "published" : "noPublishedCutoff";
 
@@ -764,6 +728,7 @@ const finalUniversities = universities.map((u) => {
         name: d.name,
         displayName: toDisplayName(d.name),
         branch: branches,
+        branchBasis,
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
         averageGrades: { صباحي: bestMorning, مسائي: bestEvening },
@@ -772,7 +737,10 @@ const finalUniversities = universities.map((u) => {
         ...(Object.keys(genderByBranch).length ? { genderByBranch } : {}),
         ...(ev
           ? {
-              eveningByBranch: Object.fromEntries(branches.map((b) => [b, ev.byBranch[b] ?? null])),
+              // قسم بلا فرع معروف: حدّ المسائي لكل فرع تسمح به قاعدة الكلية (لا يُفترض قبوله، يُعرض موسوماً)
+              eveningByBranch: branches.length
+                ? Object.fromEntries(branches.map((b) => [b, ev.byBranch[b] ?? null]))
+                : Object.fromEntries(Object.entries(ev.byBranch).filter(([, v]) => v != null)),
               evening: {
                 year: ev.year,
                 status: ev.status,

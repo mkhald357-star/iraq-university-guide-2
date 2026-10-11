@@ -189,7 +189,11 @@ for (const uni of universities) {
         branchKnown: dept.branch.length > 0,
       };
       if (dept.branch.length === 0) {
-        branchRecords[UNKNOWN_BRANCH_KEY].push(record);
+        branchRecords[UNKNOWN_BRANCH_KEY].push({
+          ...record,
+          ...(dept.evening ? { evening: dept.evening } : {}),
+          ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
+        });
         continue;
       }
       for (const b of dept.branch) {

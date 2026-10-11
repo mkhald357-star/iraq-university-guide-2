@@ -41,15 +41,17 @@ export default function WishRow({
       </div>
 
       <div className="shrink-0 text-end">
-        <div className={`text-sm font-bold ${ui.fg}`}>{ui.label}</div>
+        <div className={`text-sm font-bold ${ui.fg}`}>{wish.unavailable ? "لم يعد متاحاً" : ui.label}</div>
         <div className="text-xs text-ink-muted">
-          {wish.offering.universityType === "أهلية"
-            ? wish.offering.statedMinimumGrade?.value != null
-              ? privateStatedMin(wish.offering.statedMinimumGrade.value)
-              : PRIVATE_NO_PUBLISHED_MIN
-            : wish.cutoff === null
-              ? "لا حدّ منشور"
-              : `الحد ${wish.cutoff}% · ${wish.margin! >= 0 ? "+" : ""}${wish.margin}`}
+          {wish.unavailable
+            ? "لا قسم مطابق في بيانات هذا العام"
+            : wish.offering.universityType === "أهلية"
+              ? wish.offering.statedMinimumGrade?.value != null
+                ? privateStatedMin(wish.offering.statedMinimumGrade.value)
+                : PRIVATE_NO_PUBLISHED_MIN
+              : wish.cutoff === null
+                ? "لا حدّ منشور"
+                : `الحد ${wish.cutoff}% · ${wish.margin! >= 0 ? "+" : ""}${wish.margin}`}
         </div>
       </div>
 

@@ -70,7 +70,9 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
   // 1,694 ← 1,687 بعد إصلاح الأحرم/السجلات المكررة (2026-10-11): 7 أقسام وهمية أو مكررة
   // اندمجت (4 أقسام آثار الموصل ← 3، علوم أغذية تكريت، ثلاثة أقسام بجامعة الفرات الأوسط
   // بأسماء الكلية نفسها، الطارمية/المقدادية/الدواية) دون فقد أي حد رسمي.
-  it("4. صفر قبول مباشر في كل الأقسام الحكومية (1,687 قسماً)", () => {
+  // 1,689 ← 1,687 (م3): قسما حرم الشرقاط لإدارة واقتصاد تكريت (ادارة االعمال، المحاسبة)
+  // يعدّدهما الدليل صراحةً (dalel:1480) فحلّا محل «قسم» وهمي بحد الكلية.
+  it("4. صفر قبول مباشر في كل الأقسام الحكومية (1,689 قسماً)", () => {
     let govDeptsCount = 0;
     const directOffenders: string[] = [];
 
@@ -85,7 +87,7 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
       }
     }
 
-    expect(govDeptsCount).toBe(1687);
+    expect(govDeptsCount).toBe(1689);
     expect(directOffenders).toEqual([]);
   });
 

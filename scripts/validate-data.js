@@ -80,6 +80,9 @@ const UniversitySchema = z.object({
       name: z.string(),
       displayName: z.string().optional(),
       nameEn: z.string().nullable().optional(),
+      // الحرم ومحافظته (data/campus-qualifiers.json): فلتر المحافظة يستعملهما
+      campus: z.string().optional(),
+      campusProvince: z.string().optional(),
       departments: z.array(DepartmentSchema),
     })
   ),

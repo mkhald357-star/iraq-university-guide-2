@@ -24,6 +24,8 @@ export interface WishOffering {
   majorName: string;
   session: StudySession;
   offering: UniversityOffering;
+  /** رغبة محفوظة لم يعد لها قسم مقابل في بيانات اليوم (lib/wishlistMigration.ts): تبقى ظاهرة موسومة، ولا تُصنَّف. */
+  unavailable?: boolean;
 }
 
 export interface ClassifiedWish extends WishOffering {
@@ -61,6 +63,10 @@ function classifyPrivate(wish: WishOffering, gpa: number): ClassifiedWish {
 
 export function classifyOffering(wish: WishOffering, gpa: number): ClassifiedWish {
   const { offering, session } = wish;
+
+  if (wish.unavailable) {
+    return { ...wish, band: "unknown", cutoff: null, margin: null };
+  }
 
   if (offering.universityType === "أهلية") {
     return classifyPrivate(wish, gpa);

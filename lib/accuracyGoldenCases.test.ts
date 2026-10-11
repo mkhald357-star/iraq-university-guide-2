@@ -24,24 +24,49 @@ const values = (d: Dept, branch: string, gender = "مختلط") =>
     ),
   ].sort((a, b) => b - a);
 
-describe("حالات ذهبية: عيوب معروفة (it.fails حتى تُصلَح)", () => {
-  it.fails("إدارة واقتصاد البصرة: حد الحرم الرئيسي (علمي 70) لا يختلط بحد القرنة (68.29)", () => {
+describe("حالات ذهبية: حرم القرنة وتكريت/الشرقاط وحرم كركوك (م3)", () => {
+  it("إدارة واقتصاد البصرة: حد الحرم الرئيسي (علمي 70) لا يختلط بحد القرنة (68.29)", () => {
     const c = college("basrah", "كلية االدارة واالقتصاد");
     const d = c.departments.find((x) => x.name === "قسم ادارة االعمال")!;
-    expect(values(d, "علمي")).toHaveLength(1);
+    expect(values(d, "علمي")).toEqual([70]);
+    // أقسام الحرم في سجلها: ادارة المشاريع والتمويل واالستثمار بحد القرنة
+    const q = college("basrah", "كلية االدارة واالقتصاد/القرنة");
+    expect(q.departments.map((x) => x.name).sort()).toEqual(["قسم ادارة المشاريع", "قسم التمويل واالستثمار"].sort());
+    for (const x of q.departments) expect(values(x, "علمي"), x.name).toEqual([68.29]);
   });
 
-  it.fails("إدارة واقتصاد تكريت: حد الشرقاط (61.14) لا يختلط بحد الحرم الرئيسي (60)", () => {
+  it("إدارة واقتصاد تكريت: حد الشرقاط (61.14) لا يختلط بحد الحرم الرئيسي (60)", () => {
     const c = college("tikrit", "كلية االدارة واالقتصاد");
     const merged = c.departments.filter((d) => values(d, "علمي").length > 1 || values(d, "أدبي").length > 1);
     expect(merged).toHaveLength(0);
+    const sh = college("tikrit", "كلية االدارة واالقتصاد/الشرقاط");
+    expect(sh.departments.map((x) => x.name).sort()).toEqual(["قسم ادارة االعمال", "قسم المحاسبة"].sort());
+    for (const x of sh.departments) expect(values(x, "علمي"), x.name).toEqual([61.14]);
   });
 
-  it.fails("حرم كركوك للجامعة التقنية الشمالية يخصّ محافظة كركوك لا نينوى (مقر الجامعة): حقل province للحرم", () => {
+  it("حرم كركوك للجامعة التقنية الشمالية يخصّ محافظة كركوك لا نينوى (مقر الجامعة): campusProvince", () => {
     const c = uni("northern_technical").colleges.find((x) => x.name === "المعهد التقني الطبي/كركوك") as unknown as {
-      province?: string;
+      campus?: string;
+      campusProvince?: string;
     };
-    expect(c.province).toBe("كركوك");
+    expect(c.campus).toBe("كركوك");
+    expect(c.campusProvince).toBe("كركوك");
+    const mosul = uni("northern_technical").colleges.find(
+      (x) => x.name === "المعهد التقني الطبي/الموصل"
+    ) as unknown as {
+      campusProvince?: string;
+    };
+    expect(mosul.campusProvince).toBe("نينوى");
+  });
+
+  it("معرّفات الكليات حتمية: لا تكرار، ولا تعتمد على الترتيب (_c_ لا _col_N)", () => {
+    const ids = new Set<string>();
+    for (const u of unis)
+      for (const c of u.colleges as unknown as { id: string }[]) {
+        expect(ids.has(c.id), c.id).toBe(false);
+        ids.add(c.id);
+        expect(c.id.startsWith(`${u.id}_c_`) || /_col_(manual|1)$/.test(c.id), c.id).toBe(true);
+      }
   });
 });
 

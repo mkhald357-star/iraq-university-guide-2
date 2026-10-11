@@ -573,5 +573,29 @@
     "verifiedAt": "2026-08-10",
     "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
     "note": "راجع ملاحظة السجل السابق (قسم شبكات المعلومات) -- نفس تصحيح إسناد كلية تكنولوجيا المعلومات من ديالى إلى بابل، السطر 1715، §35."
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية االدارة واالقتصاد/الشرقاط",
+    "department": "قسم ادارة االعمال",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1480,
+    "verifiedAt": "2026-10-11",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية االدارة واالقتصاد/الشرقاط",
+    "department": "قسم المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1480,
+    "verifiedAt": "2026-10-11",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   }
 ]

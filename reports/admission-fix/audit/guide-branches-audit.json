@@ -1,8 +1,8 @@
 {
   "summary": {
-    "departments": 1687,
+    "departments": 1689,
     "unmatched": 164,
-    "equal": 1521,
+    "equal": 1523,
     "platformMissingBranch": 0,
     "platformExtraBranch": 2,
     "different": 0
@@ -225,7 +225,7 @@
     },
     {
       "university": "جامعة البصرة",
-      "college": "كلية االدارة واالقتصاد",
+      "college": "كلية االدارة واالقتصاد/القرنة",
       "department": "قسم التمويل واالستثمار",
       "branches": [
         "أدبي",

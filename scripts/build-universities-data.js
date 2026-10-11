@@ -7,6 +7,7 @@
 // scripts/parse-evening-study.js (or all at once via `npm run rebuild-data`).
 const fs = require("fs");
 const path = require("path");
+const crypto = require("crypto");
 const { toDisplayName, normalizeForDedupMatch } = require("./displayName");
 const { parseStatedMinimum } = require("./departmentNameHealth");
 const { normalizeDepartmentKey } = require("./departmentNormalizer");
@@ -246,44 +247,14 @@ const COLLEGE_NAME_ALIASES_BY_DEPT = {
 // كليات مختلفة فعلاً مثل "الطب"/"الطب البيطري")، الفاصل "/" هنا إشارة
 // صريحة ومتعمَّدة من المصدر نفسه لعلاقة "نفس الكيان + مؤهِّل فرعي"، لا
 // تشابه بادئة عرضي -- فتعميمها آمن.
-// نفس قائمة أسماء المدن/الأقضية المستخدمة في scripts/parse-cutoffs.js
-// (يجب إبقاؤهما متطابقتين يدوياً -- لا استيراد مشترك بين السكربتين حالياً)
+// قائمة أسماء المدن/الأقضية في data/campus-qualifiers.json (مصدر واحد مشترك مع scripts/parse-cutoffs.js)
 // + أسماء ظهرت إضافياً في مصدر الدراسة المسائية تحديداً. تُستخدَم هنا
 // لمنع دمج كليتين لهما نفس الاسم لكن في فرعين/مدينتين مختلفتين فعلياً
 // (اكتُشف بتحقق لاحق: "الكلية التقنية الصحية والطبية" اسم مُكرَّر شرعياً
 // لعدة معاهد حقيقية مختلفة في مدن مختلفة -- دمجها كان سيُخفي حداً حقيقياً
 // منفصلاً لكل فرع، عكس حالة "الكلية X/تخصصات فرعية" حيث اللاحقة تصف تخصصاً
 // فرعياً لا موقعاً جغرافياً، فالدمج هناك صحيح).
-const CAMPUS_QUALIFIERS = new Set([
-  "بغداد",
-  "البصرة",
-  "الموصل",
-  "بابل",
-  "الكوفة",
-  "نينوى",
-  "هيت",
-  "حديثة",
-  "بلد",
-  "القرنة",
-  "الرصافة",
-  "المسيب",
-  "العزيزية",
-  "الشرقاط",
-  "الطارمية",
-  "المقدادية",
-  "سوق الشيوخ",
-  "القائم",
-  "طوزخورماتو",
-  "الدواية",
-  "بعقوبة",
-  "جلولاء",
-  "كربالء",
-  "النجف",
-  "كركوك",
-  "الناصرية",
-  "العمارة",
-  "الحلة",
-]);
+const { CAMPUS_QUALIFIERS, QUALIFIER_PROVINCE, NAMED_CAMPUS_PROVINCE } = require("./campusQualifiers");
 
 function getCollege(uni, collegeName, deptNameForDisambiguation) {
   let resolvedName = collegeName;
@@ -350,6 +321,14 @@ const CAMPUS_SPLIT_COLLEGES = {
   },
   [normKey("جامعة الفرات الأوسط التقنية")]: {
     [normKey("الكلية التقنية الصحية والطبية")]: "الكوفة",
+  },
+  // الدليل (الفصل 3) يعدّد أقسام حرم القرنة والشرقاط لإدارة واقتصاد البصرة وتكريت (حدّا الكلية
+  // مختلفان: البصرة علمي 70 / القرنة 68.29، تكريت علمي 60 / الشرقاط 61.14) فتُفصل في سجلّين.
+  [normKey("جامعة البصرة")]: {
+    [normKey("كلية االدارة واالقتصاد")]: null,
+  },
+  [normKey("جامعة تكريت")]: {
+    [normKey("كلية االدارة واالقتصاد")]: null,
   },
 };
 const eveningSuffixed = new Map(); // جامعة|كلية|حرم -> اسم الكلية كما كُتب في مصدر المسائي
@@ -705,8 +684,45 @@ for (const { uni: uName, college: cName, remove, keep } of DEDUPLICATIONS) {
   }
 }
 
+// معرّف كلية حتمي من (جامعة + اسم مطبَّع بما فيه لاحقة الحرم) بدل الترتيب الموضعي `_col_N` الذي
+// كان يتحرك كلما أُضيفت كلية في المنتصف فيُفسد الرغبات المحفوظة. الاسم نفسه مفتاح الكلية في البناء.
+function stableCollegeId(uniId, collegeName, taken) {
+  const h = crypto
+    .createHash("sha1")
+    .update(`${uniId}|${normKey(collegeName)}`)
+    .digest("hex")
+    .slice(0, 8);
+  let id = `${uniId}_c_${h}`;
+  for (let n = 2; taken.has(id); n++) id = `${uniId}_c_${h}_${n}`;
+  taken.add(id);
+  return id;
+}
+
+// الحرم صريحاً ومحافظته: من لاحقة «/الحرم»، أو حرم بلا لاحقة تمثّله كلية مفصولة بالدليل
+// (CAMPUS_SPLIT_COLLEGES)، أو مدينة في آخر اسم كلية/معهد في جامعة تقنية متعددة المحافظات.
+// فلتر المحافظة يستعمل campusProvince لا محافظة مقر الجامعة.
+function campusOfCollege(uni, collegeName) {
+  const name = (collegeName || "").trim();
+  const slash = name.indexOf("/");
+  if (slash > 0) {
+    const q = name.slice(slash + 1).trim();
+    if (CAMPUS_QUALIFIERS.has(q)) return { campus: q, campusProvince: QUALIFIER_PROVINCE[q] };
+  }
+  const split = CAMPUS_SPLIT_COLLEGES[normKey(uni.name)];
+  const unsuffixed = split && split[normKey(name)];
+  if (unsuffixed) return { campus: unsuffixed, campusProvince: QUALIFIER_PROVINCE[unsuffixed] };
+  if (slash < 0 && /التقنية/.test(uni.name)) {
+    const last = name.split(/\s+/).pop();
+    if (Object.prototype.hasOwnProperty.call(NAMED_CAMPUS_PROVINCE, last)) {
+      return { campus: last, campusProvince: NAMED_CAMPUS_PROVINCE[last] };
+    }
+  }
+  return null;
+}
+
 const finalUniversities = universities.map((u) => {
-  const colleges = [...u._collegesMap.values()].map((c, cIdx) => {
+  const takenCollegeIds = new Set();
+  const colleges = [...u._collegesMap.values()].map((c) => {
     const departments = [...c.departmentsMap.values()].map((d) => {
       const nonQuotaCutoffs = d.cutoffs.filter((x) => !x.isQuota);
       const bestMorning = nonQuotaCutoffs.length ? Math.min(...nonQuotaCutoffs.map((x) => x.averagePercent)) : null;
@@ -774,11 +790,13 @@ const finalUniversities = universities.map((u) => {
         admissionStatus,
       };
     });
+    const campusInfo = campusOfCollege(u, c.name);
     return {
-      id: `${u.id}_col_${cIdx + 1}`,
+      id: stableCollegeId(u.id, c.name, takenCollegeIds),
       name: c.name,
       displayName: toDisplayName(c.name),
       nameEn: null,
+      ...(campusInfo ? campusInfo : {}),
       departments,
     };
   });
@@ -841,10 +859,11 @@ function makeManualDepartment(m) {
 
 const privateFinal = privateUnis.map((p) => {
   const guideColleges = privateDepartmentsGuide[p.id];
+  const takenPrivateIds = new Set();
   const colleges =
     guideColleges && guideColleges.length
-      ? guideColleges.map((c, cIdx) => ({
-          id: `${p.id}_col_${cIdx + 1}`,
+      ? guideColleges.map((c) => ({
+          id: stableCollegeId(p.id, c.collegeName, takenPrivateIds),
           name: c.collegeName,
           displayName: toDisplayName(c.collegeName),
           nameEn: null,

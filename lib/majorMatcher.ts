@@ -75,6 +75,9 @@ export interface College {
   name: string;
   displayName?: string;
   nameEn: string | null;
+  /** الحرم صريحاً (القرنة، كركوك…) ومحافظته؛ غائبان لكلية بلا حرم مميَّز (data/campus-qualifiers.json). */
+  campus?: string;
+  campusProvince?: string;
   departments: Department[];
 }
 
@@ -150,6 +153,8 @@ export interface UniversityOffering {
   eveningByBranch?: Record<string, number | null>;
   /** مصدر حد المسائي وسقف أجوره: السنة وحالتها وصفّ القاعدة (data/evening-rules.json). */
   evening?: EveningInfo;
+  /** الحرم الذي يقع فيه القسم (إن ميّزه المصدر). `province` أعلاه هي محافظة الحرم لا مقر الجامعة. */
+  campus?: string;
   /** الجنس لقسم محدَّد فقط (انظر Department.genderRestriction). */
   genderRestriction?: GenderRestriction;
   genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
@@ -276,16 +281,15 @@ export function findUniversitiesForMajor(
   }
 
   for (const uni of universities) {
-    // تصفية المحافظة
-    if (filters?.province && uni.province !== filters.province) {
-      continue;
-    }
+    // (المحافظة تُصفّى لكل كلية أدناه: حرم قد يقع في محافظة غير محافظة مقر الجامعة)
     // تصفية نوع الجامعة (حكومية / أهلية)
     if (filters?.type && uni.type !== filters.type) {
       continue;
     }
 
     for (const college of uni.colleges) {
+      const collegeProvince = college.campusProvince ?? uni.province;
+      if (filters?.province && collegeProvince !== filters.province) continue;
       for (const dept of college.departments) {
         let matchRes = matchMajorToDepartment(major, dept.name, mapping);
         if (!matchRes.isMatch && (dept.name === "عام" || (dept as any).isCollegeLevelProgram)) {
@@ -302,7 +306,8 @@ export function findUniversitiesForMajor(
             universityName: uni.name,
             universityType: uni.type,
             universityRanking: uni.ranking,
-            province: uni.province,
+            province: collegeProvince,
+            ...(college.campus ? { campus: college.campus } : {}),
             collegeId: college.id,
             collegeName: college.name,
             departmentName: dept.name,

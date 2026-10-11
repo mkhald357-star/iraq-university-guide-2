@@ -77,6 +77,8 @@ export interface ExplorerOffering {
   isDirectAdmission: boolean;
   /** مصدر حد المسائي وسقف أجوره (حكومي بدراسة مسائية). */
   evening?: EveningInfo;
+  /** الحرم (إن ميّزه المصدر)؛ province هي محافظة الحرم. */
+  campus?: string;
   /** الجنس لقسم محدَّد فقط (قسم لجنس واحد). */
   genderRestriction?: GenderRestriction;
   /** حدّا الذكور والإناث لفرع هذا السجل حين يختلفان (قسم محدَّد فقط). */

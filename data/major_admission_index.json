@@ -76,21 +76,21 @@
       "confidence": "high"
     },
     "business_admin": {
-      "competitiveOfferings": 85,
+      "competitiveOfferings": 86,
       "directAdmissionOfferings": 0,
       "privateOfferings": 61,
       "statedPrivateMinCount": 1,
       "unknownOfferings": 9,
       "suspendedOfferings": 0,
       "cutoffMin": 50,
-      "cutoffP25": 51.29,
+      "cutoffP25": 51.72,
       "cutoffMedian": 60,
       "cutoffMax": 86.43,
-      "coverage": 0.904,
+      "coverage": 0.905,
       "confidence": "high"
     },
     "accounting": {
-      "competitiveOfferings": 60,
+      "competitiveOfferings": 61,
       "directAdmissionOfferings": 0,
       "privateOfferings": 64,
       "statedPrivateMinCount": 0,
@@ -100,7 +100,7 @@
       "cutoffP25": 60,
       "cutoffMedian": 60,
       "cutoffMax": 82,
-      "coverage": 0.811,
+      "coverage": 0.813,
       "confidence": "high"
     },
     "medicine": {
@@ -1106,7 +1106,7 @@
       "suspendedOfferings": 0,
       "cutoffMin": 60,
       "cutoffP25": 60,
-      "cutoffMedian": 60,
+      "cutoffMedian": 60.71,
       "cutoffMax": 81.43,
       "coverage": 0.929,
       "confidence": "high"

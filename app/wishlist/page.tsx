@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AlertCircle, AlertTriangle, Info, Plus, Sparkles } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { BRANCH_CATEGORY_MAP, fetchOfferingsForMajor } from "../../lib/offeringsClient";
+import { migrateWishlist } from "../../lib/wishlistMigration";
 import { computeEligibility } from "../../lib/eligibility";
 import { offeringForBranch, offeringsForBranch } from "../../lib/branchCutoff";
 import { analyzeWishlist } from "../../lib/wishlistPlanner";
@@ -58,6 +59,23 @@ export default function WishlistPage() {
     }
     setIsLoadingSettings(false);
   }, []);
+
+  // ── ترحيل الرغبات المحفوظة إلى بيانات اليوم مرة عند التحميل: معرّفات الكليات الحتمية وأرقام العام الحالي،
+  //    وما لا مقابل له يُوسَم «لم يعد متاحاً» ولا يُحذف (lib/wishlistMigration.ts) ──
+  const [migrated, setMigrated] = useState(false);
+  useEffect(() => {
+    if (isLoadingSettings || migrated) return;
+    setMigrated(true);
+    if (wishlist.length === 0) return;
+    let cancelled = false;
+    migrateWishlist(wishlist, (id) => fetchOfferingsForMajor(id).catch(() => null)).then((next) => {
+      if (!cancelled) setWishlist((cur) => (cur.length === next.length ? next : cur));
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoadingSettings]);
 
   // ── حفظ قائمة الرغبات في localStorage عند أي تغيير ──
   useEffect(() => {

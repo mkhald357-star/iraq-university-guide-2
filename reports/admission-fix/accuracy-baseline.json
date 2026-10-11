@@ -7,12 +7,12 @@
     "deptNotFound": 0,
     "mismatch": 0,
     "platformCutoffsWithoutOfficialRow": 0,
-    "departmentsWithMergedCampusValues": 13,
+    "departmentsWithMergedCampusValues": 0,
     "rawInSyncWithText": true
   },
   "guideBranches": {
-    "governmentDepartments": 1687,
-    "matchedWithGuide": 1523,
+    "governmentDepartments": 1689,
+    "matchedWithGuide": 1525,
     "unmatched": 164,
     "platformExtraBranch": 2,
     "platformMissingBranch": 0

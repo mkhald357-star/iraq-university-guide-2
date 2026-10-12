@@ -2,8 +2,8 @@
   "generatedFrom": "data/universities.json",
   "cutoffs": {
     "officialRows": 1222,
-    "ok": 1220,
-    "notAssignedToDepartment": 2,
+    "ok": 1222,
+    "notAssignedToDepartment": 0,
     "deptNotFound": 0,
     "mismatch": 0,
     "platformCutoffsWithoutOfficialRow": 0,
@@ -11,10 +11,10 @@
     "rawInSyncWithText": true
   },
   "guideBranches": {
-    "governmentDepartments": 1689,
-    "matchedWithGuide": 1525,
-    "unmatched": 164,
-    "platformExtraBranch": 2,
+    "governmentDepartments": 1721,
+    "matchedWithGuide": 1558,
+    "unmatched": 163,
+    "platformExtraBranch": 0,
     "platformMissingBranch": 0
   },
   "evening": {

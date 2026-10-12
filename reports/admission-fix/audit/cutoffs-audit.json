@@ -1,62 +1,23 @@
 {
   "summary": {
     "rows": 1222,
-    "ok": 1220,
-    "okOverride": 107,
-    "okBranchNotAccepted": 55,
-    "okGenderSpecific": 14,
+    "ok": 1222,
+    "okOverride": 109,
+    "okBranchNotAccepted": 69,
+    "okGenderSpecific": 15,
+    "okDocumentedException": 0,
     "deptNotFound": 0,
     "mismatch": 0,
-    "notAssigned": 2,
+    "notAssigned": 0,
     "collegeNotFound": 0,
     "universityNotFound": 0,
     "okQuota": 5,
     "rawInSyncWithText": true,
-    "platformCutoffs": 2116,
+    "platformCutoffs": 2677,
     "platformCutoffsWithoutOfficialRow": 0,
     "departmentsWithMergedCampusValues": 0
   },
-  "failures": [
-    {
-      "idx": 733,
-      "page": 15,
-      "university": "الجامعة المستنصرية",
-      "college": "كلية اآلداب",
-      "department": null,
-      "qualifiers": [],
-      "branch": "فنون",
-      "gender": "مختلط",
-      "avg": 63.14,
-      "status": "notAssigned",
-      "detail": [
-        {
-          "departments": [
-            "كلية اآلداب » قسم علم النفس",
-            "كلية اآلداب » قسم الفلسفة"
-          ]
-        }
-      ]
-    },
-    {
-      "idx": 826,
-      "page": 17,
-      "university": "جامعة تلعفر",
-      "college": "كلية التربية األساسية",
-      "department": null,
-      "qualifiers": [],
-      "branch": "أدبي",
-      "gender": "مختلط",
-      "avg": 60.43,
-      "status": "notAssigned",
-      "detail": [
-        {
-          "departments": [
-            "كلية التربية األساسية » قسم اللغة االنكليزية"
-          ]
-        }
-      ]
-    }
-  ],
+  "failures": [],
   "unsourced": [],
   "multiValue": []
 }

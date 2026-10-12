@@ -52,7 +52,7 @@ describe("applyCorrections", () => {
 
 describe("toDisplayName", () => {
   it("يطبّق الإصلاح الآلي على الأسماء المشوَّهة", () => {
-    expect(toDisplayName("قسم االلكترونيك واالتصاالت")).toBe("قسم الالكترونيك والاتصالات");
+    expect(toDisplayName("قسم االلكترونيك واالتصاالت")).toBe("قسم الإلكترونيك والاتصالات");
   });
 
   it("يعيد null/undefined/فارغ كما هو بلا خطأ", () => {

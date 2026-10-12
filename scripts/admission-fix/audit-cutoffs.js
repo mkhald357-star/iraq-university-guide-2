@@ -53,6 +53,18 @@ const CAMPUS = new Set(
   ].map(nk)
 );
 
+const { umbrellaTrack } = require("../instituteTracks");
+// ربط الأقسام التقنية بمساراتها (جامعة|كلية|قسم) ← مسار، وأسماء الأحرم المقروءة أقساماً (صف بلا قسم فعلياً)
+const TRACK_LINKS = new Map();
+try {
+  for (const t of read("data/institute-tracks.json")) TRACK_LINKS.set(`${t.university}|${t.college}|${t.department}`, t.track);
+} catch (e) {}
+const CAMPUS_LABELS = new Set();
+try {
+  for (const l of read("data/campus-label-departments.json"))
+    CAMPUS_LABELS.add([nk(l.university), nk(l.college), nk(l.label)].join("|"));
+} catch (e) {}
+
 const raw = read("data/raw/cutoffs_2025_2026.json");
 const universities = read("data/universities.json").universities.filter((u) => u.type === "حكومية");
 const platUni = new Map(universities.map((u) => [nk(u.name), u]));
@@ -84,6 +96,11 @@ const pages = [];
 }
 const rawInSync = pages.length === raw.length;
 
+// استثناءات موثَّقة: بند حد كلية لقسم يقبل فرعه بحسب الدليل ولا يُلحَق به عمداً. فارغة منذ 2026-10-12
+// (PLAN-ADMISSION-COMPLETION.md المرحلة أ: أُلحق حد الكلية بالأقسام ذات الصفوف الخاصة لفروع أخرى)؛
+// أي إدخال جديد هنا يحتاج source وreason صريحين وقراراً مسجَّلاً.
+const DOCUMENTED_EXCEPTIONS = [];
+
 const rows = raw.map((r, i) => ({ ...r, idx: i + 1, page: pages[i] ?? null }));
 const result = [];
 const stat = {
@@ -92,6 +109,7 @@ const stat = {
   okOverride: 0,
   okBranchNotAccepted: 0,
   okGenderSpecific: 0,
+  okDocumentedException: 0,
   deptNotFound: 0,
   mismatch: 0,
   notAssigned: 0,
@@ -160,10 +178,19 @@ for (const r of rows) {
     result.push(rec);
     continue;
   }
-  const dKey = r.department ? nk(stripDept(r.department)) : null;
+  const rowTrack = r.department ? umbrellaTrack(r.department) : null;
+  const isLabel = !!r.department && CAMPUS_LABELS.has([nk(r.university), nk(r.college), nk(r.department)].join("|"));
+  const rowDept = isLabel || rowTrack ? null : r.department; // صف مسار/اسم حرم = حد على مستوى المعهد/الكلية
+  const dKey = rowDept ? nk(stripDept(rowDept)) : null;
   const matched = [];
   for (const c of scoped)
-    for (const d of c.departments) if (!dKey || nk(stripDept(d.name)) === dKey) matched.push({ c, d });
+    for (const d of c.departments) {
+      if (rowTrack) {
+        // صف مسار: أقسام ذلك المسار المربوطة بمصدر (أو قسم المظلة نفسه إن بقي)
+        if (TRACK_LINKS.get(`${u.name}|${c.name}|${d.name}`) === rowTrack || umbrellaTrack(d.name) === rowTrack)
+          matched.push({ c, d });
+      } else if (!dKey || nk(stripDept(d.name)) === dKey) matched.push({ c, d });
+    }
   if (!matched.length) {
     // قسم الصف قد يكون اسماً مدموجاً/مصحَّحاً (DEDUPLICATIONS) -- ابحث في كل سجلات الكلية
     const any = [];
@@ -183,7 +210,7 @@ for (const r of rows) {
   const sameBG = (x) => x.branch === branch && x.gender === gender;
   const has = (d) => (d.cutoffs || []).some((x) => sameBG(x) && approx(x.averagePercent, r.averagePercent));
 
-  if (r.department) {
+  if (rowDept) {
     if (matched.some(({ d }) => has(d))) {
       stat.ok++;
       rec.status = "ok";
@@ -203,6 +230,7 @@ for (const r of rows) {
   let override = 0,
     notAccepted = 0,
     genderSpecific = 0,
+    documented = 0,
     holders = 0;
   for (const { c, d } of matched) {
     if (has(d)) {
@@ -222,6 +250,19 @@ for (const r of rows) {
       genderSpecific++;
       continue;
     }
+    const exc = DOCUMENTED_EXCEPTIONS.find(
+      (e) =>
+        e.university === r.university &&
+        e.college === r.college &&
+        e.branch === branch &&
+        e.gender === gender &&
+        e.departments.includes(d.name)
+    );
+    if (exc) {
+      documented++;
+      rec.detail.push({ documentedException: `${d.name} — ${exc.reason}`, source: exc.source });
+      continue;
+    }
     bad.push(`${c.name} » ${d.name}`);
   }
   if (bad.length) {
@@ -234,6 +275,7 @@ for (const r of rows) {
     if (override) stat.okOverride++;
     if (notAccepted) stat.okBranchNotAccepted++;
     if (genderSpecific) stat.okGenderSpecific++;
+    if (documented) stat.okDocumentedException++;
   }
   result.push(rec);
 }
@@ -243,8 +285,11 @@ const officialKeys = new Set();
 for (const r of rows) {
   const b = r.branch === "ادبي" ? "أدبي" : r.branch;
   const g = r.gender === "انثى" ? "أنثى" : r.gender;
-  const dept = r.department && QUOTA_RE.test(r.department) ? "" : nk(stripDept(r.department || ""));
+  const lbl = r.department && CAMPUS_LABELS.has([nk(r.university), nk(r.college), nk(r.department)].join("|"));
+  const trk = r.department ? umbrellaTrack(r.department) : null;
+  const dept = lbl || trk || (r.department && QUOTA_RE.test(r.department)) ? "" : nk(stripDept(r.department || ""));
   officialKeys.add([nk(r.university), nk(r.college), dept, b, g, r.averagePercent].join("|"));
+  if (trk) officialKeys.add([nk(r.university), nk(r.college), "TRACK:" + trk, b, g, r.averagePercent].join("|"));
 }
 const unsourced = [];
 let platformCutoffs = 0;
@@ -256,7 +301,9 @@ for (const u of universities)
         const base = nk(c.name.split("/")[0]);
         const kDept = [nk(u.name), base, nk(stripDept(d.name)), x.branch, x.gender, x.averagePercent].join("|");
         const kColl = [nk(u.name), base, "", x.branch, x.gender, x.averagePercent].join("|");
-        if (!officialKeys.has(kDept) && !officialKeys.has(kColl)) {
+        const trk = TRACK_LINKS.get(`${u.name}|${c.name}|${d.name}`) || umbrellaTrack(d.name);
+        const kTrack = trk ? [nk(u.name), base, "TRACK:" + trk, x.branch, x.gender, x.averagePercent].join("|") : null;
+        if (!officialKeys.has(kDept) && !officialKeys.has(kColl) && !(kTrack && officialKeys.has(kTrack))) {
           unsourced.push({
             university: u.name,
             college: c.name,

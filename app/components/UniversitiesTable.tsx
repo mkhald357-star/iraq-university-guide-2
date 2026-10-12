@@ -13,8 +13,16 @@ import {
   PRIVATE_MIN_HINT,
   PRIVATE_NO_MIN_HINT,
   BRANCH_UNKNOWN_BADGE,
+  COLLEGE_CUTOFF_BADGE,
+  COLLEGE_CUTOFF_HINT,
+  COLLEGE_MINIMUM_LABEL,
+  SOURCE_NOTE,
+  TRACK_CUTOFF_BADGE,
+  directApplyText,
+  trackCutoffHint,
 } from "../../lib/admissionDisclosure";
-import { morningCutoffsByBranch } from "../../lib/branchCutoff";
+import { cutoffLevelFor, morningCutoffsByBranch, scopedCutoffBranches } from "../../lib/branchCutoff";
+import type { DirectApply } from "../../lib/majorMatcher";
 import { genderCutoffLine, genderRestrictionLabel } from "../../lib/genderNote";
 
 interface UniversityOffering {
@@ -48,6 +56,14 @@ interface UniversityOffering {
   };
   /** حد المسائي لكل فرع (عروض التخصص الكاملة). */
   eveningByBranch?: Record<string, number | null>;
+  /** مستوى الحد الصباحي: college = حد الكلية كلها أُلحق بالقسم، department = حد القسم نفسه. */
+  cutoffScope?: "college" | "track" | "department" | "mixed";
+  collegeScopeBranches?: string[];
+  trackScopeBranches?: string[];
+  trackName?: string;
+  /** أدنى حد صباحي للتقديم على الكلية لفرع هذا السجل. */
+  collegeMinimum?: number;
+  directApply?: DirectApply;
   /** الجنس لقسم محدَّد فقط (lib/genderNote.ts). */
   genderRestriction?: "ذكر" | "أنثى";
   morningGender?: { ذكر: number; أنثى: number };
@@ -111,13 +127,19 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
           {offerings.map((o, idx) => {
             const hasMorning = !!o.sessions?.includes("صباحي");
             const hasEvening = !!o.sessions?.includes("مسائي");
-            const morning = admissionCell(
+            const baseMorning = admissionCell(
               o.universityType,
               hasMorning,
               !!o.isDirectAdmission,
               o.averageGrades?.["صباحي"],
               o.statedMinimumGrade
             );
+            // كلية بتقديم مباشر: لا حد مركزي، أو حد أدنى معلَن بمصدره (data/direct-apply-colleges.json)
+            const morning =
+              o.directApply && o.averageGrades?.["صباحي"] == null
+                ? { text: directApplyText(o.directApply.minimumAverage), tone: "stated" as const }
+                : baseMorning;
+            const level = o.averageGrades?.["صباحي"] != null ? cutoffLevelFor(o) : "department";
             const evening = admissionCell(
               o.universityType,
               hasEvening,
@@ -142,7 +164,14 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                   </span>
                 </td>
                 <td className="border px-3 py-2">{o.province ?? "—"}</td>
-                <td className="border px-3 py-2">{o.collegeName}</td>
+                <td className="border px-3 py-2">
+                  {o.collegeName}
+                  {o.collegeMinimum != null && (
+                    <span className="block text-xs text-ink-muted">
+                      {COLLEGE_MINIMUM_LABEL}: {o.collegeMinimum}%
+                    </span>
+                  )}
+                </td>
                 <td className="border px-3 py-2">
                   {o.departmentName ?? "—"}
                   {genderRestrictionLabel(o.genderRestriction) && (
@@ -158,7 +187,32 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                 </td>
                 <td className={`border px-3 py-2 ${cellClass(morning.tone)}`}>
                   <span title={cellTitle(morning.tone)}>{morning.text}</span>
-                  {genderCutoffLine(o) && <span className="block text-xs text-ink-muted">{genderCutoffLine(o)}</span>}
+                  {level === "college" && (
+                    <span className="block text-xs text-ink-muted" title={COLLEGE_CUTOFF_HINT}>
+                      {COLLEGE_CUTOFF_BADGE} · {SOURCE_NOTE}
+                    </span>
+                  )}
+                  {level === "track" && (
+                    <span className="block text-xs text-ink-muted" title={trackCutoffHint(o.trackName)}>
+                      {TRACK_CUTOFF_BADGE}
+                      {o.trackName ? `: ${o.trackName}` : ""} · {SOURCE_NOTE}
+                    </span>
+                  )}
+                  {scopedCutoffBranches(o).map((x) => (
+                    <span
+                      key={x.branch}
+                      className="block text-xs text-ink-muted"
+                      title={x.level === "track" ? trackCutoffHint(o.trackName) : COLLEGE_CUTOFF_HINT}
+                    >
+                      {x.level === "track" ? TRACK_CUTOFF_BADGE : COLLEGE_CUTOFF_BADGE} لفرع {x.branch}
+                    </span>
+                  ))}
+                  {o.directApply && o.averageGrades?.["صباحي"] == null && (
+                    <span className="block text-xs text-ink-muted" title={o.directApply.source}>
+                      {o.directApply.note}
+                    </span>
+                  )}
+                  {genderCutoffLine(o) &&<span className="block text-xs text-ink-muted">{genderCutoffLine(o)}</span>}
                   {o.forBranch ? (
                     <span className="block text-xs text-ink-muted">لفرع {o.forBranch}</span>
                   ) : (

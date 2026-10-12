@@ -51,6 +51,21 @@ const DepartmentSchema = z.object({
   genderRestriction: z.enum(["ذكر", "أنثى"]).optional(),
   // مصدر الفروع المقبولة (حكومي): cutoffs | chapter3 | guide | unknown (لا استدلال)
   branchBasis: z.enum(["cutoffs", "chapter3", "guide", "unknown", "none"]).optional(),
+  // مستوى الحد الصباحي: college = حد الكلية كلها أُلحق بالقسم، department = صف باسم القسم نفسه
+  // mixed = بعض فروعه حد كلية (collegeScopeBranches) وبعضها صف باسم القسم
+  cutoffScope: z.enum(["college", "track", "department", "mixed"]).optional(),
+  collegeScopeBranches: z.array(z.string()).optional(),
+  trackScopeBranches: z.array(z.string()).optional(),
+  trackName: z.string().optional(),
+  // كلية بتقديم مباشر (data/direct-apply-colleges.json): لا حد مركزي، أو حد أدنى معلَن بمصدره
+  directApply: z
+    .object({
+      kind: z.enum(["direct", "minimum"]),
+      minimumAverage: z.number().optional(),
+      note: z.string(),
+      source: z.string(),
+    })
+    .optional(),
   genderByBranch: z.record(z.string(), z.object({ ذكر: z.number(), أنثى: z.number() })).optional(),
   isDirectAdmission: z.boolean(),
   admissionStatus: z.enum(["published", "noPublishedCutoff"]).optional(),

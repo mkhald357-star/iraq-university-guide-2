@@ -87,7 +87,7 @@ describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)"
       }
     }
 
-    expect(govDeptsCount).toBe(1689);
+    expect(govDeptsCount).toBe(1919);
     expect(directOffenders).toEqual([]);
   });
 

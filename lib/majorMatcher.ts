@@ -25,6 +25,14 @@ export interface DepartmentCutoff {
  * رجعي كـ averageGrades الحكومي) -- للأقسام الأهلية فقط. راجع
  * data/admission_rules.md §28 لتمييزه عن averageGrades/cutoffs الحكومية.
  */
+/** كلية القبول فيها بتقديم مباشر (data/direct-apply-colleges.json) مع مصدرها المنشور. */
+export interface DirectApply {
+  kind: "direct" | "minimum";
+  minimumAverage?: number;
+  note: string;
+  source: string;
+}
+
 export interface StatedMinimumGrade {
   value: number;
   raw: string;
@@ -54,6 +62,16 @@ export interface Department {
   eveningByBranch?: Record<string, number | null>;
   /** مصدر حد المسائي وسقف أجوره. */
   evening?: EveningInfo;
+  /** مستوى الحد الصباحي: college = حد الكلية كلها أُلحق بالقسم، department = حد القسم نفسه. */
+  cutoffScope?: "college" | "track" | "department" | "mixed";
+  /** الفروع التي حدّها حد كلية حين cutoffScope = "mixed". */
+  collegeScopeBranches?: string[];
+  /** الفروع التي حدّها حد مسار (التخصصات الطبية/الهندسية…) حين cutoffScope = "mixed". */
+  trackScopeBranches?: string[];
+  /** اسم المسار حين يكون الحد حد مسار (مثل «التخصصات الهندسية»). */
+  trackName?: string;
+  /** كلية بتقديم مباشر: لا حد مركزي، أو حد أدنى معلَن (kind: minimum). */
+  directApply?: DirectApply;
   /** يُذكر الجنس لقسم محدَّد فقط: قسم لجنس واحد (كل حدوده الرسمية لذلك الجنس). غائب لبقية الأقسام. */
   genderRestriction?: GenderRestriction;
   /** فروعٌ حدّ الذكور فيها يخالف حدّ الإناث (قسم محدَّد فقط): {فرع: {ذكر, أنثى}}. */
@@ -155,6 +173,12 @@ export interface UniversityOffering {
   evening?: EveningInfo;
   /** الحرم الذي يقع فيه القسم (إن ميّزه المصدر). `province` أعلاه هي محافظة الحرم لا مقر الجامعة. */
   campus?: string;
+  /** مستوى الحد الصباحي (انظر Department.cutoffScope). */
+  cutoffScope?: "college" | "track" | "department" | "mixed";
+  collegeScopeBranches?: string[];
+  trackScopeBranches?: string[];
+  trackName?: string;
+  directApply?: DirectApply;
   /** الجنس لقسم محدَّد فقط (انظر Department.genderRestriction). */
   genderRestriction?: GenderRestriction;
   genderByBranch?: Record<string, { ذكر: number; أنثى: number }>;
@@ -323,6 +347,11 @@ export function findUniversitiesForMajor(
             ...(dept.evening ? { evening: dept.evening } : {}),
             ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
             ...(dept.genderByBranch ? { genderByBranch: dept.genderByBranch } : {}),
+            ...(dept.cutoffScope ? { cutoffScope: dept.cutoffScope } : {}),
+            ...(dept.collegeScopeBranches ? { collegeScopeBranches: dept.collegeScopeBranches } : {}),
+            ...(dept.trackScopeBranches ? { trackScopeBranches: dept.trackScopeBranches } : {}),
+            ...(dept.trackName ? { trackName: dept.trackName } : {}),
+            ...(dept.directApply ? { directApply: dept.directApply } : {}),
           });
         }
       }

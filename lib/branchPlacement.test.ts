@@ -96,7 +96,7 @@ describe("البيانات: القسم بالمكان الصحيح وبالحد 
     const d = dept("baghdad", "كلية اآلداب", "قسم علم النفس");
     expect(d.morningByBranch).toEqual({ علمي: 81.71, فنون: 63.57, أدبي: 60 });
     const rec = byBranchFile("علمي").find(
-      (r) => r.universityId === "baghdad" && r.collegeName === "كلية اآلداب" && r.departmentName === "قسم علم النفس"
+      (r) => r.universityId === "baghdad" && r.collegeName === "كلية الآداب" && r.departmentName === "قسم علم النفس"
     );
     expect(rec?.averageGrades["صباحي"]).toBe(81.71); // لا 60 (حد الأدبي)
   });
@@ -111,15 +111,37 @@ describe("البيانات: القسم بالمكان الصحيح وبالحد 
     expect(inAdabi).toBe(false);
   });
 
-  it("فلسفة المستنصرية تقبل الفنون بحسب الدليل: تظهر لطالب الفنون بلا حد منشور لفرعه (لا حد فرع آخر)", () => {
+  it("فلسفة المستنصرية تقبل الفنون بحسب الدليل: يُلحَق بها حد الكلية لفنون (63.14) موسوماً حد كلية لذلك الفرع وحده", () => {
     const d = dept("mustansiriyah", "كلية اآلداب", "قسم الفلسفة");
     expect(d.branch).toContain("فنون");
-    expect(d.morningByBranch?.["فنون"]).toBeNull();
-    const rec = byBranchFile("فنون").find(
-      (r) => r.universityId === "mustansiriyah" && r.collegeName === "كلية اآلداب" && r.departmentName === "قسم الفلسفة"
-    );
-    expect(rec).toBeDefined();
-    expect(rec?.averageGrades["صباحي"]).toBeNull();
+    expect(d.morningByBranch?.["فنون"]).toBe(63.14);
+    // حدوده الخاصة لعلمي وأدبي لا تتغيّر (الصف الخاص يعلو حد الكلية)
+    expect(d.morningByBranch?.["علمي"]).toBe(75.71);
+    expect(d.morningByBranch?.["أدبي"]).toBe(60.43);
+    expect((d as Dept & { cutoffScope?: string; collegeScopeBranches?: string[] }).cutoffScope).toBe("mixed");
+    expect((d as Dept & { collegeScopeBranches?: string[] }).collegeScopeBranches).toEqual(["فنون"]);
+    const find = (branch: string) =>
+      byBranchFile(branch).find(
+        (r) => r.universityId === "mustansiriyah" && r.collegeName === "كلية الآداب" && r.departmentName === "قسم الفلسفة"
+      ) as ({ averageGrades: { صباحي: number | null }; cutoffScope?: string } | undefined);
+    expect(find("فنون")?.averageGrades["صباحي"]).toBe(63.14);
+    expect(find("فنون")?.cutoffScope).toBe("college");
+    expect(find("علمي")?.cutoffScope).toBe("department");
+    expect(find("أدبي")?.cutoffScope).toBe("department");
+  });
+
+  it("علم النفس المستنصرية وإنكليزية تلعفر/التربية الأساسية: حد الكلية لفرع لا صف خاصاً به", () => {
+    const psy = dept("mustansiriyah", "كلية اآلداب", "قسم علم النفس");
+    expect(psy.morningByBranch?.["فنون"]).toBe(63.14);
+    expect(psy.morningByBranch?.["علمي"]).toBe(83.57);
+    const en = dept("telafer", "كلية التربية األساسية", "قسم اللغة االنكليزية");
+    expect(en.morningByBranch?.["علمي"]).toBe(79.71);
+    expect(en.morningByBranch?.["أدبي"]).toBe(60.43);
+  });
+
+  it("حد الكلية لا يُلحَق بقسم لا يقبل الفرع: رياضيات القادسية (علمي فقط) بلا حد أدبي", () => {
+    const d = dept("qadisiyah", "كلية التربية", "قسم الرياضيات");
+    expect(d.cutoffs.every((c) => c.branch === "علمي")).toBe(true);
   });
 
   it("كل سجل حكومي في ملفات by-branch يحمل حد فرعه بالضبط (morningByBranch)", () => {

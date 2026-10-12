@@ -116,18 +116,6 @@
   },
   {
     "university": "جامعة الموصل",
-    "college": "كلية هندسة الإلكترونيات",
-    "department": "قسم هندسة الاتصالات والأنظمة الرقمية الذكية",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 1179,
-    "verifiedAt": "2026-08-10",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
-    "note": "المصدر يذكر الكلية باسم عام \"الهندسة\" لا \"هندسة الإلكترونيات\" تحديداً -- القسم ذاته مؤكد ضمن قسم جامعة الموصل الحقيقي"
-  },
-  {
-    "university": "جامعة الموصل",
     "college": "كلية هندسة النفط والتعدين",
     "department": "قسم هندسة المكامن النفطية",
     "branch": [
@@ -357,73 +345,6 @@
     "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
   },
   {
-    "university": "جامعة تلعفر",
-    "college": "كلية الطب",
-    "department": "الطب",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2252,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية العلوم الطبية",
-    "department": "قسم الأدلة الجنائية",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2254,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية العلوم الطبية",
-    "department": "قسم التحليلات المرضية",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2254,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية العلوم الطبية",
-    "department": "قسم الفيزياء الطبية",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2254,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية العلوم الطبية",
-    "department": "قسم علوم التجميل",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2254,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
-  },
-  {
-    "university": "جامعة تلعفر",
-    "college": "كلية الصيدلة",
-    "department": "الصيدلة",
-    "branch": [
-      "علمي"
-    ],
-    "sourceLine": 2253,
-    "verifiedAt": "2026-08-02",
-    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
-    "note": "استُرجع بعد حذف خاطئ في §22 (نطاق بحث سابق كان مبتوراً من السطر 3550+، لا يغطي الموقع الحقيقي 2237-2254) -- راجع §30"
-  },
-  {
     "university": "جامعة الموصل",
     "college": "كلية الآثار",
     "department": "الحفاظ على الآثار والمخطوطات",
@@ -597,5 +518,4763 @@
     "sourceLine": 1480,
     "verifiedAt": "2026-10-11",
     "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم",
+    "department": "قسم علم الأرض",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 945,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم",
+    "department": "قسم التحسس النائي ونظم المعلومات الجغرافية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 946,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم وقاية النبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1127,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم التربة والموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1127,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم البستنة والنخيل",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1128,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم الأسماك والثروة البحرية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1129,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم المحاصيل الحقلية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1129,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية العلوم",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1189,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية العلوم",
+    "department": "قسم الطاقات المتجددة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1190,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية الزراعة",
+    "department": "قسم وقاية النبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1599,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية الزراعة",
+    "department": "قسم الاقتصاد الزراعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1600,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية الزراعة واالهوار",
+    "department": "قسم الإنتاج النباتي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1889,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية الزراعة واالهوار",
+    "department": "قسم الإنتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1889,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية الزراعة واالهوار",
+    "department": "قسم المحاصيل الحقلية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1889,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية الزراعة واالهوار",
+    "department": "قسم علوم التربة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1890,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية الزراعة",
+    "department": "قسم البستنة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1841,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية الزراعة",
+    "department": "قسم وقاية النبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1841,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية الزراعة",
+    "department": "قسم المحاصيل الحقلية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1841,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية الزراعة",
+    "department": "قسم الإنتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1841,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الأغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1842,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية الزراعة",
+    "department": "قسم الإنتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2242,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة تلعفر",
+    "college": "كلية الزراعة",
+    "department": "قسم الإنتاج النباتي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2242,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "الجامعة التكنولوجية",
+    "college": "كلية العلوم التطبيقية",
+    "department": "قسم علم المواد الطبية والصناعية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1314,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "الجامعة التكنولوجية",
+    "college": "كلية العلوم التطبيقية",
+    "department": "قسم الرياضيات وتطبيقات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1315,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "الجامعة التكنولوجية",
+    "college": "كلية العلوم التطبيقية",
+    "department": "قسم الفيزياء التطبيقية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1316,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم الحديث وعلومه",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1241,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم الفقه واصوله",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1630,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم الحديث وعلومه",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1630,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1631,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الفقه",
+    "department": "قسم علوم الحديث",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1434,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية االثار",
+    "department": "قسم المخطوطات والوثائق التاريخية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1431,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية االثار",
+    "department": "قسم الآثار العراقية القديمة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1432,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية االثار",
+    "department": "قسم الآثار الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1432,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1729,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية اآلداب",
+    "department": "قسم الاجتماع",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1729,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية اآلداب",
+    "department": "قسم الآثار",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1730,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية اآلداب",
+    "department": "قسم الإعلام",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1730,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "data/raw/dalel.full.txt (بعد fixLamAlef)",
+    "addedBy": "م7 — مراجعة سطرية يدوية للنص الخام (2026-10-12)"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم للبنات",
+    "department": "قسم الكيمياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم للبنات",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم للبنات",
+    "department": "قسم علوم الحياة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 32,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاحصاء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 35,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم بحوث العمليات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 915,
+    "pdfPage": 34,
+    "pdfRow": 35,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الألمانية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الفارسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الروسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الاسبانية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الفرنسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة العبرية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة التركية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة السريانية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الإيطالية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الصينية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية التربية ابن رشد للعلوم االنسانية",
+    "department": "قسم علوم القرآن والتربية الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 37,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية التربية ابن رشد للعلوم االنسانية",
+    "department": "قسم اللغة الكردية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 37,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية التربية للبنات",
+    "department": "قسم الاقتصاد المنزلي",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 39,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم الجغرافية ونظم المعلومات الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم الاجتماع",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم الفلسفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية اآلداب",
+    "department": "قسم الآثار",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم التاريخ والحضارة الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم العلوم التربوية والنفسية الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة المستنصرية",
+    "college": "كلية العلوم",
+    "department": "قسم علوم الجو",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة المستنصرية",
+    "college": "كلية العلوم",
+    "department": "قسم الذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة المستنصرية",
+    "college": "كلية التربية األساسية",
+    "department": "قسم التربية الخاصة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1047,
+    "pdfPage": 36,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة المستنصرية",
+    "college": "كلية التربية األساسية",
+    "department": "قسم علوم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1047,
+    "pdfPage": 36,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم المكننة الزراعية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الأغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية اآلداب",
+    "department": "قسم المعلومات وتقنيات المعرفة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 30,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية اآلداب",
+    "department": "قسم الفلسفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 30,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية الفنون الجميلة",
+    "department": "قسم الفنون المسرحية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم االمن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة البصرة",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم العلوم المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1111,
+    "pdfPage": 37,
+    "pdfRow": 23,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم الرياضيات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم الاحصاء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم بحوث العمليات والتقنيات الذكائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم الشبكات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية العلوم البيئية",
+    "department": "قسم التغيرات المناخية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 20,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الكيمياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم علوم الحياة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الرياضيات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم العلوم المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم اللغة السريانية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 28,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية اآلداب",
+    "department": "قسم الاجتماع",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية اآلداب",
+    "department": "قسم الفلسفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة الفرنسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الموصل",
+    "college": "كلية التربية األساسية",
+    "department": "قسم التربية الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1185,
+    "pdfPage": 38,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة النهرين",
+    "college": "كلية اقتصاديات االعمال",
+    "department": "قسم اقتصاديات التكنولوجيا المالية والتحول الرقمي",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 23,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة النهرين",
+    "college": "كلية اقتصاديات االعمال",
+    "department": "قسم اقتصاديات الادارة البيئية المستدامة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 23,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التخطيط العمراني",
+    "department": "قسم التخطيط الحضري",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التخطيط العمراني",
+    "department": "قسم التخطيط البيئي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التخطيط العمراني",
+    "department": "قسم التخطيط الاقليمي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية العلوم",
+    "department": "قسم علوم الأرض",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم الذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 14,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الزراعة",
+    "department": "قسم وقاية النبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الزراعة",
+    "department": "قسم البستنة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الزراعة",
+    "department": "قسم الانتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الاغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم التربة والموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة التركية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الفارسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اللغات",
+    "department": "قسم اللغة الفرنسية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التربية",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 22,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التربية",
+    "department": "قسم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 22,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التربية للبنات",
+    "department": "قسم الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التربية للبنات",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية التربية للبنات",
+    "department": "قسم علوم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم الجغرافية ونظم المعلومات",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم الفلسفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم المجتمع المدني",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية اآلداب",
+    "department": "قسم الاعلام",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1345,
+    "pdfPage": 41,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكوفة",
+    "college": "كلية الفقه",
+    "department": "قسم الاديان المقارنة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية العلوم",
+    "department": "قسم التقنيات الاحيائية الطبية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية العلوم",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية العلوم",
+    "department": "قسم علم الارض",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية علوم الحاسوب والرياضيات",
+    "department": "قسم الذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد الرقمي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1423,
+    "pdfPage": 42,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكريت",
+    "college": "كلية اآلداب",
+    "department": "قسم الآثار",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1494,
+    "pdfPage": 43,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة القادسية",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاحصاء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1494,
+    "pdfPage": 43,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 9,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم",
+    "department": "قسم الجيولوجيا التطبيقية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 9,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية العلوم",
+    "department": "قسم الرياضيات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 9,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم تكنولوجيا المعلومات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 10,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم انظمة شبكات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 10,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية للبنات",
+    "department": "قسم الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 19,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية للبنات",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 19,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية للبنات",
+    "department": "قسم العلوم التربوية والنفسية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 19,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية للبنات",
+    "department": "قسم علوم القرآن والتربية الإسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 19,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية اآلداب",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 22,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 22,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الأنبار",
+    "college": "كلية التربية األساسية",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1567,
+    "pdfPage": 44,
+    "pdfRow": 23,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم نظم المعلومات الادارية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 11,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الرقابة والتدقيق",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 11,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد الرقمي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 11,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية التربية/الطارمية",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية التربية/الطارمية",
+    "department": "قسم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية التربية/الطارمية",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة العراقية",
+    "college": "كلية التربية/الطارمية",
+    "department": "قسم علوم الحياة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1636,
+    "pdfPage": 45,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية العلوم",
+    "department": "قسم علوم الحياة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 20,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية العلوم",
+    "department": "قسم علم الارض التطبيقي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 20,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الكيمياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 23,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بابل",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1702,
+    "pdfPage": 46,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية العلوم",
+    "department": "قسم الرياضيات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية العلوم",
+    "department": "قسم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية العلوم",
+    "department": "قسم جيولوجيا النفط والمعادن",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية الزراعة",
+    "department": "قسم التربة والموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم المحاصيل الحقلية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الرياضيات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ديالى",
+    "college": "كلية التربية األساسية",
+    "department": "قسم العلوم",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 25,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية العلوم الطبية التطبيقية",
+    "department": "قسم الكيمياء الحياتية الطبية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة كربلاء",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم الامن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1770,
+    "pdfPage": 47,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية العلوم",
+    "department": "قسم الجيولوجيا التطبيقية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 10,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم علوم الحاسبات والذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 16,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية التربية للعلوم الصرفة",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 16,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 18,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية اآلداب",
+    "department": "قسم الجغرافية ونظم المعلومات الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 21,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية االثار",
+    "department": "قسم الآثار والحضارة القديمة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية االثار",
+    "department": "قسم الآثار والحضارة الاسلامية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ذي قار",
+    "college": "كلية االعالم",
+    "department": "قسم الصحافة المكتوبة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1846,
+    "pdfPage": 48,
+    "pdfRow": 25,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة كركوك",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم التربة والموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1920,
+    "pdfPage": 49,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة كركوك",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الدواجن",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1920,
+    "pdfPage": 49,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية العلوم",
+    "department": "قسم علوم الارض",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 7,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم الامن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الاغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 10,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاحصاء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاقتصاد الرقمي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة العربية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة الفارسية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية اآلداب",
+    "department": "قسم اللغة الروسية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية اآلداب",
+    "department": "قسم الفلسفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 17,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية التربية األساسية",
+    "department": "قسم التربية الاسلامية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 20,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة واسط",
+    "college": "كلية الفنون الجميلة",
+    "department": "قسم الفنون التشكيلية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 24,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ميسان",
+    "college": "كلية الزراعة",
+    "department": "قسم الانتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ميسان",
+    "college": "كلية الزراعة",
+    "department": "قسم علوم الاغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 1988,
+    "pdfPage": 50,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ميسان",
+    "college": "كلية التربية",
+    "department": "قسم الجغرافية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2060,
+    "pdfPage": 51,
+    "pdfRow": 16,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة ميسان",
+    "college": "كلية التربية",
+    "department": "قسم العلوم التربوية والنفسية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2060,
+    "pdfPage": 51,
+    "pdfRow": 16,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة المثنى",
+    "college": "كلية العلوم",
+    "department": "قسم الفيزياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2060,
+    "pdfPage": 51,
+    "pdfRow": 10,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة المثنى",
+    "college": "كلية الزراعة",
+    "department": "قسم وقاية النبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2060,
+    "pdfPage": 51,
+    "pdfRow": 15,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة سامراء",
+    "college": "كلية العلوم التطبيقية",
+    "department": "قسم علوم الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2060,
+    "pdfPage": 51,
+    "pdfRow": 5,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة سومر",
+    "college": "كلية علوم الحاسوب وتكنولوجيا المعلومات",
+    "department": "قسم نظم المعلومات الحاسوبية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2128,
+    "pdfPage": 52,
+    "pdfRow": 4,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة سومر",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم الاحصاء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2128,
+    "pdfPage": 52,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة سومر",
+    "college": "كلية التربية األساسية",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2128,
+    "pdfPage": 52,
+    "pdfRow": 11,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة القاسم الخضراء",
+    "college": "كلية علوم االغذية",
+    "department": "قسم علوم وتكنولوجيا الاغذية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2128,
+    "pdfPage": 52,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة نينوى",
+    "college": "كلية تكنولوجيا المعلومات",
+    "department": "قسم الذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2192,
+    "pdfPage": 53,
+    "pdfRow": 9,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفلوجة",
+    "college": "كلية تكنولوجيا المعلومات",
+    "department": "قسم الامن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2192,
+    "pdfPage": 53,
+    "pdfRow": 4,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفلوجة",
+    "college": "كلية تكنولوجيا المعلومات",
+    "department": "قسم الذكاء الاصطناعي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2192,
+    "pdfPage": 53,
+    "pdfRow": 4,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفلوجة",
+    "college": "كلية العلوم االسالمية",
+    "department": "قسم العقيدة والفكر الاسلامي",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2192,
+    "pdfPage": 53,
+    "pdfRow": 9,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الحمدانية",
+    "college": "كلية الحاسبات والمعلوماتية",
+    "department": "قسم شبكات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 1,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الحمدانية",
+    "college": "كلية الحاسبات والمعلوماتية",
+    "department": "قسم تكنولوجيا المعلومات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 1,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الحمدانية",
+    "college": "كلية التربية للعلوم االنسانية",
+    "department": "قسم التاريخ",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 4,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكنولوجيا المعلومات والاتصالات",
+    "college": "كلية المعلوماتية الطبية الحيوية",
+    "department": "قسم الانظمة الطبية الذكية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 3,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة تكنولوجيا المعلومات والاتصالات",
+    "college": "كلية المعلوماتية الطبية الحيوية",
+    "department": "قسم المعلوماتية الاحيائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 3,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكرخ للعلوم",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الكرخ للعلوم",
+    "college": "كلية االدارة واالقتصاد",
+    "department": "قسم العلوم المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2257,
+    "pdfPage": 54,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية العلوم الطبية التطبيقية",
+    "department": "قسم الادلة الجنائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 5,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية التربية للبنات",
+    "department": "قسم العلوم التربوية والنفسية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية التربية للبنات",
+    "department": "قسم الكيمياء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 8,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية الفنون الجميلة",
+    "department": "قسم الفنون المسرحية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية الفنون الجميلة",
+    "department": "قسم الفنون التشكيلية",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 12,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الشطرة",
+    "college": "كلية التربية البدنية وعلوم الرياضة",
+    "department": "عام",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 2307,
+    "pdfPage": 55,
+    "pdfRow": 13,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام كلية غائبة: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "الكلية التقنية االدارية",
+    "department": "قسم تقنيات الاحصاء والمعلوماتية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2365,
+    "pdfPage": 56,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "الكلية التقنية االدارية",
+    "department": "قسم تقنيات ادارة الاعمال",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2365,
+    "pdfPage": 56,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الموصل",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الموصل",
+    "department": "قسم تقنيات الصناعات الكيمياوية والنفطية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الموصل",
+    "department": "قسم تقنيات الشبكات وبرمجيات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "معهد االدارة التقني",
+    "department": "قسم تقنيات المعلومات والمكتبات",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 54,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "معهد االدارة التقني",
+    "department": "قسم تقنيات ادارة مكتب",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 54,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "معهد االدارة التقني",
+    "department": "قسم تقنيات انظمة الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 54,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني كركوك",
+    "department": "قسم تقنيات المساحة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 60,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني كركوك",
+    "department": "قسم تقنيات انظمة الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 61,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الحويجة",
+    "department": "قسم التقنيات الالكترونية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 71,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الحويجة",
+    "department": "قسم لحام المعدات النفطية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 71,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الشمالية",
+    "college": "المعهد التقني الحويجة",
+    "department": "قسم تقنيات االنسان االلي واالالت الذكية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2474,
+    "pdfPage": 57,
+    "pdfRow": 71,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "الكلية التقنية االقسام الزراعية",
+    "department": "قسم تقنيات التربة والمياه",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "الكلية التقنية االقسام الزراعية",
+    "department": "قسم تقنيات المقاومة الاحيائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "الكلية التقنية االدارية/الكوفة",
+    "department": "قسم ادارة تقنيات المعلومات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 28,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "الكلية التقنية االدارية/الكوفة",
+    "department": "قسم ادارة وتسويق النفط والغاز",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 28,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "كلية البوليتكنك كربالء",
+    "department": "قسم تقنيات ادارة الاعمال",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 30,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "كلية البوليتكنك كربالء",
+    "department": "قسم تقنيات السياحة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 30,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "كلية البوليتكنك كربالء",
+    "department": "قسم التقنيات المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 30,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات الادلة الجنائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات الالكترونيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات الاجهزة الطبية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات شبكات وبرمجيات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 33,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات ادارة المواد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 34,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات الادارة القانونية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 34,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني بابل",
+    "department": "قسم تقنيات المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 34,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات الكهرباء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 37,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 37,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 37,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات ادارة المواد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 38,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم التقنيات المالية والمصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 38,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات الانتاج النباتي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 39,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الكوفة",
+    "department": "قسم تقنيات الانتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 39,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني السماوة",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني السماوة",
+    "department": "قسم تقنيات الكهرباء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني السماوة",
+    "department": "قسم تقنيات البناء والانشاءات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني السماوة",
+    "department": "قسم تقنيات الامن السيبراني وادارة التطبيقات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات غسيل الكلى",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2666,
+    "pdfPage": 59,
+    "pdfRow": 47,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات الموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات المدني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم التقنيات الميكانيكية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات القدرة الكهربائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 50,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات مالية ومصرفية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 50,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات الانتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 51,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات الانتاج النباتي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 51,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات التربة والمياه",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 51,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني المسيب",
+    "department": "قسم تقنيات المكننة الزراعية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 51,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات الكهرباء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات الطاقة المتجددة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات الامن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات الطيران",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات شبكات وبرمجيات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات االلكترونيك واالتصاالت",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات السياحة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 54,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني النجف",
+    "department": "قسم تقنيات ادارة الفنادق",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 54,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة الفرات الأوسط التقنية",
+    "college": "المعهد التقني الرميثة",
+    "department": "قسم تقنيات الكهرباء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2785,
+    "pdfPage": 60,
+    "pdfRow": 57,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني االداري",
+    "department": "قسم تقنيات ادارة مواد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 28,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني االداري",
+    "department": "قسم تقنيات الادارة القانونية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 28,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني العمارة",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني العمارة",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني العمارة",
+    "department": "قسم تقنيات مساحة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني العمارة",
+    "department": "قسم تقنيات شبكات وبرمجيات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني العمارة",
+    "department": "قسم تقنيات الالكترونيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 31,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الناصرية",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 35,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الناصرية",
+    "department": "قسم تقنيات شبكات وبرمجيات الحاسوب",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 35,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الناصرية",
+    "department": "قسم تقنيات فحص ولحام المعدات النفطية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 35,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الناصرية",
+    "department": "قسم تقنيات المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 36,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم التقنيات الميكانيكية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات المساحة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات الموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات فحص ولحام المعدات النفطية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات الامن السيبراني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 40,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات الانتاج الحيواني",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات الانتاج النباتي",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الجنوبية",
+    "college": "المعهد التقني الشطرة",
+    "department": "قسم تقنيات مكائن ومعدات زراعية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 2876,
+    "pdfPage": 61,
+    "pdfRow": 42,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "الكلية التقنية االدارية",
+    "department": "قسم تقنيات ادارة الجودة الشاملة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2975,
+    "pdfPage": 62,
+    "pdfRow": 26,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "كلية البوليتكنك بغداد",
+    "department": "قسم تقنيات المحاسبة",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2975,
+    "pdfPage": 62,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "كلية البوليتكنك بغداد",
+    "department": "قسم تقنيات ادارة االعمال",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2975,
+    "pdfPage": 62,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "كلية البوليتكنك بغداد",
+    "department": "قسم تقنيات االدارة القانونية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 2975,
+    "pdfPage": 62,
+    "pdfRow": 27,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد الطبي",
+    "department": "قسم تقنيات صناعة الاسنان",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 32,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد التكنلوجيا",
+    "department": "قسم تقنيات الموارد المائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد التكنلوجيا",
+    "department": "قسم التقنيات المدنية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد التكنلوجيا",
+    "department": "قسم تقنيات الميكاترونكس",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد التكنلوجيا",
+    "department": "قسم تقنيات الاجهزة الطبية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد التكنلوجيا",
+    "department": "قسم تقنيات تكنولوجيا المعلومات والاتصالات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 45,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد االدارة",
+    "department": "قسم تقنيات الادارة الرياضية",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 46,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد االدارة",
+    "department": "قسم تقنيات ادارة المخازن",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 46,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد االدارة",
+    "department": "قسم تقنيات المعلومات والمكتبات",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 46,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد الفنون التطبيقية",
+    "department": "قسم تقنيات التصميم الطباعي والزخرفة",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 48,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد الفنون التطبيقية",
+    "department": "قسم تقنيات صناعة الملابس",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 48,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد الفنون التطبيقية",
+    "department": "قسم تقنيات الخط",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 48,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد اعداد المدربين التقنيين/بغداد",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد اعداد المدربين التقنيين/بغداد",
+    "department": "قسم تقنيات الكهرباء",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "معهد اعداد المدربين التقنيين/بغداد",
+    "department": "قسم تقنيات السيارات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 49,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني االنبار",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 52,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني االنبار",
+    "department": "قسم تقنيات الصناعات الكيميائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3074,
+    "pdfPage": 63,
+    "pdfRow": 52,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني االنبار",
+    "department": "قسم تقنيات ادارة المكتب",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني االنبار",
+    "department": "قسم تقنيات ادارة المواد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني االنبار",
+    "department": "قسم تقنيات انظمة الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 53,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني بعقوبة",
+    "department": "قسم تقنيات المساحة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 60,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني بعقوبة",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 60,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني بعقوبة",
+    "department": "قسم تقنيات الطاقة المتجددة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 60,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني بعقوبة",
+    "department": "قسم تقنيات ادارة مواد",
+    "branch": [
+      "علمي",
+      "أدبي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 61,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني بعقوبة",
+    "department": "قسم تقنيات انظمة الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 61,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني الصويرة",
+    "department": "قسم تقنيات ميكانيك القدرة",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 69,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني الصويرة",
+    "department": "قسم تقنيات الميكانيك",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 69,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني الصويرة",
+    "department": "قسم تقنيات انظمة الحاسبات",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 70,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام قسم غائب: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "الجامعة التقنية الوسطى",
+    "college": "المعهد التقني الصويرة",
+    "department": "قسم تقنيات الصناعات الغذائية",
+    "branch": [
+      "علمي"
+    ],
+    "sourceLine": 3155,
+    "pdfPage": 64,
+    "pdfRow": 71,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
+  },
+  {
+    "university": "جامعة بغداد",
+    "college": "كلية التربية البدنية",
+    "department": "عام",
+    "branch": [
+      "علمي",
+      "أدبي",
+      "فنون"
+    ],
+    "sourceLine": 971,
+    "pdfPage": 35,
+    "pdfRow": 46,
+    "verifiedAt": "2026-10-12",
+    "sourceFile": "dalel_2025_22026.pdf (قراءة صورة الصفحة)",
+    "addedBy": "إتمام تصحيح فرع: PLAN-ADMISSION-COMPLETION.md"
   }
 ]

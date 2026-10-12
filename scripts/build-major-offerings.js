@@ -102,6 +102,12 @@ function findUniversitiesForMajor(major, mapping) {
             ...(dept.evening ? { evening: dept.evening } : {}),
             ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),
             ...(dept.genderByBranch ? { genderByBranch: dept.genderByBranch } : {}),
+            // مستوى الحد الصباحي (college = حد الكلية كلها أُلحق بالقسم، department = حد القسم نفسه)
+            ...(dept.cutoffScope ? { cutoffScope: dept.cutoffScope } : {}),
+            ...(dept.collegeScopeBranches ? { collegeScopeBranches: dept.collegeScopeBranches } : {}),
+            ...(dept.trackScopeBranches ? { trackScopeBranches: dept.trackScopeBranches } : {}),
+            ...(dept.trackName ? { trackName: dept.trackName } : {}),
+            ...(dept.directApply ? { directApply: dept.directApply } : {}),
           });
         }
       }
@@ -162,6 +168,32 @@ for (const f of fs.readdirSync(BRANCH_OUT_DIR)) {
 // ملف رابع منفصل (لا تكرار في الثلاثة -- يضخّم كل ملف بلا داعٍ) يجمعها
 // موسومةً branchKnown:false، يُجلَب مرة ويُدمَج مع أي فرع (lib/offeringsClient.ts).
 const UNKNOWN_BRANCH_KEY = "unknown";
+// أدنى حد صباحي للتقديم على الكلية لكل فرع (على كل أقسامها، لا على ما يعرضه فلتر الواجهة)
+const collegeMinimum = new Map();
+for (const uni of universities) {
+  for (const college of uni.colleges) {
+    for (const dept of college.departments) {
+      for (const b of dept.branch) {
+        const v = dept.morningByBranch ? (dept.morningByBranch[b] ?? null) : dept.averageGrades["صباحي"];
+        if (v == null) continue;
+        const k = `${uni.id}|${college.id}|${b}`;
+        const e = collegeMinimum.get(k) || { min: Infinity, n: 0 };
+        e.min = Math.min(e.min, v);
+        e.n++;
+        collegeMinimum.set(k, e);
+      }
+    }
+  }
+}
+// مستوى حدّ فرع بعينه: college | track | department (+ trackName لحد المسار)
+function branchLevel(dept, b) {
+  const sc = dept.cutoffScope;
+  const inTrack = sc === "track" || (sc === "mixed" && (dept.trackScopeBranches || []).includes(b));
+  const inCollege = sc === "college" || (sc === "mixed" && (dept.collegeScopeBranches || []).includes(b));
+  if (inTrack) return { cutoffScope: "track", ...(dept.trackName ? { trackName: dept.trackName } : {}) };
+  if (inCollege) return { cutoffScope: "college" };
+  return { cutoffScope: "department" };
+}
 const branchRecords = Object.fromEntries([...BRANCHES, UNKNOWN_BRANCH_KEY].map((b) => [b, []]));
 for (const uni of universities) {
   for (const college of uni.colleges) {
@@ -207,6 +239,13 @@ for (const uni of universities) {
         branchRecords[b].push({
           ...record,
           averageGrades: { ...dept.averageGrades, صباحي: morning, مسائي: evening },
+          // مستوى حد هذا الفرع بالذات: حد الكلية أُلحق بالقسم أم صف باسم القسم (لا يُذكر إن لم يُنشر حد لهذا الفرع)
+          ...(dept.cutoffScope && morning != null ? branchLevel(dept, b) : {}),
+          ...(() => {
+            const e = collegeMinimum.get(`${uni.id}|${college.id}|${b}`);
+            return e && e.n >= 2 ? { collegeMinimum: e.min } : {};
+          })(),
+          ...(morning == null && dept.directApply ? { directApply: dept.directApply } : {}),
           ...(dept.evening ? { evening: dept.evening } : {}),
           // الجنس لقسم محدَّد فقط: قسم لجنس واحد، أو حدّان مختلفان لهذا الفرع
           ...(dept.genderRestriction ? { genderRestriction: dept.genderRestriction } : {}),

@@ -1,5 +1,4 @@
 import { describe, it, expect } from "vitest";
-// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { createGuideLookup, _internals: I } = require("../scripts/guideBranches");
 
 // مطابِق جدول «الفروع المقبولة» في الدليل (scripts/guideBranches.js): يتسامح مع تشوّه نص PDF

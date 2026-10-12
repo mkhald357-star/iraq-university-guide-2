@@ -15,6 +15,39 @@ type Cutoffish = Pick<UniversityOffering, "cutoffs" | "averageGrades" | "univers
   eveningByBranch?: Record<string, number | null>;
 };
 
+export type CutoffLevel = "college" | "track" | "department";
+
+interface ScopeCarrier {
+  cutoffScope?: "college" | "track" | "department" | "mixed";
+  collegeScopeBranches?: string[];
+  trackScopeBranches?: string[];
+  forBranch?: string;
+}
+
+/**
+ * مستوى الحد الصباحي المعروض لفرع: حد الكلية (معلَن للكلية كلها)، أو حد المسار (للتخصصات الطبية/الهندسية…
+ * في المعهد/الكلية التقنية)، أو حد القسم نفسه. سجل by-branch يحمل مستوى فرعه مسبقاً.
+ */
+export function cutoffLevelFor(o: ScopeCarrier, branch?: string | null): CutoffLevel {
+  const b = branch ?? o.forBranch;
+  if (o.cutoffScope === "college") return "college";
+  if (o.cutoffScope === "track") return "track";
+  if (o.cutoffScope === "mixed" && b) {
+    if ((o.trackScopeBranches ?? []).includes(b)) return "track";
+    if ((o.collegeScopeBranches ?? []).includes(b)) return "college";
+  }
+  return "department";
+}
+
+/** فروع حدّها حد كلية/مسار لقسم mixed حين لا يُعرف فرع الطالب (للعرض)، وإلا []. */
+export function scopedCutoffBranches(o: ScopeCarrier): { branch: string; level: CutoffLevel }[] {
+  if (o.cutoffScope !== "mixed" || o.forBranch) return [];
+  return [
+    ...(o.collegeScopeBranches ?? []).map((branch) => ({ branch, level: "college" as CutoffLevel })),
+    ...(o.trackScopeBranches ?? []).map((branch) => ({ branch, level: "track" as CutoffLevel })),
+  ];
+}
+
 /** هل يقبل القسم فرع الطالب؟ قسم بلا فروع معروفة (كل الأهلي اليوم) لا يُستبعد. */
 export function acceptsBranch(o: Pick<UniversityOffering, "departmentBranches">, branch: string): boolean {
   return !o.departmentBranches || o.departmentBranches.length === 0 || o.departmentBranches.includes(branch);

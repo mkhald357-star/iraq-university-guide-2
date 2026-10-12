@@ -356,7 +356,33 @@ function resolveCutoffCollege(uni, row) {
     row.college
   );
 }
+// اسم كلية التفّ في جدول المسائي عبر خليتين: «كلية علوم» + campusOrTrack «الحاسوب وتكنولوجيا المعلومات»
+// (والقيمة الثانية ليست اسم حرم). يُعاد الاسم الكامل **فقط** حين يطابق المجموع كليةً واحدة قائمة في
+// الجامعة نفسها بعد التطبيع (PLAN-ADMISSION-COMPLETION.md): بلا مطابقة وحيدة يبقى السلوك السابق.
+function wrappedEveningCollege(uni, row) {
+  const raw = (row.campusOrTrack || "").trim();
+  if (!raw || !row.college || row.college.includes("/")) return null;
+  if (CAMPUS_QUALIFIERS.has(raw)) return null;
+  // «الهندسية الكهربائية / بغداد» ← تتمّة الاسم ثم الحرم؛ «بعقوبة /التخصصات الهندسية» ← الحرم ثم المسار
+  const pieces = raw
+    .replace(/[()]/g, " ")
+    .split("/")
+    .map((x) => x.trim())
+    .filter((x) => x && !/^التخصصات/.test(x) && !/^صالح الدين$/.test(x));
+  const base = normalizeForDedupMatch(row.college);
+  const keys = [...uni._collegesMap.keys()].filter((k) => !k.includes("/"));
+  const hits = new Set();
+  for (const piece of pieces.slice(0, 2)) {
+    const want = normalizeForDedupMatch(`${row.college} ${piece}`);
+    if (!want || want === base) continue;
+    for (const k of keys) if (normalizeForDedupMatch(k) === want) hits.add(k);
+    if (hits.size) break;
+  }
+  return hits.size === 1 ? [...hits][0] : null;
+}
 function resolveEveningCollege(uni, row) {
+  const wrapped = wrappedEveningCollege(uni, row);
+  if (wrapped) return wrapped;
   const campus = (row.campusOrTrack || "").trim();
   if (!campus || !CAMPUS_QUALIFIERS.has(campus) || (row.college || "").includes("/")) return row.college;
   // مصدر المسائي نفسه يكتب أحياناً الحرم كلاحقة ("كلية التربية /الدواية") وأحياناً كحقل منفصل
@@ -379,6 +405,63 @@ try {
 }
 const guideBranchesFor = createGuideLookup(chapter3Branches);
 const GUIDE_CONFLICTS = [];
+// أقسام لها حدود خاصة لبعض الفروع فقط وأُلحق بها حد الكلية لفرع آخر (م5، قرار 2026-10-12)
+const COLLEGE_PARTIAL_ASSIGNMENTS = [];
+
+// أسماء أحرم قرأها parse-cutoffs قسماً («ابن الهيثم»، «الحي»، «بغداد باب المعظم»): الصف حد كلية/معهد لا قسم
+const CAMPUS_LABEL_DEPTS = new Set(
+  (() => {
+    try {
+      return require(path.join(ROOT, "data/campus-label-departments.json")).map(
+        (r) => normKey(r.university) + "|" + normKey(r.college) + "|" + normKey(r.label)
+      );
+    } catch (e) {
+      return [];
+    }
+  })()
+);
+// ربط الأقسام التقنية بمساراتها (scripts/admission-fix/build-institute-tracks.js): مصدر صريح لكل ربط
+const { umbrellaTrack, TRACK_LABEL } = require("./instituteTracks");
+// SKIP_TRACKS=1: بناء بلا توزيع حد المسار (المظلات باقية) ليُولَّد data/institute-tracks.json منه
+const TRACK_INDEX = new Map(
+  (() => {
+    if (process.env.SKIP_TRACKS) return [];
+    try {
+      return require(path.join(ROOT, "data/institute-tracks.json")).map((t) => [
+        `${t.university}|${t.college}|${t.department}`,
+        t.track,
+      ]);
+    } catch (e) {
+      return [];
+    }
+  })()
+);
+const TRACK_ASSIGNMENTS = [];
+// كليات التقديم المباشر: قبول من الكلية نفسها بلا حد مركزي (أو بحد أدنى معلَن في الدليل)
+const DIRECT_APPLY_RULES = (() => {
+  try {
+    return require(path.join(ROOT, "data/direct-apply-colleges.json")).rules;
+  } catch (e) {
+    return [];
+  }
+})();
+function directApplyFor(uni, collegeName) {
+  const n = normKey(collegeName.split("/")[0]);
+  for (const r of DIRECT_APPLY_RULES) {
+    const m = r.match;
+    const hit = m.collegeNameMatches
+      ? new RegExp(m.collegeNameMatches).test(toDisplayName(collegeName))
+      : normKey(m.university) === normKey(uni.name) && m.colleges.some((c) => normKey(c) === n);
+    if (hit)
+      return {
+        kind: r.kind,
+        ...(r.minimumAverage != null ? { minimumAverage: r.minimumAverage } : {}),
+        note: r.note,
+        source: r.source,
+      };
+  }
+  return null;
+}
 
 let unmatchedUni = new Set();
 
@@ -393,7 +476,10 @@ for (const row of cutoffs) {
     DEPARTMENT_NAME_ALIASES[uni.name]?.[college.name]?.[row.department] ||
     DEPARTMENT_NAME_ALIASES[uni.name]?.[row.college]?.[row.department] ||
     row.department;
-  const dept = getDept(college, resolvedDept, row.college);
+  const isCampusLabel = CAMPUS_LABEL_DEPTS.has(
+    normKey(uni.name) + "|" + normKey(college.name) + "|" + normKey(resolvedDept || "")
+  );
+  const dept = getDept(college, isCampusLabel ? "" : resolvedDept, row.college);
   dept.sessions.add("صباحي");
   dept.cutoffs.push({
     branch: row.branch,
@@ -505,9 +591,103 @@ for (const u of universities) {
         : collegeLevel.cutoffs;
       if (!applicable.length) return;
       d.cutoffs.push(...applicable);
+      // فروع حدّها معلَن للكلية كلها لا لهذا القسم وحده (م5): تُوسَم «حد الكلية» في الواجهة
+      d.collegeScopeBranches = new Set([...(d.collegeScopeBranches || []), ...applicable.map((c) => c.branch)]);
       d.sessions.add("صباحي");
     });
+
+    // قسم له حدود خاصة لبعض الفروع فقط (قرار 2026-10-12، PLAN-ADMISSION-COMPLETION.md المرحلة أ):
+    // حد الكلية هو الأرضية لكل قسم لا صف خاص به لذلك الفرع/الجنس (والصف الخاص يعلوه دائماً: 107 حالة
+    // موثَّقة في audit-cutoffs). فيُلحَق به حد الكلية لفرع يقبله بحسب الدليل ولا صف خاصاً له فيه، بالشرط
+    // نفسه الذي يفحصه التدقيق: لا يُنسب لقسم لا يقبل الفرع، ولا لقسم حدوده كلها جنس واحد مع حد «مختلط».
+    // يُوسَم «حد الكلية» لذلك الفرع وحده (cutoffScope = mixed + collegeScopeBranches).
+    for (const [key, d] of college.departmentsMap.entries()) {
+      if (key === "__COLLEGE_LEVEL__" || d.cutoffs.length === 0 || d.collegeScopeBranches) continue;
+      const accepted = new Set([...d.cutoffs.map((x) => x.branch), ...(allowedOf(d) || [])]);
+      const ownGenders = new Set(d.cutoffs.map((x) => x.gender));
+      const extra = collegeLevel.cutoffs.filter(
+        (c) =>
+          !c.isQuota &&
+          accepted.has(c.branch) &&
+          !d.cutoffs.some((x) => x.branch === c.branch && x.gender === c.gender) &&
+          !(ownGenders.size && !ownGenders.has("مختلط") && c.gender === "مختلط")
+      );
+      if (!extra.length) continue;
+      d.cutoffs.push(...extra);
+      d.collegeScopeBranches = new Set(extra.map((c) => c.branch));
+      COLLEGE_PARTIAL_ASSIGNMENTS.push({
+        university: u.name,
+        college: college.name,
+        department: d.name,
+        branches: [...d.collegeScopeBranches],
+      });
+    }
     college.departmentsMap.delete("__COLLEGE_LEVEL__");
+  }
+}
+
+// برنامج الكلية الواحد يُكتب في المصدرين مرة «عام» (المسائي) ومرة باسم الكلية («التربية البدنية وعلوم الرياضة»):
+// قسمان لكيان واحد فيُدمجان في القسم المسمّى (جلساته وحدوده وفروعه)
+for (const u of universities) {
+  for (const college of u._collegesMap.values()) {
+    const generic = college.departmentsMap.get("عام");
+    if (!generic) continue;
+    const base = normKey(stripCollegePrefix(college.name.split("/")[0]));
+    const twin = [...college.departmentsMap.entries()].find(
+      ([k, d]) => k !== "عام" && k !== "__COLLEGE_LEVEL__" && normKey(k.replace(/^قسمs+/, "")) === base
+    );
+    if (!twin) continue;
+    const [, t] = twin;
+    generic.sessions.forEach((x) => t.sessions.add(x));
+    t.hasEvening = t.hasEvening || generic.hasEvening;
+    t.cutoffs.push(...generic.cutoffs);
+    generic.directBranches.forEach((x) => t.directBranches.add(x));
+    college.departmentsMap.delete("عام");
+  }
+}
+
+// حد المسار (PLAN-MORNING-CUTOFFS.md): الجدول الرسمي ينشر للمعهد/الكلية التقنية حداً لكل مسار
+// («المعهد التقني بابل / التخصصات الطبية»)، فيصل إلى كل قسم **مربوط بذلك المسار بمصدر صريح** ولا صف خاصاً له
+// لذلك الفرع/الجنس ويقبل الفرع (شرط حد الكلية نفسه). لا يُربط قسم بمساره بالاسم أو بالتخمين.
+// قسم المظلة (المحمّل بحد المسار) يُحذف فقط إذا وصل كل حدّ من حدوده إلى قسم واحد على الأقل (لا يضيع رقم رسمي).
+for (const u of universities) {
+  for (const college of u._collegesMap.values()) {
+    const umbrellas = new Map(); // مسار ← [مفتاح، قسم المظلة]
+    for (const [key, d] of college.departmentsMap.entries()) {
+      const t = umbrellaTrack(d.name);
+      if (t && d.cutoffs.length) umbrellas.set(t, [key, d]);
+    }
+    if (!umbrellas.size) continue;
+    const consumed = new Map(); // مسار ← مفاتيح حدود وصلت (فرع|جنس)
+    for (const [key, d] of college.departmentsMap.entries()) {
+      if (umbrellaTrack(d.name) || key === "__COLLEGE_LEVEL__") continue;
+      const track = TRACK_INDEX.get(`${u.name}|${college.name}|${d.name}`);
+      if (!track || !umbrellas.has(track)) continue;
+      const [, um] = umbrellas.get(track);
+      const accepted = d.directBranches.size
+        ? d.directBranches
+        : guideBranchesFor(u, college.name, d.name) || new Set(d.cutoffs.map((x) => x.branch));
+      const ownGenders = new Set(d.cutoffs.map((x) => x.gender));
+      const extra = um.cutoffs.filter(
+        (c) =>
+          !c.isQuota &&
+          (accepted.size === 0 || accepted.has(c.branch)) &&
+          !d.cutoffs.some((x) => x.branch === c.branch && x.gender === c.gender) &&
+          !(ownGenders.size && !ownGenders.has("مختلط") && c.gender === "مختلط")
+      );
+      if (!extra.length) continue;
+      d.cutoffs.push(...extra);
+      d.trackScopeBranches = new Set([...(d.trackScopeBranches || []), ...extra.map((c) => c.branch)]);
+      d.trackLabel = TRACK_LABEL[track] || track;
+      d.sessions.add("صباحي");
+      const set = consumed.get(track) || consumed.set(track, new Set()).get(track);
+      extra.forEach((c) => set.add(c.branch + "|" + c.gender));
+      TRACK_ASSIGNMENTS.push({ university: u.name, college: college.name, department: d.name, track, branches: [...d.trackScopeBranches] });
+    }
+    for (const [track, [key, um]] of umbrellas) {
+      const got = consumed.get(track) || new Set();
+      if (um.cutoffs.every((c) => c.isQuota || got.has(c.branch + "|" + c.gender))) college.departmentsMap.delete(key);
+    }
   }
 }
 
@@ -679,6 +859,23 @@ function campusOfCollege(uni, collegeName) {
   return null;
 }
 
+// college = كل حدوده حد كلية، track = كلها حد مسار، department = كلها صفوف باسم القسم،
+// mixed = خليط (collegeScopeBranches للفروع بحد كلية، trackScopeBranches للفروع بحد مسار)
+function cutoffScopeOf(d, nonQuotaCutoffs) {
+  const col = d.collegeScopeBranches ? [...d.collegeScopeBranches] : [];
+  const trk = d.trackScopeBranches ? [...d.trackScopeBranches] : [];
+  if (!col.length && !trk.length) return { cutoffScope: "department" };
+  const scoped = new Set([...col, ...trk]);
+  const hasOwn = nonQuotaCutoffs.some((x) => !scoped.has(x.branch));
+  if (!hasOwn && !trk.length) return { cutoffScope: "college" };
+  if (!hasOwn && !col.length) return { cutoffScope: "track", trackName: d.trackLabel };
+  return {
+    cutoffScope: "mixed",
+    ...(col.length ? { collegeScopeBranches: col } : {}),
+    ...(trk.length ? { trackScopeBranches: trk, trackName: d.trackLabel } : {}),
+  };
+}
+
 const finalUniversities = universities.map((u) => {
   const takenCollegeIds = new Set();
   const colleges = [...u._collegesMap.values()].map((c) => {
@@ -731,7 +928,12 @@ const finalUniversities = universities.map((u) => {
         branchBasis,
         sessions: [...d.sessions],
         cutoffs: d.cutoffs,
+        // مستوى الحد الصباحي: college = حد معلَن للكلية كلها وأُلحق بالقسم (لا يملك القسم صفاً باسمه)،
+        // department = صفوف باسم القسم نفسه. قسم له صفوف خاصة لا يُلحَق به حد الكلية أبداً (يبقى بلا حد
+        // منشور لفرع لا صف له): الخيار المحافظ، ويُوثَّق استثناء في audit-cutoffs.
+        ...(d.cutoffs.length ? cutoffScopeOf(d, nonQuotaCutoffs) : {}),
         averageGrades: { صباحي: bestMorning, مسائي: bestEvening },
+        ...(bestMorning === null && directApplyFor(u, c.name) ? { directApply: directApplyFor(u, c.name) } : {}),
         morningByBranch,
         ...(genderRestriction ? { genderRestriction } : {}),
         ...(Object.keys(genderByBranch).length ? { genderByBranch } : {}),
@@ -938,6 +1140,18 @@ fs.writeFileSync(
   "utf8"
 );
 console.log("Guide/cutoff branch conflicts (kept, flagged):", GUIDE_CONFLICTS.length);
+fs.writeFileSync(
+  path.join(ROOT, "reports/admission-fix/completion/track-assignments.json"),
+  JSON.stringify(TRACK_ASSIGNMENTS, null, 1) + "\n",
+  "utf8"
+);
+console.log("Departments given a track cutoff:", TRACK_ASSIGNMENTS.length);
+fs.writeFileSync(
+  path.join(ROOT, "reports/admission-fix/college-cutoff-partial-assignments.json"),
+  JSON.stringify(COLLEGE_PARTIAL_ASSIGNMENTS, null, 2) + "\n",
+  "utf8"
+);
+console.log("Departments given a college cutoff for a branch without own cutoff:", COLLEGE_PARTIAL_ASSIGNMENTS.length);
 
 // Small derived file (province names only) so client components that just
 // need a province dropdown (e.g. app/quiz/page.tsx) don't have to import

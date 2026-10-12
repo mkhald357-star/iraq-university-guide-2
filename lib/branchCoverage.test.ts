@@ -30,12 +30,15 @@ describe("تغطية الفرع (data/admission_rules.md §29)", () => {
     const bad = gov.filter((d) => d.branchSource !== "extracted" && d.branchSource !== "unknown");
     expect(bad.length).toBe(0);
     // مصدر صريح لكل قسم حكومي، ولا قيمة استدلالية بعد الآن (م5)
-    expect(new Set(gov.map((d) => d.branchBasis))).toEqual(new Set(["cutoffs", "chapter3", "guide", "unknown"]));
+    const allowedBasis = new Set(["cutoffs", "chapter3", "guide", "unknown"]);
+    for (const d of gov) expect(allowedBasis.has(d.branchBasis as string), d.name).toBe(true);
     for (const d of gov) {
       expect(d.branchSource === "unknown", d.name).toBe((d.branch || []).length === 0);
       expect(d.branchBasis === "unknown", d.name).toBe((d.branch || []).length === 0);
     }
-    // 12 قسماً مسائياً بلا نصّ رسمي لفروعه (قائمتها في reports/admission-fix/unknown-branch-departments.json)
-    expect(gov.filter((d) => d.branchBasis === "unknown")).toHaveLength(12);
+    // كانت 12 قسماً مسائياً بلا نصّ رسمي لفروعه؛ صارت صفراً بعد قراءة صفحات الفصل 3 بصرياً
+    // (PLAN-ADMISSION-COMPLETION.md: reports/admission-fix/completion/page-audit.json)، وتبقى القاعدة: «الفرع غير معروف»
+    // لا يظهر إلا لقسم بلا فرع، ولا يُستدَل فرع بلا مصدر.
+    expect(gov.filter((d) => d.branchBasis === "unknown")).toHaveLength(0);
   });
 });

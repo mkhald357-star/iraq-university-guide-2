@@ -135,6 +135,30 @@ export const TUITION_UNVERIFIED_SOURCE_NOTE =
  */
 export const BRANCH_UNKNOWN_BADGE = "الفرع غير محدَّد";
 
+/**
+ * الجدول الرسمي «الحدود الدنيا للقبول المركزي» ينشر أحياناً حداً لـ**الكلية كلها** أو لـ**مسار** في المعهد/الكلية
+ * التقنية («المعهد التقني بابل / التخصصات الطبية») بلا اسم قسم. يُعرض هذا الرقم للقسم موسوماً بمستواه ومصدره
+ * كي لا يُقرأ كأنه حدّ خاص بالقسم وحده (قد يعلوه حد القسم الفعلي).
+ */
+export const GOV_PUBLISHER = "وزارة التعليم العالي والبحث العلمي";
+export const SOURCE_NOTE = `منشور من ${GOV_PUBLISHER}`;
+export const COLLEGE_CUTOFF_BADGE = "حدّ الكلية";
+export const COLLEGE_CUTOFF_HINT =
+  `هذه المعلومة نشرتها ${GOV_PUBLISHER} في ${CUTOFFS_DOCUMENT}: الجدول يذكر حداً واحداً للكلية كلها ولا يفرد لهذا القسم حداً؛ ` +
+  "وقد يكون حد القسم الفعلي أعلى منه.";
+export const TRACK_CUTOFF_BADGE = "حدّ المسار";
+export function trackCutoffHint(trackName?: string): string {
+  return (
+    `هذه المعلومة نشرتها ${GOV_PUBLISHER} في ${CUTOFFS_DOCUMENT}: الجدول يذكر حداً واحداً لمسار «${trackName ?? "التخصصات"}» ` +
+    "في هذا المعهد/الكلية ولا يفرد لهذا القسم حداً؛ وقد يكون حد القسم الفعلي أعلى منه."
+  );
+}
+export const COLLEGE_MINIMUM_LABEL = "أدنى حد للتقديم على الكلية";
+export const DIRECT_APPLY_BADGE = "تقديم مباشر للكلية";
+export function directApplyText(minimumAverage?: number): string {
+  return minimumAverage != null ? `حدّ أدنى معلَن ${minimumAverage}% (تقديم مباشر)` : "تقديم مباشر للكلية — لا حد مركزي";
+}
+
 export const BRANCH_UNKNOWN_NOTE =
   "دليل الجامعات الأهلية لا يحدّد الفروع المقبولة لهذه الأقسام. " +
   "نعرضها لك في كل الفروع بدل إخفائها — راجع الجامعة للتأكّد من قبول فرعك.";

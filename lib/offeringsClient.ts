@@ -4,7 +4,7 @@
  * (كانت معرَّفة فقط في report/page.tsx أصلاً).
  */
 
-import type { UniversityOffering, StatedMinimumGrade, EveningInfo, GenderRestriction } from "./majorMatcher";
+import type { UniversityOffering, StatedMinimumGrade, EveningInfo, GenderRestriction, DirectApply } from "./majorMatcher";
 import { DataFetchError } from "./viewState";
 
 const DEFAULT_TIMEOUT_MS = 12_000;
@@ -79,6 +79,12 @@ export interface ExplorerOffering {
   evening?: EveningInfo;
   /** الحرم (إن ميّزه المصدر)؛ province هي محافظة الحرم. */
   campus?: string;
+  /** مستوى حد فرع هذا السجل: college = حد الكلية أُلحق بالقسم، department = حد القسم نفسه. */
+  cutoffScope?: "college" | "track" | "department";
+  /** أدنى حد صباحي للتقديم على الكلية لهذا الفرع (حين فيها قسمان فأكثر بحد). */
+  collegeMinimum?: number;
+  trackName?: string;
+  directApply?: DirectApply;
   /** الجنس لقسم محدَّد فقط (قسم لجنس واحد). */
   genderRestriction?: GenderRestriction;
   /** حدّا الذكور والإناث لفرع هذا السجل حين يختلفان (قسم محدَّد فقط). */

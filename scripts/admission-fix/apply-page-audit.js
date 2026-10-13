@@ -142,7 +142,12 @@ for (const rec of AUDIT.records) {
     const exist = col && col.departments.find((x) => keyOf(dispOf(x)) === keyOf(d) || keyOf(x.name) === keyOf(d));
     if (rec.kind === "branchFix") {
       if (!exist) {
-        report.unresolvedCollege.push({ uni: rec.uni, college: rec.college, dept: d, reason: "branchFix بلا قسم قائم" });
+        report.unresolvedCollege.push({
+          uni: rec.uni,
+          college: rec.college,
+          dept: d,
+          reason: "branchFix بلا قسم قائم",
+        });
         continue;
       }
       if (pushAddition(u, collegeRaw, exist.name, rec.branch, rec, "تصحيح فرع")) report.branchFixes++;
@@ -160,7 +165,13 @@ for (const rec of AUDIT.records) {
     if (col) {
       const near = col.departments.find((x) => jaccard(toks(d), toks(dispOf(x))) >= 0.67);
       if (near) {
-        report.nearDuplicates.push({ uni: rec.uni, college: collegeRaw, wanted: d, existing: dispOf(near), pdfPage: rec.pdfPage });
+        report.nearDuplicates.push({
+          uni: rec.uni,
+          college: collegeRaw,
+          wanted: d,
+          existing: dispOf(near),
+          pdfPage: rec.pdfPage,
+        });
         continue;
       }
     }

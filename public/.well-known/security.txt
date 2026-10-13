@@ -1,0 +1,8 @@
+# سياسة الإبلاغ عن الثغرات — منصة التوجيه الجامعي العراقي
+# Vulnerability disclosure — Iraq University Guide
+Contact: https://t.me/kaxfk
+Contact: https://ig.me/m/ka_xf
+Expires: 2027-10-13T00:00:00.000Z
+Preferred-Languages: ar, en
+Canonical: https://iraqmajors.com/.well-known/security.txt
+Policy: https://iraqmajors.com/privacy

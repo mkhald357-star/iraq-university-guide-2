@@ -26,6 +26,7 @@ import {
   PRIVATE_NO_PUBLISHED_MIN_GROUP_NOTE,
 } from "../../lib/admissionDisclosure";
 import type { EmptyDiagnosis } from "../../lib/viewState";
+import { readStored, isPlainObject } from "../../lib/safeStorage";
 
 // ترتيب مقصود: بلا حدّ منشور أقرب للاحتمال من "طموح" -- data/admission_rules.md §32.
 const BAND_ORDER = ["safe", "close", "unknown", "reach"] as const;
@@ -80,12 +81,11 @@ export default function GpaCheckPage() {
   // تعبئة تلقائية من نتيجة اختبار سابقة إن وُجدت -- قابلة للتعديل، وليست إلزامية.
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("filterSettings");
-      if (saved) {
-        const fs = JSON.parse(saved);
-        if (fs.branch) setBranch(fs.branch);
-        if (fs.grade) setGrade(String(fs.grade));
-        if (fs.province) setProvince(fs.province);
+      const fs = readStored("filterSettings", isPlainObject, null);
+      if (fs) {
+        if (fs.branch === "علمي" || fs.branch === "أدبي" || fs.branch === "فنون") setBranch(fs.branch);
+        if (typeof fs.grade === "number" || typeof fs.grade === "string") setGrade(String(fs.grade));
+        if (typeof fs.province === "string") setProvince(fs.province);
       }
     } catch {
       // بيانات تالفة -- تُترَك الحقول فارغة.

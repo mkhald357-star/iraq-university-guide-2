@@ -77,7 +77,10 @@ for (const g of guide) {
   if (!u) continue;
   // كلية المنصة الأنسب لهذا الصف (أعلى درجة ≥ 2 وحيدة)
   const scored = u.colleges
-    .map((c) => ({ c, level: collegeLevel(c.name, { ...g, entryWords: (g.entry || g.items).flatMap((t) => words(t)) }) }))
+    .map((c) => ({
+      c,
+      level: collegeLevel(c.name, { ...g, entryWords: (g.entry || g.items).flatMap((t) => words(t)) }),
+    }))
     .filter((x) => x.level >= 2);
   const best = scored.length ? Math.max(...scored.map((x) => x.level)) : 0;
   const top = scored.filter((x) => x.level === best);
@@ -87,10 +90,12 @@ for (const g of guide) {
     seen.add(key);
     const allDepts = u.colleges.flatMap((c) => c.departments.map((d) => ({ c, d })));
     // مطابق لقسم قائم في أي كلية من الجامعة؟ فليس مفقوداً
-    if (allDepts.some(({ d }) => itemMatchesDept(item, d.displayName ?? d.name) || itemMatchesDept(item, d.name))) continue;
+    if (allDepts.some(({ d }) => itemMatchesDept(item, d.displayName ?? d.name) || itemMatchesDept(item, d.name)))
+      continue;
     const display = toDisplayName(item).trim();
     const reasons = [];
-    if (top.length !== 1) reasons.push(top.length ? "كلية البند تطابق أكثر من كلية" : "كلية البند غير موجودة في المنصة");
+    if (top.length !== 1)
+      reasons.push(top.length ? "كلية البند تطابق أكثر من كلية" : "كلية البند غير موجودة في المنصة");
     const toks = display.split(/\s+/).filter(Boolean);
     if (toks.length < 2) reasons.push("بند من كلمة واحدة");
     if (HEADER_RE.test(display)) reasons.push("ترويسة/عبارة تنظيمية");
@@ -98,7 +103,8 @@ for (const g of guide) {
     if (DANGLING_END.test(display) || /^و/.test(display)) reasons.push("بند مبتور (حرف عطف/جرّ طرفي)");
     if (/[0-9٠-٩()]/.test(display)) reasons.push("رقم أو أقواس");
     // أجزاء أسماء مبتورة: يبدأ بحرف جرّ لاصق أو ينتهي بكلمة ناقصة (قصيرة جداً) أو بصفة بلا موصوف
-    if (/^(للعلوم|لل|ل[ا-ي]{2,}s)/.test(display) && !/^للبنات|^للعلوم (الصرفة|الانسانية|الإنسانية)/.test(display)) reasons.push("بند يبدأ بحرف جرّ لاصق");
+    if (/^(للعلوم|لل|ل[ا-ي]{2,}s)/.test(display) && !/^للبنات|^للعلوم (الصرفة|الانسانية|الإنسانية)/.test(display))
+      reasons.push("بند يبدأ بحرف جرّ لاصق");
     if (toks.some((w) => w.length <= 2 && !/^(في|من|مع|علم)$/.test(w))) reasons.push("كلمة قصيرة مبتورة");
     if (/(التربوي|التربي|الإسلامية|والنفسية)$/.test(display) && toks.length <= 3) reasons.push("جزء اسم محتمل");
     const unknown = toks.filter((w) => !knownWord(w));
@@ -113,8 +119,15 @@ for (const g of guide) {
     }
     // تشابه كلمات مع قسم قائم في الجامعة نفسها (تسمية بديلة لقسم موجود)
     const iw = toks.map((w) => guideKey(w));
-    const near = allDepts.find(({ d }) => jaccard(iw, tok(d.displayName ?? d.name).map((w) => guideKey(w))) >= 0.6);
-    if (near) reasons.push(`يشبه قسماً قائماً: ${near.c.displayName ?? near.c.name} / ${near.d.displayName ?? near.d.name}`);
+    const near = allDepts.find(
+      ({ d }) =>
+        jaccard(
+          iw,
+          tok(d.displayName ?? d.name).map((w) => guideKey(w))
+        ) >= 0.6
+    );
+    if (near)
+      reasons.push(`يشبه قسماً قائماً: ${near.c.displayName ?? near.c.name} / ${near.d.displayName ?? near.d.name}`);
     if (!g.branches || !g.branches.length) reasons.push("بلا فرع مقبول");
     rows.push({
       university: u.name,
@@ -157,10 +170,19 @@ fs.writeFileSync(
   path.join(ROOT, "reports/admission-fix/m7-review-list.csv"),
   "﻿" +
     ["الجامعة,الكلية,البند,الفروع,سطر المصدر,السبب"]
-      .concat(review.map((r) => [r.university, r.college, r.display, r.branches.join(" + "), r.sourceLine, r.reasons.join(" ؛ ")].map(q).join(",")))
+      .concat(
+        review.map((r) =>
+          [r.university, r.college, r.display, r.branches.join(" + "), r.sourceLine, r.reasons.join(" ؛ ")]
+            .map(q)
+            .join(",")
+        )
+      )
       .join("\n") +
     "\n",
   "utf8"
 );
 console.log(JSON.stringify(summary, null, 1));
-if (process.argv.includes("--print")) plausible.forEach((r) => console.log(`  ${r.university} | ${r.college} | ${r.department} | ${r.branches.join("+")} | ${r.sourceLine}`));
+if (process.argv.includes("--print"))
+  plausible.forEach((r) =>
+    console.log(`  ${r.university} | ${r.college} | ${r.department} | ${r.branches.join("+")} | ${r.sourceLine}`)
+  );

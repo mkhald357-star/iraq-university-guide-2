@@ -16,7 +16,9 @@ const { guideKey, words, collegeLevel } = _internals;
 
 const guide = JSON.parse(fs.readFileSync(path.join(ROOT, "data/raw/chapter3_branches.json"), "utf8"));
 const unis = JSON.parse(fs.readFileSync(path.join(ROOT, "data/universities.json"), "utf8")).universities;
-const audit = JSON.parse(fs.readFileSync(path.join(ROOT, "reports/admission-fix/audit/guide-branches-audit.json"), "utf8"));
+const audit = JSON.parse(
+  fs.readFileSync(path.join(ROOT, "reports/admission-fix/audit/guide-branches-audit.json"), "utf8")
+);
 const additions = JSON.parse(fs.readFileSync(path.join(ROOT, "data/raw/chapter3_additions.json"), "utf8"));
 
 const addKey = new Set(additions.map((a) => `${a.university}|${a.college}|${a.department}`));
@@ -90,7 +92,16 @@ fs.writeFileSync(
     ["الجامعة,الكلية,القسم,الفروع,الفئة,أقرب بند في الدليل,سطر المصدر,له حد رسمي"]
       .concat(
         out.map((x) =>
-          [x.university, x.college, x.department, (x.branches || []).join("+"), x.category, x.nearestGuideItem, x.sourceLine, x.hasOfficialCutoff ? "نعم" : "لا"]
+          [
+            x.university,
+            x.college,
+            x.department,
+            (x.branches || []).join("+"),
+            x.category,
+            x.nearestGuideItem,
+            x.sourceLine,
+            x.hasOfficialCutoff ? "نعم" : "لا",
+          ]
             .map(q)
             .join(",")
         )

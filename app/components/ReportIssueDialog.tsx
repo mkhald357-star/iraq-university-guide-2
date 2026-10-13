@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { buildReportText, telegramLink, mailtoLink, type IssueContext } from "../../lib/reportIssue";
+import { buildReportText, telegramLink, instagramLink, type IssueContext } from "../../lib/reportIssue";
+import { REPORT_TELEGRAM_HANDLE, REPORT_INSTAGRAM_HANDLE } from "../../lib/siteMeta";
 
 export default function ReportIssueDialog({ context, onClose }: { context: IssueContext | null; onClose: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
@@ -70,15 +71,20 @@ export default function ReportIssueDialog({ context, onClose }: { context: Issue
           />
 
           <p className="mt-2 text-xs leading-relaxed text-ink-muted">
-            ما نرسل شي تلقائياً. النصّ يتكوّن بجهازك، وأنت اللي ترسله. ما نضيف معدّلك ولا أي معلومة عنك.
+            ما نرسل شي تلقائياً. النصّ يتكوّن بجهازك، وأنت اللي ترسله. ما نضيف معدّلك ولا أي معلومة عنك. عند الضغط على
+            تلغرام أو إنستغرام ننسخ النصّ لك، فالصقه في المحادثة. حساباتنا الوحيدة: تلغرام {REPORT_TELEGRAM_HANDLE}{" "}
+            وإنستغرام {REPORT_INSTAGRAM_HANDLE}، وأي حساب آخر باسمنا ليس لنا.
           </p>
 
           <div className="mt-5 flex flex-wrap gap-3">
             <a
-              href={telegramLink(text)}
+              href={telegramLink()}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={close}
+              onClick={() => {
+                navigator.clipboard?.writeText(text);
+                close();
+              }}
               className="rounded-md px-5 py-2.5 text-sm font-bold text-white
                          transition-transform duration-200 hover:-translate-y-0.5"
               style={{ background: "var(--g-primary)" }}
@@ -87,12 +93,17 @@ export default function ReportIssueDialog({ context, onClose }: { context: Issue
             </a>
 
             <a
-              href={mailtoLink(text)}
-              onClick={close}
+              href={instagramLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => {
+                navigator.clipboard?.writeText(text);
+                close();
+              }}
               className="rounded-md border border-line px-5 py-2.5 text-sm font-bold text-ink-soft
                          transition-colors duration-200 hover:bg-surface-muted"
             >
-              أرسل بالإيميل
+              أرسل عبر إنستغرام
             </a>
 
             <button

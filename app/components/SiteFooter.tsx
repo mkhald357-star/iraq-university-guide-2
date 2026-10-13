@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { useReportIssue } from "../context/ReportIssueContext";
 import ThemeToggle from "./ThemeToggle";
+import ClearDataButton from "./ClearDataButton";
 
 export default function SiteFooter() {
   const pathname = usePathname();
@@ -21,6 +22,15 @@ export default function SiteFooter() {
           ·
         </span>
         <ThemeToggle />
+        <span className="text-line" aria-hidden="true">
+          ·
+        </span>
+        <a href="/privacy" className="underline decoration-dotted underline-offset-4 hover:text-primary-text">
+          الخصوصية
+        </a>
+      </div>
+      <div className="mt-3 flex justify-center">
+        <ClearDataButton />
       </div>
     </footer>
   );

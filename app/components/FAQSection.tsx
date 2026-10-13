@@ -1,4 +1,5 @@
 import { Reveal } from "./motion/Reveal";
+import { serializeJsonLd } from "../../lib/jsonLd";
 
 const FAQS = [
   {
@@ -43,10 +44,7 @@ const faqJsonLd = {
 export default function FAQSection() {
   return (
     <section dir="rtl" className="py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, "\\u003c") }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(faqJsonLd) }} />
       <div className="mx-auto max-w-3xl px-5">
         <p className="text-sm font-bold text-primary-text">أسئلة شائعة</p>
         <h2 className="mt-2 text-3xl font-extrabold leading-tight text-ink md:text-4xl">أسئلة يسألها الطلاب فعلاً</h2>

@@ -7,7 +7,7 @@ import SiteHeader from "./components/SiteHeader";
 import SiteFooter from "./components/SiteFooter";
 import SkipLink from "./components/SkipLink";
 import { ReportIssueProvider } from "./context/ReportIssueContext";
-import { buildOrganizationJsonLd, buildWebSiteJsonLd } from "../lib/jsonLd";
+import { buildOrganizationJsonLd, buildWebSiteJsonLd, serializeJsonLd } from "../lib/jsonLd";
 import { SITE_URL, SITE_NAME, SITE_TAGLINE, SITE_DESCRIPTION, OG_IMAGE_PATH, OG_IMAGE_ALT } from "../lib/siteMeta";
 
 const cairo = Cairo({
@@ -71,9 +71,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(buildOrganizationJsonLd()) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildOrganizationJsonLd()) }}
         />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(buildWebSiteJsonLd()) }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(buildWebSiteJsonLd()) }}
+        />
         <SkipLink />
         <SiteHeader />
         <ErrorBoundary>

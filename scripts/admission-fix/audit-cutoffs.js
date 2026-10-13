@@ -57,7 +57,8 @@ const { umbrellaTrack } = require("../instituteTracks");
 // ربط الأقسام التقنية بمساراتها (جامعة|كلية|قسم) ← مسار، وأسماء الأحرم المقروءة أقساماً (صف بلا قسم فعلياً)
 const TRACK_LINKS = new Map();
 try {
-  for (const t of read("data/institute-tracks.json")) TRACK_LINKS.set(`${t.university}|${t.college}|${t.department}`, t.track);
+  for (const t of read("data/institute-tracks.json"))
+    TRACK_LINKS.set(`${t.university}|${t.college}|${t.department}`, t.track);
 } catch (e) {}
 const CAMPUS_LABELS = new Set();
 try {

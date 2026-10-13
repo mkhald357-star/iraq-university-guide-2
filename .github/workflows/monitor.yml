@@ -1,0 +1,79 @@
+name: Monitor live site
+
+# مراقبة الموقع الحي (SECURITY-PLAN.md س4). أي فشل يُرسل GitHub إشعاراً لمالك المستودع.
+# - headers كل 3 ساعات: الموقع يعمل، وترويسات الأمان حاضرة، وsecurity.txt غير منتهٍ.
+# - integrity يومياً: كل ملف منشور يطابق بايتاً ببايت إعادة بناء الـcommit المنشور من المصدر
+#   (يكشف أي تعديل على الموقع لم يمرّ عبر المستودع: اختراق حساب الاستضافة، أو تشويه، أو حقن).
+on:
+  schedule:
+    - cron: "17 */3 * * *" # headers
+    - cron: "47 3 * * *" # integrity
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: monitor-${{ github.event.schedule || 'manual' }}
+  cancel-in-progress: false
+
+env:
+  SITE_URL: https://iraqmajors.com
+
+jobs:
+  headers:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '17 */3 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+          sparse-checkout: scripts/security
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+      - name: Uptime + security headers
+        run: node scripts/security/check-live.mjs headers
+
+  integrity:
+    if: github.event_name == 'workflow_dispatch' || github.event.schedule == '47 3 * * *'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Read deployed commit
+        id: live
+        run: |
+          commit=$(curl -sSf --retry 3 "$SITE_URL/version.json" | python3 -c 'import json,sys; print(json.load(sys.stdin)["commit"])')
+          if ! [[ "$commit" =~ ^[0-9a-f]{40}$ ]]; then echo "::error::version.json لا يحمل commit صالحاً: $commit"; exit 1; fi
+          echo "commit=$commit" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      # الـcommit المنشور يجب أن يكون من تاريخ الفرع الرئيسي، لا commit لا يعرفه المستودع.
+      - name: Deployed commit belongs to the default branch
+        env:
+          COMMIT: ${{ steps.live.outputs.commit }}
+          BRANCH: ${{ github.ref_name }}
+        run: |
+          git cat-file -e "${COMMIT}^{commit}" || { echo "::error::الـcommit المنشور غير موجود في المستودع"; exit 1; }
+          git merge-base --is-ancestor "$COMMIT" "origin/$BRANCH" || { echo "::error::الـcommit المنشور ليس من تاريخ $BRANCH"; exit 1; }
+          git checkout --quiet "$COMMIT"
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Rebuild the deployed commit
+        env:
+          CF_PAGES_COMMIT_SHA: ${{ steps.live.outputs.commit }}
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+
+      - name: Compare every live file with the rebuild
+        run: node scripts/security/check-live.mjs integrity

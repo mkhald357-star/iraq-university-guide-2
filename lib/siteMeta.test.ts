@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { SITE_URL, REPORT_TELEGRAM, REPORT_EMAIL } from "./siteMeta";
+import { SITE_URL, REPORT_TELEGRAM, REPORT_INSTAGRAM } from "./siteMeta";
 
 describe("بيانات الموقع", () => {
   it("النطاق بصيغة صحيحة (https://، بلا شرطة في النهاية)", () => {
@@ -15,11 +15,26 @@ describe("بيانات الموقع", () => {
     expect(SITE_URL).not.toMatch(/REPLACE_BEFORE_LAUNCH|\.invalid$/);
   });
 
-  // 🔴 معلَّق عمداً -- قنوات الإبلاغ لم تُحدَّد بعد (بطلب المستخدم المباشر،
-  // §33). أزِل .skip فور توفّر تلغرام/بريد حقيقيَّين في lib/siteMeta.ts.
-  it.skip("قنوات الإبلاغ ليست قيماً نائبة (مُعلَّق حتى تُحدَّد القنوات الفعلية -- §33)", () => {
-    expect(REPORT_TELEGRAM).not.toMatch(/REPLACE_BEFORE_LAUNCH/);
-    expect(REPORT_EMAIL).not.toMatch(/REPLACE_BEFORE_LAUNCH/);
+  // قنوات الإبلاغ حُسمت (2026-10-13). قناة نائبة غير محجوزة = خطر انتحال: من يحجزها يتلقّى بلاغات الطلاب.
+  it("قنوات الإبلاغ ليست قيماً نائبة، ولا نائب في أي ملف من كود الموقع", () => {
+    for (const v of [REPORT_TELEGRAM, REPORT_INSTAGRAM]) {
+      expect(v).not.toMatch(/REPLACE_BEFORE_LAUNCH|\.invalid/);
+      expect(v).toMatch(/^https:\/\/(t\.me|ig\.me)\//);
+    }
+    const walk = (d: string): string[] =>
+      fs
+        .readdirSync(d, { withFileTypes: true })
+        .flatMap((e) =>
+          e.isDirectory()
+            ? walk(path.join(d, e.name))
+            : /\.(tsx?|js)$/.test(e.name) && !/\.test\./.test(e.name)
+              ? [path.join(d, e.name)]
+              : []
+        );
+    const hits = [...walk(path.join(process.cwd(), "app")), ...walk(path.join(process.cwd(), "lib"))].filter((f) =>
+      fs.readFileSync(f, "utf8").includes("REPLACE_BEFORE_LAUNCH")
+    );
+    expect(hits).toEqual([]);
   });
 
   // فحص إيجابي يثبت أن الحارس أعلاه يعمل فعلاً لو فُعِّل -- لا يعتمد على

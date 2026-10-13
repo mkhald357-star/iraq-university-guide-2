@@ -156,7 +156,9 @@ export function trackCutoffHint(trackName?: string): string {
 export const COLLEGE_MINIMUM_LABEL = "أدنى حد للتقديم على الكلية";
 export const DIRECT_APPLY_BADGE = "تقديم مباشر للكلية";
 export function directApplyText(minimumAverage?: number): string {
-  return minimumAverage != null ? `حدّ أدنى معلَن ${minimumAverage}% (تقديم مباشر)` : "تقديم مباشر للكلية — لا حد مركزي";
+  return minimumAverage != null
+    ? `حدّ أدنى معلَن ${minimumAverage}% (تقديم مباشر)`
+    : "تقديم مباشر للكلية — لا حد مركزي";
 }
 
 export const BRANCH_UNKNOWN_NOTE =

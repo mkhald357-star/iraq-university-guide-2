@@ -41,6 +41,7 @@ import { BRANCH_CATEGORY_MAP, fetchOfferingsForMajor } from "../../lib/offerings
 import { ChannelNotice } from "../components/ChannelNotice";
 import { CHANNEL_NOTICE_PLAIN, CUTOFFS_YEAR } from "../../lib/admissionDisclosure";
 import { admissionCell } from "../../lib/admissionLabel";
+import { readStored, isPlainObject } from "../../lib/safeStorage";
 
 // محاور مخطط الرادار -- ثابتة، مُشتقّة من نفس تسميات RIASEC المستخدَمة في
 // بقية الصفحة، كي يبقى المخطط والجدول النصي متّسقين دائماً بلا تكرار يدوي.
@@ -322,19 +323,18 @@ function ReportContent() {
       let sg: SubjectGrades = {};
       let fam: Record<string, string> = {};
       try {
-        const savedAnswers = localStorage.getItem("userAnswers");
-        const savedResults = localStorage.getItem("quizResults");
-        const savedFilters = localStorage.getItem("filterSettings");
-        const savedSubjects = localStorage.getItem("subjectGrades");
-        const savedV2 = localStorage.getItem("quizResultsV2");
-        if (savedAnswers) ua = JSON.parse(savedAnswers);
-        if (savedResults) qr = JSON.parse(savedResults);
-        if (savedFilters) fs = JSON.parse(savedFilters);
-        if (savedSubjects) sg = JSON.parse(savedSubjects);
+        // قراءة آمنة: تحقق من الشكل وإسقاط مفاتيح تلويث النموذج (lib/safeStorage.ts)
+        ua = readStored("userAnswers", isPlainObject, {}) as Record<string, number>;
+        qr = readStored("quizResults", Array.isArray, []);
+        fs = readStored("filterSettings", isPlainObject, null);
+        sg = readStored("subjectGrades", isPlainObject, {}) as SubjectGrades;
         // نتيجة محفوظة من الإصدار السابق لا تحمل هذا المفتاح -- تُفتح بلا أسماء
         // مجالات، لا تنكسر.
-        if (savedV2) {
-          const v2 = JSON.parse(savedV2);
+        const v2 = readStored("quizResultsV2", isPlainObject, null) as {
+          version?: number;
+          families?: unknown;
+        } | null;
+        if (v2) {
           if (v2?.version === 2 && Array.isArray(v2.families)) {
             v2.families.forEach((f: { familyName: string; lead: { id: string }; siblings: { id: string }[] }) => {
               [f.lead, ...(f.siblings ?? [])].forEach((m) => (fam[m.id] = f.familyName));

@@ -682,7 +682,13 @@ for (const u of universities) {
       d.sessions.add("صباحي");
       const set = consumed.get(track) || consumed.set(track, new Set()).get(track);
       extra.forEach((c) => set.add(c.branch + "|" + c.gender));
-      TRACK_ASSIGNMENTS.push({ university: u.name, college: college.name, department: d.name, track, branches: [...d.trackScopeBranches] });
+      TRACK_ASSIGNMENTS.push({
+        university: u.name,
+        college: college.name,
+        department: d.name,
+        track,
+        branches: [...d.trackScopeBranches],
+      });
     }
     for (const [track, [key, um]] of umbrellas) {
       const got = consumed.get(track) || new Set();

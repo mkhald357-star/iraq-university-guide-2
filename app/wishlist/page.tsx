@@ -14,6 +14,7 @@ import type { UniversityOffering } from "../../lib/majorMatcher";
 import WishRow from "../components/WishRow";
 import { ChannelNotice } from "../components/ChannelNotice";
 import { CUTOFFS_YEAR, privateStatedMin, PRIVATE_NO_PUBLISHED_MIN } from "../../lib/admissionDisclosure";
+import { readStored, isPlainObject } from "../../lib/safeStorage";
 
 const WISHLIST_STORAGE_KEY = "wishlistPlan";
 
@@ -50,10 +51,10 @@ export default function WishlistPage() {
   // ── تحميل إعدادات الطالب (من نتيجة اختبار سابقة) وقائمة الرغبات المحفوظة ──
   useEffect(() => {
     try {
-      const savedFilters = localStorage.getItem("filterSettings");
-      if (savedFilters) setFilterSettings(JSON.parse(savedFilters));
-      const savedWishlist = localStorage.getItem(WISHLIST_STORAGE_KEY);
-      if (savedWishlist) setWishlist(JSON.parse(savedWishlist));
+      const savedFilters = readStored("filterSettings", isPlainObject, null);
+      if (savedFilters) setFilterSettings(savedFilters as unknown as Parameters<typeof setFilterSettings>[0]);
+      const savedWishlist = readStored(WISHLIST_STORAGE_KEY, Array.isArray, null);
+      if (savedWishlist) setWishlist(savedWishlist as Parameters<typeof setWishlist>[0]);
     } catch {
       // بيانات تالفة -- نتجاهلها بصمت، الحقول تبقى فارغة.
     }

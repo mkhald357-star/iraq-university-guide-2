@@ -122,8 +122,9 @@ describe("البيانات: القسم بالمكان الصحيح وبالحد 
     expect((d as Dept & { collegeScopeBranches?: string[] }).collegeScopeBranches).toEqual(["فنون"]);
     const find = (branch: string) =>
       byBranchFile(branch).find(
-        (r) => r.universityId === "mustansiriyah" && r.collegeName === "كلية الآداب" && r.departmentName === "قسم الفلسفة"
-      ) as ({ averageGrades: { صباحي: number | null }; cutoffScope?: string } | undefined);
+        (r) =>
+          r.universityId === "mustansiriyah" && r.collegeName === "كلية الآداب" && r.departmentName === "قسم الفلسفة"
+      ) as { averageGrades: { صباحي: number | null }; cutoffScope?: string } | undefined;
     expect(find("فنون")?.averageGrades["صباحي"]).toBe(63.14);
     expect(find("فنون")?.cutoffScope).toBe("college");
     expect(find("علمي")?.cutoffScope).toBe("department");

@@ -108,5 +108,7 @@ fs.writeFileSync(
   "utf8"
 );
 console.log(JSON.stringify(summary, null, 1));
-problems.slice(0, 30).forEach((p) => console.log(`  #${p.idx} ص${p.page ?? "?"} ${p.kind || "diff"}: ${(p.diffs || []).join(" | ")}`));
+problems
+  .slice(0, 30)
+  .forEach((p) => console.log(`  #${p.idx} ص${p.page ?? "?"} ${p.kind || "diff"}: ${(p.diffs || []).join(" | ")}`));
 if (process.argv.includes("--strict") && problems.length) process.exit(1);

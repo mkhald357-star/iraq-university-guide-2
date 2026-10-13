@@ -1,0 +1,20 @@
+# تحديثات الاعتماديات والإجراءات (SECURITY-PLAN.md س3). تحديثات الأمان تصل فوراً إن فُعّلت
+# «Dependabot security updates» من إعدادات المستودع؛ هذه للتحديثات الدورية.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  # يحدّث SHA الإجراءات المثبَّتة في .github/workflows مع تعليق الإصدار.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: saturday

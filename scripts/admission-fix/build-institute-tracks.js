@@ -108,7 +108,8 @@ const MANUAL = [
     college: "المعهد التقني الدور",
     track: "ادارية",
     departments: ["تقنيات الادارة القانونية"],
-    evidence: "dalel_2025_22026.pdf ص60 الصف 67: «المعهد التقني/الدور (صلاح الدين)/التخصصات الادارية: المحاسبة / الادارة القانونية»",
+    evidence:
+      "dalel_2025_22026.pdf ص60 الصف 67: «المعهد التقني/الدور (صلاح الدين)/التخصصات الادارية: المحاسبة / الادارة القانونية»",
   },
 ];
 
@@ -157,7 +158,9 @@ for (const u of universities) {
     }
   }
 }
-out.sort((a, b) => (a.university + a.college + a.department).localeCompare(b.university + b.college + b.department, "ar"));
+out.sort((a, b) =>
+  (a.university + a.college + a.department).localeCompare(b.university + b.college + b.department, "ar")
+);
 fs.writeFileSync(path.join(ROOT, "data/institute-tracks.json"), JSON.stringify(out, null, 1) + "\n", "utf8");
 fs.writeFileSync(
   path.join(ROOT, "reports/admission-fix/completion/institute-tracks-report.json"),

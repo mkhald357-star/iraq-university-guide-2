@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { buildReportText, telegramLink, mailtoLink } from "./reportIssue";
+import { buildReportText, telegramLink, instagramLink } from "./reportIssue";
 
 describe("نصّ البلاغ", () => {
   it("لا يحوي أي بيانات شخصية", () => {
@@ -20,17 +20,12 @@ describe("نصّ البلاغ", () => {
     expect(t).not.toContain("القسم:");
   });
 
-  it("الروابط مُرمَّزة بشكل صحيح", () => {
-    const t = buildReportText({ page: "/x", department: "قسم اختبار" });
-    expect(telegramLink(t)).not.toContain(" ");
-    expect(mailtoLink(t)).toMatch(/^mailto:/);
-    expect(mailtoLink(t)).not.toContain(" ");
-  });
-
-  it("رابط تلغرام يحمل النصّ نفسه بعد فك الترميز", () => {
-    const t = buildReportText({ page: "/explorer", university: "جامعة الاختبار" });
-    const link = telegramLink(t);
-    const encoded = link.split("?text=")[1];
-    expect(decodeURIComponent(encoded)).toBe(t);
+  it("روابط البلاغ هي حسابا المالك فقط، بلا أي نص أو بيانات في الرابط", () => {
+    expect(telegramLink()).toBe("https://t.me/kaxfk");
+    expect(instagramLink()).toBe("https://ig.me/m/ka_xf");
+    for (const l of [telegramLink(), instagramLink()]) {
+      expect(l).toMatch(/^https:\/\//);
+      expect(l).not.toContain("?");
+    }
   });
 });

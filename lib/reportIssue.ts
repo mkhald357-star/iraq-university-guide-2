@@ -1,4 +1,4 @@
-import { REPORT_TELEGRAM, REPORT_EMAIL, SITE_NAME } from "./siteMeta";
+import { REPORT_TELEGRAM, REPORT_INSTAGRAM, SITE_NAME } from "./siteMeta";
 
 export interface IssueContext {
   page: string; // المسار
@@ -25,11 +25,14 @@ export function buildReportText(ctx: IssueContext): string {
   return lines.join("\n");
 }
 
-export function telegramLink(text: string): string {
-  return `${REPORT_TELEGRAM}?text=${encodeURIComponent(text)}`;
+/**
+ * روابط المحادثة المباشرة. تلغرام وإنستغرام لا يقبلان نصاً جاهزاً لحساب شخصي، فالنص يُنسخ للحافظة
+ * أولاً (في الحوار) ثم يُفتح الرابط ليلصقه الطالب. الرابط لا يحمل أي نص ولا أي بيانات.
+ */
+export function telegramLink(): string {
+  return REPORT_TELEGRAM;
 }
 
-export function mailtoLink(text: string): string {
-  const subject = encodeURIComponent(`بلاغ عن خطأ — ${SITE_NAME}`);
-  return `mailto:${REPORT_EMAIL}?subject=${subject}&body=${encodeURIComponent(text)}`;
+export function instagramLink(): string {
+  return REPORT_INSTAGRAM;
 }

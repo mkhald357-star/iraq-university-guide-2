@@ -1,0 +1,9 @@
+# كل تغيير يحتاج مراجعة المالك (يُفعَّل مع «Require review from Code Owners» في حماية الفرع).
+* @mkhald357-star
+
+# الملفات الحساسة أمنياً: سير CI، والترويسات، وإعداد البناء، وقنوات البلاغ.
+/.github/ @mkhald357-star
+/scripts/security/ @mkhald357-star
+/next.config.js @mkhald357-star
+/lib/siteMeta.ts @mkhald357-star
+/public/.well-known/ @mkhald357-star

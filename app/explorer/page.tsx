@@ -14,6 +14,7 @@ import {
   UNCOVERED_PROVINCES_REASON,
   BRANCH_UNKNOWN_NOTE,
 } from "../../lib/admissionDisclosure";
+import { readStored, isPlainObject } from "../../lib/safeStorage";
 
 const BRANCHES: { value: Branch; label: string }[] = [
   { value: "علمي", label: "علمي" },
@@ -43,11 +44,8 @@ export default function ExplorerPage() {
 
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("filterSettings");
-      if (saved) {
-        const fs = JSON.parse(saved);
-        if (fs.province) setProvince(fs.province);
-      }
+      const fs = readStored("filterSettings", isPlainObject, null);
+      if (fs && typeof fs.province === "string") setProvince(fs.province);
     } catch {
       // بيانات تالفة -- تُترَك الفلاتر فارغة.
     }

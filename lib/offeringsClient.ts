@@ -4,7 +4,13 @@
  * (كانت معرَّفة فقط في report/page.tsx أصلاً).
  */
 
-import type { UniversityOffering, StatedMinimumGrade, EveningInfo, GenderRestriction, DirectApply } from "./majorMatcher";
+import type {
+  UniversityOffering,
+  StatedMinimumGrade,
+  EveningInfo,
+  GenderRestriction,
+  DirectApply,
+} from "./majorMatcher";
 import { DataFetchError } from "./viewState";
 
 const DEFAULT_TIMEOUT_MS = 12_000;

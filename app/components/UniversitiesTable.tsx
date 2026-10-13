@@ -212,7 +212,7 @@ export default function UniversitiesTable({ offerings }: UniversitiesTableProps)
                       {o.directApply.note}
                     </span>
                   )}
-                  {genderCutoffLine(o) &&<span className="block text-xs text-ink-muted">{genderCutoffLine(o)}</span>}
+                  {genderCutoffLine(o) && <span className="block text-xs text-ink-muted">{genderCutoffLine(o)}</span>}
                   {o.forBranch ? (
                     <span className="block text-xs text-ink-muted">لفرع {o.forBranch}</span>
                   ) : (

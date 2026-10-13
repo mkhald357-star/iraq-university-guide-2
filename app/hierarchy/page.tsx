@@ -81,16 +81,25 @@ export default function HierarchyPage() {
 
   const visible = useMemo(() => {
     if (!data) return [];
+    const has = (vals: Value[] | undefined) => !branch || (vals ?? []).some((x) => x[0] === branch);
     return data.provinces
       .filter((p) => !province || p.name === province)
       .map((p) => ({
         ...p,
         universities: p.universities
-          .map((u) => ({ ...u, colleges: u.colleges.filter((c) => collegeMatches(c, u.name, q)) }))
+          .map((u) => ({
+            ...u,
+            colleges: u.colleges
+              .filter((c) => collegeMatches(c, u.name, q))
+              // مع فرع محدّد: لا تُعرض كلية ولا قسم بلا حد منشور لذلك الفرع (بدل صفوف «لا حد»)
+              .map((c) => ({ ...c, departments: c.departments.filter((d) => has(d.v)) }))
+              .filter((c) => c.departments.length > 0 || has(c.collegeLevel))
+              .map((c) => (has(c.collegeLevel) ? c : { ...c, collegeLevel: undefined })),
+          }))
           .filter((u) => u.colleges.length > 0),
       }))
       .filter((p) => p.universities.length > 0);
-  }, [data, province, q]);
+  }, [data, province, q, branch]);
 
   const collegeCount = visible.reduce((n, p) => n + p.universities.reduce((m, u) => m + u.colleges.length, 0), 0);
 
@@ -118,7 +127,7 @@ export default function HierarchyPage() {
             <strong>حد الكلية أو المسار</strong> هو أدنى حد للتقديم على الكلية كلها (أو المسار كله في المعاهد التقنية)،
             وهو لأقسامها التي لا صف خاصاً بها. قد يكون حد قسمك الفعلي أعلى منه، والوزارة لم تنشره.
           </li>
-          <li>الجنس يُذكر لقسم محدّد فقط. وبقية الأقسام مختلطة بلا وسم.</li>
+          <li>الجنس يُذكر لقسم أو كلية محدّدة فقط (مثل كليات البنات والتمريض). وبقية الأقسام مختلطة بلا وسم.</li>
         </ul>
       </div>
 

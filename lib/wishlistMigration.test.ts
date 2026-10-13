@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { migrateWish, migrateWishlist, collegeBase } from "./wishlistMigration";
+import { migrateWish, migrateWishlist, collegeBase, sanitizeWishlist } from "./wishlistMigration";
 import type { UniversityOffering } from "./majorMatcher";
 import type { WishOffering } from "./wishlistPlanner";
 
@@ -93,5 +93,38 @@ describe("ترحيل الرغبات المحفوظة", () => {
     expect(calls).toEqual(["business_admin"]);
     expect(res.map((r) => r.offering.departmentName)).toEqual(["قسم المحاسبة", "قسم االقتصاد"]);
     expect(res.every((r) => r.offering.collegeId === "basrah_c_aaaa1111")).toBe(true);
+  });
+});
+
+describe("sanitizeWishlist: بيانات المتصفح التالفة لا تكسر الصفحة", () => {
+  const good = {
+    majorId: "business_admin",
+    majorName: "x",
+    session: "صباحي",
+    offering: {
+      universityId: "basrah",
+      departmentName: "قسم المحاسبة",
+      averageGrades: { صباحي: 70, مسائي: null },
+      sessions: ["صباحي"],
+    },
+  };
+  it("يُسقط null وكائناً فارغاً وعنصراً بلا offering وجلسة غير معروفة وأرقاماً غير صالحة", () => {
+    const bad = [
+      null,
+      {},
+      { ...good, offering: undefined },
+      { ...good, session: "ليلي" },
+      { ...good, offering: { ...good.offering, averageGrades: { صباحي: "70", مسائي: null } } },
+      { ...good, offering: { ...good.offering, sessions: "صباحي" } },
+      "نص",
+      42,
+    ];
+    expect(sanitizeWishlist([good, ...bad])).toEqual([good]);
+  });
+
+  it("ما ليس مصفوفة يعيد []", () => {
+    expect(sanitizeWishlist(null)).toEqual([]);
+    expect(sanitizeWishlist({})).toEqual([]);
+    expect(sanitizeWishlist("x")).toEqual([]);
   });
 });

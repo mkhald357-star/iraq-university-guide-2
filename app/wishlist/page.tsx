@@ -5,7 +5,7 @@ import Link from "next/link";
 import { AlertCircle, AlertTriangle, Info, Plus, Sparkles } from "lucide-react";
 import majorsData from "../../data/majors.json";
 import { BRANCH_CATEGORY_MAP, fetchOfferingsForMajor } from "../../lib/offeringsClient";
-import { migrateWishlist } from "../../lib/wishlistMigration";
+import { migrateWishlist, sanitizeWishlist } from "../../lib/wishlistMigration";
 import { computeEligibility } from "../../lib/eligibility";
 import { offeringForBranch, offeringsForBranch } from "../../lib/branchCutoff";
 import { analyzeWishlist } from "../../lib/wishlistPlanner";
@@ -54,7 +54,8 @@ export default function WishlistPage() {
       const savedFilters = readStored("filterSettings", isPlainObject, null);
       if (savedFilters) setFilterSettings(savedFilters as unknown as Parameters<typeof setFilterSettings>[0]);
       const savedWishlist = readStored(WISHLIST_STORAGE_KEY, Array.isArray, null);
-      if (savedWishlist) setWishlist(savedWishlist as Parameters<typeof setWishlist>[0]);
+      // عناصر تالفة الشكل تُسقَط (لا تكسر الصفحة)؛ الصالحة منها فقط تُرحَّل وتُعرض
+      if (savedWishlist) setWishlist(sanitizeWishlist(savedWishlist));
     } catch {
       // بيانات تالفة -- نتجاهلها بصمت، الحقول تبقى فارغة.
     }
@@ -81,7 +82,11 @@ export default function WishlistPage() {
   // ── حفظ قائمة الرغبات في localStorage عند أي تغيير ──
   useEffect(() => {
     if (isLoadingSettings) return; // تفادي الكتابة فوق بيانات محفوظة قبل تحميلها فعلياً
-    localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+    try {
+      localStorage.setItem(WISHLIST_STORAGE_KEY, JSON.stringify(wishlist));
+    } catch {
+      // تخزين ممتلئ أو معطَّل: القائمة تبقى في الصفحة لهذه الجلسة
+    }
   }, [wishlist, isLoadingSettings]);
 
   // ── جلب عروض التخصص المختار ──

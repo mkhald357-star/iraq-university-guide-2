@@ -67,3 +67,22 @@ export async function migrateWishlist(
   );
   return wishes.map((w) => migrateWish(w, loaded.get(w.majorId) ?? null));
 }
+
+const isObj = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
+const gradeOk = (v: unknown) => v === null || (typeof v === "number" && Number.isFinite(v));
+
+/** هل العنصر المحفوظ يصلح رغبة قابلة للعرض والتصنيف؟ (بيانات المتصفح غير موثوقة: قد تكون تالفة أو بإصدار أقدم) */
+export function isWishShape(w: unknown): w is WishOffering {
+  if (!isObj(w) || typeof w.majorId !== "string" || (w.session !== "صباحي" && w.session !== "مسائي")) return false;
+  const o = w.offering;
+  if (!isObj(o)) return false;
+  if (typeof o.universityId !== "string" || typeof o.departmentName !== "string") return false;
+  if (!isObj(o.averageGrades) || !gradeOk(o.averageGrades["صباحي"]) || !gradeOk(o.averageGrades["مسائي"])) return false;
+  if (!Array.isArray(o.sessions)) return false;
+  return true;
+}
+
+/** يُبقي الرغبات الصالحة فقط ويُسقط التالف بدل أن يكسر الصفحة. */
+export function sanitizeWishlist(v: unknown): WishOffering[] {
+  return Array.isArray(v) ? v.filter(isWishShape) : [];
+}

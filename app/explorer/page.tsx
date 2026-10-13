@@ -127,6 +127,15 @@ export default function ExplorerPage() {
       <div>
         <h1 className="text-3xl font-black text-ink">مستكشف الجامعات</h1>
         <p className="mt-1 text-ink-soft">تصفّح كل قسم جامعي في العراق، وفلتِره بالمحافظة والفرع والحد الأدنى.</p>
+        <p className="mt-1 text-sm text-ink-soft">
+          تريد الجدول الرسمي كما نشرته الوزارة مرتباً بالمحافظة والجامعة والكلية والقسم؟{" "}
+          <a
+            href="/hierarchy"
+            className="font-bold underline decoration-dotted underline-offset-4 hover:text-primary-text"
+          >
+            الحدود بالتسلسل
+          </a>
+        </p>
       </div>
 
       {/* ── اختيار الفرع -- إلزامي أولاً، بلا جلب بيانات قبل الاختيار ── */}

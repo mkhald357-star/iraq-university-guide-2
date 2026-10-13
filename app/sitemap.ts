@@ -11,6 +11,7 @@ const ROUTES = [
   "",
   "/quiz",
   "/explorer",
+  "/hierarchy",
   "/gpa-check",
   "/wishlist",
   "/destinations",

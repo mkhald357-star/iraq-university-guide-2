@@ -25,6 +25,12 @@ export default function SiteFooter() {
         <span className="text-line" aria-hidden="true">
           ·
         </span>
+        <a href="/hierarchy" className="underline decoration-dotted underline-offset-4 hover:text-primary-text">
+          الحدود بالتسلسل
+        </a>
+        <span className="text-line" aria-hidden="true">
+          ·
+        </span>
         <a href="/privacy" className="underline decoration-dotted underline-offset-4 hover:text-primary-text">
           الخصوصية
         </a>

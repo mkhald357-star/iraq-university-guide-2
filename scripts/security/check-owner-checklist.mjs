@@ -145,4 +145,4 @@ ${results.filter((r) => r.ok === true).length}/${results.length} مستوفاة`
     (open.length ? `، ${open.length} مفتوحة` : "") +
     (unknown.length ? `، ${unknown.length} غير حاسمة (تحقّق خارجي)` : "")
 );
-process.exit(open.length ? 1 : 0);
+process.exitCode = open.length ? 1 : 0;

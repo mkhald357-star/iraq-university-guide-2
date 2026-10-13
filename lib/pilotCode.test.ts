@@ -55,6 +55,59 @@ describe("رمز التجربة الميدانية", () => {
     ["name", "province", "phone", "email"].forEach((k) => expect(decoded).not.toHaveProperty(k));
   });
 
+  // رمز يصنعه مهاجم: مجموع التحقق ليس سراً، فيحسبه كما تحسبه المنصة (SECURITY-PLAN.md س7).
+  const craft = (payload: unknown): string => {
+    const body = Buffer.from(typeof payload === "string" ? payload : JSON.stringify(payload), "utf8")
+      .toString("base64")
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/, "");
+    let h = 2166136261;
+    for (let i = 0; i < body.length; i++) h = Math.imul(h ^ body.charCodeAt(i), 16777619);
+    return `IQM1.${body}.${(h >>> 0).toString(36)}`;
+  };
+  const valid = { ...rec, v: 2 };
+
+  it("رمز خبيث بمجموع تحقق صحيح لا يلوّث النموذج الأولي", () => {
+    const r = decodePilotRecord(
+      craft(
+        `{"__proto__":{"polluted":"yes"},"constructor":{"prototype":{"p2":"yes"}},${JSON.stringify(valid).slice(1)}`
+      )
+    );
+    expect(r.ok).toBe(true);
+    expect(({} as Record<string, unknown>).polluted).toBeUndefined();
+    expect(({} as Record<string, unknown>).p2).toBeUndefined();
+    if (r.ok) expect(Object.keys(r.record).sort()).toEqual(Object.keys(valid).sort());
+  });
+
+  it("يرفض الأنواع والمدى والحقول العدائية", () => {
+    const bad: Record<string, unknown>[] = [
+      { grade: "90" },
+      { grade: 1e9 },
+      { grade: NaN },
+      { day: "2026-09-23T00:00:00<script>" },
+      { branch: "x".repeat(500) },
+      { subjectGrades: { math: "<img src=x onerror=alert(1)>" } },
+      { subjectGrades: { "../../etc": 50 } },
+      { answers: Object.fromEntries(Array.from({ length: 5000 }, (_, i) => [`k${i}`, 0])) },
+      { answers: { a: 1e308 } },
+      { shownLeads: "medicine" },
+      { shownLeads: ["<b>x</b>"] },
+      { intendedMajorId: { toString: 1 } },
+      { intentSource: "hacked" },
+      { intentCertainty: 99 },
+      { fitRating: 2.5 },
+      { bank: "1-abc; rm -rf /" },
+      { vrsBand: "none" },
+      { v: 3 },
+    ];
+    for (const patch of bad)
+      expect(decodePilotRecord(craft({ ...valid, ...patch })).ok, JSON.stringify(patch).slice(0, 60)).toBe(false);
+    expect(decodePilotRecord(craft([1, 2, 3])).ok).toBe(false);
+    expect(decodePilotRecord(craft("null")).ok).toBe(false);
+    expect(decodePilotRecord("IQM1." + "A".repeat(20000) + ".x").ok).toBe(false);
+  });
+
   it("الرمز قصير بما يكفي للإرسال في رسالة", () => {
     // بنك من ~55 إجابة -- يجب أن يبقى الرمز دون حدود الرسائل الشائعة
     const big = { ...rec, answers: Object.fromEntries(Array.from({ length: 60 }, (_, i) => [`item_${i}`, 0.5])) };

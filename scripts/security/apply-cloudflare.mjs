@@ -12,6 +12,14 @@
 const TOKEN = process.env.CLOUDFLARE_API_TOKEN;
 const DOMAIN = (process.env.SITE_HOST || "iraqmajors.com").toLowerCase();
 const APPLY = process.argv.includes("--apply");
+// --skip=ssl,dnssec,dns : يستثني بنوداً (الأسماء: dns، ssl، always_use_https، min_tls_version، dnssec، أو معرّف أي إعداد)
+const SKIP = new Set(
+  (process.argv.find((a) => a.startsWith("--skip=")) || "")
+    .slice(7)
+    .split(",")
+    .map((x) => x.trim())
+    .filter(Boolean)
+);
 const API = process.env.CLOUDFLARE_API_BASE || "https://api.cloudflare.com/client/v4";
 
 if (!TOKEN) {
@@ -105,6 +113,7 @@ const DESIRED = [
 ];
 
 for (const d of DESIRED) {
+  if (SKIP.has("dns")) break;
   if (existing.some(d.same)) {
     log("✓", `${d.note} — موجود`);
     continue;
@@ -137,6 +146,10 @@ const SETTINGS = [
   ["email_obfuscation", "off", "Email Address Obfuscation معطّل (يحقن سكربتاً)"],
 ];
 for (const [id, want, label] of SETTINGS) {
+  if (SKIP.has(id) || (id === "ssl" && SKIP.has("ssl"))) {
+    log("↷", `${label} — مستثنى (--skip)`);
+    continue;
+  }
   let cur;
   try {
     cur = (await cf("GET", `/zones/${zone.id}/settings/${id}`)).value;
@@ -164,33 +177,36 @@ for (const [id, want, label] of SETTINGS) {
 }
 
 // ── DNSSEC ─────────────────────────────────────────────────────────────
-try {
-  let dnssec = await cf("GET", `/zones/${zone.id}/dnssec`);
-  if (dnssec.status !== "active") {
-    pending++;
-    if (APPLY) {
-      dnssec = await cf("PATCH", `/zones/${zone.id}/dnssec`, { status: "active" });
-      log("＋", `DNSSEC — فُعِّل (الحالة: ${dnssec.status})`);
+if (SKIP.has("dnssec")) {
+  log("↷", "DNSSEC — مستثنى (--skip)");
+} else
+  try {
+    let dnssec = await cf("GET", `/zones/${zone.id}/dnssec`);
+    if (dnssec.status !== "active") {
+      pending++;
+      if (APPLY) {
+        dnssec = await cf("PATCH", `/zones/${zone.id}/dnssec`, { status: "active" });
+        log("＋", `DNSSEC — فُعِّل (الحالة: ${dnssec.status})`);
+      } else {
+        log("＋", `DNSSEC — سيُفعَّل (الحالة الآن: ${dnssec.status})`);
+      }
     } else {
-      log("＋", `DNSSEC — سيُفعَّل (الحالة الآن: ${dnssec.status})`);
+      log("✓", "DNSSEC — مفعّل عند Cloudflare");
     }
-  } else {
-    log("✓", "DNSSEC — مفعّل عند Cloudflare");
+    if (dnssec.ds) {
+      console.log("\nسجل DS: أضفه عند المسجِّل (من لوحته، قسم DNSSEC) إن لم يكن Cloudflare مسجِّلك:");
+      console.log(`  DS        : ${dnssec.ds}`);
+      console.log(
+        `  Key tag   : ${dnssec.key_tag}   Algorithm: ${dnssec.algorithm} ${dnssec.algorithm_name ? `(${dnssec.algorithm_name})` : ""}`
+      );
+      console.log(
+        `  Digest    : ${dnssec.digest}   Type: ${dnssec.digest_type} ${dnssec.digest_algorithm ? `(${dnssec.digest_algorithm})` : ""}`
+      );
+    }
+  } catch (e) {
+    conflicts++;
+    log("!", `DNSSEC — ${e.message}`);
   }
-  if (dnssec.ds) {
-    console.log("\nسجل DS: أضفه عند المسجِّل (من لوحته، قسم DNSSEC) إن لم يكن Cloudflare مسجِّلك:");
-    console.log(`  DS        : ${dnssec.ds}`);
-    console.log(
-      `  Key tag   : ${dnssec.key_tag}   Algorithm: ${dnssec.algorithm} ${dnssec.algorithm_name ? `(${dnssec.algorithm_name})` : ""}`
-    );
-    console.log(
-      `  Digest    : ${dnssec.digest}   Type: ${dnssec.digest_type} ${dnssec.digest_algorithm ? `(${dnssec.digest_algorithm})` : ""}`
-    );
-  }
-} catch (e) {
-  conflicts++;
-  log("!", `DNSSEC — ${e.message}`);
-}
 
 // ── الخلاصة ────────────────────────────────────────────────────────────
 console.log(

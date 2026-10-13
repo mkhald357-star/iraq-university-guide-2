@@ -37,6 +37,11 @@ function parseSkip(argv) {
   return out.map((x) => x.trim().toLowerCase()).filter(Boolean);
 }
 const SKIP_LIST = parseSkip(process.argv.slice(2));
+const skipFlagGiven = process.argv.slice(2).some((a) => a === "--skip" || a.startsWith("--skip="));
+if (skipFlagGiven && SKIP_LIST.length === 0) {
+  console.error("--skip بلا قيمة. اكتب الأسماء: --skip=ssl,dnssec");
+  process.exit(2);
+}
 const badSkip = SKIP_LIST.filter((x) => !SKIP_IDS.includes(x));
 if (badSkip.length) {
   console.error(`--skip: اسم غير معروف (${badSkip.join(", ")}). المسموح: ${SKIP_IDS.join(", ")}`);
@@ -90,7 +95,7 @@ async function main() {
     process.exit(2);
   }
   const zone = zones[0];
-  console.log(`${DOMAIN}  (zone ${zone.id}, ${zone.status})  — ${APPLY ? "تنفيذ" : "معاينة فقط"}\n`);
+  console.log(`${DOMAIN}  (${zone.status})  — ${APPLY ? "تنفيذ" : "معاينة فقط"}\n`);
 
   // ── سجلات DNS ──────────────────────────────────────────────────────────
   const existing = await cf("GET", `/zones/${zone.id}/dns_records?per_page=500`);

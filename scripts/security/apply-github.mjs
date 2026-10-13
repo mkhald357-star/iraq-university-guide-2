@@ -125,14 +125,20 @@ async function main() {
   if (perms.unreadable) {
     fail(`Actions — تعذّرت القراءة (${perms.unreadable}): تحقّق من صلاحيات الرمز`);
   } else {
-    // قائمة السماح الحالية: تُقرأ لتُحفَظ لا لتُطمَس
+    // قائمة السماح الحالية: تُقرأ لتُحفَظ لا لتُطمَس. 404/409 = لا قائمة (الوضع ليس selected) فتُعتبر فارغة؛
+    // أي حالة أخرى (403/500…) = تعذّرت القراءة فلا نكتب فوق قائمة قد تكون قائمة.
     const selected = await gh("GET", "/actions/permissions/selected-actions");
+    const selectedUnreadable = ![200, 404, 409].includes(selected.status);
     const cur =
       selected.status === 200
         ? selected.json
         : { github_owned_allowed: false, verified_allowed: false, patterns_allowed: [] };
     const allowedOk = perms.allowed === "selected" && cur.github_owned_allowed === true;
-    if (allowedOk && perms.sha) {
+    if (selectedUnreadable) {
+      fail(
+        `Actions — تعذّرت قراءة قائمة الإجراءات المسموحة (${selected.status}): لم يُكتب شيء حتى لا تُطمَس قائمة قائمة`
+      );
+    } else if (allowedOk && perms.sha) {
       log("✓", "Actions: إجراءات محدّدة + تثبيت بالـSHA — مفعّل");
     } else if (!APPLY) {
       pending++;

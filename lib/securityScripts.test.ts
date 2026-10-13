@@ -164,6 +164,24 @@ describe("apply-cloudflare.mjs", () => {
     }
   );
 
+  it.each([[["--skip"]], [["--skip="]], [["--skip", "--apply"]]])(
+    "--skip بلا قيمة = خطأ استعمال بلا أي طلب: %j",
+    async (args) => {
+      const r = await cf({ settings: baseSettings(), dnssec: "disabled", records: [] }, [
+        "--apply",
+        ...(args as string[]),
+      ]);
+      expect(r.code).toBe(2);
+      expect(r.log).toHaveLength(0);
+    }
+  );
+
+  it("معرّف المنطقة لا يُطبع في المخرجات", async () => {
+    const r = await cf({ settings: baseSettings(), dnssec: "active", records: [] }, []);
+    expect(r.out).not.toContain("z1,");
+    expect(r.out).not.toMatch(/zone [0-9a-z]+/i);
+  });
+
   it("اسم استثناء مجهول = خطأ استعمال، بلا أي طلب", async () => {
     const r = await cf({ settings: baseSettings(), dnssec: "disabled", records: [] }, ["--apply", "--skip=sll"]);
     expect(r.code).toBe(2);
@@ -222,6 +240,7 @@ interface GhState {
   selected: { github_owned_allowed: boolean; verified_allowed: boolean; patterns_allowed: string[] };
   ignoreSha?: boolean;
   forbidRead?: boolean;
+  selectedStatus?: number;
 }
 function ghHandler(st: GhState) {
   const R = "/repos/o/r";
@@ -248,7 +267,10 @@ function ghHandler(st: GhState) {
       if (!st.ignoreSha && b.sha_pinning_required) st.sha = true;
       return { status: 204, raw: "" };
     }
-    if (u === `${R}/actions/permissions/selected-actions` && r.method === "GET") return { body: st.selected };
+    if (u === `${R}/actions/permissions/selected-actions` && r.method === "GET") {
+      if (st.selectedStatus) return { status: st.selectedStatus, body: { message: "err" } };
+      return { body: st.selected };
+    }
     if (u === `${R}/actions/permissions/selected-actions` && r.method === "PUT") {
       st.selected = r.body as GhState["selected"];
       return { status: 204, raw: "" };
@@ -309,5 +331,27 @@ describe("apply-github.mjs", () => {
     expect(r.out).toContain("تعذّرت القراءة");
     expect(r.out).not.toContain("سيُفعَّل");
     expect(r.code).toBe(1);
+  });
+
+  it.each([[500], [403]])("فشل قراءة قائمة السماح (%i) لا يطمسها: لا كتابة فوقها، خروج 1", async (status) => {
+    const s = ghBase();
+    s.allowed = "selected";
+    s.alerts = true;
+    s.fixes = true;
+    s.selected = { github_owned_allowed: true, verified_allowed: true, patterns_allowed: ["my-org/*"] };
+    s.selectedStatus = status;
+    const r = await gh(s, ["--apply"]);
+    expect(r.code).toBe(1);
+    expect(r.out).toContain("تعذّرت قراءة قائمة الإجراءات");
+    expect(s.selected.patterns_allowed).toEqual(["my-org/*"]);
+    expect(writes(r.log).filter((x) => x.path.includes("selected-actions"))).toHaveLength(0);
+  });
+
+  it("409 (ليس selected) يُعامَل كقائمة فارغة وتُفعَّل بلا فشل", async () => {
+    const s = ghBase();
+    s.selectedStatus = 409;
+    const r = await gh(s, ["--apply"]);
+    expect(r.code).toBe(0);
+    expect(s.allowed).toBe("selected");
   });
 });

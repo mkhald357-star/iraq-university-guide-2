@@ -116,6 +116,7 @@ describe("sanitizeWishlist: بيانات المتصفح التالفة لا تك
       { ...good, session: "ليلي" },
       { ...good, offering: { ...good.offering, averageGrades: { صباحي: "70", مسائي: null } } },
       { ...good, offering: { ...good.offering, sessions: "صباحي" } },
+      { ...good, offering: { ...good.offering, cutoffs: "x" } },
       "نص",
       42,
     ];

@@ -79,6 +79,8 @@ export function isWishShape(w: unknown): w is WishOffering {
   if (typeof o.universityId !== "string" || typeof o.departmentName !== "string") return false;
   if (!isObj(o.averageGrades) || !gradeOk(o.averageGrades["صباحي"]) || !gradeOk(o.averageGrades["مسائي"])) return false;
   if (!Array.isArray(o.sessions)) return false;
+  // cutoffs تُستعمل بـ.filter في الحساب: نص أو كائن يكسر الصفحة (الغياب مقبول)
+  if (o.cutoffs !== undefined && !Array.isArray(o.cutoffs)) return false;
   return true;
 }
 

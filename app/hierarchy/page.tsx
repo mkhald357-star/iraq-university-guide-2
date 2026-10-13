@@ -92,7 +92,11 @@ export default function HierarchyPage() {
             colleges: u.colleges
               .filter((c) => collegeMatches(c, u.name, q))
               // مع فرع محدّد: لا تُعرض كلية ولا قسم بلا حد منشور لذلك الفرع (بدل صفوف «لا حد»)
-              .map((c) => ({ ...c, departments: c.departments.filter((d) => has(d.v)) }))
+              .map((c) => ({
+                ...c,
+                hadDepts: c.departments.length > 0,
+                departments: c.departments.filter((d) => has(d.v)),
+              }))
               .filter((c) => c.departments.length > 0 || has(c.collegeLevel))
               .map((c) => (has(c.collegeLevel) ? c : { ...c, collegeLevel: undefined })),
           }))
@@ -200,6 +204,8 @@ export default function HierarchyPage() {
                   <ul className="space-y-3 border-t border-line p-3">
                     {u.colleges.map((c) => {
                       const hasDepts = c.departments.length > 0;
+                      // كلية لها أقسام في الملف لكنها أُخفيت بفلتر الفرع: لا تُوصَف «لا أقسام مذكورة»
+                      const hadDepts = (c as College & { hadDepts?: boolean }).hadDepts ?? hasDepts;
                       return (
                         <li key={c.name} className="rounded-md bg-surface-subtle p-3">
                           <p className="font-bold text-ink">{c.name}</p>
@@ -217,7 +223,11 @@ export default function HierarchyPage() {
                             <p className="mt-2 border-t border-line pt-2 text-sm">
                               <span className="me-2 rounded-full bg-surface px-2 py-0.5 text-xs font-bold text-ink-muted">
                                 {c.level === "track" ? "حد المسار" : "حد الكلية"}
-                                {hasDepts ? " (للأقسام بلا صف خاص)" : " (لا أقسام مذكورة في الملف)"}
+                                {hasDepts
+                                  ? " (للأقسام بلا صف خاص)"
+                                  : hadDepts
+                                    ? " (لا قسم منها له حد لهذا الفرع)"
+                                    : " (لا أقسام مذكورة في الملف)"}
                               </span>
                               <ValueChips values={c.collegeLevel} branch={branch} />
                             </p>

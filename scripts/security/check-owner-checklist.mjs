@@ -97,10 +97,19 @@ try {
   check("TLS", "HTTP يُحوَّل إلى HTTPS", false, String(e.message || e));
 }
 
+// SECLEVEL=0 يسمح لـOpenSSL المحلي بمحاولة TLS 1.0/1.1 فعلاً، فيكون الرفض رفضاً من الخادم لا حجباً محلياً.
 const tlsProbe = (version) =>
   new Promise((resolve) => {
     const sock = tls.connect(
-      { host: HOST, port: 443, servername: HOST, minVersion: version, maxVersion: version, timeout: 10000 },
+      {
+        host: HOST,
+        port: 443,
+        servername: HOST,
+        minVersion: version,
+        maxVersion: version,
+        ciphers: "ALL:@SECLEVEL=0",
+        timeout: 10000,
+      },
       () => {
         const v = sock.getProtocol();
         sock.end();
@@ -113,22 +122,26 @@ const tlsProbe = (version) =>
       resolve({ accepted: false, v: "timeout" });
     });
   });
+const t10 = await tlsProbe("TLSv1");
 const t11 = await tlsProbe("TLSv1.1");
 const t12 = await tlsProbe("TLSv1.2");
 const t13 = await tlsProbe("TLSv1.3");
-// OpenSSL الحديث يرفض TLS 1.1 محلياً قبل أي اتصال، فلا يدلّ ذلك على سلوك الخادم: غير حاسم لا نجاح
-const localBlock =
-  !t11.accepted &&
-  /NO_PROTOCOLS_AVAILABLE|UNSUPPORTED_PROTOCOL|WRONG_SSL_VERSION|INVALID_(MIN|MAX)/i.test(String(t11.v));
+// رفض صريح من الخادم فقط يُحتسب نجاحاً. أي خطأ آخر (شبكة، DNS، مهلة، حجب محلي) = غير حاسم، لا نجاح.
+const serverRejected = (r) =>
+  !r.accepted && /ALERT_PROTOCOL_VERSION|ALERT_HANDSHAKE_FAILURE|PROTOCOL_VERSION/i.test(String(r.v));
+const legacy = [t10, t11];
 check(
   "TLS",
   "TLS 1.0/1.1 مرفوض من الخادم",
-  localBlock ? null : !t11.accepted,
-  t11.accepted
-    ? `قُبل ${t11.v}`
-    : localBlock
-      ? `غير قابل للفحص من هذا الجهاز (${t11.v}): تحقّق عبر https://www.ssllabs.com/ssltest/analyze.html?d=${HOST}`
-      : `رُفض (${t11.v})`
+  legacy.some((r) => r.accepted) ? false : legacy.every(serverRejected) ? true : null,
+  legacy.some((r) => r.accepted)
+    ? `قُبل ${legacy
+        .filter((r) => r.accepted)
+        .map((r) => r.v)
+        .join("، ")}`
+    : legacy.every(serverRejected)
+      ? `رفضهما الخادم (1.0: ${t10.v}، 1.1: ${t11.v})`
+      : `غير حاسم (1.0: ${t10.v}، 1.1: ${t11.v}): تحقّق عبر https://www.ssllabs.com/ssltest/analyze.html?d=${HOST}`
 );
 check("TLS", "TLS 1.2 و1.3 مقبولان", t12.accepted && t13.accepted, `1.2=${t12.accepted}، 1.3=${t13.accepted}`);
 

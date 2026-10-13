@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "pdf_pages": 25,
+    "source_rows": 1222,
+    "raw_rows": 1222,
+    "matched_exact_numbers_branch_gender": 1222,
+    "source_rows_not_in_raw": 0,
+    "raw_rows_not_in_source": 0,
+    "name_mismatch_university_or_college": 0,
+    "arithmetic_average_ne_total_over_7": 0,
+    "unparsed_fragments": 1,
+    "with_department": 604,
+    "college_or_track_only": 618,
+    "by_level": {
+      "كلية": 550,
+      "قسم": 604,
+      "مسار": 68
+    },
+    "pages_15_24_rows": 508,
+    "provinces": 15,
+    "universities": 36,
+    "unknown_province": [],
+    "quota_rows": 5
+  },
+  "source_not_in_raw": [],
+  "raw_not_in_source": [],
+  "name_mismatch": [],
+  "arith_bad": [],
+  "unparsed": [
+    {
+      "page": 0,
+      "text": "جمهورية العراق"
+    }
+  ]
+}

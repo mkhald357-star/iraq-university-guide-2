@@ -19,6 +19,14 @@ if (!TOKEN) {
   process.exit(2);
 }
 
+// رمز حقيقي: أحرف ASCII مرئية فقط وطول معقول. يلتقط ترك النص النائب («الصق_الرمز_هنا») قبل أي طلب.
+if (!/^[!-~]{20,}$/.test(TOKEN)) {
+  console.error(
+    "قيمة CLOUDFLARE_API_TOKEN ليست رمزاً صالحاً (يبدو أنها النص النائب أو فيها مسافات/حروف عربية). ضع رمز Cloudflare (حوالي 40 حرفاً لاتينياً)."
+  );
+  process.exit(2);
+}
+
 async function cf(method, path, body) {
   const res = await fetch(API + path, {
     method,

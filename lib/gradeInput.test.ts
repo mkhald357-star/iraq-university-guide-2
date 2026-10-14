@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { sanitizeGradeInput, gradeRangeMessage } from "./gradeInput";
+import { sanitizeGradeInput, gradeRangeMessage, caretAfterSanitize } from "./gradeInput";
 
 describe("sanitizeGradeInput", () => {
   it("يُبقي الأرقام اللاتينية كما هي", () => {
@@ -40,5 +40,19 @@ describe("gradeRangeMessage", () => {
   it("خارج المدى يعطي رسالة", () => {
     expect(gradeRangeMessage("101", 100)).toMatch(/بين 0 و100/);
     expect(gradeRangeMessage("120.5", 120)).toMatch(/بين 0 و120/);
+  });
+});
+
+describe("caretAfterSanitize: المؤشر لا يقفز", () => {
+  it("حرف غير صالح في الوسط لا يحرّك المؤشر إلى النهاية", () => {
+    // «7x8.5» والمؤشر بعد x (موضع 2): المحرف الصالح قبله «7» فقط
+    expect(caretAfterSanitize("7x8.5", 2)).toBe(1);
+  });
+  it("رقم عربي في الوسط يُحسب رقماً", () => {
+    expect(caretAfterSanitize("7٩8.5", 2)).toBe(2);
+  });
+  it("المؤشر في البداية والنهاية", () => {
+    expect(caretAfterSanitize("78.5", 0)).toBe(0);
+    expect(caretAfterSanitize("78.5", 4)).toBe(4);
   });
 });

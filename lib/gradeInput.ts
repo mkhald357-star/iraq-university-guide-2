@@ -38,10 +38,27 @@ export function gradeRangeMessage(text: string, max: number): string {
   return "";
 }
 
+/** موضع المؤشر بعد التنظيف: عدد المحارف الصالحة التي كانت قبل المؤشر (لا يقفز إلى النهاية). */
+export function caretAfterSanitize(raw: string, caret: number): number {
+  return sanitizeGradeInput(raw.slice(0, Math.max(0, caret))).length;
+}
+
 /** يطبّق التنظيف على عنصر الإدخال نفسه ويضبط رسالة الصلاحية الأصلية للمتصفح. */
 export function applyGradeInput(el: HTMLInputElement, max: number): string {
-  const clean = sanitizeGradeInput(el.value);
-  if (el.value !== clean) el.value = clean;
+  const raw = el.value;
+  const clean = sanitizeGradeInput(raw);
+  if (raw !== clean) {
+    const caret = el.selectionStart;
+    el.value = clean;
+    if (caret !== null) {
+      const pos = Math.min(caretAfterSanitize(raw, caret), clean.length);
+      try {
+        el.setSelectionRange(pos, pos);
+      } catch {
+        // بعض الأنواع/الحالات لا تدعم التحديد: يُترك المؤشر
+      }
+    }
+  }
   el.setCustomValidity(gradeRangeMessage(clean, max));
   return clean;
 }

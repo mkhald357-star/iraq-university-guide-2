@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { applyGradeInput } from "../../lib/gradeInput";
+import { applyGradeInput, gradeRangeMessage } from "../../lib/gradeInput";
 import { Compass } from "lucide-react";
 import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
@@ -210,9 +210,15 @@ export default function ExplorerPage() {
                 autoComplete="off"
                 value={maxCutoff}
                 onChange={(e) => setMaxCutoff(applyGradeInput(e.currentTarget, 120))}
+                aria-describedby={gradeRangeMessage(maxCutoff, 120) ? "maxCutoff-err" : undefined}
                 placeholder="مثال: 70 (اتركه فارغاً لعرض الكل)"
                 className="w-full rounded-xl border border-line p-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />
+              {gradeRangeMessage(maxCutoff, 120) && (
+                <p id="maxCutoff-err" role="alert" className="mt-1 text-xs text-band-reach">
+                  {gradeRangeMessage(maxCutoff, 120)}
+                </p>
+              )}
             </div>
           </div>
 

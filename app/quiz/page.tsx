@@ -284,7 +284,14 @@ function SubjectGradeInput({
   const [text, setText] = useState(value === undefined ? "" : String(value));
   useEffect(() => {
     // تصفير خارجي (تغيير الفرع) يُزامَن، دون الكتابة فوق ما يُكتب الآن
-    setText((t) => (value === undefined ? (t === "" || t === "." ? t : "") : Number(t) === value ? t : String(value)));
+    setText((t) => {
+      if (value === undefined) {
+        // القيمة غير الصالحة تُرفَع للأب undefined: لا يُمسح ما يكتبه الطالب (يرى الرسالة ويصحّح).
+        // يُمسح فقط حين يُصفِّر الأب الحقل فعلاً والنص صالح (تغيير الفرع).
+        return t === "" || t === "." || gradeRangeMessage(t, 100) !== "" ? t : "";
+      }
+      return Number(t) === value ? t : String(value);
+    });
   }, [value]);
   return (
     <InputField
@@ -554,7 +561,7 @@ export default function Quiz() {
               inputMode="decimal"
               autoComplete="off"
               name="grade"
-              pattern="\d{1,3}(\.\d{1,2})?"
+              pattern="\d{1,3}(\.\d{0,2})?"
               title="رقم بين 0 و100، مثل 78 أو 78.5"
               onInput={(e) => applyGradeInput(e.currentTarget, 100)}
               placeholder="مثال: 78"

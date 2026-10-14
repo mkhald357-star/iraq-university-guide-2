@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { applyGradeInput } from "../../lib/gradeInput";
+import { applyGradeInput, gradeRangeMessage, sanitizeGradeInput } from "../../lib/gradeInput";
 import { AlertCircle, Search } from "lucide-react";
 import provincesData from "../../data/provinces.json";
 import {
@@ -85,7 +85,11 @@ export default function GpaCheckPage() {
       const fs = readStored("filterSettings", isPlainObject, null);
       if (fs) {
         if (fs.branch === "علمي" || fs.branch === "أدبي" || fs.branch === "فنون") setBranch(fs.branch);
-        if (typeof fs.grade === "number" || typeof fs.grade === "string") setGrade(String(fs.grade));
+        if (typeof fs.grade === "number" || typeof fs.grade === "string") {
+          // قيمة محفوظة (قد تكون معدَّلة يدوياً): تُنظَّف وتُرفض إن خرجت عن 0-100
+          const g = sanitizeGradeInput(String(fs.grade));
+          setGrade(gradeRangeMessage(g, 100) ? "" : g);
+        }
         if (typeof fs.province === "string") setProvince(fs.province);
       }
     } catch {
@@ -300,7 +304,7 @@ export default function GpaCheckPage() {
             type="text"
             inputMode="decimal"
             autoComplete="off"
-            pattern="\d{1,3}(\.\d{1,2})?"
+            pattern="\d{1,3}(\.\d{0,2})?"
             title="رقم بين 0 و100، مثل 78 أو 78.5"
             value={grade}
             onChange={(e) => setGrade(applyGradeInput(e.currentTarget, 100))}

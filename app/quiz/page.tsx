@@ -1166,7 +1166,11 @@ export default function Quiz() {
       {/* زر الرجوع */}
       {currentScreenIndex > 0 && (
         <button
-          onClick={() => setCurrentScreenIndex((prev) => prev - 1)}
+          onClick={() => {
+            // لا ارتداد بنقرة مزدوجة على «التالي»: الثانية تقع على هذا الزر في بعض الشاشات
+            if (Date.now() - lastAdvanceAt.current < ADVANCE_LOCK_MS) return;
+            setCurrentScreenIndex((prev) => prev - 1);
+          }}
           className="flex items-center gap-2 text-ink-muted hover:text-ink transition-colors mx-auto"
         >
           <ChevronRight className="w-4 h-4" />

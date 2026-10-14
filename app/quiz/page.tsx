@@ -91,8 +91,6 @@ const ALL_QUIZ_SCREENS: Screen[] = [
   singleScreen(HELP_OTHERS_REVERSE),
   singleScreen(LIE_SCALE),
 ];
-// زمن استقرار السهم قبل الانتقال التلقائي (لمس/فأرة فقط) -- يرى الطالب إجابته أولاً.
-const AUTO_ADVANCE_MS = 650;
 type PickState = Record<string, { most: string | null; least: string | null }>;
 const VALIDITY_QUESTION_IDS = new Set(VALIDITY_QUESTIONS.map((q) => q.id));
 
@@ -313,7 +311,6 @@ export default function Quiz() {
   const [picks, setPicks] = useState<PickState>({});
   const answersRef = useRef<AnswerState>(answers);
   answersRef.current = answers;
-  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isFinished, setIsFinished] = useState(false);
   const [showReview, setShowReview] = useState(false);
   // كل التخصصات الصالحة لفرع الطالب (لا أفضل 3 فقط) بنسبة توافقها الخام --
@@ -444,7 +441,6 @@ export default function Quiz() {
   // إعادة ضبط "توقيت بداية السؤال" عند كل انتقال — يغذّي مكوّن الزمن في VRS
   useEffect(() => {
     setQuestionShownAt(Date.now());
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
   }, [currentScreenIndex]);
 
   // Persist filterSettings
@@ -715,7 +711,6 @@ export default function Quiz() {
   // تُظهر اختياراً في 6 ثوانٍ كأنه 1.5 ثانية، فيُنذر مؤشر التسرّع في VRS
   // بالخطأ (تشخيص المدقّق C4).
   const finishScreen = (screenIndex: number) => {
-    if (advanceTimer.current) clearTimeout(advanceTimer.current);
     const screen = displayedScreens[screenIndex];
     const elapsed = Date.now() - questionShownAt;
     const entries: [string, number][] =
@@ -1101,16 +1096,11 @@ export default function Quiz() {
           <div className="flex min-h-[300px] flex-col justify-center space-y-10 text-center">
             <h1 className="text-2xl md:text-3xl font-bold text-ink leading-relaxed">{screen.items[0].text}</h1>
             {/* مقياس خمس نقاط بسهم تفاعلي: سحب أو نقر أو أسهم لوحة المفاتيح.
-                اللمس/الفأرة ينتقل تلقائياً بعد استقرار السهم؛ لوحة المفاتيح
-                تؤكّد بـEnter (بلا قفز مفاجئ أثناء التنقّل بالأسهم). */}
+                لا انتقال تلقائي: يبقى السؤال حتى يضغط الطالب «التالي» (أو Enter)،
+                فيراجع إجابته ويغيّرها قبل أن يمضي. */}
             <ArrowScale
               value={(answers[screen.items[0].id] as ScaleValue | undefined) ?? null}
-              onChange={(v, source) => {
-                answerItem(screen.items[0].id, v);
-                if (advanceTimer.current) clearTimeout(advanceTimer.current);
-                if (source === "pointer")
-                  advanceTimer.current = setTimeout(() => finishScreen(screenIndex), AUTO_ADVANCE_MS);
-              }}
+              onChange={(v) => answerItem(screen.items[0].id, v)}
               onConfirm={() => finishScreen(screenIndex)}
               labels={getAnswerLabels(screen.items[0])}
               ariaLabel={screen.items[0].text}

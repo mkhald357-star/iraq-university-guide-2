@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { applyGradeInput } from "../../lib/gradeInput";
 import { Compass } from "lucide-react";
 import provincesData from "../../data/provinces.json";
 import { fetchOfferingsForBranch, type Branch, type ExplorerOffering } from "../../lib/offeringsClient";
@@ -204,12 +205,11 @@ export default function ExplorerPage() {
               </label>
               <input
                 id="maxCutoff"
-                type="number"
-                min={0}
-                max={120}
-                step="0.01"
+                type="text"
+                inputMode="decimal"
+                autoComplete="off"
                 value={maxCutoff}
-                onChange={(e) => setMaxCutoff(e.target.value)}
+                onChange={(e) => setMaxCutoff(applyGradeInput(e.currentTarget, 120))}
                 placeholder="مثال: 70 (اتركه فارغاً لعرض الكل)"
                 className="w-full rounded-xl border border-line p-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
               />

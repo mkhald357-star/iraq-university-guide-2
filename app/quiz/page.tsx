@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef, useId } from "react";
+import { applyGradeInput, gradeRangeMessage } from "../../lib/gradeInput";
 import Link from "next/link";
 import { ArrowLeft, ChevronRight, AlertTriangle, AlertCircle, CheckCircle, Edit3, ClipboardList } from "lucide-react";
 import questionsData from "../../data/questions.json";
@@ -277,15 +278,28 @@ function SubjectGradeInput({
   value: number | undefined;
   onChange: (value: number | undefined) => void;
 }) {
+  // نص محلي: «7.» و«78.5» تُكتب مرحلياً، والقيمة الرقمية تُرفع للأب. لا <input type="number">
+  // (يتغيّر بعجلة التمرير) -- lib/gradeInput.ts.
+  const id = useId(); // يربط التسمية بالحقل (كان بلا id فلا يقرأ قارئ الشاشة اسم الحقل)
+  const [text, setText] = useState(value === undefined ? "" : String(value));
+  useEffect(() => {
+    // تصفير خارجي (تغيير الفرع) يُزامَن، دون الكتابة فوق ما يُكتب الآن
+    setText((t) => (value === undefined ? (t === "" || t === "." ? t : "") : Number(t) === value ? t : String(value)));
+  }, [value]);
   return (
     <InputField
       compact
+      id={id}
       label={label}
-      type="number"
-      min={0}
-      max={100}
-      value={value ?? ""}
-      onChange={(e) => onChange(e.target.value === "" ? undefined : Number(e.target.value))}
+      type="text"
+      inputMode="decimal"
+      autoComplete="off"
+      value={text}
+      onChange={(e) => {
+        const clean = applyGradeInput(e.currentTarget, 100);
+        setText(clean);
+        onChange(clean === "" || clean === "." || gradeRangeMessage(clean, 100) ? undefined : Number(clean));
+      }}
       placeholder="اختياري"
     />
   );
@@ -536,10 +550,13 @@ export default function Quiz() {
             <InputField
               label="المعدل (٪)"
               id="grade"
-              type="number"
+              type="text"
+              inputMode="decimal"
+              autoComplete="off"
               name="grade"
-              min="0"
-              max="100"
+              pattern="\d{1,3}(\.\d{1,2})?"
+              title="رقم بين 0 و100، مثل 78 أو 78.5"
+              onInput={(e) => applyGradeInput(e.currentTarget, 100)}
               placeholder="مثال: 78"
               required
             />

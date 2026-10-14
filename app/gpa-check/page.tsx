@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { applyGradeInput } from "../../lib/gradeInput";
 import { AlertCircle, Search } from "lucide-react";
 import provincesData from "../../data/provinces.json";
 import {
@@ -296,12 +297,13 @@ export default function GpaCheckPage() {
           </label>
           <input
             id="grade"
-            type="number"
-            min={0}
-            max={100}
-            step="0.01"
+            type="text"
+            inputMode="decimal"
+            autoComplete="off"
+            pattern="\d{1,3}(\.\d{1,2})?"
+            title="رقم بين 0 و100، مثل 78 أو 78.5"
             value={grade}
-            onChange={(e) => setGrade(e.target.value)}
+            onChange={(e) => setGrade(applyGradeInput(e.currentTarget, 100))}
             placeholder="مثال: 78"
             className="w-full rounded-xl border border-line p-3 focus:outline-none focus:ring-2 focus:ring-primary/40"
             required

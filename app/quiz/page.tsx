@@ -92,6 +92,8 @@ const ALL_QUIZ_SCREENS: Screen[] = [
   singleScreen(HELP_OTHERS_REVERSE),
   singleScreen(LIE_SCALE),
 ];
+// نافذة تجاهل النقرة الثانية بعد انتقال (ms)
+const ADVANCE_LOCK_MS = 450;
 type PickState = Record<string, { most: string | null; least: string | null }>;
 const VALIDITY_QUESTION_IDS = new Set(VALIDITY_QUESTIONS.map((q) => q.id));
 
@@ -269,6 +271,26 @@ function ReviewScreen({
 // حقل درجة مادة واحدة ضمن نموذج القرابة الدراسية الاختياري -- فارغ افتراضياً
 // (undefined لا صفراً)، كي lib/subjectAffinity.ts يتجاهل أي محور لم يُدخِله
 // الطالب بدل معاقبته على غيابه.
+/** زر «التالي» للسؤال الأحادي: يظهر بعد الإجابة، ويتمرّر الصفحة إليه عند ظهوره إن كان تحت حافة الشاشة. */
+function SingleNextButton({ onClick }: { onClick: () => void }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    // block:"nearest": لا حركة إن كان ظاهراً أصلاً؛ وبلا حركة ناعمة لمن يفضّل تقليل الحركة
+    ref.current?.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+  }, []);
+  return (
+    <button
+      ref={ref}
+      type="button"
+      onClick={onClick}
+      className="mx-auto rounded-xl bg-primary-solid px-8 py-3 font-bold text-white transition-all hover:bg-primary-solid-hover active:scale-[0.98]"
+    >
+      التالي
+    </button>
+  );
+}
+
 function SubjectGradeInput({
   label,
   value,
@@ -331,6 +353,7 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<AnswerState>({});
   const [picks, setPicks] = useState<PickState>({});
   const answersRef = useRef<AnswerState>(answers);
+  const lastAdvanceAt = useRef(0);
   answersRef.current = answers;
   const [isFinished, setIsFinished] = useState(false);
   const [showReview, setShowReview] = useState(false);
@@ -735,6 +758,10 @@ export default function Quiz() {
   // تُظهر اختياراً في 6 ثوانٍ كأنه 1.5 ثانية، فيُنذر مؤشر التسرّع في VRS
   // بالخطأ (تشخيص المدقّق C4).
   const finishScreen = (screenIndex: number) => {
+    // نقرتان متتاليتان بسرعة (أقل من 450ms) لا تقفزان سؤالين: الثانية تُتجاهَل
+    const now = Date.now();
+    if (now - lastAdvanceAt.current < ADVANCE_LOCK_MS) return;
+    lastAdvanceAt.current = now;
     const screen = displayedScreens[screenIndex];
     const elapsed = Date.now() - questionShownAt;
     const entries: [string, number][] =
@@ -1130,13 +1157,7 @@ export default function Quiz() {
               ariaLabel={screen.items[0].text}
             />
             {answers[screen.items[0].id] !== undefined && (
-              <button
-                type="button"
-                onClick={() => finishScreen(screenIndex)}
-                className="mx-auto rounded-xl bg-primary-solid px-8 py-3 font-bold text-white transition-all hover:bg-primary-solid-hover active:scale-[0.98]"
-              >
-                التالي
-              </button>
+              <SingleNextButton key={screen.id} onClick={() => finishScreen(screenIndex)} />
             )}
           </div>
         )}

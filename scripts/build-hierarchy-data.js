@@ -1,5 +1,5 @@
 // يبني public/data/hierarchy.json: الحدود الدنيا الرسمية (2025-2026) مرتبة محافظة ← جامعة ← كلية ← قسم،
-// لصفحة /hierarchy. المدخل: reports/admission-fix/cutoffs-extraction/rows.json (ناتج
+// لصفحة /hierarchy. المدخل: data/raw/cutoffs_pdf_textlayer_rows.json (ناتج
 // scripts/admission-fix/extract-cutoffs-hierarchy.py من PDF الوزارة، 1,222 صفاً مطابقاً للخام).
 // لا يضيف رقماً ولا يستنتج: يعيد تجميع ما في الصفوف فقط، ويتحقق من تطابقه مع data/raw/cutoffs_2025_2026.json.
 const fs = require("fs");
@@ -7,7 +7,7 @@ const path = require("path");
 const { toDisplayName } = require("./displayName");
 
 const ROOT = path.join(__dirname, "..");
-const ROWS = path.join(ROOT, "reports", "admission-fix", "cutoffs-extraction", "rows.json");
+const ROWS = path.join(ROOT, "data", "raw", "cutoffs_pdf_textlayer_rows.json");
 const RAW = path.join(ROOT, "data", "raw", "cutoffs_2025_2026.json");
 const OUT = path.join(ROOT, "public", "data", "hierarchy.json");
 

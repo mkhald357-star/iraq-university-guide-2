@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { formatGrade, admissionCell, GOV_NO_PUBLISHED_CUTOFF } from "./admissionLabel";
 import universities from "../data/universities.json";
 
-describe("formatGrade -- الرقم أولاً، ولا قبول مباشر للحكومي (PLAN-ADMISSION-FIX.md)", () => {
+describe("formatGrade -- الرقم أولاً، ولا قبول مباشر للحكومي", () => {
   it("قسم بقيمة حقيقية يعرض النسبة دائماً حتى لو كانت هناك راية مباشر قديمة (الرقم أولاً)", () => {
     expect(formatGrade(78.5, true, false)).toEqual({ text: "78.5%", isDirect: false });
     expect(formatGrade(60, true, true)).toEqual({ text: "60%", isDirect: false });
@@ -18,7 +18,7 @@ describe("formatGrade -- الرقم أولاً، ولا قبول مباشر لل
   });
 });
 
-describe("admissionCell -- لا قبول مباشر في أي قسم حكومي أو أهلي (PLAN-ADMISSION-FIX.md)", () => {
+describe("admissionCell -- لا قبول مباشر في أي قسم حكومي أو أهلي", () => {
   it("أهلي بشرط معدّل معلَن يعرض الشرط، لا 'قبول مباشر'", () => {
     expect(admissionCell("أهلية", true, true, null, { value: 90 })).toEqual({
       text: "يشترط معدل 90% فأكثر",

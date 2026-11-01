@@ -11,7 +11,9 @@ const clean = (v) =>
   toDisplayName(v || "")
     .replace(/\)([^()]*)\(/g, "($1)")
     .replace(/صالح الدين/g, "صلاح الدين");
-const rows = JSON.parse(fs.readFileSync(path.join(DIR, "rows.json"), "utf8")).map((r) => ({
+const rows = JSON.parse(
+  fs.readFileSync(path.join(__dirname, "..", "..", "data", "raw", "cutoffs_pdf_textlayer_rows.json"), "utf8")
+).map((r) => ({
   ...r,
   college: clean(r.college),
   campus: clean(r.campus),

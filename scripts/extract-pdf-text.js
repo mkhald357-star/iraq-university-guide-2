@@ -17,13 +17,16 @@ const { PDFParse } = require("pdf-parse");
 
 const ROOT = path.join(__dirname, "..");
 const RAW_DIR = path.join(ROOT, "data", "raw");
+const SOURCES_DIR = path.join(ROOT, "data", "sources");
 
 function findPdf(mustInclude) {
-  const files = fs.readdirSync(ROOT).filter((f) => f.toLowerCase().endsWith(".pdf"));
+  const files = fs.readdirSync(SOURCES_DIR).filter((f) => f.toLowerCase().endsWith(".pdf"));
   const match = files.find((f) => f.includes(mustInclude));
   if (!match)
-    throw new Error(`Could not find a PDF containing "${mustInclude}" in ${ROOT}. Files seen: ${files.join(", ")}`);
-  return path.join(ROOT, match);
+    throw new Error(
+      `Could not find a PDF containing "${mustInclude}" in ${SOURCES_DIR}. Files seen: ${files.join(", ")}`
+    );
+  return path.join(SOURCES_DIR, match);
 }
 
 async function extract(pdfPath, outBase) {

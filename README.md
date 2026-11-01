@@ -1,91 +1,43 @@
-# Iraq University Guide
+# منصة التوجيه الجامعي العراقي
 
-A student-guidance platform for Iraqi high school graduates. It combines a RIASEC personality assessment with real, research-backed data on university majors, admission cutoffs, and tuition fees to help students choose the right major and university.
+منصة ويب عربية (RTL) لمساعدة خريجي الإعدادية في العراق على اختيار التخصص والجامعة: اختبار ميول (RIASEC) مع بيانات القبول الرسمية المستخرجة من وثائق وزارة التعليم العالي والبحث العلمي.
 
-## Features
+الموقع: <https://iraqmajors.com>
 
-- **RIASEC Personality Test** - helps students discover which academic fields fit their personality type.
-- **Major & University Matching** - recommends majors based on test results and real acceptance cutoffs.
-- **Official Admission Data** - cutoff scores are extracted and validated from official Ministry of Higher Education PDF documents for the 2025-2026 academic year.
-- **Private University Info** - includes department listings and tuition details for private universities.
+## الصفحات
+`/quiz` اختبار الميول · `/report` تقرير التخصص · `/gpa-check` فاحص المعدل · `/explorer` مستكشف الجامعات · `/hierarchy` الحدود الدنيا بالتسلسل · `/wishlist` مرتِّب الرغبات · `/compare` الموازنة · `/decider` حسم الحيرة · `/cost` كلفة الأهلي · `/skills` · `/destinations` · `/income` · `/projects` · `/privacy`
 
-## Tech Stack
+## التقنيات
+Next.js 15 (App Router، تصدير ثابت) · React 19 · TypeScript · Tailwind CSS · Zod · Vitest · Playwright · Node.js (خط البيانات) · Python (استخراج نص PDF) · GitHub Actions · Cloudflare Pages.
 
-- Next.js (App Router)
-- TypeScript
-- Tailwind CSS
-- Vitest (unit testing)
-- ESLint & Prettier (code quality/formatting)
-- Node.js scripts for PDF parsing and data pipeline generation
-
-## Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- npm
-
-### Installation
-
+## التشغيل
 ```
-git clone https://github.com/mkhald357-star/iraq-university-guide.git
-cd iraq-university-guide
 npm install
+npm run dev          # http://localhost:3000
+npm test             # الاختبارات الآلية
+npm run build        # بناء الموقع الثابت + ترويسات الأمان (out/)
+npm run rebuild-data # إعادة بناء البيانات من وثائق الوزارة
 ```
 
-### Running Locally
-
+## بنية المستودع
 ```
-npm run dev
-```
-
-The app will be available at http://localhost:3000.
-
-### Build for Production
-
-```
-npm run build
-npm run start
-```
-
-### Testing
-
-```
-npm run test
+app/           الصفحات والمكونات
+lib/           المنطق (المحرك، المطابقة، الأهلية، التحقق) واختباراته
+data/          قاعدة المعرفة: الجامعات، التخصصات، الأسئلة، ملفات RIASEC
+data/raw/      نواتج وسيطة من الاستخراج
+data/sources/  الوثائق الرسمية المصدر مع بصماتها (SOURCES.md)
+public/data/   ملفات البيانات المخدومة للواجهة
+scripts/       خط البيانات، والتحقق، والتدقيق، والأمن، والتقييم
+reports/       نتائج التدقيق والتقييم
+docs/          دليل التشغيل
+.github/       الفحص الآلي ومراقبة الموقع
 ```
 
-### Linting & Formatting
+## مراجع
+- [دليل التشغيل والطوارئ](docs/operations.md)
+- [الوثائق المصدر وبصماتها](data/sources/SOURCES.md)
+- [تقرير الاختبارات الآلي](reports/test-report.md) (يُولَّد بالأمر `node scripts/generate-test-report.mjs`)
+- [تدقيق استخراج بيانات القبول](reports/admission-fix/) · [شخصيات التقييم](reports/personas/)
 
-```
-npm run lint
-npm run format
-```
-
-## Data Pipeline
-
-This project includes scripts to rebuild university and major data from official source PDFs:
-
-```
-npm run rebuild-data
-```
-
-This runs PDF text extraction, cutoff parsing, and university/major dataset generation in sequence.
-
-## Project Structure
-
-```
-app/       -> Next.js application routes and pages
-data/      -> Processed datasets (universities, majors, cutoffs)
-lib/       -> Shared utilities and business logic
-public/    -> Static assets
-scripts/   -> Data processing and build scripts
-reports/   -> Project analysis and planning documents
-```
-
-## Contributing
-
-This is currently a solo project. Contribution guidelines will be added in the future.
-
-## License
-
-No license has been specified yet.
+## حالة المشروع
+يعمل على الإنتاج. أرقام القبول مرجعها «الحدود الدنيا 2025-2026»، وهي مؤشر لا وعد.

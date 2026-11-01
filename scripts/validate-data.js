@@ -289,7 +289,7 @@ validate("data/universities.json", path.join(ROOT, "data/universities.json"), Un
   }
 }
 
-// حراس خطة حقيقة القبول (PLAN-ADMISSION-FIX.md §8 وdata/admission_rules.md):
+// حراس خطة حقيقة القبول (خطة تصحيح القبول §8 وdata/admission_rules.md):
 // 1. لا قبول مباشر في أي قسم حكومي (isDirectAdmission = false دائماً للحكومي)
 // 2. تفريغ data/direct-admission-exceptions.json إلى مصفوفة فارغة تماماً
 // 3. تماسك admissionStatus للحكومي: إما published (له رقم) أو noPublishedCutoff (بلا رقم)

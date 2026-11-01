@@ -332,7 +332,7 @@ describe("تحقّق بيانات حقيقية: كل حدّ في public/data/maj
   });
 });
 
-describe("حقيقة القبول الحكومي على بيانات حقيقية (PLAN-ADMISSION-FIX.md)", () => {
+describe("حقيقة القبول الحكومي على بيانات حقيقية", () => {
   it("صفر قبول مباشر في الحكومي، ولا عرض بلا رقم منشور يُصنَّف مريحاً", () => {
     const dir = path.join(__dirname, "../public/data/by-branch");
     let directGov = 0;

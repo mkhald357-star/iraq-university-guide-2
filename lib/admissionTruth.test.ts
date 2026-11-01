@@ -3,7 +3,7 @@ import { admissionCell, GOV_NO_PUBLISHED_CUTOFF } from "./admissionLabel";
 import universitiesData from "../data/universities.json";
 import exceptionsData from "../data/direct-admission-exceptions.json";
 
-describe("Phase 4: Admission Truth Regression Tests (PLAN-ADMISSION-FIX.md §8)", () => {
+describe("Phase 4: Admission Truth Regression Tests", () => {
   const universities = universitiesData.universities;
   const govUniversities = universities.filter((u) => u.type === "حكومية");
 

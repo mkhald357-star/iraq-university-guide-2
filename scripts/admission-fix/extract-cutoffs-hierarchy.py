@@ -19,7 +19,7 @@ from collections import Counter, defaultdict
 import pypdfium2 as pdfium
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-PDF = os.path.join(ROOT, "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf")
+PDF = os.path.join(ROOT, "data", "sources", "الحدودالدنياالقبول-المركزي-القناةالعامة__للسنة_الدراسية_2025-2026.pdf")
 OUT = os.path.join(ROOT, "reports", "admission-fix", "cutoffs-extraction")
 os.makedirs(OUT, exist_ok=True)
 
@@ -220,7 +220,7 @@ order = lambda r: (r["province"], r["university"], r["college"], r["campus"], r[
 rows_sorted = sorted(rows, key=order)
 with_dept = [r for r in rows_sorted if r["department"]]
 college_only = [r for r in rows_sorted if not r["department"]]
-json.dump(rows_sorted, open(os.path.join(OUT, "rows.json"), "w", encoding="utf8"), ensure_ascii=False, indent=1)
+json.dump(rows_sorted, open(os.path.join(ROOT, "data", "raw", "cutoffs_pdf_textlayer_rows.json"), "w", encoding="utf8"), ensure_ascii=False, indent=1)
 # ملاحظة: الملفات الظاهرة للمستخدم (CSV بأسماء مصحَّحة + hierarchy.md) يولّدها
 # scripts/admission-fix/polish-cutoffs-extraction.js من rows.json بعد إصلاح تشوّه «ال» (displayName.js).
 write_csv(os.path.join(OUT, "all-rows-ordered.csv"), rows_sorted)
